@@ -1,0 +1,699 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🧠 Eigene KI-Agenten programmieren - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-d4fa02cf.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-7b901f96.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-eigene-ki-agenten-programmieren--theorie--praxis"><a class="header" href="#-eigene-ki-agenten-programmieren--theorie--praxis">🧠 Eigene KI-Agenten programmieren – Theorie &amp; Praxis</a></h1>
+<p><em>Von der Idee zum eigenen intelligenten Agenten – in Rust.</em></p>
+<hr>
+<p>Du hast Antigravity genutzt, mit Copilot gearbeitet, Vibe Coding ausprobiert. Jetzt kommt die nächste Stufe:<br><strong>Du baust deinen eigenen KI-Agenten.</strong></p>
+<p>Das klingt nach Science-Fiction – ist es aber nicht. Ein KI-Agent ist im Kern ein Programm, das:</p>
+<ol>
+<li><strong>Wahrnehmung</strong> hat (Input: Text, Dateien, APIs)</li>
+<li><strong>Entscheidungen</strong> trifft (Logik, KI-Modell, Regeln)</li>
+<li><strong>Handlungen</strong> ausführt (Output: Text, Dateien, Terminal-Befehle)</li>
+</ol>
+<p>In dieser Lektion lernst du die Theorie dahinter – und baust Schritt für Schritt deinen eigenen Agenten in Rust.</p>
+<blockquote>
+<p><strong>Für Anfänger:</strong> Du musst kein KI-Forscher sein, um einen Agenten zu bauen.<br>Die meisten modernen Agenten nutzen einfach eine <strong>API</strong> – du rufst ein KI-Modell auf und gibst dem Ergebnis Struktur.<br>Das ist Rust-Programmierung – keine Magie.</p>
+</blockquote>
+<hr>
+<h2 id="-theorie-was-ist-ein-ki-agent"><a class="header" href="#-theorie-was-ist-ein-ki-agent">🧠 Theorie: Was ist ein KI-Agent?</a></h2>
+<h3 id="die-klassische-definition"><a class="header" href="#die-klassische-definition">Die klassische Definition</a></h3>
+<p>Ein KI-Agent ist ein System, das:</p>
+<pre><code>┌─────────────────────────────────────────┐
+│                                         │
+│   Umgebung  →  Agent  →  Aktion         │
+│                  ↑                      │
+│              Wahrnehmung                │
+│                                         │
+└─────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Wahrnehmung:</strong> Was sieht/hört/liest der Agent?</li>
+<li><strong>Entscheidung:</strong> Was soll er tun?</li>
+<li><strong>Aktion:</strong> Was tut er tatsächlich?</li>
+</ul>
+<hr>
+<h3 id="-der-agent-loop"><a class="header" href="#-der-agent-loop">🔄 Der Agent-Loop</a></h3>
+<p>Moderne KI-Agenten arbeiten in einem <strong>Schleifenprinzip</strong>:</p>
+<pre><code>1. WAHRNEHMEN  →  User-Input, Datei lesen, API abfragen
+2. DENKEN      →  KI-Modell aufrufen, Ergebnis analysieren
+3. HANDELN     →  Datei schreiben, Terminal, Antwort geben
+4. BEOBACHTEN  →  Was ist das Ergebnis der Aktion?
+5. WIEDERHOLEN →  Zurück zu Schritt 1
+</code></pre>
+<p>Das nennt sich der <strong>ReAct-Loop</strong> (Reason + Act) – das Grundprinzip hinter Antigravity, Cursor und fast allen modernen Agenten.</p>
+<hr>
+<h3 id="-architektur-eines-einfachen-agenten"><a class="header" href="#-architektur-eines-einfachen-agenten">🏗️ Architektur eines einfachen Agenten</a></h3>
+<pre><code>┌──────────────────────────────────────────────┐
+│                  Mein Agent                  │
+│                                              │
+│  ┌──────────┐   ┌──────────┐  ┌──────────┐  │
+│  │  Input-  │   │  KI-    │  │ Output-  │  │
+│  │ Handler  │ → │ Modul   │→ │ Handler  │  │
+│  └──────────┘   └──────────┘  └──────────┘  │
+│                      │                       │
+│              ┌───────────────┐               │
+│              │   Werkzeuge   │               │
+│              │ (Tools/Fns)   │               │
+│              │ - Datei lesen │               │
+│              │ - HTTP-Call   │               │
+│              │ - Terminal    │               │
+│              └───────────────┘               │
+└──────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h3 id="-die-vier-schlüssel-konzepte"><a class="header" href="#-die-vier-schlüssel-konzepte">🔑 Die vier Schlüssel-Konzepte</a></h3>
+<h4 id="1-das-sprachmodell-llm"><a class="header" href="#1-das-sprachmodell-llm">1. Das Sprachmodell (LLM)</a></h4>
+<p>Das „Gehirn“ des Agenten. Du rufst es über eine <strong>API</strong> auf:</p>
+<ul>
+<li>OpenAI GPT (über <code>api.openai.com</code>)</li>
+<li>Google Gemini (über <code>generativelanguage.googleapis.com</code>)</li>
+<li>Anthropic Claude (über <code>api.anthropic.com</code>)</li>
+<li>Lokale Modelle: Ollama (kein API-Key nötig!)</li>
+</ul>
+<h4 id="2-der-kontext-system-prompt"><a class="header" href="#2-der-kontext-system-prompt">2. Der Kontext (System-Prompt)</a></h4>
+<p>Was du dem Modell <strong>vor</strong> dem Nutzer-Input sagst:</p>
+<pre><code>"Du bist ein Assistent, der Rust-Code erklärt.
+ Antworte immer auf Deutsch.
+ Schreibe keinen fertigen Code."
+</code></pre>
+<p>Das ist im Grunde: <strong>AGENTS.md in Textform</strong>.</p>
+<h4 id="3-die-werkzeuge-tools--functions"><a class="header" href="#3-die-werkzeuge-tools--functions">3. Die Werkzeuge (Tools / Functions)</a></h4>
+<p>Was der Agent <strong>tun</strong> kann – über Funktionen, die du definierst:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Werkzeug: Datei lesen
+fn lese_datei(pfad: &amp;str) -&gt; String { ... }
+
+// Werkzeug: Web-Suche
+fn suche_web(query: &amp;str) -&gt; String { ... }
+
+// Werkzeug: Terminal-Befehl
+fn fuehre_aus(befehl: &amp;str) -&gt; String { ... }
+<span class="boring">}</span></code></pre>
+<h4 id="4-das-gedächtnis-memory"><a class="header" href="#4-das-gedächtnis-memory">4. Das Gedächtnis (Memory)</a></h4>
+<p>Wie der Agent sich erinnert:</p>
+<ul>
+<li><strong>Kurzzeitgedächtnis:</strong> Der Chat-Verlauf (<code>Vec&lt;Message&gt;</code>)</li>
+<li><strong>Langzeitgedächtnis:</strong> Dateien, Datenbank, Vektordatenbank</li>
+</ul>
+<hr>
+<h3 id="-warum-rust-für-agenten"><a class="header" href="#-warum-rust-für-agenten">🦀 Warum Rust für Agenten?</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Grund</th><th>Erklärung</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Geschwindigkeit</strong></td><td>Agenten-Loops laufen tausende Male – Rust ist schnell</td></tr>
+<tr><td><strong>Zuverlässigkeit</strong></td><td>Kein Garbage Collector = keine unerwarteten Pausen</td></tr>
+<tr><td><strong>Sicherheit</strong></td><td>Memory Safety ohne Runtime-Overhead</td></tr>
+<tr><td><strong>Async/Await</strong></td><td>Perfekt für parallele API-Aufrufe</td></tr>
+<tr><td><strong>WebAssembly</strong></td><td>Rust-Agenten können im Browser laufen</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="-api-aufrufe-in-rust--das-grundprinzip"><a class="header" href="#-api-aufrufe-in-rust--das-grundprinzip">🌐 API-Aufrufe in Rust – Das Grundprinzip</a></h3>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Mit der reqwest-Crate (HTTP-Client)
+// Cargo.toml: reqwest = { version = "0.11", features = ["json"] }
+//             tokio = { version = "1", features = ["full"] }
+//             serde = { version = "1", features = ["derive"] }
+
+// So sieht ein API-Aufruf aus (Grundstruktur):
+// 1. Request aufbauen (JSON mit Prompt)
+// 2. An API senden (POST-Request)
+// 3. Antwort empfangen (JSON parsen)
+// 4. Text extrahieren und anzeigen
+<span class="boring">}</span></code></pre>
+<blockquote>
+<p><strong>Für Anfänger:</strong> Du musst kein HTTP-Experte sein. Die Beispiele in den Projekten zeigen dir die Struktur Schritt für Schritt.</p>
+</blockquote>
+<hr>
+<h3 id="-werkzeuge-tools--wie-agenten-handeln"><a class="header" href="#-werkzeuge-tools--wie-agenten-handeln">🔧 Werkzeuge (Tools) – Wie Agenten handeln</a></h3>
+<p>Modern KI-APIs unterstützen <strong>Function Calling</strong>: Du definierst Werkzeuge, und das Modell entscheidet, wann es sie einsetzt.</p>
+<pre><code>Du:     „Wie viele Zeilen hat meine main.rs?"
+Agent:  [Denkt: Ich brauche das Werkzeug 'lese_datei']
+        [Ruft auf: lese_datei("src/main.rs")]
+        [Bekommt: Dateiinhalt mit 47 Zeilen]
+Agent:  „Deine main.rs hat 47 Zeilen."
+</code></pre>
+<p>Das ist der Kern eines echten Agenten – nicht nur antworten, sondern <strong>handeln</strong>.</p>
+<hr>
+<h3 id="-wichtige-rust-crates-für-agenten"><a class="header" href="#-wichtige-rust-crates-für-agenten">📦 Wichtige Rust-Crates für Agenten</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Crate</th><th>Zweck</th></tr>
+</thead>
+<tbody>
+<tr><td><code>reqwest</code></td><td>HTTP-Client für API-Aufrufe</td></tr>
+<tr><td><code>tokio</code></td><td>Async Runtime für parallele Anfragen</td></tr>
+<tr><td><code>serde</code> / <code>serde_json</code></td><td>JSON serialisieren und deserialisieren</td></tr>
+<tr><td><code>clap</code></td><td>CLI-Argumente für deinen Agenten</td></tr>
+<tr><td><code>dotenv</code></td><td>API-Keys sicher aus <code>.env</code>-Datei laden</td></tr>
+<tr><td><code>anyhow</code></td><td>Einfache Fehlerbehandlung</td></tr>
+<tr><td><code>colored</code></td><td>Farbige Terminal-Ausgabe</td></tr>
+<tr><td><code>rustyline</code></td><td>Readline-Unterstützung (wie in <code>agy</code>)</td></tr>
+<tr><td><code>ollama-rs</code></td><td>Lokale Modelle mit Ollama</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="-api-keys--sicher-speichern"><a class="header" href="#-api-keys--sicher-speichern">🔐 API-Keys – Sicher speichern</a></h3>
+<pre><code class="language-bash"># .env-Datei anlegen (NIEMALS in Git committen!)
+OPENAI_API_KEY=sk-...
+GEMINI_API_KEY=AIza...
+
+# .gitignore:
+.env
+</code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// In Rust laden:
+// dotenv::dotenv().ok();
+// let api_key = std::env::var("OPENAI_API_KEY").expect("API-Key fehlt!");
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="-agent-typen--eine-übersicht"><a class="header" href="#-agent-typen--eine-übersicht">🏛️ Agent-Typen – Eine Übersicht</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Typ</th><th>Beschreibung</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Simple Agent</strong></td><td>Prompt rein, Antwort raus</td><td>Chatbot</td></tr>
+<tr><td><strong>Tool-Use Agent</strong></td><td>Hat Werkzeuge, die er einsetzen kann</td><td>File-Reader Agent</td></tr>
+<tr><td><strong>ReAct Agent</strong></td><td>Denkt laut (Chain-of-Thought) + handelt</td><td>Antigravity</td></tr>
+<tr><td><strong>Multi-Agent</strong></td><td>Mehrere Agenten arbeiten zusammen</td><td>Forschungs-Team</td></tr>
+<tr><td><strong>RAG Agent</strong></td><td>Sucht in Dokumenten bevor er antwortet</td><td>Dokumentations-KI</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-praxis-aufgaben-vor-den-projekten"><a class="header" href="#-praxis-aufgaben-vor-den-projekten">🛠️ Praxis-Aufgaben vor den Projekten</a></h2>
+<h3 id="aufgabe-a-ollama-lokal-einrichten"><a class="header" href="#aufgabe-a-ollama-lokal-einrichten">Aufgabe A: Ollama lokal einrichten</a></h3>
+<p>Installiere <strong>Ollama</strong> – damit brauchst du keinen API-Key:</p>
+<pre><code class="language-bash"># Ollama installieren (Linux)
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Ein Modell herunterladen
+ollama pull llama3.2
+
+# Testen
+ollama run llama3.2 "Erkläre mir Ownership in Rust in einem Satz."
+</code></pre>
+<p>Ollama läuft lokal auf <code>http://localhost:11434</code> – vollständig offline!</p>
+<hr>
+<h3 id="aufgabe-b-erste-api-struktur-verstehen"><a class="header" href="#aufgabe-b-erste-api-struktur-verstehen">Aufgabe B: Erste API-Struktur verstehen</a></h3>
+<p>Schaue dir an, wie eine Anfrage an Ollama aufgebaut ist:</p>
+<pre><code class="language-json">{
+  "model": "llama3.2",
+  "prompt": "Was ist Rust Ownership?",
+  "stream": false
+}
+</code></pre>
+<p>Und die Antwort:</p>
+<pre><code class="language-json">{
+  "response": "Ownership ist Rusts Speicherverwaltungskonzept...",
+  "done": true
+}
+</code></pre>
+<p>Das ist alles, was du brauchst! <strong>JSON rein, JSON raus.</strong></p>
+<hr>
+<h3 id="aufgabe-c-cargo-new-agent"><a class="header" href="#aufgabe-c-cargo-new-agent">Aufgabe C: cargo new agent</a></h3>
+<p>Erstelle dein erstes Agent-Projekt:</p>
+<pre><code class="language-bash">cargo new mein-agent
+cd mein-agent
+</code></pre>
+<p>Füge in <code>Cargo.toml</code> hinzu:</p>
+<pre><code class="language-toml">[dependencies]
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+</code></pre>
+<hr>
+<h2 id="-50-rust-projektvorschläge--eigene-ki-agenten"><a class="header" href="#-50-rust-projektvorschläge--eigene-ki-agenten">🚀 50 Rust-Projektvorschläge – Eigene KI-Agenten</a></h2>
+<p>Diese 50 Projekte führen dich vom einfachsten Chatbot bis zum vollständigen Multi-Agenten-System.<br>Jedes Projekt baut auf dem vorherigen auf – du sammelst Baustein für Baustein.</p>
+<blockquote>
+<p>🦀 <strong>Lernregel:</strong> Verstehe jedes Projekt vollständig, bevor du zum nächsten gehst.<br>Ein selbst gebauter Agent, den du verstehst, ist wertvoller als 10 kopierte.</p>
+</blockquote>
+<hr>
+<h3 id="-einstiegsprojekte--erste-schritte-110"><a class="header" href="#-einstiegsprojekte--erste-schritte-110">🟢 Einstiegsprojekte – Erste Schritte (1–10)</a></h3>
+<ol>
+<li>
+<p><strong>Hello, Ollama!</strong> – Der einfachste Agent: Sende einen festen Prompt an Ollama und gib die Antwort aus. Lerne <code>reqwest::blocking</code> und JSON-Parsing.</p>
+</li>
+<li>
+<p><strong>Interaktiver Chatbot</strong> – Lies Eingaben vom Terminal in einer Schleife und sende sie an Ollama. Dein erster echter Chatbot!</p>
+</li>
+<li>
+<p><strong>Persönlichkeit geben</strong> – Füge einen System-Prompt hinzu, der dem Agenten eine Rolle gibt (z. B. „Du bist ein freundlicher Rust-Tutor“).</p>
+</li>
+<li>
+<p><strong>Chat-Verlauf</strong> – Speichere alle Nachrichten in einem <code>Vec&lt;Message&gt;</code> und sende den gesamten Verlauf bei jeder Anfrage mit. Jetzt erinnert sich der Agent!</p>
+</li>
+<li>
+<p><strong>Farbige Ausgabe</strong> – Nutze die <code>colored</code>-Crate, um Nutzer-Text und Agenten-Text in verschiedenen Farben anzuzeigen.</p>
+</li>
+<li>
+<p><strong>Eingabe-Prompt verbessern</strong> – Nutze <code>rustyline</code> für eine professionelle Eingabe mit Pfeil-Tasten-History wie im echten Terminal.</p>
+</li>
+<li>
+<p><strong>Konfigurationsdatei</strong> – Lade Modell-Name und System-Prompt aus einer <code>config.toml</code>-Datei statt fest im Code.</p>
+</li>
+<li>
+<p><strong>Streaming-Antworten</strong> – Statt auf die komplette Antwort zu warten: Gib Wort für Wort aus, sobald es ankommt (wie ChatGPT).</p>
+</li>
+<li>
+<p><strong>Token-Zähler</strong> – Zeige nach jeder Antwort an, wie viele Wörter/Tokens die Konversation bisher hat.</p>
+</li>
+<li>
+<p><strong>Mehrere Modelle</strong> – Lass den Nutzer zu Beginn wählen: llama3.2, mistral oder gemma. Lerne, Argumente zu verarbeiten.</p>
+</li>
+</ol>
+<hr>
+<h3 id="-werkzeuge-tools--agent-lernt-zu-handeln-1125"><a class="header" href="#-werkzeuge-tools--agent-lernt-zu-handeln-1125">🟡 Werkzeuge (Tools) – Agent lernt zu handeln (11–25)</a></h3>
+<ol start="11">
+<li>
+<p><strong>Datei-Lese-Werkzeug</strong> – Der Agent kann Dateipfade erkennen (z. B. „@main.rs“) und den Inhalt automatisch anhängen.</p>
+</li>
+<li>
+<p><strong>Taschenrechner-Werkzeug</strong> – Der Agent erkennt Rechenaufgaben im Text und löst sie mit echtem Rust-Code (nicht vom Modell!).</p>
+</li>
+<li>
+<p><strong>Datum/Zeit-Werkzeug</strong> – Wenn der Nutzer nach dem Datum fragt, ruft der Agent eine Funktion auf statt zu raten.</p>
+</li>
+<li>
+<p><strong>Wörterbuch-Werkzeug</strong> – Der Agent schlägt unbekannte Wörter in einer lokalen Textdatei nach.</p>
+</li>
+<li>
+<p><strong>Datei-Schreib-Werkzeug</strong> – Der Agent kann Dateien erstellen, wenn der Nutzer sagt „Erstelle eine Datei notes.md mit…“.</p>
+</li>
+<li>
+<p><strong>Verzeichnis-Werkzeug</strong> – Der Agent listet Dateien in einem Ordner auf und kann damit auf Fragen über Projektstruktur antworten.</p>
+</li>
+<li>
+<p><strong>Terminal-Werkzeug</strong> – Der Agent führt einfache Befehle aus (<code>ls</code>, <code>cargo build</code>) und gibt das Ergebnis zurück.</p>
+</li>
+<li>
+<p><strong>Wetter-Werkzeug (simuliert)</strong> – Eine Funktion gibt zufällige Wetterdaten zurück. Der Agent nutzt sie, wenn nach dem Wetter gefragt wird.</p>
+</li>
+<li>
+<p><strong>Wikipedia-Werkzeug</strong> – Rufe die Wikipedia-API ab und gib dem Agenten Zugriff auf Definitionen und Erklärungen.</p>
+</li>
+<li>
+<p><strong>Mehrere Werkzeuge kombinieren</strong> – Der Agent hat nun 3–5 Werkzeuge. Schreibe Logik, die erkennt, welches Werkzeug gebraucht wird.</p>
+</li>
+<li>
+<p><strong>Werkzeug-Protokoll</strong> – Zeige dem Nutzer, welches Werkzeug der Agent verwendet hat und warum (Transparenz!).</p>
+</li>
+<li>
+<p><strong>Werkzeug-Genehmigung</strong> – Bevor der Agent ein Werkzeug nutzt, fragt er: „Darf ich <code>cargo build</code> ausführen? [j/n]“</p>
+</li>
+<li>
+<p><strong>Werkzeug-Fehlerbehandlung</strong> – Was passiert, wenn ein Werkzeug fehlschlägt? Baue robuste <code>Result</code>-Behandlung ein.</p>
+</li>
+<li>
+<p><strong>Dynamische Werkzeuge</strong> – Lade Werkzeuge aus einer Konfigurationsdatei statt sie hart im Code zu haben.</p>
+</li>
+<li>
+<p><strong>Werkzeug-Statistik</strong> – Zeige am Ende einer Session, welches Werkzeug wie oft verwendet wurde.</p>
+</li>
+</ol>
+<hr>
+<h3 id="-spezialisierte-agenten-2640"><a class="header" href="#-spezialisierte-agenten-2640">🔴 Spezialisierte Agenten (26–40)</a></h3>
+<ol start="26">
+<li>
+<p><strong>Rust-Tutor-Agent</strong> – Ein Agent, der ausschließlich Rust erklärt. System-Prompt: keine Code-Lösungen, nur Konzepte und Fragen.</p>
+</li>
+<li>
+<p><strong>Code-Review-Agent</strong> – Der Agent liest eine Rust-Datei und gibt Feedback zu Stil, Fehlerbehandlung und Klarheit.</p>
+</li>
+<li>
+<p><strong>Dokumentations-Agent</strong> – Liest eine Rust-Datei und schreibt <code>///</code>-Dokumentationskommentare für alle Funktionen.</p>
+</li>
+<li>
+<p><strong>Fehler-Erklärer-Agent</strong> – Der Nutzer gibt einen <code>cargo</code>-Fehler ein, der Agent erklärt ihn auf Deutsch und gibt Hinweise.</p>
+</li>
+<li>
+<p><strong>Commit-Message-Agent</strong> – Liest <code>git diff</code> und schlägt eine sinnvolle Commit-Message vor.</p>
+</li>
+<li>
+<p><strong>Test-Generator-Agent</strong> – Liest eine Funktion und schlägt Testfälle vor (Grenzfälle, Normalfälle, Fehlerfälle).</p>
+</li>
+<li>
+<p><strong>Refactoring-Agent</strong> – Analysiert Code und schlägt Verbesserungen vor: bessere Namen, kürzere Funktionen, mehr Rust-Idiome.</p>
+</li>
+<li>
+<p><strong>README-Generator-Agent</strong> – Liest ein Rust-Projekt und erstellt automatisch eine <code>README.md</code>.</p>
+</li>
+<li>
+<p><strong>Lernplan-Agent</strong> – Der Nutzer gibt sein Ziel an, der Agent erstellt einen strukturierten Lernplan für Rust.</p>
+</li>
+<li>
+<p><strong>Frage-Antwort-Agent (RAG)</strong> – Der Agent sucht in einem lokalen Rust-Buch (als Textdateien) nach Antworten.</p>
+</li>
+<li>
+<p><strong>Notiz-Agent</strong> – Nimmt Notizen entgegen, speichert sie strukturiert und kann nach Themen suchen.</p>
+</li>
+<li>
+<p><strong>Übersetzungs-Agent</strong> – Übersetzt Rust-Fehlermeldungen und Dokumentation auf Deutsch.</p>
+</li>
+<li>
+<p><strong>Code-Kommentar-Agent</strong> – Liest unkommentierten Code und fügt hilfreiche Deutsche Kommentare ein.</p>
+</li>
+<li>
+<p><strong>Dependency-Checker-Agent</strong> – Analysiert <code>Cargo.toml</code> und prüft, ob neuere Versionen verfügbar sind (via crates.io API).</p>
+</li>
+<li>
+<p><strong>Interview-Agent</strong> – Stellt dem Nutzer Fragen zu einem Rust-Konzept – wie ein Lehrer im Sokrates-Stil.</p>
+</li>
+</ol>
+<hr>
+<h3 id="-fortgeschrittene-agenten-systeme-4150"><a class="header" href="#-fortgeschrittene-agenten-systeme-4150">⚡ Fortgeschrittene Agenten-Systeme (41–50)</a></h3>
+<ol start="41">
+<li>
+<p><strong>Gedächtnis mit Datei</strong> – Der Chat-Verlauf wird in einer JSON-Datei gespeichert und beim nächsten Start geladen. Echter Langzeitspeicher!</p>
+</li>
+<li>
+<p><strong>Mehrsprachiger Agent</strong> – Der Agent erkennt die Sprache des Nutzers automatisch und antwortet in derselben Sprache.</p>
+</li>
+<li>
+<p><strong>Agent mit Persönlichkeitsprofilen</strong> – Wähle beim Start ein Profil: „Strenger Lehrer“, „Geduldiger Mentor“, „Enthusiastischer Anfänger“.</p>
+</li>
+<li>
+<p><strong>Async Multi-API-Agent</strong> – Sende dieselbe Frage gleichzeitig an Ollama und eine andere API, vergleiche die Antworten.</p>
+</li>
+<li>
+<p><strong>Planer-Agent</strong> – Der Agent zerlegt eine große Aufgabe in Teilschritte und arbeitet sie nacheinander ab (ReAct-Loop).</p>
+</li>
+<li>
+<p><strong>Kritiker-Agent</strong> – Zwei Agenten: Einer schlägt vor, der andere kritisiert. Der Nutzer entscheidet.</p>
+</li>
+<li>
+<p><strong>Spezialisierungs-Router</strong> – Ein „Master“-Agent, der entscheidet, welcher Spezialist-Agent die Aufgabe übernimmt.</p>
+</li>
+<li>
+<p><strong>Agent mit Vektordatenbank</strong> – Speichere Text-Chunks als Embeddings, suche ähnliche Texte bei jeder Anfrage.</p>
+</li>
+<li>
+<p><strong>Selbst-verbessernder Agent</strong> – Der Agent kann seine eigene Konfigurationsdatei (System-Prompt) anpassen, wenn du ihm sagst, was er besser machen soll.</p>
+</li>
+<li>
+<p><strong>Vollständiger Antigravity-Klon (Mini)</strong> – Baue einen eigenen kleinen KI-Agenten mit: Chat-Loop, Datei-Werkzeug, Terminal-Werkzeug, Verlauf-Speicher und farbiger Ausgabe. Dein eigenes <code>agy</code>!</p>
+</li>
+</ol>
+<hr>
+<h2 id="-lernpfad--so-gehst-du-vor"><a class="header" href="#-lernpfad--so-gehst-du-vor">🗺️ Lernpfad – So gehst du vor</a></h2>
+<pre><code>Projekte 1–5:    Grundstruktur verstehen (API, JSON, Loop)
+     ↓
+Projekte 6–10:   Benutzerfreundlichkeit (Input, Config, Streaming)
+     ↓
+Projekte 11–15:  Erste Werkzeuge (Dateien, Rechnen, Zeit)
+     ↓
+Projekte 16–25:  Werkzeug-System aufbauen (Mehrere, Fehler, Genehmigung)
+     ↓
+Projekte 26–35:  Spezialisierte Agenten (Tutor, Review, RAG)
+     ↓
+Projekte 36–45:  Fortgeschrittene Techniken (Gedächtnis, Async, Multi-Agent)
+     ↓
+Projekte 46–50:  Vollständige Systeme (Router, Planer, Mini-Antigravity)
+</code></pre>
+<hr>
+<h2 id="-agenten-vs-klassische-programme"><a class="header" href="#-agenten-vs-klassische-programme">🔍 Agenten vs. klassische Programme</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Klassisches Programm</th><th>KI-Agent</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Logik</strong></td><td>Fest kodiert</td><td>Dynamisch durch KI</td></tr>
+<tr><td><strong>Fehlerbehandlung</strong></td><td>Immer gleich</td><td>Kontextabhängig</td></tr>
+<tr><td><strong>Eingabe</strong></td><td>Strukturiert (Argumente)</td><td>Natürliche Sprache</td></tr>
+<tr><td><strong>Ausgabe</strong></td><td>Vorhersehbar</td><td>Variabel</td></tr>
+<tr><td><strong>Lernfähigkeit</strong></td><td>❌ Nein</td><td>✅ Durch Kontext</td></tr>
+<tr><td><strong>Werkzeuge</strong></td><td>Immer ausgeführt</td><td>Bei Bedarf entschieden</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Konzept</th><th>Bedeutung</th></tr>
+</thead>
+<tbody>
+<tr><td>LLM / Sprachmodell</td><td>Das „Gehirn“ – aufgerufen via API</td></tr>
+<tr><td>System-Prompt</td><td>Die Persönlichkeit und Regeln des Agenten</td></tr>
+<tr><td>Chat-Verlauf</td><td>Das Kurzzeitgedächtnis (<code>Vec&lt;Message&gt;</code>)</td></tr>
+<tr><td>Werkzeuge (Tools)</td><td>Funktionen, die der Agent aufrufen kann</td></tr>
+<tr><td>ReAct-Loop</td><td>Wahrnehmen → Denken → Handeln → Wiederholen</td></tr>
+<tr><td>Ollama</td><td>Lokale Modelle – kein API-Key nötig</td></tr>
+<tr><td><code>reqwest</code> + <code>serde</code></td><td>Die zwei wichtigsten Crates für Agenten</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>🦀 <strong>Die größte Erkenntnis:</strong><br>Antigravity, Cursor, ChatGPT-Plugins – sie alle folgen demselben Prinzip.<br><strong>Du kannst das auch bauen.</strong><br>Ein Agent ist keine Magie – er ist ein Programm, das ein KI-Modell aufruft und das Ergebnis sinnvoll nutzt.<br>Und du kennst jetzt alle Zutaten. 🚀</p>
+</blockquote>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
+<ul>
+<li><a href="https://ollama.ai/">Ollama</a> – Lokale KI-Modelle, kein API-Key</li>
+<li><a href="https://github.com/ollama/ollama/blob/main/docs/api.md">Ollama API Docs</a> – REST-API-Referenz</li>
+<li><a href="https://platform.openai.com/docs">OpenAI API</a> – GPT-Modelle via API</li>
+<li><a href="https://ai.google.dev/">Google Gemini API</a> – Gemini via API nutzen</li>
+<li><a href="https://docs.rs/reqwest/">reqwest Docs</a> – HTTP in Rust</li>
+<li><a href="https://serde.rs/">serde Docs</a> – Serialisierung in Rust</li>
+<li><a href="https://rust-lang.github.io/async-book/">Rust Async Book</a> – Async/Await verstehen</li>
+<li><a href="https://python.langchain.com/docs/concepts/">LangChain Konzepte</a> – Agent-Konzepte (in Python, aber übertragbar)</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="vibe-coding.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="vibe-coding.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

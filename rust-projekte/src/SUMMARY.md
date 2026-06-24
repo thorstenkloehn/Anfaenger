@@ -1,0 +1,21 @@
+# Inhaltsverzeichnis
+
+[Einleitung](./einleitung.md)
+
+# 🗺️ Projektplanung
+
+- [Planung mit Antigravity `/planning`](./planung.md)
+
+# Phase 1: Grundlagen für Einsteiger
+
+- [Projektvorschläge](./phase1.md)
+
+# 🤖 Bonus: KI als Lernpartner
+
+- [Antigravity – CLI, 2.0 & IDE](./antigravity.md)
+- [Antigravity Praxis-Projekte](./antigravity-praxis.md)
+- [💎 Google Gemini als Lernpartner](./gemini.md)
+- [🐙 GitHub Copilot – Der klassische Assistent](./copilot.md)
+- [🤖 IDE KI-Agenten – Die nächste Generation](./ide-agent.md)
+- [🎵 Vibe Coding – Programmieren im Flow](./vibe-coding.md)
+- [🧠 Eigene KI-Agenten programmieren](./eigener-agent.md)

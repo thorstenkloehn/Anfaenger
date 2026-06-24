@@ -1,0 +1,9 @@
+[book]
+title = "Rust Projektvorschläge für Einsteiger"
+authors = ["Thorsten"]
+language = "de"
+src = "src"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"

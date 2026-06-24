@@ -1,0 +1,618 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>💎 Google Gemini als Lernpartner - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-d4fa02cf.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-7b901f96.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-google-gemini-als-lernpartner"><a class="header" href="#-google-gemini-als-lernpartner">💎 Google Gemini als Lernpartner</a></h1>
+<p><em>Direkt im Browser – ohne Installation, immer erreichbar.</em></p>
+<hr>
+<p>Neben Antigravity gibt es ein weiteres mächtiges KI-Werkzeug, das wir kostenlos und sofort nutzen können: <strong>Google Gemini</strong> unter <a href="https://gemini.google.com/app">gemini.google.com/app</a>.</p>
+<p>In dieser Lektion lernen wir, Gemini gezielt als <strong>Lern-Gesprächspartner</strong> für Rust einzusetzen – und verstehen, wann wir Gemini nutzen und wann Antigravity die bessere Wahl ist.</p>
+<blockquote>
+<p><strong>Das Wichtigste vorweg:</strong> Gemini und Antigravity sind keine Konkurrenten – sie ergänzen sich. Wir lernen hier, das richtige Werkzeug für den richtigen Moment zu wählen.</p>
+</blockquote>
+<hr>
+<h2 id="-gemini-vs-antigravity--was-ist-der-unterschied"><a class="header" href="#-gemini-vs-antigravity--was-ist-der-unterschied">🔍 Gemini vs. Antigravity – Was ist der Unterschied?</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Google Gemini</th><th>Antigravity</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Wo</strong></td><td>Browser: gemini.google.com/app</td><td>Terminal, Desktop-App, IDE</td></tr>
+<tr><td><strong>Typ</strong></td><td>Chat-KI</td><td>Agentic System</td></tr>
+<tr><td><strong>Dateizugriff</strong></td><td>❌ Nein</td><td>✅ Ja</td></tr>
+<tr><td><strong>Code ausführen</strong></td><td>❌ Nein</td><td>✅ Ja</td></tr>
+<tr><td><strong>AGENTS.md</strong></td><td>❌ Nicht möglich</td><td>✅ Wird automatisch geladen</td></tr>
+<tr><td><strong>Skills</strong></td><td>❌ Nicht möglich</td><td>✅ Vollständig</td></tr>
+<tr><td><strong>Stärke</strong></td><td>Erklärungen, Brainstorming, Vergleiche</td><td>Projektarbeit, Automatisierung</td></tr>
+<tr><td><strong>Ideal für</strong></td><td>Konzepte verstehen, Fragen klären</td><td>Code schreiben, Fehler debuggen</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Die goldene Regel:</strong></p>
+<blockquote>
+<p>🗣️ Wenn wir <em>über</em> Rust reden wollen → <strong>Gemini</strong><br>🛠️ Wenn wir <em>mit</em> Rust arbeiten wollen → <strong>Antigravity</strong></p>
+</blockquote>
+<hr>
+<h2 id="-theorie-wie-funktioniert-gemini"><a class="header" href="#-theorie-wie-funktioniert-gemini">🧠 Theorie: Wie funktioniert Gemini?</a></h2>
+<p>Gemini ist Googles multimodales KI-Modell. Im Browser unter <a href="https://gemini.google.com/app">gemini.google.com/app</a> können wir:</p>
+<ul>
+<li><strong>Text-Fragen</strong> stellen (Konzepte, Erklärungen, Vergleiche)</li>
+<li><strong>Bilder hochladen</strong> (z. B. Foto einer Fehlermeldung vom Bildschirm)</li>
+<li><strong>Code einfügen</strong> und erklären lassen</li>
+<li><strong>Gespräche führen</strong> – Gemini erinnert sich an den Verlauf der Sitzung</li>
+<li>Mit <strong>Gemini Gems</strong> (benutzerdefinierte Assistenten) arbeiten</li>
+</ul>
+<h3 id="gemini-gems--das-gegenstück-zu-antigravity-skills"><a class="header" href="#gemini-gems--das-gegenstück-zu-antigravity-skills">Gemini Gems – Das Gegenstück zu Antigravity Skills</a></h3>
+<p>Genau wie wir in Antigravity <strong>Skills</strong> bauen, gibt es in Gemini <strong>Gems</strong> – vorkonfigurierte Assistenten mit eigenem Namen, Verhalten und Anweisungen.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Antigravity</th><th>Gemini</th></tr>
+</thead>
+<tbody>
+<tr><td>Skill (<code>SKILL.md</code>)</td><td>Gem</td></tr>
+<tr><td>AGENTS.md-Regeln</td><td>Gem-Anweisungen</td></tr>
+<tr><td><code>.agents/skills/</code> Ordner</td><td>Gems-Bereich in gemini.google.com</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-übungen"><a class="header" href="#-übungen">🛠️ Übungen</a></h2>
+<h3 id="-übung-1-gemini-kennenlernen"><a class="header" href="#-übung-1-gemini-kennenlernen">🔵 Übung 1: Gemini kennenlernen</a></h3>
+<p><strong>Ziel:</strong> Ersten Kontakt mit Gemini herstellen und die Oberfläche erkunden.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Öffne <a href="https://gemini.google.com/app">gemini.google.com/app</a> im Browser</p>
+</li>
+<li>
+<p>Melde dich mit deinem Google-Konto an</p>
+</li>
+<li>
+<p>Stelle diese erste Frage:</p>
+<pre><code>Erkläre mir Ownership in Rust so, als wäre ich 10 Jahre alt.
+Nutze eine Alltagsanalogie.
+</code></pre>
+</li>
+<li>
+<p>Lies die Antwort aufmerksam durch</p>
+</li>
+<li>
+<p>Stelle eine <strong>Folgefrage</strong>, die auf der Antwort aufbaut</p>
+</li>
+</ol>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Wie unterscheidet sich die Antwort von der, die Antigravity gegeben hat?</li>
+<li>Welche Analogie hat Gemini gewählt?</li>
+<li>Fehlt dir etwas in der Antwort?</li>
+</ul>
+<hr>
+<h3 id="-übung-2-rust-konzepte-mit-gemini-erkunden"><a class="header" href="#-übung-2-rust-konzepte-mit-gemini-erkunden">🔵 Übung 2: Rust-Konzepte mit Gemini erkunden</a></h3>
+<p><strong>Ziel:</strong> Gemini als Erklär-Assistent für schwierige Rust-Konzepte nutzen.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Wähle eines dieser Rust-Konzepte, das du noch nicht vollständig verstehst:</p>
+<ul>
+<li>Ownership &amp; Move-Semantik</li>
+<li>Borrowing &amp; Referenzen (<code>&amp;</code>)</li>
+<li>Der Unterschied zwischen <code>String</code> und <code>&amp;str</code></li>
+<li>Warum Rust keinen Garbage Collector hat</li>
+</ul>
+</li>
+<li>
+<p>Stelle Gemini folgende Frage (passe <code>[KONZEPT]</code> an):</p>
+<pre><code>Ich lerne Rust als Anfänger. Erkläre mir [KONZEPT] in drei Schritten:
+1. Eine einfache Definition in einem Satz
+2. Eine Alltagsanalogie
+3. Warum Rust das so macht (Vorteil)
+
+Schreibe keinen Code – nur Erklärungen.
+</code></pre>
+</li>
+<li>
+<p>Lies Schritt für Schritt</p>
+</li>
+<li>
+<p>Formuliere in eigenen Worten, was du verstanden hast, und frage Gemini:</p>
+<pre><code>Ich habe verstanden: [Deine Erklärung in eigenen Worten]
+Ist das korrekt? Was fehlt noch?
+</code></pre>
+</li>
+</ol>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Was ist der Vorteil, ein Konzept in eigenen Worten zu formulieren?</li>
+<li>Welcher der drei Erklär-Schritte war am hilfreichsten?</li>
+</ul>
+<hr>
+<h3 id="-übung-3-fehlermeldung-fotografieren--verstehen"><a class="header" href="#-übung-3-fehlermeldung-fotografieren--verstehen">🔵 Übung 3: Fehlermeldung fotografieren &amp; verstehen</a></h3>
+<p><strong>Ziel:</strong> Geminis Bildverständnis für Fehler-Analysen nutzen.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Schreibe absichtlich einen Rust-Fehler, z. B.:</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let x = 5;
+    x = 10; // Fehler: x ist nicht mut
+}</code></pre>
+</li>
+<li>
+<p>Führe <code>cargo build</code> aus und sieh die Fehlermeldung im Terminal</p>
+</li>
+<li>
+<p>Mache einen <strong>Screenshot</strong> der Fehlermeldung</p>
+</li>
+<li>
+<p>Lade den Screenshot in Gemini hoch und schreibe dazu:</p>
+<pre><code>Ich bin Rust-Anfänger. Ich habe diesen Fehler bekommen.
+Erkläre mir:
+1. Was bedeutet die Fehlermeldung auf Deutsch?
+2. Warum verhindert Rust das?
+3. Welches Konzept steckt dahinter?
+
+Schreibe mir NICHT die Lösung – ich möchte sie selbst finden.
+</code></pre>
+</li>
+<li>
+<p>Beantworte den Fehler selbst, <strong>ohne</strong> Gemini nach dem Fix zu fragen</p>
+</li>
+</ol>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Was hat der Bild-Upload gegenüber dem Text-Kopieren vereinfacht?</li>
+<li>Hat Gemini das Konzept hinter dem Fehler korrekt erklärt?</li>
+</ul>
+<hr>
+<h3 id="-übung-4-gemini-als-lern-gesprächspartner"><a class="header" href="#-übung-4-gemini-als-lern-gesprächspartner">🔵 Übung 4: Gemini als Lern-Gesprächspartner</a></h3>
+<p><strong>Ziel:</strong> Ein strukturiertes Lern-Gespräch mit Gemini führen.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Starte ein neues Gespräch in Gemini mit diesem Einstieg:</p>
+<pre><code>Du bist mein Rust-Lernpartner. Ich bin Anfänger.
+Deine Aufgaben:
+- Beantworte meine Fragen mit einfachen Alltagsbeispielen
+- Stelle nach jeder Erklärung eine Verständnisfrage
+- Schreibe NIE fertigen Code – nur Hinweise
+- Erinnere mich daran, Konzepte selbst auszuprobieren
+
+Beginne mit: "Hallo! Welches Rust-Thema möchtest du heute erkunden?"
+</code></pre>
+</li>
+<li>
+<p>Führe ein Gespräch über mindestens <strong>3 Runden</strong> (Frage → Antwort → Folgefrage)</p>
+</li>
+<li>
+<p>Notiere am Ende:</p>
+<ul>
+<li>Was habe ich in diesem Gespräch gelernt?</li>
+<li>Welche Frage war am wertvollsten?</li>
+</ul>
+</li>
+</ol>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Was fehlt in Gemini im Vergleich zu Antigravity mit AGENTS.md?</li>
+<li>Wie könntest du das Gespräch effizienter gestalten?</li>
+</ul>
+<hr>
+<h3 id="-übung-5-einen-gemini-gem-bauen--dein-rust-tutor"><a class="header" href="#-übung-5-einen-gemini-gem-bauen--dein-rust-tutor">🔵 Übung 5: Einen Gemini Gem bauen – Dein Rust-Tutor</a></h3>
+<p><strong>Ziel:</strong> Einen personalisierten Rust-Lernassistenten in Gemini erstellen.</p>
+<p><strong>Das Konzept:</strong> Gemini Gems sind wie <strong>Antigravity Skills</strong> – vorkonfigurierte Assistenten mit eigenem Verhalten.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Öffne <a href="https://gemini.google.com/app">gemini.google.com/app</a></p>
+</li>
+<li>
+<p>Klicke auf <strong>„Gems“</strong> in der linken Seitenleiste</p>
+</li>
+<li>
+<p>Klicke auf <strong>„Neuen Gem erstellen“</strong></p>
+</li>
+<li>
+<p>Fülle das Formular aus:</p>
+<p><strong>Name:</strong></p>
+<pre><code>Rust Lerntutor 🦀
+</code></pre>
+<p><strong>Anweisungen:</strong></p>
+<pre><code>Du bist mein persönlicher Rust-Lerntutor für Anfänger.
+
+Dein Verhalten:
+- Antworte immer auf Deutsch
+- Erkläre jedes Konzept mit einer Alltagsanalogie
+- Stelle nach jeder Erklärung eine Verständnisfrage
+- Schreibe KEINEN fertigen Code – nur Hinweise und Erklärungen
+- Wenn ich nach der Lösung frage: Stelle die Gegenfrage "Was hast du selbst schon probiert?"
+- Halte Antworten kurz: maximal 5 Sätze pro Abschnitt
+
+Mein Lernstand:
+- Ich bin absoluter Anfänger
+- Ich habe noch keine Programmiererfahrung
+- Ich lerne seit [Wochen] Rust
+
+Begrüße mich mit: "Hallo! Bereit für Rust? 🦀 Womit kann ich dir heute helfen?"
+</code></pre>
+</li>
+<li>
+<p>Klicke auf <strong>„Speichern“</strong></p>
+</li>
+<li>
+<p>Teste den Gem mit einer Rust-Frage</p>
+</li>
+</ol>
+<p><strong>Zeilenweise Dekonstruktion der Gem-Anweisungen:</strong></p>
+<ul>
+<li><code>Antworte immer auf Deutsch</code> – Ohne diese Regel könnte Gemini auf Englisch antworten.</li>
+<li><code>Alltagsanalogie</code> – Wir fordern aktiv die Erklär-Methode ein, die am besten funktioniert.</li>
+<li><code>KEINEN fertigen Code</code> – In Großbuchstaben für Nachdruck – wie in unserer AGENTS.md.</li>
+<li><code>Mein Lernstand</code> – Genau wie in unserer AGENTS.md: Je mehr Kontext, desto besser die Antworten.</li>
+</ul>
+<p><strong>Vergleich: Gem vs. Antigravity Skill:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Gemini Gem</th><th>Antigravity Skill</th></tr>
+</thead>
+<tbody>
+<tr><td>Erstellt</td><td>In der Browser-Oberfläche</td><td>Als <code>SKILL.md</code>-Datei</td></tr>
+<tr><td>Gespeichert</td><td>In Googles Cloud</td><td>Lokal im <code>.agents/skills/</code>-Ordner</td></tr>
+<tr><td>Dateizugriff</td><td>❌</td><td>✅</td></tr>
+<tr><td>Versionierbar</td><td>❌</td><td>✅ mit Git</td></tr>
+<tr><td>Portierbar</td><td>❌ (an Google-Konto gebunden)</td><td>✅ (Ordner kopieren)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Was kann dein Gem, was dein Antigravity Skill nicht kann?</li>
+<li>Was kann dein Skill, was dein Gem nicht kann?</li>
+</ul>
+<hr>
+<h3 id="-übung-6-gemini--antigravity-kombinieren"><a class="header" href="#-übung-6-gemini--antigravity-kombinieren">🔵 Übung 6: Gemini + Antigravity kombinieren</a></h3>
+<p><strong>Ziel:</strong> Beide Werkzeuge in einem Lernzyklus zusammen einsetzen.</p>
+<p><strong>Der kombinierte Workflow:</strong></p>
+<pre><code>🌐 Gemini          →   🖥️ Antigravity CLI   →   📝 Code schreiben
+──────────────────────────────────────────────────────────────────
+Konzept verstehen   →   Projektkontext        →   Selbst programmieren
+Fragen klären       →   Fehler analysieren    →   Lösung erarbeiten
+Brainstorming       →   AGENTS.md aktualisieren → Review einholen
+</code></pre>
+<p><strong>Konkrete Schritte:</strong></p>
+<p><strong>Schritt 1 – Mit Gemini vorbereiten:</strong></p>
+<pre><code>In Gemini:
+"Ich möchte heute in Rust eine Eingabe vom Terminal lesen
+und in eine Zahl umwandeln. Welche Konzepte brauche ich dafür?
+Erkläre nur die Konzepte – keinen Code."
+</code></pre>
+<p><strong>Schritt 2 – In Antigravity die AGENTS.md aktualisieren:</strong></p>
+<pre><code class="language-markdown">## Mein aktuelles Thema
+Ich lerne heute: Benutzereingabe lesen mit std::io::stdin()
+und Strings in Zahlen umwandeln mit .parse()
+
+Konzepte, die ich verstehe (aus Gemini-Gespräch):
+- stdin() gibt einen Handle zum Standard-Input
+- .read_line() liest eine Zeile als String
+- .parse::&lt;i32&gt;() konvertiert den String
+</code></pre>
+<p><strong>Schritt 3 – Code selbst schreiben (kein Agent!):</strong>
+Öffne die IDE und schreibe den Code selbst, basierend auf dem, was du verstanden hast.</p>
+<p><strong>Schritt 4 – Fehler mit Antigravity analysieren:</strong></p>
+<pre><code class="language-bash">agy
+&gt; Ich habe diesen Fehler: [Fehlermeldung]
+  Erkläre mir das Warum – ich möchte die Lösung selbst finden.
+</code></pre>
+<p><strong>Schritt 5 – Ergebnis mit Gemini reflektieren:</strong></p>
+<pre><code>In Gemini:
+"Ich habe gerade [Konzept] in Rust erfolgreich implementiert.
+Was ist der nächste logische Schritt, den ich lernen sollte?
+Erkläre kurz, warum dieser Schritt jetzt sinnvoll ist."
+</code></pre>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>In welchem Schritt war Gemini hilfreicher? In welchem Antigravity?</li>
+<li>Wie viel Zeit hast du für jeden Schritt gebraucht?</li>
+<li>Was würdest du beim nächsten Mal anders machen?</li>
+</ul>
+<hr>
+<h3 id="-übung-7-vergleich-protokoll-führen"><a class="header" href="#-übung-7-vergleich-protokoll-führen">🔵 Übung 7: Vergleich-Protokoll führen</a></h3>
+<p><strong>Ziel:</strong> Systematisch verstehen, welches Werkzeug wann besser passt.</p>
+<p><strong>Schritte:</strong></p>
+<ol>
+<li>
+<p>Erstelle eine Datei <code>ki-vergleich.md</code> in deinem Rust-Projekt:</p>
+<pre><code class="language-markdown"># KI-Werkzeug-Vergleich – Meine Erfahrungen
+
+## Wann nutze ich Gemini?
+- 
+
+## Wann nutze ich Antigravity CLI?
+- 
+
+## Wann nutze ich Antigravity IDE?
+- 
+
+## Erlebnisse
+
+### [Datum]: [Situation]
+Werkzeug: Gemini / Antigravity  
+Aufgabe:  
+Ergebnis:  
+Besser wäre gewesen:  
+</code></pre>
+</li>
+<li>
+<p>Fülle die Datei nach jeder Lernsitzung aus</p>
+</li>
+<li>
+<p>Teile das Protokoll nach zwei Wochen mit dem Antigravity-Agenten:</p>
+<pre><code class="language-bash">agy
+&gt; @ki-vergleich.md Analysiere meine Erfahrungen. 
+  Welches Muster erkennst du? Wann sollte ich welches Werkzeug nutzen?
+</code></pre>
+</li>
+</ol>
+<p><strong>Nachdenk-Aufgaben:</strong></p>
+<ul>
+<li>Hat sich deine Meinung über die beiden Werkzeuge nach zwei Wochen verändert?</li>
+<li>Gibt es Situationen, in denen du keines von beiden nutzen würdest?</li>
+</ul>
+<hr>
+<h2 id="-zusammenfassung-das-ki-werkzeugkasten-2026"><a class="header" href="#-zusammenfassung-das-ki-werkzeugkasten-2026">💡 Zusammenfassung: Das KI-Werkzeugkasten 2026</a></h2>
+<p>Als Rust-Lernender im Jahr 2026 haben wir drei Hauptwerkzeuge:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Werkzeug</th><th>Link/Befehl</th><th>Beste Nutzung</th></tr>
+</thead>
+<tbody>
+<tr><td>💎 Google Gemini</td><td><a href="https://gemini.google.com/app">gemini.google.com/app</a></td><td>Konzepte verstehen, Brainstorming, Analogien</td></tr>
+<tr><td>🖥️ Antigravity CLI</td><td><code>agy</code> im Terminal</td><td>Projektarbeit, Fehleranalyse, Automatisierung</td></tr>
+<tr><td>💻 Antigravity IDE</td><td>Antigravity IDE öffnen</td><td>Aktives Coden, Inline-Hilfe, Code-Review</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>🦀 <strong>Die wichtigste Erkenntnis:</strong><br>Kein KI-Werkzeug ersetzt das eigenständige Denken.<br>Sie alle sind <strong>Spiegel</strong> – sie zeigen uns, was wir noch nicht wissen.<br>Den Code schreiben, das Konzept verstehen, den Fehler lösen –<br>das macht immer noch <strong>du</strong>.</p>
+</blockquote>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
+<ul>
+<li><a href="https://gemini.google.com/app">Google Gemini</a> – Direkt starten</li>
+<li><a href="https://gemini.google.com/app/gems">Gemini Gems erstellen</a> – Eigene Assistenten bauen</li>
+<li><a href="https://antigravity.google/docs">Antigravity Dokumentation</a> – Agent-System</li>
+<li><a href="https://doc.rust-lang.org/book/">Rust-Buch</a> – Die offizielle Rust-Referenz</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="antigravity-praxis.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="copilot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="antigravity-praxis.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="copilot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
