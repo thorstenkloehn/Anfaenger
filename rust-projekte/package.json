@@ -7,9 +7,12 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-      "ver": "gh-pages -d book --nojekyll --cname anfaenger.wissen-ahrensburg.de"
+    "ver": "gh-pages -d book --nojekyll --cname anfaenger.wissen-ahrensburg.de"
   },
   "devDependencies": {
     "github-pages": "^3.0.2"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
