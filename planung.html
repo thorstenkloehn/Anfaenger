@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Planung mit Antigravity /planning - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-d4fa02cf.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-7b901f96.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-projektplanung-mit-antigravity-planning"><a class="header" href="#-projektplanung-mit-antigravity-planning">📋 Projektplanung mit Antigravity <code>/planning</code></a></h1>
+<p><em>Bevor wir eine einzige Zeile Code schreiben – planen wir gemeinsam.</em></p>
+<hr>
+<p>Gute Projekte entstehen nicht aus dem Nichts. Sie entstehen aus einem <strong>klaren Plan</strong>. In dieser Lektion lernen wir, den interaktiven Planungs-Workflow von Antigravity zu nutzen, um unsere Rust-Projekte <strong>Schritt für Schritt, Aufgabe für Aufgabe</strong> durchzudenken – bevor der erste Code geschrieben wird.</p>
+<blockquote>
+<p>🦀 <strong>Das Prinzip:</strong> Ein Plan ist kein Versprechen. Er ist ein <strong>Kompass</strong> – er zeigt die Richtung, auch wenn der Weg manchmal anders wird.</p>
+</blockquote>
+<hr>
+<h2 id="-theorie-was-ist-planning-in-antigravity"><a class="header" href="#-theorie-was-ist-planning-in-antigravity">🧠 Theorie: Was ist <code>/planning</code> in Antigravity?</a></h2>
+<p>Der <code>/planning</code>-Befehl öffnet in Antigravity einen <strong>interaktiven Planungseditor</strong>. Anstatt einfach eine Aufgabe auszuführen, erstellt der Agent zuerst einen strukturierten <strong>Schritt-für-Schritt-Plan</strong> und wartet auf unsere Freigabe.</p>
+<h3 id="wie-planning-funktioniert"><a class="header" href="#wie-planning-funktioniert">Wie <code>/planning</code> funktioniert</a></h3>
+<pre><code>Wir:    /planning Ich möchte das "Zahlen raten"-Projekt in Rust bauen.
+
+Agent:  Hier ist mein Plan:
+
+        [ ] Schritt 1: Zufallszahl mit rand-Crate generieren
+        [ ] Schritt 2: Benutzereingabe lesen und als Zahl parsen
+        [ ] Schritt 3: Vergleich und Feedback ("zu groß"/"zu klein")
+        [ ] Schritt 4: Schleife bis zur richtigen Zahl
+        [ ] Schritt 5: Versuchszähler und Abschlussmeldung
+
+        Soll ich so vorgehen? (Bestätigen / Ändern / Abbrechen)
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/planning</code> – Der Befehl signalisiert: „Plane zuerst, handle dann.“</li>
+<li>Der Agent listet alle Schritte als <strong>Checkboxen</strong> auf – jeder Schritt ist eine einzelne, erledigbare Aufgabe.</li>
+<li>Wir bestätigen, ändern oder brechen ab – <strong>bevor</strong> etwas passiert.</li>
+<li>Nach der Freigabe arbeitet der Agent Schritt für Schritt durch die Liste.</li>
+</ul>
+<h3 id="der-unterschied-zu-einer-normalen-anfrage"><a class="header" href="#der-unterschied-zu-einer-normalen-anfrage">Der Unterschied zu einer normalen Anfrage</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Normale Anfrage</th><th>Mit <code>/planning</code></th></tr>
+</thead>
+<tbody>
+<tr><td>Agent handelt sofort</td><td>Agent plant zuerst</td></tr>
+<tr><td>Wir sehen Ergebnisse, nicht den Weg</td><td>Wir sehen jeden Schritt vorher</td></tr>
+<tr><td>Schwer rückgängig zu machen</td><td>Jeder Schritt einzeln kontrollierbar</td></tr>
+<tr><td>Gut für kleine Aufgaben</td><td>Ideal für komplexere Projekte</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-übung-1-unser-erstes-planning--zahlen-raten"><a class="header" href="#-übung-1-unser-erstes-planning--zahlen-raten">🛠️ Übung 1: Unser erstes <code>/planning</code> – „Zahlen raten“</a></h2>
+<p><strong>Ziel:</strong> Den Planungs-Workflow für Projekt 1 aus Phase 1 erleben.</p>
+<h3 id="schritt-1-antigravity-cli-starten"><a class="header" href="#schritt-1-antigravity-cli-starten">Schritt 1: Antigravity CLI starten</a></h3>
+<pre><code class="language-bash">agy
+</code></pre>
+<h3 id="schritt-2-den-planungs-befehl-eingeben"><a class="header" href="#schritt-2-den-planungs-befehl-eingeben">Schritt 2: Den Planungs-Befehl eingeben</a></h3>
+<pre><code>&gt; /planning Ich möchte das Rust-Projekt "Zahlen raten" planen.
+  
+  Das Programm soll:
+  - Eine Zufallszahl zwischen 1 und 100 wählen
+  - Den Spieler so lange nach Zahlen fragen, bis er richtig liegt
+  - "zu groß" oder "zu klein" ausgeben
+  - Am Ende die Anzahl der Versuche zeigen
+  
+  Erstelle einen Plan mit Lernschritten – keinen fertigen Code.
+</code></pre>
+<h3 id="schritt-3-den-plan-lesen-und-bewerten"><a class="header" href="#schritt-3-den-plan-lesen-und-bewerten">Schritt 3: Den Plan lesen und bewerten</a></h3>
+<p>Der Agent erstellt einen Plan. Bevor wir ihn bestätigen, fragen wir uns:</p>
+<ul>
+<li>Sind alle Schritte logisch geordnet?</li>
+<li>Fehlt ein Schritt?</li>
+<li>Ist ein Schritt zu groß (sollte aufgeteilt werden)?</li>
+</ul>
+<h3 id="schritt-4-den-plan-anpassen"><a class="header" href="#schritt-4-den-plan-anpassen">Schritt 4: Den Plan anpassen</a></h3>
+<pre><code>&gt; Füge zwischen Schritt 2 und 3 einen Schritt ein:
+  "Fehlerbehandlung: Was passiert, wenn der Spieler keine Zahl eingibt?"
+</code></pre>
+<h3 id="schritt-5-den-plan-freigeben"><a class="header" href="#schritt-5-den-plan-freigeben">Schritt 5: Den Plan freigeben</a></h3>
+<pre><code>&gt; Bestätigen
+</code></pre>
+<p><strong>Was jetzt passiert:</strong> Der Agent beginnt, Schritt für Schritt durch die Liste zu gehen. Bei jedem Schritt sehen wir seinen Fortschritt.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was hätte ohne den Planungsschritt gefehlt? Was wäre vielleicht direkt vergessen worden?</p>
+</blockquote>
+<hr>
+<h2 id="-übung-2-meilensteine-setzen--planning-für-größere-vorhaben"><a class="header" href="#-übung-2-meilensteine-setzen--planning-für-größere-vorhaben">🛠️ Übung 2: Meilensteine setzen – <code>/planning</code> für größere Vorhaben</a></h2>
+<p><strong>Ziel:</strong> Ein mehrteiliges Lernvorhaben in Meilensteine aufteilen.</p>
+<p>Angenommen, wir wollen alle 10 Projekte der ersten Woche aus Phase 1 abschließen.</p>
+<h3 id="schritt-1-den-meilenstein-plan-erstellen"><a class="header" href="#schritt-1-den-meilenstein-plan-erstellen">Schritt 1: Den Meilenstein-Plan erstellen</a></h3>
+<pre><code>&gt; /planning Ich möchte in dieser Woche 5 Rust-Projekte aus Phase 1 abschließen.
+  
+  Meine verfügbare Zeit: 1 Stunde pro Tag (Montag bis Freitag)
+  Mein aktueller Stand: Ich kenne Variablen und if/else, aber noch keine Schleifen.
+  
+  Erstelle einen Wochenplan mit:
+  - Welches Projekt an welchem Tag
+  - Welches Rust-Konzept ich dabei lerne
+  - Eine konkrete Frage, die ich mir vor Beginn stellen soll
+  
+  Schreibe keinen Code – nur den Plan.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion der Anfrage:</strong></p>
+<ul>
+<li><code>Meine verfügbare Zeit:</code> – Der Agent kennt unsere Kapazitäten und plant realistisch.</li>
+<li><code>Mein aktueller Stand:</code> – Er weiß, womit er anknüpfen kann.</li>
+<li><code>Eine konkrete Frage vor Beginn</code> – Das ist das <strong>Aktivierungs-Ritual</strong>: Wir denken nach, bevor wir tippen.</li>
+</ul>
+<h3 id="schritt-2-den-wochenplan-als-datei-speichern"><a class="header" href="#schritt-2-den-wochenplan-als-datei-speichern">Schritt 2: Den Wochenplan als Datei speichern</a></h3>
+<pre><code>&gt; Speichere diesen Plan als wochenplan.md in meinem Rust-Projektordner.
+</code></pre>
+<p><strong>Was entsteht:</strong></p>
+<pre><code class="language-markdown"># Wochenplan – KW 26
+
+## Montag: Projekt 1 – Zahlen raten
+**Lerne:** loop, Benutzereingabe, Vergleich
+**Frage vor Beginn:** Wie lese ich in Rust eine Zeile vom Terminal?
+
+## Dienstag: Projekt 2 – Einkaufsliste  
+**Lerne:** Vec, Ownership beim Hinzufügen
+**Frage vor Beginn:** Was ist ein Vec und warum brauche ich ihn?
+
+...
+</code></pre>
+<h3 id="schritt-3-den-plan-täglich-aktualisieren"><a class="header" href="#schritt-3-den-plan-täglich-aktualisieren">Schritt 3: Den Plan täglich aktualisieren</a></h3>
+<pre><code>&gt; @wochenplan.md Ich habe heute Projekt 1 abgeschlossen. 
+  Markiere Montag als erledigt und füge eine kurze Notiz hinzu:
+  "Größte Herausforderung: .parse() mit Fehlerbehandlung."
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie hilft ein schriftlicher Plan dabei, motiviert zu bleiben?</p>
+</blockquote>
+<hr>
+<h2 id="-übung-3-task-listen-führen--fortschritt-sichtbar-machen"><a class="header" href="#-übung-3-task-listen-führen--fortschritt-sichtbar-machen">🛠️ Übung 3: Task-Listen führen – Fortschritt sichtbar machen</a></h2>
+<p><strong>Ziel:</strong> Den Fortschritt eines einzelnen Projekts mit Checkboxen verwalten.</p>
+<h3 id="schritt-1-task-liste-für-ein-projekt-anlegen"><a class="header" href="#schritt-1-task-liste-für-ein-projekt-anlegen">Schritt 1: Task-Liste für ein Projekt anlegen</a></h3>
+<pre><code>&gt; /planning Erstelle eine detaillierte Task-Liste für Projekt 3 
+  aus Phase 1 (Temperatur-Tagebuch).
+  
+  Jede Aufgabe soll:
+  - Eine einzelne, abschließbare Aktion sein
+  - Das Rust-Konzept benennen, das dabei geübt wird
+  - Mit einem Lernziel verknüpft sein
+  
+  Format: Checkbox-Liste in Markdown
+</code></pre>
+<p><strong>Was der Agent erstellt:</strong></p>
+<pre><code class="language-markdown"># Temperatur-Tagebuch – Task-Liste
+
+## Setup
+- [ ] Neues Rust-Projekt anlegen: `cargo new temperatur-tagebuch`
+- [ ] Verzeichnisstruktur verstehen (`src/main.rs`, `Cargo.toml`)
+
+## Daten erfassen
+- [ ] Variable für Temperaturen anlegen (Konzept: Vec&lt;f64&gt;)
+- [ ] Eingabe-Schleife bauen (Konzept: loop)
+- [ ] Benutzereingabe lesen (Konzept: stdin().read_line())
+- [ ] Eingabe in f64 konvertieren (Konzept: .parse::&lt;f64&gt;())
+- [ ] Beendigungsbedingung einbauen (Konzept: break)
+
+## Auswertung
+- [ ] Durchschnitt berechnen (Konzept: iter().sum(), len())
+- [ ] Minimum finden (Konzept: iter().min())  
+- [ ] Maximum finden (Konzept: iter().max())
+
+## Ausgabe
+- [ ] Ergebnisse formatiert ausgeben (Konzept: println! mit {:.1})
+
+## Test
+- [ ] Programm mit 5 Testwerten ausführen
+- [ ] Fehlerfall testen: Was passiert bei Text-Eingabe?
+</code></pre>
+<h3 id="schritt-2-die-liste-in-antigravity-20-öffnen"><a class="header" href="#schritt-2-die-liste-in-antigravity-20-öffnen">Schritt 2: Die Liste in Antigravity 2.0 öffnen</a></h3>
+<p>In Antigravity 2.0 → <strong>Tasks</strong> → die Datei als aktive Task-Liste einbinden.</p>
+<h3 id="schritt-3-aufgaben-beim-erledigen-abhaken"><a class="header" href="#schritt-3-aufgaben-beim-erledigen-abhaken">Schritt 3: Aufgaben beim Erledigen abhaken</a></h3>
+<pre><code class="language-bash">agy
+&gt; @task-liste.md Ich habe gerade die Eingabe-Schleife fertig. 
+  Markiere "Eingabe-Schleife bauen" als erledigt.
+  Was ist der nächste logische Schritt?
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>@task-liste.md</code> – Der Agent sieht die aktuelle Datei mit Fortschrittsstand.</li>
+<li><code>Markiere ... als erledigt</code> – Der Agent setzt <code>[x]</code> statt <code>[ ]</code>.</li>
+<li><code>Was ist der nächste logische Schritt?</code> – Wir fragen nicht nach dem Code, sondern nach dem nächsten <strong>Konzept</strong>.</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Warum ist es motivierender, Checkboxen abzuhaken, als einfach Code zu schreiben?</p>
+</blockquote>
+<hr>
+<h2 id="-übung-4-planungs-review--was-lief-gut-was-nicht"><a class="header" href="#-übung-4-planungs-review--was-lief-gut-was-nicht">🛠️ Übung 4: Planungs-Review – Was lief gut, was nicht?</a></h2>
+<p><strong>Ziel:</strong> Nach einem abgeschlossenen Projekt den Plan rückwirkend bewerten.</p>
+<h3 id="schritt-1-das-retrospektiv-gespräch"><a class="header" href="#schritt-1-das-retrospektiv-gespräch">Schritt 1: Das Retrospektiv-Gespräch</a></h3>
+<pre><code>&gt; @task-liste.md Ich habe das Projekt abgeschlossen. 
+  Führe mit mir eine kurze Retrospektive durch:
+  
+  1. Welche Aufgaben haben länger gedauert als erwartet?
+  2. Welche Aufgabe war die lehrreichste?
+  3. Was würde ich beim nächsten Projekt anders planen?
+  
+  Stelle mir diese Fragen eine nach der anderen – warte auf meine Antwort.
+</code></pre>
+<p><strong>Was passiert:</strong> Der Agent führt ein strukturiertes Interview mit uns – eine Frage nach der anderen. Er wartet auf unsere Antwort, bevor er weitermacht.</p>
+<h3 id="schritt-2-erkenntnisse-in-agentsmd-übertragen"><a class="header" href="#schritt-2-erkenntnisse-in-agentsmd-übertragen">Schritt 2: Erkenntnisse in AGENTS.md übertragen</a></h3>
+<pre><code>&gt; Fasse meine Retrospektive in 3 Stichpunkten zusammen 
+  und füge sie in AGENTS.md unter "Mein Lernstand" ein.
+</code></pre>
+<h3 id="schritt-3-den-nächsten-plan-informierter-starten"><a class="header" href="#schritt-3-den-nächsten-plan-informierter-starten">Schritt 3: Den nächsten Plan informierter starten</a></h3>
+<p>Beim nächsten <code>/planning</code>-Aufruf kennt der Agent unsere Retrospektive – und plant realistischer.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was ist der Unterschied zwischen einem Plan, der vor dem Projekt entsteht, und einer Retrospektive danach?</p>
+</blockquote>
+<hr>
+<h2 id="-übung-5-automatischer-planungs-assistent-in-antigravity-20"><a class="header" href="#-übung-5-automatischer-planungs-assistent-in-antigravity-20">🛠️ Übung 5: Automatischer Planungs-Assistent in Antigravity 2.0</a></h2>
+<p><strong>Ziel:</strong> Einen Scheduled Task einrichten, der uns jeden Montag beim Planen hilft.</p>
+<h3 id="schritt-1-den-task-erstellen"><a class="header" href="#schritt-1-den-task-erstellen">Schritt 1: Den Task erstellen</a></h3>
+<p>In Antigravity 2.0 → <strong>Scheduled Tasks</strong> → <strong>New Task</strong>:</p>
+<pre><code>Name:    Wöchentliche Projektplanung
+Cron:    0 9 * * 1    (Jeden Montag um 09:00)
+Aufgabe: Lies meine AGENTS.md.
+         Führe einen /planning-Workflow für diese Woche durch:
+         - Welche Projekte aus Phase 1 nehme ich mir vor?
+         - Wie viel Zeit habe ich realistisch?
+         - Was ist das Konzept, das ich diese Woche vertiefen möchte?
+         
+         Erstelle einen Wochenplan als wochenplan-[DATUM].md
+         und lege ihn im Rust-Projektordner ab.
+         Schreibe keinen Code.
+</code></pre>
+<h3 id="schritt-2-den-ersten-automatischen-plan-abwarten"><a class="header" href="#schritt-2-den-ersten-automatischen-plan-abwarten">Schritt 2: Den ersten automatischen Plan abwarten</a></h3>
+<p>Am nächsten Montag um 09:00 Uhr erscheint eine Benachrichtigung. Der Agent hat bereits einen Wochenplan erstellt – wir müssen ihn nur noch bestätigen oder anpassen.</p>
+<h3 id="schritt-3-den-plan-als-lernritual-etablieren"><a class="header" href="#schritt-3-den-plan-als-lernritual-etablieren">Schritt 3: Den Plan als Lernritual etablieren</a></h3>
+<p>Montagmorgen → Plan lesen → anpassen → Woche starten.</p>
+<hr>
+<h2 id="-das-vollständige-planungs-system"><a class="header" href="#-das-vollständige-planungs-system">📊 Das vollständige Planungs-System</a></h2>
+<p>Kombinieren wir alle Übungen zu einem <strong>durchgehenden Planungs-Workflow</strong>:</p>
+<pre><code>MONTAG 09:00
+│
+├─ 📋 /planning – Wochenplan erstellen
+│   └─ wochenplan-[KW].md wird angelegt
+│
+├─ 🗒️ Task-Listen – Pro Projekt eine task-liste.md
+│   └─ Checkboxen werden täglich aktualisiert
+│
+├─ 🔁 Täglich: Checkpoint
+│   └─ "@task-liste.md Ich bin bei Aufgabe X. Was als Nächstes?"
+│
+└─ FREITAG 17:00
+    └─ 🔍 Retrospektive: Was lief gut? Was würde ich ändern?
+        └─ Erkenntnisse → AGENTS.md aktualisieren
+</code></pre>
+<h3 id="die-planungs-dateien-im-überblick"><a class="header" href="#die-planungs-dateien-im-überblick">Die Planungs-Dateien im Überblick</a></h3>
+<pre><code>mein-rust-projekt/
+├── AGENTS.md                      ← Lernstand &amp; Regeln
+├── wochenplan-kw26.md             ← Wöchentlicher Überblick
+├── temperatur-tagebuch-tasks.md   ← Task-Liste Projekt 3
+├── zahlen-raten-tasks.md          ← Task-Liste Projekt 1
+└── retrospektive-juni.md          ← Monatliche Rückschau
+</code></pre>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Werkzeug</th><th>Befehl</th><th>Wann nutzen?</th></tr>
+</thead>
+<tbody>
+<tr><td>Planungs-Workflow</td><td><code>/planning [Aufgabe]</code></td><td>Vor jedem neuen Projekt</td></tr>
+<tr><td>Task-Liste</td><td><code>@task-liste.md</code> + Checkboxen</td><td>Während des Projekts</td></tr>
+<tr><td>Wochenplan</td><td>Scheduled Task montags</td><td>Zu Beginn jeder Woche</td></tr>
+<tr><td>Retrospektive</td><td>Nach Projektabschluss</td><td>Nach jedem Projekt</td></tr>
+<tr><td>AGENTS.md Update</td><td>Nach Retrospektive</td><td>Wöchentlich</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>🦀 <strong>Merke:</strong> Planung ist nicht das Gegenteil von Lernen – sie <strong>ist</strong> ein Teil des Lernens.<br>Wer plant, denkt schon über das Problem nach, bevor er es löst.<br>Und genau das macht einen guten Entwickler aus – egal ob Anfänger oder Profi.</p>
+</blockquote>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Ressource</th><th>Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Antigravity /planning</td><td><a href="https://antigravity.google/docs">antigravity.google/docs</a></td></tr>
+<tr><td>Antigravity Scheduled Tasks</td><td><a href="https://antigravity.google/docs">antigravity.google/docs</a></td></tr>
+<tr><td>Rust Projektstruktur</td><td><a href="https://doc.rust-lang.org/book/ch01-03-hello-cargo.html">doc.rust-lang.org/book/ch01-03-hello-cargo.html</a></td></tr>
+</tbody>
+</table>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="einleitung.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="phase1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="einleitung.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="phase1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

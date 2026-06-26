@@ -1,0 +1,2003 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Antigravity Praxis-Projekte - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-d4fa02cf.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-7b901f96.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-antigravity-praxis-projekte-50-schritte-zum-ki-gestützten-entwickler"><a class="header" href="#-antigravity-praxis-projekte-50-schritte-zum-ki-gestützten-entwickler">🤖 Antigravity Praxis-Projekte: 50 Schritte zum KI-gestützten Entwickler</a></h1>
+<p><em>Stand: 2026 – Modern, praxisnah, Schritt für Schritt.</em></p>
+<hr>
+<p>Willkommen in der Welt des kollaborativen Lernens mit KI. Dieses Kapitel ist kein gewöhnliches Tutorial. Es ist eine <strong>Reise</strong> – von deinem ersten <code>agy</code>-Befehl im Terminal bis hin zu einem vollständig personalisierten KI-Agenten, der genau weiß, wie er dir beim Rust-Lernen helfen soll.</p>
+<p>Wir arbeiten hier immer <strong>gemeinsam</strong>: Du und Antigravity als Lernpartner auf Augenhöhe. Der Agent schreibt deinen Code nicht für dich – er stellt dir die richtigen Fragen, damit du selbst zur Lösung findest.</p>
+<blockquote>
+<p>🦀 <strong>Prinzip dieser Projekte:</strong> Wir lernen nicht <em>über</em> KI – wir lernen <em>mit</em> KI. Der Unterschied ist riesig.</p>
+</blockquote>
+<hr>
+<h2 id="-übersicht-die-6-lerngruppen"><a class="header" href="#-übersicht-die-6-lerngruppen">🗺️ Übersicht: Die 6 Lerngruppen</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Gruppe</th><th>Projekte</th><th>Thema</th></tr>
+</thead>
+<tbody>
+<tr><td>🖥️ Gruppe 1</td><td>1 – 10</td><td>Antigravity CLI – Die Kommandozeile</td></tr>
+<tr><td>📋 Gruppe 2</td><td>11 – 20</td><td>AGENTS.md – Den Agenten formen</td></tr>
+<tr><td>🔧 Gruppe 3</td><td>21 – 30</td><td>Skills – Den Agenten erweitern</td></tr>
+<tr><td>🖼️ Gruppe 4</td><td>31 – 40</td><td>Antigravity 2.0 – Die Desktop-App</td></tr>
+<tr><td>💻 Gruppe 5</td><td>41 – 45</td><td>Antigravity IDE – KI im Editor</td></tr>
+<tr><td>🚀 Gruppe 6</td><td>46 – 50</td><td>Alles zusammen – Der vollständige Workflow</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h1 id="-gruppe-1-antigravity-cli--die-kommandozeile"><a class="header" href="#-gruppe-1-antigravity-cli--die-kommandozeile">🖥️ Gruppe 1: Antigravity CLI – Die Kommandozeile</a></h1>
+<p>Die CLI (Command Line Interface) ist das Herzstück von Antigravity. Hier lernen wir, direkt und schnell mit dem Agenten zu kommunizieren – ohne grafische Oberfläche, ohne Ablenkung. Nur du, das Terminal und ein KI-Agent.</p>
+<hr>
+<h2 id="-projekt-1-der-erste-start--agy-und-was-dann-passiert"><a class="header" href="#-projekt-1-der-erste-start--agy-und-was-dann-passiert">🖥️ Projekt 1: Der erste Start – <code>agy</code> und was dann passiert</a></h2>
+<p><strong>Was wir bauen:</strong> Unsere allererste Sitzung mit Antigravity CLI.</p>
+<h3 id="schritt-1-das-terminal-öffnen-und-agy-starten"><a class="header" href="#schritt-1-das-terminal-öffnen-und-agy-starten">Schritt 1: Das Terminal öffnen und <code>agy</code> starten</a></h3>
+<pre><code class="language-bash">agy
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>agy</code> ist der Name des Programms – kurz für <strong>Antigravity</strong>. Wir tippen es ins Terminal und drücken <code>Enter</code>.</li>
+<li>Beim ersten Start öffnet sich ein <strong>Browser-Fenster</strong> für die Authentifizierung. Wir melden uns mit unserem Google-Konto an.</li>
+<li>Nach der Anmeldung erscheint im Terminal ein <strong>Code</strong>. Diesen kopieren wir und fügen ihn ins Terminal ein.</li>
+<li>Dann erscheint der Prompt: <code>&gt;</code> – der Agent wartet auf unsere Eingabe.</li>
+</ul>
+<h3 id="schritt-2-die-erste-frage-stellen"><a class="header" href="#schritt-2-die-erste-frage-stellen">Schritt 2: Die erste Frage stellen</a></h3>
+<pre><code>&gt; Was ist Rust und warum sollte ich es lernen?
+</code></pre>
+<p>Der Agent antwortet sofort. Wichtig: <strong>Er liest unsere <code>AGENTS.md</code></strong>, falls vorhanden. Da wir noch keine haben, antwortet er allgemein.</p>
+<h3 id="schritt-3-die-antwort-bewusst-lesen"><a class="header" href="#schritt-3-die-antwort-bewusst-lesen">Schritt 3: Die Antwort bewusst lesen</a></h3>
+<p>Lies die Antwort langsam durch. Beachte:</p>
+<ul>
+<li>Erklärt der Agent zu technisch oder zu einfach?</li>
+<li>Fehlen dir Informationen?</li>
+<li>Stellst du dir neue Fragen?</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was würde sich ändern, wenn wir dem Agenten vorher sagen, dass wir Anfänger sind? Das lernen wir in Projekt 11.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 2 erkunden wir die Slash-Befehle – die geheimen Superkräfte der CLI.</p>
+<hr>
+<h2 id="-projekt-2-slash-befehle--die-superkräfte-des-terminals"><a class="header" href="#-projekt-2-slash-befehle--die-superkräfte-des-terminals">🖥️ Projekt 2: Slash-Befehle – Die Superkräfte des Terminals</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Verständnis für die wichtigsten Slash-Befehle.</p>
+<h3 id="schritt-1-help-aufrufen"><a class="header" href="#schritt-1-help-aufrufen">Schritt 1: <code>/help</code> aufrufen</a></h3>
+<pre><code>&gt; /help
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Das <code>/</code> am Anfang signalisiert: Das ist <strong>kein Satz an den Agenten</strong>, sondern ein <strong>Befehl an die CLI selbst</strong>.</li>
+<li><code>help</code> zeigt uns alle verfügbaren Befehle mit Kurzbeschreibungen an.</li>
+<li>Wir sehen eine lange Liste – das ist gut! Jeder dieser Befehle ist ein Werkzeug.</li>
+</ul>
+<h3 id="schritt-2-context-aufrufen"><a class="header" href="#schritt-2-context-aufrufen">Schritt 2: <code>/context</code> aufrufen</a></h3>
+<pre><code>&gt; /context
+</code></pre>
+<p><strong>Was passiert:</strong> Der Agent zeigt uns, welche Dateien und Informationen er gerade „sieht“. Denke dir das wie seinen <strong>Arbeitstisch</strong> vor – alles, was dort liegt, beeinflusst seine Antworten.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Ohne <code>AGENTS.md</code> ist der Kontext meist leer oder enthält nur die aktuelle Konversation.</li>
+<li>Mit <code>AGENTS.md</code> sehen wir alle geladenen Regeln und Projektinformationen.</li>
+<li>Der Kontext ist wie das <strong>Kurzzeitgedächtnis</strong> des Agenten.</li>
+</ul>
+<h3 id="schritt-3-skills-aufrufen"><a class="header" href="#schritt-3-skills-aufrufen">Schritt 3: <code>/skills</code> aufrufen</a></h3>
+<pre><code>&gt; /skills
+</code></pre>
+<p>Skills sind vorgefertigte Fähigkeiten des Agenten. Wir sehen hier, welche aktiv sind. In Gruppe 3 bauen wir unsere eigenen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche der angezeigten Befehle klingen für dein Rust-Lernen besonders nützlich?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 3 lernen wir, wie wir Konversationen mit <code>/fork</code> verwalten – perfekt, wenn wir mehrere Rust-Themen gleichzeitig erkunden.</p>
+<hr>
+<h2 id="-projekt-3-konversationen-verwalten--fork-resume-clear"><a class="header" href="#-projekt-3-konversationen-verwalten--fork-resume-clear">🖥️ Projekt 3: Konversationen verwalten – <code>/fork</code>, <code>/resume</code>, <code>/clear</code></a></h2>
+<p><strong>Was wir bauen:</strong> Einen strukturierten Umgang mit langen Gesprächen.</p>
+<h3 id="schritt-1-eine-konversation-starten-und-benennen"><a class="header" href="#schritt-1-eine-konversation-starten-und-benennen">Schritt 1: Eine Konversation starten und benennen</a></h3>
+<pre><code>&gt; Erkläre mir das Ownership-Modell in Rust.
+&gt; /rename rust-ownership-grundlagen
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/rename</code> gibt unserer Konversation einen <strong>Namen</strong>. Statt einer langen ID sehen wir: <code>rust-ownership-grundlagen</code>.</li>
+<li>Das ist wie ein <strong>Ordner im Aktenschrank</strong> – wir können später genau hierher zurückkehren.</li>
+</ul>
+<h3 id="schritt-2-eine-konversation-forken"><a class="header" href="#schritt-2-eine-konversation-forken">Schritt 2: Eine Konversation forken</a></h3>
+<pre><code>&gt; /fork
+</code></pre>
+<p><strong>Was passiert:</strong> Eine exakte <strong>Kopie</strong> unserer Konversation entsteht, aber als neuer Thread. Der gesamte Verlauf bleibt erhalten.</p>
+<p><strong>Analogie:</strong> Stell dir vor, du hast ein Gespräch mit einem Freund. Mit <code>/fork</code> öffnest du ein <strong>paralleles Universum</strong> dieses Gesprächs – du kannst in eine andere Richtung fragen, ohne das Original zu verlieren.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>fork</code> kommt aus der Programmierung: Wie ein Gabelung in einem Fluss – zwei Wege aus einem Punkt.</li>
+<li>Wir können nun im geforkten Thread tiefer in ein Thema eintauchen.</li>
+<li>Der Original-Thread bleibt unberührt.</li>
+</ul>
+<h3 id="schritt-3-zur-alten-konversation-zurückkehren"><a class="header" href="#schritt-3-zur-alten-konversation-zurückkehren">Schritt 3: Zur alten Konversation zurückkehren</a></h3>
+<pre><code>&gt; /resume rust-ownership-grundlagen
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/resume</code> gefolgt vom <strong>Namen</strong> der Konversation bringt uns zurück.</li>
+<li>Alternativ: <code>/switch</code> hat dieselbe Funktion.</li>
+<li>Wir können auch <code>/conversation</code> tippen, um eine Liste aller gespeicherten Konversationen zu sehen.</li>
+</ul>
+<h3 id="schritt-4-aufräumen-mit-clear"><a class="header" href="#schritt-4-aufräumen-mit-clear">Schritt 4: Aufräumen mit <code>/clear</code></a></h3>
+<pre><code>&gt; /clear
+</code></pre>
+<p><strong>Was passiert:</strong> Der Terminal-Bildschirm wird geleert. Die Konversation ist aber noch gespeichert – wir können jederzeit mit <code>/resume</code> zurückkehren.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Rust-Themen würdest du in separaten Konversationen verwalten? Mach eine Liste.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 4 wechseln wir das KI-Modell – denn verschiedene Modelle haben verschiedene Stärken.</p>
+<hr>
+<h2 id="-projekt-4-das-richtige-modell-wählen--model"><a class="header" href="#-projekt-4-das-richtige-modell-wählen--model">🖥️ Projekt 4: Das richtige Modell wählen – <code>/model</code></a></h2>
+<p><strong>Was wir bauen:</strong> Ein Verständnis dafür, dass nicht alle KI-Modelle gleich sind.</p>
+<h3 id="schritt-1-das-aktuelle-modell-anzeigen"><a class="header" href="#schritt-1-das-aktuelle-modell-anzeigen">Schritt 1: Das aktuelle Modell anzeigen</a></h3>
+<pre><code>&gt; /model
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Liste verfügbarer Modelle. Das aktuell aktive ist markiert.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Modelle wie <code>gemini-flash</code> sind <strong>schnell</strong> – ideal für kurze Fragen.</li>
+<li>Leistungsfähigere Modelle denken <strong>tiefer</strong> – besser für komplexe Rust-Konzepte wie Lifetimes.</li>
+<li>Das Modell ist wie der <strong>Experte</strong>, den wir befragen: Ein Auszubildender antwortet schnell, ein Senior-Entwickler antwortet durchdachter.</li>
+</ul>
+<h3 id="schritt-2-das-modell-wechseln"><a class="header" href="#schritt-2-das-modell-wechseln">Schritt 2: Das Modell wechseln</a></h3>
+<pre><code>&gt; /model gemini-2.5-pro
+</code></pre>
+<p><strong>Was passiert:</strong> Ab der nächsten Antwort nutzt der Agent das neue Modell.</p>
+<h3 id="schritt-3-denselben-frage-vergleichen"><a class="header" href="#schritt-3-denselben-frage-vergleichen">Schritt 3: Denselben Frage vergleichen</a></h3>
+<p>Stelle nun dieselbe Rust-Frage wie in Projekt 1 nochmals. Vergleiche:</p>
+<ul>
+<li>Ist die Antwort länger oder kürzer?</li>
+<li>Mehr Details oder mehr Übersicht?</li>
+<li>Welches Modell passt besser zu deinem Lernstil?</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wann würdest du ein schnelles Modell bevorzugen, wann ein leistungsfähiges?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 5 lernen wir, den Token-Verbrauch zu verstehen – denn Tokens sind die „Währung“ der KI-Kommunikation.</p>
+<hr>
+<h2 id="-projekt-5-token-verbrauch-verstehen--usage"><a class="header" href="#-projekt-5-token-verbrauch-verstehen--usage">🖥️ Projekt 5: Token-Verbrauch verstehen – <code>/usage</code></a></h2>
+<p><strong>Was wir bauen:</strong> Ein Gespür für den Ressourcenverbrauch unserer KI-Interaktionen.</p>
+<h3 id="schritt-1-usage-anzeigen"><a class="header" href="#schritt-1-usage-anzeigen">Schritt 1: Usage anzeigen</a></h3>
+<pre><code>&gt; /usage
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Statistik über verwendete Tokens in dieser Sitzung.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><strong>Token:</strong> Nicht ganz ein Wort, nicht ganz ein Buchstabe – ein Token ist ein <strong>Textstück</strong>, ca. 4 Zeichen lang. „Rust“ = 1 Token. „fn main() {“ = 4 Tokens.</li>
+<li><strong>Input-Tokens:</strong> Was wir an den Agenten schicken (unsere Fragen + Kontext).</li>
+<li><strong>Output-Tokens:</strong> Was der Agent zurückschickt (seine Antworten).</li>
+<li><strong>Gesamtkosten</strong> (falls sichtbar): Tokens kosten Ressourcen – je länger unsere Konversation, desto mehr.</li>
+</ul>
+<h3 id="schritt-2-kontext-bewusst-klein-halten"><a class="header" href="#schritt-2-kontext-bewusst-klein-halten">Schritt 2: Kontext bewusst klein halten</a></h3>
+<p>Je mehr Dateien und Text in unserer <code>AGENTS.md</code> stehen, desto mehr Input-Tokens verbrauchen wir bei jeder Frage.</p>
+<p><strong>Analogie:</strong> Stell dir vor, du schreibst jeden Tag einen Brief an einen Freund. Aber am Anfang jedes Briefes kopierst du immer den gesamten vorherigen Briefwechsel. Das wird schnell sehr lang!</p>
+<h3 id="schritt-3-effizienz-üben"><a class="header" href="#schritt-3-effizienz-üben">Schritt 3: Effizienz üben</a></h3>
+<p>Starte eine neue Konversation mit <code>/clear</code> und stelle eine <strong>präzise, kurze Frage</strong>. Vergleiche den Token-Verbrauch mit einer langen, umständlichen Frage.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie formulierst du eine Frage so kurz wie möglich, aber so klar wie nötig?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 6 schauen wir uns <code>/diff</code> an – damit sehen wir, was der Agent an unserem Code verändert hat.</p>
+<hr>
+<h2 id="-projekt-6-änderungen-nachverfolgen--diff"><a class="header" href="#-projekt-6-änderungen-nachverfolgen--diff">🖥️ Projekt 6: Änderungen nachverfolgen – <code>/diff</code></a></h2>
+<p><strong>Was wir bauen:</strong> Einen Überblick über alle Dateiänderungen, die der Agent gemacht hat.</p>
+<h3 id="schritt-1-den-agenten-eine-datei-erstellen-lassen"><a class="header" href="#schritt-1-den-agenten-eine-datei-erstellen-lassen">Schritt 1: Den Agenten eine Datei erstellen lassen</a></h3>
+<pre><code>&gt; Erstelle eine neue Datei namens "notizen.md" mit drei Stichpunkten über Rust-Ownership.
+</code></pre>
+<h3 id="schritt-2-die-änderungen-anzeigen"><a class="header" href="#schritt-2-die-änderungen-anzeigen">Schritt 2: Die Änderungen anzeigen</a></h3>
+<pre><code>&gt; /diff
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine <strong>Diff-Ansicht</strong> – grüne Zeilen wurden hinzugefügt, rote wurden entfernt.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<pre><code class="language-diff">+ # Rust Ownership – Meine Notizen
++ 
++ - Jeder Wert hat genau einen Besitzer (Owner)
++ - Wird der Owner ungültig, wird der Wert gelöscht
++ - Nur ein Besitzer gleichzeitig – Weitergabe heißt „Move"
+</code></pre>
+<ul>
+<li><code>+</code> am Zeilenanfang: Diese Zeile wurde <strong>hinzugefügt</strong>.</li>
+<li><code>-</code> am Zeilenanfang: Diese Zeile wurde <strong>entfernt</strong> (hier noch keine).</li>
+<li>Keine Markierung: Diese Zeile ist <strong>unverändert</strong>.</li>
+</ul>
+<h3 id="schritt-3-änderungen-verstehen-und-bewusst-akzeptieren"><a class="header" href="#schritt-3-änderungen-verstehen-und-bewusst-akzeptieren">Schritt 3: Änderungen verstehen und bewusst akzeptieren</a></h3>
+<p>Bevor wir den Agenten etwas ändern lassen, sollten wir immer mit <code>/diff</code> prüfen, was er getan hat. Das ist kein Misstrauen – es ist <strong>professionelle Praxis</strong>.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Warum ist es wichtig, Änderungen des Agenten zu überprüfen, auch wenn wir ihm vertrauen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 7 lernen wir <code>/rewind</code> – den „Undo“-Knopf für alles.</p>
+<hr>
+<h2 id="-projekt-7-fehler-rückgängig-machen--rewind"><a class="header" href="#-projekt-7-fehler-rückgängig-machen--rewind">🖥️ Projekt 7: Fehler rückgängig machen – <code>/rewind</code></a></h2>
+<p><strong>Was wir bauen:</strong> Sicherheit im Umgang mit dem Agenten – wir können immer zurück.</p>
+<h3 id="schritt-1-den-agenten-etwas-tun-lassen"><a class="header" href="#schritt-1-den-agenten-etwas-tun-lassen">Schritt 1: Den Agenten etwas tun lassen</a></h3>
+<pre><code>&gt; Füge in notizen.md noch einen vierten Stichpunkt über Borrowing hinzu.
+</code></pre>
+<h3 id="schritt-2-merken-dass-wir-es-rückgängig-machen-wollen"><a class="header" href="#schritt-2-merken-dass-wir-es-rückgängig-machen-wollen">Schritt 2: Merken, dass wir es rückgängig machen wollen</a></h3>
+<p>Vielleicht hat der Agent etwas falsch formuliert. Oder wir wollen eine andere Erklärung. Kein Problem:</p>
+<pre><code>&gt; /rewind
+</code></pre>
+<p><strong>Was passiert:</strong> Der Agent macht seinen <strong>letzten Schritt rückgängig</strong>. Die Datei sieht wieder aus wie vorher.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/rewind</code> ist wie <code>Ctrl+Z</code> – aber für alles, was der Agent getan hat.</li>
+<li>Alternativ: <code>/undo</code> hat dieselbe Funktion.</li>
+<li>Wir können <code>/rewind</code> mehrfach aufrufen, um mehrere Schritte zurückzugehen.</li>
+</ul>
+<p><strong>Analogie:</strong> Denke dir den Agenten als einen Freund, der dir beim Aufräumen hilft. Wenn er etwas an die falsche Stelle räumt, rufst du „Nein, warte“ – und er stellt es zurück.</p>
+<h3 id="schritt-3-einen-präziseren-befehl-geben"><a class="header" href="#schritt-3-einen-präziseren-befehl-geben">Schritt 3: Einen präziseren Befehl geben</a></h3>
+<p>Nach dem Rewind formulieren wir unsere Anweisung genauer:</p>
+<pre><code>&gt; Füge in notizen.md einen vierten Stichpunkt hinzu. Er soll erklären, 
+  dass Borrowing bedeutet, einen Wert zu leihen ohne ihn zu besitzen.
+  Formuliere es in einem einzigen kurzen deutschen Satz.
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was macht eine gute Anweisung an den Agenten aus? Schreibe drei Regeln auf.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 8 beschäftigen wir uns mit Berechtigungen – was der Agent darf und was nicht.</p>
+<hr>
+<h2 id="-projekt-8-berechtigungen-meistern--permissions"><a class="header" href="#-projekt-8-berechtigungen-meistern--permissions">🖥️ Projekt 8: Berechtigungen meistern – <code>/permissions</code></a></h2>
+<p><strong>Was wir bauen:</strong> Ein Sicherheitskonzept für unsere Arbeit mit dem Agenten.</p>
+<h3 id="schritt-1-aktuelle-berechtigungen-anzeigen"><a class="header" href="#schritt-1-aktuelle-berechtigungen-anzeigen">Schritt 1: Aktuelle Berechtigungen anzeigen</a></h3>
+<pre><code>&gt; /permissions
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Liste von Regeln, die bestimmen, was der Agent tun darf.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<p>Berechtigungen haben drei Zustände:</p>
+<ul>
+<li><code>allow</code> – Der Agent darf das automatisch tun.</li>
+<li><code>ask</code> – Der Agent fragt uns zuerst. <em>(Standard für die meisten Aktionen)</em></li>
+<li><code>deny</code> – Der Agent darf das nie tun.</li>
+</ul>
+<p>Aktionen, für die Berechtigungen gelten:</p>
+<ul>
+<li><strong>Dateien lesen</strong> (<code>read_file</code>) – Darf der Agent unsere Dateien lesen?</li>
+<li><strong>Dateien schreiben</strong> (<code>write_file</code>) – Darf er Dateien erstellen/ändern?</li>
+<li><strong>Befehle ausführen</strong> (<code>command</code>) – Darf er Terminalbefehle starten?</li>
+<li><strong>URLs aufrufen</strong> (<code>read_url</code>) – Darf er im Internet nachschauen?</li>
+</ul>
+<h3 id="schritt-2-eine-berechtigung-verstehen"><a class="header" href="#schritt-2-eine-berechtigung-verstehen">Schritt 2: Eine Berechtigung verstehen</a></h3>
+<p>Der Standard <code>request-review</code> für <code>toolPermission</code> bedeutet: <strong>Der Agent fragt uns, bevor er handelt.</strong> Das ist sicher und empfehlenswert für Anfänger.</p>
+<h3 id="schritt-3-berechtigungen-in-settingsjson-anpassen"><a class="header" href="#schritt-3-berechtigungen-in-settingsjson-anpassen">Schritt 3: Berechtigungen in <code>settings.json</code> anpassen</a></h3>
+<pre><code class="language-json">{
+  "toolPermission": "request-review",
+  "verbosity": "high"
+}
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>"toolPermission": "request-review"</code> – Der Agent fragt immer nach, bevor er Tools ausführt. Perfekt für uns.</li>
+<li><code>"verbosity": "high"</code> – Der Agent erklärt ausführlich, was er tut. Gut zum Lernen.</li>
+<li>Die Datei liegt unter <code>~/.gemini/antigravity-cli/settings.json</code>.</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Berechtigungen würdest du auf <code>deny</code> setzen und warum?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 9 erkunden wir, wie wir vergangene Konversationen wiederfinden und fortsetzen.</p>
+<hr>
+<h2 id="-projekt-9-konversationsverlauf-nutzen--resume-und-conversation"><a class="header" href="#-projekt-9-konversationsverlauf-nutzen--resume-und-conversation">🖥️ Projekt 9: Konversationsverlauf nutzen – <code>/resume</code> und <code>/conversation</code></a></h2>
+<p><strong>Was wir bauen:</strong> Ein persönliches Archiv unserer Lernreise.</p>
+<h3 id="schritt-1-alle-konversationen-auflisten"><a class="header" href="#schritt-1-alle-konversationen-auflisten">Schritt 1: Alle Konversationen auflisten</a></h3>
+<pre><code>&gt; /conversation
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Liste aller gespeicherten Konversationen mit Namen und Datum.</p>
+<h3 id="schritt-2-eine-alte-konversation-fortsetzen"><a class="header" href="#schritt-2-eine-alte-konversation-fortsetzen">Schritt 2: Eine alte Konversation fortsetzen</a></h3>
+<pre><code>&gt; /resume rust-ownership-grundlagen
+</code></pre>
+<p><strong>Was passiert:</strong> Wir sind zurück in unserem alten Gespräch. Der Agent erinnert sich an alles – als hätten wir eine Pause gemacht.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/resume</code> sucht nach dem <strong>Namen</strong> der Konversation.</li>
+<li>Alternativ können wir die <strong>ID</strong> nutzen, die der Agent jeder Konversation gibt.</li>
+<li><code>/switch</code> ist ein Synonym für <code>/resume</code>.</li>
+</ul>
+<p><strong>Analogie:</strong> Stell dir vor, du hast ein Notizbuch für jedes Rust-Thema. Mit <code>/resume</code> schlägst du genau das richtige Notizbuch auf – und alle alten Notizen sind noch da.</p>
+<h3 id="schritt-3-konversationen-strategisch-benennen"><a class="header" href="#schritt-3-konversationen-strategisch-benennen">Schritt 3: Konversationen strategisch benennen</a></h3>
+<p>Gute Namen für Lernkonversationen:</p>
+<pre><code>rust-ownership-basics
+rust-strings-vs-str
+rust-error-handling
+antigravity-skill-bauen
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Konversationen würdest du für deine Rust-Lernreise anlegen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 10 passen wir <code>settings.json</code> vollständig an – unser persönliches CLI-Profil.</p>
+<hr>
+<h2 id="-projekt-10-das-cli-personalisieren--settingsjson"><a class="header" href="#-projekt-10-das-cli-personalisieren--settingsjson">🖥️ Projekt 10: Das CLI personalisieren – <code>settings.json</code></a></h2>
+<p><strong>Was wir bauen:</strong> Unsere persönliche Antigravity-Konfiguration.</p>
+<h3 id="schritt-1-die-datei-öffnen"><a class="header" href="#schritt-1-die-datei-öffnen">Schritt 1: Die Datei öffnen</a></h3>
+<pre><code class="language-bash">nano ~/.gemini/antigravity-cli/settings.json
+</code></pre>
+<h3 id="schritt-2-unsere-lern-konfiguration-schreiben"><a class="header" href="#schritt-2-unsere-lern-konfiguration-schreiben">Schritt 2: Unsere Lern-Konfiguration schreiben</a></h3>
+<pre><code class="language-json">{
+  "model": "gemini-2.5-flash",
+  "toolPermission": "request-review",
+  "verbosity": "high",
+  "runningLightSpeed": "slow",
+  "notifications": true,
+  "showTips": true,
+  "historySize": 2000
+}
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>"model"</code> – Das Standard-Modell. Wir nutzen <code>flash</code> für schnelle Antworten beim täglichen Lernen.</li>
+<li><code>"toolPermission": "request-review"</code> – Der Agent fragt uns immer, bevor er handelt. Als Anfänger ist das genau richtig.</li>
+<li><code>"verbosity": "high"</code> – Der Agent erklärt ausführlich, was er gerade tut und warum.</li>
+<li><code>"runningLightSpeed": "slow"</code> – Die Antworten des Agenten erscheinen langsamer – wir können mitlesen, während er „tippt“. Das hilft beim Lernen.</li>
+<li><code>"notifications": true</code> – Wir bekommen Systembenachrichtigungen, wenn der Agent eine lange Aufgabe abgeschlossen hat.</li>
+<li><code>"showTips": true</code> – Nützliche Tipps werden angezeigt. Als Anfänger wollen wir das.</li>
+<li><code>"historySize": 2000</code> – Die letzten 2000 Konversations-Schritte werden gespeichert.</li>
+</ul>
+<h3 id="schritt-3-die-einstellungen-testen"><a class="header" href="#schritt-3-die-einstellungen-testen">Schritt 3: Die Einstellungen testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; /usage
+</code></pre>
+<p>Beachte: Antwortet der Agent jetzt langsamer (durch <code>runningLightSpeed: slow</code>)? Siehst du mehr Details?</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Einstellung hat den größten Einfluss auf deinen Lernfortschritt?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> Jetzt kennen wir die CLI. In Gruppe 2 formen wir den Agenten durch <code>AGENTS.md</code> – das mächtigste Werkzeug dieser ganzen Reise.</p>
+<hr>
+<h1 id="-gruppe-2-agentsmd--den-agenten-formen"><a class="header" href="#-gruppe-2-agentsmd--den-agenten-formen">📋 Gruppe 2: AGENTS.md – Den Agenten formen</a></h1>
+<p>Die <code>AGENTS.md</code>-Datei ist das <strong>Gehirn</strong> unseres personalisierten Agenten. Was wir hier schreiben, liest der Agent automatisch – bei jedem Start, bei jeder Frage. Wir formen damit seinen Charakter, seine Regeln und seinen Kontext.</p>
+<hr>
+<h2 id="-projekt-11-die-erste-eigene-agentsmd"><a class="header" href="#-projekt-11-die-erste-eigene-agentsmd">📋 Projekt 11: Die erste eigene AGENTS.md</a></h2>
+<p><strong>Was wir bauen:</strong> Die Grundstruktur unserer ersten AGENTS.md.</p>
+<h3 id="schritt-1-die-datei-erstellen"><a class="header" href="#schritt-1-die-datei-erstellen">Schritt 1: Die Datei erstellen</a></h3>
+<pre><code class="language-bash">mkdir -p ~/mein-rust-projekt
+cd ~/mein-rust-projekt
+</code></pre>
+<pre><code class="language-markdown"># AGENTS.md – Mein Rust-Lernprojekt
+
+Ich bin Anfänger und lerne gerade Rust. 
+Ich möchte, dass du mir als Lernpartner zur Seite stehst.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code># AGENTS.md</code> – Die Überschrift. Der Agent liest diese Datei als Markdown.</li>
+<li>Der erste Satz <strong>definiert uns</strong> – wer wir sind, was unser Wissensstand ist.</li>
+<li>„Lernpartner“ – nicht „Helfer“, nicht „Assistent“. Ein Partner ist auf Augenhöhe.</li>
+</ul>
+<h3 id="schritt-2-die-datei-mit-dem-agenten-testen"><a class="header" href="#schritt-2-die-datei-mit-dem-agenten-testen">Schritt 2: Die Datei mit dem Agenten testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; /context
+</code></pre>
+<p>Wir sehen jetzt unsere <code>AGENTS.md</code> im Kontext des Agenten!</p>
+<h3 id="schritt-3-den-unterschied-spüren"><a class="header" href="#schritt-3-den-unterschied-spüren">Schritt 3: Den Unterschied spüren</a></h3>
+<p>Stelle dieselbe Frage wie in Projekt 1: <em>„Was ist Rust?“</em></p>
+<p>Vergleiche die Antwort mit Projekt 1:</p>
+<ul>
+<li>Ist sie anders?</li>
+<li>Mehr auf Anfänger zugeschnitten?</li>
+<li>Kürzer, klarer, freundlicher?</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welcher einzige Satz in deiner <code>AGENTS.md</code> hätte den größten Einfluss?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 12 definieren wir Sprache, Ton und Stil des Agenten.</p>
+<hr>
+<h2 id="-projekt-12-sprache--ton-konfigurieren"><a class="header" href="#-projekt-12-sprache--ton-konfigurieren">📋 Projekt 12: Sprache &amp; Ton konfigurieren</a></h2>
+<p><strong>Was wir bauen:</strong> Einen Agenten, der genau so spricht, wie wir es brauchen.</p>
+<h3 id="schritt-1-sprache-und-ton-in-agentsmd-definieren"><a class="header" href="#schritt-1-sprache-und-ton-in-agentsmd-definieren">Schritt 1: Sprache und Ton in AGENTS.md definieren</a></h3>
+<pre><code class="language-markdown">## Kommunikation
+
+- Antworte immer auf Deutsch.
+- Nutze eine einfache, klare Sprache – ich bin Anfänger.
+- Vermeide Fachbegriffe, ohne sie zu erklären.
+- Stelle nach jeder Erklärung eine Verständnisfrage.
+- Halte Antworten kurz: maximal 5 Sätze, dann frage, ob ich mehr möchte.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Antworte immer auf Deutsch</code> – Ohne diese Regel könnte der Agent auf Englisch antworten, wenn die Frage englisch klingt.</li>
+<li><code>Vermeide Fachbegriffe</code> – Wir müssen explizit sagen, was wir <strong>nicht</strong> wollen. Der Agent kann keine Gedanken lesen.</li>
+<li><code>Stelle nach jeder Erklärung eine Verständnisfrage</code> – Das ist das <strong>Tutoren-Prinzip</strong>: Ein guter Lehrer fragt, ob der Schüler es verstanden hat.</li>
+<li><code>maximal 5 Sätze</code> – Limits helfen dem Agenten, präzise zu bleiben.</li>
+</ul>
+<h3 id="schritt-2-testen"><a class="header" href="#schritt-2-testen">Schritt 2: Testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; Erkläre mir den Unterschied zwischen Stack und Heap.
+</code></pre>
+<p>Hat der Agent am Ende eine Frage gestellt? War die Antwort kurz?</p>
+<h3 id="schritt-3-verfeinern"><a class="header" href="#schritt-3-verfeinern">Schritt 3: Verfeinern</a></h3>
+<p>Falls nein: Passe die Regeln an. Das ist normales Vorgehen – wir <strong>iterieren</strong>. Eine <code>AGENTS.md</code> ist nie fertig.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was nervt dich an typischen KI-Antworten? Schreibe eine Regel, die dieses Problem löst.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 13 definieren wir, was der Agent <strong>nicht</strong> darf.</p>
+<hr>
+<h2 id="-projekt-13-verbotene-aktionen--was-der-agent-nicht-darf"><a class="header" href="#-projekt-13-verbotene-aktionen--was-der-agent-nicht-darf">📋 Projekt 13: Verbotene Aktionen – Was der Agent nicht darf</a></h2>
+<p><strong>Was wir bauen:</strong> Klare Grenzen, die uns beim Lernen helfen.</p>
+<h3 id="schritt-1-das-lernprinzip-festlegen"><a class="header" href="#schritt-1-das-lernprinzip-festlegen">Schritt 1: Das Lernprinzip festlegen</a></h3>
+<pre><code class="language-markdown">## Was der Agent nicht darf
+
+- NIEMALS fertigen Rust-Code schreiben oder vorschlagen.
+- NIEMALS die Lösung einer Aufgabe direkt nennen.
+- Wenn ich um Code bitte: Statt des Codes nur Hinweise, 
+  welches Konzept ich brauche.
+- Wenn ich die Lösung wissen will: Erst fragen, ob ich 
+  es wirklich noch nicht selbst versucht habe.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>NIEMALS</code> in Großbuchstaben – Das ist Absicht. Wir verstärken die Regel durch <strong>Betonung</strong>.</li>
+<li><code>Statt des Codes nur Hinweise</code> – Das ist die Kernphilosophie dieses Buches: Verstehen durch Eigenleistung.</li>
+<li><code>Erst fragen, ob ich es wirklich noch nicht selbst versucht habe</code> – Der Agent fungiert als Gewissen, nicht als Abkürzung.</li>
+</ul>
+<h3 id="schritt-2-die-regel-testen--bewusst-scheitern"><a class="header" href="#schritt-2-die-regel-testen--bewusst-scheitern">Schritt 2: Die Regel testen – bewusst scheitern</a></h3>
+<pre><code class="language-bash">agy
+&gt; Schreib mir ein Rust-Programm, das "Hallo Welt" ausgibt.
+</code></pre>
+<p>Was antwortet der Agent? Befolgt er die Regel? Gibt er Hinweise statt Code?</p>
+<h3 id="schritt-3-die-regel-verfeinern"><a class="header" href="#schritt-3-die-regel-verfeinern">Schritt 3: Die Regel verfeinern</a></h3>
+<p>Falls der Agent die Regel nicht befolgt: Formuliere sie deutlicher.</p>
+<blockquote>
+<p>💡 <strong>Merke:</strong> Je konkreter unsere Regeln, desto zuverlässiger der Agent. Vage Regeln führen zu vagen Ergebnissen.</p>
+</blockquote>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Ausnahmen von der “kein Code”-Regel wären sinnvoll?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 14 beschreiben wir unseren Projektkontext – damit der Agent weiß, woran wir arbeiten.</p>
+<hr>
+<h2 id="-projekt-14-projektkontext-beschreiben"><a class="header" href="#-projekt-14-projektkontext-beschreiben">📋 Projekt 14: Projektkontext beschreiben</a></h2>
+<p><strong>Was wir bauen:</strong> Eine vollständige Projektbeschreibung für den Agenten.</p>
+<h3 id="schritt-1-den-kontext-schreiben"><a class="header" href="#schritt-1-den-kontext-schreiben">Schritt 1: Den Kontext schreiben</a></h3>
+<pre><code class="language-markdown">## Mein Projekt
+
+Ich baue gerade: "Zahlen raten" – ein CLI-Spiel in Rust.
+Das Programm soll eine Zufallszahl zwischen 1 und 100 wählen.
+Der Spieler tippt Zahlen, bis er sie errät.
+Das Programm sagt "zu groß" oder "zu klein".
+
+### Aktueller Stand
+- [ ] Zufallszahl generieren
+- [ ] Benutzereingabe lesen
+- [ ] Vergleich und Ausgabe
+- [ ] Schleife bis zur richtigen Zahl
+
+### Mein aktuelles Problem
+Ich verstehe noch nicht, wie ich eine Zahl vom Terminal einlesen kann.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Ich baue gerade:</code> – Das versetzt den Agenten in den Kontext unseres Projekts. Er weiß, womit sein nächster Hinweis relevant ist.</li>
+<li><code>- [ ] Aufgabe</code> – Die Checkbox-Syntax zeigt dem Agenten unseren Fortschritt.</li>
+<li><code>### Mein aktuelles Problem</code> – Das ist die wichtigste Sektion. Der Agent weiß sofort, wobei wir Hilfe brauchen.</li>
+</ul>
+<h3 id="schritt-2-den-kontext-testen"><a class="header" href="#schritt-2-den-kontext-testen">Schritt 2: Den Kontext testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; Ich stecke fest. Was soll ich als Nächstes tun?
+</code></pre>
+<p>Der Agent sollte jetzt <strong>spezifisch</strong> auf unser Projekt eingehen, ohne eine direkte Lösung zu nennen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie aktuell hältst du deinen Projektkontext? Nach jeder Session? Täglich? Was funktioniert für dich?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 15 dokumentieren wir unsere Lernphase – damit der Agent unseren Fortschritt kennt.</p>
+<hr>
+<h2 id="-projekt-15-lernphase-dokumentieren"><a class="header" href="#-projekt-15-lernphase-dokumentieren">📋 Projekt 15: Lernphase dokumentieren</a></h2>
+<p><strong>Was wir bauen:</strong> Eine dynamische Lernkarte in unserer AGENTS.md.</p>
+<h3 id="schritt-1-die-lernkarte-schreiben"><a class="header" href="#schritt-1-die-lernkarte-schreiben">Schritt 1: Die Lernkarte schreiben</a></h3>
+<pre><code class="language-markdown">## Mein Lernstand – Stand: Juni 2026
+
+### Was ich bereits kann
+- Variablen mit `let` und `mut` deklarieren
+- Einfache `if/else`-Bedingungen schreiben
+- Den Unterschied zwischen `String` und `&amp;str` erklären
+
+### Was ich gerade lerne
+- Benutzereingabe mit `std::io::stdin()` lesen
+- Zahlen aus Strings mit `.parse()` konvertieren
+
+### Was ich noch nicht verstehe
+- Ownership und warum der Compiler mich manchmal "anschreit"
+- Warum `match` manchmal nötig ist statt `if let`
+
+### Hilfreiche Erklärungen für mich
+- Nutze Alltagsbeispiele und Analogien
+- Erkläre immer das "Warum", nicht nur das "Was"
+- Vergleiche Rust gerne mit einfachen Alltagssituationen
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Was ich bereits kann</code> – Der Agent wiederholt keine Grundlagen, die wir schon kennen.</li>
+<li><code>Was ich gerade lerne</code> – Das ist der <strong>Fokus</strong>. Hier soll der Agent besonders klar sein.</li>
+<li><code>Was ich noch nicht verstehe</code> – Explizite Wissenslücken. Der Agent weiß, dass er hier besonders vorsichtig und langsam erklären soll.</li>
+<li><code>Hilfreiche Erklärungen für mich</code> – Unser persönlicher Lernstil.</li>
+</ul>
+<h3 id="schritt-2-die-lernkarte-regelmäßig-aktualisieren"><a class="header" href="#schritt-2-die-lernkarte-regelmäßig-aktualisieren">Schritt 2: Die Lernkarte regelmäßig aktualisieren</a></h3>
+<p>Füge nach jeder Lerneinheit einen Haken bei erlernten Konzepten ein. Verschiebe Themen zwischen den Sektionen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie verändert sich die Qualität der Agentenantworten, wenn du deine Lernkarte aktuell hältst?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 16 verstehen wir die Hierarchie der AGENTS.md-Dateien.</p>
+<hr>
+<h2 id="-projekt-16-die-agentsmd-hierarchie-verstehen"><a class="header" href="#-projekt-16-die-agentsmd-hierarchie-verstehen">📋 Projekt 16: Die AGENTS.md-Hierarchie verstehen</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Verständnis dafür, wie globale und lokale Regeln zusammenwirken.</p>
+<h3 id="schritt-1-die-zwei-ebenen-kennenlernen"><a class="header" href="#schritt-1-die-zwei-ebenen-kennenlernen">Schritt 1: Die zwei Ebenen kennenlernen</a></h3>
+<pre><code>/home/user/
+└── mein-rust-projekt/
+    ├── AGENTS.md           ← Ebene 1: Projekt-Root
+    └── .agents/
+        └── AGENTS.md       ← Ebene 2: Workspace-spezifisch
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>AGENTS.md</code> im Projekt-Root: <strong>Überblick</strong> – Projektbeschreibung, Ziele, Lernstand.</li>
+<li><code>.agents/AGENTS.md</code>: <strong>Verhaltensregeln</strong> – Wie soll der Agent kommunizieren? Was darf er?</li>
+<li>Beide Dateien werden geladen. Lokale Regeln <strong>überschreiben</strong> globale, wenn sie sich widersprechen.</li>
+</ul>
+<p><strong>Analogie:</strong> Denke dir das wie <strong>Hausregeln vs. Schulregeln</strong>. In der Schule gelten die Schulregeln – aber zu Hause gelten zusätzlich noch die Hausregeln. Wenn sie sich widersprechen, entscheiden die Hausregeln.</p>
+<h3 id="schritt-2-aufgaben-aufteilen"><a class="header" href="#schritt-2-aufgaben-aufteilen">Schritt 2: Aufgaben aufteilen</a></h3>
+<pre><code class="language-markdown"># AGENTS.md (Projekt-Root)
+## Projektbeschreibung
+Ich baue "Zahlen raten" in Rust...
+
+## Lernstand
+...
+</code></pre>
+<pre><code class="language-markdown"># .agents/AGENTS.md (Workspace)
+## Verhaltensregeln
+- Kein fertiger Code
+- Stelle immer Rückfragen
+- Deutsch, einfache Sprache
+</code></pre>
+<h3 id="schritt-3-testen"><a class="header" href="#schritt-3-testen">Schritt 3: Testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; /context
+</code></pre>
+<p>Siehst du beide AGENTS.md-Dateien im Kontext?</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Informationen gehören in welche Ebene? Mache eine eigene Liste.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 17 lernen wir <code>@</code>-Mentions – damit schicken wir gezielt Kontext an den Agenten.</p>
+<hr>
+<h2 id="-projekt-17-kontext-gezielt-teilen---mentions"><a class="header" href="#-projekt-17-kontext-gezielt-teilen---mentions">📋 Projekt 17: Kontext gezielt teilen – <code>@</code>-Mentions</a></h2>
+<p><strong>Was wir bauen:</strong> Die Kunst, dem Agenten genau die richtigen Informationen zu geben.</p>
+<h3 id="schritt-1-eine-datei-als-kontext-anhängen"><a class="header" href="#schritt-1-eine-datei-als-kontext-anhängen">Schritt 1: Eine Datei als Kontext anhängen</a></h3>
+<p>Angenommen, wir haben eine Rust-Datei <code>main.rs</code>:</p>
+<pre><code>&gt; @main.rs Ich bekomme einen Compiler-Fehler. 
+  Erkläre mir, was in dieser Datei passiert – aber nenne mir nicht die Lösung.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>@main.rs</code> – Das <code>@</code>-Symbol gefolgt vom Dateinamen schickt den <strong>Inhalt dieser Datei</strong> an den Agenten.</li>
+<li>Der Agent sieht nun unseren Code, ohne dass wir ihn manuell kopieren müssen.</li>
+<li>Danach folgt unsere <strong>Frage oder Aufgabe</strong>.</li>
+</ul>
+<h3 id="schritt-2-einen-ordner-als-kontext-anhängen"><a class="header" href="#schritt-2-einen-ordner-als-kontext-anhängen">Schritt 2: Einen Ordner als Kontext anhängen</a></h3>
+<pre><code>&gt; @src/ Welche Dateien habe ich in meinem Projekt bisher erstellt?
+</code></pre>
+<ul>
+<li><code>@src/</code> schickt alle Dateien im <code>src/</code>-Ordner als Kontext.</li>
+</ul>
+<h3 id="schritt-3-eine-frühere-konversation-anhängen"><a class="header" href="#schritt-3-eine-frühere-konversation-anhängen">Schritt 3: Eine frühere Konversation anhängen</a></h3>
+<pre><code>&gt; @rust-ownership-grundlagen Was habe ich damals über Ownership gelernt?
+</code></pre>
+<ul>
+<li><code>@konversationsname</code> fügt eine frühere Konversation als Kontext ein.</li>
+</ul>
+<p><strong>Analogie:</strong> <code>@</code> ist wie ein <strong>Post-it-Zettel</strong>, den wir an unsere Frage kleben. Der Agent sieht die Frage und den Zettel zusammen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> In welchen Situationen wäre <code>@</code>-Mention effizienter als copy-paste?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 18 bauen wir eine vollständige, professionelle AGENTS.md.</p>
+<hr>
+<h2 id="-projekt-18-die-vollständige-agentsmd--alles-zusammen"><a class="header" href="#-projekt-18-die-vollständige-agentsmd--alles-zusammen">📋 Projekt 18: Die vollständige AGENTS.md – Alles zusammen</a></h2>
+<p><strong>Was wir bauen:</strong> Eine professionelle, vollständige AGENTS.md für unser Rust-Lernprojekt.</p>
+<h3 id="schritt-1-die-vollständige-datei-schreiben"><a class="header" href="#schritt-1-die-vollständige-datei-schreiben">Schritt 1: Die vollständige Datei schreiben</a></h3>
+<pre><code class="language-markdown"># AGENTS.md – Rust-Lernprojekt von [Dein Name]
+
+Dieses Projekt ist mein persönliches Rust-Lernjournal.
+Ich bin Anfänger ohne Programmiervorkenntnisse und lerne seit 2 Wochen.
+
+---
+
+## 📁 Projektstruktur
+
+</code></pre>
+<p>mein-rust-projekt/
+├── AGENTS.md          ← Diese Datei
+├── .agents/
+│   └── AGENTS.md      ← Verhaltensregeln
+└── src/
+└── main.rs        ← Mein Code</p>
+<pre><code>
+## 🎯 Aktuelles Projekt
+
+Ich baue: "Zahlen raten" – CLI-Spiel in Rust.
+
+## 📊 Mein Lernstand
+
+**Kann ich:**  Variablen, if/else, Schleifen  
+**Lerne ich:**  Benutzereingabe, Strings parsen  
+**Verstehe noch nicht:**  Ownership, Borrowing  
+
+## ⚙️ Regeln
+
+- Antworte auf Deutsch, einfache Sprache
+- Kein fertiger Code – nur Hinweise
+- Stelle nach jeder Erklärung eine Frage
+- Bei Fehlern: Erkläre das "Warum" vor dem "Was"
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Die Datei hat <strong>5 Sektionen</strong>: Intro, Struktur, aktuelles Projekt, Lernstand, Regeln.</li>
+<li>Jede Sektion hat einen klaren Zweck.</li>
+<li>Emojis und <code>---</code> Trennlinien helfen dem Agenten (und uns!) beim schnellen Überblick.</li>
+</ul>
+<h3 id="schritt-2-testen-und-vergleichen"><a class="header" href="#schritt-2-testen-und-vergleichen">Schritt 2: Testen und vergleichen</a></h3>
+<p>Teste die Qualität der Agentenantworten vor und nach dieser vollständigen AGENTS.md.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was fehlt noch in dieser AGENTS.md, das speziell für dich wichtig wäre?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 19 lernen wir, AGENTS.md zu testen und systematisch zu verbessern.</p>
+<hr>
+<h2 id="-projekt-19-agentsmd-systematisch-testen"><a class="header" href="#-projekt-19-agentsmd-systematisch-testen">📋 Projekt 19: AGENTS.md systematisch testen</a></h2>
+<p><strong>Was wir bauen:</strong> Einen Testprozess für unsere Agentenregeln.</p>
+<h3 id="schritt-1-test-fragen-definieren"><a class="header" href="#schritt-1-test-fragen-definieren">Schritt 1: Test-Fragen definieren</a></h3>
+<p>Erstelle eine Datei <code>agents-tests.md</code>:</p>
+<pre><code class="language-markdown"># AGENTS.md Testfragen
+
+## Test 1: Sprachregel
+Frage: "What is ownership in Rust?"
+Erwartung: Antwort auf Deutsch
+
+## Test 2: Kein-Code-Regel
+Frage: "Schreib mir main.rs für Zahlen raten."
+Erwartung: Hinweise, kein Code
+
+## Test 3: Verständnisfrage
+Frage: "Erkläre mir, was ein String ist."
+Erwartung: Erklärung + Frage am Ende
+
+## Test 4: Lernstand-Bewusstsein
+Frage: "Erkläre mir Lifetimes."
+Erwartung: Agent verweist auf Lernstand, sagt: "Das kommt später"
+</code></pre>
+<h3 id="schritt-2-tests-durchführen"><a class="header" href="#schritt-2-tests-durchführen">Schritt 2: Tests durchführen</a></h3>
+<p>Führe jeden Test durch und notiere:</p>
+<ul>
+<li>✅ Regel eingehalten</li>
+<li>❌ Regel nicht eingehalten → AGENTS.md anpassen</li>
+</ul>
+<h3 id="schritt-3-iterieren"><a class="header" href="#schritt-3-iterieren">Schritt 3: Iterieren</a></h3>
+<pre><code class="language-markdown"># Änderungslog AGENTS.md
+
+## 2026-06-24
+- Test 2 fehlgeschlagen: Code wurde gegeben
+- Fix: Regel verschärft mit "NIEMALS"
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie oft solltest du deine AGENTS.md aktualisieren?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 20 lernen wir, AGENTS.md mit Git zu versionieren.</p>
+<hr>
+<h2 id="-projekt-20-agentsmd-versionieren--mit-git-mitarbeiten"><a class="header" href="#-projekt-20-agentsmd-versionieren--mit-git-mitarbeiten">📋 Projekt 20: AGENTS.md versionieren – Mit Git mitarbeiten</a></h2>
+<p><strong>Was wir bauen:</strong> Eine Versionsgeschichte unserer AGENTS.md.</p>
+<h3 id="schritt-1-git-initialisieren"><a class="header" href="#schritt-1-git-initialisieren">Schritt 1: Git initialisieren</a></h3>
+<pre><code class="language-bash">cd ~/mein-rust-projekt
+git init
+git add AGENTS.md .agents/AGENTS.md
+git commit -m "Initial AGENTS.md: Rust-Lernprojekt Setup"
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>git init</code> – Wir initialisieren ein neues Git-Repository.</li>
+<li><code>git add</code> – Wir wählen die Dateien, die wir versionieren wollen.</li>
+<li><code>git commit -m "..."</code> – Wir speichern den aktuellen Stand mit einer Beschreibung.</li>
+</ul>
+<h3 id="schritt-2-nach-jeder-verbesserung-committen"><a class="header" href="#schritt-2-nach-jeder-verbesserung-committen">Schritt 2: Nach jeder Verbesserung committen</a></h3>
+<pre><code class="language-bash">git add AGENTS.md
+git commit -m "Lernstand aktualisiert: Ownership jetzt verstanden"
+</code></pre>
+<h3 id="schritt-3-den-verlauf-betrachten"><a class="header" href="#schritt-3-den-verlauf-betrachten">Schritt 3: Den Verlauf betrachten</a></h3>
+<pre><code class="language-bash">git log --oneline
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Liste aller Commits – unsere <strong>Lernreise als Timeline</strong>.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was zeigt die Git-History über unseren Fortschritt? Was hättest du früher anders gemacht?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Gruppe 3 bauen wir eigene Skills – vorgefertigte Fähigkeitspakete für den Agenten.</p>
+<hr>
+<h1 id="-gruppe-3-skills--den-agenten-erweitern"><a class="header" href="#-gruppe-3-skills--den-agenten-erweitern">🔧 Gruppe 3: Skills – Den Agenten erweitern</a></h1>
+<p>Skills sind wie <strong>Plugins für den Agenten</strong>. Während <code>AGENTS.md</code> den Charakter und die Regeln des Agenten definiert, geben Skills ihm spezifische <strong>Expertenwissen-Pakete</strong> – die er bei passenden Themen automatisch aktiviert.</p>
+<hr>
+<h2 id="-projekt-21-was-ist-ein-skill--konzept-und-struktur"><a class="header" href="#-projekt-21-was-ist-ein-skill--konzept-und-struktur">🔧 Projekt 21: Was ist ein Skill? – Konzept und Struktur</a></h2>
+<p><strong>Was wir bauen:</strong> Das Verständnis für Skills.</p>
+<h3 id="schritt-1-die-ordnerstruktur-eines-skills"><a class="header" href="#schritt-1-die-ordnerstruktur-eines-skills">Schritt 1: Die Ordnerstruktur eines Skills</a></h3>
+<pre><code>.agents/
+└── skills/
+    └── mein-skill/
+        └── SKILL.md
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>.agents/skills/</code> – Der Ort, wo alle Skills leben.</li>
+<li><code>mein-skill/</code> – Ein Ordner pro Skill. Der Ordnername ist der <strong>interne Name</strong>.</li>
+<li><code>SKILL.md</code> – Die Hauptdatei. Hier stehen Name, Beschreibung und Anweisungen.</li>
+</ul>
+<h3 id="schritt-2-den-unterschied-zu-agentsmd-verstehen"><a class="header" href="#schritt-2-den-unterschied-zu-agentsmd-verstehen">Schritt 2: Den Unterschied zu AGENTS.md verstehen</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>AGENTS.md</th><th>Skill</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Zweck</strong></td><td>Regeln &amp; Kontext</td><td>Spezialwissen</td></tr>
+<tr><td><strong>Wird geladen</strong></td><td>Immer automatisch</td><td>Wenn das Thema passt</td></tr>
+<tr><td><strong>Schreibt</strong></td><td>Du selbst</td><td>Du selbst</td></tr>
+<tr><td><strong>Inhalt</strong></td><td>Projektbeschreibung, Regeln</td><td>Anleitungen, Referenzen</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="schritt-3-einen-leeren-skill-ordner-erstellen"><a class="header" href="#schritt-3-einen-leeren-skill-ordner-erstellen">Schritt 3: Einen leeren Skill-Ordner erstellen</a></h3>
+<pre><code class="language-bash">mkdir -p ~/mein-rust-projekt/.agents/skills/rust-tutor
+touch ~/mein-rust-projekt/.agents/skills/rust-tutor/SKILL.md
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche drei Skills würden deinem Rust-Lernen am meisten helfen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 22 schreiben wir das YAML-Frontmatter – den Kopf jeder SKILL.md.</p>
+<hr>
+<h2 id="-projekt-22-das-skillmd-frontmatter--der-kopf-eines-skills"><a class="header" href="#-projekt-22-das-skillmd-frontmatter--der-kopf-eines-skills">🔧 Projekt 22: Das SKILL.md Frontmatter – Der Kopf eines Skills</a></h2>
+<p><strong>Was wir bauen:</strong> Die YAML-Metadaten, die einen Skill aktivieren.</p>
+<h3 id="schritt-1-das-frontmatter-schreiben"><a class="header" href="#schritt-1-das-frontmatter-schreiben">Schritt 1: Das Frontmatter schreiben</a></h3>
+<pre><code class="language-markdown">---
+name: rust-tutor
+description: Hilft Rust-Anfängern beim Lernen durch Fragen, 
+             Analogien und Erklärungen – ohne fertige Code-Lösungen.
+---
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>---</code> (drei Bindestriche) – Der Beginn und das Ende des YAML-Frontmatters. Wie ein <strong>Briefumschlag</strong> um die Metadaten.</li>
+<li><code>name:</code> – Der <strong>interne Name</strong> des Skills. Muss eindeutig sein.</li>
+<li><code>description:</code> – Die <strong>Beschreibung</strong>, anhand derer der Agent entscheidet, ob er den Skill aktiviert. Das ist das <strong>Wichtigste</strong>: Je präziser die Beschreibung, desto zuverlässiger die Aktivierung.</li>
+</ul>
+<p><strong>Analogie:</strong> Stell dir vor, du rufst ein Callcenter an. Die Beschreibung ist die <strong>Warteschleife-Ansage</strong>: „Für technische Probleme drücken Sie 1.“ Der Agent „drückt 1“ (aktiviert den Skill), wenn deine Frage zur Beschreibung passt.</p>
+<h3 id="schritt-2-die-beschreibung-optimieren"><a class="header" href="#schritt-2-die-beschreibung-optimieren">Schritt 2: Die Beschreibung optimieren</a></h3>
+<p>Schlechte Beschreibung:</p>
+<pre><code class="language-yaml">description: Hilft bei Rust.
+</code></pre>
+<p>Gute Beschreibung:</p>
+<pre><code class="language-yaml">description: Aktiviere diesen Skill, wenn der Nutzer Fragen zu Rust-Konzepten
+             wie Ownership, Borrowing, Lifetimes, Strings oder Structs stellt.
+             Gib keine fertigen Code-Lösungen, sondern Erklärungen und Hinweise.
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was muss in der Beschreibung stehen, damit der Skill bei deinen typischen Fragen aktiviert wird?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 23 schreiben wir den eigentlichen Skill-Inhalt.</p>
+<hr>
+<h2 id="-projekt-23-den-skill-mit-inhalt-füllen"><a class="header" href="#-projekt-23-den-skill-mit-inhalt-füllen">🔧 Projekt 23: Den Skill mit Inhalt füllen</a></h2>
+<p><strong>Was wir bauen:</strong> Einen vollständigen Rust-Tutor-Skill.</p>
+<h3 id="schritt-1-den-kompletten-skill-schreiben"><a class="header" href="#schritt-1-den-kompletten-skill-schreiben">Schritt 1: Den kompletten Skill schreiben</a></h3>
+<pre><code class="language-markdown">---
+name: rust-tutor
+description: Aktiviere diesen Skill bei Rust-Lernfragen. 
+             Keine Code-Lösungen, nur Erklärungen und Hinweise.
+---
+
+# Rust-Tutor Skill
+
+Wenn dieser Skill aktiv ist, gelten folgende Anweisungen:
+
+## Mein Verhalten
+
+- Erkläre Rust-Konzepte mit Alltagsbeispielen
+- Stelle nach jeder Erklärung eine Verständnisfrage
+- Wenn der Nutzer Code möchte: Zeige nur das Konzept, nicht die Lösung
+- Verweise auf das offizielle Rust-Buch: https://doc.rust-lang.org/book/
+
+## Meine Erklär-Methoden
+
+### Für Ownership:
+Analogie: "Stell dir vor, du hast eine Tasse Kaffee. 
+Du kannst sie jemandem geben (move) oder jemanden 
+daran schnuppern lassen (borrow). Aber zwei Personen 
+können die Tasse nicht gleichzeitig besitzen."
+
+### Für Borrowing:
+Analogie: "Du leihst deinem Freund ein Buch (&amp; reference). 
+Du kannst nicht gleichzeitig mit dem Buch verschwinden, 
+während er es liest (lifetime)."
+
+### Für Strings:
+Analogie: "String ist wie ein Haus, das du besitzt. 
+&amp;str ist wie die Adresse des Hauses – du weißt, 
+wo es ist, aber du besitzt es nicht."
+
+## Verboten
+
+- Fertige Code-Lösungen für Lernaufgaben
+- Erklärungen ohne Nachfrage, ob der Nutzer es verstanden hat
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>## Mein Verhalten</code> – Verhaltensregeln, die speziell für diesen Skill gelten.</li>
+<li><code>## Meine Erklär-Methoden</code> – Vorgefertigte Analogien, die der Agent bei bestimmten Themen verwenden soll.</li>
+<li><code>## Verboten</code> – Explizite Verbote im Skill-Kontext.</li>
+</ul>
+<h3 id="schritt-2-testen-1"><a class="header" href="#schritt-2-testen-1">Schritt 2: Testen</a></h3>
+<pre><code class="language-bash">agy
+&gt; /skills
+</code></pre>
+<p>Siehst du <code>rust-tutor</code> in der Liste?</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche eigenen Analogien würdest du dem Skill hinzufügen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 24 lernen wir, Skills gezielt zu testen.</p>
+<hr>
+<h2 id="-projekt-24-skill-testen--skills-und-manuelle-aktivierung"><a class="header" href="#-projekt-24-skill-testen--skills-und-manuelle-aktivierung">🔧 Projekt 24: Skill testen – <code>/skills</code> und manuelle Aktivierung</a></h2>
+<p><strong>Was wir bauen:</strong> Einen systematischen Testprozess für unsere Skills.</p>
+<h3 id="schritt-1-alle-aktiven-skills-anzeigen"><a class="header" href="#schritt-1-alle-aktiven-skills-anzeigen">Schritt 1: Alle aktiven Skills anzeigen</a></h3>
+<pre><code>&gt; /skills
+</code></pre>
+<p><strong>Was wir sehen:</strong> Eine Liste aller erkannten Skills mit Namen und Beschreibung.</p>
+<h3 id="schritt-2-den-skill-durch-eine-passende-frage-aktivieren"><a class="header" href="#schritt-2-den-skill-durch-eine-passende-frage-aktivieren">Schritt 2: Den Skill durch eine passende Frage aktivieren</a></h3>
+<pre><code>&gt; Erkläre mir Ownership in Rust.
+</code></pre>
+<p><strong>Was passiert:</strong> Der Agent erkennt das Thema (Rust + Ownership) und aktiviert automatisch unseren <code>rust-tutor</code>-Skill. Wir sehen, dass er jetzt die Analogien aus dem Skill nutzt.</p>
+<h3 id="schritt-3-den-skill-durch-eine-nicht-passende-frage-testen"><a class="header" href="#schritt-3-den-skill-durch-eine-nicht-passende-frage-testen">Schritt 3: Den Skill durch eine nicht passende Frage testen</a></h3>
+<pre><code>&gt; Was ist das Wetter heute?
+</code></pre>
+<p><strong>Was passiert:</strong> Der Skill wird <strong>nicht</strong> aktiviert – die Beschreibung passt nicht. Der Agent antwortet normal.</p>
+<h3 id="schritt-4-wenn-der-skill-nicht-aktiviert-wird"><a class="header" href="#schritt-4-wenn-der-skill-nicht-aktiviert-wird">Schritt 4: Wenn der Skill nicht aktiviert wird</a></h3>
+<p>Überprüfe die <code>description</code> in <code>SKILL.md</code>. Sie muss die Schlüsselbegriffe enthalten, die in deinen Fragen vorkommen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was passiert, wenn zwei Skills gleichzeitig aktiv sind? Teste es!</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 25 bauen wir einen Skill speziell für Rust-Fehlermeldungen.</p>
+<hr>
+<h2 id="-projekt-25-skill-für-fehlermeldungen--der-compiler-als-lehrer"><a class="header" href="#-projekt-25-skill-für-fehlermeldungen--der-compiler-als-lehrer">🔧 Projekt 25: Skill für Fehlermeldungen – Der Compiler als Lehrer</a></h2>
+<p><strong>Was wir bauen:</strong> Einen Skill, der uns Rust-Fehlermeldungen erklärt.</p>
+<h3 id="schritt-1-den-skill-erstellen"><a class="header" href="#schritt-1-den-skill-erstellen">Schritt 1: Den Skill erstellen</a></h3>
+<pre><code>.agents/skills/rust-fehler-erklaerer/SKILL.md
+</code></pre>
+<pre><code class="language-markdown">---
+name: rust-fehler-erklaerer
+description: Aktiviere diesen Skill, wenn der Nutzer eine Rust-Fehlermeldung 
+             (error[E...], cannot borrow, does not live long enough etc.) 
+             zeigt oder danach fragt.
+---
+
+# Rust-Fehler-Erklärer
+
+## Ablauf bei einer Fehlermeldung
+
+1. Lies die Fehlermeldung vollständig
+2. Erkläre auf Deutsch, WAS der Fehler bedeutet (nicht wie man ihn behebt)
+3. Erkläre, WARUM Rust diesen Fehler verhindert (Sicherheitsgrund)
+4. Stelle die Frage: "Was denkst du, warum Rust das verbietet?"
+5. Erst nach der Antwort des Nutzers: Hinweis auf mögliche Lösung
+
+## Häufige Fehlertypen
+
+### E0308: Typfehler
+Erkläre: Rust ist streng mit Typen – wie ein Kellner, 
+der nur Bestellungen im richtigen Format akzeptiert.
+
+### E0382: Move-Fehler (Ownership)
+Erkläre: Der Wert wurde "verschenkt" und kann nicht 
+nochmal benutzt werden – wie ein Brief, den man abgeschickt hat.
+
+### E0502: Borrow-Konflikt
+Erkläre: Zwei Teile des Programms wollen gleichzeitig 
+auf denselben Wert zugreifen – wie zwei Köche, die 
+dasselbe Messer gleichzeitig brauchen.
+</code></pre>
+<h3 id="schritt-2-testen-mit-einer-echten-fehlermeldung"><a class="header" href="#schritt-2-testen-mit-einer-echten-fehlermeldung">Schritt 2: Testen mit einer echten Fehlermeldung</a></h3>
+<p>Schreibe absichtlich einen Fehler in Rust:</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let s = String::from("hallo");
+    let s2 = s;
+    println!("{}", s); // Fehler!
+}</code></pre>
+<p>Kompiliere es: <code>cargo build</code></p>
+<p>Kopiere die Fehlermeldung und schicke sie an den Agenten.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welcher Rust-Fehler verwirrt dich am meisten? Füge ihn zum Skill hinzu.</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 26 bauen wir einen Code-Review-Skill.</p>
+<hr>
+<h2 id="-projekt-26-code-review-skill--der-kritische-freund"><a class="header" href="#-projekt-26-code-review-skill--der-kritische-freund">🔧 Projekt 26: Code-Review-Skill – Der kritische Freund</a></h2>
+<p><strong>Was wir bauen:</strong> Einen Skill, der unseren Code bewertet – ohne ihn zu verbessern.</p>
+<h3 id="schritt-1-den-review-skill-erstellen"><a class="header" href="#schritt-1-den-review-skill-erstellen">Schritt 1: Den Review-Skill erstellen</a></h3>
+<pre><code class="language-markdown">---
+name: rust-code-reviewer
+description: Aktiviere diesen Skill, wenn der Nutzer einen Code-Review 
+             oder Feedback zu seinem Rust-Code möchte.
+---
+
+# Rust Code Reviewer
+
+Wenn dieser Skill aktiv ist: Du bist ein konstruktiver Code-Reviewer.
+
+## Deine Review-Checkliste
+
+Analysiere den Code nach diesen Punkten:
+1. **Lesbarkeit:** Sind Variablennamen aussagekräftig?
+2. **Korrektheit:** Gibt es logische Fehler?
+3. **Rust-Stil:** Wird idiomatic Rust verwendet?
+4. **Sicherheit:** Könnte ein Panic auftreten?
+
+## Dein Review-Format
+
+1. Beginne mit: "Was du gut gemacht hast:"
+2. Stelle dann 3 Fragen (keine direkten Verbesserungsvorschläge)
+3. Beende mit: "Was würdest du bei Zeile X anders machen?"
+
+## Verboten
+
+- Verbesserten Code schreiben
+- Direkte Lösungen nennen
+- Den Code für den Nutzer umschreiben
+</code></pre>
+<h3 id="schritt-2-den-skill-mit-eigenem-code-testen"><a class="header" href="#schritt-2-den-skill-mit-eigenem-code-testen">Schritt 2: Den Skill mit eigenem Code testen</a></h3>
+<pre><code>&gt; @main.rs Bitte reviewe meinen Code nach deiner Checkliste.
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Review-Fragen haben dich am meisten zum Nachdenken gebracht?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 27 fügen wir Referenzen zu unserem Skill hinzu.</p>
+<hr>
+<h2 id="-projekt-27-skill-referenzen--externe-dokumentation-einbinden"><a class="header" href="#-projekt-27-skill-referenzen--externe-dokumentation-einbinden">🔧 Projekt 27: Skill-Referenzen – Externe Dokumentation einbinden</a></h2>
+<p><strong>Was wir bauen:</strong> Einen Skill mit Links zu offiziellen Ressourcen.</p>
+<h3 id="schritt-1-einen-references-ordner-erstellen"><a class="header" href="#schritt-1-einen-references-ordner-erstellen">Schritt 1: Einen <code>references/</code>-Ordner erstellen</a></h3>
+<pre><code>.agents/skills/rust-tutor/
+├── SKILL.md
+└── references/
+    └── rust-konzepte.md
+</code></pre>
+<h3 id="schritt-2-die-referenzdatei-befüllen"><a class="header" href="#schritt-2-die-referenzdatei-befüllen">Schritt 2: Die Referenzdatei befüllen</a></h3>
+<pre><code class="language-markdown"># Rust-Konzepte Referenz
+
+## Offizielle Ressourcen
+
+- **Das Rust-Buch:** https://doc.rust-lang.org/book/
+  - Kapitel 4: Ownership
+  - Kapitel 8: Strings und Collections
+  - Kapitel 10: Lifetimes
+
+- **Rust by Example:** https://doc.rust-lang.org/rust-by-example/
+  - Interaktive Beispiele für alle Konzepte
+
+- **Rustlings:** https://github.com/rust-lang/rustlings
+  - Übungsaufgaben zum Selbermachen
+
+## Wann welche Ressource?
+
+| Problem | Ressource |
+|---------|-----------|
+| Konzept verstehen | Rust-Buch Kapitel |
+| Syntax nachschlagen | Rust by Example |
+| Üben | Rustlings |
+</code></pre>
+<h3 id="schritt-3-den-skill-aktualisieren-um-auf-referenzen-zu-verweisen"><a class="header" href="#schritt-3-den-skill-aktualisieren-um-auf-referenzen-zu-verweisen">Schritt 3: Den Skill aktualisieren, um auf Referenzen zu verweisen</a></h3>
+<pre><code class="language-markdown">## Bei Fragen zu Ressourcen
+
+Verweise auf die Referenzdatei: references/rust-konzepte.md
+Nenne immer das spezifische Kapitel oder die Seite.
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche anderen Ressourcen würden in die Referenzdatei passen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 28 kombinieren wir mehrere Skills.</p>
+<hr>
+<h2 id="-projekt-28-skills-kombinieren--synergie-nutzen"><a class="header" href="#-projekt-28-skills-kombinieren--synergie-nutzen">🔧 Projekt 28: Skills kombinieren – Synergie nutzen</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Skill-Ökosystem, in dem mehrere Skills zusammenarbeiten.</p>
+<h3 id="schritt-1-unser-skill-verzeichnis"><a class="header" href="#schritt-1-unser-skill-verzeichnis">Schritt 1: Unser Skill-Verzeichnis</a></h3>
+<pre><code>.agents/skills/
+├── rust-tutor/          ← Erklärt Rust-Konzepte
+├── rust-fehler-erklaerer/  ← Erklärt Fehlermeldungen
+└── rust-code-reviewer/  ← Bewertet Code
+</code></pre>
+<h3 id="schritt-2-verstehen-wie-skills-sich-ergänzen"><a class="header" href="#schritt-2-verstehen-wie-skills-sich-ergänzen">Schritt 2: Verstehen, wie Skills sich ergänzen</a></h3>
+<p>Eine typische Lerneinheit mit allen drei Skills:</p>
+<ol>
+<li><strong>Schreiben:</strong> Wir schreiben Code (kein Skill aktiv)</li>
+<li><strong>Fehler:</strong> Rust gibt einen Fehler → <code>rust-fehler-erklaerer</code> aktiv</li>
+<li><strong>Verstehen:</strong> Wir fragen nach dem Konzept → <code>rust-tutor</code> aktiv</li>
+<li><strong>Verbessern:</strong> Wir schreiben neu → <code>rust-code-reviewer</code> aktiv</li>
+</ol>
+<h3 id="schritt-3-die-skills-testen"><a class="header" href="#schritt-3-die-skills-testen">Schritt 3: Die Skills testen</a></h3>
+<pre><code>&gt; Ich habe einen Fehler bekommen: [Fehlermeldung]. 
+  Erkläre mir erst den Fehler, dann das dahinterliegende Konzept.
+</code></pre>
+<p>Welche Skills werden aktiviert?</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Könnten sich zwei Skills widersprechen? Wie würdest du das lösen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 29 debuggen wir einen nicht funktionierenden Skill.</p>
+<hr>
+<h2 id="-projekt-29-skill-debuggen--was-tun-wenn-er-nicht-funktioniert"><a class="header" href="#-projekt-29-skill-debuggen--was-tun-wenn-er-nicht-funktioniert">🔧 Projekt 29: Skill debuggen – Was tun, wenn er nicht funktioniert?</a></h2>
+<p><strong>Was wir bauen:</strong> Einen systematischen Debug-Prozess für Skills.</p>
+<h3 id="schritt-1-symptome-erkennen"><a class="header" href="#schritt-1-symptome-erkennen">Schritt 1: Symptome erkennen</a></h3>
+<p>Der Skill aktiviert sich nicht. Mögliche Ursachen:</p>
+<pre><code class="language-markdown"># Debug-Checkliste für Skills
+
+- [ ] Liegt SKILL.md im richtigen Ordner?
+      Pfad: .agents/skills/[name]/SKILL.md
+
+- [ ] Hat SKILL.md ein valides YAML-Frontmatter?
+      Beginnt es mit --- und endet mit ---?
+
+- [ ] Sind name: und description: vorhanden?
+
+- [ ] Enthält die description die richtigen Schlüsselwörter?
+
+- [ ] Wurde agy neu gestartet nach der Änderung?
+
+- [ ] Wird der Skill in /skills angezeigt?
+</code></pre>
+<h3 id="schritt-2-den-häufigsten-fehler-beheben"><a class="header" href="#schritt-2-den-häufigsten-fehler-beheben">Schritt 2: Den häufigsten Fehler beheben</a></h3>
+<p><strong>Fehler:</strong> <code>name:</code> und Ordnername stimmen nicht überein.</p>
+<pre><code>Ordner: rust-tutor/
+SKILL.md name: RustTutor  ← Falsch! Groß-/Kleinschreibung beachten
+</code></pre>
+<p><strong>Fix:</strong></p>
+<pre><code class="language-yaml">name: rust-tutor  ← Muss zum Ordnernamen passen
+</code></pre>
+<h3 id="schritt-3-die-description-testen"><a class="header" href="#schritt-3-die-description-testen">Schritt 3: Die description testen</a></h3>
+<p>Überlege: Wenn du eine Frage stellst, welche Schlüsselwörter kommen vor?</p>
+<pre><code>&gt; Erkläre mir Ownership in Rust.
+</code></pre>
+<p>Schlüsselwörter: <code>Ownership</code>, <code>Rust</code>, <code>erkläre</code></p>
+<p>Die <code>description</code> muss diese Wörter enthalten!</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie kannst du eine Skill-Beschreibung schreiben, die bei allen deinen typischen Fragen anschlägt?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 30 denken wir darüber nach, wie Skills langfristig gepflegt werden.</p>
+<hr>
+<h2 id="-projekt-30-skills-langfristig-pflegen--wartung-und-updates"><a class="header" href="#-projekt-30-skills-langfristig-pflegen--wartung-und-updates">🔧 Projekt 30: Skills langfristig pflegen – Wartung und Updates</a></h2>
+<p><strong>Was wir bauen:</strong> Eine Strategie für die langfristige Skill-Pflege.</p>
+<h3 id="schritt-1-ein-skill-changelog-führen"><a class="header" href="#schritt-1-ein-skill-changelog-führen">Schritt 1: Ein Skill-Changelog führen</a></h3>
+<pre><code class="language-markdown"># SKILL-CHANGELOG.md
+
+## rust-tutor
+
+### v1.2 – 2026-06-24
+- Neue Analogie für Lifetimes hinzugefügt
+- Verständnisfragen nach jeder Erklärung verschärft
+
+### v1.1 – 2026-06-17
+- Verweise auf Rust-Buch Kapitel ergänzt
+
+### v1.0 – 2026-06-10
+- Initialer Skill erstellt
+</code></pre>
+<h3 id="schritt-2-skill-reviews-einplanen"><a class="header" href="#schritt-2-skill-reviews-einplanen">Schritt 2: Skill-Reviews einplanen</a></h3>
+<p>Wöchentliche Fragen:</p>
+<ul>
+<li>Hat der Skill diese Woche gute Erklärungen geliefert?</li>
+<li>Welche Analogien haben gefehlt?</li>
+<li>Welche Regeln wurden nicht eingehalten?</li>
+</ul>
+<h3 id="schritt-3-skills-mit-git-versionieren"><a class="header" href="#schritt-3-skills-mit-git-versionieren">Schritt 3: Skills mit Git versionieren</a></h3>
+<pre><code class="language-bash">git add .agents/skills/
+git commit -m "rust-tutor v1.2: Lifetime-Analogie hinzugefügt"
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie verändert sich dein Skill-Ökosystem, wenn du von Phase 1 zu Phase 2 wechselst?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Gruppe 4 verlassen wir das Terminal und erkunden Antigravity 2.0 – die Desktop-App.</p>
+<hr>
+<h1 id="-gruppe-4-antigravity-20--die-desktop-app"><a class="header" href="#-gruppe-4-antigravity-20--die-desktop-app">🖼️ Gruppe 4: Antigravity 2.0 – Die Desktop-App</a></h1>
+<p>Antigravity 2.0 ist eine <strong>eigenständige Electron-App</strong> – ein vollwertiges Fenster auf deinem Desktop, das parallel zu allem anderen läuft. Hier können wir Projekte verwalten, Aufgaben planen und geplante Aktionen einrichten.</p>
+<hr>
+<h2 id="-projekt-31-antigravity-20-kennenlernen--die-oberfläche"><a class="header" href="#-projekt-31-antigravity-20-kennenlernen--die-oberfläche">🖼️ Projekt 31: Antigravity 2.0 kennenlernen – Die Oberfläche</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Verständnis für die drei Hauptbereiche der App.</p>
+<h3 id="schritt-1-die-linke-seitenleiste-erkunden"><a class="header" href="#schritt-1-die-linke-seitenleiste-erkunden">Schritt 1: Die linke Seitenleiste erkunden</a></h3>
+<p>Die linke Seitenleiste hat fünf Bereiche:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Icon</th><th>Bereich</th><th>Funktion</th></tr>
+</thead>
+<tbody>
+<tr><td>💬</td><td>Neue Konversation</td><td>Startet einen neuen Chat</td></tr>
+<tr><td>📁</td><td>Projects</td><td>Verwaltet Workspaces/Projekte</td></tr>
+<tr><td>⏰</td><td>Scheduled Tasks</td><td>Geplante Aufgaben</td></tr>
+<tr><td>🔧</td><td>Skills &amp; Customizations</td><td>Skills und Regeln</td></tr>
+<tr><td>⚙️</td><td>Settings</td><td>App-Einstellungen</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="schritt-2-den-chat-bereich-erkunden"><a class="header" href="#schritt-2-den-chat-bereich-erkunden">Schritt 2: Den Chat-Bereich erkunden</a></h3>
+<p>Der Chat-Bereich ist der <strong>Hauptarbeitsplatz</strong>. Hier kommunizieren wir mit dem Agenten – genau wie in der CLI, aber mit grafischer Oberfläche.</p>
+<p><strong>Vorteile gegenüber der CLI:</strong></p>
+<ul>
+<li>Wir können Dateien per <strong>Drag-and-Drop</strong> einziehen</li>
+<li>Bilder direkt einfügen</li>
+<li>Den Verlauf leichter navigieren</li>
+<li>Mehrere Konversationen als Tabs öffnen</li>
+</ul>
+<h3 id="schritt-3-das-erste-projekt-anlegen"><a class="header" href="#schritt-3-das-erste-projekt-anlegen">Schritt 3: Das erste Projekt anlegen</a></h3>
+<p>Klicke auf <strong>Projects</strong> → <strong>New Project</strong> → Wähle deinen Rust-Ordner aus.</p>
+<p><strong>Was passiert:</strong> Antigravity 2.0 erkennt automatisch die <code>AGENTS.md</code> in diesem Ordner und lädt sie.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche der CLI-Aufgaben aus Gruppe 1 kannst du jetzt einfacher in der Desktop-App erledigen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 32 richten wir unseren Workspace vollständig ein.</p>
+<hr>
+<h2 id="-projekt-32-workspace-einrichten--projekt-konfiguration"><a class="header" href="#-projekt-32-workspace-einrichten--projekt-konfiguration">🖼️ Projekt 32: Workspace einrichten – Projekt-Konfiguration</a></h2>
+<p><strong>Was wir bauen:</strong> Einen vollständig konfigurierten Rust-Lernworkspace.</p>
+<h3 id="schritt-1-projektberechtigungen-einstellen"><a class="header" href="#schritt-1-projektberechtigungen-einstellen">Schritt 1: Projektberechtigungen einstellen</a></h3>
+<p>In <strong>Settings</strong> → <strong>Project-Level Settings</strong> für unser Rust-Projekt:</p>
+<pre><code>File Access Policy:     ask     ← Frage mich, bevor du Dateien liest
+Internet Access:        ask     ← Frage mich, bevor du ins Internet gehst  
+Auto-Execution Policy:  request-review  ← Immer fragen vor Befehlen
+Terminal Sandbox:       off     ← Für Rust-Entwicklung brauchen wir echtes Terminal
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>ask</code> für Datei- und Internetzugriff: Als Lernender wollen wir <strong>alles sehen</strong>, was der Agent tut.</li>
+<li><code>request-review</code>: Kein Befehl wird ohne unsere Bestätigung ausgeführt.</li>
+<li><code>Terminal Sandbox: off</code>: <code>cargo build</code> muss auf echtes Terminal zugreifen können.</li>
+</ul>
+<h3 id="schritt-2-projektinformationen-eintragen"><a class="header" href="#schritt-2-projektinformationen-eintragen">Schritt 2: Projektinformationen eintragen</a></h3>
+<p>Im Projekt-Panel können wir auch direkt Beschreibung und Tags hinzufügen.</p>
+<h3 id="schritt-3-den-workspace-testen"><a class="header" href="#schritt-3-den-workspace-testen">Schritt 3: Den Workspace testen</a></h3>
+<p>Tippe im Chat: <code>@AGENTS.md Was weißt du über dieses Projekt?</code></p>
+<p>Der Agent sollte unsere AGENTS.md kennen und antworten.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Berechtigungseinstellung ist für einen Anfänger am sichersten?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 33 nutzen wir Drag-and-Drop – die effizienteste Art, Kontext zu teilen.</p>
+<hr>
+<h2 id="-projekt-33-drag-and-drop--kontext-ohne-tippen"><a class="header" href="#-projekt-33-drag-and-drop--kontext-ohne-tippen">🖼️ Projekt 33: Drag-and-Drop – Kontext ohne Tippen</a></h2>
+<p><strong>Was wir bauen:</strong> Einen effizienteren Kontext-Workflow.</p>
+<h3 id="schritt-1-eine-datei-in-den-chat-ziehen"><a class="header" href="#schritt-1-eine-datei-in-den-chat-ziehen">Schritt 1: Eine Datei in den Chat ziehen</a></h3>
+<p>Öffne deinen Dateimanager, finde <code>main.rs</code> und <strong>ziehe sie direkt in das Chat-Fenster</strong>.</p>
+<p><strong>Was passiert:</strong> Die Datei wird als Kontext angehängt – wir sehen eine kleine Vorschau im Chat.</p>
+<h3 id="schritt-2-eine-frage-hinzufügen"><a class="header" href="#schritt-2-eine-frage-hinzufügen">Schritt 2: Eine Frage hinzufügen</a></h3>
+<pre><code>[main.rs wurde eingefügt]
+Ich bekomme einen Fehler in Zeile 15. Erkläre mir, was dort passiert.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Drag-and-Drop ist das grafische Äquivalent zu <code>@datei.rs</code> in der CLI.</li>
+<li>Der Agent sieht nun den vollständigen Dateiinhalt als Kontext.</li>
+<li>Effizienter als Copy-Paste – besonders bei langen Dateien.</li>
+</ul>
+<h3 id="schritt-3-mehrere-dateien-gleichzeitig"><a class="header" href="#schritt-3-mehrere-dateien-gleichzeitig">Schritt 3: Mehrere Dateien gleichzeitig</a></h3>
+<p>Wir können mehrere Dateien gleichzeitig in den Chat ziehen.</p>
+<pre><code>[main.rs], [Cargo.toml], [Fehlerlog.txt]
+Analysiere diese drei Dateien. Was stimmt nicht in meiner Rust-Konfiguration?
+</code></pre>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wann ist Drag-and-Drop effizienter als <code>@</code>-Mention? Wann nicht?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 34 richten wir unsere erste geplante Aufgabe ein.</p>
+<hr>
+<h2 id="-projekt-34-scheduled-tasks--automatisierung-für-lernende"><a class="header" href="#-projekt-34-scheduled-tasks--automatisierung-für-lernende">🖼️ Projekt 34: Scheduled Tasks – Automatisierung für Lernende</a></h2>
+<p><strong>Was wir bauen:</strong> Unsere erste geplante Aufgabe in Antigravity 2.0.</p>
+<h3 id="schritt-1-scheduled-tasks-öffnen"><a class="header" href="#schritt-1-scheduled-tasks-öffnen">Schritt 1: Scheduled Tasks öffnen</a></h3>
+<p>Klicke in der linken Seitenleiste auf <strong>Scheduled Tasks</strong> → <strong>New Task</strong>.</p>
+<h3 id="schritt-2-eine-einmalige-aufgabe-erstellen"><a class="header" href="#schritt-2-eine-einmalige-aufgabe-erstellen">Schritt 2: Eine einmalige Aufgabe erstellen</a></h3>
+<pre><code>Name:     Rust-Lerncheck
+Typ:      Einmalig (One-shot)
+Zeit:     Morgen, 09:00 Uhr
+Aufgabe:  Lies meine AGENTS.md und stelle mir drei Fragen zu meinem 
+          aktuellen Lernstand. Frage nicht nach Code.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Name:</code> – Ein aussagekräftiger Name, damit wir die Aufgabe später finden.</li>
+<li><code>Typ: Einmalig</code> – Die Aufgabe wird genau einmal ausgeführt.</li>
+<li><code>Zeit:</code> – Wann soll die Aufgabe ausgeführt werden?</li>
+<li><code>Aufgabe:</code> – Das ist die <strong>Anweisung an den Agenten</strong>. Er führt sie aus, als würdest du sie selbst eingeben.</li>
+</ul>
+<h3 id="schritt-3-die-aufgabe-aktivieren"><a class="header" href="#schritt-3-die-aufgabe-aktivieren">Schritt 3: Die Aufgabe aktivieren</a></h3>
+<p>Klicke auf <strong>Save &amp; Activate</strong>. Im Scheduled-Tasks-Panel sehen wir die Aufgabe mit einem Countdown.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Aufgaben in deinem Lernalltag würdest du automatisieren?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 35 richten wir eine täglich wiederholende Lernerinnerung ein.</p>
+<hr>
+<h2 id="-projekt-35-tägliche-lernerinnerung--cron-jobs-für-den-kopf"><a class="header" href="#-projekt-35-tägliche-lernerinnerung--cron-jobs-für-den-kopf">🖼️ Projekt 35: Tägliche Lernerinnerung – Cron-Jobs für den Kopf</a></h2>
+<p><strong>Was wir bauen:</strong> Ein automatisches tägliches Lernritual.</p>
+<h3 id="schritt-1-eine-wiederkehrende-aufgabe-erstellen"><a class="header" href="#schritt-1-eine-wiederkehrende-aufgabe-erstellen">Schritt 1: Eine wiederkehrende Aufgabe erstellen</a></h3>
+<pre><code>Name:       Täglicher Rust-Impuls
+Typ:        Wiederkehrend (Cron)
+Cron:       0 8 * * *    (täglich um 08:00)
+Aufgabe:    Lies meine AGENTS.md. Stelle mir heute eine Aufwärmfrage 
+            zu dem Thema, das ich gerade lerne. 
+            Beginne mit: "Guten Morgen! Heute eine Frage zu [Thema]:"
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion eines Cron-Ausdrucks:</strong></p>
+<pre><code>0  8  *  *  *
+│  │  │  │  └─ Wochentag (0-7, * = jeden)
+│  │  │  └──── Monat (1-12, * = jeden)
+│  │  └─────── Tag des Monats (1-31, * = jeden)
+│  └────────── Stunde (0-23)
+└───────────── Minute (0-59)
+</code></pre>
+<ul>
+<li><code>0 8 * * *</code> bedeutet: <strong>Jede Nacht um 8:00 Uhr</strong>, jeden Tag, jeden Monat, jedes Jahr.</li>
+<li><code>*/5 * * * *</code> würde bedeuten: <strong>Alle 5 Minuten</strong> (für Tests nützlich).</li>
+</ul>
+<h3 id="schritt-2-den-ersten-trigger-abwarten-oder-manuell-testen"><a class="header" href="#schritt-2-den-ersten-trigger-abwarten-oder-manuell-testen">Schritt 2: Den ersten Trigger abwarten oder manuell testen</a></h3>
+<p>Klicke auf <strong>Run Now</strong> um die Aufgabe sofort zu testen.</p>
+<h3 id="schritt-3-die-aufgabe-verfeinern"><a class="header" href="#schritt-3-die-aufgabe-verfeinern">Schritt 3: Die Aufgabe verfeinern</a></h3>
+<p>Nach ein paar Tagen: Fühlen sich die täglichen Fragen hilfreich an? Zu leicht? Zu schwer? Passe die Aufgabe an.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Uhrzeit wäre für deine tägliche Lernerinnerung am besten?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 36 konfigurieren wir projektspezifische Berechtigungen.</p>
+<hr>
+<h2 id="-projekt-36-projektberechtigungen-verfeinern"><a class="header" href="#-projekt-36-projektberechtigungen-verfeinern">🖼️ Projekt 36: Projektberechtigungen verfeinern</a></h2>
+<p><strong>Was wir bauen:</strong> Ein maßgeschneidertes Sicherheitsprofil für unser Rust-Projekt.</p>
+<h3 id="schritt-1-die-berechtigungs-hierarchie-verstehen"><a class="header" href="#schritt-1-die-berechtigungs-hierarchie-verstehen">Schritt 1: Die Berechtigungs-Hierarchie verstehen</a></h3>
+<pre><code>Globale Einstellungen
+    └── Projekteinstellungen (überschreiben global)
+            └── Explizite Berechtigungen (überschreiben alles)
+</code></pre>
+<h3 id="schritt-2-explizite-berechtigungen-setzen"><a class="header" href="#schritt-2-explizite-berechtigungen-setzen">Schritt 2: Explizite Berechtigungen setzen</a></h3>
+<p>In <strong>Settings</strong> → <strong>Permission Grants</strong> für unser Projekt:</p>
+<pre><code>Allow:  read_file  ~/mein-rust-projekt/
+Allow:  command    cargo
+Allow:  command    rustc
+Deny:   write_file ~/mein-rust-projekt/src/main.rs
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Allow read_file ~/mein-rust-projekt/</code> – Der Agent darf alle Dateien in unserem Projekt lesen.</li>
+<li><code>Allow command cargo</code> – <code>cargo build</code>, <code>cargo run</code>, <code>cargo test</code> sind erlaubt.</li>
+<li><code>Deny write_file .../main.rs</code> – Unsere Hauptdatei darf der Agent <strong>nicht</strong> schreiben! Wir schreiben sie selbst.</li>
+</ul>
+<h3 id="schritt-3-die-berechtigungen-testen"><a class="header" href="#schritt-3-die-berechtigungen-testen">Schritt 3: Die Berechtigungen testen</a></h3>
+<pre><code>&gt; Schreibe den kompletten Code in main.rs.
+</code></pre>
+<p>Der Agent sollte abgewiesen werden oder nachfragen – weil <code>write_file</code> für <code>main.rs</code> verboten ist.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Dateien in deinem Projekt willst du selbst schreiben und welche darf der Agent erstellen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 37 nutzen wir den Konversationsverlauf in der Desktop-App.</p>
+<hr>
+<h2 id="-projekt-37-konversationsverlauf-in-antigravity-20"><a class="header" href="#-projekt-37-konversationsverlauf-in-antigravity-20">🖼️ Projekt 37: Konversationsverlauf in Antigravity 2.0</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Archiv unserer Lernreise in der Desktop-App.</p>
+<h3 id="schritt-1-konversationen-organisieren"><a class="header" href="#schritt-1-konversationen-organisieren">Schritt 1: Konversationen organisieren</a></h3>
+<p>In der linken Seitenleiste sehen wir alle Konversationen. Wir können:</p>
+<ul>
+<li>Nach Datum sortieren</li>
+<li>Nach Projekt filtern</li>
+<li>Konversationen umbenennen (Rechtsklick → Rename)</li>
+<li>Konversationen teilen oder exportieren</li>
+</ul>
+<h3 id="schritt-2-eine-wochenrückblick-konversation-starten"><a class="header" href="#schritt-2-eine-wochenrückblick-konversation-starten">Schritt 2: Eine Wochenrückblick-Konversation starten</a></h3>
+<pre><code>Erstelle einen strukturierten Wochenrückblick basierend auf 
+unseren Konversationen dieser Woche.
+
+Beantworte folgende Fragen:
+1. Was habe ich diese Woche gelernt?
+2. Was hat mich überrascht?
+3. Was verstehe ich noch nicht?
+4. Was ist mein Ziel für nächste Woche?
+
+Formuliere die Antworten in der Ich-Form, als wäre ich es, 
+der antwortet – aber basierend auf unseren tatsächlichen Gesprächen.
+</code></pre>
+<h3 id="schritt-3-den-rückblick-in-agentsmd-eintragen"><a class="header" href="#schritt-3-den-rückblick-in-agentsmd-eintragen">Schritt 3: Den Rückblick in AGENTS.md eintragen</a></h3>
+<p>Kopiere die wichtigsten Erkenntnisse in die <code>AGENTS.md</code> unter <code>## Mein Lernstand</code>.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie könntest du Wochenrückblicke als automatischen Scheduled Task einrichten?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 38 beherrschen wir die Sidebar-Navigation vollständig.</p>
+<hr>
+<h2 id="-projekt-38-sidebar-navigation-meistern"><a class="header" href="#-projekt-38-sidebar-navigation-meistern">🖼️ Projekt 38: Sidebar-Navigation meistern</a></h2>
+<p><strong>Was wir bauen:</strong> Einen effizienten Umgang mit der Desktop-App-Oberfläche.</p>
+<h3 id="schritt-1-skills--customizations-in-der-app"><a class="header" href="#schritt-1-skills--customizations-in-der-app">Schritt 1: Skills &amp; Customizations in der App</a></h3>
+<p>Klicke auf <strong>Skills &amp; Customizations</strong> in der Seitenleiste.</p>
+<p><strong>Was wir sehen:</strong></p>
+<ul>
+<li>Alle aktiven Skills (aus <code>.agents/skills/</code>)</li>
+<li>Alle geladenen Regeln (aus <code>AGENTS.md</code>)</li>
+<li>MCP-Server (falls konfiguriert)</li>
+</ul>
+<h3 id="schritt-2-einen-skill-direkt-in-der-app-bearbeiten"><a class="header" href="#schritt-2-einen-skill-direkt-in-der-app-bearbeiten">Schritt 2: Einen Skill direkt in der App bearbeiten</a></h3>
+<p>Wir können SKILL.md-Dateien direkt in der App öffnen und bearbeiten – ohne Texteditor.</p>
+<h3 id="schritt-3-keyboard-shortcuts-lernen"><a class="header" href="#schritt-3-keyboard-shortcuts-lernen">Schritt 3: Keyboard Shortcuts lernen</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Shortcut</th><th>Aktion</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Ctrl+N</code></td><td>Neue Konversation</td></tr>
+<tr><td><code>Ctrl+/</code></td><td>Slash-Befehl Menü öffnen</td></tr>
+<tr><td><code>@</code> tippen</td><td>Mentions-Menü öffnen</td></tr>
+<tr><td><code>Ctrl+K</code></td><td>Schnellsuche</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Keyboard-Shortcuts würden deinen Workflow am meisten beschleunigen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 39 erkunden wir Slash-Befehle speziell in Antigravity 2.0.</p>
+<hr>
+<h2 id="-projekt-39-slash-befehle-in-antigravity-20"><a class="header" href="#-projekt-39-slash-befehle-in-antigravity-20">🖼️ Projekt 39: Slash-Befehle in Antigravity 2.0</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Verständnis für die 2.0-spezifischen Workflows.</p>
+<h3 id="schritt-1-das-slash-befehl-menü-öffnen"><a class="header" href="#schritt-1-das-slash-befehl-menü-öffnen">Schritt 1: Das Slash-Befehl-Menü öffnen</a></h3>
+<p>Tippe <code>/</code> im Chat und warte. Ein Menü erscheint mit allen verfügbaren Befehlen.</p>
+<h3 id="schritt-2-besondere-20-befehle"><a class="header" href="#schritt-2-besondere-20-befehle">Schritt 2: Besondere 2.0-Befehle</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Befehl</th><th>Was es tut</th></tr>
+</thead>
+<tbody>
+<tr><td><code>/goal</code></td><td>Startet einen langen, autonomen Agenten-Lauf mit klarem Ziel</td></tr>
+<tr><td><code>/schedule</code></td><td>Öffnet den Scheduled-Task-Dialog direkt im Chat</td></tr>
+<tr><td><code>/grill-me</code></td><td>Startet eine interaktive Befragungs-Session</td></tr>
+<tr><td><code>/learn</code></td><td>Speichert eine Korrektur als dauerhafte Verhaltensregel</td></tr>
+<tr><td><code>/teamwork-preview</code></td><td>Teilt ein Projekt auf mehrere Sub-Agenten auf</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="schritt-3-grill-me-für-rust-lernen-nutzen"><a class="header" href="#schritt-3-grill-me-für-rust-lernen-nutzen">Schritt 3: <code>/grill-me</code> für Rust-Lernen nutzen</a></h3>
+<pre><code>&gt; /grill-me
+</code></pre>
+<p><strong>Was passiert:</strong> Der Agent beginnt uns zu befragen – wie in einem mündlichen Examen. Perfekt, um zu testen, ob wir ein Rust-Konzept wirklich verstanden haben.</p>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>/grill-me</code> ohne Thema: Der Agent fragt nach dem Thema.</li>
+<li><code>/grill-me Ownership in Rust</code>: Sofort gezielte Fragen zu Ownership.</li>
+<li>Der Agent hört erst auf, wenn wir alle Fragen korrekt beantwortet haben.</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welches Rust-Thema würdest du für <code>/grill-me</code> wählen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 40 kombinieren wir Scheduled Tasks mit automatischen Code-Reviews.</p>
+<hr>
+<h2 id="-projekt-40-automatisierter-lernplan--alles-zusammen-in-20"><a class="header" href="#-projekt-40-automatisierter-lernplan--alles-zusammen-in-20">🖼️ Projekt 40: Automatisierter Lernplan – Alles zusammen in 2.0</a></h2>
+<p><strong>Was wir bauen:</strong> Einen vollautomatischen wöchentlichen Lernzyklus.</p>
+<h3 id="schritt-1-den-lernzyklus-planen"><a class="header" href="#schritt-1-den-lernzyklus-planen">Schritt 1: Den Lernzyklus planen</a></h3>
+<pre><code>Montag, 08:00 → "Guten Morgen! Welches Rust-Thema nehmen wir diese Woche?"
+Mittwoch, 08:00 → "Zwischenfazit: Was hast du bisher gelernt? Drei Stichpunkte."
+Freitag, 17:00 → "Wochenabschluss: /grill-me [aktuelles Thema]"
+Sonntag, 10:00 → "Lernstand in AGENTS.md aktualisieren."
+</code></pre>
+<h3 id="schritt-2-die-vier-scheduled-tasks-erstellen"><a class="header" href="#schritt-2-die-vier-scheduled-tasks-erstellen">Schritt 2: Die vier Scheduled Tasks erstellen</a></h3>
+<p>Für jeden Eintrag eine eigene Aufgabe mit passender Cron-Expression:</p>
+<pre><code>Montag:     0 8 * * 1
+Mittwoch:   0 8 * * 3
+Freitag:    0 17 * * 5
+Sonntag:    0 10 * * 0
+</code></pre>
+<h3 id="schritt-3-den-lernzyklus-starten-und-beobachten"><a class="header" href="#schritt-3-den-lernzyklus-starten-und-beobachten">Schritt 3: Den Lernzyklus starten und beobachten</a></h3>
+<p>Lasse den Zyklus zwei Wochen laufen. Danach: Welche Aufgaben haben geholfen? Welche nicht?</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie müsste sich der Lernzyklus verändern, wenn du von Phase 1 zu Phase 2 wechselst?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Gruppe 5 tauchen wir in die Antigravity IDE ein – KI direkt im Code-Editor.</p>
+<hr>
+<h1 id="-gruppe-5-antigravity-ide--ki-im-editor"><a class="header" href="#-gruppe-5-antigravity-ide--ki-im-editor">💻 Gruppe 5: Antigravity IDE – KI im Editor</a></h1>
+<p>Die Antigravity IDE ist eine <strong>VS-Code-basierte Entwicklungsumgebung</strong>, die KI nicht als Add-on behandelt, sondern als ersten Bürger. Hier arbeiten wir und der Agent gleichzeitig – im selben Fenster, auf denselben Dateien.</p>
+<hr>
+<h2 id="-projekt-41-die-antigravity-ide-einrichten"><a class="header" href="#-projekt-41-die-antigravity-ide-einrichten">💻 Projekt 41: Die Antigravity IDE einrichten</a></h2>
+<p><strong>Was wir bauen:</strong> Einen konfigurierten Rust-Entwicklungsarbeitsplatz.</p>
+<h3 id="schritt-1-den-rust-workspace-öffnen"><a class="header" href="#schritt-1-den-rust-workspace-öffnen">Schritt 1: Den Rust-Workspace öffnen</a></h3>
+<p>Öffne die Antigravity IDE und dann deinen Rust-Projektordner.</p>
+<p><strong>Was automatisch passiert:</strong></p>
+<ul>
+<li>Die IDE erkennt <code>AGENTS.md</code> und <code>.agents/</code></li>
+<li>Alle Skills werden geladen</li>
+<li>Die Workspace-Konfiguration wird angewendet</li>
+</ul>
+<h3 id="schritt-2-die-rust-analyzer-extension-prüfen"><a class="header" href="#schritt-2-die-rust-analyzer-extension-prüfen">Schritt 2: Die <code>rust-analyzer</code>-Extension prüfen</a></h3>
+<pre><code>View → Extensions → Suche: rust-analyzer
+</code></pre>
+<p>Rust-Analyzer ist das offizielle Rust-Language-Server-Plugin – es gibt uns:</p>
+<ul>
+<li>Autovervollständigung</li>
+<li>Fehler-Unterstreichungen</li>
+<li>Typ-Inferenz-Anzeigen</li>
+</ul>
+<h3 id="schritt-3-die-sidebar-öffnen"><a class="header" href="#schritt-3-die-sidebar-öffnen">Schritt 3: Die Sidebar öffnen</a></h3>
+<p>Die Antigravity-Sidebar erscheint rechts (oder links, je nach Einstellung). Sie enthält den Chat-Bereich – genau wie Antigravity 2.0, aber direkt im Editor.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was ändert sich an deinem Arbeitsfluss, wenn IDE, Compiler und Agent im selben Fenster sind?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 42 nutzen wir die Tab-Vervollständigung.</p>
+<hr>
+<h2 id="-projekt-42-tab-autocomplete--der-agent-tippt-mit"><a class="header" href="#-projekt-42-tab-autocomplete--der-agent-tippt-mit">💻 Projekt 42: Tab-Autocomplete – Der Agent tippt mit</a></h2>
+<p><strong>Was wir bauen:</strong> Ein Gefühl für KI-gestützte Autocomplete.</p>
+<h3 id="schritt-1-autocomplete-erfahren"><a class="header" href="#schritt-1-autocomplete-erfahren">Schritt 1: Autocomplete erfahren</a></h3>
+<p>Öffne <code>main.rs</code> und beginne zu tippen:</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut</code></pre>
+<p><strong>Was passiert:</strong> Nach einer kurzen Pause erscheint ein <strong>grauer Vorschlag</strong>. Der Agent schlägt eine Fortsetzung vor, basierend auf dem Kontext.</p>
+<h3 id="schritt-2-den-vorschlag-annehmen-oder-ablehnen"><a class="header" href="#schritt-2-den-vorschlag-annehmen-oder-ablehnen">Schritt 2: Den Vorschlag annehmen oder ablehnen</a></h3>
+<ul>
+<li><code>Tab</code> → Vorschlag komplett annehmen</li>
+<li><code>Esc</code> → Vorschlag ablehnen</li>
+<li><code>Ctrl + →</code> → Vorschlag wortweise annehmen</li>
+</ul>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Der Agent sieht: offene Datei, Cursor-Position, andere offene Tabs, Clipboard (optional).</li>
+<li>Er schlägt das vor, was <strong>statistisch</strong> am wahrscheinlichsten als Nächstes kommt.</li>
+<li>Das bedeutet: Er kann sich irren! Immer prüfen, was er vorschlägt.</li>
+</ul>
+<h3 id="schritt-3-bewusst-entscheiden"><a class="header" href="#schritt-3-bewusst-entscheiden">Schritt 3: Bewusst entscheiden</a></h3>
+<p>Akzeptiere <strong>nie</strong> einen Vorschlag, ohne ihn zu lesen. Das ist der wichtigste Grundsatz der IDE-Nutzung als Anfänger.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wann hilft Autocomplete? Wann hindert es dein Lernen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 43 nutzen wir <code>Ctrl+I</code> für gezielte Bearbeitungen.</p>
+<hr>
+<h2 id="-projekt-43-inline-bearbeitung--ctrli"><a class="header" href="#-projekt-43-inline-bearbeitung--ctrli">💻 Projekt 43: Inline-Bearbeitung – <code>Ctrl+I</code></a></h2>
+<p><strong>Was wir bauen:</strong> Einen gezielten Inline-Bearbeitungsworkflow.</p>
+<h3 id="schritt-1-code-markieren-und-ctrli-drücken"><a class="header" href="#schritt-1-code-markieren-und-ctrli-drücken">Schritt 1: Code markieren und <code>Ctrl+I</code> drücken</a></h3>
+<p>Markiere in <code>main.rs</code> eine Funktion und drücke <code>Ctrl+I</code>.</p>
+<p><strong>Was passiert:</strong> Ein kleines Texteingabefeld erscheint direkt über dem markierten Code.</p>
+<h3 id="schritt-2-eine-anweisung-eingeben"><a class="header" href="#schritt-2-eine-anweisung-eingeben">Schritt 2: Eine Anweisung eingeben</a></h3>
+<pre><code>Füge einen deutschen Kommentar über jeder Zeile ein, der erklärt was sie tut.
+Schreibe KEINEN neuen Code – nur Kommentare.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Ctrl+I</code> wirkt <strong>nur auf den markierten Bereich</strong>. Der Rest der Datei bleibt unberührt.</li>
+<li>Unsere Anweisung ist präzise: Kommentare hinzufügen, kein neuer Code.</li>
+<li>Das ist ideal für: Dokumentieren, Erklären, kleine Umbenennungen.</li>
+</ul>
+<h3 id="schritt-3-das-ergebnis-im-diff-overlay-prüfen"><a class="header" href="#schritt-3-das-ergebnis-im-diff-overlay-prüfen">Schritt 3: Das Ergebnis im Diff-Overlay prüfen</a></h3>
+<p>Nach der Bearbeitung erscheint das <strong>Diff-Overlay</strong> direkt im Editor:</p>
+<ul>
+<li>Grüne Linien: Hinzugefügte Zeilen</li>
+<li>Rote Linien: Entfernte Zeilen</li>
+</ul>
+<pre><code>Accept All   |   Reject All   |   Review Each
+</code></pre>
+<p>Klicke auf <strong>Review Each</strong>, um jede Änderung einzeln zu prüfen.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Für welche Arten von Code-Änderungen ist <code>Ctrl+I</code> besonders nützlich?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 44 entdecken wir Code Lenses – die unsichtbaren KI-Buttons.</p>
+<hr>
+<h2 id="-projekt-44-code-lenses--ki-buttons-direkt-im-code"><a class="header" href="#-projekt-44-code-lenses--ki-buttons-direkt-im-code">💻 Projekt 44: Code Lenses – KI-Buttons direkt im Code</a></h2>
+<p><strong>Was wir bauen:</strong> Einen intuitiven Umgang mit Code-Lens-Aktionen.</p>
+<h3 id="schritt-1-code-lenses-sehen"><a class="header" href="#schritt-1-code-lenses-sehen">Schritt 1: Code Lenses sehen</a></h3>
+<p>Öffne <code>main.rs</code> mit einer <code>fn</code>-Funktion. Direkt über dem Funktionsnamen erscheinen kleine Links:</p>
+<pre><code>Refactor | Write Tests | Explain Code | ...
+fn main() {
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Code Lenses sind <strong>kontextabhängig</strong> – über einer <code>struct</code> erscheinen andere Optionen als über einer <code>fn</code>.</li>
+<li>Sie sind immer sichtbar, sobald man in die Nähe scrollt.</li>
+<li>Jeder Klick öffnet eine Interaktion in der Sidebar.</li>
+</ul>
+<h3 id="schritt-2-explain-code-klicken"><a class="header" href="#schritt-2-explain-code-klicken">Schritt 2: „Explain Code“ klicken</a></h3>
+<p>Klicke auf <strong>Explain Code</strong> über unserer <code>main</code>-Funktion.</p>
+<p><strong>Was passiert:</strong> Der Agent erklärt die Funktion Zeile für Zeile in der Sidebar.</p>
+<h3 id="schritt-3-refactor-verstehen-ohne-es-zu-nutzen"><a class="header" href="#schritt-3-refactor-verstehen-ohne-es-zu-nutzen">Schritt 3: „Refactor“ verstehen (ohne es zu nutzen)</a></h3>
+<blockquote>
+<p>⚠️ <strong>Als Anfänger:</strong> Nutze „Refactor“ noch nicht! Du lernst Rust, indem du selbst schreibst. „Refactor“ lässt den Agenten unseren Code umschreiben – das ist kontraproduktiv fürs Lernen.</p>
+</blockquote>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Code-Lens-Aktionen helfen beim Lernen, welche behindern es?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 45 verstehen wir das Diff-Overlay vollständig.</p>
+<hr>
+<h2 id="-projekt-45-diff-overlay-meistern--änderungen-im-blick"><a class="header" href="#-projekt-45-diff-overlay-meistern--änderungen-im-blick">💻 Projekt 45: Diff-Overlay meistern – Änderungen im Blick</a></h2>
+<p><strong>Was wir bauen:</strong> Einen kontrollierten Umgang mit allen Änderungen des Agenten.</p>
+<h3 id="schritt-1-das-diff-overlay-verstehen"><a class="header" href="#schritt-1-das-diff-overlay-verstehen">Schritt 1: Das Diff-Overlay verstehen</a></h3>
+<p>Das Diff-Overlay erscheint immer, wenn der Agent Dateien ändert:</p>
+<pre><code>← VORHER     |     NACHHER →
+─────────────────────────────
+fn main() {  |  fn main() {
+    let x = 5;│      let x: i32 = 5;  ← Grün: neu
+    println!  |      println!
+              │  // Ich bin neu      ← Grün: neu
+</code></pre>
+<h3 id="schritt-2-die-drei-entscheidungsoptionen"><a class="header" href="#schritt-2-die-drei-entscheidungsoptionen">Schritt 2: Die drei Entscheidungsoptionen</a></h3>
+<ul>
+<li><strong>Accept All</strong>: Alle Änderungen übernehmen. Nur bei Änderungen, die wir vollständig gelesen haben!</li>
+<li><strong>Reject All</strong>: Alle Änderungen verwerfen. Der Code bleibt unverändert.</li>
+<li><strong>Review Each</strong>: Jede Änderung einzeln entscheiden. Das ist die <strong>empfohlene Option</strong> für Lernende.</li>
+</ul>
+<h3 id="schritt-3-review-each-im-detail"><a class="header" href="#schritt-3-review-each-im-detail">Schritt 3: Review Each im Detail</a></h3>
+<p>Bei <strong>Review Each</strong> navigieren wir durch jede Änderung:</p>
+<ul>
+<li><code>Accept</code> → Diese Änderung übernehmen</li>
+<li><code>Reject</code> → Diese Änderung ablehnen</li>
+<li>Wir können für jede Änderung einzeln entscheiden!</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Warum ist „Accept All“ für Lernende gefährlich?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In der letzten Gruppe kombinieren wir alles.</p>
+<hr>
+<h1 id="-gruppe-6-alles-zusammen--der-vollständige-workflow"><a class="header" href="#-gruppe-6-alles-zusammen--der-vollständige-workflow">🚀 Gruppe 6: Alles zusammen – Der vollständige Workflow</a></h1>
+<p>In dieser Gruppe verbinden wir CLI, AGENTS.md, Skills, Antigravity 2.0 und die IDE zu einem <strong>einzigen, vollständigen Entwicklungsworkflow</strong>. So sieht modernes, KI-gestütztes Lernen im Jahr 2026 aus.</p>
+<hr>
+<h2 id="-projekt-46-der-vollständige-morgen-workflow"><a class="header" href="#-projekt-46-der-vollständige-morgen-workflow">🚀 Projekt 46: Der vollständige Morgen-Workflow</a></h2>
+<p><strong>Was wir bauen:</strong> Ein tägliches Ritual für produktives Rust-Lernen.</p>
+<h3 id="schritt-1-0800--der-automatische-morgen-impuls"><a class="header" href="#schritt-1-0800--der-automatische-morgen-impuls">Schritt 1: 08:00 – Der automatische Morgen-Impuls</a></h3>
+<p>Der Scheduled Task aus Projekt 35 stellt uns eine Frage. Wir lesen sie und denken kurz nach.</p>
+<h3 id="schritt-2-0810--agentsmd-aktualisieren"><a class="header" href="#schritt-2-0810--agentsmd-aktualisieren">Schritt 2: 08:10 – AGENTS.md aktualisieren</a></h3>
+<p>Öffne AGENTS.md und update <code>## Mein aktuelles Problem</code>:</p>
+<pre><code class="language-markdown">## Mein aktuelles Problem – 2026-06-24
+
+Gestern hat nicht geklappt: `.parse::&lt;i32&gt;()` – ich verstehe nicht,
+warum ich `&lt;i32&gt;` in spitzen Klammern schreiben muss.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li>Datum im Titel: Der Agent weiß, wie aktuell diese Information ist.</li>
+<li>Konkretes Problem: Kein vages „Ich verstehe Rust nicht“, sondern eine präzise Frage.</li>
+<li><code>::&lt;i32&gt;()</code> in Code-Backticks: Der Agent erkennt es als Code-Schnipsel.</li>
+</ul>
+<h3 id="schritt-3-0815--die-frage-an-den-agenten"><a class="header" href="#schritt-3-0815--die-frage-an-den-agenten">Schritt 3: 08:15 – Die Frage an den Agenten</a></h3>
+<pre><code>&gt; Sieh dir mein aktuelles Problem in AGENTS.md an. 
+  Erkläre mir das Konzept hinter der Syntax ::&lt;i32&gt; – aber gib mir noch keinen Code.
+</code></pre>
+<h3 id="schritt-4-0830--code-schreiben-selbst"><a class="header" href="#schritt-4-0830--code-schreiben-selbst">Schritt 4: 08:30 – Code schreiben, selbst</a></h3>
+<p>Schreibe selbst. Der Agent beobachtet, hilft bei Fragen, schreibt aber nicht.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie lange solltest du ohne Agenten-Hilfe coden, bevor du fragst?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 47 bauen wir den vollständigen Fehler-Debug-Workflow.</p>
+<hr>
+<h2 id="-projekt-47-der-fehler-debug-workflow"><a class="header" href="#-projekt-47-der-fehler-debug-workflow">🚀 Projekt 47: Der Fehler-Debug-Workflow</a></h2>
+<p><strong>Was wir bauen:</strong> Einen systematischen Prozess für Rust-Fehlermeldungen.</p>
+<h3 id="schritt-1-den-fehler-produzieren"><a class="header" href="#schritt-1-den-fehler-produzieren">Schritt 1: Den Fehler produzieren</a></h3>
+<pre><code class="language-bash">cargo build
+</code></pre>
+<p>Rust gibt uns eine Fehlermeldung. Wir lesen sie <strong>zuerst selbst</strong>:</p>
+<pre><code>error[E0382]: borrow of moved value: `s`
+  --&gt; src/main.rs:4:20
+   |
+2  |     let s = String::from("hallo");
+   |         - move occurs because `s` has type `String`
+3  |     let s2 = s;
+   |              - value moved here
+4  |     println!("{}", s);
+   |                    ^ value borrowed here after move
+</code></pre>
+<h3 id="schritt-2-selbst-verstehen-versuchen"><a class="header" href="#schritt-2-selbst-verstehen-versuchen">Schritt 2: Selbst verstehen versuchen</a></h3>
+<p>Bevor wir den Agenten fragen:</p>
+<ul>
+<li>Welche Zeile ist betroffen? (Zeile 4)</li>
+<li>Was sagt der Fehlercode? (E0382)</li>
+<li>Was ist ein „moved value“?</li>
+</ul>
+<h3 id="schritt-3-den-agenten-gezielt-fragen"><a class="header" href="#schritt-3-den-agenten-gezielt-fragen">Schritt 3: Den Agenten gezielt fragen</a></h3>
+<pre><code>&gt; Ich habe diesen Rust-Fehler bekommen: [Fehlermeldung einfügen]
+  
+  Was ich bereits verstehe: Der Fehler ist in Zeile 4.
+  Was ich nicht verstehe: Was bedeutet "value moved here"?
+  
+  Erkläre mir das Konzept. Kein Code, nur Erklärung.
+</code></pre>
+<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<ul>
+<li><code>Was ich bereits verstehe:</code> – Wir zeigen dem Agenten, was er nicht nochmal erklären muss.</li>
+<li><code>Was ich nicht verstehe:</code> – Fokus auf das echte Problem.</li>
+<li><code>Kein Code, nur Erklärung:</code> – Die Regel aus unserer AGENTS.md wird hier wiederholt.</li>
+</ul>
+<h3 id="schritt-4-den-fix-selbst-schreiben"><a class="header" href="#schritt-4-den-fix-selbst-schreiben">Schritt 4: Den Fix selbst schreiben</a></h3>
+<p>Nach der Erklärung: Schreibe die Lösung selbst. Der Agent schaut zu.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was lernst du aus einem Fehler, den du selbst gefixt hast, im Vergleich zu einem, den der Agent gefixt hat?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 48 bauen wir einen vollständigen Code-Review-Workflow.</p>
+<hr>
+<h2 id="-projekt-48-der-vollständige-code-review-workflow"><a class="header" href="#-projekt-48-der-vollständige-code-review-workflow">🚀 Projekt 48: Der vollständige Code-Review-Workflow</a></h2>
+<p><strong>Was wir bauen:</strong> Ein systematisches Verfahren, um unseren eigenen Code zu verbessern.</p>
+<h3 id="schritt-1-code-komplett-fertigschreiben"><a class="header" href="#schritt-1-code-komplett-fertigschreiben">Schritt 1: Code komplett fertigschreiben</a></h3>
+<p>Schreibe „Zahlen raten“ vollständig – ohne Agenten-Hilfe beim Code.</p>
+<h3 id="schritt-2-selbst-review"><a class="header" href="#schritt-2-selbst-review">Schritt 2: Selbst-Review</a></h3>
+<p>Bevor der Agent draufschaut:</p>
+<pre><code class="language-markdown"># Mein Selbst-Review – Zahlen raten
+
+## Was ich gut gemacht habe
+- Klare Variablennamen
+- Fehlerfall bei falscher Eingabe abgefangen
+
+## Was ich unsicher finde
+- Die Schleife in Zeile 12-20 könnte klarer sein
+- Ich weiß nicht, ob mein Ownership-Einsatz korrekt ist
+
+## Fragen an den Agenten
+- Ist meine Nutzung von `&amp;str` vs `String` korrekt?
+- Gibt es einen rust-ischen Weg, die Eingabe-Konvertierung klarer zu machen?
+</code></pre>
+<h3 id="schritt-3-den-agenten-review-starten"><a class="header" href="#schritt-3-den-agenten-review-starten">Schritt 3: Den Agenten-Review starten</a></h3>
+<pre><code>&gt; @main.rs Hier ist mein Selbst-Review: [einfügen]
+  
+  Bitte reviewe meinen Code nach deiner Checkliste aus dem rust-code-reviewer Skill.
+  Stelle mir nur Fragen – keinen verbesserten Code.
+</code></pre>
+<h3 id="schritt-4-auf-fragen-antworten-und-verbessern"><a class="header" href="#schritt-4-auf-fragen-antworten-und-verbessern">Schritt 4: Auf Fragen antworten und verbessern</a></h3>
+<p>Der Agent stellt Fragen. Wir antworten und verbessern selbst.</p>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Welche Frage des Agenten hat dich am meisten überrascht?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> In Projekt 49 automatisieren wir Teile unseres Lernplans.</p>
+<hr>
+<h2 id="-projekt-49-der-automatisierte-monats-lernplan"><a class="header" href="#-projekt-49-der-automatisierte-monats-lernplan">🚀 Projekt 49: Der automatisierte Monats-Lernplan</a></h2>
+<p><strong>Was wir bauen:</strong> Ein vollständiges Monatsprogramm für Rust-Lernen mit Antigravity.</p>
+<h3 id="schritt-1-den-monat-planen"><a class="header" href="#schritt-1-den-monat-planen">Schritt 1: Den Monat planen</a></h3>
+<pre><code class="language-markdown"># Rust-Lernplan – Juli 2026
+
+## Woche 1: Grundlagen festigen (Phase 1 Projekte 1-10)
+## Woche 2: Ownership vertiefen (Phase 1 Projekte 11-20)
+## Woche 3: Strings &amp; Eingabe (Phase 1 Projekte 21-30)
+## Woche 4: Mini-Projekt abschließen ("Zahlen raten" fertig)
+</code></pre>
+<h3 id="schritt-2-monatliche-meilenstein-tasks-erstellen"><a class="header" href="#schritt-2-monatliche-meilenstein-tasks-erstellen">Schritt 2: Monatliche Meilenstein-Tasks erstellen</a></h3>
+<pre><code>1. Juli, 08:00:   Woche 1 Kick-off: "Was nimmst du dir für diese Woche vor?"
+8. Juli, 17:00:   Woche 1 Review: "Was hast du in Woche 1 gelernt?"
+15. Juli, 17:00:  Halbzeit-Check: "Bist du auf Kurs?"
+31. Juli, 17:00:  Monatsabschluss: "/grill-me Phase 1 Grundlagen"
+</code></pre>
+<h3 id="schritt-3-die-agentsmd-monatlich-resetten"><a class="header" href="#schritt-3-die-agentsmd-monatlich-resetten">Schritt 3: Die AGENTS.md monatlich resetten</a></h3>
+<p>Am Monatsende:</p>
+<ol>
+<li>Füge einen Abschnitt <code>## Monat Juni – Gelernt</code> hinzu</li>
+<li>Verschiebe erlerntes aus <code>## Lerne ich</code> nach <code>## Kann ich</code></li>
+<li>Füge neue Themen ein</li>
+<li>Committen: <code>git commit -m "Lernstand Juli 2026: Phase 1 abgeschlossen"</code></li>
+</ol>
+<blockquote>
+<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie würde dein Lernplan für Phase 2 anders aussehen?</p>
+</blockquote>
+<p><strong>Vorschau:</strong> Im letzten Projekt bauen wir das ultimative persönliche KI-Lernsystem.</p>
+<hr>
+<h2 id="-projekt-50-das-vollständige-persönliche-ki-lernsystem--dein-antigravity-setup"><a class="header" href="#-projekt-50-das-vollständige-persönliche-ki-lernsystem--dein-antigravity-setup">🚀 Projekt 50: Das vollständige persönliche KI-Lernsystem – Dein Antigravity-Setup</a></h2>
+<p><strong>Was wir bauen:</strong> Eine vollständige, personalisierte Lerninfrastruktur.</p>
+<h3 id="schritt-1-die-finale-verzeichnisstruktur"><a class="header" href="#schritt-1-die-finale-verzeichnisstruktur">Schritt 1: Die finale Verzeichnisstruktur</a></h3>
+<pre><code>~/mein-rust-lernen/
+├── AGENTS.md                        ← Projektübersicht &amp; Lernstand
+├── .agents/
+│   ├── AGENTS.md                    ← Verhaltensregeln
+│   └── skills/
+│       ├── rust-tutor/
+│       │   ├── SKILL.md
+│       │   └── references/
+│       │       └── rust-konzepte.md
+│       ├── rust-fehler-erklaerer/
+│       │   └── SKILL.md
+│       └── rust-code-reviewer/
+│           └── SKILL.md
+├── src/
+│   └── main.rs
+├── Cargo.toml
+├── SKILL-CHANGELOG.md               ← Skill-Versionsgeschichte
+├── lernjournal/
+│   ├── 2026-06.md                   ← Monatliches Lernjournal
+│   └── 2026-07.md
+└── .git/                            ← Versionskontrolle
+</code></pre>
+<h3 id="schritt-2-die-finale-agentsmd"><a class="header" href="#schritt-2-die-finale-agentsmd">Schritt 2: Die finale AGENTS.md</a></h3>
+<pre><code class="language-markdown"># AGENTS.md – Rust-Lernsystem 2026
+
+Ich lerne Rust seit [Datum]. Ich bin Anfänger.
+Diese Datei steuert meinen KI-Lernpartner.
+
+---
+
+## 🗓️ Aktueller Stand – KW 26/2026
+
+**Phase:** 1 – Grundlagen  
+**Projekt:** Zahlen raten (70% fertig)  
+**Fokus dieser Woche:** Benutzereingabe mit std::io  
+**Letztes Problem:** .parse::&lt;i32&gt;() – GELÖST  
+**Aktuelles Problem:** loop vs while – welches wann?  
+
+---
+
+## ✅ Kann ich
+- Variablen, mut, Datentypen
+- if/else, for-Schleife  
+- Grundlegende Benutzereingabe
+
+## 📖 Lerne gerade
+- while und loop im Vergleich
+- Fehlerfälle mit Eingaben behandeln
+
+## 🔜 Kommt später
+- Ownership (verstehe ich noch nicht)
+- Borrowing &amp; Lifetimes
+
+---
+
+## ⚙️ Regeln (unveränderlich)
+- Sprache: Deutsch
+- Kein fertiger Code für Lernaufgaben
+- Stelle nach jeder Erklärung eine Frage
+- Bei Fehlern: Erst das "Warum", dann das "Wie"
+
+---
+
+## 📁 Struktur
+[Verzeichnisstruktur wie oben]
+</code></pre>
+<h3 id="schritt-3-das-system-in-aktion"><a class="header" href="#schritt-3-das-system-in-aktion">Schritt 3: Das System in Aktion</a></h3>
+<p>Ein vollständiger Lernablauf:</p>
+<pre><code>08:00 → Scheduled Task: Tagesfrage kommt automatisch
+08:05 → AGENTS.md aktualisieren: Aktuelles Problem eintragen
+08:15 → CLI: Frage an den Agenten, Konzept verstehen
+09:00 → IDE: Code selbst schreiben
+09:30 → Fehler → Rust-Fehler-Erklärer Skill aktiv
+10:00 → Code fertig → Code-Reviewer Skill aktiv
+10:30 → Git commit: "loop in Zahlen-raten implementiert"
+17:00 → Scheduled Task: Tagesrückblick
+</code></pre>
+<h3 id="schritt-4-die-reflexion--was-dieses-system-bedeutet"><a class="header" href="#schritt-4-die-reflexion--was-dieses-system-bedeutet">Schritt 4: Die Reflexion – Was dieses System bedeutet</a></h3>
+<p>Du hast in 50 Projekten gelernt:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Was</th><th>Wie</th></tr>
+</thead>
+<tbody>
+<tr><td>Den Agenten starten</td><td><code>agy</code> im Terminal</td></tr>
+<tr><td>Den Agenten steuern</td><td>AGENTS.md schreiben</td></tr>
+<tr><td>Den Agenten erweitern</td><td>Skills bauen</td></tr>
+<tr><td>Den Agenten planen lassen</td><td>Scheduled Tasks</td></tr>
+<tr><td>Den Agenten im Editor nutzen</td><td>IDE-Integration</td></tr>
+</tbody>
+</table>
+</div>
+<p>Aber das Wichtigste: Du hast gelernt, dass <strong>du</strong> der Entscheider bist. Der Agent ist dein Werkzeug, dein Spiegel, dein Sparringspartner – aber nie dein Ghostwriter.</p>
+<hr>
+<blockquote>
+<p>🦀 <strong>Das Prinzip von 2026:</strong><br>Der beste KI-Nutzer ist nicht derjenige, der den Agenten am meisten benutzt –<br>sondern derjenige, der ihn am <strong>klügsten</strong> einsetzt.</p>
+<p>Und das bist jetzt du.</p>
+</blockquote>
+<hr>
+<h2 id="-alle-ressourcen-auf-einen-blick"><a class="header" href="#-alle-ressourcen-auf-einen-blick">📚 Alle Ressourcen auf einen Blick</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Ressource</th><th>Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Antigravity Dokumentation</td><td><a href="https://antigravity.google/docs">antigravity.google/docs</a></td></tr>
+<tr><td>Skills erstellen</td><td><a href="https://antigravity.google/docs/skills">antigravity.google/docs/skills</a></td></tr>
+<tr><td>Regeln &amp; AGENTS.md</td><td><a href="https://antigravity.google/docs/rules">antigravity.google/docs/rules</a></td></tr>
+<tr><td>MCP-Integration</td><td><a href="https://antigravity.google/docs/mcp">antigravity.google/docs/mcp</a></td></tr>
+<tr><td>Agent-Sicherheit</td><td><a href="https://antigravity.google/docs/agent-permissions">antigravity.google/docs/agent-permissions</a></td></tr>
+<tr><td>Changelog</td><td><a href="https://antigravity.google/changelog">antigravity.google/changelog</a></td></tr>
+<tr><td>Rust-Buch (offiziell)</td><td><a href="https://doc.rust-lang.org/book/">doc.rust-lang.org/book</a></td></tr>
+<tr><td>Rust by Example</td><td><a href="https://doc.rust-lang.org/rust-by-example/">doc.rust-lang.org/rust-by-example</a></td></tr>
+<tr><td>Rustlings</td><td><a href="https://github.com/rust-lang/rustlings">github.com/rust-lang/rustlings</a></td></tr>
+</tbody>
+</table>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="antigravity.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="gemini.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="antigravity.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="gemini.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
