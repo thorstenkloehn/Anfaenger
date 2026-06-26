@@ -19,3 +19,5 @@
 - [🤖 IDE KI-Agenten – Die nächste Generation](./ide-agent.md)
 - [🎵 Vibe Coding – Programmieren im Flow](./vibe-coding.md)
 - [🧠 Eigene KI-Agenten programmieren](./eigener-agent.md)
+- [Impressum](./Impressum.md)
+- [Datenschutz](./Datenschschutz.md)
