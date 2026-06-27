@@ -18,6 +18,8 @@
 - [🐙 GitHub Copilot – Der klassische Assistent](./copilot.md)
 - [🤖 IDE KI-Agenten – Die nächste Generation](./ide-agent.md)
 - [🐚 Claude Code – Der KI-Agent im Terminal](./claude-code.md)
+  - [Praxis 1: Grundlagen](./claude-code-praxis-1.md)
+  - [Praxis 2: Profi-Workflows](./claude-code-praxis-2.md)
 - [💻 Codex CLI – Der Terminal-Assistent von OpenAI](./codex-cli.md)
 - [⚡ Zed IDE – Der performante Editor mit KI](./zed-ide.md)
 - [📝 Vim – Der tastaturgesteuerte Editor](./vim.md)
