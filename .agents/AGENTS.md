@@ -8,6 +8,7 @@
 
 ## Subagenten
 - Aktivieren bei: "Schreibe 3+ Kapitel", "Erstelle Theorie + Projekte parallel", "Aktualisiere alle KI-Lektionen".
+- Zur Steuerung und Koordination immer den Skill `subagent-steuern` nutzen.
 
 ## KI-Werkzeuge
 - **Gemini:** Allgemeine Fragen / Chat.

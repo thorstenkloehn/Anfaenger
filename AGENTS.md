@@ -7,7 +7,7 @@
 ## Regeln
 - **Sprache:** Deutsch.
 - **mdBook:** Neue Kapitel immer in `rust-projekte/src/SUMMARY.md` eintragen.
-- **Geschützt (Nicht löschen!):** `antigravity.md`, `antigravity-praxis.md`, `gemini.md`, `copilot.md`, `ide-agent.md`, `vibe-coding.md`, `eigener-agent.md`.
+- **Geschützt (Nicht löschen!):** `antigravity.md`, `antigravity-praxis.md`, `gemini.md`, `copilot.md`, `ide-agent.md`, `vibe-coding.md`, `eigener-agent.md`, `claude-code.md`, `zed-ide.md`, `vim.md`.
 - **Struktur:** Vor Änderungen fragen.
 - **Planning:** Bei Projektplanung auf `src/planung.md` verweisen.
 - **Subagents:** Bei großen Aufgaben (z.B. >2 Dateien parallel schreiben) Skill `verteile-subagent` nutzen.
