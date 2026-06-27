@@ -1,0 +1,583 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>📝 Vim – Der tastaturgesteuerte Editor - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-53eab217.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a2e15fb9.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-vim--der-tastaturgesteuerte-editor"><a class="header" href="#-vim--der-tastaturgesteuerte-editor">📝 Vim – Der tastaturgesteuerte Editor</a></h1>
+<p><em>Entwickle in Lichtgeschwindigkeit, ohne jemals die Hand von der Tastatur zu nehmen.</em></p>
+<hr>
+<p>In dieser Lektion beschäftigen wir uns mit <strong>Vim</strong> (bzw. dem modernen Nachfolger <strong>Neovim</strong>). Vim ist einer der ältesten, flexibelsten und am weitesten verbreiteten Texteditoren der Welt. Fast jeder Server hat ihn vorinstalliert. Für Rust-Entwickler bietet Vim – oder die Aktivierung des Vim-Modus in modernen IDEs wie Zed oder VS Code – einen enormen Geschwindigkeitsvorteil.</p>
+<p>Das Erlernen von Vim erfordert Geduld (die berüchtigte Lernkurve), zahlt sich aber für den Rest deines Entwicklerlebens aus.</p>
+<hr>
+<h2 id="-theorie-was-ist-vim"><a class="header" href="#-theorie-was-ist-vim">🧠 Theorie: Was ist Vim?</a></h2>
+<h3 id="das-konzept-der-modi"><a class="header" href="#das-konzept-der-modi">Das Konzept der Modi</a></h3>
+<p>Vim unterscheidet sich grundlegend von klassischen Editoren dadurch, dass er <strong>modal</strong> ist. Jede Taste auf deiner Tastatur hat je nach Modus eine völlig andere Funktion.</p>
+<p>Die vier wichtigsten Modi sind:</p>
+<ol>
+<li><strong>Normal-Modus (Normal Mode):</strong> Der Standardmodus. Jede Taste ist ein Befehl, um im Text zu navigieren, Wörter zu löschen, Sätze zu kopieren oder zu manipulieren. Hier tippst du <em>keinen</em> Text.</li>
+<li><strong>Einfüge-Modus (Insert Mode):</strong> Dieser Modus verhält sich wie ein normaler Texteditor. Du tippst Text ein.</li>
+<li><strong>Visueller Modus (Visual Mode):</strong> Dient zum Markieren von Textblöcken (zeichenweise, zeilenweise oder blockweise), um Befehle auf sie anzuwenden.</li>
+<li><strong>Befehlszeilen-Modus (Command Mode):</strong> Wird durch Drücken von <code>:</code> im Normal-Modus gestartet. Ermöglicht das Speichern, Beenden, Suchen und Konfigurieren.</li>
+</ol>
+<h3 id="warum-vim-für-rust-entwickler"><a class="header" href="#warum-vim-für-rust-entwickler">Warum Vim für Rust-Entwickler?</a></h3>
+<ul>
+<li><strong>Keine Maus nötig:</strong> Da du alles mit Tastaturkürzeln erledigst, bleiben deine Hände auf der Grundlinie der Tastatur. Das ist extrem ergonomisch und schnell.</li>
+<li><strong>Vim-Modus gibt es überall:</strong> Egal ob Antigravity IDE, Zed, VS Code oder IntelliJ – alle modernen Editoren bieten ein Vim-Plugin an. Du lernst Vim einmal und kannst es überall nutzen.</li>
+<li><strong>Rust-Unterstützung:</strong> Neovim hat ein eingebautes LSP-System (Language Server Protocol), das sich hervorragend mit <code>rust-analyzer</code> verbinden lässt. Du erhältst Autovervollständigung und Diagnosen direkt im Terminal.</li>
+</ul>
+<hr>
+<h2 id="-praxis-aufgaben"><a class="header" href="#-praxis-aufgaben">🛠️ Praxis-Aufgaben</a></h2>
+<h3 id="aufgabe-a-den-editor-kennenlernen"><a class="header" href="#aufgabe-a-den-editor-kennenlernen">Aufgabe A: Den Editor kennenlernen</a></h3>
+<ol>
+<li>Öffne dein Terminal und tippe <code>vim</code> (oder <code>nvim</code>, falls installiert) gefolgt von einer neuen Datei: <code>vim main.rs</code>.</li>
+<li>Du startest im <strong>Normal-Modus</strong>. Du kannst jetzt noch nichts tippen.</li>
+<li>Drücke die Taste <code>i</code>, um in den <strong>Einfüge-Modus</strong> zu wechseln. Unten links sollte <code>-- INSERT --</code> stehen.</li>
+<li>Tippe eine Zeile Code (z. B. <code>fn main() {}</code>).</li>
+<li>Drücke <code>Esc</code>, um in den <strong>Normal-Modus</strong> zurückzukehren.</li>
+<li>Tippe <code>:w</code> und drücke <code>Enter</code>, um die Datei zu speichern.</li>
+<li>Tippe <code>:q</code> und drücke <code>Enter</code>, um den Editor zu beenden.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-b-cursor-navigation-ohne-pfeiltasten"><a class="header" href="#aufgabe-b-cursor-navigation-ohne-pfeiltasten">Aufgabe B: Cursor-Navigation ohne Pfeiltasten</a></h3>
+<ol>
+<li>Öffne die <code>main.rs</code> erneut in Vim.</li>
+<li>Nutze im <strong>Normal-Modus</strong> ausschließlich folgende Tasten zur Navigation:
+<ul>
+<li><code>h</code> (nach links)</li>
+<li><code>j</code> (nach unten)</li>
+<li><code>k</code> (nach oben)</li>
+<li><code>l</code> (nach rechts)</li>
+</ul>
+</li>
+<li>Bewege den Cursor an den Anfang der Zeile, indem du <code>0</code> drückst.</li>
+<li>Springe ans Ende der Zeile mit <code>$</code>.</li>
+<li>Schließe die Datei ohne zu speichern mit <code>:q!</code>.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-c-vim-in-deiner-ide-aktivieren"><a class="header" href="#aufgabe-c-vim-in-deiner-ide-aktivieren">Aufgabe C: Vim in deiner IDE aktivieren</a></h3>
+<ol>
+<li>Wenn du Zed verwendest, öffne deine <code>settings.json</code> und füge <code>"vim_mode": true</code> hinzu. (Wenn du VS Code verwendest, installiere das Plugin <em>VSCodeVim</em>).</li>
+<li>Öffne dein aktuelles Rust-Projekt.</li>
+<li>Versuche, die nächsten 10 Minuten ausschließlich mit den Vim-Navigationsbefehlen (<code>h</code>, <code>j</code>, <code>k</code>, <code>l</code>) im Code zu navigieren und zu editieren.</li>
+</ol>
+<hr>
+<h2 id="-50-übungen-mit-lösungen"><a class="header" href="#-50-übungen-mit-lösungen">🚀 50 Übungen mit Lösungen</a></h2>
+<p>Diese Übungen trainieren dein Muskelgedächtnis für Vim-Befehle und zeigen dir, wie du deinen Code effizient manipulierst.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Das Buchkonzept verbietet fertigen Rust-Code als Lösung.</strong>
+Die Lösungen beschreiben die exakten Tastenkombinationen und Befehlssequenzen im Vim-Normal-Modus!</p>
+</blockquote>
+<hr>
+<h3 id="-einstieg-110-modi-navigation-und-einfache-änderungen"><a class="header" href="#-einstieg-110-modi-navigation-und-einfache-änderungen">🟢 Einstieg (1–10): Modi, Navigation und einfache Änderungen</a></h3>
+<h4 id="übung-1-modus-wechseln"><a class="header" href="#übung-1-modus-wechseln">Übung 1: Modus wechseln</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du bist im Einfüge-Modus und möchtest zurück in den Normal-Modus, um zu navigieren. Wie machst du das?</li>
+<li><strong>Lösung:</strong> Drücke die <code>Esc</code>-Taste (oder die Tastenkombination <code>Ctrl+[</code>).</li>
+</ul>
+<h4 id="übung-2-zeichen-löschen"><a class="header" href="#übung-2-zeichen-löschen">Übung 2: Zeichen löschen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor steht auf einem überflüssigen Buchstaben. Wie löschst du dieses einzelne Zeichen im Normal-Modus?</li>
+<li><strong>Lösung:</strong> Drücke die Taste <code>x</code>.</li>
+</ul>
+<h4 id="übung-3-ein-ganzes-wort-löschen"><a class="header" href="#übung-3-ein-ganzes-wort-löschen">Übung 3: Ein ganzes Wort löschen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor steht am Anfang eines Wortes. Wie löschst du das gesamte Wort?</li>
+<li><strong>Lösung:</strong> Drücke <code>dw</code> (Delete Word).</li>
+</ul>
+<h4 id="übung-4-ein-wort-löschen-und-direkt-weiterschreiben"><a class="header" href="#übung-4-ein-wort-löschen-und-direkt-weiterschreiben">Übung 4: Ein Wort löschen und direkt weiterschreiben</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie löschst du ein Wort und wechselst sofort in den Einfüge-Modus, um ein neues Wort zu tippen?</li>
+<li><strong>Lösung:</strong> Drücke <code>cw</code> (Change Word).</li>
+</ul>
+<h4 id="übung-5-neue-zeile-darunter-einfügen"><a class="header" href="#übung-5-neue-zeile-darunter-einfügen">Übung 5: Neue Zeile darunter einfügen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest unter der aktuellen Zeile eine neue Leerzeile einfügen und direkt mit dem Schreiben beginnen.</li>
+<li><strong>Lösung:</strong> Drücke im Normal-Modus die Taste <code>o</code> (kleines O).</li>
+</ul>
+<h4 id="übung-6-neue-zeile-darüber-einfügen"><a class="header" href="#übung-6-neue-zeile-darüber-einfügen">Übung 6: Neue Zeile darüber einfügen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest über der aktuellen Zeile eine neue Leerzeile einfügen und direkt mit dem Schreiben beginnen.</li>
+<li><strong>Lösung:</strong> Drücke im Normal-Modus die Taste <code>O</code> (großes O / <code>Shift+o</code>).</li>
+</ul>
+<h4 id="übung-7-zeichen-ersetzen"><a class="header" href="#übung-7-zeichen-ersetzen">Übung 7: Zeichen ersetzen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest das Zeichen unter dem Cursor durch ein <code>+</code> ersetzen, ohne den Einfüge-Modus dauerhaft zu betreten.</li>
+<li><strong>Lösung:</strong> Drücke <code>r</code> (Replace) gefolgt von der Taste <code>+</code>.</li>
+</ul>
+<h4 id="übung-8-aktion-rückgängig-machen-undo"><a class="header" href="#übung-8-aktion-rückgängig-machen-undo">Übung 8: Aktion rückgängig machen (Undo)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast versehentlich eine Zeile gelöscht. Wie machst du das im Normal-Modus rückgängig?</li>
+<li><strong>Lösung:</strong> Drücke die Taste <code>u</code> (Undo).</li>
+</ul>
+<h4 id="übung-9-rückgängig-gemachte-aktion-wiederholen-redo"><a class="header" href="#übung-9-rückgängig-gemachte-aktion-wiederholen-redo">Übung 9: Rückgängig gemachte Aktion wiederholen (Redo)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast ein Undo zu viel gemacht und willst den Schritt wieder nach vorne wiederholen.</li>
+<li><strong>Lösung:</strong> Drücke <code>Ctrl+r</code> (Redo).</li>
+</ul>
+<h4 id="übung-10-speichern-und-beenden-in-einem-befehl"><a class="header" href="#übung-10-speichern-und-beenden-in-einem-befehl">Übung 10: Speichern und Beenden in einem Befehl</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie speicherst du die aktuelle Datei ab und schließt Vim sofort mit einer kurzen Tastenfolge im Normal-Modus?</li>
+<li><strong>Lösung:</strong> Drücke <code>:wq</code> gefolgt von <code>Enter</code>, oder verwende die Tastenkombination <code>ZZ</code> im Normal-Modus.</li>
+</ul>
+<hr>
+<h3 id="-mittelstufe-1125-erweiterte-navigation-und-manipulation"><a class="header" href="#-mittelstufe-1125-erweiterte-navigation-und-manipulation">🟡 Mittelstufe (11–25): Erweiterte Navigation und Manipulation</a></h3>
+<h4 id="übung-11-wortweise-navigieren"><a class="header" href="#übung-11-wortweise-navigieren">Übung 11: Wortweise navigieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie springst du mit dem Cursor wortweise nach vorne und wortweise nach hinten?</li>
+<li><strong>Lösung:</strong> Drücke <code>w</code> (word forward) zum Vorspringen und <code>b</code> (back word) zum Zurückspringen.</li>
+</ul>
+<h4 id="übung-12-ans-ende-des-wortes-springen"><a class="header" href="#übung-12-ans-ende-des-wortes-springen">Übung 12: Ans Ende des Wortes springen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie springst du an das letzte Zeichen des aktuellen oder nächsten Wortes?</li>
+<li><strong>Lösung:</strong> Drücke die Taste <code>e</code> (end of word).</li>
+</ul>
+<h4 id="übung-13-suchen-in-der-aktuellen-zeile"><a class="header" href="#übung-13-suchen-in-der-aktuellen-zeile">Übung 13: Suchen in der aktuellen Zeile</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor steht am Anfang der Zeile. Du möchtest direkt zum nächsten Vorkommen des Buchstabens <code>f</code> in derselben Zeile springen.</li>
+<li><strong>Lösung:</strong> Drücke <code>f</code> gefolgt von <code>f</code> (also <code>ff</code>). Mit <code>t</code> springst du <em>bis kurz vor</em> das Zeichen.</li>
+</ul>
+<h4 id="übung-14-rückwärts-suchen-in-der-aktuellen-zeile"><a class="header" href="#übung-14-rückwärts-suchen-in-der-aktuellen-zeile">Übung 14: Rückwärts suchen in der aktuellen Zeile</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie springst du in der aktuellen Zeile rückwärts zum vorherigen Vorkommen des Zeichens <code>;</code>?</li>
+<li><strong>Lösung:</strong> Drücke <code>F</code> gefolgt von <code>;</code> (also <code>F;</code>).</li>
+</ul>
+<h4 id="übung-15-suchen-in-der-gesamten-datei"><a class="header" href="#übung-15-suchen-in-der-gesamten-datei">Übung 15: Suchen in der gesamten Datei</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie suchst du nach dem Begriff <code>struct</code> im gesamten Dokument?</li>
+<li><strong>Lösung:</strong> Tippe <code>/struct</code> und drücke <code>Enter</code>. Mit <code>n</code> springst du zum nächsten Treffer, mit <code>N</code> zum vorherigen.</li>
+</ul>
+<h4 id="übung-16-an-das-ende-der-datei-springen"><a class="header" href="#übung-16-an-das-ende-der-datei-springen">Übung 16: An das Ende der Datei springen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie bewegst du den Cursor sofort in die allerletzte Zeile des Dokuments?</li>
+<li><strong>Lösung:</strong> Drücke <code>G</code> (großes G / <code>Shift+g</code>).</li>
+</ul>
+<h4 id="übung-17-an-den-anfang-der-datei-springen"><a class="header" href="#übung-17-an-den-anfang-der-datei-springen">Übung 17: An den Anfang der Datei springen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie bewegst du den Cursor sofort in die erste Zeile des Dokuments?</li>
+<li><strong>Lösung:</strong> Drücke zweimal <code>g</code> hintereinander (also <code>gg</code>).</li>
+</ul>
+<h4 id="übung-18-zu-einer-bestimmten-zeile-springen"><a class="header" href="#übung-18-zu-einer-bestimmten-zeile-springen">Übung 18: Zu einer bestimmten Zeile springen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Compiler meldet einen Fehler in Zeile 42. Wie springst du direkt zu dieser Zeile?</li>
+<li><strong>Lösung:</strong> Tippe <code>:42</code> und drücke <code>Enter</code>, oder tippe <code>42G</code> im Normal-Modus.</li>
+</ul>
+<h4 id="übung-19-zeile-kopieren-yank"><a class="header" href="#übung-19-zeile-kopieren-yank">Übung 19: Zeile kopieren (Yank)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie kopierst du die aktuelle Zeile in den Zwischenspeicher (Register)?</li>
+<li><strong>Lösung:</strong> Drücke zweimal <code>y</code> (also <code>yy</code>).</li>
+</ul>
+<h4 id="übung-20-einfügen-paste"><a class="header" href="#übung-20-einfügen-paste">Übung 20: Einfügen (Paste)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie fügst du den kopierten Text unterhalb der aktuellen Cursor-Zeile ein?</li>
+<li><strong>Lösung:</strong> Drücke die Taste <code>p</code> (put/paste). Um ihn darüber einzufügen, drücke <code>P</code> (<code>Shift+p</code>).</li>
+</ul>
+<h4 id="übung-21-zeile-löschen-und-in-den-zwischenspeicher-legen-cut"><a class="header" href="#übung-21-zeile-löschen-und-in-den-zwischenspeicher-legen-cut">Übung 21: Zeile löschen und in den Zwischenspeicher legen (Cut)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie löschst du die aktuelle Zeile so, dass du sie danach mit <code>p</code> woanders einfügen kannst?</li>
+<li><strong>Lösung:</strong> Drücke zweimal <code>d</code> (also <code>dd</code>).</li>
+</ul>
+<h4 id="übung-22-visual-mode-für-zeilen-aktivieren"><a class="header" href="#übung-22-visual-mode-für-zeilen-aktivieren">Übung 22: Visual-Mode für Zeilen aktivieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie markierst du mehrere Zeilen gleichzeitig, um sie danach kollektiv zu kopieren oder zu löschen?</li>
+<li><strong>Lösung:</strong> Drücke <code>V</code> (<code>Shift+v</code>), um den zeilenweisen Visual-Modus zu starten, und bewege den Cursor mit <code>j</code> oder <code>k</code>.</li>
+</ul>
+<h4 id="übung-23-text-einrücken"><a class="header" href="#übung-23-text-einrücken">Übung 23: Text einrücken</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast mehrere Zeilen im Visual-Modus markiert. Wie rückst du sie um eine Ebene nach rechts ein?</li>
+<li><strong>Lösung:</strong> Drücke die Taste <code>&gt;</code>. Um sie nach links einzurücken, drücke <code>&lt;</code>.</li>
+</ul>
+<h4 id="übung-24-groß-kleinschreibung-umkehren-toggle-case"><a class="header" href="#übung-24-groß-kleinschreibung-umkehren-toggle-case">Übung 24: Groß-/Kleinschreibung umkehren (Toggle Case)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie änderst du die Groß-/Kleinschreibung des Buchstabens unter dem Cursor?</li>
+<li><strong>Lösung:</strong> Drücke die Tilde-Taste <code>~</code>.</li>
+</ul>
+<h4 id="übung-25-bis-zum-zeilenende-löschen"><a class="header" href="#übung-25-bis-zum-zeilenende-löschen">Übung 25: Bis zum Zeilenende löschen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor steht mitten in einer Zeile. Wie löschst du alles von der aktuellen Position bis zum Ende der Zeile?</li>
+<li><strong>Lösung:</strong> Drücke <code>D</code> (<code>Shift+d</code>) oder <code>d$</code>.</li>
+</ul>
+<hr>
+<h3 id="-fortgeschritten-2640-textobjekte-register-und-multi-tasking"><a class="header" href="#-fortgeschritten-2640-textobjekte-register-und-multi-tasking">🔴 Fortgeschritten (26–40): Textobjekte, Register und Multi-Tasking</a></h3>
+<h4 id="übung-26-das-mächtige-textobjekt-inner-word"><a class="header" href="#übung-26-das-mächtige-textobjekt-inner-word">Übung 26: Das mächtige Textobjekt „Inner Word“</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor befindet sich mitten in einem Variablennamen. Wie löschst du das gesamte Wort, egal wo der Cursor steht?</li>
+<li><strong>Lösung:</strong> Drücke <code>diw</code> (Delete Inner Word).</li>
+</ul>
+<h4 id="übung-27-text-in-klammern-ändern"><a class="header" href="#übung-27-text-in-klammern-ändern">Übung 27: Text in Klammern ändern</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast eine Funktionssignatur <code>fn test(parameter: i32)</code> und der Cursor steht in den Klammern. Wie löschst du den gesamten Inhalt der Klammern und wechselst direkt in den Einfüge-Modus?</li>
+<li><strong>Lösung:</strong> Drücke <code>ci(</code> oder <code>cib</code> (Change Inner Parentheses / Block).</li>
+</ul>
+<h4 id="übung-28-text-in-geschweiften-klammern-kopieren"><a class="header" href="#übung-28-text-in-geschweiften-klammern-kopieren">Übung 28: Text in geschweiften Klammern kopieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie kopierst du den gesamten Inhalt innerhalb eines <code>{ ... }</code>-Funktionsblocks, ohne die geschweiften Klammern selbst zu kopieren?</li>
+<li><strong>Lösung:</strong> Drücke <code>yi{</code> oder <code>yiB</code> (Yank Inner Curly Braces / Block).</li>
+</ul>
+<h4 id="übung-29-in-anführungszeichen-gesetzten-text-löschen"><a class="header" href="#übung-29-in-anführungszeichen-gesetzten-text-löschen">Übung 29: In Anführungszeichen gesetzten Text löschen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest den Inhalt eines Strings (z. B. <code>"Hallo Welt"</code>) löschen, die Anführungszeichen aber behalten.</li>
+<li><strong>Lösung:</strong> Drücke <code>di"</code> (Delete Inner Quote).</li>
+</ul>
+<h4 id="übung-30-äußeres-textobjekt-löschen-inkl-umhüllung"><a class="header" href="#übung-30-äußeres-textobjekt-löschen-inkl-umhüllung">Übung 30: Äußeres Textobjekt löschen (inkl. Umhüllung)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie löschst du einen String inklusive der Anführungszeichen?</li>
+<li><strong>Lösung:</strong> Drücke <code>da"</code> (Delete Around Quote).</li>
+</ul>
+<h4 id="übung-31-wiederholungs-befehl-dot-operator"><a class="header" href="#übung-31-wiederholungs-befehl-dot-operator">Übung 31: Wiederholungs-Befehl (Dot-Operator)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast gerade ein Wort mit <code>dw</code> gelöscht. Wie wiederholst du genau diese Löschaktion an einer anderen Stelle mit nur einem einzigen Tastendruck?</li>
+<li><strong>Lösung:</strong> Bewege den Cursor zur neuen Stelle und drücke die Taste <code>.</code> (Punkt).</li>
+</ul>
+<h4 id="übung-32-block-visual-modus-spaltenweises-editieren"><a class="header" href="#übung-32-block-visual-modus-spaltenweises-editieren">Übung 32: Block-Visual-Modus (Spaltenweises Editieren)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest vor fünf untereinanderstehenden Zeilen gleichzeitig ein <code>//</code> einfügen. Welchen Modus nutzt du?</li>
+<li><strong>Lösung:</strong> Drücke <code>Ctrl+v</code> (Visual Block Mode), markiere die Spalte nach unten, drücke <code>I</code> (<code>Shift+i</code>), tippe <code>//</code> und drücke <code>Esc</code>.</li>
+</ul>
+<h4 id="übung-33-multi-register-zwischenablage-gezielt-nutzen"><a class="header" href="#übung-33-multi-register-zwischenablage-gezielt-nutzen">Übung 33: Multi-Register (Zwischenablage gezielt nutzen)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Normalerweise überschreibt jedes Löschen deine Zwischenablage. Wie kopierst du Text explizit in das Register <code>a</code>, um ihn später gezielt einzufügen?</li>
+<li><strong>Lösung:</strong> Tippe <code>"ay</code> im Visual-Modus oder <code>"ayy</code> im Normal-Modus. Zum Einfügen tippe <code>"ap</code>.</li>
+</ul>
+<h4 id="übung-34-makro-aufnehmen"><a class="header" href="#übung-34-makro-aufnehmen">Übung 34: Makro aufnehmen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du musst eine repetitive Editieraufgabe an 20 Stellen ausführen. Wie startest du die Aufnahme eines Makros im Register <code>q</code>?</li>
+<li><strong>Lösung:</strong> Drücke <code>qq</code> im Normal-Modus. Die Statuszeile zeigt nun <code>recording @q</code> an.</li>
+</ul>
+<h4 id="übung-35-makro-aufnahme-beenden"><a class="header" href="#übung-35-makro-aufnahme-beenden">Übung 35: Makro-Aufnahme beenden</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie beendest du die Aufnahme des Makros aus Übung 34?</li>
+<li><strong>Lösung:</strong> Drücke im Normal-Modus die Taste <code>q</code>.</li>
+</ul>
+<h4 id="übung-36-makro-abspielen"><a class="header" href="#übung-36-makro-abspielen">Übung 36: Makro abspielen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie spielst du das aufgenommene Makro aus Register <code>q</code> an der aktuellen Cursorposition ab?</li>
+<li><strong>Lösung:</strong> Drücke <code>@q</code>. Um es z. B. 10-mal auszuführen, tippe <code>10@q</code>.</li>
+</ul>
+<h4 id="übung-37-splits-horizontal-erstellen"><a class="header" href="#übung-37-splits-horizontal-erstellen">Übung 37: Splits horizontal erstellen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie teilst du das Vim-Fenster horizontal, um zwei Dateien übereinander zu sehen?</li>
+<li><strong>Lösung:</strong> Tippe den Befehl <code>:sp</code> (oder <code>:split</code>) und drücke <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-38-splits-vertikal-erstellen"><a class="header" href="#übung-38-splits-vertikal-erstellen">Übung 38: Splits vertikal erstellen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie teilst du das Vim-Fenster vertikal, um zwei Dateien nebeneinander zu sehen?</li>
+<li><strong>Lösung:</strong> Tippe den Befehl <code>:vsp</code> (oder <code>:vsplit</code>) und drücke <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-39-navigation-zwischen-splits"><a class="header" href="#übung-39-navigation-zwischen-splits">Übung 39: Navigation zwischen Splits</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie wechselst du den Cursor-Fokus von einem Split-Fenster in ein anderes?</li>
+<li><strong>Lösung:</strong> Drücke <code>Ctrl+w</code> gefolgt von der Richtungstaste (<code>h</code>, <code>j</code>, <code>k</code>, <code>l</code> oder <code>w</code> für das nächste Fenster).</li>
+</ul>
+<h4 id="übung-40-lokales-suchen-und-ersetzen-substituieren"><a class="header" href="#übung-40-lokales-suchen-und-ersetzen-substituieren">Übung 40: Lokales Suchen und Ersetzen (Substituieren)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie ersetzt du in der aktuellen Zeile das erste Vorkommen von <code>x</code> durch <code>y</code>?</li>
+<li><strong>Lösung:</strong> Tippe <code>:s/x/y/</code> und drücke <code>Enter</code>. Um alle Vorkommen in der Zeile zu ersetzen: <code>:s/x/y/g</code>.</li>
+</ul>
+<hr>
+<h3 id="-challenge-4150-globale-befehle-rust-integration-und-konfiguration"><a class="header" href="#-challenge-4150-globale-befehle-rust-integration-und-konfiguration">⚡ Challenge (41–50): Globale Befehle, Rust-Integration und Konfiguration</a></h3>
+<h4 id="übung-41-globales-suchen-und-ersetzen-im-dokument"><a class="header" href="#übung-41-globales-suchen-und-ersetzen-im-dokument">Übung 41: Globales Suchen und Ersetzen im Dokument</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie ersetzt du im gesamten Dokument jedes Vorkommen der Variable <code>temp_val</code> durch <code>final_val</code> mit einer Bestätigungsaufforderung für jeden Schritt?</li>
+<li><strong>Lösung:</strong> Tippe <code>:%s/temp_val/final_val/gc</code> und drücke <code>Enter</code> (<code>g</code> für global, <code>c</code> für confirm).</li>
+</ul>
+<h4 id="übung-42-zeilen-filtern-mit-g-global"><a class="header" href="#übung-42-zeilen-filtern-mit-g-global">Übung 42: Zeilen filtern mit <code>:g</code> (Global)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie löschst du mit einem einzigen Befehl alle Zeilen im Dokument, die das Wort <code>// TODO</code> enthalten?</li>
+<li><strong>Lösung:</strong> Tippe <code>:g/\/\/ TODO/d</code> und drücke <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-43-cargo-befehle-direkt-aus-vim-ausführen"><a class="header" href="#übung-43-cargo-befehle-direkt-aus-vim-ausführen">Übung 43: Cargo-Befehle direkt aus Vim ausführen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie führst du <code>cargo check</code> aus, ohne Vim zu beenden oder in ein anderes Terminal zu wechseln?</li>
+<li><strong>Lösung:</strong> Tippe <code>:!cargo check</code> und drücke <code>Enter</code> (das <code>!</code> leitet den Befehl an die System-Shell weiter).</li>
+</ul>
+<h4 id="übung-44-externe-shell-ausgabe-in-den-puffer-einfügen"><a class="header" href="#übung-44-externe-shell-ausgabe-in-den-puffer-einfügen">Übung 44: Externe Shell-Ausgabe in den Puffer einfügen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie fügst du das aktuelle Datum und die Uhrzeit direkt unter deinem Cursor in das Dokument ein?</li>
+<li><strong>Lösung:</strong> Tippe <code>:r !date</code> und drücke <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-45-pufferliste-anzeigen-und-wechseln"><a class="header" href="#übung-45-pufferliste-anzeigen-und-wechseln">Übung 45: Pufferliste anzeigen und wechseln</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast mehrere Dateien in Vim geöffnet. Wie lässt du dir die geöffneten Puffer anzeigen und wie wechselst du zum Puffer Nummer 3?</li>
+<li><strong>Lösung:</strong> Tippe <code>:ls</code> (oder <code>:buffers</code>) zum Auflisten. Tippe <code>:b 3</code> zum Wechseln.</li>
+</ul>
+<h4 id="übung-46-zeilen-sortieren"><a class="header" href="#übung-46-zeilen-sortieren">Übung 46: Zeilen sortieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast eine ungeordnete Liste von <code>use</code>-Imports in Rust markiert. Wie sortierst du diese alphabetisch?</li>
+<li><strong>Lösung:</strong> Markiere die Zeilen im Visual-Modus und tippe <code>:sort</code> gefolgt von <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-47-zahlwert-unter-dem-cursor-inkrementieren"><a class="header" href="#übung-47-zahlwert-unter-dem-cursor-inkrementieren">Übung 47: Zahlwert unter dem Cursor inkrementieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Cursor steht auf der Zahl <code>9</code>. Wie erhöhst du diese Zahl ohne den Insert-Modus auf <code>10</code>?</li>
+<li><strong>Lösung:</strong> Drücke <code>Ctrl+a</code>. Zum Dekrementieren drücke <code>Ctrl+x</code>.</li>
+</ul>
+<h4 id="übung-48-rust-analyzer-integration-einrichten-neovim"><a class="header" href="#übung-48-rust-analyzer-integration-einrichten-neovim">Übung 48: Rust-Analyzer Integration einrichten (Neovim)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Welches moderne Plugin-System oder Protokoll wird in Neovim typischerweise konfiguriert, um <code>rust-analyzer</code> direkt im Editor zu betreiben?</li>
+<li><strong>Lösung:</strong> Es wird die integrierte LSP-Konfiguration über Lua (z. B. mit dem Plugin <code>nvim-lspconfig</code> und <code>mason.nvim</code>) oder das Plugin <code>coc.nvim</code> (für Node-basierte Vervollständigung) verwendet.</li>
+</ul>
+<h4 id="übung-49-dateityp-erkennung-erzwingen"><a class="header" href="#übung-49-dateityp-erkennung-erzwingen">Übung 49: Dateityp-Erkennung erzwingen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Vim erkennt eine neu erstellte Datei nicht als Rust-Datei. Wie setzt du den Dateityp manuell auf Rust?</li>
+<li><strong>Lösung:</strong> Tippe <code>:set filetype=rust</code> und drücke <code>Enter</code>.</li>
+</ul>
+<h4 id="übung-50-vim-konfiguration-automatisieren"><a class="header" href="#übung-50-vim-konfiguration-automatisieren">Übung 50: Vim-Konfiguration automatisieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest, dass Vim immer standardmäßig Zeilennummern anzeigt und die Syntaxhervorhebung aktiviert. In welcher Datei trägst du das ein?</li>
+<li><strong>Lösung:</strong> Erstelle und editiere die Datei <code>~/.vimrc</code> (für klassisches Vim) bzw. <code>~/.config/nvim/init.lua</code> (oder <code>init.vim</code> für Neovim) und füge dort Befehle wie <code>set number</code> und <code>syntax on</code> hinzu.</li>
+</ul>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Konzept</th><th>Erklärung</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Normal Mode</strong></td><td>Der Standard-Navigations- und Befehlsmodus. Aktiviert über <code>Esc</code>.</td></tr>
+<tr><td><strong>Insert Mode</strong></td><td>Texttipp-Modus. Aktiviert über <code>i</code>, <code>o</code>, <code>a</code> etc.</td></tr>
+<tr><td><strong>Visual Mode</strong></td><td>Markierungsmodus für Textmanipulationen. Aktiviert über <code>v</code> oder <code>V</code>.</td></tr>
+<tr><td><strong>Textobjekte</strong></td><td>Strukturierte Texteinheiten wie Wörter (<code>iw</code>), Klammerinhalte (<code>i(</code>) oder Strings (<code>i"</code>).</td></tr>
+<tr><td><strong>Register</strong></td><td>Vim-interne Zwischenablagen (z. B. <code>"a</code> für Register A) zur strukturierten Datenablage.</td></tr>
+<tr><td><strong>Splits</strong></td><td>Horizontale oder vertikale Teilungen des Bildschirms zur parallelen Ansicht mehrerer Dateien.</td></tr>
+<tr><td><strong>.vimrc / init.lua</strong></td><td>Die zentralen Konfigurationsdateien zur Individualisierung von Vim/Neovim.</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
+<ul>
+<li><a href="https://github.com/vim/vim">Vimtutor</a> – Führe einfach <code>vimtutor</code> im Terminal aus, um ein interaktives 30-Minuten-Tutorial zu starten.</li>
+<li><a href="https://neovim.io">Neovim Website</a> – Der moderne, erweiterbare Nachfolger von Vim.</li>
+<li><a href="https://vim-adventures.com">Vim Adventures</a> – Ein spielerischer Weg, die Cursor-Steuerung und Tasten von Vim zu lernen.</li>
+<li><a href="https://github.com/rust-lang/rust.vim">rust.vim</a> – Das offizielle Vim-Plugin für Rust-Integration (Syntax, Formatierung).</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="zed-ide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="vibe-coding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="zed-ide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="vibe-coding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
