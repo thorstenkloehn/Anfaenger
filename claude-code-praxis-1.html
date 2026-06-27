@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Planung mit Antigravity /planning - Rust Projektvorschläge für Einsteiger</title>
+        <title>Praxis 1: Grundlagen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,302 +174,189 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-projektplanung-mit-antigravity-planning"><a class="header" href="#-projektplanung-mit-antigravity-planning">📋 Projektplanung mit Antigravity <code>/planning</code></a></h1>
-<p><em>Bevor wir eine einzige Zeile Code schreiben – planen wir gemeinsam.</em></p>
-<hr>
-<p>Gute Projekte entstehen nicht aus dem Nichts. Sie entstehen aus einem <strong>klaren Plan</strong>. In dieser Lektion lernen wir, den interaktiven Planungs-Workflow von Antigravity zu nutzen, um unsere Rust-Projekte <strong>Schritt für Schritt, Aufgabe für Aufgabe</strong> durchzudenken – bevor der erste Code geschrieben wird.</p>
-<blockquote>
-<p>🦀 <strong>Das Prinzip:</strong> Ein Plan ist kein Versprechen. Er ist ein <strong>Kompass</strong> – er zeigt die Richtung, auch wenn der Weg manchmal anders wird.</p>
+                        <h1 id="-claude-code-praxis--teil-1-grundlagen--cargo"><a class="header" href="#-claude-code-praxis--teil-1-grundlagen--cargo">🛠️ Claude Code Praxis – Teil 1 (Grundlagen &amp; Cargo)</a></h1>
+<p>Willkommen im ersten Praxis-Teil zu Claude Code! Hier kannst du dein Wissen aus der Theorie direkt im Terminal anwenden.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Selbsthilfe statt Copy &amp; Paste!</strong>
+In diesem Buch gibt es keine fertigen Lösungsbefehle oder Codelösungen zum blinden Kopieren. Die Übungen geben dir das Ziel vor – die Lösung musst du dir mithilfe der Hinweise und der Claude Code-Hilfe (<code>/help</code>) selbst erarbeiten!</p>
 </blockquote>
 <hr>
-<h2 id="-theorie-was-ist-planning-in-antigravity"><a class="header" href="#-theorie-was-ist-planning-in-antigravity">🧠 Theorie: Was ist <code>/planning</code> in Antigravity?</a></h2>
-<p>Der <code>/planning</code>-Befehl öffnet in Antigravity einen <strong>interaktiven Planungseditor</strong>. Anstatt einfach eine Aufgabe auszuführen, erstellt der Agent zuerst einen strukturierten <strong>Schritt-für-Schritt-Plan</strong> und wartet auf unsere Freigabe.</p>
-<h3 id="wie-planning-funktioniert"><a class="header" href="#wie-planning-funktioniert">Wie <code>/planning</code> funktioniert</a></h3>
-<pre><code>Wir:    /planning Ich möchte das "Zahlen raten"-Projekt in Rust bauen.
-
-Agent:  Hier ist mein Plan:
-
-        [ ] Schritt 1: Zufallszahl mit rand-Crate generieren
-        [ ] Schritt 2: Benutzereingabe lesen und als Zahl parsen
-        [ ] Schritt 3: Vergleich und Feedback ("zu groß"/"zu klein")
-        [ ] Schritt 4: Schleife bis zur richtigen Zahl
-        [ ] Schritt 5: Versuchszähler und Abschlussmeldung
-
-        Soll ich so vorgehen? (Bestätigen / Ändern / Abbrechen)
-</code></pre>
-<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<h2 id="-block-1-installation--erste-schritte-übungen-15"><a class="header" href="#-block-1-installation--erste-schritte-übungen-15">🟢 Block 1: Installation &amp; Erste Schritte (Übungen 1–5)</a></h2>
+<h3 id="übung-1-installation-überprüfen"><a class="header" href="#übung-1-installation-überprüfen">Übung 1: Installation überprüfen</a></h3>
 <ul>
-<li><code>/planning</code> – Der Befehl signalisiert: „Plane zuerst, handle dann.“</li>
-<li>Der Agent listet alle Schritte als <strong>Checkboxen</strong> auf – jeder Schritt ist eine einzelne, erledigbare Aufgabe.</li>
-<li>Wir bestätigen, ändern oder brechen ab – <strong>bevor</strong> etwas passiert.</li>
-<li>Nach der Freigabe arbeitet der Agent Schritt für Schritt durch die Liste.</li>
+<li><strong>Ziel:</strong> Stelle sicher, dass Claude Code und Node.js auf deinem System installiert sind.</li>
+<li><strong>Hinweis:</strong> Du kannst die Versionen von Node.js und npm im Terminal prüfen. Wie lautet der npm-Befehl zur globalen Installation eines Pakets (hier <code>@anthropic-ai/claude-code</code>)?</li>
 </ul>
-<h3 id="der-unterschied-zu-einer-normalen-anfrage"><a class="header" href="#der-unterschied-zu-einer-normalen-anfrage">Der Unterschied zu einer normalen Anfrage</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Normale Anfrage</th><th>Mit <code>/planning</code></th></tr>
-</thead>
-<tbody>
-<tr><td>Agent handelt sofort</td><td>Agent plant zuerst</td></tr>
-<tr><td>Wir sehen Ergebnisse, nicht den Weg</td><td>Wir sehen jeden Schritt vorher</td></tr>
-<tr><td>Schwer rückgängig zu machen</td><td>Jeder Schritt einzeln kontrollierbar</td></tr>
-<tr><td>Gut für kleine Aufgaben</td><td>Ideal für komplexere Projekte</td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="-übung-1-unser-erstes-planning--zahlen-raten"><a class="header" href="#-übung-1-unser-erstes-planning--zahlen-raten">🛠️ Übung 1: Unser erstes <code>/planning</code> – „Zahlen raten“</a></h2>
-<p><strong>Ziel:</strong> Den Planungs-Workflow für Projekt 1 aus Phase 1 erleben.</p>
-<h3 id="schritt-1-antigravity-cli-starten"><a class="header" href="#schritt-1-antigravity-cli-starten">Schritt 1: Antigravity CLI starten</a></h3>
-<pre><code class="language-bash">agy
-</code></pre>
-<h3 id="schritt-2-den-planungs-befehl-eingeben"><a class="header" href="#schritt-2-den-planungs-befehl-eingeben">Schritt 2: Den Planungs-Befehl eingeben</a></h3>
-<pre><code>&gt; /planning Ich möchte das Rust-Projekt "Zahlen raten" planen.
-  
-  Das Programm soll:
-  - Eine Zufallszahl zwischen 1 und 100 wählen
-  - Den Spieler so lange nach Zahlen fragen, bis er richtig liegt
-  - "zu groß" oder "zu klein" ausgeben
-  - Am Ende die Anzahl der Versuche zeigen
-  
-  Erstelle einen Plan mit Lernschritten – keinen fertigen Code.
-</code></pre>
-<h3 id="schritt-3-den-plan-lesen-und-bewerten"><a class="header" href="#schritt-3-den-plan-lesen-und-bewerten">Schritt 3: Den Plan lesen und bewerten</a></h3>
-<p>Der Agent erstellt einen Plan. Bevor wir ihn bestätigen, fragen wir uns:</p>
+<h3 id="übung-2-authentifizierung-durchführen"><a class="header" href="#übung-2-authentifizierung-durchführen">Übung 2: Authentifizierung durchführen</a></h3>
 <ul>
-<li>Sind alle Schritte logisch geordnet?</li>
-<li>Fehlt ein Schritt?</li>
-<li>Ist ein Schritt zu groß (sollte aufgeteilt werden)?</li>
+<li><strong>Ziel:</strong> Logge dich in deinen Anthropic-Account ein, um Claude Code nutzen zu können.</li>
+<li><strong>Hinweis:</strong> Starte den Basisbefehl für Claude Code im Terminal. Es sollte sich ein Browser-Fenster öffnen oder ein Link angezeigt werden.</li>
 </ul>
-<h3 id="schritt-4-den-plan-anpassen"><a class="header" href="#schritt-4-den-plan-anpassen">Schritt 4: Den Plan anpassen</a></h3>
-<pre><code>&gt; Füge zwischen Schritt 2 und 3 einen Schritt ein:
-  "Fehlerbehandlung: Was passiert, wenn der Spieler keine Zahl eingibt?"
-</code></pre>
-<h3 id="schritt-5-den-plan-freigeben"><a class="header" href="#schritt-5-den-plan-freigeben">Schritt 5: Den Plan freigeben</a></h3>
-<pre><code>&gt; Bestätigen
-</code></pre>
-<p><strong>Was jetzt passiert:</strong> Der Agent beginnt, Schritt für Schritt durch die Liste zu gehen. Bei jedem Schritt sehen wir seinen Fortschritt.</p>
-<blockquote>
-<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was hätte ohne den Planungsschritt gefehlt? Was wäre vielleicht direkt vergessen worden?</p>
-</blockquote>
-<hr>
-<h2 id="-übung-2-meilensteine-setzen--planning-für-größere-vorhaben"><a class="header" href="#-übung-2-meilensteine-setzen--planning-für-größere-vorhaben">🛠️ Übung 2: Meilensteine setzen – <code>/planning</code> für größere Vorhaben</a></h2>
-<p><strong>Ziel:</strong> Ein mehrteiliges Lernvorhaben in Meilensteine aufteilen.</p>
-<p>Angenommen, wir wollen alle 10 Projekte der ersten Woche aus Phase 1 abschließen.</p>
-<h3 id="schritt-1-den-meilenstein-plan-erstellen"><a class="header" href="#schritt-1-den-meilenstein-plan-erstellen">Schritt 1: Den Meilenstein-Plan erstellen</a></h3>
-<pre><code>&gt; /planning Ich möchte in dieser Woche 5 Rust-Projekte aus Phase 1 abschließen.
-  
-  Meine verfügbare Zeit: 1 Stunde pro Tag (Montag bis Freitag)
-  Mein aktueller Stand: Ich kenne Variablen und if/else, aber noch keine Schleifen.
-  
-  Erstelle einen Wochenplan mit:
-  - Welches Projekt an welchem Tag
-  - Welches Rust-Konzept ich dabei lerne
-  - Eine konkrete Frage, die ich mir vor Beginn stellen soll
-  
-  Schreibe keinen Code – nur den Plan.
-</code></pre>
-<p><strong>Zeilenweise Dekonstruktion der Anfrage:</strong></p>
+<h3 id="übung-3-projektkontext-initialisieren"><a class="header" href="#übung-3-projektkontext-initialisieren">Übung 3: Projektkontext initialisieren</a></h3>
 <ul>
-<li><code>Meine verfügbare Zeit:</code> – Der Agent kennt unsere Kapazitäten und plant realistisch.</li>
-<li><code>Mein aktueller Stand:</code> – Er weiß, womit er anknüpfen kann.</li>
-<li><code>Eine konkrete Frage vor Beginn</code> – Das ist das <strong>Aktivierungs-Ritual</strong>: Wir denken nach, bevor wir tippen.</li>
+<li><strong>Ziel:</strong> Starte Claude Code in deinem Rust-Projektordner (<code>rust-projekte</code>), sodass die KI den Kontext versteht.</li>
+<li><strong>Hinweis:</strong> Navigiere im Terminal zuerst in den richtigen Ordner, bevor du Claude aufrufst. Teste, ob Claude weiß, in welchem Verzeichnis er sich befindet.</li>
 </ul>
-<h3 id="schritt-2-den-wochenplan-als-datei-speichern"><a class="header" href="#schritt-2-den-wochenplan-als-datei-speichern">Schritt 2: Den Wochenplan als Datei speichern</a></h3>
-<pre><code>&gt; Speichere diesen Plan als wochenplan.md in meinem Rust-Projektordner.
-</code></pre>
-<p><strong>Was entsteht:</strong></p>
-<pre><code class="language-markdown"># Wochenplan – KW 26
-
-## Montag: Projekt 1 – Zahlen raten
-**Lerne:** loop, Benutzereingabe, Vergleich
-**Frage vor Beginn:** Wie lese ich in Rust eine Zeile vom Terminal?
-
-## Dienstag: Projekt 2 – Einkaufsliste  
-**Lerne:** Vec, Ownership beim Hinzufügen
-**Frage vor Beginn:** Was ist ein Vec und warum brauche ich ihn?
-
-...
-</code></pre>
-<h3 id="schritt-3-den-plan-täglich-aktualisieren"><a class="header" href="#schritt-3-den-plan-täglich-aktualisieren">Schritt 3: Den Plan täglich aktualisieren</a></h3>
-<pre><code>&gt; @wochenplan.md Ich habe heute Projekt 1 abgeschlossen. 
-  Markiere Montag als erledigt und füge eine kurze Notiz hinzu:
-  "Größte Herausforderung: .parse() mit Fehlerbehandlung."
-</code></pre>
-<blockquote>
-<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Wie hilft ein schriftlicher Plan dabei, motiviert zu bleiben?</p>
-</blockquote>
-<hr>
-<h2 id="-übung-3-task-listen-führen--fortschritt-sichtbar-machen"><a class="header" href="#-übung-3-task-listen-führen--fortschritt-sichtbar-machen">🛠️ Übung 3: Task-Listen führen – Fortschritt sichtbar machen</a></h2>
-<p><strong>Ziel:</strong> Den Fortschritt eines einzelnen Projekts mit Checkboxen verwalten.</p>
-<h3 id="schritt-1-task-liste-für-ein-projekt-anlegen"><a class="header" href="#schritt-1-task-liste-für-ein-projekt-anlegen">Schritt 1: Task-Liste für ein Projekt anlegen</a></h3>
-<pre><code>&gt; /planning Erstelle eine detaillierte Task-Liste für Projekt 3 
-  aus Phase 1 (Temperatur-Tagebuch).
-  
-  Jede Aufgabe soll:
-  - Eine einzelne, abschließbare Aktion sein
-  - Das Rust-Konzept benennen, das dabei geübt wird
-  - Mit einem Lernziel verknüpft sein
-  
-  Format: Checkbox-Liste in Markdown
-</code></pre>
-<p><strong>Was der Agent erstellt:</strong></p>
-<pre><code class="language-markdown"># Temperatur-Tagebuch – Task-Liste
-
-## Setup
-- [ ] Neues Rust-Projekt anlegen: `cargo new temperatur-tagebuch`
-- [ ] Verzeichnisstruktur verstehen (`src/main.rs`, `Cargo.toml`)
-
-## Daten erfassen
-- [ ] Variable für Temperaturen anlegen (Konzept: Vec&lt;f64&gt;)
-- [ ] Eingabe-Schleife bauen (Konzept: loop)
-- [ ] Benutzereingabe lesen (Konzept: stdin().read_line())
-- [ ] Eingabe in f64 konvertieren (Konzept: .parse::&lt;f64&gt;())
-- [ ] Beendigungsbedingung einbauen (Konzept: break)
-
-## Auswertung
-- [ ] Durchschnitt berechnen (Konzept: iter().sum(), len())
-- [ ] Minimum finden (Konzept: iter().min())  
-- [ ] Maximum finden (Konzept: iter().max())
-
-## Ausgabe
-- [ ] Ergebnisse formatiert ausgeben (Konzept: println! mit {:.1})
-
-## Test
-- [ ] Programm mit 5 Testwerten ausführen
-- [ ] Fehlerfall testen: Was passiert bei Text-Eingabe?
-</code></pre>
-<h3 id="schritt-2-die-liste-in-antigravity-20-öffnen"><a class="header" href="#schritt-2-die-liste-in-antigravity-20-öffnen">Schritt 2: Die Liste in Antigravity 2.0 öffnen</a></h3>
-<p>In Antigravity 2.0 → <strong>Tasks</strong> → die Datei als aktive Task-Liste einbinden.</p>
-<h3 id="schritt-3-aufgaben-beim-erledigen-abhaken"><a class="header" href="#schritt-3-aufgaben-beim-erledigen-abhaken">Schritt 3: Aufgaben beim Erledigen abhaken</a></h3>
-<pre><code class="language-bash">agy
-&gt; @task-liste.md Ich habe gerade die Eingabe-Schleife fertig. 
-  Markiere "Eingabe-Schleife bauen" als erledigt.
-  Was ist der nächste logische Schritt?
-</code></pre>
-<p><strong>Zeilenweise Dekonstruktion:</strong></p>
+<h3 id="übung-4-die-hilfe-funktion-aufrufen"><a class="header" href="#übung-4-die-hilfe-funktion-aufrufen">Übung 4: Die Hilfe-Funktion aufrufen</a></h3>
 <ul>
-<li><code>@task-liste.md</code> – Der Agent sieht die aktuelle Datei mit Fortschrittsstand.</li>
-<li><code>Markiere ... als erledigt</code> – Der Agent setzt <code>[x]</code> statt <code>[ ]</code>.</li>
-<li><code>Was ist der nächste logische Schritt?</code> – Wir fragen nicht nach dem Code, sondern nach dem nächsten <strong>Konzept</strong>.</li>
+<li><strong>Ziel:</strong> Finde heraus, welche internen Befehle (Slash Commands) Claude Code unterstützt.</li>
+<li><strong>Hinweis:</strong> Wenn du in der interaktiven Session bist, beginnen spezielle Befehle immer mit einem Schrägstrich. Probier es mal mit dem englischen Wort für “Hilfe”.</li>
 </ul>
-<blockquote>
-<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Warum ist es motivierender, Checkboxen abzuhaken, als einfach Code zu schreiben?</p>
+<h3 id="übung-5-claude-code-beenden"><a class="header" href="#übung-5-claude-code-beenden">Übung 5: Claude Code beenden</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Verlasse die interaktive Session und kehre zu deiner normalen Terminal-Eingabe zurück.</li>
+<li><strong>Hinweis:</strong> Auch hierfür gibt es einen Slash-Befehl (denke an das englische Wort für “Ausgang”). Alternativ klappt auch eine bekannte Tastenkombination wie <code>Ctrl+C</code> oder <code>Ctrl+D</code>.</li>
+</ul>
+<hr>
+<h2 id="-block-2-basis-kommandos--slash-befehle-übungen-615"><a class="header" href="#-block-2-basis-kommandos--slash-befehle-übungen-615">🟡 Block 2: Basis-Kommandos &amp; Slash-Befehle (Übungen 6–15)</a></h2>
+<h3 id="übung-6-ein-direktes-kommando-absetzen"><a class="header" href="#übung-6-ein-direktes-kommando-absetzen">Übung 6: Ein direktes Kommando absetzen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Stelle Claude eine Frage zu deinem Projekt, ohne in den interaktiven Modus zu wechseln.</li>
+<li><strong>Hinweis:</strong> Du kannst dem Startbefehl von Claude Code einen Text in Anführungszeichen direkt mitgeben. Manchmal nutzt man dafür auch den Parameter <code>-p</code> (für Prompt).</li>
+</ul>
+<h3 id="übung-7-den-chatverlauf-leeren"><a class="header" href="#übung-7-den-chatverlauf-leeren">Übung 7: Den Chatverlauf leeren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Starte innerhalb deiner Session ein komplett neues Thema, ohne alte Informationen mitzuschleppen.</li>
+<li><strong>Hinweis:</strong> Suche in der <code>/help</code>-Übersicht nach einem Befehl, der den Bildschirm oder Verlauf “säubert” (Clear).</li>
+</ul>
+<h3 id="übung-8-kostenkontrolle"><a class="header" href="#übung-8-kostenkontrolle">Übung 8: Kostenkontrolle</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Finde heraus, wie viele Tokens du in der aktuellen Sitzung verbraucht hast und was das kostet.</li>
+<li><strong>Hinweis:</strong> Das englische Wort für Kosten ist ein guter Tipp für den passenden Slash-Befehl.</li>
+</ul>
+<h3 id="übung-9-token-kontext-komprimieren"><a class="header" href="#übung-9-token-kontext-komprimieren">Übung 9: Token-Kontext komprimieren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Deine Unterhaltung ist sehr lang geworden. Komprimiere den Kontext, um Tokens zu sparen, ohne die Kerninformationen zu verlieren.</li>
+<li><strong>Hinweis:</strong> Es gibt einen Slash-Befehl, der so ähnlich klingt wie das englische Wort “compact”.</li>
+</ul>
+<h3 id="übung-10-letzte-änderungen-anzeigen"><a class="header" href="#übung-10-letzte-änderungen-anzeigen">Übung 10: Letzte Änderungen anzeigen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Claude hat gerade an deinen Dateien gearbeitet. Lass dir eine Übersicht (Diff) der Änderungen anzeigen.</li>
+<li><strong>Hinweis:</strong> Entwickler nennen den Unterschied zwischen zwei Dateiversionen “Diff”. Welcher Slash-Befehl könnte das sein?</li>
+</ul>
+<h3 id="übung-11-konfiguration-prüfen"><a class="header" href="#übung-11-konfiguration-prüfen">Übung 11: Konfiguration prüfen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lass dir anzeigen, welches KI-Modell (z.B. Claude 3.5 Sonnet) aktuell verwendet wird.</li>
+<li><strong>Hinweis:</strong> Suche nach einem Slash-Befehl für die “Config” oder Konfiguration.</li>
+</ul>
+<h3 id="übung-12-modell-wechseln"><a class="header" href="#übung-12-modell-wechseln">Übung 12: Modell wechseln</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Ändere das verwendete Modell für die aktuelle Session testweise auf ein schnelleres oder günstigeres Modell (z.B. Haiku).</li>
+<li><strong>Hinweis:</strong> Schau in der Hilfe nach, ob es einen Befehl für Modelle (<code>/model</code>) gibt.</li>
+</ul>
+<h3 id="übung-13-read-only-modus-testen"><a class="header" href="#übung-13-read-only-modus-testen">Übung 13: Read-Only Modus testen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Starte Claude Code so, dass er Dateien nur lesen, aber auf keinen Fall verändern darf (Sicherheitsmodus).</li>
+<li><strong>Hinweis:</strong> Wenn du Claude aus dem Terminal startest, gibt es dafür einen speziellen Start-Parameter (Flag). Denke an das englische “read-only”.</li>
+</ul>
+<h3 id="übung-14-theme-anpassen"><a class="header" href="#übung-14-theme-anpassen">Übung 14: Theme anpassen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Wechsle die Farbe deines Claude Code Terminals auf “light” oder “dark”.</li>
+<li><strong>Hinweis:</strong> Solche Einstellungen kannst du im interaktiven Konfigurationsmenü vornehmen.</li>
+</ul>
+<h3 id="übung-15-letzten-terminal-befehl-wiederholen"><a class="header" href="#übung-15-letzten-terminal-befehl-wiederholen">Übung 15: Letzten Terminal-Befehl wiederholen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Claude schlägt dir die Ausführung eines Terminal-Befehls vor. Wie bestätigst du ihn am schnellsten?</li>
+<li><strong>Hinweis:</strong> Meistens reicht es, einfach “y” (für yes) einzugeben oder direkt die Eingabetaste (Enter) zu drücken.</li>
+</ul>
+<hr>
+<h2 id="-block-3-sessions--kontext-übungen-1620"><a class="header" href="#-block-3-sessions--kontext-übungen-1620">🟠 Block 3: Sessions &amp; Kontext (Übungen 16–20)</a></h2>
+<h3 id="übung-16-ordner-ignorieren"><a class="header" href="#übung-16-ordner-ignorieren">Übung 16: Ordner ignorieren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Verhindere, dass Claude Code versehentlich in sensible Ordner (z.B. <code>.env</code>-Dateien oder bestimmte Build-Verzeichnisse) schaut.</li>
+<li><strong>Hinweis:</strong> Wie bei Git (<code>.gitignore</code>) gibt es auch für Claude eine spezielle Datei, die du im Hauptverzeichnis anlegen kannst (<code>.claudeignore</code>).</li>
+</ul>
+<h3 id="übung-17-spezifische-dateien-fokussieren"><a class="header" href="#übung-17-spezifische-dateien-fokussieren">Übung 17: Spezifische Dateien fokussieren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Zwinge Claude dazu, sich nur auf EINE bestimmte Datei in <code>src/</code> zu konzentrieren.</li>
+<li><strong>Hinweis:</strong> Formuliere deinen Prompt ganz exakt. Nenne den genauen Dateipfad und verbiete Änderungen an anderen Dateien.</li>
+</ul>
+<h3 id="übung-18-hintergrund-tasks-starten"><a class="header" href="#übung-18-hintergrund-tasks-starten">Übung 18: Hintergrund-Tasks starten</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lass Claude eine zeitaufwändige Analyse durchführen, während du weiter im Terminal arbeiten kannst.</li>
+<li><strong>Hinweis:</strong> Finde in den aktuellen Docs heraus, ob es ein Flag oder einen Befehl gibt, der Aufgaben in den Hintergrund (Background) schiebt.</li>
+</ul>
+<h3 id="übung-19-session-wieder-aufnehmen"><a class="header" href="#übung-19-session-wieder-aufnehmen">Übung 19: Session wieder aufnehmen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Du hast das Terminal gestern geschlossen. Nimm die exakt selbe Unterhaltung von gestern heute wieder auf.</li>
+<li><strong>Hinweis:</strong> Claude Code speichert Historien. Schau nach Startparametern wie <code>--continue</code> in der Dokumentation.</li>
+</ul>
+<h3 id="übung-20-projekt-onboarding-durch-die-ki"><a class="header" href="#übung-20-projekt-onboarding-durch-die-ki">Übung 20: Projekt-Onboarding durch die KI</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lass dir von Claude Code als Erstes die Architektur des aktuellen Projekts anhand der <code>Cargo.toml</code> und <code>src/main.rs</code> erklären.</li>
+<li><strong>Hinweis:</strong> Beschreibe im Prompt genau, welche zwei Dateien er lesen soll, und frag nach einer einfachen Zusammenfassung.</li>
+</ul>
+<hr>
+<h2 id="-block-4-file-edits--refactoring-übungen-2125"><a class="header" href="#-block-4-file-edits--refactoring-übungen-2125">🔵 Block 4: File Edits &amp; Refactoring (Übungen 21–25)</a></h2>
+<h3 id="übung-21-neue-datei-erstellen-lassen"><a class="header" href="#übung-21-neue-datei-erstellen-lassen">Übung 21: Neue Datei erstellen lassen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lass Claude Code eine neue Datei <code>src/math.rs</code> mit einer einfachen Additions-Funktion anlegen.</li>
+<li><strong>Hinweis:</strong> Du musst den genauen Pfad nennen. Überprüfe anschließend das von Claude vorgeschlagene Diff, bevor du zustimmst.</li>
+</ul>
+<h3 id="übung-22-modul-einbindung-refactoring"><a class="header" href="#übung-22-modul-einbindung-refactoring">Übung 22: Modul-Einbindung (Refactoring)</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Claude hat <code>math.rs</code> erstellt. Nun soll er dieses Modul in <code>main.rs</code> einbinden und die Additions-Funktion aufrufen.</li>
+<li><strong>Hinweis:</strong> Wie importiert man in Rust Module? Lass Claude das übernehmen: “Binde das Modul X in Y ein und…”</li>
+</ul>
+<h3 id="übung-23-dokumentation-generieren"><a class="header" href="#übung-23-dokumentation-generieren">Übung 23: Dokumentation generieren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Claude soll für alle Funktionen in <code>src/math.rs</code> Rust-Dokumentationskommentare (<code>///</code>) schreiben.</li>
+<li><strong>Hinweis:</strong> Sag Claude, er soll sich an den offiziellen Rust-Standard für Doc-Comments halten.</li>
+</ul>
+<h3 id="übung-24-variablen-umbenennen-projektweit"><a class="header" href="#übung-24-variablen-umbenennen-projektweit">Übung 24: Variablen umbenennen (Projektweit)</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lass eine Variable in deinem Code durch Claude umbenennen, sodass sie in allen betroffenen Dateien automatisch aktualisiert wird.</li>
+<li><strong>Hinweis:</strong> Achte darauf, dass Claude das gesamte Projekt scannt, damit keine Aufrufe übersehen werden.</li>
+</ul>
+<h3 id="übung-25-interaktives-diff-ablehnen"><a class="header" href="#übung-25-interaktives-diff-ablehnen">Übung 25: Interaktives Diff ablehnen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Claude schlägt eine Änderung vor, die dir nicht gefällt. Lehne sie ab und gib ihm direkt Feedback, was er stattdessen tun soll.</li>
+<li><strong>Hinweis:</strong> Anstatt einfach “n” (Nein) zu drücken, kannst du oft direkt einen Text tippen, um deinen Änderungswunsch zu äußern.</li>
+</ul>
+<hr>
+<h2 id="-block-5-basis-fehlerbehebung-mit-cargo-übungen-2630"><a class="header" href="#-block-5-basis-fehlerbehebung-mit-cargo-übungen-2630">🟣 Block 5: Basis-Fehlerbehebung mit Cargo (Übungen 26–30)</a></h2>
+<h3 id="übung-26-syntaxfehler-provozieren-und-beheben"><a class="header" href="#übung-26-syntaxfehler-provozieren-und-beheben">Übung 26: Syntaxfehler provozieren und beheben</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Lösche in <code>main.rs</code> absichtlich ein Semikolon <code>;</code> am Ende einer Zeile. Lass Claude Code den Fehler finden und korrigieren.</li>
+<li><strong>Hinweis:</strong> Weise Claude an: “Führe <code>cargo check</code> aus und behebe den Fehler”.</li>
+</ul>
+<h3 id="übung-27-clippy-warnungen-auflösen"><a class="header" href="#übung-27-clippy-warnungen-auflösen">Übung 27: Clippy-Warnungen auflösen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Fordere Claude auf, das Projekt nach idiomatischem Rust-Standard zu überprüfen und Verbesserungsvorschläge direkt einzuarbeiten.</li>
+<li><strong>Hinweis:</strong> Welches Cargo-Tool überprüft den Code auf Best Practices? Richtig, Clippy! Sag Claude: “Lass <code>cargo clippy</code> laufen und behebe Warnungen.”</li>
+</ul>
+<h3 id="übung-28-test-getriebenes-reparieren-tdd"><a class="header" href="#übung-28-test-getriebenes-reparieren-tdd">Übung 28: Test-getriebenes Reparieren (TDD)</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Schreibe einen simplen Test, der fehlschlägt (z.B. <code>assert_eq!(1+1, 3);</code>). Lass Claude solange an der Logik schrauben, bis der Test grün wird.</li>
+<li><strong>Hinweis:</strong> “Führe <code>cargo test</code> aus. Repariere den Code, bis die Tests erfolgreich sind.”</li>
+</ul>
+<h3 id="übung-29-unnötige-abhängigkeiten-aufspüren"><a class="header" href="#übung-29-unnötige-abhängigkeiten-aufspüren">Übung 29: Unnötige Abhängigkeiten aufspüren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Finde heraus, ob in deiner <code>Cargo.toml</code> Crates stehen, die im Rust-Code gar nicht verwendet werden.</li>
+<li><strong>Hinweis:</strong> Lass Claude Code das Projekt analysieren: “Gibt es Abhängigkeiten in Cargo.toml, die wir in .rs-Dateien nicht importieren?”</li>
+</ul>
+<h3 id="übung-30-code-formatierung-erzwingen"><a class="header" href="#übung-30-code-formatierung-erzwingen">Übung 30: Code-Formatierung erzwingen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Bringe Claude Code dazu, nach jeder Dateibearbeitung immer den Rust-Standard-Formatter über das Projekt laufen zu lassen.</li>
+<li><strong>Hinweis:</strong> Rust hat ein eingebautes Tool zur Formatierung (<code>cargo fmt</code>). Du kannst das als Zusatzanweisung in deinen Prompt aufnehmen.</li>
+</ul>
+<hr>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p><strong>Tipp für Fortgeschrittene:</strong>
+Wenn du möchtest, dass Claude Code bei jedem Start automatisch auf Cargo-Standards (fmt, clippy, test) achtet, kannst du diese Regeln später in einer zentralen <code>CLAUDE.md</code>-Datei im Projekt festhalten!</p>
 </blockquote>
-<hr>
-<h2 id="-übung-4-planungs-review--was-lief-gut-was-nicht"><a class="header" href="#-übung-4-planungs-review--was-lief-gut-was-nicht">🛠️ Übung 4: Planungs-Review – Was lief gut, was nicht?</a></h2>
-<p><strong>Ziel:</strong> Nach einem abgeschlossenen Projekt den Plan rückwirkend bewerten.</p>
-<h3 id="schritt-1-das-retrospektiv-gespräch"><a class="header" href="#schritt-1-das-retrospektiv-gespräch">Schritt 1: Das Retrospektiv-Gespräch</a></h3>
-<pre><code>&gt; @task-liste.md Ich habe das Projekt abgeschlossen. 
-  Führe mit mir eine kurze Retrospektive durch:
-  
-  1. Welche Aufgaben haben länger gedauert als erwartet?
-  2. Welche Aufgabe war die lehrreichste?
-  3. Was würde ich beim nächsten Projekt anders planen?
-  
-  Stelle mir diese Fragen eine nach der anderen – warte auf meine Antwort.
-</code></pre>
-<p><strong>Was passiert:</strong> Der Agent führt ein strukturiertes Interview mit uns – eine Frage nach der anderen. Er wartet auf unsere Antwort, bevor er weitermacht.</p>
-<h3 id="schritt-2-erkenntnisse-in-agentsmd-übertragen"><a class="header" href="#schritt-2-erkenntnisse-in-agentsmd-übertragen">Schritt 2: Erkenntnisse in AGENTS.md übertragen</a></h3>
-<pre><code>&gt; Fasse meine Retrospektive in 3 Stichpunkten zusammen 
-  und füge sie in AGENTS.md unter "Mein Lernstand" ein.
-</code></pre>
-<h3 id="schritt-3-den-nächsten-plan-informierter-starten"><a class="header" href="#schritt-3-den-nächsten-plan-informierter-starten">Schritt 3: Den nächsten Plan informierter starten</a></h3>
-<p>Beim nächsten <code>/planning</code>-Aufruf kennt der Agent unsere Retrospektive – und plant realistischer.</p>
-<blockquote>
-<p>🔍 <strong>Nachdenk-Aufgabe:</strong> Was ist der Unterschied zwischen einem Plan, der vor dem Projekt entsteht, und einer Retrospektive danach?</p>
-</blockquote>
-<hr>
-<h2 id="-übung-5-automatischer-planungs-assistent-in-antigravity-20"><a class="header" href="#-übung-5-automatischer-planungs-assistent-in-antigravity-20">🛠️ Übung 5: Automatischer Planungs-Assistent in Antigravity 2.0</a></h2>
-<p><strong>Ziel:</strong> Einen Scheduled Task einrichten, der uns jeden Montag beim Planen hilft.</p>
-<h3 id="schritt-1-den-task-erstellen"><a class="header" href="#schritt-1-den-task-erstellen">Schritt 1: Den Task erstellen</a></h3>
-<p>In Antigravity 2.0 → <strong>Scheduled Tasks</strong> → <strong>New Task</strong>:</p>
-<pre><code>Name:    Wöchentliche Projektplanung
-Cron:    0 9 * * 1    (Jeden Montag um 09:00)
-Aufgabe: Lies meine AGENTS.md.
-         Führe einen /planning-Workflow für diese Woche durch:
-         - Welche Projekte aus Phase 1 nehme ich mir vor?
-         - Wie viel Zeit habe ich realistisch?
-         - Was ist das Konzept, das ich diese Woche vertiefen möchte?
-         
-         Erstelle einen Wochenplan als wochenplan-[DATUM].md
-         und lege ihn im Rust-Projektordner ab.
-         Schreibe keinen Code.
-</code></pre>
-<h3 id="schritt-2-den-ersten-automatischen-plan-abwarten"><a class="header" href="#schritt-2-den-ersten-automatischen-plan-abwarten">Schritt 2: Den ersten automatischen Plan abwarten</a></h3>
-<p>Am nächsten Montag um 09:00 Uhr erscheint eine Benachrichtigung. Der Agent hat bereits einen Wochenplan erstellt – wir müssen ihn nur noch bestätigen oder anpassen.</p>
-<h3 id="schritt-3-den-plan-als-lernritual-etablieren"><a class="header" href="#schritt-3-den-plan-als-lernritual-etablieren">Schritt 3: Den Plan als Lernritual etablieren</a></h3>
-<p>Montagmorgen → Plan lesen → anpassen → Woche starten.</p>
-<hr>
-<h2 id="-das-vollständige-planungs-system"><a class="header" href="#-das-vollständige-planungs-system">📊 Das vollständige Planungs-System</a></h2>
-<p>Kombinieren wir alle Übungen zu einem <strong>durchgehenden Planungs-Workflow</strong>:</p>
-<pre><code>MONTAG 09:00
-│
-├─ 📋 /planning – Wochenplan erstellen
-│   └─ wochenplan-[KW].md wird angelegt
-│
-├─ 🗒️ Task-Listen – Pro Projekt eine task-liste.md
-│   └─ Checkboxen werden täglich aktualisiert
-│
-├─ 🔁 Täglich: Checkpoint
-│   └─ "@task-liste.md Ich bin bei Aufgabe X. Was als Nächstes?"
-│
-└─ FREITAG 17:00
-    └─ 🔍 Retrospektive: Was lief gut? Was würde ich ändern?
-        └─ Erkenntnisse → AGENTS.md aktualisieren
-</code></pre>
-<h3 id="die-planungs-dateien-im-überblick"><a class="header" href="#die-planungs-dateien-im-überblick">Die Planungs-Dateien im Überblick</a></h3>
-<pre><code>mein-rust-projekt/
-├── AGENTS.md                      ← Lernstand &amp; Regeln
-├── wochenplan-kw26.md             ← Wöchentlicher Überblick
-├── temperatur-tagebuch-tasks.md   ← Task-Liste Projekt 3
-├── zahlen-raten-tasks.md          ← Task-Liste Projekt 1
-└── retrospektive-juni.md          ← Monatliche Rückschau
-</code></pre>
-<hr>
-<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Werkzeug</th><th>Befehl</th><th>Wann nutzen?</th></tr>
-</thead>
-<tbody>
-<tr><td>Planungs-Workflow</td><td><code>/planning [Aufgabe]</code></td><td>Vor jedem neuen Projekt</td></tr>
-<tr><td>Task-Liste</td><td><code>@task-liste.md</code> + Checkboxen</td><td>Während des Projekts</td></tr>
-<tr><td>Wochenplan</td><td>Scheduled Task montags</td><td>Zu Beginn jeder Woche</td></tr>
-<tr><td>Retrospektive</td><td>Nach Projektabschluss</td><td>Nach jedem Projekt</td></tr>
-<tr><td>AGENTS.md Update</td><td>Nach Retrospektive</td><td>Wöchentlich</td></tr>
-</tbody>
-</table>
-</div>
-<blockquote>
-<p>🦀 <strong>Merke:</strong> Planung ist nicht das Gegenteil von Lernen – sie <strong>ist</strong> ein Teil des Lernens.<br>Wer plant, denkt schon über das Problem nach, bevor er es löst.<br>Und genau das macht einen guten Entwickler aus – egal ob Anfänger oder Profi.</p>
-</blockquote>
-<hr>
-<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Ressource</th><th>Link</th></tr>
-</thead>
-<tbody>
-<tr><td>Antigravity /planning</td><td><a href="https://antigravity.google/docs">antigravity.google/docs</a></td></tr>
-<tr><td>Antigravity Scheduled Tasks</td><td><a href="https://antigravity.google/docs">antigravity.google/docs</a></td></tr>
-<tr><td>Rust Projektstruktur</td><td><a href="https://doc.rust-lang.org/book/ch01-03-hello-cargo.html">doc.rust-lang.org/book/ch01-03-hello-cargo.html</a></td></tr>
-</tbody>
-</table>
-</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="einleitung.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="claude-code.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="phase1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="claude-code-praxis-2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -479,11 +366,11 @@ Aufgabe: Lies meine AGENTS.md.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="einleitung.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="claude-code.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="phase1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="claude-code-praxis-2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

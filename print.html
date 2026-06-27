@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-e6195870.js";
+            window.path_to_searchindex_js = "searchindex-03e567e4.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-932795b9.js"></script>
+        <script src="toc-111795ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3607,382 +3607,395 @@ was du tun willst. Ich möchte jeden Schritt verstehen.
 </table>
 </div>
 <h3 id="wie-funktioniert-der-agenten-workflow"><a class="header" href="#wie-funktioniert-der-agenten-workflow">Wie funktioniert der Agenten-Workflow?</a></h3>
-<p>Wenn du Claude Code eine Aufgabe gibst (z. B. <em>„Finde den Fehler im Rechner-Modul und behebe ihn“</em>), arbeitet der Agent in einer Schleife (Loop):</p>
+<p>Wenn du Claude Code eine Aufgabe gibst (z. B. <em>„Finde den Fehler im Rechner-Modul und behebe ihn“</em>), arbeitet der Agent in einer Schleife (Agentic Loop):</p>
 <ol>
-<li><strong>Analysieren:</strong> Er durchsucht das Projektverzeichnis nach relevanten Dateien.</li>
-<li><strong>Lesen:</strong> Er öffnet und liest die betroffenen <code>.rs</code>-Dateien.</li>
+<li><strong>Analysieren:</strong> Er durchsucht das Projektverzeichnis nach relevanten Dateien (mittels <code>ls</code>, <code>grep</code> etc.).</li>
+<li><strong>Lesen:</strong> Er öffnet und liest die betroffenen <code>.rs</code>-Dateien (<code>view_file</code>).</li>
 <li><strong>Planen:</strong> Er erstellt einen Plan, wie der Fehler behoben werden kann.</li>
-<li><strong>Schreiben:</strong> Er modifiziert die Dateien.</li>
+<li><strong>Schreiben:</strong> Er modifiziert die Dateien (<code>edit_file</code>).</li>
 <li><strong>Prüfen:</strong> Er führt <code>cargo check</code> oder <code>cargo test</code> aus, um zu sehen, ob sein Fix funktioniert. Falls nicht, korrigiert er sich selbst so lange, bis die Tests bestehen.</li>
 <li><strong>Bestätigen:</strong> Er zeigt dir ein farbiges Diff (Änderungen) und bittet dich um Erlaubnis, die Änderungen dauerhaft zu speichern.</li>
 </ol>
 <hr>
-<h2 id="-praxis-aufgaben-3"><a class="header" href="#-praxis-aufgaben-3">🛠️ Praxis-Aufgaben</a></h2>
-<h3 id="aufgabe-a-installation-und-erster-start"><a class="header" href="#aufgabe-a-installation-und-erster-start">Aufgabe A: Installation und erster Start</a></h3>
-<ol>
-<li>Claude Code benötigt Node.js. Stelle sicher, dass Node.js auf deinem System installiert ist.</li>
-<li>Installiere Claude Code global über dein Terminal:
-<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code
-</code></pre>
-</li>
-<li>Navigiere in dein Rust-Projektverzeichnis.</li>
-<li>Starte Claude Code durch Eingabe von:
-<pre><code class="language-bash">claude
-</code></pre>
-</li>
-<li>Logge dich über den angezeigten Link in deinen Anthropic-Account ein, um das Tool zu autorisieren.</li>
-</ol>
+<h2 id="-memory--anweisungen-claudemd"><a class="header" href="#-memory--anweisungen-claudemd">💾 Memory &amp; Anweisungen (CLAUDE.md)</a></h2>
+<p>Claude Code kann sich über mehrere Sitzungen hinweg Dinge merken. Es gibt zwei Hauptwege, wie Claude lernt, wie du in deinem Projekt arbeiten möchtest:</p>
+<h3 id="1-claudemd"><a class="header" href="#1-claudemd">1. CLAUDE.md</a></h3>
+<p>Wenn du eine Datei namens <code>CLAUDE.md</code> in dein Projektverzeichnis legst, liest Claude Code diese bei jedem Start automatisch ein.
+Hier kannst du projektweite Regeln definieren:</p>
+<ul>
+<li>Wie gebaut und getestet wird (z. B. <code>cargo build --release</code>).</li>
+<li>Namenskonventionen oder Architektur-Richtlinien.</li>
+<li>Vorgaben (z. B. “Schreibe keine unwrap() Aufrufe”).</li>
+</ul>
+<h3 id="2-auto-memory-automatisches-lernen"><a class="header" href="#2-auto-memory-automatisches-lernen">2. Auto-Memory (Automatisches Lernen)</a></h3>
+<p>Wenn du Claude im Chat korrigierst oder ihm sagst, dass er sich etwas für die Zukunft merken soll (z. B. mit dem Befehl <code>/learn</code>), speichert er dieses Wissen in der <code>.claude/</code> Mappe ab. So passt er sich kontinuierlich an deinen Coding-Stil an, ohne dass du alles jedes Mal neu erklären musst.</p>
 <hr>
-<h3 id="aufgabe-b-projekt-erkunden"><a class="header" href="#aufgabe-b-projekt-erkunden">Aufgabe B: Projekt erkunden</a></h3>
-<ol>
-<li>Starte Claude Code im interaktiven Modus (<code>claude</code>).</li>
-<li>Stelle dem Agenten die Frage:
-<pre><code class="language-text">Gib mir eine Übersicht über die Struktur dieses Rust-Projekts und erkläre, welche Crates in Cargo.toml definiert sind.
-</code></pre>
-</li>
-<li>Beobachte, wie Claude Code die Dateien im Hintergrund auflistet und analysiert.</li>
-<li>Beende die Session mit dem Slash-Befehl <code>/exit</code>.</li>
-</ol>
-<h3 id="aufgabe-c-fehlerbehebung-anstoßen"><a class="header" href="#aufgabe-c-fehlerbehebung-anstoßen">Aufgabe C: Fehlerbehebung anstoßen</a></h3>
-<ol>
-<li>Öffne deine <code>src/main.rs</code> und baue absichtlich einen Syntaxfehler ein (z. B. ein fehlendes Semikolon oder einen falschen Variablennamen).</li>
-<li>Starte Claude Code im Terminal mit einer direkten Aufgabe:
-<pre><code class="language-bash">claude "Führe cargo check aus und behebe alle gefundenen Fehler"
-</code></pre>
-</li>
-<li>Beobachte die Ausführung: Claude Code wird <code>cargo check</code> starten, die Fehlermeldung auswerten, die Zeile in <code>src/main.rs</code> editieren, erneut testen und dir das Diff zur Bestätigung vorlegen.</li>
-</ol>
+<h2 id="-berechtigungen-permission-modes"><a class="header" href="#-berechtigungen-permission-modes">🔒 Berechtigungen (Permission Modes)</a></h2>
+<p>Da Claude Code Befehle in deiner Shell ausführt, ist Sicherheit wichtig. Claude Code kennt verschiedene Berechtigungsmodi, die du z. B. über <code>/config</code> einstellen kannst:</p>
+<ul>
+<li><strong>Ask (Nachfragen):</strong> Claude fragt vor jedem Terminal-Befehl und vor jeder Datei-Änderung um Erlaubnis. (Standard für sensible Aktionen)</li>
+<li><strong>Auto-Approve:</strong> Du kannst bestimmte Befehle (wie <code>cargo check</code>, <code>cargo test</code>, <code>git status</code>) automatisch erlauben. Claude führt sie dann sofort aus.</li>
+<li><strong>Read-Only Mode:</strong> Startest du Claude mit <code>claude --readonly</code>, darf der Agent nur Dateien lesen, aber nichts ändern oder schreiben. Perfekt für Code-Analysen ohne Risiko.</li>
+</ul>
 <hr>
-<h3 id="aufgabe-d-arbeiten-mit-pipes--cli-chaining"><a class="header" href="#aufgabe-d-arbeiten-mit-pipes--cli-chaining">Aufgabe D: Arbeiten mit Pipes &amp; CLI-Chaining</a></h3>
-<ol>
-<li>Erstelle einige ungespeicherte Änderungen in deinem Rust-Code.</li>
-<li>Generiere eine automatisierte Commit-Nachricht, indem du das Git-Diff direkt an Claude Code übergibst:
-<pre><code class="language-bash">git diff | claude -p "Schreibe eine prägnante Git-Commit-Nachricht basierend auf diesem Diff"
-</code></pre>
-</li>
-<li>Führe absichtlich einen fehlerhaften Test aus und pipe die Ausgabe an Claude:
-<pre><code class="language-bash">cargo test 2&gt;&amp;1 | claude -p "Erkläre mir, welcher Test fehlschlägt und warum (keinen Code generieren)"
-</code></pre>
-</li>
-</ol>
+<h2 id="-context-window--prompt-caching"><a class="header" href="#-context-window--prompt-caching">⚡ Context Window &amp; Prompt Caching</a></h2>
+<p>Wenn du mit großen Rust-Projekten arbeitest, liest Claude oft viele Dateien ein.</p>
+<ul>
+<li><strong>Context Window:</strong> Claude Code nutzt das riesige Kontextfenster (über 200.000 Token) von Modellen wie Claude 3.5 Sonnet, um ganze Repositories auf einmal zu überblicken.</li>
+<li><strong>Prompt Caching:</strong> Um Kosten zu sparen und Antworten zu beschleunigen, nutzt Claude Code “Prompt Caching”. Häufig gelesene Dateien werden im Hintergrund zwischengespeichert.</li>
+</ul>
 <hr>
-<h3 id="aufgabe-e-sicherheitsmodus-und-offline-betrieb"><a class="header" href="#aufgabe-e-sicherheitsmodus-und-offline-betrieb">Aufgabe E: Sicherheitsmodus und Offline-Betrieb</a></h3>
+<h2 id="-praxis--übungen"><a class="header" href="#-praxis--übungen">🚀 Praxis &amp; Übungen</a></h2>
+<p>Um die schiere Menge an Möglichkeiten und Funktionen zu erlernen, haben wir die Praxisübungen in zwei Kapitel unterteilt:</p>
 <ol>
-<li>Um sicherzustellen, dass Claude Code keine Dateien verändert, starte das Tool im Read-Only-Modus:
-<pre><code class="language-bash">claude --readonly
-</code></pre>
-</li>
-<li>Versuche im Chat, eine Datei erstellen zu lassen (z. B. <code>Erstelle docs/test.txt</code>). Beobachte, wie der Agent dies verweigert oder darauf hinweist, dass er keine Schreibrechte hat.</li>
-<li>Starte Claude Code ohne Internetzugang, um rein lokal zu arbeiten:
-<pre><code class="language-bash">claude --no-internet
-</code></pre>
-</li>
-<li>Frage nach einer Rust-Syntax-Erklärung. Claude wird ausschließlich auf lokale Dokumentationen und sein internes Wissen zurückgreifen.</li>
+<li><strong><a href="#-claude-code-praxis--teil-1-grundlagen--cargo">Praxis Teil 1: Grundlagen &amp; Cargo-Integration</a></strong> - Übungen 1 bis 30 (Installation, Basic Commands, Fehlerbehebung).</li>
+<li><strong><a href="#-claude-code--praxis--fortgeschrittene-teil-2">Praxis Teil 2: Profi-Workflows &amp; Git</a></strong> - Übungen 31 bis 60+ (Git, CI/CD, Agent Memory, Permissions).</li>
 </ol>
-<hr>
-<h3 id="aufgabe-f-kosten-und-konfiguration-anpassen"><a class="header" href="#aufgabe-f-kosten-und-konfiguration-anpassen">Aufgabe F: Kosten und Konfiguration anpassen</a></h3>
-<ol>
-<li>Starte eine interaktive Session mit <code>claude</code>.</li>
-<li>Öffne das Konfigurationsmenü über:
-<pre><code class="language-text">/config
-</code></pre>
-</li>
-<li>Überprüfe die aktuellen Einstellungen (z. B. Autorisierungen für Befehle).</li>
-<li>Lass dir nach ein paar Test-Prompts den genauen finanziellen Verbrauch der aktuellen Sitzung anzeigen:
-<pre><code class="language-text">/cost
-</code></pre>
-</li>
-</ol>
-<hr>
-<h2 id="-50-übungen-mit-lösungen"><a class="header" href="#-50-übungen-mit-lösungen">🚀 50 Übungen mit Lösungen</a></h2>
-<p>Die folgenden Übungen helfen dir, die Steuerung, die Slash-Befehle und die Prompts von Claude Code optimal für deine Rust-Projekte einzusetzen.</p>
+<p>Bitte arbeite diese Kapitel nacheinander durch, um vom Anfänger zum Profi im Umgang mit Claude Code zu werden!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-claude-code-praxis--teil-1-grundlagen--cargo"><a class="header" href="#-claude-code-praxis--teil-1-grundlagen--cargo">🛠️ Claude Code Praxis – Teil 1 (Grundlagen &amp; Cargo)</a></h1>
+<p>Willkommen im ersten Praxis-Teil zu Claude Code! Hier kannst du dein Wissen aus der Theorie direkt im Terminal anwenden.</p>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Das Buchkonzept verbietet fertigen Rust-Code als Lösung.</strong>
-Die Lösungen konzentrieren sich auf CLI-Parameter, Slash-Befehle, Prompts zur Steuerung des Agenten und Konfigurationseinstellungen.</p>
+<p><strong>Selbsthilfe statt Copy &amp; Paste!</strong>
+In diesem Buch gibt es keine fertigen Lösungsbefehle oder Codelösungen zum blinden Kopieren. Die Übungen geben dir das Ziel vor – die Lösung musst du dir mithilfe der Hinweise und der Claude Code-Hilfe (<code>/help</code>) selbst erarbeiten!</p>
 </blockquote>
 <hr>
-<h3 id="-einstieg-110-starten-beenden-und-grundlegende-prompts"><a class="header" href="#-einstieg-110-starten-beenden-und-grundlegende-prompts">🟢 Einstieg (1–10): Starten, Beenden und grundlegende Prompts</a></h3>
-<h4 id="übung-1-interaktive-session-starten"><a class="header" href="#übung-1-interaktive-session-starten">Übung 1: Interaktive Session starten</a></h4>
+<h2 id="-block-1-installation--erste-schritte-übungen-15"><a class="header" href="#-block-1-installation--erste-schritte-übungen-15">🟢 Block 1: Installation &amp; Erste Schritte (Übungen 1–5)</a></h2>
+<h3 id="übung-1-installation-überprüfen"><a class="header" href="#übung-1-installation-überprüfen">Übung 1: Installation überprüfen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie startest du die interaktive Chat-Konsole von Claude Code in deinem aktuellen Projektverzeichnis?</li>
-<li><strong>Lösung:</strong> Gib den Befehl <code>claude</code> im Terminal ein.</li>
+<li><strong>Ziel:</strong> Stelle sicher, dass Claude Code und Node.js auf deinem System installiert sind.</li>
+<li><strong>Hinweis:</strong> Du kannst die Versionen von Node.js und npm im Terminal prüfen. Wie lautet der npm-Befehl zur globalen Installation eines Pakets (hier <code>@anthropic-ai/claude-code</code>)?</li>
 </ul>
-<h4 id="übung-2-session-beenden"><a class="header" href="#übung-2-session-beenden">Übung 2: Session beenden</a></h4>
+<h3 id="übung-2-authentifizierung-durchführen"><a class="header" href="#übung-2-authentifizierung-durchführen">Übung 2: Authentifizierung durchführen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie verlässt du die interaktive Konsole von Claude Code wieder und kehrst zur normalen Shell zurück?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/exit</code> oder drücke <code>Ctrl+d</code>.</li>
+<li><strong>Ziel:</strong> Logge dich in deinen Anthropic-Account ein, um Claude Code nutzen zu können.</li>
+<li><strong>Hinweis:</strong> Starte den Basisbefehl für Claude Code im Terminal. Es sollte sich ein Browser-Fenster öffnen oder ein Link angezeigt werden.</li>
 </ul>
-<h4 id="übung-3-hilfe-anzeigen"><a class="header" href="#übung-3-hilfe-anzeigen">Übung 3: Hilfe anzeigen</a></h4>
+<h3 id="übung-3-projektkontext-initialisieren"><a class="header" href="#übung-3-projektkontext-initialisieren">Übung 3: Projektkontext initialisieren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie lässt du dir innerhalb von Claude Code alle verfügbaren Systembefehle und Tastenkürzel auflisten?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/help</code>.</li>
+<li><strong>Ziel:</strong> Starte Claude Code in deinem Rust-Projektordner (<code>rust-projekte</code>), sodass die KI den Kontext versteht.</li>
+<li><strong>Hinweis:</strong> Navigiere im Terminal zuerst in den richtigen Ordner, bevor du Claude aufrufst. Teste, ob Claude weiß, in welchem Verzeichnis er sich befindet.</li>
 </ul>
-<h4 id="übung-4-direktes-kommando-ausführen-ohne-interaktiven-modus"><a class="header" href="#übung-4-direktes-kommando-ausführen-ohne-interaktiven-modus">Übung 4: Direktes Kommando ausführen (ohne interaktiven Modus)</a></h4>
+<h3 id="übung-4-die-hilfe-funktion-aufrufen"><a class="header" href="#übung-4-die-hilfe-funktion-aufrufen">Übung 4: Die Hilfe-Funktion aufrufen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du möchtest dem Agenten nur eine schnelle Frage stellen (z. B. „Erkläre das Modul utils“), ohne in der interaktiven Konsole zu bleiben. Wie lautet der Terminalbefehl?</li>
-<li><strong>Lösung:</strong> Führe <code>claude "Erkläre das Modul utils"</code> direkt in deiner Shell aus.</li>
+<li><strong>Ziel:</strong> Finde heraus, welche internen Befehle (Slash Commands) Claude Code unterstützt.</li>
+<li><strong>Hinweis:</strong> Wenn du in der interaktiven Session bist, beginnen spezielle Befehle immer mit einem Schrägstrich. Probier es mal mit dem englischen Wort für “Hilfe”.</li>
 </ul>
-<h4 id="übung-5-prompt-zum-projekt-onboarding"><a class="header" href="#übung-5-prompt-zum-projekt-onboarding">Übung 5: Prompt zum Projekt-Onboarding</a></h4>
+<h3 id="übung-5-claude-code-beenden"><a class="header" href="#übung-5-claude-code-beenden">Übung 5: Claude Code beenden</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt gibst du Claude Code am besten bei einem völlig neuen Projekt, um einen Überblick über den Einstiegspunkt und den Zweck des Codes zu bekommen?</li>
-<li><strong>Lösung:</strong> <code>„Lies die README.md und die main.rs und erkläre mir kurz den Zweck und die Architektur dieses Projekts.“</code></li>
-</ul>
-<h4 id="übung-6-chatverlauf-löschen"><a class="header" href="#übung-6-chatverlauf-löschen">Übung 6: Chatverlauf löschen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie setzt du den aktuellen Chatverlauf in einer aktiven Session zurück, um wieder mit einem leeren Kontext zu arbeiten?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/clear</code>.</li>
-</ul>
-<h4 id="übung-7-kosten-und-token-verbrauch-anzeigen"><a class="header" href="#übung-7-kosten-und-token-verbrauch-anzeigen">Übung 7: Kosten und Token-Verbrauch anzeigen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie prüfst du während einer Session, wie viele API-Kosten und Token du im aktuellen Chat verbraucht hast?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/cost</code>.</li>
-</ul>
-<h4 id="übung-8-letzte-diffs-anzeigen"><a class="header" href="#übung-8-letzte-diffs-anzeigen">Übung 8: Letzte Diffs anzeigen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du dir in Claude Code die Änderungen anzeigen, die der Agent in der aktuellen Session an den Dateien vorgenommen hat?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/diff</code>.</li>
-</ul>
-<h4 id="übung-9-one-shot-dokumentation-generieren"><a class="header" href="#übung-9-one-shot-dokumentation-generieren">Übung 9: One-Shot-Dokumentation generieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie forderst du Claude Code über die Befehlszeile auf, eine Dokumentationsdatei <code>docs/ARCHITECTURE.md</code> basierend auf dem Code in <code>src/</code> zu erstellen?</li>
-<li><strong>Lösung:</strong> <code>claude "Analysiere den Code in src/ und erstelle eine Dokumentation unter docs/ARCHITECTURE.md"</code></li>
-</ul>
-<h4 id="übung-10-letzten-befehl-im-terminal-wiederholen"><a class="header" href="#übung-10-letzten-befehl-im-terminal-wiederholen">Übung 10: Letzten Befehl im Terminal wiederholen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, den letzten vom Agenten vorgeschlagenen Terminalbefehl erneut auszuführen?</li>
-<li><strong>Lösung:</strong> Bestätige die Nachfrage des Agenten im Terminal mit <code>y</code> (oder drücke einfach <code>Enter</code>, falls dies die Standardoption ist).</li>
+<li><strong>Ziel:</strong> Verlasse die interaktive Session und kehre zu deiner normalen Terminal-Eingabe zurück.</li>
+<li><strong>Hinweis:</strong> Auch hierfür gibt es einen Slash-Befehl (denke an das englische Wort für “Ausgang”). Alternativ klappt auch eine bekannte Tastenkombination wie <code>Ctrl+C</code> oder <code>Ctrl+D</code>.</li>
 </ul>
 <hr>
-<h3 id="-mittelstufe-1125-cargo-integration-und-fehlerbehebung"><a class="header" href="#-mittelstufe-1125-cargo-integration-und-fehlerbehebung">🟡 Mittelstufe (11–25): Cargo-Integration und Fehlerbehebung</a></h3>
-<h4 id="übung-11-cargo-check-prompt"><a class="header" href="#übung-11-cargo-check-prompt">Übung 11: Cargo Check Prompt</a></h4>
+<h2 id="-block-2-basis-kommandos--slash-befehle-übungen-615"><a class="header" href="#-block-2-basis-kommandos--slash-befehle-übungen-615">🟡 Block 2: Basis-Kommandos &amp; Slash-Befehle (Übungen 6–15)</a></h2>
+<h3 id="übung-6-ein-direktes-kommando-absetzen"><a class="header" href="#übung-6-ein-direktes-kommando-absetzen">Übung 6: Ein direktes Kommando absetzen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt nutzt du, damit Claude Code prüft, ob dein Rust-Projekt ohne Compilerfehler baut?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo check aus und zeige mir, ob Compilerfehler vorliegen.“</code></li>
+<li><strong>Ziel:</strong> Stelle Claude eine Frage zu deinem Projekt, ohne in den interaktiven Modus zu wechseln.</li>
+<li><strong>Hinweis:</strong> Du kannst dem Startbefehl von Claude Code einen Text in Anführungszeichen direkt mitgeben. Manchmal nutzt man dafür auch den Parameter <code>-p</code> (für Prompt).</li>
 </ul>
-<h4 id="übung-12-fehlerbehebung-anstoßen"><a class="header" href="#übung-12-fehlerbehebung-anstoßen">Übung 12: Fehlerbehebung anstoßen</a></h4>
+<h3 id="übung-7-den-chatverlauf-leeren"><a class="header" href="#übung-7-den-chatverlauf-leeren">Übung 7: Den Chatverlauf leeren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du hast Compilerfehler. Wie lautet der Prompt, damit Claude Code diese analysiert und behebt?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo check aus, finde die Ursachen für alle Fehler und behebe sie in den entsprechenden Dateien.“</code></li>
+<li><strong>Ziel:</strong> Starte innerhalb deiner Session ein komplett neues Thema, ohne alte Informationen mitzuschleppen.</li>
+<li><strong>Hinweis:</strong> Suche in der <code>/help</code>-Übersicht nach einem Befehl, der den Bildschirm oder Verlauf “säubert” (Clear).</li>
 </ul>
-<h4 id="übung-13-nur-bestimmte-dateien-bearbeiten-lassen"><a class="header" href="#übung-13-nur-bestimmte-dateien-bearbeiten-lassen">Übung 13: Nur bestimmte Dateien bearbeiten lassen</a></h4>
+<h3 id="übung-8-kostenkontrolle"><a class="header" href="#übung-8-kostenkontrolle">Übung 8: Kostenkontrolle</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du möchtest verhindern, dass der Agent das gesamte Projekt anfasst. Wie schränkst du seine Aufgabe im Prompt auf <code>src/lib.rs</code> ein?</li>
-<li><strong>Lösung:</strong> <code>„Optimiere die Fehlerbehandlung, aber nimm Änderungen ausschließlich in src/lib.rs vor.“</code></li>
+<li><strong>Ziel:</strong> Finde heraus, wie viele Tokens du in der aktuellen Sitzung verbraucht hast und was das kostet.</li>
+<li><strong>Hinweis:</strong> Das englische Wort für Kosten ist ein guter Tipp für den passenden Slash-Befehl.</li>
 </ul>
-<h4 id="übung-14-test-schleife-starten-cargo-test"><a class="header" href="#übung-14-test-schleife-starten-cargo-test">Übung 14: Test-Schleife starten (cargo test)</a></h4>
+<h3 id="übung-9-token-kontext-komprimieren"><a class="header" href="#übung-9-token-kontext-komprimieren">Übung 9: Token-Kontext komprimieren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie instruierst du Claude Code, deine Tests so lange laufen zu lassen und den Code zu korrigieren, bis alle Tests erfolgreich durchlaufen?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo test aus. Wenn Tests fehlschlagen, repariere den Code und wiederhole den Testlauf, bis alles grün ist.“</code></li>
+<li><strong>Ziel:</strong> Deine Unterhaltung ist sehr lang geworden. Komprimiere den Kontext, um Tokens zu sparen, ohne die Kerninformationen zu verlieren.</li>
+<li><strong>Hinweis:</strong> Es gibt einen Slash-Befehl, der so ähnlich klingt wie das englische Wort “compact”.</li>
 </ul>
-<h4 id="übung-15-clippy-warnungen-beheben"><a class="header" href="#übung-15-clippy-warnungen-beheben">Übung 15: Clippy-Warnungen beheben</a></h4>
+<h3 id="übung-10-letzte-änderungen-anzeigen"><a class="header" href="#übung-10-letzte-änderungen-anzeigen">Übung 10: Letzte Änderungen anzeigen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie lautet der Befehl, um idiomatischen Rust-Stil über Clippy zu erzwingen und vom Agenten einarbeiten zu lassen?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo clippy aus und behebe alle Warnungen und Vorschläge zur Code-Qualität.“</code></li>
+<li><strong>Ziel:</strong> Claude hat gerade an deinen Dateien gearbeitet. Lass dir eine Übersicht (Diff) der Änderungen anzeigen.</li>
+<li><strong>Hinweis:</strong> Entwickler nennen den Unterschied zwischen zwei Dateiversionen “Diff”. Welcher Slash-Befehl könnte das sein?</li>
 </ul>
-<h4 id="übung-16-interaktive-diffs-ablehnen"><a class="header" href="#übung-16-interaktive-diffs-ablehnen">Übung 16: Interaktive Diffs ablehnen</a></h4>
+<h3 id="übung-11-konfiguration-prüfen"><a class="header" href="#übung-11-konfiguration-prüfen">Übung 11: Konfiguration prüfen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Claude Code schlägt eine Änderung in deiner <code>main.rs</code> vor, die dir nicht gefällt. Wie reagierst du im Terminal-Prompt?</li>
-<li><strong>Lösung:</strong> Wähle bei der Bestätigungsaufforderung <code>n</code> (Nein) oder tippe ein Feedback ein wie: <code>„Nein, behalte die ursprüngliche Logik bei, verwende aber eine Match-Anweisung statt if let.“</code></li>
+<li><strong>Ziel:</strong> Lass dir anzeigen, welches KI-Modell (z.B. Claude 3.5 Sonnet) aktuell verwendet wird.</li>
+<li><strong>Hinweis:</strong> Suche nach einem Slash-Befehl für die “Config” oder Konfiguration.</li>
 </ul>
-<h4 id="übung-17-token-kontext-komprimieren"><a class="header" href="#übung-17-token-kontext-komprimieren">Übung 17: Token-Kontext komprimieren</a></h4>
+<h3 id="übung-12-modell-wechseln"><a class="header" href="#übung-12-modell-wechseln">Übung 12: Modell wechseln</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wenn der Chatverlauf sehr lang wird, verbraucht Claude viele Token. Mit welchem Slash-Befehl kannst du den bisherigen Verlauf komprimieren (compacten), um Token zu sparen?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/compact</code>.</li>
+<li><strong>Ziel:</strong> Ändere das verwendete Modell für die aktuelle Session testweise auf ein schnelleres oder günstigeres Modell (z.B. Haiku).</li>
+<li><strong>Hinweis:</strong> Schau in der Hilfe nach, ob es einen Befehl für Modelle (<code>/model</code>) gibt.</li>
 </ul>
-<h4 id="übung-18-konfiguration-anzeigen"><a class="header" href="#übung-18-konfiguration-anzeigen">Übung 18: Konfiguration anzeigen</a></h4>
+<h3 id="übung-13-read-only-modus-testen"><a class="header" href="#übung-13-read-only-modus-testen">Übung 13: Read-Only Modus testen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie lässt du dir die aktuellen Einstellungen von Claude Code (z. B. das genutzte Modell oder die Berechtigungen) anzeigen?</li>
-<li><strong>Lösung:</strong> Tippe den Slash-Befehl <code>/config</code>.</li>
+<li><strong>Ziel:</strong> Starte Claude Code so, dass er Dateien nur lesen, aber auf keinen Fall verändern darf (Sicherheitsmodus).</li>
+<li><strong>Hinweis:</strong> Wenn du Claude aus dem Terminal startest, gibt es dafür einen speziellen Start-Parameter (Flag). Denke an das englische “read-only”.</li>
 </ul>
-<h4 id="übung-19-auto-formatierung-erzwingen"><a class="header" href="#übung-19-auto-formatierung-erzwingen">Übung 19: Auto-Formatierung erzwingen</a></h4>
+<h3 id="übung-14-theme-anpassen"><a class="header" href="#übung-14-theme-anpassen">Übung 14: Theme anpassen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie bringst du den Agenten dazu, nach seinen Änderungen den Rust-Formatter über das Projekt laufen zu lassen?</li>
-<li><strong>Lösung:</strong> <code>„Nachdem du die Änderungen vorgenommen hast, formatiere das gesamte Projekt mit cargo fmt.“</code></li>
+<li><strong>Ziel:</strong> Wechsle die Farbe deines Claude Code Terminals auf “light” oder “dark”.</li>
+<li><strong>Hinweis:</strong> Solche Einstellungen kannst du im interaktiven Konfigurationsmenü vornehmen.</li>
 </ul>
-<h4 id="übung-20-erklärung-von-imports-anfordern"><a class="header" href="#übung-20-erklärung-von-imports-anfordern">Übung 20: Erklärung von Imports anfordern</a></h4>
+<h3 id="übung-15-letzten-terminal-befehl-wiederholen"><a class="header" href="#übung-15-letzten-terminal-befehl-wiederholen">Übung 15: Letzten Terminal-Befehl wiederholen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du siehst in der <code>Cargo.toml</code> eine dir unbekannte Crate. Wie lässt du dir deren Verwendung im Projekt erklären?</li>
-<li><strong>Lösung:</strong> <code>„Erkläre mir, wofür die Crate XYZ in diesem Projekt verwendet wird und zeige mir die Stellen im Code, wo wir sie importieren.“</code></li>
-</ul>
-<h4 id="übung-21-unit-test-gerüst-anfordern"><a class="header" href="#übung-21-unit-test-gerüst-anfordern">Übung 21: Unit-Test-Gerüst anfordern</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt nutzt du, um für eine spezifische Funktion in <code>src/math.rs</code> ein passendes Unit-Test-Modul schreiben zu lassen?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle in src/math.rs ein Test-Modul mit mindestens drei Unit-Tests für die Funktion XYZ.“</code></li>
-</ul>
-<h4 id="übung-22-unnötige-abhängigkeiten-finden"><a class="header" href="#übung-22-unnötige-abhängigkeiten-finden">Übung 22: Unnötige Abhängigkeiten finden</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Welcher Prompt hilft dir herauszufinden, ob in <code>Cargo.toml</code> Crates eingetragen sind, die im Quellcode gar nicht importiert werden?</li>
-<li><strong>Lösung:</strong> <code>„Überprüfe, ob es in Cargo.toml Abhängigkeiten gibt, die in keiner unserer .rs-Dateien verwendet werden.“</code></li>
-</ul>
-<h4 id="übung-23-log-dateien-einlesen"><a class="header" href="#übung-23-log-dateien-einlesen">Übung 23: Log-Dateien einlesen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Deine App stürzt ab und schreibt einen Log unter <code>target/debug/error.log</code>. Wie weist du Claude Code an, diesen Log zu analysieren?</li>
-<li><strong>Lösung:</strong> <code>„Lies target/debug/error.log, finde die Absturzursache im Code und schlage eine Behebung vor.“</code></li>
-</ul>
-<h4 id="übung-24-globale-ignorier-regeln-claudeignore"><a class="header" href="#übung-24-globale-ignorier-regeln-claudeignore">Übung 24: Globale Ignorier-Regeln (<code>.claudeignore</code>)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest verhindern, dass Claude Code jemals eine bestimmte Datei (z. B. <code>.env</code> oder Passwörter) liest. Wo konfigurierst du das?</li>
-<li><strong>Lösung:</strong> Erstelle im Projektverzeichnis eine Datei <code>.claudeignore</code> und trage dort die zu ignorierenden Dateipfade ein (analog zu <code>.gitignore</code>).</li>
-</ul>
-<h4 id="übung-25-api-limit-status-abfragen"><a class="header" href="#übung-25-api-limit-status-abfragen">Übung 25: API-Limit-Status abfragen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie prüfst du, wie viel deines monatlichen Anthropic-Budgets noch übrig ist?</li>
-<li><strong>Lösung:</strong> Nutze den Slash-Befehl <code>/cost</code> oder <code>/cost limit</code> in der Konsole.</li>
+<li><strong>Ziel:</strong> Claude schlägt dir die Ausführung eines Terminal-Befehls vor. Wie bestätigst du ihn am schnellsten?</li>
+<li><strong>Hinweis:</strong> Meistens reicht es, einfach “y” (für yes) einzugeben oder direkt die Eingabetaste (Enter) zu drücken.</li>
 </ul>
 <hr>
-<h3 id="-fortgeschritten-2640-git-integration-und-multi-file-aktionen"><a class="header" href="#-fortgeschritten-2640-git-integration-und-multi-file-aktionen">🔴 Fortgeschritten (26–40): Git-Integration und Multi-File-Aktionen</a></h3>
-<h4 id="übung-26-git-commit-durch-claude-code-schreiben-lassen"><a class="header" href="#übung-26-git-commit-durch-claude-code-schreiben-lassen">Übung 26: Git Commit durch Claude Code schreiben lassen</a></h4>
+<h2 id="-block-3-sessions--kontext-übungen-1620"><a class="header" href="#-block-3-sessions--kontext-übungen-1620">🟠 Block 3: Sessions &amp; Kontext (Übungen 16–20)</a></h2>
+<h3 id="übung-16-ordner-ignorieren"><a class="header" href="#übung-16-ordner-ignorieren">Übung 16: Ordner ignorieren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Claude Code hat deine Änderungen fertiggestellt. Wie lässt du ihn direkt einen passenden Git-Commit formulieren und ausführen?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle einen Git-Commit für die aktuellen Änderungen mit einer passenden Commit-Nachricht nach Conventional-Commits-Standard.“</code></li>
+<li><strong>Ziel:</strong> Verhindere, dass Claude Code versehentlich in sensible Ordner (z.B. <code>.env</code>-Dateien oder bestimmte Build-Verzeichnisse) schaut.</li>
+<li><strong>Hinweis:</strong> Wie bei Git (<code>.gitignore</code>) gibt es auch für Claude eine spezielle Datei, die du im Hauptverzeichnis anlegen kannst (<code>.claudeignore</code>).</li>
 </ul>
-<h4 id="übung-27-commit-entwurf-manuell-anpassen"><a class="header" href="#übung-27-commit-entwurf-manuell-anpassen">Übung 27: Commit-Entwurf manuell anpassen</a></h4>
+<h3 id="übung-17-spezifische-dateien-fokussieren"><a class="header" href="#übung-17-spezifische-dateien-fokussieren">Übung 17: Spezifische Dateien fokussieren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie verhinderst du, dass Claude Code einen Commit direkt pusht, sondern ihn nur lokal committet?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle den Commit nur lokal, führe kein git push aus.“</code></li>
+<li><strong>Ziel:</strong> Zwinge Claude dazu, sich nur auf EINE bestimmte Datei in <code>src/</code> zu konzentrieren.</li>
+<li><strong>Hinweis:</strong> Formuliere deinen Prompt ganz exakt. Nenne den genauen Dateipfad und verbiete Änderungen an anderen Dateien.</li>
 </ul>
-<h4 id="übung-28-refactoring-über-mehrere-dateien-hinweg-multi-file"><a class="header" href="#übung-28-refactoring-über-mehrere-dateien-hinweg-multi-file">Übung 28: Refactoring über mehrere Dateien hinweg (Multi-File)</a></h4>
+<h3 id="übung-18-hintergrund-tasks-starten"><a class="header" href="#übung-18-hintergrund-tasks-starten">Übung 18: Hintergrund-Tasks starten</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du möchtest den Namen eines Structs (z. B. <code>Config</code> zu <code>AppConfig</code>) im gesamten Projekt ändern. Wie lautet der Prompt?</li>
-<li><strong>Lösung:</strong> <code>„Benenne das Struct Config in AppConfig um und passe alle Importe und Verwendungen in allen Dateien des Projekts an.“</code></li>
+<li><strong>Ziel:</strong> Lass Claude eine zeitaufwändige Analyse durchführen, während du weiter im Terminal arbeiten kannst.</li>
+<li><strong>Hinweis:</strong> Finde in den aktuellen Docs heraus, ob es ein Flag oder einen Befehl gibt, der Aufgaben in den Hintergrund (Background) schiebt.</li>
 </ul>
-<h4 id="übung-29-feature-zweig-erstellen"><a class="header" href="#übung-29-feature-zweig-erstellen">Übung 29: Feature-Zweig erstellen</a></h4>
+<h3 id="übung-19-session-wieder-aufnehmen"><a class="header" href="#übung-19-session-wieder-aufnehmen">Übung 19: Session wieder aufnehmen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie weist du Claude Code an, vor der Bearbeitung einer Aufgabe einen neuen Git-Branch zu erstellen?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle einen neuen Git-Branch namens feature/fehlerbehandlung und wechsle dorthin, bevor du mit der Arbeit beginnst.“</code></li>
+<li><strong>Ziel:</strong> Du hast das Terminal gestern geschlossen. Nimm die exakt selbe Unterhaltung von gestern heute wieder auf.</li>
+<li><strong>Hinweis:</strong> Claude Code speichert Historien. Schau nach Startparametern wie <code>--continue</code> in der Dokumentation.</li>
 </ul>
-<h4 id="übung-30-undo-der-letzten-claude-änderung-über-git"><a class="header" href="#übung-30-undo-der-letzten-claude-änderung-über-git">Übung 30: Undo der letzten Claude-Änderung über Git</a></h4>
+<h3 id="übung-20-projekt-onboarding-durch-die-ki"><a class="header" href="#übung-20-projekt-onboarding-durch-die-ki">Übung 20: Projekt-Onboarding durch die KI</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du hast die Änderungen von Claude Code bestätigt, merkst aber im Nachhinein, dass sie fehlerhaft waren. Wie bringst du Claude dazu, das über Git rückgängig zu machen?</li>
-<li><strong>Lösung:</strong> <code>„Mache die letzten Änderungen in diesem Git-Repository rückgängig (git checkout / git reset).“</code></li>
-</ul>
-<h4 id="übung-31-performance-flaschenhälse-suchen"><a class="header" href="#übung-31-performance-flaschenhälse-suchen">Übung 31: Performance-Flaschenhälse suchen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt sendest du, um den Code nach offensichtlichen Performance-Flaschenhälsen (z. B. unnötigen Klon-Vorgängen <code>.clone()</code>) durchsuchen zu lassen?</li>
-<li><strong>Lösung:</strong> <code>„Suche im Projekt nach unnötigen .clone()-Aufrufen oder teuren Allokationen und schlage performantere Alternativen vor.“</code></li>
-</ul>
-<h4 id="übung-32-fehlerbehandlung-verbessern"><a class="header" href="#übung-32-fehlerbehandlung-verbessern">Übung 32: Fehlerbehandlung verbessern</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, panikgefährdete Stellen (<code>unwrap()</code>, <code>expect()</code>) in sichere Fehlerbehandlung (<code>Result</code>) umzuschreiben?</li>
-<li><strong>Lösung:</strong> <code>„Suche nach unwrap() und expect() im Code und ersetze sie durch eine sichere Fehlerbehandlung mit Result und dem ?-Operator.“</code></li>
-</ul>
-<h4 id="übung-33-config-werte-setzen"><a class="header" href="#übung-33-config-werte-setzen">Übung 33: <code>/config</code> Werte setzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie stellst du die Standardberechtigung für Terminalbefehle in Claude Code über das CLI-Menü auf „Immer nachfragen“ (ask)?</li>
-<li><strong>Lösung:</strong> Führe den Befehl <code>/config set auto_approve_commands false</code> aus (oder passe es interaktiv in <code>/config</code> an).</li>
-</ul>
-<h4 id="übung-34-dokumentation-aus-code-kommentaren-generieren"><a class="header" href="#übung-34-dokumentation-aus-code-kommentaren-generieren">Übung 34: Dokumentation aus Code-Kommentaren generieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du eine API-Dokumentation für dein Library-Projekt generieren?</li>
-<li><strong>Lösung:</strong> <code>„Generiere aus allen mit /// markierten Dokumentationskommentaren im Code eine zusammenfassende API.md.“</code></li>
-</ul>
-<h4 id="übung-35-interaktiven-modus-mit-vordefiniertem-prompt-starten"><a class="header" href="#übung-35-interaktiven-modus-mit-vordefiniertem-prompt-starten">Übung 35: Interaktiven Modus mit vordefiniertem Prompt starten</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest Claude Code starten und direkt eine Frage mitgeben, aber danach in der interaktiven Konsole bleiben. Wie machst du das?</li>
-<li><strong>Lösung:</strong> Starte mit <code>claude -p "Deine Frage"</code> (bzw. <code>--prompt</code>).</li>
-</ul>
-<h4 id="übung-36-debugging-mit-test-ausgaben"><a class="header" href="#übung-36-debugging-mit-test-ausgaben">Übung 36: Debugging mit Test-Ausgaben</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ein Test schlägt fehl, aber die Ursache ist unklar. Wie weist du Claude Code an, Debugging-Ausgaben einzubauen, um den Fehler zu isolieren?</li>
-<li><strong>Lösung:</strong> <code>„Füge temporäre println!- oder dbg!-Ausgaben in die fehlschlagende Testfunktion ein, führe cargo test aus und analysiere die Ausgaben.“</code></li>
-</ul>
-<h4 id="übung-37-cargo-benchmarks-auswerten"><a class="header" href="#übung-37-cargo-benchmarks-auswerten">Übung 37: Cargo Benchmarks auswerten</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du deine Benchmark-Ergebnisse analysieren?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo bench aus und interpretiere die Ergebnisse. Zeige mir, welche Funktionen sich verbessert oder verschlechtert haben.“</code></li>
-</ul>
-<h4 id="übung-38-abhängigkeiten-update-prüfen"><a class="header" href="#übung-38-abhängigkeiten-update-prüfen">Übung 38: Abhängigkeiten-Update prüfen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt nutzt du, um veraltete Crates in Cargo.toml zu identifizieren und zu aktualisieren?</li>
-<li><strong>Lösung:</strong> <code>„Prüfe, ob für unsere Abhängigkeiten in Cargo.toml neuere Versionen verfügbar sind, und aktualisiere sie vorsichtig.“</code></li>
-</ul>
-<h4 id="übung-39-codeabdeckung-coverage-verbessern"><a class="header" href="#übung-39-codeabdeckung-coverage-verbessern">Übung 39: Codeabdeckung (Coverage) verbessern</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, gezielt Tests für noch nicht abgedeckte Codepfade zu schreiben?</li>
-<li><strong>Lösung:</strong> <code>„Analysiere, welche Codepfade in src/ noch keine Unit-Tests haben, und schreibe Tests für diese Randfälle (Edge Cases).“</code></li>
-</ul>
-<h4 id="übung-40-compiler-warnings-als-fehler-behandeln-deny-warnings"><a class="header" href="#übung-40-compiler-warnings-als-fehler-behandeln-deny-warnings">Übung 40: Compiler-Warnings als Fehler behandeln (Deny Warnings)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du das Projekt so prüfen, dass alle Compiler-Warnungen wie Fehler behandelt werden, um maximale Code-Sauberkeit zu garantieren?</li>
-<li><strong>Lösung:</strong> <code>„Führe cargo check aus, setze dabei die Umgebungsvariable RUSTFLAGS="-D warnings" und behebe alle auftretenden Warnungen.“</code></li>
+<li><strong>Ziel:</strong> Lass dir von Claude Code als Erstes die Architektur des aktuellen Projekts anhand der <code>Cargo.toml</code> und <code>src/main.rs</code> erklären.</li>
+<li><strong>Hinweis:</strong> Beschreibe im Prompt genau, welche zwei Dateien er lesen soll, und frag nach einer einfachen Zusammenfassung.</li>
 </ul>
 <hr>
-<h3 id="-challenge-4150-komplexe-agentensteuerung-und-cicd"><a class="header" href="#-challenge-4150-komplexe-agentensteuerung-und-cicd">⚡ Challenge (41–50): Komplexe Agentensteuerung und CI/CD</a></h3>
-<h4 id="übung-41-agentsmd-regeln-erweitern"><a class="header" href="#übung-41-agentsmd-regeln-erweitern">Übung 41: AGENTS.md-Regeln erweitern</a></h4>
+<h2 id="-block-4-file-edits--refactoring-übungen-2125"><a class="header" href="#-block-4-file-edits--refactoring-übungen-2125">🔵 Block 4: File Edits &amp; Refactoring (Übungen 21–25)</a></h2>
+<h3 id="übung-21-neue-datei-erstellen-lassen"><a class="header" href="#übung-21-neue-datei-erstellen-lassen">Übung 21: Neue Datei erstellen lassen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie lässt du Claude Code eine neue Regel bezüglich Code-Formatierung (z.B. <code>cargo fmt</code> vor Commits) in die Datei <code>AGENTS.md</code> einarbeiten?</li>
-<li><strong>Lösung:</strong> <code>„Füge in der Datei AGENTS.md unter Regeln den Punkt 'Formatierung: Vor jedem Git-Commit muss cargo fmt ausgeführt werden' hinzu.“</code></li>
+<li><strong>Ziel:</strong> Lass Claude Code eine neue Datei <code>src/math.rs</code> mit einer einfachen Additions-Funktion anlegen.</li>
+<li><strong>Hinweis:</strong> Du musst den genauen Pfad nennen. Überprüfe anschließend das von Claude vorgeschlagene Diff, bevor du zustimmst.</li>
 </ul>
-<h4 id="übung-42-überprüfung-auf-regelkonformität"><a class="header" href="#übung-42-überprüfung-auf-regelkonformität">Übung 42: Überprüfung auf Regelkonformität</a></h4>
+<h3 id="übung-22-modul-einbindung-refactoring"><a class="header" href="#übung-22-modul-einbindung-refactoring">Übung 22: Modul-Einbindung (Refactoring)</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Welchen Prompt nutzt du, damit Claude Code deinen Projektordner scannt und prüft, ob irgendwo Code-Kommentare oder Dokumentationen gegen die Deutsch-Regel aus <code>AGENTS.md</code> verstoßen?</li>
-<li><strong>Lösung:</strong> <code>„Scanne alle Dateien in src/ und prüfe, ob nicht-deutsche Kommentare oder Dokumentationen enthalten sind, die der Regel in AGENTS.md widersprechen.“</code></li>
+<li><strong>Ziel:</strong> Claude hat <code>math.rs</code> erstellt. Nun soll er dieses Modul in <code>main.rs</code> einbinden und die Additions-Funktion aufrufen.</li>
+<li><strong>Hinweis:</strong> Wie importiert man in Rust Module? Lass Claude das übernehmen: “Binde das Modul X in Y ein und…”</li>
 </ul>
-<h4 id="übung-43-subagenten-ergebnisse-integrieren"><a class="header" href="#übung-43-subagenten-ergebnisse-integrieren">Übung 43: Subagenten-Ergebnisse integrieren</a></h4>
+<h3 id="übung-23-dokumentation-generieren"><a class="header" href="#übung-23-dokumentation-generieren">Übung 23: Dokumentation generieren</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Du hast die Arbeit von Subagenten abgeschlossen. Wie lässt du Claude Code deren Änderungen in die Haupt-Dokumentation integrieren?</li>
-<li><strong>Lösung:</strong> <code>„Lies die von den Subagenten erstellten Entwürfe in docs/sub/ und füge die Kernpunkte strukturiert in src/main.rs oder SUMMARY.md zusammen.“</code></li>
+<li><strong>Ziel:</strong> Claude soll für alle Funktionen in <code>src/math.rs</code> Rust-Dokumentationskommentare (<code>///</code>) schreiben.</li>
+<li><strong>Hinweis:</strong> Sag Claude, er soll sich an den offiziellen Rust-Standard für Doc-Comments halten.</li>
 </ul>
-<h4 id="übung-44-skill-struktur-aufbauen"><a class="header" href="#übung-44-skill-struktur-aufbauen">Übung 44: Skill-Struktur aufbauen</a></h4>
+<h3 id="übung-24-variablen-umbenennen-projektweit"><a class="header" href="#übung-24-variablen-umbenennen-projektweit">Übung 24: Variablen umbenennen (Projektweit)</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie lässt du Claude Code die Ordnerstruktur für einen komplexen Skill inklusive <code>scripts/</code> und <code>examples/</code> automatisch anlegen?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle unter .agents/skills/mein-skill/ die Unterordner scripts/ und examples/ und lege eine leere SKILL.md an.“</code></li>
+<li><strong>Ziel:</strong> Lass eine Variable in deinem Code durch Claude umbenennen, sodass sie in allen betroffenen Dateien automatisch aktualisiert wird.</li>
+<li><strong>Hinweis:</strong> Achte darauf, dass Claude das gesamte Projekt scannt, damit keine Aufrufe übersehen werden.</li>
 </ul>
-<h4 id="übung-45-agentsmd-regeln-einhalten"><a class="header" href="#übung-45-agentsmd-regeln-einhalten">Übung 45: AGENTS.md-Regeln einhalten</a></h4>
+<h3 id="übung-25-interaktives-diff-ablehnen"><a class="header" href="#übung-25-interaktives-diff-ablehnen">Übung 25: Interaktives Diff ablehnen</a></h3>
 <ul>
-<li><strong>Aufgabe:</strong> Wie weist du Claude Code an, vor jeder Dateiänderung die Regeln in <code>AGENTS.md</code> zu prüfen, um sicherzustellen, dass keine geschützten Dateien verändert werden?</li>
-<li><strong>Lösung:</strong> <code>„Lies die Datei AGENTS.md und stelle sicher, dass du bei deinen Änderungen keine der dort gelisteten geschützten Dateien modifizierst.“</code></li>
-</ul>
-<h4 id="übung-46-einhaltung-des-codelösungs-verbots-durchsetzen"><a class="header" href="#übung-46-einhaltung-des-codelösungs-verbots-durchsetzen">Übung 46: Einhaltung des Codelösungs-Verbots durchsetzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie instruierst du Claude Code, bei der Beantwortung von Benutzerfragen das strenge Verbot von fertigen Code-Lösungen aus <code>AGENTS.md</code> einzuhalten?</li>
-<li><strong>Lösung:</strong> <code>„Beachte die Regel aus AGENTS.md: Gib mir keine fertigen Rust-Codelösungen, sondern erkläre mir nur Fehlerursachen und gib mir Denkanstöße zur Selbsthilfe.“</code></li>
-</ul>
-<h4 id="übung-47-erstellen-eines-neuen-skills"><a class="header" href="#übung-47-erstellen-eines-neuen-skills">Übung 47: Erstellen eines neuen Skills</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du Claude Code einen neuen Buch-Skill namens <code>neues-thema</code> im Verzeichnis <code>.agents/skills/neues-thema/</code> anlegen?</li>
-<li><strong>Lösung:</strong> <code>„Erstelle das Verzeichnis .agents/skills/neues-thema/ und lege darin eine SKILL.md mit passendem YAML-Frontmatter (name, description) an.“</code></li>
-</ul>
-<h4 id="übung-48-einen-skill-weiter-einstellen--verfeinern"><a class="header" href="#übung-48-einen-skill-weiter-einstellen--verfeinern">Übung 48: Einen Skill weiter einstellen &amp; verfeinern</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest einen bestehenden Skill mit Claude Code erweitern und eine Schritt-für-Schritt-Anleitung hinzufügen.</li>
-<li><strong>Lösung:</strong> <code>„Öffne .agents/skills/neues-thema/SKILL.md und füge einen Abschnitt zur detaillierten Konfiguration hinzu.“</code></li>
-</ul>
-<h4 id="übung-49-steuerung-von-subagenten-über-prompts"><a class="header" href="#übung-49-steuerung-von-subagenten-über-prompts">Übung 49: Steuerung von Subagenten über Prompts</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, eine große Aufgabe in Teilaufgaben zu zerlegen und Anweisungen für Subagenten zu formulieren?</li>
-<li><strong>Lösung:</strong> <code>„Analysiere dieses große Refactoring, teile es in drei unabhängige Teilaufgaben auf und formuliere für jeden Subagenten einen präzisen, regelkonformen Start-Prompt.“</code></li>
-</ul>
-<h4 id="übung-50-eigene-skills-registrieren"><a class="header" href="#übung-50-eigene-skills-registrieren">Übung 50: Eigene Skills registrieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie lässt du Claude Code einen neu erstellten Skill in der globalen <code>skills.json</code> registrieren, falls dieser in einem benutzerdefinierten Verzeichnis liegt?</li>
-<li><strong>Lösung:</strong> <code>„Öffne die Datei skills.json im Customization-Root und füge den Pfad unseres neuen Skills zu den entries hinzu.“</code></li>
+<li><strong>Ziel:</strong> Claude schlägt eine Änderung vor, die dir nicht gefällt. Lehne sie ab und gib ihm direkt Feedback, was er stattdessen tun soll.</li>
+<li><strong>Hinweis:</strong> Anstatt einfach “n” (Nein) zu drücken, kannst du oft direkt einen Text tippen, um deinen Änderungswunsch zu äußern.</li>
 </ul>
 <hr>
-<h2 id="-zusammenfassung-4"><a class="header" href="#-zusammenfassung-4">💡 Zusammenfassung</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Begriff</th><th>Erklärung</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>Autonomer Agent</strong></td><td>Ein KI-System, das eigenständig Aktionen (Lesen, Schreiben, Befehle ausführen) plant und durchführt.</td></tr>
-<tr><td><strong><code>/exit</code></strong></td><td>Beendet die interaktive Claude Code-Session im Terminal.</td></tr>
-<tr><td><strong><code>/clear</code></strong></td><td>Löscht den Chat-Kontext der aktuellen Session.</td></tr>
-<tr><td><strong><code>/cost</code></strong></td><td>Zeigt den aktuellen Token-Verbrauch und die aufgelaufenen Kosten der Session an.</td></tr>
-<tr><td><strong><code>/diff</code></strong></td><td>Visualisiert alle vom Agenten vorgenommenen Änderungen an den Projektdateien.</td></tr>
-<tr><td><strong><code>.claudeignore</code></strong></td><td>Datei zum Ausschließen von Pfaden und sensiblen Dateien aus dem Lese-Kontext des Agenten.</td></tr>
-<tr><td><strong><code>claude --readonly</code></strong></td><td>Startet den Agenten im reinen Lese-Modus, um versehentliche Dateiänderungen zu verhindern.</td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="-weiterführende-links-5"><a class="header" href="#-weiterführende-links-5">📚 Weiterführende Links</a></h2>
+<h2 id="-block-5-basis-fehlerbehebung-mit-cargo-übungen-2630"><a class="header" href="#-block-5-basis-fehlerbehebung-mit-cargo-übungen-2630">🟣 Block 5: Basis-Fehlerbehebung mit Cargo (Übungen 26–30)</a></h2>
+<h3 id="übung-26-syntaxfehler-provozieren-und-beheben"><a class="header" href="#übung-26-syntaxfehler-provozieren-und-beheben">Übung 26: Syntaxfehler provozieren und beheben</a></h3>
 <ul>
-<li><a href="https://docs.anthropic.com/claude/docs/claude-code">Anthropic Claude Code Dokumentation</a> – Offizielle Anleitung und Installationshinweise.</li>
-<li><a href="https://console.anthropic.com">Anthropic Console</a> – Verwaltung von API-Keys und Abrechnung.</li>
-<li><a href="https://doc.rust-lang.org/cargo/">Cargo Book</a> – Referenz für Cargo-Befehle, die Claude Code im Hintergrund ausführt.</li>
+<li><strong>Ziel:</strong> Lösche in <code>main.rs</code> absichtlich ein Semikolon <code>;</code> am Ende einer Zeile. Lass Claude Code den Fehler finden und korrigieren.</li>
+<li><strong>Hinweis:</strong> Weise Claude an: “Führe <code>cargo check</code> aus und behebe den Fehler”.</li>
+</ul>
+<h3 id="übung-27-clippy-warnungen-auflösen"><a class="header" href="#übung-27-clippy-warnungen-auflösen">Übung 27: Clippy-Warnungen auflösen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Fordere Claude auf, das Projekt nach idiomatischem Rust-Standard zu überprüfen und Verbesserungsvorschläge direkt einzuarbeiten.</li>
+<li><strong>Hinweis:</strong> Welches Cargo-Tool überprüft den Code auf Best Practices? Richtig, Clippy! Sag Claude: “Lass <code>cargo clippy</code> laufen und behebe Warnungen.”</li>
+</ul>
+<h3 id="übung-28-test-getriebenes-reparieren-tdd"><a class="header" href="#übung-28-test-getriebenes-reparieren-tdd">Übung 28: Test-getriebenes Reparieren (TDD)</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Schreibe einen simplen Test, der fehlschlägt (z.B. <code>assert_eq!(1+1, 3);</code>). Lass Claude solange an der Logik schrauben, bis der Test grün wird.</li>
+<li><strong>Hinweis:</strong> “Führe <code>cargo test</code> aus. Repariere den Code, bis die Tests erfolgreich sind.”</li>
+</ul>
+<h3 id="übung-29-unnötige-abhängigkeiten-aufspüren"><a class="header" href="#übung-29-unnötige-abhängigkeiten-aufspüren">Übung 29: Unnötige Abhängigkeiten aufspüren</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Finde heraus, ob in deiner <code>Cargo.toml</code> Crates stehen, die im Rust-Code gar nicht verwendet werden.</li>
+<li><strong>Hinweis:</strong> Lass Claude Code das Projekt analysieren: “Gibt es Abhängigkeiten in Cargo.toml, die wir in .rs-Dateien nicht importieren?”</li>
+</ul>
+<h3 id="übung-30-code-formatierung-erzwingen"><a class="header" href="#übung-30-code-formatierung-erzwingen">Übung 30: Code-Formatierung erzwingen</a></h3>
+<ul>
+<li><strong>Ziel:</strong> Bringe Claude Code dazu, nach jeder Dateibearbeitung immer den Rust-Standard-Formatter über das Projekt laufen zu lassen.</li>
+<li><strong>Hinweis:</strong> Rust hat ein eingebautes Tool zur Formatierung (<code>cargo fmt</code>). Du kannst das als Zusatzanweisung in deinen Prompt aufnehmen.</li>
+</ul>
+<hr>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p><strong>Tipp für Fortgeschrittene:</strong>
+Wenn du möchtest, dass Claude Code bei jedem Start automatisch auf Cargo-Standards (fmt, clippy, test) achtet, kannst du diese Regeln später in einer zentralen <code>CLAUDE.md</code>-Datei im Projekt festhalten!</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-claude-code--praxis--fortgeschrittene-teil-2"><a class="header" href="#-claude-code--praxis--fortgeschrittene-teil-2">🐚 Claude Code – Praxis &amp; Fortgeschrittene (Teil 2)</a></h1>
+<p><em>Tiefergehende Workflows, Agent Memory, MCP und CI/CD-Integration für Profis.</em></p>
+<hr>
+<p>In dieser Lektion heben wir unsere Arbeit mit <strong>Claude Code</strong> auf das nächste Level. Nachdem du in Teil 1 die Grundlagen und Cargo-Integration gemeistert hast, geht es nun um den Einsatz in komplexen, automatisierten Umgebungen.</p>
+<p>Wir behandeln <strong>Agent Memory</strong> (Langzeitgedächtnis), <strong>Custom Tools über MCP (Model Context Protocol)</strong>, fortgeschrittene <strong>Permission Modes</strong> (Rechtemanagement) und die Integration in <strong>CI/CD-Pipelines</strong>.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Auch hier gibt es keine fertigen Code-Blöcke zum Kopieren! Nutze die Aufgaben als Denkanstöße, um die CLI selbst zu erkunden.</p>
+</blockquote>
+<hr>
+<h2 id="-übungen-fortgeschrittene--profis-5180"><a class="header" href="#-übungen-fortgeschrittene--profis-5180">🚀 Übungen: Fortgeschrittene &amp; Profis (51–80)</a></h2>
+<h3 id="-agent-memory--langzeitgedächtnis-5156"><a class="header" href="#-agent-memory--langzeitgedächtnis-5156">🟣 Agent Memory &amp; Langzeitgedächtnis (51–56)</a></h3>
+<h4 id="übung-51-memory-initialisieren"><a class="header" href="#übung-51-memory-initialisieren">Übung 51: Memory initialisieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, sich an spezifische Architektur-Entscheidungen aus deiner aktuellen Session für zukünftige Sessions zu erinnern?</li>
+<li><strong>Lösung:</strong> Recherchiere, wie du den Agenten anweist, eine Information in sein Memory zu speichern. (Tipp: Frage Claude direkt nach “Wie speicherst du Informationen permanent?”).</li>
+</ul>
+<h4 id="übung-52-gespeicherten-kontext-abfragen"><a class="header" href="#übung-52-gespeicherten-kontext-abfragen">Übung 52: Gespeicherten Kontext abfragen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du startest eine neue Session. Wie prüfst du, welche Projekt-Konventionen Claude bereits in seinem Gedächtnis hat?</li>
+<li><strong>Lösung:</strong> Welchen Befehl oder Prompt nutzt du, um den Memory-Status anzeigen zu lassen?</li>
+</ul>
+<h4 id="übung-53-falsches-memory-korrigieren"><a class="header" href="#übung-53-falsches-memory-korrigieren">Übung 53: Falsches Memory korrigieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Der Agent erinnert sich an eine veraltete Cargo-Version. Wie löschst oder aktualisierst du diesen spezifischen Memory-Eintrag?</li>
+<li><strong>Lösung:</strong> Überlege, wie du den Agenten instruierst, alte Gedächtnis-Einträge gezielt zu überschreiben.</li>
+</ul>
+<h4 id="übung-54-projekt-spezifisches-vs-globales-memory"><a class="header" href="#übung-54-projekt-spezifisches-vs-globales-memory">Übung 54: Projekt-spezifisches vs. Globales Memory</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst, dass Claude sich an deinen bevorzugten Rust-Stil in <em>allen</em> Projekten erinnert. Wie erreichst du das?</li>
+<li><strong>Lösung:</strong> Gibt es globale Konfigurationen im Vergleich zu projektbezogenen Speichern? Finde heraus, wo Claude Code dies verwaltet.</li>
+</ul>
+<h4 id="übung-55-memory-limitierung"><a class="header" href="#übung-55-memory-limitierung">Übung 55: Memory-Limitierung</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Was passiert, wenn das Gedächtnis zu voll wird? Wie kannst du irrelevante alte Informationen bereinigen, um Token zu sparen?</li>
+<li><strong>Lösung:</strong> Welchen Slash-Befehl oder CLI-Argument könnte es geben, um das Memory zu “prunen” (aufzuräumen)?</li>
+</ul>
+<h4 id="übung-56-kontext-dateien-einbinden"><a class="header" href="#übung-56-kontext-dateien-einbinden">Übung 56: Kontext-Dateien einbinden</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Statt Memory manuell zu trainieren, möchtest du eine <code>CONTEXT.md</code> fest als Basis-Wissen verankern.</li>
+<li><strong>Lösung:</strong> Wie übergibst du eine spezifische Datei bei jedem Start automatisch als System-Prompt? (Tipp: Sieh dir CLI-Parameter für System-Prompts an).</li>
+</ul>
+<hr>
+<h3 id="-permission-modes--sicherheit-5762"><a class="header" href="#-permission-modes--sicherheit-5762">🛡️ Permission Modes &amp; Sicherheit (57–62)</a></h3>
+<h4 id="übung-57-isolierte-ausführung"><a class="header" href="#übung-57-isolierte-ausführung">Übung 57: Isolierte Ausführung</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du arbeitest an einem unbekannten Repository. Wie startest du Claude Code so, dass es auf keinen Fall das Dateisystem außerhalb des aktuellen Ordners lesen kann?</li>
+<li><strong>Lösung:</strong> Welche Flag oder welcher Sandbox-Modus verhindert Verzeichnisausbrüche?</li>
+</ul>
+<h4 id="übung-58-auto-approve-für-bestimmte-befehle"><a class="header" href="#übung-58-auto-approve-für-bestimmte-befehle">Übung 58: Auto-Approve für bestimmte Befehle</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du bist es leid, <code>cargo check</code> jedes Mal manuell zu bestätigen. Wie konfigurierst du Claude Code so, dass Lese- und Build-Befehle ohne Nachfrage laufen, aber Git-Commits noch bestätigt werden müssen?</li>
+<li><strong>Lösung:</strong> Erkunde die <code>/config</code> nach Berechtigungsstufen (z.B. “allowlist” für bestimmte Befehle).</li>
+</ul>
+<h4 id="übung-59-sensible-umgebungsvariablen-verbergen"><a class="header" href="#übung-59-sensible-umgebungsvariablen-verbergen">Übung 59: Sensible Umgebungsvariablen verbergen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie verhinderst du, dass Claude Code während eines Debuggings versehentlich deine <code>.env</code>-Datei liest und API-Keys im Chatverlauf landen?</li>
+<li><strong>Lösung:</strong> Erinnere dich an die <code>.claudeignore</code> aus Teil 1. Gilt dies auch für versteckte Dateien und Ordner?</li>
+</ul>
+<h4 id="übung-60-netzwerk-zugriff-blockieren"><a class="header" href="#übung-60-netzwerk-zugriff-blockieren">Übung 60: Netzwerk-Zugriff blockieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst nicht, dass Claude Code selbstständig <code>curl</code>-Befehle ausführt, um Code nachzuladen. Wie verbietest du den Netzwerkzugriff auf Shell-Ebene?</li>
+<li><strong>Lösung:</strong> Kann dies über Permissions konfiguriert werden, oder musst du den Agenten in einer speziellen Umgebung (z.B. Offline-Docker-Container) starten?</li>
+</ul>
+<h4 id="übung-61-audit-logs-prüfen"><a class="header" href="#übung-61-audit-logs-prüfen">Übung 61: Audit-Logs prüfen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest im Nachhinein nachvollziehen, welche Bash-Befehle Claude Code gestern ausgeführt hat. Wo findest du diese Logs?</li>
+<li><strong>Lösung:</strong> Suche im lokalen Konfigurationsverzeichnis des Tools nach Log- oder Verlaufs-Dateien.</li>
+</ul>
+<h4 id="übung-62-temporärer-read-only-modus"><a class="header" href="#übung-62-temporärer-read-only-modus">Übung 62: Temporärer Read-Only Modus</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Mitten in der Session willst du dem Agenten temporär Schreibrechte entziehen, während er sensiblen Code analysiert. Geht das?</li>
+<li><strong>Lösung:</strong> Welchen Slash-Befehl oder Konfigurationswechsel nutzt du on-the-fly, um die Modus-Rechte zu ändern?</li>
+</ul>
+<hr>
+<h3 id="-custom-tools--mcp-model-context-protocol-6368"><a class="header" href="#-custom-tools--mcp-model-context-protocol-6368">🔌 Custom Tools &amp; MCP (Model Context Protocol) (63–68)</a></h3>
+<h4 id="übung-63-was-ist-mcp"><a class="header" href="#übung-63-was-ist-mcp">Übung 63: Was ist MCP?</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Finde heraus, wie das Model Context Protocol (MCP) funktioniert. Wie erweitert es die Fähigkeiten von Claude Code?</li>
+<li><strong>Lösung:</strong> Recherchiere das Konzept: MCP erlaubt es, lokale APIs und Datenbanken als “Tools” für den Agenten bereitzustellen.</li>
+</ul>
+<h4 id="übung-64-ein-lokales-bash-tool-registrieren"><a class="header" href="#übung-64-ein-lokales-bash-tool-registrieren">Übung 64: Ein lokales Bash-Tool registrieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast ein Skript <code>deploy.sh</code>. Wie machst du dieses Skript für Claude Code als aufrufbares “Tool” verfügbar?</li>
+<li><strong>Lösung:</strong> Wie sieht eine typische Tool-Definition in der MCP-Konfiguration (oft in JSON) aus?</li>
+</ul>
+<h4 id="übung-65-datenbankzugriff-gewähren"><a class="header" href="#übung-65-datenbankzugriff-gewähren">Übung 65: Datenbankzugriff gewähren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest, dass Claude SQL-Queries gegen eine lokale SQLite-Datenbank ausführen kann, um Bug-Reports zu verifizieren.</li>
+<li><strong>Lösung:</strong> Wie richtest du einen MCP-Server für SQLite ein und verbindest ihn mit der Claude-CLI?</li>
+</ul>
+<h4 id="übung-66-eigene-rust-tools-für-claude-schreiben"><a class="header" href="#übung-66-eigene-rust-tools-für-claude-schreiben">Übung 66: Eigene Rust-Tools für Claude schreiben</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie kannst du ein kleines Rust-Programm schreiben, das über Stdin/Stdout als MCP-Tool fungiert?</li>
+<li><strong>Lösung:</strong> Erkunde das MCP-SDK. Welche Schnittstellen müssen für das JSON-RPC-basierte Protokoll implementiert werden?</li>
+</ul>
+<h4 id="übung-67-tools-mit-parametern"><a class="header" href="#übung-67-tools-mit-parametern">Übung 67: Tools mit Parametern</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Dein Tool benötigt spezifische Parameter (z.B. eine Issue-ID). Wie weiß Claude, welche Argumente es übergeben muss?</li>
+<li><strong>Lösung:</strong> Stichwort JSON-Schema. Wie beschreibst du die Eingabeparameter in der Tool-Registrierung exakt?</li>
+</ul>
+<h4 id="übung-68-fehlerbehandlung-in-custom-tools"><a class="header" href="#übung-68-fehlerbehandlung-in-custom-tools">Übung 68: Fehlerbehandlung in Custom Tools</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Was passiert, wenn dein registriertes Tool abstürzt? Wie stellst du sicher, dass Claude Code dies erkennt und selbstständig korrigiert?</li>
+<li><strong>Lösung:</strong> Das Tool muss strukturierte Fehlermeldungen über das Protokoll zurückgeben, die der Agent interpretieren kann.</li>
+</ul>
+<hr>
+<h3 id="-cicd--automatisierung-6974"><a class="header" href="#-cicd--automatisierung-6974">⚙️ CI/CD &amp; Automatisierung (69–74)</a></h3>
+<h4 id="übung-69-headless-modus-non-interactive"><a class="header" href="#übung-69-headless-modus-non-interactive">Übung 69: Headless-Modus (Non-Interactive)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest Claude Code in einem GitHub Actions Workflow laufen lassen. Wie verhinderst du, dass das Tool auf Nutzereingaben wartet?</li>
+<li><strong>Lösung:</strong> Finde die passenden Argumente (wie z.B. <code>--non-interactive</code>), um den Agenten zu zwingen, ohne Interaktion durchzulaufen.</li>
+</ul>
+<h4 id="übung-70-automatisiertes-code-review"><a class="header" href="#übung-70-automatisiertes-code-review">Übung 70: Automatisiertes Code-Review</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Ein Pull Request wird erstellt. Wie konfigurierst du deine CI so, dass Claude Code das Diff analysiert und einen Review-Kommentar hinterlässt?</li>
+<li><strong>Lösung:</strong> Kombiniere das Piped-Diff (<code>git diff</code>) mit der Claude CLI und leite die Ausgabe in einen GitHub-Kommentar-Schritt weiter.</li>
+</ul>
+<h4 id="übung-71-automatischer-bugfix-versuch-im-branch"><a class="header" href="#übung-71-automatischer-bugfix-versuch-im-branch">Übung 71: Automatischer Bugfix-Versuch im Branch</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wenn ein Test in der CI fehlschlägt, soll Claude versuchen, den Fehler zu beheben und einen neuen Commit in denselben Branch zu pushen.</li>
+<li><strong>Lösung:</strong> Wie verknüpfst du den Fehler-Exit-Code der Testsuite mit dem Startkommando und einem spezifischen Prompt für Claude?</li>
+</ul>
+<h4 id="übung-72-ci-kostenlimit-setzen"><a class="header" href="#übung-72-ci-kostenlimit-setzen">Übung 72: CI-Kostenlimit setzen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast Angst vor explodierenden API-Kosten durch Endlos-Schleifen in der CI. Wie sicherst du das ab?</li>
+<li><strong>Lösung:</strong> Überprüfe, ob es Sicherheitslimits oder <code>--max-cost</code>-Argumente für CLI-Aufrufe gibt, um nach einem festen Budget hart abzubrechen.</li>
+</ul>
+<h4 id="übung-73-reports-generieren"><a class="header" href="#übung-73-reports-generieren">Übung 73: Reports generieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Claude soll nachts die Codebase analysieren und einen Status-Report als Markdown ablegen.</li>
+<li><strong>Lösung:</strong> Richte einen Cron-Job oder einen Scheduled Workflow ein, der Claude headless mit einem Prompt zur Analyse aufruft.</li>
+</ul>
+<h4 id="übung-74-umgebungsvariablen-für-ci-authentifizierung"><a class="header" href="#übung-74-umgebungsvariablen-für-ci-authentifizierung">Übung 74: Umgebungsvariablen für CI-Authentifizierung</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> In der CI hast du keinen Browser, um dich via OAuth einzuloggen. Wie authentifizierst du Claude Code?</li>
+<li><strong>Lösung:</strong> Welches API-Key-Environment-Flag (z.B. <code>ANTHROPIC_API_KEY</code>) ist zwingend erforderlich, damit der Agent headless funktioniert?</li>
+</ul>
+<hr>
+<h3 id="-komplexe-workflows--git-7580"><a class="header" href="#-komplexe-workflows--git-7580">🧩 Komplexe Workflows &amp; Git (75–80)</a></h3>
+<h4 id="übung-75-git-bisect-mit-claude-code"><a class="header" href="#übung-75-git-bisect-mit-claude-code">Übung 75: Git Bisect mit Claude Code</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Ein Bug wurde irgendwo in den letzten 50 Commits eingeführt. Wie nutzt du <code>git bisect</code> in Kombination mit Claude Code, um den Schuldigen Commit automatisch zu finden und den Fehler zu erklären?</li>
+<li><strong>Lösung:</strong> Erkläre den Workflow, bei dem das Ergebnis von <code>git bisect run &lt;script&gt;</code> analysiert und in einen Claude-Prompt übergeben wird.</li>
+</ul>
+<h4 id="übung-76-projekt-refactoring-in-etappen"><a class="header" href="#übung-76-projekt-refactoring-in-etappen">Übung 76: Projekt-Refactoring in Etappen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Ein riesiges Refactoring übersteigt das Kontext-Fenster. Wie zwingst du Claude, in isolierten Etappen (Modul für Modul) vorzugehen?</li>
+<li><strong>Lösung:</strong> Schreibe einen Plan (z.B. ein Bash-Skript), das eine Liste von Modulen in einer Schleife abarbeitet und Claude für jedes Modul separat aufruft.</li>
+</ul>
+<h4 id="übung-77-cross-language-migration"><a class="header" href="#übung-77-cross-language-migration">Übung 77: Cross-Language Migration</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst ein Python-Skript nach Rust portieren. Wie organisierst du die Ein- und Ausgabe so, dass Claude beides testen kann?</li>
+<li><strong>Lösung:</strong> Welchen Prompt brauchst du, damit Claude beide Tools (<code>python</code> und <code>cargo run</code>) aufruft, die Ergebnisse direkt vergleicht und korrigiert?</li>
+</ul>
+<h4 id="übung-78-multi-agenten-setup"><a class="header" href="#übung-78-multi-agenten-setup">Übung 78: Multi-Agenten Setup</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest einen Agenten für das Schreiben von Tests (Read-Only auf <code>src/</code>, Write auf <code>tests/</code>) und einen anderen für die Implementierung der Logik. Wie steuerst du das im Terminal?</li>
+<li><strong>Lösung:</strong> Überlege, wie du zwei separate Terminal-Sitzungen öffnest und die Agenten iterativ arbeiten lässt.</li>
+</ul>
+<h4 id="übung-79-eigene-cli-befehle-parsen"><a class="header" href="#übung-79-eigene-cli-befehle-parsen">Übung 79: Eigene CLI-Befehle parsen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du baust ein eigenes Rust-CLI-Tool. Wie lässt du Claude testen, ob die Hilfeausgabe (<code>--help</code>) deines Tools verständlich ist?</li>
+<li><strong>Lösung:</strong> Führe <code>cargo run -- --help</code> aus, leite die Ausgabe über Pipe (<code>|</code>) an Claude weiter und bitte um ein Review aus Sicht eines Anfängers.</li>
+</ul>
+<h4 id="übung-80-autonomes-schreiben-eines-buchkapitels"><a class="header" href="#übung-80-autonomes-schreiben-eines-buchkapitels">Übung 80: Autonomes Schreiben eines Buchkapitels</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie weist du Claude Code an, den gesamten neuen Rust-Code zu analysieren, ein mdBook-Kapitel darüber zu verfassen und es selbstständig in die <code>SUMMARY.md</code> einzutragen?</li>
+<li><strong>Lösung:</strong> Formuliere einen umfassenden, verketteten Prompt, der den Lesezugriff, das Schreiben der Datei, das Aktualisieren des Inhaltsverzeichnisses und den anschließenden Build-Test (<code>mdbook build</code>) kombiniert.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="-codex-cli--der-terminal-assistent-von-openai"><a class="header" href="#-codex-cli--der-terminal-assistent-von-openai">💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></h1>
@@ -4027,7 +4040,7 @@ Die Lösungen konzentrieren sich auf CLI-Parameter, Slash-Befehle, Prompts zur S
 <li><strong>Freigeben:</strong> Codex zeigt dir ein präzises Diff (Vergleich vor/nachher). Keine Änderung wird ohne dein finales Einverständnis ins Repository geschrieben.</li>
 </ol>
 <hr>
-<h2 id="-praxis-aufgaben-4"><a class="header" href="#-praxis-aufgaben-4">🛠️ Praxis-Aufgaben</a></h2>
+<h2 id="-praxis-aufgaben-3"><a class="header" href="#-praxis-aufgaben-3">🛠️ Praxis-Aufgaben</a></h2>
 <h3 id="aufgabe-a-installation-und-einrichtung"><a class="header" href="#aufgabe-a-installation-und-einrichtung">Aufgabe A: Installation und Einrichtung</a></h3>
 <ol>
 <li>Codex CLI setzt eine aktive Node.js-Umgebung voraus. Stelle sicher, dass Node.js installiert ist.</li>
@@ -4482,7 +4495,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 </li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-5"><a class="header" href="#-zusammenfassung-5">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-4"><a class="header" href="#-zusammenfassung-4">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -4498,7 +4511,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 </table>
 </div>
 <hr>
-<h2 id="-weiterführende-links-6"><a class="header" href="#-weiterführende-links-6">📚 Weiterführende Links</a></h2>
+<h2 id="-weiterführende-links-5"><a class="header" href="#-weiterführende-links-5">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://chatgpt.com/codex">Offizielle OpenAI Codex CLI Dokumentation</a></li>
 <li><a href="https://github.com/openai/codex">OpenAI GitHub Repository</a></li>
@@ -4529,7 +4542,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 <li><strong>Code Lens:</strong> Kleine klickbare Buttons über Funktionen (z. B. <code>Run</code> oder <code>Debug</code> über der <code>main</code>-Funktion oder über Tests).</li>
 </ol>
 <hr>
-<h2 id="-praxis-aufgaben-5"><a class="header" href="#-praxis-aufgaben-5">🛠️ Praxis-Aufgaben</a></h2>
+<h2 id="-praxis-aufgaben-4"><a class="header" href="#-praxis-aufgaben-4">🛠️ Praxis-Aufgaben</a></h2>
 <h3 id="aufgabe-a-zed-installieren--projekt-öffnen"><a class="header" href="#aufgabe-a-zed-installieren--projekt-öffnen">Aufgabe A: Zed installieren &amp; Projekt öffnen</a></h3>
 <ol>
 <li>Lade Zed von der offiziellen Website (<a href="https://zed.dev">zed.dev</a>) herunter und installiere es.</li>
@@ -4563,7 +4576,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 <li>Speichere die Datei. Zed übernimmt alle Änderungen sofort – ganz ohne Neustart!</li>
 </ol>
 <hr>
-<h2 id="-50-übungen-mit-lösungen-1"><a class="header" href="#-50-übungen-mit-lösungen-1">🚀 50 Übungen mit Lösungen</a></h2>
+<h2 id="-50-übungen-mit-lösungen"><a class="header" href="#-50-übungen-mit-lösungen">🚀 50 Übungen mit Lösungen</a></h2>
 <p>Hier findest du 50 praktische Aufgaben, um Zed IDE wie ein Profi zu bedienen und für dein Rust-Lernen optimal einzusetzen.</p>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
@@ -4887,7 +4900,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <li><strong>Lösung:</strong> Erstelle im Projektordner die Datei <code>.zed/settings.json</code>. Alle darin definierten Werte überschreiben die globalen Einstellungen ausschließlich für dieses Projekt.</li>
 </ul>
 <hr>
-<h2 id="-zusammenfassung-6"><a class="header" href="#-zusammenfassung-6">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-5"><a class="header" href="#-zusammenfassung-5">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -4905,7 +4918,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </table>
 </div>
 <hr>
-<h2 id="-weiterführende-links-7"><a class="header" href="#-weiterführende-links-7">📚 Weiterführende Links</a></h2>
+<h2 id="-weiterführende-links-6"><a class="header" href="#-weiterführende-links-6">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://zed.dev">Offizielle Zed-Website</a> – Download und Dokumentation.</li>
 <li><a href="https://github.com/zed-industries/zed">Zed GitHub Repository</a> – Der Quellcode des Editors.</li>
@@ -4936,7 +4949,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <li><strong>Rust-Unterstützung:</strong> Neovim hat ein eingebautes LSP-System (Language Server Protocol), das sich hervorragend mit <code>rust-analyzer</code> verbinden lässt. Du erhältst Autovervollständigung und Diagnosen direkt im Terminal.</li>
 </ul>
 <hr>
-<h2 id="-praxis-aufgaben-6"><a class="header" href="#-praxis-aufgaben-6">🛠️ Praxis-Aufgaben</a></h2>
+<h2 id="-praxis-aufgaben-5"><a class="header" href="#-praxis-aufgaben-5">🛠️ Praxis-Aufgaben</a></h2>
 <h3 id="aufgabe-a-den-editor-kennenlernen"><a class="header" href="#aufgabe-a-den-editor-kennenlernen">Aufgabe A: Den Editor kennenlernen</a></h3>
 <ol>
 <li>Öffne dein Terminal und tippe <code>vim</code> (oder <code>nvim</code>, falls installiert) gefolgt von einer neuen Datei: <code>vim main.rs</code>.</li>
@@ -4971,7 +4984,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <li>Versuche, die nächsten 10 Minuten ausschließlich mit den Vim-Navigationsbefehlen (<code>h</code>, <code>j</code>, <code>k</code>, <code>l</code>) im Code zu navigieren und zu editieren.</li>
 </ol>
 <hr>
-<h2 id="-50-übungen-mit-lösungen-2"><a class="header" href="#-50-übungen-mit-lösungen-2">🚀 50 Übungen mit Lösungen</a></h2>
+<h2 id="-50-übungen-mit-lösungen-1"><a class="header" href="#-50-übungen-mit-lösungen-1">🚀 50 Übungen mit Lösungen</a></h2>
 <p>Diese Übungen trainieren dein Muskelgedächtnis für Vim-Befehle und zeigen dir, wie du deinen Code effizient manipulierst.</p>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
@@ -5237,7 +5250,7 @@ Die Lösungen beschreiben die exakten Tastenkombinationen und Befehlssequenzen i
 <li><strong>Lösung:</strong> Erstelle und editiere die Datei <code>~/.vimrc</code> (für klassisches Vim) bzw. <code>~/.config/nvim/init.lua</code> (oder <code>init.vim</code> für Neovim) und füge dort Befehle wie <code>set number</code> und <code>syntax on</code> hinzu.</li>
 </ul>
 <hr>
-<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-6"><a class="header" href="#-zusammenfassung-6">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -5255,7 +5268,7 @@ Die Lösungen beschreiben die exakten Tastenkombinationen und Befehlssequenzen i
 </table>
 </div>
 <hr>
-<h2 id="-weiterführende-links-8"><a class="header" href="#-weiterführende-links-8">📚 Weiterführende Links</a></h2>
+<h2 id="-weiterführende-links-7"><a class="header" href="#-weiterführende-links-7">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://github.com/vim/vim">Vimtutor</a> – Führe einfach <code>vimtutor</code> im Terminal aus, um ein interaktives 30-Minuten-Tutorial zu starten.</li>
 <li><a href="https://neovim.io">Neovim Website</a> – Der moderne, erweiterbare Nachfolger von Vim.</li>
@@ -5378,7 +5391,7 @@ Verbessere es – aber erkläre jede Änderung."
 <li><strong>Regelmäßig ohne KI üben</strong> – Mindestens 20% des Codes selbst schreiben.</li>
 </ol>
 <hr>
-<h2 id="-praxis-aufgaben-7"><a class="header" href="#-praxis-aufgaben-7">🛠️ Praxis-Aufgaben</a></h2>
+<h2 id="-praxis-aufgaben-6"><a class="header" href="#-praxis-aufgaben-6">🛠️ Praxis-Aufgaben</a></h2>
 <h3 id="aufgabe-a-explorations-session"><a class="header" href="#aufgabe-a-explorations-session">Aufgabe A: Explorations-Session</a></h3>
 <p>Starte einen Chat mit dem Agenten und sage:</p>
 <pre><code>Ich lerne Rust. Zeig mir drei verschiedene Möglichkeiten,
@@ -5589,7 +5602,7 @@ ohne KI-Hilfe.
 </table>
 </div>
 <hr>
-<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -5608,7 +5621,7 @@ ohne KI-Hilfe.
 <p>🦀 <strong>Die wichtigste Lektion:</strong><br>Vibe Coding ist kein Abkürzung vom Lernen.<br>Es ist eine <strong>andere Art, zu lernen</strong> – wenn du dabei aktiv bleibst.<br>Wer vibecoded und dabei denkt, lernt schnell.<br>Wer vibecoded und dabei schläft, lernt nichts.</p>
 </blockquote>
 <hr>
-<h2 id="-weiterführende-links-9"><a class="header" href="#-weiterführende-links-9">📚 Weiterführende Links</a></h2>
+<h2 id="-weiterführende-links-8"><a class="header" href="#-weiterführende-links-8">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://x.com/karpathy">Andrej Karpathy über Vibe Coding</a> – Der Ursprung des Begriffs</li>
 <li><a href="https://doc.rust-lang.org/book/">Rust-Buch</a> – Ohne Grundlagen kein gutes Vibe Coding</li>
@@ -6056,7 +6069,7 @@ Projekte 46–50:  Vollständige Systeme (Router, Planer, Mini-Antigravity)
 </table>
 </div>
 <hr>
-<h2 id="-zusammenfassung-9"><a class="header" href="#-zusammenfassung-9">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -6077,7 +6090,7 @@ Projekte 46–50:  Vollständige Systeme (Router, Planer, Mini-Antigravity)
 <p>🦀 <strong>Die größte Erkenntnis:</strong><br>Antigravity, Cursor, ChatGPT-Plugins – sie alle folgen demselben Prinzip.<br><strong>Du kannst das auch bauen.</strong><br>Ein Agent ist keine Magie – er ist ein Programm, das ein KI-Modell aufruft und das Ergebnis sinnvoll nutzt.<br>Und du kennst jetzt alle Zutaten. 🚀</p>
 </blockquote>
 <hr>
-<h2 id="-weiterführende-links-10"><a class="header" href="#-weiterführende-links-10">📚 Weiterführende Links</a></h2>
+<h2 id="-weiterführende-links-9"><a class="header" href="#-weiterführende-links-9">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://ollama.ai/">Ollama</a> – Lokale KI-Modelle, kein API-Key</li>
 <li><a href="https://github.com/ollama/ollama/blob/main/docs/api.md">Ollama API Docs</a> – REST-API-Referenz</li>
@@ -6274,6 +6287,22 @@ erstellt</em></a>
         <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
         <script>
