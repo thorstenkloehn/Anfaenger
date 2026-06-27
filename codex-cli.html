@@ -1,0 +1,753 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>💻 Codex CLI – Der Terminal-Assistent von OpenAI - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-e6195870.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-932795b9.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-codex-cli--der-terminal-assistent-von-openai"><a class="header" href="#-codex-cli--der-terminal-assistent-von-openai">💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></h1>
+<p><em>Lass die generative KI von OpenAI direkt in deiner Shell Code schreiben, testen und ausführen.</em></p>
+<hr>
+<p>In dieser Lektion lernen wir <strong>Codex CLI</strong> kennen. Codex CLI ist ein von OpenAI entwickeltes Kommandozeilen-Werkzeug (CLI), das es dir ermöglicht, die hochentwickelten Sprach- und Reasoning-Modelle von OpenAI direkt in deiner vertrauten Terminal-Umgebung zu nutzen. Codex CLI fungiert als ein autonomer Software-Agent: Er kann dein Projektverzeichnis analysieren, Code-Dateien modifizieren, Compiler-Fehler beheben und Shell-Befehle ausführen – alles gesteuert durch einfache, natürliche Sprache.</p>
+<p>Für angehende Rust-Programmierer bietet Codex CLI eine hervorragende Möglichkeit, interaktiv an Projekten zu arbeiten, ohne die Shell verlassen zu müssen. Der Agent kann <code>cargo build</code> ausführen, Fehlermeldungen des Compilers direkt interpretieren und Korrekturvorschläge machen.</p>
+<hr>
+<h2 id="-theorie-was-ist-codex-cli"><a class="header" href="#-theorie-was-ist-codex-cli">🧠 Theorie: Was ist Codex CLI?</a></h2>
+<h3 id="was-unterscheidet-codex-cli-von-web-chats"><a class="header" href="#was-unterscheidet-codex-cli-von-web-chats">Was unterscheidet Codex CLI von Web-Chats?</a></h3>
+<p>Klassische Chat-Oberflächen (wie ChatGPT im Browser) erfordern ständiges Kopieren und Einfügen von Code und Fehlermeldungen. Codex CLI arbeitet hingegen direkt auf deinem lokalen Dateisystem.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Eigenschaft</th><th style="text-align: left">ChatGPT im Web</th><th style="text-align: left">Codex CLI</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Schnittstelle</strong></td><td style="text-align: left">Browser (GUI)</td><td style="text-align: left">Terminal (CLI)</td></tr>
+<tr><td style="text-align: left"><strong>Dateizugriff</strong></td><td style="text-align: left">Nur manueller Upload/Download</td><td style="text-align: left">Direkter, lokaler Lese- und Schreibzugriff</td></tr>
+<tr><td style="text-align: left"><strong>Befehlsausführung</strong></td><td style="text-align: left">Keine</td><td style="text-align: left">Kann Shell-Befehle ausführen (z. B. <code>cargo test</code>)</td></tr>
+<tr><td style="text-align: left"><strong>Autonomie</strong></td><td style="text-align: left">Niedrig (du musst alles übertragen)</td><td style="text-align: left">Hoch (Agent plant und korrigiert selbstständig)</td></tr>
+<tr><td style="text-align: left"><strong>Sicherheit</strong></td><td style="text-align: left">Keine lokalen Auswirkungen</td><td style="text-align: left">Ausführung von Befehlen erfordert Benutzerfreigabe</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="der-agenten-loop-reaktionsschleife"><a class="header" href="#der-agenten-loop-reaktionsschleife">Der Agenten-Loop (Reaktionsschleife)</a></h3>
+<p>Wenn du Codex CLI eine Aufgabe erteilst, läuft im Hintergrund eine Schleife ab:</p>
+<pre><code class="language-mermaid">graph TD
+    A[Dein Prompt in der Shell] --&gt; B[Codex analysiert das Projekt]
+    B --&gt; C[Planung der Arbeitsschritte]
+    C --&gt; D[Lese- &amp; Schreibzugriffe auf Code-Dateien]
+    D --&gt; E[Ausführung von Tests oder Builds]
+    E --&gt; F{Fehler gefunden?}
+    F -- Ja --&gt; C
+    F -- Nein --&gt; G[Zeigen der Änderungen &amp; Abfrage der Freigabe]
+</code></pre>
+<ol>
+<li><strong>Analysieren &amp; Lesen:</strong> Der Agent scannt die Struktur des Rust-Projekts und liest relevante Dateien (wie <code>Cargo.toml</code> oder <code>src/main.rs</code>).</li>
+<li><strong>Planen:</strong> Basierend auf der Aufgabe entwirft das Modell eine Strategie.</li>
+<li><strong>Schreiben &amp; Ausführen:</strong> Codex modifiziert den Code und führt Befehle wie <code>cargo check</code> aus.</li>
+<li><strong>Verifizieren:</strong> Bei Fehlern korrigiert sich der Agent selbst, bis der Build oder die Tests erfolgreich sind.</li>
+<li><strong>Freigeben:</strong> Codex zeigt dir ein präzises Diff (Vergleich vor/nachher). Keine Änderung wird ohne dein finales Einverständnis ins Repository geschrieben.</li>
+</ol>
+<hr>
+<h2 id="-praxis-aufgaben"><a class="header" href="#-praxis-aufgaben">🛠️ Praxis-Aufgaben</a></h2>
+<h3 id="aufgabe-a-installation-und-einrichtung"><a class="header" href="#aufgabe-a-installation-und-einrichtung">Aufgabe A: Installation und Einrichtung</a></h3>
+<ol>
+<li>Codex CLI setzt eine aktive Node.js-Umgebung voraus. Stelle sicher, dass Node.js installiert ist.</li>
+<li>Installiere Codex CLI global auf deinem System:
+<ul>
+<li><strong>macOS / Linux:</strong>
+<pre><code class="language-bash">curl -fsSL https://chatgpt.com/codex/install.sh | sh
+</code></pre>
+</li>
+<li><strong>Windows (via npm):</strong>
+<pre><code class="language-bash">npm install -g @openai/codex
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Navigiere in das Verzeichnis deines Rust-Projekts.</li>
+<li>Starte die Authentifizierung und die Ersteinrichtung mit:
+<pre><code class="language-bash">codex login
+</code></pre>
+</li>
+<li>Folge den Anweisungen im Terminal, um dich mit deinem OpenAI-Konto zu verknüpfen.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-b-projekt-onboarding"><a class="header" href="#aufgabe-b-projekt-onboarding">Aufgabe B: Projekt-Onboarding</a></h3>
+<ol>
+<li>Starte Codex CLI im interaktiven Modus:
+<pre><code class="language-bash">codex
+</code></pre>
+</li>
+<li>Stelle dem Agenten folgende Einstiegsfrage:
+<pre><code class="language-text">Analysiere die Cargo.toml und gib mir eine Übersicht, welche externen Crates dieses Projekt nutzt und was der Einstiegspunkt ist.
+</code></pre>
+</li>
+<li>Beobachte im Terminal, wie der Agent die Dateien scannt und die Antwort formuliert.</li>
+<li>Beende die Session mit dem Slash-Befehl <code>/exit</code>.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-c-compiler-fehler-beheben-lassen"><a class="header" href="#aufgabe-c-compiler-fehler-beheben-lassen">Aufgabe C: Compiler-Fehler beheben lassen</a></h3>
+<ol>
+<li>Öffne deine <code>src/main.rs</code> in einem Editor und baue bewusst einen kleinen Fehler ein (z. B. entferne ein Semikolon am Ende einer Zuweisung).</li>
+<li>Starte Codex CLI mit einer direkten Aufgabe aus deiner Shell:
+<pre><code class="language-bash">codex "Führe cargo check aus und behebe alle Fehler, die du findest"
+</code></pre>
+</li>
+<li>Verfolge die Schritte der KI: Sie wird den Compiler-Fehler sehen, die entsprechende Zeile lokalisieren, den Fehler korrigieren und dir das Diff zur Freigabe vorlegen.</li>
+<li>Bestätige die Änderung, wenn sie korrekt aussieht.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-d-pipeline-chaining-pipes"><a class="header" href="#aufgabe-d-pipeline-chaining-pipes">Aufgabe D: Pipeline-Chaining (Pipes)</a></h3>
+<ol>
+<li>Du kannst die Standardausgabe anderer CLI-Tools direkt an Codex übergeben. Generiere beispielsweise eine Commit-Nachricht basierend auf deinen aktuellen Git-Änderungen:
+<pre><code class="language-bash">git diff | codex -p "Schreibe eine prägnante Git-Commit-Nachricht für dieses Diff"
+</code></pre>
+</li>
+<li>Lass dir Testergebnisse erklären, ohne dass der Agent deinen Code verändert:
+<pre><code class="language-bash">cargo test 2&gt;&amp;1 | codex -p "Erkläre mir einfach, warum dieser Test fehlgeschlagen ist"
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="aufgabe-e-read-only-modus-für-maximale-sicherheit"><a class="header" href="#aufgabe-e-read-only-modus-für-maximale-sicherheit">Aufgabe E: Read-Only Modus für maximale Sicherheit</a></h3>
+<ol>
+<li>Wenn du Codex CLI nur als Berater nutzen möchtest und verhindern willst, dass die KI Dateien schreibt oder Befehle auf deinem System ausführt, starte das Tool im Read-Only-Modus:
+<pre><code class="language-bash">codex --readonly
+</code></pre>
+</li>
+<li>Versuche, Codex CLI in diesem Modus anzuweisen, eine neue Datei anzulegen. Beobachte, wie der Agent dies verweigert und erklärt, dass er keine Schreibrechte besitzt.</li>
+</ol>
+<hr>
+<h3 id="aufgabe-f-nützliche-slash-befehle-nutzen"><a class="header" href="#aufgabe-f-nützliche-slash-befehle-nutzen">Aufgabe F: Nützliche Slash-Befehle nutzen</a></h3>
+<ol>
+<li>Starte eine interaktive Sitzung mit <code>codex</code>.</li>
+<li>Probiere folgende Slash-Befehle aus und beobachte ihre Wirkung:
+<ul>
+<li><code>/clear</code> – Setzt den Kontext und den Chatverlauf zurück.</li>
+<li><code>/config</code> – Öffnet das Menü zur Anpassung von Modellparametern und Berechtigungen.</li>
+<li><code>/exit</code> – Beendet die aktuelle Sitzung sicher.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-50-projektvorschläge"><a class="header" href="#-50-projektvorschläge">🚀 50 Projektvorschläge</a></h2>
+<p>Hier findest du 50 Projektideen, die du als Rust-Einsteiger umsetzen kannst. Nutze Codex CLI dabei als deinen Co-Piloten und Mentor, um die Aufgaben schrittweise zu lösen.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Keine fertigen Codelösungen!</strong>
+Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Konzepte erklären zu lassen, Fehler zu suchen oder Teilschritte zu planen. Der fertige Code sollte aus deiner eigenen Feder stammen!</p>
+</blockquote>
+<h3 id="-einstieg-110-einfache-cli-tools-und-spiele"><a class="header" href="#-einstieg-110-einfache-cli-tools-und-spiele">🟢 Einstieg (1–10): Einfache CLI-Tools und Spiele</a></h3>
+<ol>
+<li><strong>Zahlenratespiel</strong>
+<ul>
+<li><em>Konzept:</em> Der Computer generiert eine Zufallszahl, die du erraten musst.</li>
+<li><em>Lernziel:</em> Kontrollfluss, Zufallszahlen generieren, Benutzereingaben lesen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Erkläre mir, wie ich in Rust Benutzereingaben von der Standard-Eingabe einlese und in eine Ganzzahl umwandele.“</code></li>
+</ul>
+</li>
+<li><strong>CLI-Taschenrechner</strong>
+<ul>
+<li><em>Konzept:</em> Ein Programm, das einfache Rechenoperationen (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>) auf zwei Zahlen anwendet.</li>
+<li><em>Lernziel:</em> Enums für Operatoren, <code>match</code>-Anweisungen, grundlegendes Error-Handling.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie kann ich ein Enum definieren, das mathematische Operationen darstellt, und eine Match-Anweisung darauf anwenden?“</code></li>
+</ul>
+</li>
+<li><strong>In-Memory To-Do-Liste</strong>
+<ul>
+<li><em>Konzept:</em> Aufgaben im RAM hinzufügen, auflisten und als erledigt markieren.</li>
+<li><em>Lernziel:</em> Arbeiten mit <code>Vec&lt;T&gt;</code> und Structs.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Hilf mir bei der Definition einer Struktur für ein To-Do-Item und wie ich eine Liste davon in einem Vector verwalte.“</code></li>
+</ul>
+</li>
+<li><strong>Wortzähler (Word Counter)</strong>
+<ul>
+<li><em>Konzept:</em> Ein CLI-Tool, das die Wörter, Zeilen und Zeichen einer Textdatei zählt.</li>
+<li><em>Lernziel:</em> Datei-I/O (<code>std::fs::File</code>), Strings verarbeiten.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie öffne ich eine Textdatei in Rust und lese sie Zeile für Zeile ein?“</code></li>
+</ul>
+</li>
+<li><strong>Temperatur-Konverter</strong>
+<ul>
+<li><em>Konzept:</em> Werte zwischen Celsius, Fahrenheit und Kelvin hin und her rechnen.</li>
+<li><em>Lernziel:</em> Mathematische Operationen, Datentypen konvertieren.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie definiere ich Funktionen für mathematische Formeln und stelle sicher, dass Gleitkommazahlen korrekt gerundet werden?“</code></li>
+</ul>
+</li>
+<li><strong>Passwort-Generator</strong>
+<ul>
+<li><em>Konzept:</em> Erstellt ein sicheres, zufälliges Passwort basierend auf Längen- und Zeichendefinitionen.</li>
+<li><em>Lernziel:</em> Umgang mit Arrays, Vektoren und zufälliger Auswahl.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie wähle ich in Rust zufällig Elemente aus einem Array von Zeichen aus?“</code></li>
+</ul>
+</li>
+<li><strong>FizzBuzz Deluxe</strong>
+<ul>
+<li><em>Konzept:</em> Das klassische FizzBuzz, bei dem der Benutzer die Teiler und Wörter frei konfigurieren kann.</li>
+<li><em>Lernziel:</em> Schleifen, Modulo-Operationen, CLI-Argumente parsen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie lese ich Kommandozeilenargumente ohne externe Crates aus der std::env::args-Liste?“</code></li>
+</ul>
+</li>
+<li><strong>Einheitenumrechner</strong>
+<ul>
+<li><em>Konzept:</em> Konvertiert Längen (Meter, Fuß, Meilen) oder Gewichte (Gramm, Pfund, Unzen).</li>
+<li><em>Lernziel:</em> Strukturierung von Formeln in separaten Modulen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie erstelle ich in Rust eine modulare Struktur, um Berechnungen in eine eigene Datei auszulagern?“</code></li>
+</ul>
+</li>
+<li><strong>Anagramm-Prüfer</strong>
+<ul>
+<li><em>Konzept:</em> Prüft, ob zwei eingegebene Wörter Anagramme voneinander sind.</li>
+<li><em>Lernziel:</em> Strings manipulieren, Zeichen sortieren.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie zerlege ich einen String in Rust in seine einzelnen Zeichen (Chars), sortiere diese und vergleiche sie?“</code></li>
+</ul>
+</li>
+<li><strong>Römische Zahlen Konverter</strong>
+<ul>
+<li><em>Konzept:</em> Wandelt arabische Zahlen in römische Zahlen um und umgekehrt.</li>
+<li><em>Lernziel:</em> String-Generierung, komplexe Match-Logik.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Welche Algorithmen eignen sich für die Konvertierung von Zahlen in römische Ziffern und wie bilde ich das in Match-Blöcken ab?“</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-mittelstufe-1125-dateiverarbeitung-algorithmen-und-netzwerke"><a class="header" href="#-mittelstufe-1125-dateiverarbeitung-algorithmen-und-netzwerke">🟡 Mittelstufe (11–25): Dateiverarbeitung, Algorithmen und Netzwerke</a></h3>
+<ol start="11">
+<li><strong>Markdown-zu-HTML Konverter</strong>
+<ul>
+<li><em>Konzept:</em> Liest eine einfache <code>.md</code>-Datei und konvertiert Überschriften und Absätze in HTML-Tags.</li>
+<li><em>Lernziel:</em> Text-Parsing, String-Ersetzungen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie kann ich Zeilenanfänge prüfen (z. B. auf '#') und den Rest der Zeile in ein HTML-Tag einpacken?“</code></li>
+</ul>
+</li>
+<li><strong>CSV-Daten-Parser</strong>
+<ul>
+<li><em>Konzept:</em> Parst eine CSV-Datei ohne externe Abhängigkeiten und gibt die Daten tabellarisch aus.</li>
+<li><em>Lernziel:</em> String-Splitting, Vektoren aus Vektoren (<code>Vec&lt;Vec&lt;String&gt;&gt;</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie spalte ich eine CSV-Zeile unter Berücksichtigung von Kommas auf?“</code></li>
+</ul>
+</li>
+<li><strong>Einfacher HTTP-Client</strong>
+<ul>
+<li><em>Konzept:</em> Sendet einen GET-Request an eine URL und gibt den Response-Body aus (z. B. mit <code>reqwest</code>).</li>
+<li><em>Lernziel:</em> Umgang mit externen Crates, asynchrones Rust (<code>tokio</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Erkläre mir, wie ich die reqwest-Bibliothek in Cargo.toml einbinde und einen einfachen asynchronen GET-Request durchführe.“</code></li>
+</ul>
+</li>
+<li><strong>Log-Datei-Filter</strong>
+<ul>
+<li><em>Konzept:</em> Durchsucht Logdateien nach bestimmten Levels (INFO, WARN, ERROR) und exportiert die Treffer.</li>
+<li><em>Lernziel:</em> Filtern von Iteratoren, Datei-Schreiben.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie nutze ich filter() auf einem Iterator von Zeilen, um nur Zeilen zu behalten, die ein bestimmtes Wort enthalten?“</code></li>
+</ul>
+</li>
+<li><strong>JSON-Konfigurations-Lader</strong>
+<ul>
+<li><em>Konzept:</em> Liest eine Konfigurationsdatei im JSON-Format und parst sie in ein Rust-Struct (mit <code>serde</code>).</li>
+<li><em>Lernziel:</em> Serialisierung und Deserialisierung, Attribute in Rust.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie benutze ich Serde-Derive, um eine JSON-Struktur automatisch in ein Rust-Struct zu übersetzen?“</code></li>
+</ul>
+</li>
+<li><strong>Kontaktdatenbank mit Datei-Persistenz</strong>
+<ul>
+<li><em>Konzept:</em> Erstellt ein Adressbuch, das Kontakte hinzufügt und diese in einer lokalen Textdatei speichert.</li>
+<li><em>Lernziel:</em> Structs, Implementierung von Methoden (<code>impl</code>), Dateiverwaltung.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich Methoden auf einem Struct, um Daten zu serialisieren und in eine Datei zu schreiben?“</code></li>
+</ul>
+</li>
+<li><strong>Hangman mit ASCII-Grafik</strong>
+<ul>
+<li><em>Konzept:</em> Das klassische Galgenmännchen-Spiel im Terminal mit visueller ASCII-Art des Galgens.</li>
+<li><em>Lernziel:</em> Zustandsverwaltung, String-Vergleiche, Terminal-Ausgabe manipulieren.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie verwalte ich den Spielzustand (erratene Buchstaben, verbleibende Versuche) sauber in einem Rust-Struct?“</code></li>
+</ul>
+</li>
+<li><strong>Datei-Verschlüssler</strong>
+<ul>
+<li><em>Konzept:</em> Verschlüsselt und entschlüsselt eine Datei mit einem einfachen XOR-Schlüssel.</li>
+<li><em>Lernziel:</em> Byte-Arrays (<code>&amp;[u8]</code>), Bitweise Operationen, Dateiverarbeitung auf Byte-Ebene.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie lese ich eine Datei als Byte-Stream ein und wende eine XOR-Operation auf jedes Byte an?“</code></li>
+</ul>
+</li>
+<li><strong>Verschlüsselter Passwort-Manager</strong>
+<ul>
+<li><em>Konzept:</em> Speichert Logins lokal in einer Datei, die mit einem Master-Passwort gesichert ist (z. B. mit <code>aes-gcm</code>).</li>
+<li><em>Lernziel:</em> Kryptographie in Rust, Sicherheits-Best-Practices.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Welche Crates eignen sich für AES-Verschlüsselung in Rust und wie installiere ich sie?“</code></li>
+</ul>
+</li>
+<li><strong>Port-Scanner</strong>
+<ul>
+<li><em>Konzept:</em> Prüft, welche Ports einer IP-Adresse aktiv auf Verbindungen lauschen.</li>
+<li><em>Lernziel:</em> Netzwerkschnittstellen (<code>std::net::TcpStream</code>), Timeouts.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie versuche ich eine TCP-Verbindung zu einer IP und einem Port mit einem kurzen Timeout aufzubauen?“</code></li>
+</ul>
+</li>
+<li><strong>URL-Shortener CLI</strong>
+<ul>
+<li><em>Konzept:</em> Erstellt kurze Schlüssel für lange URLs und speichert diese Zuordnung in einer lokalen Map.</li>
+<li><em>Lernziel:</em> <code>HashMap</code>, Generierung von kurzen Hashes.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie speichere ich Schlüssel-Wert-Paare in einer HashMap und sichere diese dauerhaft in einer Datei?“</code></li>
+</ul>
+</li>
+<li><strong>Task-Planer (Mini-Cron)</strong>
+<ul>
+<li><em>Konzept:</em> Führt bestimmte Aufgaben in vorgegebenen Sekunden-Intervallen aus.</li>
+<li><em>Lernziel:</em> Threads (<code>std::thread</code>), Pausieren (<code>std::time::Duration</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie erstelle ich einen Hintergrund-Thread, der in einer Endlosschleife schläft und periodisch eine Funktion triggert?“</code></li>
+</ul>
+</li>
+<li><strong>RSS-Feed-Reader</strong>
+<ul>
+<li><em>Konzept:</em> Holt Feeds von Nachrichten-Websites und listet die neuesten Schlagzeilen im Terminal auf.</li>
+<li><em>Lernziel:</em> XML-Parsing, Web-Anfragen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Welche Crates helfen beim XML-Parsing in Rust und wie extrahiere ich damit bestimmte Tags?“</code></li>
+</ul>
+</li>
+<li><strong>Rekursiver Datei-Finder</strong>
+<ul>
+<li><em>Konzept:</em> Durchsucht ein Verzeichnis und alle Unterverzeichnisse nach Dateien mit einer bestimmten Endung.</li>
+<li><em>Lernziel:</em> Rekursion, <code>std::fs::read_dir</code>, Fehlerbehandlung bei fehlenden Rechten.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie durchlaufe ich Verzeichnisse rekursiv und filtere nach Dateiendungen, während ich Berechtigungsfehler ignoriere?“</code></li>
+</ul>
+</li>
+<li><strong>IP-Adressen-Validierer</strong>
+<ul>
+<li><em>Konzept:</em> Prüft, ob eine eingegebene IPv4- oder IPv6-Adresse syntaktisch korrekt ist.</li>
+<li><em>Lernziel:</em> Reguläre Ausdrücke (Crate <code>regex</code>) oder manuelles String-Parsing.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie nutze ich das regex-Crate, um ein Pattern für IPv4-Adressen abzugleichen?“</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-fortgeschritten-2640-bibliotheken-server-und-systemnähe"><a class="header" href="#-fortgeschritten-2640-bibliotheken-server-und-systemnähe">🔵 Fortgeschritten (26–40): Bibliotheken, Server und Systemnähe</a></h3>
+<ol start="26">
+<li><strong>Multi-threaded Webserver</strong>
+<ul>
+<li><em>Konzept:</em> Ein minimaler Webserver, der statische HTML-Seiten über einen selbst programmierten Thread-Pool ausliefert.</li>
+<li><em>Lernziel:</em> TCP-Sockets, Channels (<code>std::sync::mpsc</code>), Threads.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich einen einfachen Thread-Pool in Rust, um TCP-Verbindungen parallel zu verarbeiten?“</code></li>
+</ul>
+</li>
+<li><strong>Redis-Klon (In-Memory Key-Value Store)</strong>
+<ul>
+<li><em>Konzept:</em> Ein Server, der per TCP Befehle wie <code>GET</code>, <code>SET</code> und <code>DEL</code> entgegennimmt und Werte speichert.</li>
+<li><em>Lernziel:</em> Netzwerkprotokolle parsen, Concurrency, <code>Arc</code> und <code>Mutex</code>.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie teile ich eine HashMap sicher auf mehrere Threads auf, indem ich Arc und Mutex kombiniere?“</code></li>
+</ul>
+</li>
+<li><strong>Git-Status-Checker</strong>
+<ul>
+<li><em>Konzept:</em> Analysiert das aktuelle Verzeichnis und zeigt an, ob ungesicherte Änderungen vorliegen.</li>
+<li><em>Lernziel:</em> Systembefehle ausführen (<code>std::process::Command</code>), Output parsen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie führe ich einen Shell-Befehl wie 'git status' aus Rust heraus aus und lese dessen Ausgabe ein?“</code></li>
+</ul>
+</li>
+<li><strong>Markdown-Wiki mit Webinterface</strong>
+<ul>
+<li><em>Konzept:</em> Ein Webserver, der Markdown-Dateien aus einem Ordner liest, rendert und im Browser anzeigt.</li>
+<li><em>Lernziel:</em> Web-Routing (z. B. mit <code>axum</code>), HTML-Templates (z. B. <code>tera</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie richte ich mit axum eine Route ein, die einen Pfad-Parameter akzeptiert und eine Datei ausliest?“</code></li>
+</ul>
+</li>
+<li><strong>Chat-Server mit WebSockets</strong>
+<ul>
+<li><em>Konzept:</em> Mehrere Clients können sich verbinden und Nachrichten in Echtzeit austauschen.</li>
+<li><em>Lernziel:</em> Asynchrone Streams, WebSockets, Broadcast-Channels.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie richte ich einen WebSocket-Server mit tokio-tungstenite ein und leite Nachrichten an alle verbundenen Clients weiter?“</code></li>
+</ul>
+</li>
+<li><strong>Einfaches Build-Tool</strong>
+<ul>
+<li><em>Konzept:</em> Liest eine Konfigurationsdatei (z. B. <code>tasks.json</code>) und führt definierte Build-Schritte nacheinander aus.</li>
+<li><em>Lernziel:</em> Prozesssteuerung, Abhängigkeitsbäume validieren.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie führe ich mehrere Prozesse nacheinander aus und breche ab, wenn ein Prozess mit einem Exit-Code ungleich 0 endet?“</code></li>
+</ul>
+</li>
+<li><strong>CPU- und RAM-Monitor</strong>
+<ul>
+<li><em>Konzept:</em> Ein Terminal-Dashboard, das die Auslastung der Systemressourcen grafisch anzeigt.</li>
+<li><em>Lernziel:</em> TUI-Entwicklung (z. B. <code>ratatui</code>), System-APIs auslesen (z. B. <code>sysinfo</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie kann ich mit dem sysinfo-Crate die CPU-Last abfragen und die Werte periodisch aktualisieren?“</code></li>
+</ul>
+</li>
+<li><strong>Bildbearbeitungs-CLI</strong>
+<ul>
+<li><em>Konzept:</em> CLI-Tool zum Konvertieren, Skalieren oder Graufärben von Bildern.</li>
+<li><em>Lernziel:</em> Umgang mit Binärdaten, das <code>image</code>-Crate verwenden.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie lade ich ein Bild mit dem image-Crate, wende einen Graustufen-Filter an und speichere es unter neuem Namen?“</code></li>
+</ul>
+</li>
+<li><strong>Template-Engine</strong>
+<ul>
+<li><em>Konzept:</em> Ersetzt Platzhalter wie <code>{{name}}</code> in einer Textvorlage durch Werte aus einer Map.</li>
+<li><em>Lernziel:</em> String-Parsing, reguläre Ausdrücke, Text-Generierung.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich einen einfachen Parser, der Platzhalter im Format {{key}} findet und durch Werte aus einer HashMap ersetzt?“</code></li>
+</ul>
+</li>
+<li><strong>SQLite Aufgabenplaner</strong>
+<ul>
+<li><em>Konzept:</em> Speichert To-Dos persistent in einer lokalen SQLite-Datenbank.</li>
+<li><em>Lernziel:</em> Datenbankanbindung mit <code>sqlx</code> oder <code>rusqlite</code>.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie binde ich rusqlite ein, erstelle eine Tabelle und führe SQL-INSERT-Statements in Rust aus?“</code></li>
+</ul>
+</li>
+<li><strong>Cargo Dependency Grapher</strong>
+<ul>
+<li><em>Konzept:</em> Parst die <code>Cargo.lock</code> und gibt die Abhängigkeiten als Text-Graph oder DOT-Format aus.</li>
+<li><em>Lernziel:</em> Graphenstrukturen, Lockdateien parsen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie parst man eine Cargo.lock-Datei im TOML-Format und baut daraus eine Abhängigkeitsstruktur auf?“</code></li>
+</ul>
+</li>
+<li><strong>DNS-Lookup Tool</strong>
+<ul>
+<li><em>Konzept:</em> Frägt DNS-Server nach IP-Adressen und MX-Einträgen für Domains ab.</li>
+<li><em>Lernziel:</em> Netzwerkprotokolle, DNS-Pakete verstehen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie kann ich mit der Bibliothek trust-dns-resolver einen DNS-A-Record-Lookup durchführen?“</code></li>
+</ul>
+</li>
+<li><strong>Sudoku-Löser</strong>
+<ul>
+<li><em>Konzept:</em> Findet Lösungen für unvollständige Sudoku-Rätsel.</li>
+<li><em>Lernziel:</em> Backtracking-Algorithmus, zweidimensionale Arrays.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich einen rekursiven Backtracking-Algorithmus in Rust auf einem 9x9-Array?“</code></li>
+</ul>
+</li>
+<li><strong>Datei-Duplikate-Finder</strong>
+<ul>
+<li><em>Konzept:</em> Scannt Ordner und identifiziert doppelte Dateien durch Vergleich ihrer Hashes.</li>
+<li><em>Lernziel:</em> Hashing-Bibliotheken (z. B. <code>sha2</code>), Dateivergleiche.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie berechne ich den SHA-256-Hash einer Datei in Rust effizient, ohne die gesamte Datei auf einmal in den Speicher zu laden?“</code></li>
+</ul>
+</li>
+<li><strong>Custom Shell</strong>
+<ul>
+<li><em>Konzept:</em> Eine eigene Shell, die Befehle ausführt, Pipes unterstützt (<code>|</code>) und Verzeichniswechsel erlaubt.</li>
+<li><em>Lernziel:</em> <code>fork</code> und <code>exec</code> Konzepte (bzw. <code>std::process</code>), Pfadmanipulationen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich einen Command-Parser für meine Shell, der Eingaben an Pipes aufsplittet und an std::process::Command weiterleitet?“</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-challenge-4150-komplexe-systeme-und-simulationen"><a class="header" href="#-challenge-4150-komplexe-systeme-und-simulationen">💀 Challenge (41–50): Komplexe Systeme und Simulationen</a></h3>
+<ol start="41">
+<li><strong>Lisp/Scheme-Interpreter</strong>
+<ul>
+<li><em>Konzept:</em> Liest Lisp-Code ein, baut einen AST und wertet ihn aus.</li>
+<li><em>Lernziel:</em> Rekursive Datentypen (<code>Box&lt;T&gt;</code>), Lexer, Parser, AST-Strukturen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie definiere ich eine rekursive Enum-Struktur für einen Abstract Syntax Tree (AST) in Rust unter Verwendung von Box?“</code></li>
+</ul>
+</li>
+<li><strong>CHIP-8 Emulator</strong>
+<ul>
+<li><em>Konzept:</em> Emuliert eine klassische 8-Bit-Konsole inklusive CPU, Speicher und Grafik-Ausgabe.</li>
+<li><em>Lernziel:</em> Bitweise Operationen, Memory-Mapping, grafische Darstellung (z. B. mit <code>sdl2</code> oder <code>minifb</code>).</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie simuliere ich den Speicher und die Register einer CPU in Rust und verarbeite Opcode-Bytes?“</code></li>
+</ul>
+</li>
+<li><strong>Blockchain-Prototyp</strong>
+<ul>
+<li><em>Konzept:</em> Implementiert eine einfache Blockchain mit Proof-of-Work und Validierung der Kette.</li>
+<li><em>Lernziel:</em> Kryptographie, Verkettung von Strukturen, Nebenläufigkeit bei der Miner-Suche.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie entwerfe ich eine Struktur für Blöcke, die den Hash des vorherigen Blocks referenzieren und Proof-of-Work berechnen?“</code></li>
+</ul>
+</li>
+<li><strong>Mini-Torrent-Client</strong>
+<ul>
+<li><em>Konzept:</em> Liest eine <code>.torrent</code>-Datei, parst die Daten und kontaktiert den Tracker.</li>
+<li><em>Lernziel:</em> Bencode-Parsing, asynchrone TCP-Verbindungen zu Peers.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie parst man Bencode in Rust und wie sendet man den Handshake an einen Peer über eine TCP-Verbindung?“</code></li>
+</ul>
+</li>
+<li><strong>Text-Editor im Terminal</strong>
+<ul>
+<li><em>Konzept:</em> Ein interaktiver Editor mit Zeilennummern, Suchen und Speichern (ähnlich wie Nano).</li>
+<li><em>Lernziel:</em> Terminal-Steuerung im Raw-Mode (z. B. <code>crossterm</code>), Cursor-Positionierung.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie versetze ich das Terminal mit crossterm in den Raw-Modus und fange Tastatureingaben ab, ohne auf Enter zu warten?“</code></li>
+</ul>
+</li>
+<li><strong>Conways Spiel des Lebens (Multithreaded)</strong>
+<ul>
+<li><em>Konzept:</em> Eine Zell-Simulation, bei der die Berechnung der nächsten Generation auf mehrere Threads aufgeteilt wird.</li>
+<li><em>Lernziel:</em> Thread-Synchronisation, Barrieren (<code>std::sync::Barrier</code>), Gitter-Updates.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie synchronisiere ich mehrere Threads mit einer Barrier, um sicherzustellen, dass alle die aktuelle Generation fertig berechnet haben?“</code></li>
+</ul>
+</li>
+<li><strong>IRC-Client</strong>
+<ul>
+<li><em>Konzept:</em> Verbindet sich mit einem IRC-Netzwerk, tritt Channels bei und sendet/empfängt Nachrichten.</li>
+<li><em>Lernziel:</em> Textprotokolle über TCP, asynchrone Event-Loops.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie erstelle ich eine asynchrone Schleife, die gleichzeitig eingehende Socket-Nachrichten liest und Tastatureingaben sendet?“</code></li>
+</ul>
+</li>
+<li><strong>Web-Scraper</strong>
+<ul>
+<li><em>Konzept:</em> Extrahiert strukturierte Daten von Websites (z. B. Preisvergleiche) und speichert sie.</li>
+<li><em>Lernziel:</em> HTML-Parsing (z. B. <code>scraper</code> oder <code>html5ever</code>), Fehlertoleranz.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie benutze ich das scraper-Crate, um CSS-Selektoren auf ein HTML-Dokument anzuwenden und Textinhalte auszulesen?“</code></li>
+</ul>
+</li>
+<li><strong>Eigener Memory Allocator</strong>
+<ul>
+<li><em>Konzept:</em> Schreibt einen benutzerdefinierten Allocator für Rust, der den Speicher selbst verwaltet.</li>
+<li><em>Lernziel:</em> Unsafe Rust, Speicher-Layouts, das <code>GlobalAlloc</code> Trait.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie implementiere ich das GlobalAlloc-Trait in Rust und welche unsafe-Methoden müssen überschrieben werden?“</code></li>
+</ul>
+</li>
+<li><strong>Datei-Synchronisations-Tool (Rsync-Klon)</strong>
+<ul>
+<li><em>Konzept:</em> Synchronisiert zwei Verzeichnisse (lokal oder über das Netzwerk), indem nur veränderte Blöcke übertragen werden.</li>
+<li><em>Lernziel:</em> Netzwerk-Programmierung, Datei-Fingerprints, Delta-Algorithmen.</li>
+<li><em>Codex-Prompt-Tipp:</em> <code>„Wie vergleiche ich die Metadaten und Hashes von Dateien in zwei Verzeichnissen, um eine Liste von geänderten Dateien zu erstellen?“</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Begriff</th><th style="text-align: left">Erklärung</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Agentic AI</strong></td><td style="text-align: left">Ein KI-System, das eigenständig plant, Tools ausführt und Fehler korrigiert.</td></tr>
+<tr><td style="text-align: left"><strong>Codex CLI</strong></td><td style="text-align: left">OpenAIs Befehlszeilen-Coding-Agent, der auf reasoning-Modellen basiert.</td></tr>
+<tr><td style="text-align: left"><strong>Agenten-Loop</strong></td><td style="text-align: left">Die kontinuierliche Schleife aus Analyse, Codegenerierung, Testlauf und Korrektur.</td></tr>
+<tr><td style="text-align: left"><strong>Pipes / Chaining</strong></td><td style="text-align: left">Das Weiterleiten von Terminal-Ausgaben anderer Befehle direkt als Kontext in die KI.</td></tr>
+<tr><td style="text-align: left"><strong>Read-Only Modus</strong></td><td style="text-align: left">Sicherheits-Modus, bei dem der Agent keine lokalen Dateien verändern oder Shell-Befehle ausführen darf.</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
+<ul>
+<li><a href="https://chatgpt.com/codex">Offizielle OpenAI Codex CLI Dokumentation</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI GitHub Repository</a></li>
+<li><a href="https://rust-cli.github.io/book/index.html">Rust CLI Book – Leitfaden für CLI-Entwicklung in Rust</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="claude-code.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="zed-ide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="claude-code.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="zed-ide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
