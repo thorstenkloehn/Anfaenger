@@ -1,18 +1,10 @@
-# AGENTS.md (.agents)
+# Regeln
+- Deutsch, anfängerfreundlich. **Kein Code vorwegnehmen!**
+- Bei 3+ Kapiteln/großen Aufgaben Subagenten & Skill `subagent-steuern` nutzen.
 
-## Regeln & Stil
-- **Deutsch:** Präzise, verständlich, anfängerfreundlich.
-- **Kein Code vorwegnehmen:** Nur Denkanstöße und Fehlerursachen erklären.
-- **Code:** Einfach halten, Funktionen kurz kommentieren, sprechende Namen.
-- **Kommunikation:** Bei Unklarheiten fragen, Zwischenergebnisse zeigen.
-
-## Subagenten
-- Aktivieren bei: "Schreibe 3+ Kapitel", "Erstelle Theorie + Projekte parallel", "Aktualisiere alle KI-Lektionen".
-- Zur Steuerung und Koordination immer den Skill `subagent-steuern` nutzen.
-
-## KI-Werkzeuge
-- **Gemini:** Allgemeine Fragen / Chat.
-- **Antigravity (CLI/IDE):** Aktives Coden und Projektarbeit.
-- **Copilot:** Tab-Vervollständigung.
-- **IDE-Agenten:** Selbstständiges Handeln (Planung/Diff).
-- **Vibe Coding:** Codebeschreibung.
+# Tools
+- Gemini: Chat.
+- Antigravity: Coden.
+- Copilot: Vervollständigung.
+- IDE-Agenten: Planung.
+- Vibe Coding: Beschreibung.
