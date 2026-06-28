@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Praxis 2: Profi-Workflows - Rust Projektvorschläge für Einsteiger</title>
+        <title>100+ Praxis-Übungen (Katalog) - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,186 +174,144 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-claude-code--praxis--fortgeschrittene-teil-2"><a class="header" href="#-claude-code--praxis--fortgeschrittene-teil-2">🐚 Claude Code – Praxis &amp; Fortgeschrittene (Teil 2)</a></h1>
-<p><em>Tiefergehende Workflows, Agent Memory, MCP und CI/CD-Integration für Profis.</em></p>
+                        <h1 id="-codex-cli--der-100-praxis-übungen-katalog"><a class="header" href="#-codex-cli--der-100-praxis-übungen-katalog">💻 Codex CLI – Der 100+ Praxis-Übungen Katalog</a></h1>
+<p>Willkommen zur ultimativen Praxis-Lektion! Hier findest du über 100 kompakte Übungen, um den Umgang mit der Codex CLI (oder ähnlichen KI-Assistenten) zu meistern. Die Übungen sind in fünf Kategorien unterteilt und sollen dich zum Ausprobieren und Nachdenken anregen.</p>
+<p>Es gibt hier <strong>keine fertigen Lösungen</strong> – das Ziel ist es, dass du selbst lernst, wie du der KI die richtigen Fragen stellst und die Werkzeuge effektiv nutzt!</p>
 <hr>
-<p>In dieser Lektion heben wir unsere Arbeit mit <strong>Claude Code</strong> auf das nächste Level. Nachdem du in Teil 1 die Grundlagen und Cargo-Integration gemeistert hast, geht es nun um den Einsatz in komplexen, automatisierten Umgebungen.</p>
-<p>Wir behandeln <strong>Agent Memory</strong> (Langzeitgedächtnis), <strong>Custom Tools über MCP (Model Context Protocol)</strong>, fortgeschrittene <strong>Permission Modes</strong> (Rechtemanagement) und die Integration in <strong>CI/CD-Pipelines</strong>.</p>
-<blockquote class="blockquote-tag blockquote-tag-important">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Erinnerung:</strong> Auch hier gibt es keine fertigen Code-Blöcke zum Kopieren! Nutze die Aufgaben als Denkanstöße, um die CLI selbst zu erkunden.</p>
-</blockquote>
+<h2 id="1-workflows--steuerung"><a class="header" href="#1-workflows--steuerung">1. Workflows &amp; Steuerung</a></h2>
+<p>Lerne, wie du deine Arbeit organisierst und den Assistenten effizient steuerst.</p>
+<ol>
+<li><strong>Aufgabe:</strong> Zeige alle aktuellen Aufgaben an. <strong>Hinweis:</strong> Nutze den passenden List-Befehl oder Slash-Command.</li>
+<li><strong>Aufgabe:</strong> Wechsle in einen neuen Branch für ein Feature. <strong>Hinweis:</strong> Denke an <code>git checkout -b</code> oder lass die CLI das machen.</li>
+<li><strong>Aufgabe:</strong> Erstelle einen Commit für deine letzten Änderungen. <strong>Hinweis:</strong> Lass die CLI eine gute Commit-Message vorschlagen.</li>
+<li><strong>Aufgabe:</strong> Pausiere die aktuelle Aufgabe und starte eine andere. <strong>Hinweis:</strong> Speichere den Zustand oder nutze Stashing.</li>
+<li><strong>Aufgabe:</strong> Frage die CLI nach dem Status des aktuellen Projekts. <strong>Hinweis:</strong> Lass dir eine kurze Zusammenfassung generieren.</li>
+<li><strong>Aufgabe:</strong> Setze einen Timer für die aktuelle Aufgabe. <strong>Hinweis:</strong> Nutze <code>/schedule</code> oder ähnliche Befehle, falls vorhanden.</li>
+<li><strong>Aufgabe:</strong> Führe einen Befehl im Hintergrund aus. <strong>Hinweis:</strong> Denke an asynchrone Tasks.</li>
+<li><strong>Aufgabe:</strong> Überprüfe die Logs des letzten fehlgeschlagenen Befehls. <strong>Hinweis:</strong> Frage gezielt nach dem Fehlerprotokoll.</li>
+<li><strong>Aufgabe:</strong> Zeige die Änderungen zum letzten Commit an. <strong>Hinweis:</strong> Nutze einen Git Diff-Befehl.</li>
+<li><strong>Aufgabe:</strong> Beende alle laufenden Subagenten. <strong>Hinweis:</strong> Gibt es einen Befehl wie <code>/kill</code> oder ähnliches?</li>
+<li><strong>Aufgabe:</strong> Starte einen neuen Workspace für ein Experiment. <strong>Hinweis:</strong> Isoliere deine Umgebung, um nichts kaputt zu machen.</li>
+<li><strong>Aufgabe:</strong> Erstelle ein neues Verzeichnis für Skripte. <strong>Hinweis:</strong> Nutze Dateisystem-Befehle oder bitte die KI darum.</li>
+<li><strong>Aufgabe:</strong> Benenne eine Datei um. <strong>Hinweis:</strong> Achte darauf, dass Referenzen im Code intakt bleiben.</li>
+<li><strong>Aufgabe:</strong> Verschiebe ein Modul in einen anderen Ordner. <strong>Hinweis:</strong> Denke an die Pfadanpassungen in deinen Imports.</li>
+<li><strong>Aufgabe:</strong> Lösche eine temporäre Datei sicher. <strong>Hinweis:</strong> Prüfe vorher, ob sie wirklich nicht mehr gebraucht wird.</li>
+<li><strong>Aufgabe:</strong> Finde heraus, in welchem Verzeichnis du dich befindest. <strong>Hinweis:</strong> <code>pwd</code> ist dein Freund.</li>
+<li><strong>Aufgabe:</strong> Ändere die Zugriffsrechte einer ausführbaren Datei. <strong>Hinweis:</strong> <code>chmod</code> könnte hier sehr nützlich sein.</li>
+<li><strong>Aufgabe:</strong> Suche nach allen Dateien, die heute geändert wurden. <strong>Hinweis:</strong> Finde den passenden Suchbefehl für dein Betriebssystem.</li>
+<li><strong>Aufgabe:</strong> Zeige die Dateigröße des Build-Ordners an. <strong>Hinweis:</strong> Finde heraus, wie viel Platz verbraucht wird.</li>
+<li><strong>Aufgabe:</strong> Überprüfe die laufenden Hintergrundprozesse. <strong>Hinweis:</strong> Schau dir die aktiven Tasks deiner Session an.</li>
+</ol>
 <hr>
-<h2 id="-übungen-fortgeschrittene--profis-5180"><a class="header" href="#-übungen-fortgeschrittene--profis-5180">🚀 Übungen: Fortgeschrittene &amp; Profis (51–80)</a></h2>
-<h3 id="-agent-memory--langzeitgedächtnis-5156"><a class="header" href="#-agent-memory--langzeitgedächtnis-5156">🟣 Agent Memory &amp; Langzeitgedächtnis (51–56)</a></h3>
-<h4 id="übung-51-memory-initialisieren"><a class="header" href="#übung-51-memory-initialisieren">Übung 51: Memory initialisieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie bringst du Claude Code dazu, sich an spezifische Architektur-Entscheidungen aus deiner aktuellen Session für zukünftige Sessions zu erinnern?</li>
-<li><strong>Lösung:</strong> Recherchiere, wie du den Agenten anweist, eine Information in sein Memory zu speichern. (Tipp: Frage Claude direkt nach “Wie speicherst du Informationen permanent?”).</li>
-</ul>
-<h4 id="übung-52-gespeicherten-kontext-abfragen"><a class="header" href="#übung-52-gespeicherten-kontext-abfragen">Übung 52: Gespeicherten Kontext abfragen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du startest eine neue Session. Wie prüfst du, welche Projekt-Konventionen Claude bereits in seinem Gedächtnis hat?</li>
-<li><strong>Lösung:</strong> Welchen Befehl oder Prompt nutzt du, um den Memory-Status anzeigen zu lassen?</li>
-</ul>
-<h4 id="übung-53-falsches-memory-korrigieren"><a class="header" href="#übung-53-falsches-memory-korrigieren">Übung 53: Falsches Memory korrigieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Der Agent erinnert sich an eine veraltete Cargo-Version. Wie löschst oder aktualisierst du diesen spezifischen Memory-Eintrag?</li>
-<li><strong>Lösung:</strong> Überlege, wie du den Agenten instruierst, alte Gedächtnis-Einträge gezielt zu überschreiben.</li>
-</ul>
-<h4 id="übung-54-projekt-spezifisches-vs-globales-memory"><a class="header" href="#übung-54-projekt-spezifisches-vs-globales-memory">Übung 54: Projekt-spezifisches vs. Globales Memory</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du willst, dass Claude sich an deinen bevorzugten Rust-Stil in <em>allen</em> Projekten erinnert. Wie erreichst du das?</li>
-<li><strong>Lösung:</strong> Gibt es globale Konfigurationen im Vergleich zu projektbezogenen Speichern? Finde heraus, wo Claude Code dies verwaltet.</li>
-</ul>
-<h4 id="übung-55-memory-limitierung"><a class="header" href="#übung-55-memory-limitierung">Übung 55: Memory-Limitierung</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Was passiert, wenn das Gedächtnis zu voll wird? Wie kannst du irrelevante alte Informationen bereinigen, um Token zu sparen?</li>
-<li><strong>Lösung:</strong> Welchen Slash-Befehl oder CLI-Argument könnte es geben, um das Memory zu “prunen” (aufzuräumen)?</li>
-</ul>
-<h4 id="übung-56-kontext-dateien-einbinden"><a class="header" href="#übung-56-kontext-dateien-einbinden">Übung 56: Kontext-Dateien einbinden</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Statt Memory manuell zu trainieren, möchtest du eine <code>CONTEXT.md</code> fest als Basis-Wissen verankern.</li>
-<li><strong>Lösung:</strong> Wie übergibst du eine spezifische Datei bei jedem Start automatisch als System-Prompt? (Tipp: Sieh dir CLI-Parameter für System-Prompts an).</li>
-</ul>
+<h2 id="2-automatisieren"><a class="header" href="#2-automatisieren">2. Automatisieren</a></h2>
+<p>Routineaufgaben kosten Zeit – lass die Maschine für dich arbeiten.</p>
+<ol start="21">
+<li><strong>Aufgabe:</strong> Erstelle ein Skript, das dein Projekt baut. <strong>Hinweis:</strong> Fasse die Build-Befehle zusammen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI wiederkehrende Tests ausführen. <strong>Hinweis:</strong> Nutze Watcher oder Cron-Jobs.</li>
+<li><strong>Aufgabe:</strong> Automatisiere das Formatieren des Codes vor jedem Commit. <strong>Hinweis:</strong> Denke an Git Hooks.</li>
+<li><strong>Aufgabe:</strong> Schreibe ein Skript zum Aufräumen temporärer Dateien. <strong>Hinweis:</strong> Finde und lösche alle <code>.tmp</code> Dateien.</li>
+<li><strong>Aufgabe:</strong> Automatisiere die Generierung von Dokumentation. <strong>Hinweis:</strong> Führe den Doc-Generator automatisch aus.</li>
+<li><strong>Aufgabe:</strong> Erstelle ein einfaches Release-Skript. <strong>Hinweis:</strong> Version hochzählen, Taggen, und Bauen zusammenfassen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI automatisch Abhängigkeiten aktualisieren. <strong>Hinweis:</strong> Gibt es einen Paketmanager-Befehl für Updates?</li>
+<li><strong>Aufgabe:</strong> Automatisiere den Upload von Assets. <strong>Hinweis:</strong> Erstelle ein Skript für den Transfer zum Server.</li>
+<li><strong>Aufgabe:</strong> Richte ein regelmäßiges Backup der Datenbank ein. <strong>Hinweis:</strong> Nutze einen Scheduler oder Cron.</li>
+<li><strong>Aufgabe:</strong> Erstelle ein Skript, das die Logs analysiert und Fehler meldet. <strong>Hinweis:</strong> Filtern und nach <code>ERROR</code> suchen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI automatisch Code-Metriken sammeln. <strong>Hinweis:</strong> Setze Tools zur statischen Code-Analyse ein.</li>
+<li><strong>Aufgabe:</strong> Automatisiere das Setzen von Umgebungsvariablen. <strong>Hinweis:</strong> Erstelle ein Setup-Skript für <code>.env</code> Dateien.</li>
+<li><strong>Aufgabe:</strong> Schreibe ein Skript, das die Projektstruktur validiert. <strong>Hinweis:</strong> Prüfe, ob alle nötigen Ordner existieren.</li>
+<li><strong>Aufgabe:</strong> Automatisiere das Erstellen neuer Komponenten. <strong>Hinweis:</strong> Lass dir Boilerplate-Code generieren.</li>
+<li><strong>Aufgabe:</strong> Richte einen automatischen Neustart des Servers bei Codeänderungen ein. <strong>Hinweis:</strong> Nutze Watch-Tools wie Nodemon.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI veraltete Branches aufräumen. <strong>Hinweis:</strong> Finde und lösche bereits gemergte Git-Branches.</li>
+<li><strong>Aufgabe:</strong> Automatisiere den Download von Testdaten. <strong>Hinweis:</strong> Schreibe ein Skript mit <code>curl</code> oder <code>wget</code>.</li>
+<li><strong>Aufgabe:</strong> Erstelle ein Skript, das die Datenbank zurücksetzt und neu füllt. <strong>Hinweis:</strong> Seed-Skripte sind hier ideal.</li>
+<li><strong>Aufgabe:</strong> Automatisiere die Überprüfung auf tote Links in der Doku. <strong>Hinweis:</strong> Lass einen Link-Crawler laufen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI automatisch Warnungen aus dem Build-Prozess fixen. <strong>Hinweis:</strong> Nutze Linter mit Auto-Fix Funktionen.</li>
+</ol>
 <hr>
-<h3 id="-permission-modes--sicherheit-5762"><a class="header" href="#-permission-modes--sicherheit-5762">🛡️ Permission Modes &amp; Sicherheit (57–62)</a></h3>
-<h4 id="übung-57-isolierte-ausführung"><a class="header" href="#übung-57-isolierte-ausführung">Übung 57: Isolierte Ausführung</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du arbeitest an einem unbekannten Repository. Wie startest du Claude Code so, dass es auf keinen Fall das Dateisystem außerhalb des aktuellen Ordners lesen kann?</li>
-<li><strong>Lösung:</strong> Welche Flag oder welcher Sandbox-Modus verhindert Verzeichnisausbrüche?</li>
-</ul>
-<h4 id="übung-58-auto-approve-für-bestimmte-befehle"><a class="header" href="#übung-58-auto-approve-für-bestimmte-befehle">Übung 58: Auto-Approve für bestimmte Befehle</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du bist es leid, <code>cargo check</code> jedes Mal manuell zu bestätigen. Wie konfigurierst du Claude Code so, dass Lese- und Build-Befehle ohne Nachfrage laufen, aber Git-Commits noch bestätigt werden müssen?</li>
-<li><strong>Lösung:</strong> Erkunde die <code>/config</code> nach Berechtigungsstufen (z.B. “allowlist” für bestimmte Befehle).</li>
-</ul>
-<h4 id="übung-59-sensible-umgebungsvariablen-verbergen"><a class="header" href="#übung-59-sensible-umgebungsvariablen-verbergen">Übung 59: Sensible Umgebungsvariablen verbergen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie verhinderst du, dass Claude Code während eines Debuggings versehentlich deine <code>.env</code>-Datei liest und API-Keys im Chatverlauf landen?</li>
-<li><strong>Lösung:</strong> Erinnere dich an die <code>.claudeignore</code> aus Teil 1. Gilt dies auch für versteckte Dateien und Ordner?</li>
-</ul>
-<h4 id="übung-60-netzwerk-zugriff-blockieren"><a class="header" href="#übung-60-netzwerk-zugriff-blockieren">Übung 60: Netzwerk-Zugriff blockieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du willst nicht, dass Claude Code selbstständig <code>curl</code>-Befehle ausführt, um Code nachzuladen. Wie verbietest du den Netzwerkzugriff auf Shell-Ebene?</li>
-<li><strong>Lösung:</strong> Kann dies über Permissions konfiguriert werden, oder musst du den Agenten in einer speziellen Umgebung (z.B. Offline-Docker-Container) starten?</li>
-</ul>
-<h4 id="übung-61-audit-logs-prüfen"><a class="header" href="#übung-61-audit-logs-prüfen">Übung 61: Audit-Logs prüfen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest im Nachhinein nachvollziehen, welche Bash-Befehle Claude Code gestern ausgeführt hat. Wo findest du diese Logs?</li>
-<li><strong>Lösung:</strong> Suche im lokalen Konfigurationsverzeichnis des Tools nach Log- oder Verlaufs-Dateien.</li>
-</ul>
-<h4 id="übung-62-temporärer-read-only-modus"><a class="header" href="#übung-62-temporärer-read-only-modus">Übung 62: Temporärer Read-Only Modus</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Mitten in der Session willst du dem Agenten temporär Schreibrechte entziehen, während er sensiblen Code analysiert. Geht das?</li>
-<li><strong>Lösung:</strong> Welchen Slash-Befehl oder Konfigurationswechsel nutzt du on-the-fly, um die Modus-Rechte zu ändern?</li>
-</ul>
+<h2 id="3-projekt-wissendatenbank"><a class="header" href="#3-projekt-wissendatenbank">3. Projekt Wissendatenbank</a></h2>
+<p>Verstehe dein Projekt besser, indem du gezielt Informationen sammelst und dokumentierst.</p>
+<ol start="41">
+<li><strong>Aufgabe:</strong> Lass die CLI die Architektur des Projekts beschreiben. <strong>Hinweis:</strong> Frage nach einer groben High-Level Übersicht.</li>
+<li><strong>Aufgabe:</strong> Dokumentiere eine komplexe Funktion. <strong>Hinweis:</strong> Lass dir einen ausführlichen Docstring generieren.</li>
+<li><strong>Aufgabe:</strong> Erstelle ein Glossar der wichtigsten Projektbegriffe. <strong>Hinweis:</strong> Sammle Abkürzungen und deren Definitionen.</li>
+<li><strong>Aufgabe:</strong> Finde heraus, warum eine bestimmte Entscheidung getroffen wurde. <strong>Hinweis:</strong> Suche in alten Commits oder Pull Requests.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie das Authentifizierungssystem funktioniert. <strong>Hinweis:</strong> Bitte um eine schrittweise Erklärung.</li>
+<li><strong>Aufgabe:</strong> Dokumentiere die Schritte zum Aufsetzen der Entwicklungsumgebung. <strong>Hinweis:</strong> Schreibe oder aktualisiere die <code>README.md</code>.</li>
+<li><strong>Aufgabe:</strong> Erstelle eine Übersicht aller API-Endpunkte. <strong>Hinweis:</strong> Sammle Routen, Methoden und Parameter.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI ein UML-Diagramm der Datenbankstruktur entwerfen. <strong>Hinweis:</strong> Nutze Mermaid-Syntax für Diagramme.</li>
+<li><strong>Aufgabe:</strong> Fasse die Änderungen des letzten Monats zusammen. <strong>Hinweis:</strong> Generiere einen Changelog aus der Git-Historie.</li>
+<li><strong>Aufgabe:</strong> Finde alle TODO-Kommentare im Code. <strong>Hinweis:</strong> Nutze eine textbasierte Suche projektweit.</li>
+<li><strong>Aufgabe:</strong> Lass dir die Abhängigkeiten eines bestimmten Moduls auflisten. <strong>Hinweis:</strong> Untersuche die Imports der Datei.</li>
+<li><strong>Aufgabe:</strong> Dokumentiere, wie man einen neuen Test schreibt. <strong>Hinweis:</strong> Erstelle einen kleinen Leitfaden für Mitentwickler.</li>
+<li><strong>Aufgabe:</strong> Finde heraus, welche Version einer Bibliothek verwendet wird. <strong>Hinweis:</strong> Prüfe die Manifest-Datei deines Paketmanagers.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI eine Liste bekannter Fehler erstellen. <strong>Hinweis:</strong> Sammle Bug-Reports aus dem Issue-Tracker oder Code-Kommentaren.</li>
+<li><strong>Aufgabe:</strong> Erkläre den Unterschied zwischen zwei ähnlichen Modulen. <strong>Hinweis:</strong> Vergleiche ihre Funktionalität und Verwendung.</li>
+<li><strong>Aufgabe:</strong> Dokumentiere das Datenmodell einer zentralen Entität. <strong>Hinweis:</strong> Beschreibe Felder, Datentypen und Relationen.</li>
+<li><strong>Aufgabe:</strong> Lass dir zeigen, wie das Fehlerhandling implementiert ist. <strong>Hinweis:</strong> Untersuche die Error-Klassen und Catch-Blöcke.</li>
+<li><strong>Aufgabe:</strong> Erstelle eine Liste von Best Practices für das Projekt. <strong>Hinweis:</strong> Sammle Stilregeln und Architektur-Konventionen.</li>
+<li><strong>Aufgabe:</strong> Finde heraus, wer der Hauptautor einer bestimmten Datei ist. <strong>Hinweis:</strong> Nutze <code>git blame</code>.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI ein Inhaltsverzeichnis für die Dokumentation generieren. <strong>Hinweis:</strong> Strukturiere die Themen logisch und übersichtlich.</li>
+</ol>
 <hr>
-<h3 id="-custom-tools--mcp-model-context-protocol-6368"><a class="header" href="#-custom-tools--mcp-model-context-protocol-6368">🔌 Custom Tools &amp; MCP (Model Context Protocol) (63–68)</a></h3>
-<h4 id="übung-63-was-ist-mcp"><a class="header" href="#übung-63-was-ist-mcp">Übung 63: Was ist MCP?</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Finde heraus, wie das Model Context Protocol (MCP) funktioniert. Wie erweitert es die Fähigkeiten von Claude Code?</li>
-<li><strong>Lösung:</strong> Recherchiere das Konzept: MCP erlaubt es, lokale APIs und Datenbanken als “Tools” für den Agenten bereitzustellen.</li>
-</ul>
-<h4 id="übung-64-ein-lokales-bash-tool-registrieren"><a class="header" href="#übung-64-ein-lokales-bash-tool-registrieren">Übung 64: Ein lokales Bash-Tool registrieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du hast ein Skript <code>deploy.sh</code>. Wie machst du dieses Skript für Claude Code als aufrufbares “Tool” verfügbar?</li>
-<li><strong>Lösung:</strong> Wie sieht eine typische Tool-Definition in der MCP-Konfiguration (oft in JSON) aus?</li>
-</ul>
-<h4 id="übung-65-datenbankzugriff-gewähren"><a class="header" href="#übung-65-datenbankzugriff-gewähren">Übung 65: Datenbankzugriff gewähren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest, dass Claude SQL-Queries gegen eine lokale SQLite-Datenbank ausführen kann, um Bug-Reports zu verifizieren.</li>
-<li><strong>Lösung:</strong> Wie richtest du einen MCP-Server für SQLite ein und verbindest ihn mit der Claude-CLI?</li>
-</ul>
-<h4 id="übung-66-eigene-rust-tools-für-claude-schreiben"><a class="header" href="#übung-66-eigene-rust-tools-für-claude-schreiben">Übung 66: Eigene Rust-Tools für Claude schreiben</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie kannst du ein kleines Rust-Programm schreiben, das über Stdin/Stdout als MCP-Tool fungiert?</li>
-<li><strong>Lösung:</strong> Erkunde das MCP-SDK. Welche Schnittstellen müssen für das JSON-RPC-basierte Protokoll implementiert werden?</li>
-</ul>
-<h4 id="übung-67-tools-mit-parametern"><a class="header" href="#übung-67-tools-mit-parametern">Übung 67: Tools mit Parametern</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Dein Tool benötigt spezifische Parameter (z.B. eine Issue-ID). Wie weiß Claude, welche Argumente es übergeben muss?</li>
-<li><strong>Lösung:</strong> Stichwort JSON-Schema. Wie beschreibst du die Eingabeparameter in der Tool-Registrierung exakt?</li>
-</ul>
-<h4 id="übung-68-fehlerbehandlung-in-custom-tools"><a class="header" href="#übung-68-fehlerbehandlung-in-custom-tools">Übung 68: Fehlerbehandlung in Custom Tools</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Was passiert, wenn dein registriertes Tool abstürzt? Wie stellst du sicher, dass Claude Code dies erkennt und selbstständig korrigiert?</li>
-<li><strong>Lösung:</strong> Das Tool muss strukturierte Fehlermeldungen über das Protokoll zurückgeben, die der Agent interpretieren kann.</li>
-</ul>
+<h2 id="4-auf-bessere-lösungen-kommen"><a class="header" href="#4-auf-bessere-lösungen-kommen">4. Auf bessere Lösungen kommen</a></h2>
+<p>Verbessere deinen Code und lerne neue Architektur-Konzepte kennen.</p>
+<ol start="61">
+<li><strong>Aufgabe:</strong> Bitte die CLI, eine langsame Funktion zu optimieren. <strong>Hinweis:</strong> Frage gezielt nach Performance-Verbesserungen.</li>
+<li><strong>Aufgabe:</strong> Lass deinen Code auf Sicherheitslücken prüfen. <strong>Hinweis:</strong> Bitte um einen kompakten Security-Review.</li>
+<li><strong>Aufgabe:</strong> Frage nach alternativen Ansätzen für eine Architektur-Entscheidung. <strong>Hinweis:</strong> Diskutiere Vor- und Nachteile mit der KI.</li>
+<li><strong>Aufgabe:</strong> Lass dir helfen, einen schwer zu findenden Bug zu debuggen. <strong>Hinweis:</strong> Beschreibe das Symptom und den Kontext so genau wie möglich.</li>
+<li><strong>Aufgabe:</strong> Bitte um Vorschläge für aussagekräftigere Variablennamen. <strong>Hinweis:</strong> Zeige einen unverständlichen Code-Block und bitte um Refactoring.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI redundanten Code refactoren. <strong>Hinweis:</strong> Suche nach doppelter Logik, die sich abstrahieren lässt.</li>
+<li><strong>Aufgabe:</strong> Frage nach Design-Patterns, die für dein Problem passen könnten. <strong>Hinweis:</strong> Beschreibe die Anforderungen, nicht den Code.</li>
+<li><strong>Aufgabe:</strong> Bitte um Feedback zu deiner Fehlerbehandlung. <strong>Hinweis:</strong> Zeige, wie du Exceptions abfängst und frage nach Edge-Cases.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, warum ein bestimmter Test fehlschlägt. <strong>Hinweis:</strong> Teile die Fehlermeldung und den Testcode.</li>
+<li><strong>Aufgabe:</strong> Frage nach Möglichkeiten, den Speicherverbrauch zu senken. <strong>Hinweis:</strong> Bitte um eine Analyse deiner Datenstrukturen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI eine rekursive Funktion in eine iterative umschreiben. <strong>Hinweis:</strong> Das hilft oft gegen Stack-Overflows.</li>
+<li><strong>Aufgabe:</strong> Bitte um Vorschläge, wie man asynchronen Code lesbarer macht. <strong>Hinweis:</strong> Frage nach Mustern wie Promises oder Async/Await.</li>
+<li><strong>Aufgabe:</strong> Lass dir zeigen, wie man einen Code-Block testbarer macht. <strong>Hinweis:</strong> Denke an Konzepte wie Dependency Injection.</li>
+<li><strong>Aufgabe:</strong> Frage nach Tipps zur Vermeidung von Race Conditions. <strong>Hinweis:</strong> Diskutiere Concurrency-Probleme.</li>
+<li><strong>Aufgabe:</strong> Bitte um eine Code-Review aus der Perspektive eines Seniors. <strong>Hinweis:</strong> Bitte um ungeschöntes, kritisches Feedback.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI komplexe Regex-Ausdrücke vereinfachen oder erklären. <strong>Hinweis:</strong> Teile den unleserlichen Ausdruck.</li>
+<li><strong>Aufgabe:</strong> Frage nach Möglichkeiten, die Startzeit der Anwendung zu verkürzen. <strong>Hinweis:</strong> Diskutiere Caching oder Lazy Loading.</li>
+<li><strong>Aufgabe:</strong> Bitte um Ideen, wie man die User Experience im CLI-Tool verbessern könnte. <strong>Hinweis:</strong> Beschreibe den aktuellen Ablauf für den Nutzer.</li>
+<li><strong>Aufgabe:</strong> Lass dir zeigen, wie man Konfigurationsdaten besser verwaltet. <strong>Hinweis:</strong> Diskutiere Environment-Variablen vs. Config-Dateien.</li>
+<li><strong>Aufgabe:</strong> Frage, ob es eine gute Standardbibliothek für dein Problem gibt. <strong>Hinweis:</strong> Vermeide es, das Rad neu zu erfinden.</li>
+</ol>
 <hr>
-<h3 id="-cicd--automatisierung-6974"><a class="header" href="#-cicd--automatisierung-6974">⚙️ CI/CD &amp; Automatisierung (69–74)</a></h3>
-<h4 id="übung-69-headless-modus-non-interactive"><a class="header" href="#übung-69-headless-modus-non-interactive">Übung 69: Headless-Modus (Non-Interactive)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest Claude Code in einem GitHub Actions Workflow laufen lassen. Wie verhinderst du, dass das Tool auf Nutzereingaben wartet?</li>
-<li><strong>Lösung:</strong> Finde die passenden Argumente (wie z.B. <code>--non-interactive</code>), um den Agenten zu zwingen, ohne Interaktion durchzulaufen.</li>
-</ul>
-<h4 id="übung-70-automatisiertes-code-review"><a class="header" href="#übung-70-automatisiertes-code-review">Übung 70: Automatisiertes Code-Review</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ein Pull Request wird erstellt. Wie konfigurierst du deine CI so, dass Claude Code das Diff analysiert und einen Review-Kommentar hinterlässt?</li>
-<li><strong>Lösung:</strong> Kombiniere das Piped-Diff (<code>git diff</code>) mit der Claude CLI und leite die Ausgabe in einen GitHub-Kommentar-Schritt weiter.</li>
-</ul>
-<h4 id="übung-71-automatischer-bugfix-versuch-im-branch"><a class="header" href="#übung-71-automatischer-bugfix-versuch-im-branch">Übung 71: Automatischer Bugfix-Versuch im Branch</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wenn ein Test in der CI fehlschlägt, soll Claude versuchen, den Fehler zu beheben und einen neuen Commit in denselben Branch zu pushen.</li>
-<li><strong>Lösung:</strong> Wie verknüpfst du den Fehler-Exit-Code der Testsuite mit dem Startkommando und einem spezifischen Prompt für Claude?</li>
-</ul>
-<h4 id="übung-72-ci-kostenlimit-setzen"><a class="header" href="#übung-72-ci-kostenlimit-setzen">Übung 72: CI-Kostenlimit setzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du hast Angst vor explodierenden API-Kosten durch Endlos-Schleifen in der CI. Wie sicherst du das ab?</li>
-<li><strong>Lösung:</strong> Überprüfe, ob es Sicherheitslimits oder <code>--max-cost</code>-Argumente für CLI-Aufrufe gibt, um nach einem festen Budget hart abzubrechen.</li>
-</ul>
-<h4 id="übung-73-reports-generieren"><a class="header" href="#übung-73-reports-generieren">Übung 73: Reports generieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Claude soll nachts die Codebase analysieren und einen Status-Report als Markdown ablegen.</li>
-<li><strong>Lösung:</strong> Richte einen Cron-Job oder einen Scheduled Workflow ein, der Claude headless mit einem Prompt zur Analyse aufruft.</li>
-</ul>
-<h4 id="übung-74-umgebungsvariablen-für-ci-authentifizierung"><a class="header" href="#übung-74-umgebungsvariablen-für-ci-authentifizierung">Übung 74: Umgebungsvariablen für CI-Authentifizierung</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> In der CI hast du keinen Browser, um dich via OAuth einzuloggen. Wie authentifizierst du Claude Code?</li>
-<li><strong>Lösung:</strong> Welches API-Key-Environment-Flag (z.B. <code>ANTHROPIC_API_KEY</code>) ist zwingend erforderlich, damit der Agent headless funktioniert?</li>
-</ul>
-<hr>
-<h3 id="-komplexe-workflows--git-7580"><a class="header" href="#-komplexe-workflows--git-7580">🧩 Komplexe Workflows &amp; Git (75–80)</a></h3>
-<h4 id="übung-75-git-bisect-mit-claude-code"><a class="header" href="#übung-75-git-bisect-mit-claude-code">Übung 75: Git Bisect mit Claude Code</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ein Bug wurde irgendwo in den letzten 50 Commits eingeführt. Wie nutzt du <code>git bisect</code> in Kombination mit Claude Code, um den Schuldigen Commit automatisch zu finden und den Fehler zu erklären?</li>
-<li><strong>Lösung:</strong> Erkläre den Workflow, bei dem das Ergebnis von <code>git bisect run &lt;script&gt;</code> analysiert und in einen Claude-Prompt übergeben wird.</li>
-</ul>
-<h4 id="übung-76-projekt-refactoring-in-etappen"><a class="header" href="#übung-76-projekt-refactoring-in-etappen">Übung 76: Projekt-Refactoring in Etappen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ein riesiges Refactoring übersteigt das Kontext-Fenster. Wie zwingst du Claude, in isolierten Etappen (Modul für Modul) vorzugehen?</li>
-<li><strong>Lösung:</strong> Schreibe einen Plan (z.B. ein Bash-Skript), das eine Liste von Modulen in einer Schleife abarbeitet und Claude für jedes Modul separat aufruft.</li>
-</ul>
-<h4 id="übung-77-cross-language-migration"><a class="header" href="#übung-77-cross-language-migration">Übung 77: Cross-Language Migration</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du willst ein Python-Skript nach Rust portieren. Wie organisierst du die Ein- und Ausgabe so, dass Claude beides testen kann?</li>
-<li><strong>Lösung:</strong> Welchen Prompt brauchst du, damit Claude beide Tools (<code>python</code> und <code>cargo run</code>) aufruft, die Ergebnisse direkt vergleicht und korrigiert?</li>
-</ul>
-<h4 id="übung-78-multi-agenten-setup"><a class="header" href="#übung-78-multi-agenten-setup">Übung 78: Multi-Agenten Setup</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du möchtest einen Agenten für das Schreiben von Tests (Read-Only auf <code>src/</code>, Write auf <code>tests/</code>) und einen anderen für die Implementierung der Logik. Wie steuerst du das im Terminal?</li>
-<li><strong>Lösung:</strong> Überlege, wie du zwei separate Terminal-Sitzungen öffnest und die Agenten iterativ arbeiten lässt.</li>
-</ul>
-<h4 id="übung-79-eigene-cli-befehle-parsen"><a class="header" href="#übung-79-eigene-cli-befehle-parsen">Übung 79: Eigene CLI-Befehle parsen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Du baust ein eigenes Rust-CLI-Tool. Wie lässt du Claude testen, ob die Hilfeausgabe (<code>--help</code>) deines Tools verständlich ist?</li>
-<li><strong>Lösung:</strong> Führe <code>cargo run -- --help</code> aus, leite die Ausgabe über Pipe (<code>|</code>) an Claude weiter und bitte um ein Review aus Sicht eines Anfängers.</li>
-</ul>
-<h4 id="übung-80-autonomes-schreiben-eines-buchkapitels"><a class="header" href="#übung-80-autonomes-schreiben-eines-buchkapitels">Übung 80: Autonomes Schreiben eines Buchkapitels</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wie weist du Claude Code an, den gesamten neuen Rust-Code zu analysieren, ein mdBook-Kapitel darüber zu verfassen und es selbstständig in die <code>SUMMARY.md</code> einzutragen?</li>
-<li><strong>Lösung:</strong> Formuliere einen umfassenden, verketteten Prompt, der den Lesezugriff, das Schreiben der Datei, das Aktualisieren des Inhaltsverzeichnisses und den anschließenden Build-Test (<code>mdbook build</code>) kombiniert.</li>
-</ul>
+<h2 id="5-mcp-server-nutzen"><a class="header" href="#5-mcp-server-nutzen">5. MCP Server nutzen</a></h2>
+<p>Erweitere die Fähigkeiten der KI durch externe Tools und APIs.</p>
+<ol start="81">
+<li><strong>Aufgabe:</strong> Lass dir alle aktuell verfügbaren MCP-Tools auflisten. <strong>Hinweis:</strong> Nutze den CLI-Befehl zur Tool-Discovery.</li>
+<li><strong>Aufgabe:</strong> Nutze ein externes Tool, um aktuelle Wetterdaten abzufragen. <strong>Hinweis:</strong> Suche nach einem Wetter-MCP und teste es.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI über einen MCP-Server in einer externen Datenbank suchen. <strong>Hinweis:</strong> Formuliere eine klare Query für das Tool.</li>
+<li><strong>Aufgabe:</strong> Nutze ein Übersetzungs-Tool via MCP für eine Textdatei. <strong>Hinweis:</strong> Übergib den Text an den Übersetzungs-Server.</li>
+<li><strong>Aufgabe:</strong> Lass ein MCP-Tool ein Bild oder Dokument analysieren. <strong>Hinweis:</strong> Stelle sicher, dass das Tool Vision oder OCR unterstützt.</li>
+<li><strong>Aufgabe:</strong> Nutze einen MCP-Server, um eine Benachrichtigung zu versenden. <strong>Hinweis:</strong> Finde das Mail- oder Chat-Tool und übergib die Parameter.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI über ein MCP-Tool externe Tickets abfragen. <strong>Hinweis:</strong> Verbinde dich mit einem Issue-Tracker-Server (z.B. Jira/GitHub).</li>
+<li><strong>Aufgabe:</strong> Nutze ein Tool, um einen Termin oder Timer extern zu erstellen. <strong>Hinweis:</strong> Übergib Datum, Zeit und Titel.</li>
+<li><strong>Aufgabe:</strong> Lass ein MCP-Tool eine Webseite scrapen. <strong>Hinweis:</strong> Gib die URL an und frage nach dem Textinhalt.</li>
+<li><strong>Aufgabe:</strong> Nutze einen MCP-Server zur Konvertierung von Dateiformaten. <strong>Hinweis:</strong> Lass z.B. Markdown in HTML umwandeln.</li>
+<li><strong>Aufgabe:</strong> Lass ein Tool aktuelle Marktdaten oder Kurse abfragen. <strong>Hinweis:</strong> Nutze einen Finanz-Daten-Server.</li>
+<li><strong>Aufgabe:</strong> Nutze ein MCP-Tool, um Logs in einem externen System zu durchsuchen. <strong>Hinweis:</strong> Verbinde dich mit dem Logging-Server.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI über einen MCP-Server eine komplexe Berechnung durchführen. <strong>Hinweis:</strong> Nutze ein Mathe-Tool für Formeln.</li>
+<li><strong>Aufgabe:</strong> Nutze ein externes Tool, um einen Text auf Grammatik zu prüfen. <strong>Hinweis:</strong> Übergib den Text an den Grammar-Server.</li>
+<li><strong>Aufgabe:</strong> Lass ein MCP-Tool einen Hash oder eine Signatur generieren. <strong>Hinweis:</strong> Gib den Text als Parameter an das Security-Tool.</li>
+<li><strong>Aufgabe:</strong> Nutze einen Server, um Geodaten abzufragen. <strong>Hinweis:</strong> Finde die Koordinaten einer bestimmten Adresse heraus.</li>
+<li><strong>Aufgabe:</strong> Lass ein Tool ein sicheres Passwort generieren. <strong>Hinweis:</strong> Nutze ein Security-MCP für zufällige Strings.</li>
+<li><strong>Aufgabe:</strong> Nutze ein MCP-Tool, um Daten zu visualisieren. <strong>Hinweis:</strong> Übergib Rohdaten und erhalte z.B. einen ASCII-Graphen.</li>
+<li><strong>Aufgabe:</strong> Lass die CLI über ein Tool aktuelle News abfragen. <strong>Hinweis:</strong> Suche nach einem Nachrichten-Server in deiner Tool-Liste.</li>
+<li><strong>Aufgabe:</strong> Nutze ein Tool, um einen Webhook auszulösen. <strong>Hinweis:</strong> Finde das Request-MCP und übergib URL und Payload.</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="claude-code-praxis-1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="codex-sdk.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="codex-cli.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="zed-ide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -363,11 +321,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="claude-code-praxis-1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="codex-sdk.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="codex-cli.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="zed-ide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

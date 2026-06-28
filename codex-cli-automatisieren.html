@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>Automatisieren - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,89 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-codex-cli--automatisieren"><a class="header" href="#-codex-cli--automatisieren">💻 Codex CLI – Automatisieren</a></h1>
+<p><em>Wie du den Codex Agenten von OpenAI in Bash-Skripte einbindest, um wiederkehrende Entwicklungsaufgaben zu automatisieren.</em></p>
+<hr>
+<h2 id="-theorie-alle-wissen-bei-der-automatisierung"><a class="header" href="#-theorie-alle-wissen-bei-der-automatisierung">🧠 Theorie: “Alle wissen” bei der Automatisierung</a></h2>
+<p>Wenn du Codex CLI als interaktiven Chat nutzt, kannst du den Kontext manuell steuern und bei Fehlern direkt eingreifen. Wenn du Codex jedoch in <strong>Bash-Skripten, CI/CD-Pipelines oder Git-Hooks</strong> verwendest, muss alles vollautomatisch laufen. Damit der Agent “alles weiß”, ohne hängen zu bleiben, sind drei Dinge essenziell:</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Strikter Input (Piping):</strong> Du fütterst Codex über die Standardeingabe exakt mit den Daten, die er braucht (z.B. den formatierten Output von <code>cargo clippy</code>), anstatt ihn ziellos das ganze Projekt scannen zu lassen.</li>
+<li><strong>Unterdrückte Bestätigungen:</strong> Ein Shell-Skript bleibt stehen, wenn Codex fragt “Darf ich diese Datei ändern (Y/N)?”. Du musst lernen, Sicherheitsabfragen gezielt zu umgehen, wenn du die Kontrolle an das Skript abgibst.</li>
+<li><strong>Vorhersehbarer Output:</strong> Wenn dein Skript den Output von Codex weiterverarbeitet, darf die KI keinen konversationellen Text (“Hallo, hier ist dein Ergebnis…”) ausgeben, sondern ausschließlich den reinen Quellcode oder das strukturierte JSON.</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um die Codex CLI fit für die Skript-Automatisierung zu machen, brauchst du spezielle Start-Parameter:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Auto-Approve Flags:</strong> Suche nach Flags (wie <code>-y</code> oder <code>--yes</code>), die dem Tool sagen, dass alle Datei-Änderungen automatisch abgenickt werden dürfen.</li>
+<li><strong>Quiet Mode:</strong> Oft gibt es Flags wie <code>-q</code> oder <code>--quiet</code>, um interne Log-Ausgaben und bunte Ladebalken abzustellen, die in CI/CD-Logs für Unordnung sorgen.</li>
+<li><strong>Authentifizierung:</strong> Stelle sicher, dass die Authentifizierung über eine System-Umgebungsvariable (meist <code>OPENAI_API_KEY</code>) gesteuert wird, da im Headless-Modus kein Browser-Login aufploppen kann.</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-automatisierungs-workflows-reichlich"><a class="header" href="#-praxis-übungen-automatisierungs-workflows-reichlich">🛠️ Praxis-Übungen: Automatisierungs-Workflows (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Hier gibt es keine vorgefertigten Skripte! Finde die passenden CLI-Parameter durch <code>codex --help</code> oder eigenes Ausprobieren heraus.</p>
+</blockquote>
+<h3 id="-steuerung--kontext-in-skripten"><a class="header" href="#-steuerung--kontext-in-skripten">🧭 Steuerung &amp; Kontext in Skripten</a></h3>
+<h4 id="übung-1-den-bestätigungs-dialog-überspringen"><a class="header" href="#übung-1-den-bestätigungs-dialog-überspringen">Übung 1: Den Bestätigungs-Dialog überspringen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe einen einfachen Shell-Befehl, der Codex auffordert, alle <code>// TODO</code> Kommentare in einer spezifischen Datei zu entfernen, <em>ohne</em> dass du die Änderung manuell mit “Y” bestätigen musst.</li>
+<li><strong>Hinweis:</strong> Welches Kommandozeilenargument deaktiviert den interaktiven Bestätigungs-Modus?</li>
+</ul>
+<h4 id="übung-2-roher-code-output-für-pipelines"><a class="header" href="#übung-2-roher-code-output-für-pipelines">Übung 2: Roher Code-Output für Pipelines</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst, dass Codex ein kurzes Rust-Skript generiert. Den Output möchtest du direkt mit dem Umleitungsoperator <code>&gt;</code> in eine neue Datei <code>script.rs</code> leiten.</li>
+<li><strong>Hinweis:</strong> Wie formulierst du deinen Prompt extrem restriktiv, sodass Codex <em>nur</em> den nackten Quellcode und absolut keinen Erklärungstext oder störende Markdown-Formatierungen (wie <code>```rust</code>) ausgibt?</li>
+</ul>
+<h4 id="übung-3-linter-warnungen-automatisieren"><a class="header" href="#übung-3-linter-warnungen-automatisieren">Übung 3: Linter-Warnungen automatisieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Leite den Fehler-Output von <code>cargo clippy</code> an Codex weiter und lass ihn eine Markdown-Tabelle der 3 häufigsten Fehlerarten generieren.</li>
+<li><strong>Hinweis:</strong> Kombiniere <code>cargo clippy 2&gt;&amp;1</code> (um den Error-Stream umzuleiten) über eine Pipe (<code>|</code>) mit dem Startbefehl von Codex.</li>
+</ul>
+<h3 id="-cicd--hintergrund-jobs"><a class="header" href="#-cicd--hintergrund-jobs">🛡️ CI/CD &amp; Hintergrund-Jobs</a></h3>
+<h4 id="übung-4-git-pre-commit-hook-einrichten"><a class="header" href="#übung-4-git-pre-commit-hook-einrichten">Übung 4: Git Pre-Commit Hook einrichten</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wie baust du theoretisch einen <code>.git/hooks/pre-commit</code> Hook, in dem Codex das aktuelle Git-Diff liest und den Commit mit einem Fehlercode (<code>exit 1</code>) abbricht, falls versehentlich API-Keys oder Passwörter im Code entdeckt werden?</li>
+<li><strong>Hinweis:</strong> Recherchiere, wie du den Exit-Code des Codex-CLI-Befehls in Bash abfängst.</li>
+</ul>
+<h4 id="übung-5-automatisiertes-rustdoc-update"><a class="header" href="#übung-5-automatisiertes-rustdoc-update">Übung 5: Automatisiertes Rustdoc-Update</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest einen wöchentlichen Cronjob anlegen, der alle neuen Funktionen in deinem Projekt findet und automatisch fehlende Rustdoc-Kommentare (<code>///</code>) ergänzt.</li>
+<li><strong>Hinweis:</strong> Wie stellst du durch den Prompt sicher, dass Codex nur unkommentierte Funktionen bearbeitet und nicht deinen bestehenden Code ungefragt refactored?</li>
+</ul>
+<h4 id="übung-6-auth-ohne-browser-testen"><a class="header" href="#übung-6-auth-ohne-browser-testen">Übung 6: Auth ohne Browser testen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Simuliere eine reine Serverumgebung (z.B. einen Docker-Container), in der du keinen Browser öffnen kannst. Wie authentifizierst du Codex CLI?</li>
+<li><strong>Hinweis:</strong> Prüfe in der Doku, welche System-Umgebungsvariable (z.B. <code>OPENAI_API_KEY</code>) von der CLI akzeptiert wird und exportiere sie vor dem Aufruf.</li>
+</ul>
+<h3 id="-komplexe-schnittstellen-automatisierung"><a class="header" href="#-komplexe-schnittstellen-automatisierung">🔄 Komplexe Schnittstellen-Automatisierung</a></h3>
+<h4 id="übung-7-bulk-translation-von-log-dateien"><a class="header" href="#übung-7-bulk-translation-von-log-dateien">Übung 7: Bulk-Translation von Log-Dateien</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast eine Textdatei <code>errors.log</code> mit dutzenden Zeilen komplexer, englischer Fehlermeldungen. Lass Codex die ganze Datei einlesen und zeilenweise in verständliches Deutsch übersetzen.</li>
+<li><strong>Hinweis:</strong> Leitest du die Datei über <code>cat errors.log | codex ...</code> ein oder übergibst du die Datei als Parameter? Vergleiche beide Ansätze.</li>
+</ul>
+<h4 id="übung-8-github-actions-code-review-skizzieren"><a class="header" href="#übung-8-github-actions-code-review-skizzieren">Übung 8: GitHub Actions Code-Review skizzieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Skizziere den grundlegenden Ablauf eines GitHub Actions Workflows, der bei jedem Pull Request die Codex CLI installiert, das Diff analysiert und Verbesserungsvorschläge postet.</li>
+<li><strong>Hinweis:</strong> Welche Parameter (Non-Interactive, Quiet) braucht Codex zwingend, um in einem CI/CD Runner nicht einzufrieren?</li>
+</ul>
+<h4 id="übung-9-json-payloads-automatisiert-erzeugen"><a class="header" href="#übung-9-json-payloads-automatisiert-erzeugen">Übung 9: JSON-Payloads automatisiert erzeugen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Nutze Codex, um auf Basis eines komplexen Rust-Structs automatisiert 5 gültige JSON-Testdatensätze zu generieren. Speichere das Ergebnis direkt in <code>mock_data.json</code>.</li>
+<li><strong>Hinweis:</strong> Zwinge Codex dazu, ausschließlich ein validiertes JSON-Array auszugeben. Prüfe danach, ob CLI-Tools wie <code>jq</code> die generierte Datei fehlerfrei lesen können, ohne sich an Textresten zu verschlucken.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="codex-cli-workflows.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="codex-cli-wissendatenbank.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +264,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="codex-cli-workflows.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="codex-cli-wissendatenbank.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

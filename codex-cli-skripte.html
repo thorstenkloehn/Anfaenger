@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>Skripte &amp; App-Steuerung - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,89 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-codex-cli--skripte--app-steuerung"><a class="header" href="#-codex-cli--skripte--app-steuerung">💻 Codex CLI – Skripte &amp; App-Steuerung</a></h1>
+<p><em>Wie du Codex und reine Linux-Pipes nutzt, um Automatisierungs-Skripte für andere Anwendungen zu entwerfen, und wie du dabei fehleranfälligen UI-Pfusch durch echte “bessere Lösungen” ersetzt.</em></p>
+<hr>
+<h2 id="-theorie-alle-wissen-live-per-pipe-an-skripte-übergeben"><a class="header" href="#-theorie-alle-wissen-live-per-pipe-an-skripte-übergeben">🧠 Theorie: “Alle wissen” live per Pipe an Skripte übergeben</a></h2>
+<p>Um ein absolut robustes Automatisierungs-Skript für Dritt-Tools wie Git, Docker oder Bildbearbeitungs-Software zu schreiben, braucht die KI das exakte, aktuelle Systemwissen (“Alle wissen”). Da die Codex CLI ein reines Terminal-Werkzeug ohne eigene Systemrechte ist, lieferst du ihr diesen Kontext am besten <em>live</em> über Standard-Bash-Pipes:</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Hilfetexte als Futter:</strong> Anstatt blind ein ungetestetes Skript zu fordern, leitest du den nativen Hilfetext des Ziel-Programms direkt in Codex um (z.B. <code>docker run --help | codex "Schreibe ein Skript..."</code>). So zwingst du Codex, die aktuellsten Parameter deines lokalen Systems zu nutzen.</li>
+<li><strong>Output-Ketten (Self-Healing):</strong> Wenn ein von Codex generiertes Skript beim Testen abstürzt, kopierst du den Fehler nicht mühsam mit der Maus. Du “pipest” den Error-Kanal (<code>2&gt;&amp;1</code>) direkt im Terminal zurück an Codex, um das Skript automatisch analysieren zu lassen.</li>
+<li><strong>Der Weg zur “besseren Lösung”:</strong> Skripte, die simulierte Mausklicks auf Bildschirmen ausführen (z.B. Web-Scraper oder <code>xdotool</code>), sind extrem fehleranfällig. Der wahre CLI-Workflow bedeutet, Codex im Prompt hart zu zwingen: “Schreibe kein UI-Skript! Finde eine ‘bessere Lösung’ über versteckte REST-APIs, direkte Manipulation von Konfigurationsdateien oder native CLI-Befehle.”</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um lauffähige Skripte effizient und direkt mit Codex zu generieren, musst du die Parameter der CLI meistern:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Raw-Modus (Code Only):</strong> Damit du den Output von Codex direkt als ausführbare Datei abspeichern kannst (<code>&gt; script.sh</code>), musst du Codex anweisen, absolut keinen Konversations-Text (“Gerne, hier ist dein Skript:”) und keine Markdown-Blöcke (````bash<code>) auszugeben. Finde in der </code>codex –help<code>den passenden Schalter (oft</code>–quiet<code>, </code>-q<code>, </code>–raw<code>oder</code>–code-only`).</li>
+<li><strong>Ausführungsrechte:</strong> Generierte Dateien sind auf Linux nicht automatisch ausführbar. Du musst im Terminal manuell Rechte vergeben (<code>chmod +x script.sh</code>), bevor du testest.</li>
+<li><strong>Sichere Sandbox-Ordner:</strong> Teste von KI generierte Bash-Skripte zur Sicherheit <em>niemals</em> direkt in deinem Root- oder Produktions-Workspace. Nutze das Terminal, um Wegwerf-Ordner (wie <code>/tmp/test-ordner</code>) anzulegen.</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-skripte--automatisierung-reichlich"><a class="header" href="#-praxis-übungen-skripte--automatisierung-reichlich">🛠️ Praxis-Übungen: Skripte &amp; Automatisierung (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Bash-Befehle zum stumpfen Kopieren! Nutze dein Wissen über Linux-Pipes und finde die exakten <code>codex</code>-Parameter selbst über die Hilfe heraus.</p>
+</blockquote>
+<h3 id="-grundlagen-reine-shell-generierung"><a class="header" href="#-grundlagen-reine-shell-generierung">🧭 Grundlagen: Reine Shell-Generierung</a></h3>
+<h4 id="übung-1-das-git-helfer-skript-über-raw-output"><a class="header" href="#übung-1-das-git-helfer-skript-über-raw-output">Übung 1: Das Git-Helfer-Skript über Raw-Output</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Nutze Codex, um ein Skript <code>git-sync.sh</code> zu generieren, das alle Änderungen hinzufügt, committet und pusht. Leite den Output direkt im Terminal in die Datei um (z.B. <code>codex -q "Schreibe..." &gt; git-sync.sh</code>).</li>
+<li><strong>Hinweis:</strong> Überprüfe die erstellte Datei sofort mit dem Befehl <code>cat</code>. Sind dort störende Begrüßungsfloskeln der KI drin? Wenn ja, passe deinen Codex-Parameter an, damit 100 % purer Code ausgegeben wird!</li>
+</ul>
+<h4 id="übung-2-live-kontext-über-pipes-injizieren"><a class="header" href="#übung-2-live-kontext-über-pipes-injizieren">Übung 2: Live-Kontext über Pipes injizieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst ein Skript zur Videokompression bauen, kennst aber das extrem komplexe Tool <code>ffmpeg</code> nicht.</li>
+<li><strong>Hinweis:</strong> Kombiniere den Hilfetext intelligent per Pipe mit deinem Prompt: <code>ffmpeg --help | codex -q "Lies diese Hilfe. Schreibe ein kompaktes Skript, das alle .mp4 Dateien im Ordner stark verkleinert" &gt; compress.sh</code>.</li>
+</ul>
+<h4 id="übung-3-fehlersuche-piping-errors-directly"><a class="header" href="#übung-3-fehlersuche-piping-errors-directly">Übung 3: Fehlersuche (Piping Errors directly)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Dein generiertes Shell-Skript <code>skript.sh</code> stürzt mit einem Syntax-Fehler ab.</li>
+<li><strong>Hinweis:</strong> Anstatt den Text zu lesen, lass Codex die Arbeit machen. Führe das Skript aus und leite den Fehler direkt um: <code>./skript.sh 2&gt;&amp;1 | codex "Analysiere diesen Fehler und schreibe mir exakt die korrigierte Zeile auf."</code></li>
+</ul>
+<h3 id="-app-steuerung-und-bessere-lösungen"><a class="header" href="#-app-steuerung-und-bessere-lösungen">🛡️ App-Steuerung und “Bessere Lösungen”</a></h3>
+<h4 id="übung-4-api-statt-ui-die-bessere-lösung-fordern"><a class="header" href="#übung-4-api-statt-ui-die-bessere-lösung-fordern">Übung 4: API statt UI (Die Bessere Lösung fordern)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du brauchst Wetterdaten. Frag Codex im Terminal: “Schreibe ein Python-Skript, das auf eine Wetterseite surft, das HTML lädt und den Text ausliest.”</li>
+<li><strong>Hinweis (Der Architektur-Zwang):</strong> Brich den ersten Versuch sofort ab und schicke einen neuen, viel strikteren Befehl: “HTML-Scraping ist extrem fehleranfällig! Finde eine ‘bessere Lösung’ (z.B. die öffentliche Open-Meteo REST-API) und schreibe das Skript stattdessen dafür. Nutze robuste Tools wie <code>curl</code> und <code>jq</code>.”</li>
+</ul>
+<h4 id="übung-5-rust-wrapper-für-system-tools"><a class="header" href="#übung-5-rust-wrapper-für-system-tools">Übung 5: Rust-Wrapper für System-Tools</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du willst Docker in Zukunft über eine eigene CLI steuern. Bitte Codex: “Schreibe eine <code>main.rs</code>, die über das <code>std::process::Command</code> Modul alle Docker-Container im System abfragt, auflistet und mich per Terminal-Input fragt, welchen ich sofort stoppen will.”</li>
+<li><strong>Hinweis:</strong> Leite den generierten Code im Raw-Modus direkt in dein <code>src/main.rs</code> um und versuche, es blind mit <code>cargo run</code> zu starten.</li>
+</ul>
+<h4 id="übung-6-robuste-konfigurations-manipulation"><a class="header" href="#übung-6-robuste-konfigurations-manipulation">Übung 6: Robuste Konfigurations-Manipulation</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Anstatt in unübersichtlichen Konfigurations-Guis herumzuklicken, willst du Theme-Einstellungen per CLI-Skript ändern.</li>
+<li><strong>Hinweis:</strong> Übergib Codex deine <code>settings.json</code> über <code>cat</code> und fordere: “Schreibe ein Bash-Skript, das exakt das CLI-Tool <code>jq</code> nutzt, um den Wert ‘theme’ in dieser Datei auf ‘dark’ zu setzen, <em>ohne</em> dabei die JSON-Formatierung der Rest-Datei zu brechen.”</li>
+</ul>
+<h3 id="-komplexe-workflows--meta-skripte"><a class="header" href="#-komplexe-workflows--meta-skripte">🔄 Komplexe Workflows &amp; Meta-Skripte</a></h3>
+<h4 id="übung-7-hintergrund-dienste-generieren-systemd"><a class="header" href="#übung-7-hintergrund-dienste-generieren-systemd">Übung 7: Hintergrund-Dienste generieren (Systemd)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast ein fantastisches Backup-Skript im Ordner. Es soll nun dauerhaft und unsichtbar laufen.</li>
+<li><strong>Hinweis:</strong> Bitte Codex direkt über die CLI: “Generiere mir den reinen Code für eine Systemd-Service-Datei (<code>backup.service</code>), die mein Skript <code>/opt/backup.sh</code> jeden Freitag vollautomatisch startet.” Leite den Output direkt nach <code>/tmp/backup.service</code> um.</li>
+</ul>
+<h4 id="übung-8-skripte-die-code-schreiben-bootstrapping"><a class="header" href="#übung-8-skripte-die-code-schreiben-bootstrapping">Übung 8: Skripte, die Code schreiben (Bootstrapping)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Lass Codex ein Meta-Skript erzeugen, das dir gigantische Projekte aufbaut.</li>
+<li><strong>Hinweis:</strong> Prompt: <code>codex -q "Schreibe ein Bash-Skript 'create_api_project.sh'. Wenn ich es ausführe, soll es 'cargo new' nutzen, die 'Cargo.toml' mit den 3 wichtigsten Web-Dependencies füllen, eine 'main.rs' Vorlage generieren und einen initialen Git-Commit machen" &gt; create_project.sh</code>.</li>
+</ul>
+<h4 id="übung-9-vollautomatisches-self-healing-pipeline"><a class="header" href="#übung-9-vollautomatisches-self-healing-pipeline">Übung 9: Vollautomatisches Self-Healing Pipeline</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Die absolute Meisterklasse der Shell-Automatisierung! Schreibe dir selbstständig ein Bash-Skript namens <code>auto_fix.sh</code>.</li>
+<li><strong>Hinweis:</strong> Dieses Skript soll intern einen fehleranfälligen Befehl ausführen (z.B. <code>cargo build</code>). Wenn der Befehl fehlschlägt, soll dein Skript den Error-Output abfangen, ihn automatisch per Pipe an Codex senden, den KI-Lösungsvorschlag in eine Datei speichern und dir anzeigen. Du baust dir damit deine eigene, komplett autarke Auto-Reparatur-KI!</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="codex-cli-dokumentation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="codex-sdk.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +264,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="codex-cli-dokumentation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="codex-sdk.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

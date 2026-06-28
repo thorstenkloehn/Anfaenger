@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>Das Claude SDK nutzen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,85 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-claude-code--das-offizielle-sdk-nutzen"><a class="header" href="#-claude-code--das-offizielle-sdk-nutzen">🐚 Claude Code – Das offizielle SDK nutzen</a></h1>
+<p><em>Wie du die CLI verlässt und Anthropic’s Claude direkt in deinen eigenen Rust- oder Python-Code einbaust, um maßgeschneiderte Agenten zu programmieren.</em></p>
+<hr>
+<h2 id="-theorie-von-der-cli-zum-eigenen-agenten"><a class="header" href="#-theorie-von-der-cli-zum-eigenen-agenten">🧠 Theorie: Von der CLI zum eigenen Agenten</a></h2>
+<p>Die Claude CLI ist ein hervorragendes, vorgefertigtes Produkt für Entwickler. Doch manchmal brauchst du Claude tief integriert in deiner eigenen Softwarearchitektur – zum Beispiel als interner Chatbot auf einer Webseite, als unsichtbarer Helfer in einer CI/CD-Pipeline oder als Backend für eine eigene Terminal User Interface (TUI).</p>
+<p>Hierfür nutzt du das offizielle <strong>Claude SDK</strong> (oder REST-API Wrapper für Rust).</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Volle Kontrolle:</strong> Mit dem SDK bestimmst du auf Code-Ebene exakt, wann ein Request an das LLM geschickt wird, wie hoch die Temperatur (Kreativität vs. Präzision) ist und wie viele Token maximal generiert werden dürfen.</li>
+<li><strong>Function Calling (Tools):</strong> Der mächtigste Aspekt des SDKs ist, dass du Claude <em>deine eigenen</em> Funktionen (z.B. <code>delete_user_from_db()</code> oder <code>trigger_build()</code>) als Werkzeuge übergeben kannst. Claude entscheidet dann als Agent, diese Funktionen in deinem Code aufzurufen.</li>
+<li><strong>Streaming:</strong> Anstatt sekundenlang auf die fertige Antwort zu warten, kannst du die Antwort über das SDK Wort für Wort in deine Benutzeroberfläche streamen (genau wie in der echten CLI).</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um das SDK zu nutzen, musst du deine Umgebung vorbereiten:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>API Keys:</strong> Im Gegensatz zur fertig eingeloggten CLI brauchst du für das SDK einen “nackten” API-Schlüssel aus der Anthropic Console (<code>ANTHROPIC_API_KEY</code>). Diesen setzt du am besten als Umgebungsvariable.</li>
+<li><strong>Das richtige Paket:</strong> Suche nach dem offiziellen Python SDK (z.B. <code>pip install anthropic</code> oder <code>uv add anthropic</code>) oder nach etablierten Rust-Crates (oft wird <code>reqwest</code> für reine REST-Calls genutzt, oder inoffizielle Wrapper-Crates).</li>
+<li><strong>Kostenkontrolle:</strong> Da du im Code – besonders bei rekursivem Tool-Calling – unbemerkt Endlosschleifen bauen kannst, setze im SDK immer harte Sicherheitslimits (wie den <code>max_tokens</code> Parameter).</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-das-sdk-meistern-reichlich"><a class="header" href="#-praxis-übungen-das-sdk-meistern-reichlich">🛠️ Praxis-Übungen: Das SDK meistern (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Skripte zum Abschreiben! Du musst die Dokumentation des SDKs im Netz lesen und den Code selbstständig in Rust oder Python strukturieren.</p>
+</blockquote>
+<h3 id="-grundlagen-der-erste-api-call"><a class="header" href="#-grundlagen-der-erste-api-call">🧭 Grundlagen: Der erste API-Call</a></h3>
+<h4 id="übung-1-hello-world"><a class="header" href="#übung-1-hello-world">Übung 1: Hello World</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe ein minimales Skript, das das SDK importiert, eine einfache “Hallo”-Nachricht an Claude sendet und den Antwort-Text auf der Konsole ausgibt.</li>
+<li><strong>Hinweis:</strong> Achte darauf, dass du das richtige, aktuelle Modell (z.B. <code>claude-3-5-sonnet-latest</code>) und den zwingend erforderlichen Parameter <code>max_tokens</code> im Code übergibst.</li>
+</ul>
+<h4 id="übung-2-system-prompts-injizieren"><a class="header" href="#übung-2-system-prompts-injizieren">Übung 2: System-Prompts injizieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Erweitere dein erstes Skript. Übergib Claude einen System-Prompt (z.B. “Du bist ein extrem sarkastischer Pirat”), bevor du die eigentliche Nutzerfrage stellst.</li>
+<li><strong>Hinweis:</strong> Im Anthropic SDK gibt es für den System-Prompt meist ein völlig separates Parameter-Feld außerhalb des eigentlichen <code>messages</code> Arrays.</li>
+</ul>
+<h4 id="übung-3-chat-historie-aufbauen"><a class="header" href="#übung-3-chat-historie-aufbauen">Übung 3: Chat-Historie aufbauen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Baue eine einfache <code>while</code>-Schleife in deinem Terminal. Das Skript muss sich die vorherigen Fragen und Antworten im Speicher merken und dieses Array bei jedem neuen API-Call wieder mitschicken.</li>
+<li><strong>Hinweis:</strong> Du musst eine Liste aus JSON-Objekten mit <code>role: "user"</code> und <code>role: "assistant"</code> verwalten und immer weiter anhängen.</li>
+</ul>
+<h3 id="-fortgeschrittene-steuerung"><a class="header" href="#-fortgeschrittene-steuerung">🛡️ Fortgeschrittene Steuerung</a></h3>
+<h4 id="übung-4-streaming-aktivieren"><a class="header" href="#übung-4-streaming-aktivieren">Übung 4: Streaming aktivieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Ändere deinen asynchronen API-Aufruf so um, dass der Text “live” und buchstabenweise in der Konsole erscheint.</li>
+<li><strong>Hinweis:</strong> Suche in der SDK-Dokumentation nach dem Stichwort <code>stream=True</code> und finde heraus, wie man den Chunk-Iterator in einer Schleife ausliest.</li>
+</ul>
+<h4 id="übung-5-bilder-analysieren-vision"><a class="header" href="#übung-5-bilder-analysieren-vision">Übung 5: Bilder analysieren (Vision)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Nutze das SDK, um ein lokales Bild (z.B. <code>test.png</code>) in den RAM einzulesen, es in Base64 zu codieren und Claude zu fragen, was auf dem Bild zu sehen ist.</li>
+<li><strong>Hinweis:</strong> Der Payload für Bilder im Nachrichten-Array erfordert einen hochspezifischen Block-Typ (<code>type: "image"</code> und den <code>data</code> String).</li>
+</ul>
+<h3 id="-function-calling-tools-programmieren"><a class="header" href="#-function-calling-tools-programmieren">🔄 Function Calling (Tools) programmieren</a></h3>
+<h4 id="übung-6-ein-werkzeug-definieren"><a class="header" href="#übung-6-ein-werkzeug-definieren">Übung 6: Ein Werkzeug definieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Definiere ein fiktives Werkzeug namens <code>get_weather</code> in deinem Code und übergib die strikte JSON-Schema-Definition dieses Werkzeugs in den SDK-Parametern (unter <code>tools</code>).</li>
+<li><strong>Hinweis:</strong> Du musst Claude über das Schema exakt beschreiben, welche Input-Parameter (z.B. <code>location</code> als String) das Tool zwingend erwartet.</li>
+</ul>
+<h4 id="übung-7-den-tool-call-abfangen"><a class="header" href="#übung-7-den-tool-call-abfangen">Übung 7: Den Tool-Call abfangen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Frag Claude: “Wie ist das Wetter heute in Berlin?”. Das SDK wird dir nun keinen Text antworten, sondern einen speziellen “Tool Use” Request zurückgeben. Fange diesen Typ im Code ab und gib den Namen des geforderten Tools aus.</li>
+<li><strong>Hinweis:</strong> Prüfe das Feld <code>stop_reason</code> der API-Antwort, es sollte nun <code>tool_use</code> lauten.</li>
+</ul>
+<h4 id="übung-8-das-ergebnis-zurückmelden"><a class="header" href="#übung-8-das-ergebnis-zurückmelden">Übung 8: Das Ergebnis zurückmelden</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Simuliere die Antwort deines Wetter-Tools (z.B. <code>{"temp": "12°C", "rain": true}</code>) und hänge dieses Ergebnis (<code>tool_result</code>) als neuen Block an deine Nachrichten-Historie an. Sende dann einen zweiten API-Call.</li>
+<li><strong>Hinweis:</strong> Erst nach diesem zweiten Call erhält Claude die fehlenden Daten und formuliert die finale, menschenlesbare Textantwort (“In Berlin regnet es bei 12 Grad.”). Du hast einen Agenten gebaut!</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="claude-code-skripte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="claude-code-mega-praxis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +260,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="claude-code-skripte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="claude-code-mega-praxis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

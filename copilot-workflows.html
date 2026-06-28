@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>Workflows &amp; Steuerung - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,89 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-github-copilot-in-vs-code--workflows--steuerung"><a class="header" href="#-github-copilot-in-vs-code--workflows--steuerung">🐙 GitHub Copilot in VS Code – Workflows &amp; Steuerung</a></h1>
+<p><em>Wie du Copilot im Editor richtig anleitest, den Kontext steuerst und die Einstellungen optimierst.</em></p>
+<hr>
+<h2 id="-theorie-alle-wissen--den-kontext-steuern"><a class="header" href="#-theorie-alle-wissen--den-kontext-steuern">🧠 Theorie: “Alle wissen” – Den Kontext steuern</a></h2>
+<p>Anders als vollautonome Agenten agiert GitHub Copilot stark innerhalb des Editors (VS Code). Damit er “alles weiß”, musst du verstehen, wie er sich seinen Kontext zusammenbaut:</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Geöffnete Tabs:</strong> Copilot liest standardmäßig die Dateien mit, die in deinem Editor gerade als Tabs geöffnet sind.</li>
+<li><strong>Das Chat-Fenster vs. Inline:</strong> Im Seitenleisten-Chat (<code>Ctrl+Shift+I</code>) kannst du das gesamte Projekt befragen. Beim Inline-Chat (<code>Ctrl+I</code>) konzentriert sich Copilot auf den markierten Code-Block.</li>
+<li><strong>Mentions nutzen:</strong> Mit dem Befehl <code>@workspace</code> sagst du dem Copilot-Chat, dass er das ganze Projekt durchsuchen soll. Mit <code>#file</code> kannst du gezielt einzelne Dateien in den Kontext laden.</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>In VS Code kannst du Copilot über die normalen Settings (<code>Ctrl+,</code>) an deine Bedürfnisse anpassen:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Copilot Edits:</strong> Du kannst erlauben, dass Copilot Änderungen über mehrere Dateien hinweg vorschlägt (in den neuen VS Code Versionen).</li>
+<li><strong>Ausschließen von Dateien:</strong> Über die Einstellungen kannst du festlegen, welche Dateien oder Ordner Copilot <em>niemals</em> lesen darf, um sensible Daten zu schützen.</li>
+<li><strong>Inline-Vorschläge:</strong> Du kannst konfigurieren, ob Vorschläge sofort beim Tippen erscheinen sollen oder erst, wenn du eine bestimmte Taste drückst.</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-workflows-reichlich"><a class="header" href="#-praxis-übungen-workflows-reichlich">🛠️ Praxis-Übungen: Workflows (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Es gibt hier keine fertigen Code-Schnipsel zum Abschreiben! Lerne, indem du die Shortcuts selbst in VS Code ausprobierst und die Chat-Funktionen testest.</p>
+</blockquote>
+<h3 id="-steuerung--kontext-alle-wissen"><a class="header" href="#-steuerung--kontext-alle-wissen">🧭 Steuerung &amp; Kontext (“Alle wissen”)</a></h3>
+<h4 id="übung-1-gezielter-datei-kontext"><a class="header" href="#übung-1-gezielter-datei-kontext">Übung 1: Gezielter Datei-Kontext</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast einen Fehler in <code>src/main.rs</code>, aber die Definition der Funktion liegt in <code>src/utils.rs</code>. Wie zwingst du Copilot im Chat dazu, beide Dateien für seine Antwort zu berücksichtigen?</li>
+<li><strong>Hinweis:</strong> Probiere im Copilot Chat das Symbol <code>#</code> aus (z.B. <code>#file</code>). Wie fügst du eine Datei zum Chat hinzu?</li>
+</ul>
+<h4 id="übung-2-das-gesamte-projekt-befragen"><a class="header" href="#übung-2-das-gesamte-projekt-befragen">Übung 2: Das gesamte Projekt befragen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest wissen, wo im gesamten Rust-Projekt eine bestimmte Funktion aufgerufen wird.</li>
+<li><strong>Hinweis:</strong> Nutze den <code>@workspace</code> Befehl im Seitenleisten-Chat. Wie formulierst du die Frage am besten?</li>
+</ul>
+<h4 id="übung-3-geöffnete-tabs-als-kontext"><a class="header" href="#übung-3-geöffnete-tabs-als-kontext">Übung 3: Geöffnete Tabs als Kontext</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schließe alle Tabs in VS Code außer <code>src/main.rs</code> und stelle Copilot eine Frage zu einer anderen Datei im Projekt. Öffne danach die andere Datei in einem Tab und stelle die Frage noch einmal.</li>
+<li><strong>Hinweis:</strong> Beobachte, wie sich die Qualität der Antwort verändert. Was sagt uns das über die Arbeitsweise von Copilot?</li>
+</ul>
+<h3 id="-einstellungen--sicherheit"><a class="header" href="#-einstellungen--sicherheit">🛡️ Einstellungen &amp; Sicherheit</a></h3>
+<h4 id="übung-4-geheime-dateien-ignorieren"><a class="header" href="#übung-4-geheime-dateien-ignorieren">Übung 4: Geheime Dateien ignorieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Dein Projekt enthält eine Datei <code>.env</code> mit Passwörtern. Wie verhinderst du in VS Code, dass Copilot diese Datei liest oder Vorschläge daraus generiert?</li>
+<li><strong>Hinweis:</strong> Suche in den VS Code Einstellungen nach Begriffen wie “Copilot Ignore” oder prüfe, wie Copilot standardmäßig mit <code>.gitignore</code>-Dateien umgeht.</li>
+</ul>
+<h4 id="übung-5-inline-vorschläge-pausieren"><a class="header" href="#übung-5-inline-vorschläge-pausieren">Übung 5: Inline-Vorschläge pausieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du möchtest eine Weile ungestört programmieren, ohne dass ständig grauer Text (Ghost Text) aufpoppt. Wie schaltest du Copilot temporär stumm?</li>
+<li><strong>Hinweis:</strong> Klicke unten rechts in der VS Code Statusleiste auf das kleine Copilot-Icon. Welche Optionen gibt es dort?</li>
+</ul>
+<h3 id="-komplexe-workflows"><a class="header" href="#-komplexe-workflows">🔄 Komplexe Workflows</a></h3>
+<h4 id="übung-6-der-inline-chat-ctrli"><a class="header" href="#übung-6-der-inline-chat-ctrli">Übung 6: Der Inline-Chat (<code>Ctrl+I</code>)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Markiere eine Funktion, die du geschrieben hast. Öffne den Inline-Chat mit <code>Ctrl+I</code> und fordere Copilot auf: “Mache diesen Code lesbarer”.</li>
+<li><strong>Hinweis:</strong> Akzeptiere die Änderung nicht sofort! Wie kannst du dir in VS Code den Unterschied (Diff) zwischen deinem und Copilots Code anzeigen lassen, bevor du zustimmst?</li>
+</ul>
+<h4 id="übung-7-commit-nachrichten-generieren"><a class="header" href="#übung-7-commit-nachrichten-generieren">Übung 7: Commit-Nachrichten generieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast einige Änderungen gemacht. Lass Copilot die Git-Commit-Nachricht für dich schreiben.</li>
+<li><strong>Hinweis:</strong> Wechsel in VS Code in den “Quellcodeverwaltung” (Source Control) Tab. Welches kleine Sternchen-Icon hilft dir hier weiter?</li>
+</ul>
+<h4 id="übung-8-code-erklären-lassen-explain"><a class="header" href="#übung-8-code-erklären-lassen-explain">Übung 8: Code erklären lassen (<code>/explain</code>)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Finde im Internet ein komplexes Rust-Snippet (z.B. mit Lebenszeiten/Lifetimes), kopiere es in deinen Editor und lass es dir von Copilot erklären.</li>
+<li><strong>Hinweis:</strong> Markiere den Code und nutze den eingebauten Slash-Befehl <code>/explain</code> im Chat.</li>
+</ul>
+<h4 id="übung-9-tests-generieren-tests"><a class="header" href="#übung-9-tests-generieren-tests">Übung 9: Tests generieren (<code>/tests</code>)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe eine kleine Funktion, die zwei Zahlen addiert. Lass Copilot automatisch einen passenden Unit-Test dafür schreiben.</li>
+<li><strong>Hinweis:</strong> Markiere die Funktion und nutze den <code>/tests</code> Befehl im Inline-Chat. Wo schlägt Copilot vor, den Test-Code zu platzieren?</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="copilot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="copilot-automatisieren.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +264,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="copilot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="copilot-automatisieren.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

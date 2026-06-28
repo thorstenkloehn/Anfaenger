@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>Das AGY SDK nutzen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,89 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-antigravity-agy--das-sdk-nutzen"><a class="header" href="#-antigravity-agy--das-sdk-nutzen">🚀 Antigravity (<code>agy</code>) – Das SDK nutzen</a></h1>
+<p><em>Wie du eigene Agenten-Workflows und Automationen programmierst, indem du Antigravity direkt als SDK in deinen Code integrierst.</em></p>
+<hr>
+<h2 id="-theorie-programmierte-agenten"><a class="header" href="#-theorie-programmierte-agenten">🧠 Theorie: Programmierte Agenten</a></h2>
+<p>Die AGY CLI ist ein überragendes Tool für die interaktive Arbeit im Terminal. Aber wenn du ein Backend baust, das vollautomatisch Code-Reviews durchführt, auf GitHub-Pull-Requests reagiert oder extrem komplexe, mehrstufige Workflows unsichtbar steuern soll, reicht die CLI oft nicht aus. Hier benötigst du das <strong>Antigravity SDK</strong>.</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Subagenten per Code orchestrieren:</strong> Im SDK kannst du nicht nur einen Agenten isoliert starten, sondern dynamisch in deinem Code eine Hierarchie aus Subagenten aufbauen, die Daten miteinander austauschen.</li>
+<li><strong>Benutzerdefinierte, native Tools:</strong> Anstatt Werkzeuge mühsam über JSON-Konfigurationen und Shell-Wrappern anzubinden, kannst du im SDK einfach echte native Funktionen schreiben (z.B. einen direkten Datenbank-Zugriff über ein ORM) und diese dem Agenten nativ als Werkzeug zur Verfügung stellen.</li>
+<li><strong>Event-Hooks:</strong> Das SDK bietet Event-Listener. Du kannst per Code genau dann eingreifen, Logs mitschreiben oder die UI aktualisieren, wenn der Agent im Hintergrund eine Datei liest, ein Kommando ausführt oder eine Entscheidung trifft.</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um das SDK zu nutzen, richtest du dein Programmier-Environment ein:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Das SDK-Paket:</strong> Antigravity bietet SDKs für gängige Sprachen an (z.B. Python). Finde heraus, wie du das Paket in dein lokales Environment lädst (z.B. über <code>pip</code> oder <code>uv</code>).</li>
+<li><strong>Initialisierung &amp; Workspace:</strong> Um das SDK zu nutzen, musst du im Code oft einen “Client” instanziieren und ihm den absoluten Pfad zu dem Verzeichnis (Workspace URI) übergeben, in dem der Agent aktiv sein darf.</li>
+<li><strong>API Keys:</strong> Stelle sicher, dass die Umgebungsvariablen für das zugrundeliegende LLM-Modell (wie Gemini oder Claude) korrekt exportiert sind, da das SDK diese im Hintergrund für die Agenten-Hirne aufruft.</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-das-sdk-meistern-reichlich"><a class="header" href="#-praxis-übungen-das-sdk-meistern-reichlich">🛠️ Praxis-Übungen: Das SDK meistern (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Hier gibt es keine Code-Vorlagen! Lies die Dokumentation des AGY SDKs im Netz (oder nutze die CLI-Skills wie <code>antigravity-guide</code>, um danach zu fragen) und implementiere die Logik selbstständig in deinem Code.</p>
+</blockquote>
+<h3 id="-grundlagen-agenten-instanziieren"><a class="header" href="#-grundlagen-agenten-instanziieren">🧭 Grundlagen: Agenten instanziieren</a></h3>
+<h4 id="übung-1-der-erste-sdk-agent"><a class="header" href="#übung-1-der-erste-sdk-agent">Übung 1: Der erste SDK-Agent</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe ein kleines Skript, das das AGY SDK importiert, einen neuen asynchronen Agenten im aktuellen Verzeichnis initialisiert und ihm einen einfachen Prompt (“Fasse die README-Datei zusammen”) sendet.</li>
+<li><strong>Hinweis:</strong> Achte darauf, wie das SDK asynchrone Antworten (Async/Await Pattern) handhabt und fange den Output sauber ab.</li>
+</ul>
+<h4 id="übung-2-die-tool-liste-hart-beschneiden"><a class="header" href="#übung-2-die-tool-liste-hart-beschneiden">Übung 2: Die Tool-Liste hart beschneiden</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Wenn du einen Agenten im SDK startest, hat er oft sofort Zugriff auf gefährliche Standard-Werkzeuge (z.B. <code>run_command</code> oder <code>write_file</code>). Beschneide diese Rechte im Code.</li>
+<li><strong>Hinweis:</strong> Finde die passenden Initialisierungs-Parameter, um dem Agenten z.B. nur reine Lese-Rechte (<code>read_file</code>, <code>list_dir</code>) zu erteilen.</li>
+</ul>
+<h4 id="übung-3-workspace-branching-isolation"><a class="header" href="#übung-3-workspace-branching-isolation">Übung 3: Workspace Branching (Isolation)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Starte über das SDK einen Agenten, weise ihn aber per Parameter an, seine Arbeit in einem separaten, verzweigten Workspace (<code>branch</code> Modus) durchzuführen, um die Original-Dateien niemals zu überschreiben.</li>
+<li><strong>Hinweis:</strong> Suche in der Dokumentation nach Konzepten wie “Workspace Branching”, “Sandbox” oder “Share Mode”.</li>
+</ul>
+<h3 id="-erweiterte-steuerung--tools"><a class="header" href="#-erweiterte-steuerung--tools">🛡️ Erweiterte Steuerung &amp; Tools</a></h3>
+<h4 id="übung-4-ein-natives-pythonrust-tool-injizieren"><a class="header" href="#übung-4-ein-natives-pythonrust-tool-injizieren">Übung 4: Ein natives Python/Rust-Tool injizieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe eine normale Funktion <code>calculate_taxes(amount)</code>. Nutze die Decorators oder Registrierungs-Methoden des SDKs, um genau diese Funktion dem Agenten als von ihm ausführbares Werkzeug zu übergeben.</li>
+<li><strong>Hinweis:</strong> Oft geschieht das vollautomatisch über Type-Hints und Docstrings, aus denen das SDK intern das nötige JSON-Schema für das LLM generiert.</li>
+</ul>
+<h4 id="übung-5-agenten-events-abhören-observability"><a class="header" href="#übung-5-agenten-events-abhören-observability">Übung 5: Agenten-Events abhören (Observability)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Schreibe einen Event-Listener im SDK, der immer dann in der Konsole <code>Print("Agent liest gerade Datei X...")</code> ausgibt, wenn der Agent im Hintergrund eine Datei berührt.</li>
+<li><strong>Hinweis:</strong> Untersuche, ob das SDK Callback-Funktionen (wie <code>on_tool_call</code> oder <code>on_step</code>) oder Streaming-Events unterstützt, an die du dich dranhängen kannst.</li>
+</ul>
+<h4 id="übung-6-den-state-inspizieren"><a class="header" href="#übung-6-den-state-inspizieren">Übung 6: Den State inspizieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Lass den Agenten im SDK asynchron arbeiten. Wenn er seine Aufgabe beendet hat, lies den gesamten generierten Konversations-Baum (<code>transcript</code>) über das SDK aus und speichere ihn als rohe <code>.json</code> Datei.</li>
+<li><strong>Hinweis:</strong> Der Agent gibt am Ende oft ein Objekt oder einen Iterator zurück, der die komplette Historie aller Prompts und Tool-Aufrufe enthält.</li>
+</ul>
+<h3 id="-multi-agenten-systeme"><a class="header" href="#-multi-agenten-systeme">🔄 Multi-Agenten Systeme</a></h3>
+<h4 id="übung-7-zwei-agenten-verknüpfen-pipelines"><a class="header" href="#übung-7-zwei-agenten-verknüpfen-pipelines">Übung 7: Zwei Agenten verknüpfen (Pipelines)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Initialisiere zwei völlig separate Agenten im SDK (einen “Writer” und einen kritischen “Reviewer”). Lass den Writer einen Text generieren und übergib diesen Text direkt per Code als Prompt an den Reviewer-Agenten.</li>
+<li><strong>Hinweis:</strong> Baue eine logische Pipeline im Code auf: Der String-Output von Agent A wird der Prompt-Input von Agent B.</li>
+</ul>
+<h4 id="übung-8-hintergrund-tasks-background-tasks"><a class="header" href="#übung-8-hintergrund-tasks-background-tasks">Übung 8: Hintergrund-Tasks (Background Tasks)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Starte einen Agenten über das SDK und sende ihn explizit in den Hintergrund (“Fire and forget”), sodass dein Haupt-Skript nicht blockiert wird, sondern sofort weiterläuft.</li>
+<li><strong>Hinweis:</strong> Prüfe, wie man asynchrone Tasks im SDK managt und deren Status später (z.B. über <code>task.status()</code>) abfragen kann, um zu prüfen, ob die Aufgabe fertig ist.</li>
+</ul>
+<h4 id="übung-9-der-automatische-github-reviewer-der-meta-workflow"><a class="header" href="#übung-9-der-automatische-github-reviewer-der-meta-workflow">Übung 9: Der automatische GitHub-Reviewer (Der Meta-Workflow)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Die absolute Königsdisziplin: Schreibe ein Skript, das bei jedem Push in dein Repository aufgerufen wird. Das Skript soll das AGY SDK nutzen, um einen dedizierten Code-Review-Agenten zu starten, der ein Diff (Git) analysiert und bei Architektur-Fehlern Alarm schlägt.</li>
+<li><strong>Hinweis:</strong> Kombiniere Subprocesses (<code>git diff</code>) mit dem Prompt-Input für das AGY SDK. So baust du dir deinen eigenen, lokalen CI/CD KI-Bot!</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="agy-cli-skripte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="agy-cli-mega-praxis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +264,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="agy-cli-skripte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="agy-cli-mega-praxis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>MCP Server nutzen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,90 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-antigravity-cli-agy--mcp-server-nutzen-erweiterte-lösungen"><a class="header" href="#-antigravity-cli-agy--mcp-server-nutzen-erweiterte-lösungen">🚀 Antigravity CLI (<code>agy</code>) – MCP Server nutzen (Erweiterte Lösungen)</a></h1>
+<p><em>Wie du das Model Context Protocol (MCP) in AGY einbindest, um deinen Agenten mit Datenbanken, Web-APIs und externen Tools zu vernetzen.</em></p>
+<hr>
+<h2 id="-theorie-alle-wissen-wird-grenzenlos"><a class="header" href="#-theorie-alle-wissen-wird-grenzenlos">🧠 Theorie: “Alle wissen” wird grenzenlos</a></h2>
+<p>Bisher wusste dein AGY-Agent nur das, was im aktuellen lokalen Datei-Workspace lag. Wenn du jedoch eine komplexe Rust-Software baust, die mit einer Live-Datenbank, Cloud-Diensten oder Drittanbieter-APIs spricht, stößt dieser isolierte Kontext schnell an seine Grenzen.</p>
+<p>Das <strong>Model Context Protocol (MCP)</strong> durchbricht diese Grenze:</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Echte Daten statt blinder Annahmen:</strong> Anstatt AGY raten zu lassen (“Wie sieht meine Datenbank wohl aus?”), verbindest du einen SQLite-, Postgres- oder GitHub-MCP-Server. AGY liest das echte Schema live aus und schlägt Architektur-Verbesserungen auf Basis der Realität vor.</li>
+<li><strong>Sichere Tool-Delegation:</strong> MCP-Server laufen als kleine, isolierte Skripte lokal auf deinem Rechner. AGY bekommt nur die Befehle (Tools) zur Verfügung gestellt, die der MCP-Server ausdrücklich freigibt (z.B. “Darf Tabellen lesen”, aber “Darf keine Tabellen löschen”).</li>
+<li><strong>Die beste Lösung finden:</strong> Wenn AGY Jira-Tickets lesen, Sentry-Fehler-Logs analysieren oder eine externe REST-API live abfragen kann, werden seine Refactoring-Vorschläge um ein Vielfaches präziser und wertvoller.</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um MCP-Server in AGY zu konfigurieren, nutzt du die eingebauten Systeme der CLI:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Die <code>settings.json</code>:</strong> Die Konfiguration von MCP-Servern erfolgt meist direkt in den AGY-Einstellungen (z.B. über <code>/config</code> oder in der Datei <code>~/.gemini/config/settings.json</code>). Dort trägst du unter <code>mcpServers</code> den Namen und den Startbefehl (wie <code>npx</code> oder <code>uvx</code>) des Servers ein.</li>
+<li><strong>Der Slash-Befehl <code>/mcp</code>:</strong> In der laufenden CLI kannst du dir mit <code>/mcp</code> jederzeit anzeigen lassen, welche externen Server aktuell erfolgreich verbunden sind und welche spezifischen Tools sie dem Agenten bereitstellen.</li>
+<li><strong>Tool-Permissions:</strong> Stelle sicher, dass deine <code>toolPermission</code> in den Einstellungen so konfiguriert ist, dass AGY Werkzeuge auch gefahrlos (z.B. im Sandbox-Modus) aufrufen darf.</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-mcp-workflows-reichlich"><a class="header" href="#-praxis-übungen-mcp-workflows-reichlich">🛠️ Praxis-Übungen: MCP Workflows (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Es gibt hier keine fertigen JSON-Configs oder Copy-Paste-Skripte! Erforsche die Einstellungen in der CLI (<code>/config</code>), recherchiere MCP-Server im Netz und teste die Interaktion mit dem Agenten selbstständig.</p>
+</blockquote>
+<h3 id="-mcp-setup--inspektion"><a class="header" href="#-mcp-setup--inspektion">🧭 MCP Setup &amp; Inspektion</a></h3>
+<h4 id="übung-1-einen-mcp-server-eintragen"><a class="header" href="#übung-1-einen-mcp-server-eintragen">Übung 1: Einen MCP-Server eintragen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Such dir im Internet einen Open-Source MCP-Server (z.B. den offiziellen <code>sqlite</code> Server von Anthropic). Finde heraus, wie du diesen Server im JSON-Format in die Konfiguration von Antigravity eintragen kannst.</li>
+<li><strong>Hinweis:</strong> Öffne die Einstellungen (meist <code>~/.gemini/config/settings.json</code>) und suche nach der Struktur für <code>mcpServers</code>.</li>
+</ul>
+<h4 id="übung-2-die-live-verbindung-prüfen"><a class="header" href="#übung-2-die-live-verbindung-prüfen">Übung 2: Die Live-Verbindung prüfen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast den Server eingetragen und AGY neu gestartet. Wie überprüfst du nun in der laufenden Chat-Sitzung, ob AGY den externen Server erkannt hat?</li>
+<li><strong>Hinweis:</strong> Tippe den Befehl <code>/mcp</code> in die CLI. Zeigt die Liste den neuen Server als “verbunden” an?</li>
+</ul>
+<h4 id="übung-3-werkzeuge-tools-untersuchen"><a class="header" href="#übung-3-werkzeuge-tools-untersuchen">Übung 3: Werkzeuge (Tools) untersuchen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Ein verbundener MCP-Server liefert “Tools” (neue Fähigkeiten). Finde heraus, welche exakten Funktionen AGY durch deinen neuen Server ausführen kann.</li>
+<li><strong>Hinweis:</strong> Frag AGY im Chat direkt: “Welche Tools stellt dir der aktuell verbundene MCP-Server zur Verfügung und welche Parameter muss ich angeben, damit du sie nutzt?”</li>
+</ul>
+<h3 id="-lösungsfindung-mit-echten-daten"><a class="header" href="#-lösungsfindung-mit-echten-daten">🛡️ Lösungsfindung mit echten Daten</a></h3>
+<h4 id="übung-4-das-reale-schema-abfragen"><a class="header" href="#übung-4-das-reale-schema-abfragen">Übung 4: Das reale Schema abfragen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Verbinde eine lokale SQLite-Testdatenbank per MCP. Bitte AGY: “Nutze dein MCP-Tool, um die Tabellenstruktur meiner Datenbank komplett zu lesen, und generiere mir exakt dazu passende Rust <code>structs</code>.”</li>
+<li><strong>Hinweis:</strong> Beobachte die CLI-Ausgabe aufmerksam. Siehst du den Moment (den “Tool Call”), in dem AGY aktiv die Datenbank abfragt, bevor er den Rust-Code generiert?</li>
+</ul>
+<h4 id="übung-5-bessere-architektur-durch-live-daten"><a class="header" href="#übung-5-bessere-architektur-durch-live-daten">Übung 5: Bessere Architektur durch Live-Daten</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast zehntausende Zeilen Testdaten in deiner lokalen Datenbank. Frag AGY: “Analysiere über dein MCP-Tool die Tabelle <code>users</code>. Ist ein Index auf der Spalte <code>email</code> gesetzt? Falls nicht, skizziere mir 2 architektonische Ansätze, wie ich Logins im Rust-Backend performanter mache.”</li>
+<li><strong>Hinweis:</strong> Hier entfaltet MCP seine volle Stärke: Der Agent kombiniert dein abstraktes Architektur-Problem mit dem physischen Echtzeit-Zustand deiner Infrastruktur.</li>
+</ul>
+<h4 id="übung-6-tool-abstürze-provozieren"><a class="header" href="#übung-6-tool-abstürze-provozieren">Übung 6: Tool-Abstürze provozieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Zwinge AGY im Prompt dazu, eine SQL-Query über das MCP-Tool auszuführen, die absichtlich einen groben Syntax-Fehler enthält.</li>
+<li><strong>Hinweis:</strong> Wie reagiert AGY auf die Fehlermeldung des MCP-Servers? Entschuldigt sich der Agent und korrigiert den Fehler im nächsten Versuch völlig selbstständig (Self-Healing)?</li>
+</ul>
+<h3 id="-komplexe-schnittstellen--eigene-server"><a class="header" href="#-komplexe-schnittstellen--eigene-server">🔄 Komplexe Schnittstellen &amp; Eigene Server</a></h3>
+<h4 id="übung-7-den-prompt-auf-tools-fokussieren"><a class="header" href="#übung-7-den-prompt-auf-tools-fokussieren">Übung 7: Den Prompt auf Tools fokussieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Manchmal ist die KI “faul” und rät eine theoretische Lösung, anstatt das verbundene MCP-Tool zu nutzen, um echte Fakten zu sammeln.</li>
+<li><strong>Hinweis:</strong> Übe hartes Prompt-Engineering: “Du MUSST zwingend das Tool <code>read_query</code> verwenden, um die Live-Daten zu überprüfen, bevor du mir überhaupt eine Antwort gibst. Rate nicht!”</li>
+</ul>
+<h4 id="übung-8-externe-web-inhalte-einlesen"><a class="header" href="#übung-8-externe-web-inhalte-einlesen">Übung 8: Externe Web-Inhalte einlesen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Binde testweise einen MCP-Server ein, der Webseiten lesen kann (z.B. den <code>fetch</code> oder <code>puppeteer</code> Server).</li>
+<li><strong>Hinweis:</strong> Gib AGY den Link zu einer Rust-Crate-Dokumentation und sage: “Lies diese externe URL via MCP und erkläre mir, wie ich das Crate in mein Projekt integriere.”</li>
+</ul>
+<h4 id="übung-9-theorie-einen-eigenen-mcp-server-planen"><a class="header" href="#übung-9-theorie-einen-eigenen-mcp-server-planen">Übung 9: Theorie: Einen eigenen MCP-Server planen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast in deiner Firma eine alte, interne REST-API, für die es natürlich keinen fertigen MCP-Server auf dem Markt gibt.</li>
+<li><strong>Hinweis:</strong> Frage AGY interaktiv im Chat: “Erkläre mir konzeptionell auf Deutsch, wie das Model Context Protocol unter der Haube funktioniert und wie ich einen simplen, eigenen MCP-Server in Rust programmieren könnte, um unsere Firmen-API anzubinden.”</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="agy-cli-bessere-loesungen.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="agy-cli-dokumentation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +265,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="agy-cli-bessere-loesungen.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="agy-cli-dokumentation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

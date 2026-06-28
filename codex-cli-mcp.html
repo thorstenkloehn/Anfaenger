@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>MCP Server nutzen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,90 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-codex-cli--mcp-server-nutzen-erweiterte-lösungen"><a class="header" href="#-codex-cli--mcp-server-nutzen-erweiterte-lösungen">💻 Codex CLI – MCP Server nutzen (Erweiterte Lösungen)</a></h1>
+<p><em>Wie du das Model Context Protocol (MCP) mit der Codex CLI verknüpfst, um reale Daten in deine Bash-Workflows einzuspeisen und fundiertere Architektur-Entscheidungen zu treffen.</em></p>
+<hr>
+<h2 id="-theorie-alle-wissen-durch-externe-daten-mcp"><a class="header" href="#-theorie-alle-wissen-durch-externe-daten-mcp">🧠 Theorie: “Alle wissen” durch externe Daten (MCP)</a></h2>
+<p>Die Codex CLI ist ein mächtiges Werkzeug, aber von Haus aus oft auf den statischen Text beschränkt, den du ihr über die Kommandozeile (z.B. über <code>cat</code> oder Pipes) übergibst. Wenn du jedoch komplexe Software-Architekturen entwirfst, reicht dieser statische Kontext (“Alle wissen”) häufig nicht aus.</p>
+<p>Das <strong>Model Context Protocol (MCP)</strong> löst dieses Problem auf standardisierte Weise:</p>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li><strong>Dynamischer Kontext:</strong> Mit MCP kann der KI-Agent hinter der Codex CLI selbstständig externe Live-Quellen anzapfen – sei es eine Datenbank, ein Jira-Board oder eine interne Web-API. Das Wissen ist nicht mehr statisch, sondern topaktuell.</li>
+<li><strong>Die beste Lösung finden:</strong> Wenn Codex deine echte PostgreSQL-Datenbank über MCP lesen kann, anstatt blind zu raten, wie das Schema wohl aussieht, sind die vorgeschlagenen Refactorings und Rust-Structs zu 100% fehlerfrei und auf die Realität abgestimmt.</li>
+<li><strong>CLI-Integration:</strong> Da die Codex CLI ein reines Terminal-Tool ist, wird MCP meist auf zwei Wegen eingebunden: Entweder nativ über Tool-Plugins in der Konfigurationsdatei oder durch geschicktes Kombinieren von unabhängigen MCP-Clients mit Standard-Linux-Pipes (<code>|</code>).</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
+<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
+<p>Um MCP in der Shell mit Codex zu nutzen, musst du die entsprechende Infrastruktur aufsetzen:</p>
 <ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
+<li><strong>Native Plugins prüfen:</strong> Untersuche die Hilfe (<code>codex --help</code>), ob die CLI direkte Startargumente wie <code>--mcp-server</code>, <code>--tools</code> oder <code>--plugins</code> anbietet, um externe Server-Prozesse anzubinden.</li>
+<li><strong>Konfigurationsdatei (<code>.codexrc</code>):</strong> Oft werden externe Tools und Server-Verbindungen dauerhaft in einer versteckten Konfigurationsdatei deines Benutzerprofils verankert.</li>
+<li><strong>Die Bash-Pipe-Alternative:</strong> Falls die CLI MCP in deiner Version nicht nativ unterstützt, kannst du einen eigenständigen Kommandozeilen-MCP-Client nutzen und dessen JSON-Output direkt in Codex umleiten (z.B. <code>mcp-cli query db | codex "Analysiere dieses Schema und refactore den Code"</code>).</li>
 </ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
+<hr>
+<h2 id="-praxis-übungen-mcp-workflows-reichlich"><a class="header" href="#-praxis-übungen-mcp-workflows-reichlich">🛠️ Praxis-Übungen: MCP Workflows (reichlich!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Bash-Skripte! Erforsche die Dokumentation deiner CLI, trainiere den Umgang mit Linux-Pipes und finde die Syntax selbst heraus.</p>
+</blockquote>
+<h3 id="-mcp-setup--inspektion"><a class="header" href="#-mcp-setup--inspektion">🧭 MCP Setup &amp; Inspektion</a></h3>
+<h4 id="übung-1-den-mcp-server-konfigurieren"><a class="header" href="#übung-1-den-mcp-server-konfigurieren">Übung 1: Den MCP-Server konfigurieren</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Such dir einen simplen, Open-Source MCP-Server für SQLite. Finde heraus, wie du diesen Server in der Codex CLI registrierst (z.B. über die <code>.codexrc</code> oder ein Plugin-Verzeichnis).</li>
+<li><strong>Hinweis:</strong> Suche in der Dokumentation nach den entscheidenden Begriffen wie “Tool calling”, “Plugins” oder “MCP Server”.</li>
+</ul>
+<h4 id="übung-2-werkzeuge-tools-auflisten"><a class="header" href="#übung-2-werkzeuge-tools-auflisten">Übung 2: Werkzeuge (Tools) auflisten</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast den Server erfolgreich eingebunden. Wie listest du nun im Terminal auf, welche neuen Fähigkeiten (Tools) Codex jetzt zur Verfügung stehen?</li>
+<li><strong>Hinweis:</strong> Gibt es einen nativen Befehl wie <code>codex tools list</code> oder musst du die KI im interaktiven Modus mit <code>codex "Welche ausführbaren Tools hast du?"</code> direkt fragen?</li>
+</ul>
+<h4 id="übung-3-die-pipe-alternative-fallback-workflow"><a class="header" href="#übung-3-die-pipe-alternative-fallback-workflow">Übung 3: Die Pipe-Alternative (Fallback Workflow)</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Nimm an, Codex unterstützt in deiner spezifischen Version MCP nicht nativ. Lade dir einen simplen CLI-basierten MCP-Client herunter.</li>
+<li><strong>Hinweis:</strong> Wie leitest du den Text-Output dieses externen Clients in der Bash sauber so um, dass Codex ihn als initialen System-Kontext (<code>-p</code>) für die Beantwortung deiner Architektur-Frage nutzt?</li>
+</ul>
+<h3 id="-lösungsfindung-mit-echtzeit-daten"><a class="header" href="#-lösungsfindung-mit-echtzeit-daten">🛡️ Lösungsfindung mit Echtzeit-Daten</a></h3>
+<h4 id="übung-4-das-reale-schema-abfragen"><a class="header" href="#übung-4-das-reale-schema-abfragen">Übung 4: Das reale Schema abfragen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Verbinde eine lokale SQLite-Testdatenbank. Bitte Codex über die CLI: “Nutze dein Datenbank-Tool, um das Schema von <code>test.db</code> auszulesen, und generiere mir exakt dazu passende Rust <code>structs</code>.”</li>
+<li><strong>Hinweis:</strong> Prüfe in der Konsolenausgabe, ob Codex wirklich selbstständig den Zwischenschritt (den “Tool Call” an den MCP-Server) ausführt, bevor der fertige Code generiert wird.</li>
+</ul>
+<h4 id="übung-5-performance-refactoring-durch-live-daten"><a class="header" href="#übung-5-performance-refactoring-durch-live-daten">Übung 5: Performance-Refactoring durch Live-Daten</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Du hast zehntausende Zeilen Testdaten in der Datenbank. Frag Codex in der Shell: “Analysiere über MCP die Tabelle <code>users</code>. Ist ein Index auf der Spalte <code>email</code>? Falls nicht, skizziere mir 2 Architektur-Ansätze, wie ich die Suche im Rust-Backend massiv beschleunige.”</li>
+<li><strong>Hinweis:</strong> Codex soll das physische Fehlen des Indexes in der Livedatenbank erkennen und dir daraufhin raten, entweder die DB zu optimieren oder einen In-Memory-Cache in Rust zu entwerfen.</li>
+</ul>
+<h4 id="übung-6-umgang-mit-tool-abstürzen"><a class="header" href="#übung-6-umgang-mit-tool-abstürzen">Übung 6: Umgang mit Tool-Abstürzen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Zwinge Codex im Prompt dazu, eine offensichtlich ungültige SQL-Query über das MCP-Tool auszuführen.</li>
+<li><strong>Hinweis:</strong> Beobachte in der Konsole, was passiert, wenn das MCP-Tool einen harten Fehler zurückwirft. Kann Codex den Fehler selbst analysieren, heilen und sofort einen neuen, korrekten Versuch starten?</li>
+</ul>
+<h3 id="-komplexe-schnittstellen--eigene-server"><a class="header" href="#-komplexe-schnittstellen--eigene-server">🔄 Komplexe Schnittstellen &amp; Eigene Server</a></h3>
+<h4 id="übung-7-strikte-tool-nutzung-erzwingen"><a class="header" href="#übung-7-strikte-tool-nutzung-erzwingen">Übung 7: Strikte Tool-Nutzung erzwingen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Manchmal halluziniert die KI lieber ein fiktives DB-Schema, anstatt das etwas langsamere MCP-Tool aufzurufen.</li>
+<li><strong>Hinweis:</strong> Übe striktes Prompt-Engineering: <code>codex "Du MUSST zwingend das Tool 'execute_query' verwenden, um die Live-Daten abzugleichen. Antworte auf keinen Fall aus deinem Trainings-Gedächtnis!"</code></li>
+</ul>
+<h4 id="übung-8-web-scraping-mcp-nutzen"><a class="header" href="#übung-8-web-scraping-mcp-nutzen">Übung 8: Web-Scraping MCP nutzen</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Binde einen MCP-Server ein, der externe Webseiten lesen kann (z.B. den <code>puppeteer</code> oder <code>fetch</code> Server).</li>
+<li><strong>Hinweis:</strong> Gib Codex in der Konsole den Link zu einem aktuellen GitHub-Issue und sage: “Lies diese URL via MCP, fasse den Fehler zusammen und schreibe den Rust-Code, um den Bug in meinem aktuellen Workspace zu fixen.”</li>
+</ul>
+<h4 id="übung-9-theorie-einen-eigenen-mcp-server-in-rust-schreiben"><a class="header" href="#übung-9-theorie-einen-eigenen-mcp-server-in-rust-schreiben">Übung 9: Theorie: Einen eigenen MCP-Server in Rust schreiben</a></h4>
+<ul>
+<li><strong>Aufgabe:</strong> Stell dir vor, du brauchst zwingend Zugriff auf eine proprietäre, hausinterne API, für die es auf GitHub keinen fertigen MCP-Server gibt.</li>
+<li><strong>Hinweis:</strong> Frag Codex in der Konsole: “Erkläre mir konzeptionell auf Deutsch, wie das Model Context Protocol technisch aufgebaut ist, und skizziere mir die Architektur eines eigenen MCP-Servers in Rust.”</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="codex-cli-bessere-loesungen.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="codex-cli-dokumentation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +265,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="codex-cli-bessere-loesungen.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="codex-cli-dokumentation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>

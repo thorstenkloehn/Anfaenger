@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100+ Praxis-Übungen (Katalog) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0d24b264.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-562af6f3.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-claude-code--der-100-praxis-übungen-katalog"><a class="header" href="#-claude-code--der-100-praxis-übungen-katalog">🐚 Claude Code – Der 100+ Praxis-Übungen Katalog</a></h1>
+<p>Willkommen zum gigantischen Übungskatalog für Claude Code! Hier findest du über 100 kleine, knackige Aufgaben, mit denen du deine Fähigkeiten im Umgang mit KI-gestützter Entwicklung trainieren kannst. Denk daran: Es gibt hier keine fertigen Lösungen, nur Hinweise, damit du selbst auf den richtigen Weg kommst.</p>
+<h2 id="1-workflows--steuerung"><a class="header" href="#1-workflows--steuerung">1. Workflows &amp; Steuerung</a></h2>
+<p><strong>Theorie:</strong> Claude Code ist am stärksten, wenn du ihn gezielt steuerst. Nutze präzise Prompts und Iterationen, um dich an dein Ziel heranzutasten.</p>
+<ol>
+<li><strong>Aufgabe:</strong> Bitte Claude, eine Projektstruktur für ein neues Rust-Tool anzulegen, ohne Code zu schreiben. <strong>Hinweis:</strong> Nutze Befehle, die nur die Struktur beschreiben.</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine bestehende <code>main.rs</code> analysieren und die Hauptfunktionen auflisten. <strong>Hinweis:</strong> Ein einfaches “Erkläre mir diese Datei” reicht oft.</li>
+<li><strong>Aufgabe:</strong> Unterbrich Claude mitten in einer langen Generierung. <strong>Hinweis:</strong> Übe den Abbruch-Shortcut deines Terminals (meist Ctrl+C).</li>
+<li><strong>Aufgabe:</strong> Frage Claude nach dem Unterschied zwischen <code>/help</code> und <code>/compact</code>. <strong>Hinweis:</strong> Nutze die eingebauten Hilfebefehle.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, nur in kurzen, stichpunktartigen Sätzen zu antworten. <strong>Hinweis:</strong> Gib ihm klare Formatierungsregeln mit.</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine fehlerhafte Cargo.toml überprüfen, ohne den Fehler direkt zu benennen. <strong>Hinweis:</strong> “Warum baut dieses Projekt nicht?”</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir drei mögliche Lösungswege für ein Problem zu skizzieren, bevor er Code vorschlägt. <strong>Hinweis:</strong> Zwinge ihn zur Planung.</li>
+<li><strong>Aufgabe:</strong> Lass dir von Claude erklären, wie man eine Datei in Git ignoriert. <strong>Hinweis:</strong> Frag nach Best Practices für <code>.gitignore</code>.</li>
+<li><strong>Aufgabe:</strong> Nutze Claude, um einen Regex-Ausdruck zu generieren und zu erklären. <strong>Hinweis:</strong> Beschreibe genau, was du filtern willst.</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine Terminal-Fehlermeldung übersetzen und vereinfachen. <strong>Hinweis:</strong> Kopiere den Fehler 1:1 rein.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir die Vor- und Nachteile von zwei verschiedenen Rust-Crates (z.B. serde vs. miniserde) gegenüberzustellen. <strong>Hinweis:</strong> Frage gezielt nach Trade-offs.</li>
+<li><strong>Aufgabe:</strong> Lass Claude einen Kommentarblock für eine Funktion entwerfen. <strong>Hinweis:</strong> Fokussiere dich auf Dokumentations-Standards.</li>
+<li><strong>Aufgabe:</strong> Gib Claude absichtlich eine vage Anweisung und beobachte, wie er nachfragt. <strong>Hinweis:</strong> “Mach das Programm schneller.”</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, eine Log-Datei auf Auffälligkeiten zu untersuchen. <strong>Hinweis:</strong> Du kannst Textausschnitte übergeben.</li>
+<li><strong>Aufgabe:</strong> Lass Claude dir erklären, wie man in Vim eine Datei speichert und schließt. <strong>Hinweis:</strong> Ein Klassiker für Terminal-Neulinge.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, dir den Unterschied zwischen Stack und Heap in eigenen Worten zu erklären. <strong>Hinweis:</strong> Bitte um eine Analogie.</li>
+<li><strong>Aufgabe:</strong> Lass Claude einen simplen Bash-Befehl zum Finden von Dateien zusammenstellen. <strong>Hinweis:</strong> “Wie finde ich alle .rs Dateien?”</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, einen langen Text in drei Kernpunkte zusammenzufassen. <strong>Hinweis:</strong> Teste seine Fähigkeiten im Lesen von Dateien.</li>
+<li><strong>Aufgabe:</strong> Lass dir von Claude ein paar nützliche Git-Aliase vorschlagen. <strong>Hinweis:</strong> Frage nach Produktivitäts-Tipps.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir zu erklären, wie du seine Ausgabe in eine Datei umleiten kannst. <strong>Hinweis:</strong> Frage nach Terminal-Pipes.</li>
+</ol>
+<h2 id="2-automatisieren"><a class="header" href="#2-automatisieren">2. Automatisieren</a></h2>
+<p><strong>Theorie:</strong> Wiederkehrende Aufgaben sind prädestiniert für Automatisierung. Lerne, wie du KI nutzt, um Prozesse zu beschleunigen.</p>
+<ol start="21">
+<li><strong>Aufgabe:</strong> Lass Claude ein Skript entwerfen (ohne Code!), das täglich Backups macht. <strong>Hinweis:</strong> Fokussiere dich auf den logischen Ablauf.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, einen GitHub Actions Workflow konzeptionell zu beschreiben. <strong>Hinweis:</strong> Welche Schritte sind für CI/CD nötig?</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man mit <code>cron</code> Aufgaben zeitsteuert. <strong>Hinweis:</strong> Frage nach der Syntax.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, eine Strategie zur automatischen Code-Formatierung im Team zu entwickeln. <strong>Hinweis:</strong> Denk an Pre-commit Hooks.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Ideen, wie man Release-Notes automatisch generieren könnte. <strong>Hinweis:</strong> Welche Git-Daten kann man nutzen?</li>
+<li><strong>Aufgabe:</strong> Lass Claude einen Workflow für automatisches Dependency-Update skizzieren. <strong>Hinweis:</strong> Stichwort: Dependabot oder Renovate.</li>
+<li><strong>Aufgabe:</strong> Frage Claude nach Möglichkeiten, Tests automatisch beim Speichern auszuführen. <strong>Hinweis:</strong> Tools wie <code>cargo watch</code>.</li>
+<li><strong>Aufgabe:</strong> Lass dir von Claude erklären, wie man Metadaten aus Bildern automatisch ausliest (Konzept). <strong>Hinweis:</strong> Welche Tools eignen sich dafür?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, eine Checkliste für ein automatisches Deployment-Skript zu erstellen. <strong>Hinweis:</strong> Was darf auf keinen Fall schiefgehen?</li>
+<li><strong>Aufgabe:</strong> Lass Claude Ideen für die Automatisierung von Code-Reviews sammeln. <strong>Hinweis:</strong> Was kann ein Linter abdecken?</li>
+<li><strong>Aufgabe:</strong> Frage nach einer Strategie, um verwaiste Dateien in einem Projekt automatisch zu finden. <strong>Hinweis:</strong> Welche Shell-Befehle helfen hier?</li>
+<li><strong>Aufgabe:</strong> Lass Claude ein Konzept für eine automatische Datenbank-Migration entwerfen. <strong>Hinweis:</strong> Wie geht man mit Versionen um?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Vorschläge, wie man API-Dokumentation aus Code generieren kann. <strong>Hinweis:</strong> Swagger/OpenAPI.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man Docker-Images automatisch baut. <strong>Hinweis:</strong> Welche CI-Tools sind dafür üblich?</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, eine Idee für einen automatischen Link-Checker in Markdown-Dateien zu skizzieren. <strong>Hinweis:</strong> Wie findet man Broken Links?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um ein Konzept für ein Skript, das große Dateien automatisch komprimiert. <strong>Hinweis:</strong> Wann soll das Skript laufen?</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine Strategie zur automatischen Erkennung von Sicherheitslücken in Abhängigkeiten beschreiben. <strong>Hinweis:</strong> Tools wie <code>cargo audit</code>.</li>
+<li><strong>Aufgabe:</strong> Frage nach Möglichkeiten, Changelogs aus Commit-Messages zu parsen. <strong>Hinweis:</strong> Conventional Commits.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man automatische Benachrichtigungen bei Fehlern einrichtet. <strong>Hinweis:</strong> Webhooks zu Slack/Discord.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, einen Prozess zur automatischen Lokalisierung (Übersetzung) von Texten zu skizzieren. <strong>Hinweis:</strong> Wie synchronisiert man Sprachdateien?</li>
+</ol>
+<h2 id="3-projekt-wissendatenbank"><a class="header" href="#3-projekt-wissendatenbank">3. Projekt Wissendatenbank</a></h2>
+<p><strong>Theorie:</strong> Ein gutes Projekt dokumentiert sich fast von selbst. Nutze KI, um Wissen zu strukturieren und zugänglich zu machen.</p>
+<ol start="41">
+<li><strong>Aufgabe:</strong> Lass Claude ein Template für ein gutes <code>README.md</code> erstellen. <strong>Hinweis:</strong> Welche Sektionen sind zwingend nötig?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, die Struktur eines Onboarding-Dokuments für neue Entwickler zu entwerfen. <strong>Hinweis:</strong> Was muss jemand an Tag 1 wissen?</li>
+<li><strong>Aufgabe:</strong> Lass dir von Claude vorschlagen, wie man Architekturentscheidungen dokumentiert (ADRs). <strong>Hinweis:</strong> Frage nach dem Format von Architecture Decision Records.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, einen Styleguide für API-Design zu skizzieren. <strong>Hinweis:</strong> Denk an Naming Conventions und Statuscodes.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um eine Checkliste für Code-Reviews. <strong>Hinweis:</strong> Was sollte man bei jedem Pull Request prüfen?</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine Vorlage für Bug-Reports erstellen. <strong>Hinweis:</strong> Welche Infos (OS, Version, Steps to reproduce) fehlen oft?</li>
+<li><strong>Aufgabe:</strong> Frage Claude, wie man am besten eine Glossar-Datei für fachspezifische Begriffe anlegt. <strong>Hinweis:</strong> Wie hält man es aktuell?</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man mit mdBook eine Dokumentation strukturiert. <strong>Hinweis:</strong> Welche Rolle spielt die <code>SUMMARY.md</code>?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, eine Strategie zur Dokumentation von Datenbank-Schemata zu entwerfen. <strong>Hinweis:</strong> Wo sollte das dokumentiert werden?</li>
+<li><strong>Aufgabe:</strong> Lass Claude ein Template für Feature-Requests entwerfen. <strong>Hinweis:</strong> Fokus auf den Business-Value.</li>
+<li><strong>Aufgabe:</strong> Frage nach Best Practices für das Kommentieren von komplexen Algorithmen. <strong>Hinweis:</strong> Warum statt Wie.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Vorschläge, wie man “Tribal Knowledge” (Wissen in den Köpfen) dokumentierbar macht. <strong>Hinweis:</strong> Pair Programming und Interviews.</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine Struktur für ein Troubleshooting-Handbuch (FAQ) skizzieren. <strong>Hinweis:</strong> Symptom -&gt; Ursache -&gt; Lösung.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, Richtlinien für gute Commit-Nachrichten zu formulieren. <strong>Hinweis:</strong> Denk an Präfixe wie <code>feat:</code> oder <code>fix:</code>.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Ideen, wie man veraltete Dokumentation automatisch erkennt. <strong>Hinweis:</strong> Gibt es Tools für “Doc Rot”?</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man Diagramme in Markdown (z.B. Mermaid) zur Dokumentation nutzt. <strong>Hinweis:</strong> Was sind die Vorteile von Text-to-Diagram?</li>
+<li><strong>Aufgabe:</strong> Frage Claude nach einer Vorlage für ein Security-Policy-Dokument. <strong>Hinweis:</strong> Wie meldet man Schwachstellen?</li>
+<li><strong>Aufgabe:</strong> Lass Claude eine Struktur für ein “Lessons Learned” (Post-Mortem) nach einem Fehlerfall entwerfen. <strong>Hinweis:</strong> Blame-free Culture.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Tipps, wie man Dokumentation für Anfänger (wie dich) verständlicher macht. <strong>Hinweis:</strong> Jargon vermeiden.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie man ein Changelog für Endbenutzer vs. für Entwickler schreibt. <strong>Hinweis:</strong> Unterschiedliche Zielgruppen.</li>
+</ol>
+<h2 id="4-auf-bessere-lösungen-kommen"><a class="header" href="#4-auf-bessere-lösungen-kommen">4. Auf bessere Lösungen kommen</a></h2>
+<p><strong>Theorie:</strong> KI hilft dir nicht nur beim Tippen, sondern auch beim Denken. Nutze sie als Sparringspartner für bessere Architektur.</p>
+<ol start="61">
+<li><strong>Aufgabe:</strong> Lass Claude zwei Ansätze zur Fehlerbehandlung in Rust vergleichen (z.B. <code>unwrap</code> vs. Pattern Matching). <strong>Hinweis:</strong> Was ist robuster?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir das Konzept von “Dependency Injection” anhand einer Alltags-Analogie zu erklären. <strong>Hinweis:</strong> Frag nach einem Beispiel ohne Code.</li>
+<li><strong>Aufgabe:</strong> Lass dir von Claude aufzeigen, warum globale Variablen oft eine schlechte Idee sind. <strong>Hinweis:</strong> Stichwort: Side effects.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, dir “Test-Driven Development” (TDD) kritisch zu beleuchten (Pros/Cons). <strong>Hinweis:</strong> Wann lohnt es sich nicht?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, einen Entwurf für eine skalierbare Datei-Struktur in einem großen Projekt zu machen. <strong>Hinweis:</strong> Wie vermeidet man Chaos?</li>
+<li><strong>Aufgabe:</strong> Lass Claude erklären, was “Clean Code” wirklich bedeutet, jenseits von Buzzwords. <strong>Hinweis:</strong> Lesbarkeit vs. Cleverness.</li>
+<li><strong>Aufgabe:</strong> Frage nach Strategien, um “Spaghetti-Code” zu refactoren. <strong>Hinweis:</strong> Wo fängt man an?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um eine Erklärung, warum “Premature Optimization” die Wurzel allen Übels sein kann. <strong>Hinweis:</strong> Wann sollte man Code schneller machen?</li>
+<li><strong>Aufgabe:</strong> Lass dir das Prinzip “Don’t Repeat Yourself” (DRY) und seine Grenzen erklären. <strong>Hinweis:</strong> Wann ist ein bisschen Duplikation okay?</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, dir das Konzept von “State Machines” zu erklären und wann man sie nutzt. <strong>Hinweis:</strong> Wie vermeidet man wilde If-Else-Kaskaden?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, die Vor- und Nachteile von Microservices gegenüber einem Monolithen zu erörtern. <strong>Hinweis:</strong> Fokus auf Komplexität.</li>
+<li><strong>Aufgabe:</strong> Lass Claude erklären, wie man einen “Race Condition” in nebenläufigen Programmen findet. <strong>Hinweis:</strong> Warum sind sie so schwer zu debuggen?</li>
+<li><strong>Aufgabe:</strong> Frage nach dem “Single Responsibility Principle” (SRP) und lass dir ein Positiv-/Negativ-Beispiel beschreiben. <strong>Hinweis:</strong> Eine Funktion = Eine Aufgabe.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Tipps, wie man Code so schreibt, dass er leicht zu testen ist. <strong>Hinweis:</strong> Was sind “Pure Functions”?</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, was “Technical Debt” (Technische Schulden) ist und wie man sie abbaut. <strong>Hinweis:</strong> Wann ist es okay, Schulden aufzunehmen?</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, dir das Prinzip des “Fail Fast” zu erklären. <strong>Hinweis:</strong> Warum ist ein früher Absturz besser als falsche Daten?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um eine Erklärung von “Immutability” (Unveränderlichkeit) und deren Vorteile. <strong>Hinweis:</strong> Warum machen Konstanten das Leben leichter?</li>
+<li><strong>Aufgabe:</strong> Lass Claude den Unterschied zwischen Authentifizierung und Autorisierung erklären. <strong>Hinweis:</strong> Wer bist du vs. Was darfst du?</li>
+<li><strong>Aufgabe:</strong> Frage nach Best Practices für das Benennen von Variablen und Funktionen. <strong>Hinweis:</strong> Warum sind Abkürzungen meist schlecht?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir das Konzept von “Design Patterns” zu erklären und ob man sie immer nutzen muss. <strong>Hinweis:</strong> Sind sie manchmal Overkill?</li>
+</ol>
+<h2 id="5-mcp-server-nutzen"><a class="header" href="#5-mcp-server-nutzen">5. MCP Server nutzen</a></h2>
+<p><strong>Theorie:</strong> Der Model Context Protocol (MCP) Server ist eine Brücke zwischen Claude und deinem lokalen System oder externen Tools.</p>
+<ol start="81">
+<li><strong>Aufgabe:</strong> Lass dir von Claude erklären, was ein MCP Server konzeptionell ist. <strong>Hinweis:</strong> Frag nach einer Metapher.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude zu beschreiben, welche Art von Aufgaben man typischerweise an einen MCP Server auslagert. <strong>Hinweis:</strong> Denke an lokalen Dateizugriff.</li>
+<li><strong>Aufgabe:</strong> Lass Claude skizzieren, wie die Kommunikation zwischen ihm und einem MCP Server prinzipiell abläuft. <strong>Hinweis:</strong> Request/Response Muster.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, Sicherheitsbedenken beim Einsatz von MCP Servern zu nennen. <strong>Hinweis:</strong> Was passiert, wenn der Server zu viele Rechte hat?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um eine Idee für einen MCP Server, der beim täglichen Programmieren hilft. <strong>Hinweis:</strong> Z.B. ein Linter-Server.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie ein MCP Server helfen könnte, mit einer lokalen Datenbank zu interagieren. <strong>Hinweis:</strong> Ohne den Code selbst zu sehen.</li>
+<li><strong>Aufgabe:</strong> Frage Claude, ob ein MCP Server auch das Internet durchsuchen könnte und wie das konzeptionell funktioniert. <strong>Hinweis:</strong> Ein Web-Search-Tool.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude zu skizzieren, wie man einen einfachen MCP Server für das Lesen von PDF-Dateien konzipiert. <strong>Hinweis:</strong> Was muss das Tool können?</li>
+<li><strong>Aufgabe:</strong> Lass Claude erklären, wie er entscheidet, wann er ein Tool eines MCP Servers nutzt. <strong>Hinweis:</strong> Wie versteht er die Tool-Beschreibung?</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, die Vorteile eines lokalen MCP Servers gegenüber einer reinen Cloud-Lösung zu nennen. <strong>Hinweis:</strong> Stichwort: Datenschutz.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um ein Konzept für einen MCP Server, der Git-Branches analysiert. <strong>Hinweis:</strong> Welche Informationen wären nützlich?</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie ein MCP Server dabei helfen kann, Code über mehrere Repositories hinweg zu durchsuchen. <strong>Hinweis:</strong> Zentraler Such-Index.</li>
+<li><strong>Aufgabe:</strong> Frage Claude nach Möglichkeiten, wie ein MCP Server Systemmetriken (CPU/RAM) überwachen könnte. <strong>Hinweis:</strong> Wozu könnte die KI diese Daten nutzen?</li>
+<li><strong>Aufgabe:</strong> Bitte Claude zu beschreiben, wie man Fehler (“Errors”) von einem MCP Server am besten an die KI zurückmeldet. <strong>Hinweis:</strong> Damit sie es versteht und korrigieren kann.</li>
+<li><strong>Aufgabe:</strong> Lass Claude skizzieren, wie ein MCP Server zur Steuerung von Smart-Home-Geräten aussehen könnte. <strong>Hinweis:</strong> IOT-Integration.</li>
+<li><strong>Aufgabe:</strong> Fordere Claude auf, zu erklären, wie Rate-Limiting bei einem MCP Server konzeptionell umgesetzt wird. <strong>Hinweis:</strong> Um Spam zu vermeiden.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude um Ideen, wie ein MCP Server helfen könnte, lokale Bilder zu kategorisieren. <strong>Hinweis:</strong> Metadaten-Extraktion.</li>
+<li><strong>Aufgabe:</strong> Lass dir erklären, wie ein MCP Server als Übersetzer zwischen der KI und einer sehr alten (Legacy) API fungieren kann. <strong>Hinweis:</strong> Adapter-Pattern.</li>
+<li><strong>Aufgabe:</strong> Frage Claude, wie man sicherstellt, dass ein MCP Server nicht versehentlich wichtige Dateien löscht. <strong>Hinweis:</strong> Read-only Modus.</li>
+<li><strong>Aufgabe:</strong> Bitte Claude, dir eine Checkliste für die Planung deines ersten eigenen MCP Servers zu erstellen. <strong>Hinweis:</strong> Was musst du vorher klären?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="claude-sdk.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="claude-code-praxis-1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="claude-sdk.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="claude-code-praxis-1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

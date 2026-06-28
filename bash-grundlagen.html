@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datenschutz - Rust Projektvorschläge für Einsteiger</title>
+        <title>🐚 Bash-Skripte – Grundlagen - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,104 +174,115 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der
-EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+                        <h1 id="-bash-skripte--grundlagen--theorie"><a class="header" href="#-bash-skripte--grundlagen--theorie">🐚 Bash-Skripte – Grundlagen &amp; Theorie</a></h1>
+<p>Dieses Kapitel führt dich durch die wichtigsten Grundlagen des Bash-Scriptings. Da du dir explizit praxisbezogene Beispiele gewünscht hast, um es besser zu verstehen, findest du hier kurze Code-Schnipsel! Denk daran: Diese Beispiele zeigen dir, <em>wie</em> die Syntax funktioniert. Die großen Projekte baust du dann selbst auf Basis dieses Wissens.</p>
+<h2 id="-theorie-alle-wichtigen-bash-themen"><a class="header" href="#-theorie-alle-wichtigen-bash-themen">🧠 Theorie: Alle wichtigen Bash-Themen</a></h2>
+<h3 id="1-das-shebang-binbash"><a class="header" href="#1-das-shebang-binbash">1. Das Shebang (<code>#!/bin/bash</code>)</a></h3>
+<p>Jedes Bash-Skript beginnt mit dem sogenannten Shebang in der ersten Zeile. Es sagt dem System, welches Programm das Skript ausführen soll.</p>
+<pre><code class="language-bash">#!/bin/bash
+# Das ist ein Kommentar. Er wird vom Computer ignoriert.
+echo "Hallo Welt!"
+</code></pre>
+<h3 id="2-variablen"><a class="header" href="#2-variablen">2. Variablen</a></h3>
+<p>Variablen speichern Daten wie Zahlen oder Text. In Bash ist es extrem wichtig: Es gibt <strong>keine Leerzeichen</strong> vor oder nach dem Gleichheitszeichen!</p>
+<pre><code class="language-bash">#!/bin/bash
+NAME="Thorsten"
+echo "Hallo $NAME! Willkommen beim Bash-Scripting."
+</code></pre>
+<h3 id="3-benutzereingaben-lesen-read"><a class="header" href="#3-benutzereingaben-lesen-read">3. Benutzereingaben lesen (<code>read</code>)</a></h3>
+<p>Du kannst interaktiv Daten vom Benutzer abfragen, während das Skript läuft.</p>
+<pre><code class="language-bash">#!/bin/bash
+echo "Wie lautet dein Lieblingsprojekt?"
+read PROJEKT
+echo "Ah, $PROJEKT klingt super!"
+</code></pre>
+<h3 id="4-bedingungen-if-elif-else"><a class="header" href="#4-bedingungen-if-elif-else">4. Bedingungen (<code>if</code>, <code>elif</code>, <code>else</code>)</a></h3>
+<p>Bedingungen erlauben es dem Skript, Entscheidungen zu treffen. Zum Beispiel: Überprüfen, ob eine Datei existiert oder ob ein Passwort richtig ist. Achtung: Die Leerzeichen innerhalb der eckigen Klammern <code>[ ]</code> sind zwingend erforderlich!</p>
+<pre><code class="language-bash">#!/bin/bash
+DATEI="test.txt"
+
+if [ -f "$DATEI" ]; then
+    echo "Die Datei $DATEI existiert."
+else
+    echo "Datei $DATEI wurde nicht gefunden."
+fi
+</code></pre>
+<h3 id="5-schleifen-for-und-while"><a class="header" href="#5-schleifen-for-und-while">5. Schleifen (<code>for</code> und <code>while</code>)</a></h3>
+<p>Mit Schleifen kannst du bestimmte Aufgaben wiederholen. Das spart viel Tipparbeit.</p>
+<p><strong>Eine <code>for</code>-Schleife (z. B. um für alle Dateien in einem Ordner etwas zu tun):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+for FILE in *.md; do
+    echo "Markdown-Datei gefunden: $FILE"
+done
+</code></pre>
+<p><strong>Eine <code>while</code>-Schleife (z. B. um hochzuzählen):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+ZAEHLER=1
+while [ $ZAEHLER -le 5 ]; do
+    echo "Durchlauf Nummer $ZAEHLER"
+    ((ZAEHLER++))
+done
+</code></pre>
+<h3 id="6-parameter-und-argumente-1-2"><a class="header" href="#6-parameter-und-argumente-1-2">6. Parameter und Argumente (<code>$1</code>, <code>$2</code>)</a></h3>
+<p>Wenn du ein Skript aufrufst (z. B. im Terminal mit <code>./script.sh hallo welt</code>), kannst du diese Wörter (Argumente) im Skript direkt verwenden. <code>$1</code> ist das erste Wort, <code>$2</code> das zweite.</p>
+<pre><code class="language-bash">#!/bin/bash
+echo "Das erste Argument ist: $1"
+echo "Das zweite Argument ist: $2"
+echo "Alle Argumente zusammen: $@"
+</code></pre>
+<h3 id="7-funktionen"><a class="header" href="#7-funktionen">7. Funktionen</a></h3>
+<p>Funktionen helfen dir, Codeblöcke wiederverwendbar zu machen, damit dein Skript ordentlich bleibt.</p>
+<pre><code class="language-bash">#!/bin/bash
+begruessung() {
+    echo "Guten Tag, $1!"
+}
+
+begruessung "Thorsten"
+begruessung "Linux-Fan"
+</code></pre>
+<hr>
+<h2 id="-praxis-aufgaben-probiere-es-selbst"><a class="header" href="#-praxis-aufgaben-probiere-es-selbst">🛠️ Praxis-Aufgaben (Probiere es selbst!)</a></h2>
+<p>Hier sind drei kleine Aufgaben, um das Gelernte zu testen. Versuche sie ohne fertige Lösung zu programmieren!</p>
+<ol>
+<li><strong>Aufgabe A:</strong> Schreibe ein Skript, das dich nach deinem Namen fragt. Prüfe dann mit <code>if</code>: Wenn der Name “Thorsten” ist, schreibe “Chef erkannt!”. Bei allen anderen Namen schreibe “Hallo Gast!”.</li>
+<li><strong>Aufgabe B:</strong> Schreibe eine <code>for</code>-Schleife, die von 1 bis 5 zählt und bei jeder Zahl ausgibt: “Ich lerne Bash Schritt 1”, “Ich lerne Bash Schritt 2”, usw.</li>
+<li><strong>Aufgabe C:</strong> Schreibe ein Skript, das ein Argument (Dateinamen) übergeben bekommt. Das Skript prüft, ob die Datei existiert (<code>-f</code>). Wenn nicht, erstellt es die Datei mit <code>touch</code>.</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Begriff</th><th>Erklärung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>#!/bin/bash</code></td><td>Shebang. Definiert den Interpreter (hier: Bash).</td></tr>
+<tr><td><code>$VARIABLE</code></td><td>Liest den Wert einer Variablen aus.</td></tr>
+<tr><td><code>read VAR</code></td><td>Wartet auf eine Eingabe des Nutzers und speichert sie in <code>VAR</code>.</td></tr>
+<tr><td><code>if [ ... ]</code></td><td>Prüft eine Bedingung.</td></tr>
+<tr><td><code>for X in Y</code></td><td>Führt eine Aktion für jedes Element in einer Liste oder einem Bereich aus.</td></tr>
+<tr><td><code>$1, $2</code></td><td>Die Parameter, die beim Skript-Aufruf im Terminal mitgegeben wurden.</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
 <ul>
-<li>Thorsten Klöhn</li>
-<li>Gerhardstraße 2</li>
-<li>22926 Ahrensburg</li>
-<li>Telefon: 04102-2 17 40 07</li>
-<li>e-Mail: thorstenkloehn@gmail.com</li>
+<li>Nutze das Handbuch im Terminal: <code>man bash</code></li>
+<li>Gehe jetzt zu den <a href="./bash-projektvorschlaege.html">Bash-Projektvorschlägen</a> und wende dein neues Wissen in echten Projekten an!</li>
 </ul>
-<h2 id="ihre-betroffenenrechte"><a class="header" href="#ihre-betroffenenrechte">Ihre Betroffenenrechte</a></h2>
-<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten
-können Sie jederzeit folgende Rechte ausüben:</p>
-<ul>
-<li>Auskunft über Ihre bei uns gespeicherten Daten und deren
-Verarbeitung (Art. 15 DSGVO),</li>
-<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund
-gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO),</li>
-<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21
-DSGVO) und</li>
-<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung
-eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben
-(Art. 20 DSGVO).</li>
-</ul>
-<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese
-jederzeit mit Wirkung für die Zukunft widerrufen.</p>
-<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde
-wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres
-Wohnsitzes oder an die für uns als verantwortliche Stelle zuständige
-Behörde.</p>
-<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit
-Anschrift finden Sie unter:
-.</p>
-<h2 id="eingebettete-youtube-videos"><a class="header" href="#eingebettete-youtube-videos">Eingebettete YouTube-Videos</a></h2>
-<h3 id="art-und-zweck-der-verarbeitung"><a class="header" href="#art-und-zweck-der-verarbeitung">Art und Zweck der Verarbeitung:</a></h3>
-<p>Auf einigen unserer Webseiten betten wir YouTube-Videos ein. Betreiber
-der entsprechenden Plugins ist die YouTube, LLC, 901 Cherry Ave., San
-Bruno, CA 94066, USA (nachfolgend „YouTube“). Wenn Sie eine Seite mit
-dem YouTube-Plugin besuchen, wird eine Verbindung zu Servern von YouTube
-hergestellt. Dabei wird YouTube mitgeteilt, welche Seiten Sie besuchen.
-Wenn Sie in Ihrem YouTube-Account eingeloggt sind, kann YouTube Ihr
-Surfverhalten Ihnen persönlich zuzuordnen. Dies verhindern Sie, indem
-Sie sich vorher aus Ihrem YouTube-Account ausloggen.</p>
-<p>Wird ein YouTube-Video gestartet, setzt der Anbieter Cookies ein, die
-Hinweise über das Nutzerverhalten sammeln.</p>
-<p>Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer
-Verarbeitung durch YouTube erhalten Sie in den Datenschutzerklärungen
-des Anbieters, Dort erhalten Sie auch weitere Informationen zu Ihren
-diesbezüglichen Rechten und Einstellungsmöglichkeiten zum Schutze Ihrer
-Privatsphäre (). Google verarbeitet
-Ihre Daten in den USA und hat sich dem EU-US Privacy Shield unterworfen
-https://www.privacyshield.gov/EU-US-Framework</p>
-<h3 id="rechtsgrundlage"><a class="header" href="#rechtsgrundlage">Rechtsgrundlage:</a></h3>
-<p>Rechtsgrundlage für die Einbindung von YouTube und dem damit verbundenen
-Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
-DSGVO).</p>
-<h3 id="empfänger"><a class="header" href="#empfänger">Empfänger:</a></h3>
-<p>Der Aufruf von YouTube löst automatisch eine Verbindung zu Google aus.</p>
-<h3 id="speicherdauer-und-widerruf-der-einwilligung"><a class="header" href="#speicherdauer-und-widerruf-der-einwilligung">Speicherdauer und Widerruf der Einwilligung:</a></h3>
-<p>Wer das Speichern von Cookies für das Google-Ad-Programm deaktiviert
-hat, wird auch beim Anschauen von YouTube-Videos mit keinen solchen
-Cookies rechnen müssen. YouTube legt aber auch in anderen Cookies
-nicht-personenbezogene Nutzungsinformationen ab. Möchten Sie dies
-verhindern, so müssen Sie das Speichern von Cookies im Browser
-blockieren.</p>
-<p>Weitere Informationen zum Datenschutz bei „YouTube“ finden Sie in der
-Datenschutzerklärung des Anbieters unter:</p>
-<h3 id="drittlandtransfer"><a class="header" href="#drittlandtransfer">Drittlandtransfer:</a></h3>
-<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy
-Shield unterworfen .</p>
-<h3 id="bereitstellung-vorgeschrieben-oder-erforderlich"><a class="header" href="#bereitstellung-vorgeschrieben-oder-erforderlich">Bereitstellung vorgeschrieben oder erforderlich:</a></h3>
-<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig,
-allein auf Basis Ihrer Einwilligung. Sofern Sie den Zugriff unterbinden,
-kann es hierdurch zu Funktionseinschränkungen auf der Website kommen.</p>
-<h2 id="änderung-unserer-datenschutzbestimmungen"><a class="header" href="#änderung-unserer-datenschutzbestimmungen">Änderung unserer Datenschutzbestimmungen</a></h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie
-stets den aktuellen rechtlichen Anforderungen entspricht oder um
-Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen,
-z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt
-dann die neue Datenschutzerklärung.</p>
-<h2 id="fragen-an-den-datenschutzbeauftragten"><a class="header" href="#fragen-an-den-datenschutzbeauftragten">Fragen an den Datenschutzbeauftragten</a></h2>
-<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine
-E-Mail oder wenden Sie sich direkt an die für den Datenschutz
-verantwortliche Person in unserer Organisation:</p>
-<p><em>Die Datenschutzerklärung wurde mit dem</em>
-<a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/"><em>Datenschutzerklärungs-Generator der activeMind AG
-erstellt</em></a>
-*(Version 2018-09-24).c</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Impressum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="phase1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
+                            <a rel="next prefetch" href="bash-theorie-komplett.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -279,10 +290,13 @@ erstellt</em></a>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Impressum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="phase1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
+                    <a rel="next prefetch" href="bash-theorie-komplett.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>
