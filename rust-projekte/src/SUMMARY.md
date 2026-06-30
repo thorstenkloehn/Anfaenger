@@ -8,7 +8,11 @@
 
 # Phase 1: Grundlagen für Einsteiger
 
-- [Projektvorschläge](./phase1.md)
+- [Projektvorschläge Phase 1](./phase1.md)
+
+# Phase 2: Eigene Datentypen (Structs & Enums)
+
+- [Projektvorschläge Phase 2](./phase2.md)
 - [🐚 Bash-Skripte – Grundlagen](./bash-grundlagen.md)
 - [🐚 Bash-Theorie: Alle Themen](./bash-theorie-komplett.md)
 - [Bash-Projektvorschläge](./bash-projektvorschlaege.md)
