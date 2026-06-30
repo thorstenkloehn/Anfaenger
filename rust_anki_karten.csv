@@ -1,0 +1,25 @@
+Wie deklariert man in Rust eine veränderbare Variable?;let mut name = wert;
+Welcher Datentyp wird in Rust standardmäßig für ganze Zahlen verwendet?;i32 (32-Bit Integer)
+Wie deklariert man eine Konstante in Rust?;Mit dem Schlüsselwort const (z. B. const MAX_PUNKTE: u32 = 100;)
+Was ist der Unterschied zwischen i8 und u8?;i8 kann negative Zahlen speichern (signed), u8 nur positive (unsigned).
+Wie deklariert man einen Boolean mit dem Wert "wahr"?;let is_active = true;
+Brauchen Bedingungen in einem if-Statement in Rust Klammern?;Nein, man schreibt einfach if x > 5 { ... }.
+Mit welchem Schlüsselwort erstellt man eine Endlosschleife?;loop
+Wie beendet man eine Schleife vorzeitig?;Mit dem Schlüsselwort break;
+Wie durchläuft man in Rust die Zahlen 1 bis einschließlich 5 mit einer for-Schleife?;for i in 1..=5 { ... }
+Kann ein if-Ausdruck in Rust einen Wert zurückgeben?;Ja, z. B. let x = if bedingung { 1 } else { 0 };
+Welche Bibliothek muss importiert werden, um Benutzereingaben zu lesen?;std::io (meist use std::io;)
+Wie liest man eine Zeile von der Standardeingabe in einen String namens input ein?;io::stdin().read_line(&mut input)
+Wofür wird .expect("Fehlermeldung") beim Einlesen verwendet?;Um das Programm bei einem Fehler geordnet mit einer Meldung abstürzen zu lassen (Panic).
+Wie konvertiert man einen String in eine Zahl (z. B. u32)?;Mit der .parse() Methode, z.B. let zahl: u32 = text.trim().parse().expect("...");
+Wofür ist .trim() vor dem Parsen einer Eingabe wichtig?;Um unsichtbare Zeichen wie den Zeilenumbruch vom Drücken der Enter-Taste zu entfernen.
+Wie viele Owner kann ein Wert in Rust gleichzeitig haben?;Genau einen.
+Was passiert mit einem Wert, wenn sein Owner den Gültigkeitsbereich (Scope) verlässt?;Der Wert wird automatisch gelöscht (Drop).
+Wie übergibt man eine Variable an eine Funktion, *ohne* den Ownership abzugeben?;Man übergibt eine Referenz mit & (z. B. &variable).
+Wie viele veränderbare (mutable) Referenzen auf denselben Wert darf es gleichzeitig geben?;Genau eine (um Data Races zu verhindern).
+Darf man gleichzeitig unveränderbare (&T) und veränderbare (&mut T) Referenzen haben?;Nein, das ist verboten.
+Welcher String-Typ kann zur Laufzeit wachsen und verändert werden?;String
+Welcher String-Typ ist meist fest im Programmcode verankert (String Slice)?;&str
+Wie erstellt man einen neuen, leeren String?;String::new()
+Wie wandelt man einen Text-Slice ("Hallo") in einen veränderbaren String um?;String::from("Hallo") oder "Hallo".to_string()
+Wie fügt man Text an einen bestehenden String an?;Mit .push_str(" text")

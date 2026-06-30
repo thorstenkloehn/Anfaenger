@@ -8,7 +8,14 @@
 
 # Phase 1: Grundlagen für Einsteiger
 
+- [Konzepte statt Syntax lernen](./phase1-konzepte.md)
+  - [Variablen & Datentypen](./konzept-variablen.md)
+  - [Kontrollfluss](./konzept-kontrollfluss.md)
+  - [Benutzereingabe](./konzept-eingabe.md)
+  - [Ownership & Borrowing](./konzept-ownership.md)
+  - [String vs &str](./konzept-string.md)
 - [Projektvorschläge Phase 1](./phase1.md)
+- [100 Projekte](./100-projekte.md)
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
 
