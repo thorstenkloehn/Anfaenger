@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Das OpenAI/Codex SDK nutzen - Rust Projektvorschläge für Einsteiger</title>
+        <title>Ownership &amp; Borrowing - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,86 +174,52 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-codex--openai--das-offizielle-sdk-nutzen"><a class="header" href="#-codex--openai--das-offizielle-sdk-nutzen">💻 Codex / OpenAI – Das offizielle SDK nutzen</a></h1>
-<p><em>Wie du die Codex CLI verlässt und die extrem mächtige OpenAI API direkt in deinen Code integrierst, um strukturierte Daten und autarke KI-Workflows zu generieren.</em></p>
-<hr>
-<h2 id="-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api"><a class="header" href="#-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api">🧠 Theorie: Volle Kontrolle durch die Programmierschnittstelle (API)</a></h2>
-<p>Die Codex CLI ist im Prinzip nur ein kleiner, nützlicher Kommandozeilen-Wrapper um die echte OpenAI API. Wenn du jedoch professionelle KI-Applikationen, eigene TUI-Tools (Terminal User Interfaces) oder hochspezifische Code-Generatoren für deine Firma bauen willst, kommst du nicht umhin, direkt das <strong>OpenAI SDK</strong> zu nutzen.</p>
+                        <h1 id="ownership-und-borrowing-das-herzstück-von-rust"><a class="header" href="#ownership-und-borrowing-das-herzstück-von-rust">Ownership und Borrowing: Das Herzstück von Rust</a></h1>
+<p>Rust ist bekannt für seine Sicherheit und Geschwindigkeit. Das Geheimnis dahinter? Ein Konzept namens “Ownership” (Besitzrecht) und “Borrowing” (Ausleihen). Am Anfang klingt das vielleicht etwas streng, aber stell dir vor, Rust wäre ein sehr gut organisierter und ziemlich pingeliger Bibliothekar.</p>
+<h2 id="was-ist-ownership"><a class="header" href="#was-ist-ownership">Was ist Ownership?</a></h2>
+<p>Stell dir vor, du hast ein ganz besonderes, handgeschriebenes Buch gekauft. Es ist <em>dein</em> Buch. Du bist der rechtmäßige Besitzer (“Owner”). In Rust hat jeder Wert (also jede Information, die im Speicher deines Computers liegt) genau einen Besitzer. Das ist die erste und wichtigste Regel.</p>
+<p>Wenn du in deinem Zimmer aufräumst und feststellst, dass du das Buch nicht mehr brauchst, wirfst du es ins Altpapier. In Rust passiert genau das Gleiche: Sobald der Besitzer eines Wertes “aus dem Sichtfeld verschwindet” (wir nennen das “out of scope”), wird der Wert automatisch weggeräumt. Der Speicherplatz ist wieder frei. Du musst dich nicht selbst darum kümmern, wann etwas gelöscht werden soll – Rusts Bibliothekar macht das ganz automatisch für dich.</p>
+<p>Aber was passiert, wenn du das Buch jemandem schenkst? In dem Moment, in dem du es weitergibst, bist du nicht mehr der Besitzer. Dein Freund ist jetzt der Owner. Du kannst das Buch nicht mehr lesen, denn du hast es schlichtweg nicht mehr in deinen Händen. Wenn du versuchst, es trotzdem zu lesen, wird der Bibliothekar (der Rust-Compiler) meckern und dich darauf hinweisen, dass das nicht dein Buch ist. Das nennt man in Rust einen “Move” (Umzug oder Übergabe).</p>
+<h2 id="warum-diese-strenge"><a class="header" href="#warum-diese-strenge">Warum diese Strenge?</a></h2>
+<p>Vielleicht fragst du dich, warum man ein Buch nicht einfach kopieren kann, anstatt es herzugeben. Nun, bei kleinen Dingen wie einem winzigen Notizzettel (zum Beispiel einer einfachen Zahl) macht Rust das tatsächlich! Es fertigt heimlich und schnell eine Kopie an. Aber bei einem dicken Lexikon (einem großen Stück Text oder komplexen Daten) würde das ständige Kopieren viel zu lange dauern und den gesamten Platz verbrauchen. Deshalb wird bei großen Dingen standardmäßig der Besitz komplett übergeben, anstatt sie zu kopieren.</p>
+<h2 id="borrowing-das-ausleihen"><a class="header" href="#borrowing-das-ausleihen">Borrowing: Das Ausleihen</a></h2>
+<p>Aber was ist, wenn du das Buch gar nicht für immer verschenken willst? Was, wenn du es nur einem Freund <em>leihen</em> möchtest, damit er mal einen Blick hineinwerfen kann?</p>
+<p>Hier kommt das “Borrowing” (Ausleihen) ins Spiel! In Rust kannst du Werte für eine bestimmte Zeit ausleihen, ohne deinen Besitz aufzugeben. Du gibst deinem Freund einfach eine Art Leseausweis oder eine Referenz.</p>
+<h3 id="die-eisernen-regeln-der-bibliothek"><a class="header" href="#die-eisernen-regeln-der-bibliothek">Die eisernen Regeln der Bibliothek</a></h3>
+<p>Unser Bibliothekar hat zwei sehr strenge Regeln für das Ausleihen, um völliges Chaos zu vermeiden:</p>
+<ol>
+<li>
+<p><strong>Die große Lese-Party (Shared Borrowing):</strong>
+Du kannst dein Buch an so viele Freunde gleichzeitig ausleihen, wie du möchtest, <em>solange alle nur darin lesen</em>. Stell dir vor, du hängst ein Plakat an die Wand. Jeder darf es anschauen. Aber niemand darf es mit einem Stift bemalen oder verändern. In Rust nennt man das eine unveränderliche (immutable) Referenz. Jeder darf gucken, aber anfassen ist verboten!</p>
+</li>
+<li>
+<p><strong>Der exklusive Künstler (Mutable Borrowing):</strong>
+Was ist, wenn jemand Notizen in das Buch machen oder ein Kapitel umschreiben soll? Dann darfst du es nur an <em>eine einzige Person</em> zur selben Zeit ausleihen. Stell dir vor, du gibst jemandem ein leeres Notizbuch und einen Stift. Wenn zwei Leute gleichzeitig versuchen würden, mit ihren Stiften auf derselben Seite zu schreiben, gäbe es ein furchtbares Gekritzel und niemand könnte es mehr lesen!
+Daher sagt der Bibliothekar klipp und klar: Entweder dürfen viele Leute gleichzeitig lesen (ohne zu schreiben), ODER genau eine Person darf schreiben (und dann darf in dieser Zeit niemand anderes lesen oder schreiben). Niemals beides gleichzeitig!</p>
+</li>
+</ol>
+<p>Diese Regeln klingen vielleicht am Anfang sehr restriktiv, aber sie sind absolut genial! Sie verhindern, dass dein Programm abstürzt oder seltsame Dinge tut, wenn zwei Teile deines Codes gleichzeitig versuchen, dieselben Daten zu verändern.</p>
+<h2 id="wie-fühlt-sich-das-in-der-praxis-an"><a class="header" href="#wie-fühlt-sich-das-in-der-praxis-an">Wie fühlt sich das in der Praxis an?</a></h2>
+<p>Wenn du anfängst, deine ersten Rust-Programme zu schreiben, wirst du öfter mal mit dem Bibliothekar (dem Compiler) diskutieren. Er wird dir Fehlermeldungen geben und sagen: “Hey, du hast dieses Buch gerade zum Schreiben verliehen, du kannst es jetzt nicht selbst lesen!” oder “Du hast das Buch verschenkt, warum versuchst du, immer noch darin zu blättern?”.</p>
+<p>Das kann am ersten Tag frustrierend sein, aber denk immer daran: Der Bibliothekar ist nicht böse auf dich. Er möchte nur verhindern, dass du später ein völlig zerstörtes Buch voller Fehler zurückbekommst. Er beschützt dich vor tiefgreifenden Problemen, die in anderen Programmiersprachen oft erst nach langer Zeit, mitten in der Nacht und unter großen Schmerzen gefunden werden.</p>
+<h2 id="zusammenfassung-für-den-start"><a class="header" href="#zusammenfassung-für-den-start">Zusammenfassung für den Start</a></h2>
 <ul>
-<li><strong>Sprachenvielfalt:</strong> OpenAI bietet stark gepflegte offizielle SDKs für Python und Node.js an. In der Rust-Welt hat sich das Open-Source Crate <code>async-openai</code> als hochperformanter Quasi-Standard etabliert.</li>
-<li><strong>Structured Outputs:</strong> Über das SDK kannst du das Modell kryptografisch zwingen, Antworten strikt in einem vorgegebenen JSON-Format zurückzugeben (z.B. garantiert passend zu einem Rust-<code>struct</code>). Das eliminiert Parsing-Fehler komplett.</li>
-<li><strong>Zusätzliche Endpoints:</strong> Das SDK gibt dir nicht nur Zugriff auf normale Chat-Completions (Text), sondern auch auf Vektor-Embeddings (für semantische Suchen), Audio-Transkriptionen oder Bild-Generierung.</li>
+<li><strong>Ownership:</strong> Jeder Wert hat genau einen Besitzer. Wenn der Besitzer weg ist, wird aufgeräumt.</li>
+<li><strong>Move:</strong> Wenn du einen komplexen Wert weitergibst, verlierst du den Besitz.</li>
+<li><strong>Borrowing (Lesen):</strong> Du kannst Daten an viele Leute gleichzeitig zum reinen Lesen ausleihen.</li>
+<li><strong>Borrowing (Schreiben):</strong> Du kannst Daten an genau eine Person zum Verändern ausleihen – aber nur, wenn gerade niemand anders mitliest.</li>
 </ul>
-<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
-<ul>
-<li><strong>API Keys exportieren:</strong> Du benötigst zwingend deinen geheimen <code>OPENAI_API_KEY</code> aus dem Entwickler-Dashboard. Stelle sicher, dass dieser sicher als Umgebungsvariable gesetzt ist, da alle SDKs ihn dort standardmäßig suchen.</li>
-<li><strong>Das richtige Paket laden:</strong> Füge in Rust <code>async-openai</code> (und meist <code>tokio</code>) zu deiner <code>Cargo.toml</code> hinzu oder installiere in Python die Bibliothek via <code>pip install openai</code>.</li>
-<li><strong>Asynchrone Programmierung:</strong> Moderne SDK-Aufrufe an externe APIs sind asynchron, um dein Programm nicht zu blockieren. Mach dich in Rust tiefgehend mit <code>tokio</code> (Async/Await) oder in Python mit <code>asyncio</code> vertraut.</li>
-</ul>
-<hr>
-<h2 id="-praxis-übungen-das-sdk-meistern-reichlich"><a class="header" href="#-praxis-übungen-das-sdk-meistern-reichlich">🛠️ Praxis-Übungen: Das SDK meistern (reichlich!)</a></h2>
-<blockquote class="blockquote-tag blockquote-tag-important">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Scripts zum Abschreiben! Lies die offizielle OpenAI API-Dokumentation und setze die Architektur-Anforderungen selbstständig in deinem Code um.</p>
-</blockquote>
-<h3 id="-grundlagen-requests--streaming"><a class="header" href="#-grundlagen-requests--streaming">🧭 Grundlagen: Requests &amp; Streaming</a></h3>
-<h4 id="übung-1-der-synchrone-hello-world-call"><a class="header" href="#übung-1-der-synchrone-hello-world-call">Übung 1: Der synchrone Hello-World-Call</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Schreibe ein minimales Skript (Rust oder Python), das das SDK importiert, ein Client-Objekt mit Authentifizierung erstellt und eine simple Chat-Anfrage (<code>role: "user"</code>) an das Modell <code>gpt-4o</code> sendet.</li>
-<li><strong>Hinweis:</strong> Greife tief in das zurückgegebene JSON-Response-Objekt (oft <code>response.choices[0].message.content</code>), um nur den reinen Text des Modells in der Konsole auszugeben.</li>
-</ul>
-<h4 id="übung-2-streaming-responses-einbauen"><a class="header" href="#übung-2-streaming-responses-einbauen">Übung 2: Streaming-Responses einbauen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Niemand wartet gerne 10 Sekunden auf lange Antworten. Baue deinen Code aus Übung 1 so um, dass die Antwort über einen asynchronen Stream Zeichen für Zeichen im Terminal ausgegeben wird (wie in ChatGPT).</li>
-<li><strong>Hinweis:</strong> In Python nutzt du oft <code>client.chat.completions.create(stream=True)</code>, in Rust arbeitest du mit iterierbaren Streams aus dem <code>async-openai</code> Crate.</li>
-</ul>
-<h4 id="übung-3-system-prompt-und-temperatur-regeln"><a class="header" href="#übung-3-system-prompt-und-temperatur-regeln">Übung 3: System-Prompt und Temperatur regeln</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ergänze dein Skript. Füge eine Nachricht mit der speziellen Rolle <code>system</code> am Anfang des Arrays hinzu (“Du bist ein extrem mürrischer C-Programmierer”) und setze den API-Parameter <code>temperature</code> auf einen hohen Wert wie <code>1.5</code>.</li>
-<li><strong>Hinweis:</strong> Beobachte, wie dieser hohe Temperatur-Wert die Antwort extrem kreativ (oder teilweise völlig chaotisch) macht.</li>
-</ul>
-<h3 id="-strukturierte-daten-erzwingen"><a class="header" href="#-strukturierte-daten-erzwingen">🛡️ Strukturierte Daten erzwingen</a></h3>
-<h4 id="übung-4-den-json-mode-aktivieren"><a class="header" href="#übung-4-den-json-mode-aktivieren">Übung 4: Den JSON-Mode aktivieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Fordere die KI im Prompt auf, dir eine Liste mit 3 erfundenen Datenbank-Benutzernamen zu generieren. Setze im SDK-Aufruf den Parameter <code>response_format</code> auf den Typ <code>json_object</code>.</li>
-<li><strong>Hinweis:</strong> Achte darauf, dass du in deinem Nutzer-Prompt auch explizit erwähnst, dass die Antwort zwingend im JSON-Format ausgegeben werden muss, sonst wirft die API einen Fehler.</li>
-</ul>
-<h4 id="übung-5-structured-outputs-schema-enforcement"><a class="header" href="#übung-5-structured-outputs-schema-enforcement">Übung 5: Structured Outputs (Schema Enforcement)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Der moderne Weg! Definiere im SDK-Call ein extrem strenges JSON-Schema (Structured Output Format), das zwingend die Felder <code>name</code> (als String) und <code>age</code> (als Integer) verlangt.</li>
-<li><strong>Hinweis:</strong> Das Modell ist nun mathematisch gezwungen, exakt dieses Schema als JSON zurückzugeben. Kein fehleranfälliges Parsen von chaotischen Markdown-Blöcken (<code>```json</code>) mehr!</li>
-</ul>
-<h4 id="übung-6-rust-structs-direkt-deserialisieren"><a class="header" href="#übung-6-rust-structs-direkt-deserialisieren">Übung 6: Rust Structs direkt deserialisieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wenn du Rust nutzt: Nimm die garantierte JSON-Antwort aus Übung 5 und nutze das Crate <code>serde_json</code>, um den zurückgegebenen String sofort und fehlerfrei in ein stark typisiertes Rust <code>struct User { name: String, age: u8 }</code> zu verwandeln.</li>
-<li><strong>Hinweis:</strong> Das ist die absolute Basis für absturzsichere, typisierte KI-Pipelines.</li>
-</ul>
-<h3 id="-embeddings--tool-calling"><a class="header" href="#-embeddings--tool-calling">🔄 Embeddings &amp; Tool Calling</a></h3>
-<h4 id="übung-7-function-calling-aufsetzen"><a class="header" href="#übung-7-function-calling-aufsetzen">Übung 7: Function Calling aufsetzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Übergib dem SDK eine JSON-Tool-Definition für eine Funktion <code>get_file_size(filepath)</code>. Frage das Modell im Chat: “Wie groß ist die Datei <code>main.rs</code>?”</li>
-<li><strong>Hinweis:</strong> Das Modell wird dir nicht mit Text antworten, sondern den Aufruf deiner Funktion anfordern. Fange diesen Wunsch (<code>finish_reason == "tool_calls"</code>) im Code ab.</li>
-</ul>
-<h4 id="übung-8-vektor-embeddings-erzeugen"><a class="header" href="#übung-8-vektor-embeddings-erzeugen">Übung 8: Vektor-Embeddings erzeugen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Nutze nicht den normalen <code>/chat/completions</code> Endpoint, sondern den speziellen <code>/embeddings</code> Endpoint im SDK. Übergib den Satz “Hallo Welt” und lass dir den riesigen generierten Float-Vektor (die mathematische Repräsentation der Bedeutung) ausgeben.</li>
-<li><strong>Hinweis:</strong> Embeddings sind der essenzielle Schlüssel, um eigene RAG (Retrieval-Augmented Generation) Systeme oder smarte Wissensdatenbanken in Rust zu bauen.</li>
-</ul>
-<h4 id="übung-9-die-eigene-interaktive-cli-programmieren"><a class="header" href="#übung-9-die-eigene-interaktive-cli-programmieren">Übung 9: Die eigene interaktive CLI programmieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Baue eine rudimentäre, unendliche interaktive Shell-Schleife (<code>while true</code>). Der User tippt Text ein, das SDK schickt es (inklusive der im Array mitgeführten vorherigen Historie) an OpenAI, streamt die Antwort zurück, und der User kann erneut tippen.</li>
-<li><strong>Hinweis:</strong> Herzlichen Glückwunsch, du hast soeben deine allererste eigene KI-CLI von Grund auf selbst programmiert!</li>
-</ul>
+<p>Wenn du diese Bibliotheks-Regeln verinnerlicht hast, hast du die wichtigste Hürde in Rust bereits genommen. Der Rest ist nur Übung und Gewohnheit! Mach dir keine Sorgen, wenn der Compiler am Anfang oft meckert. Jeder noch so erfahrene Rust-Programmierer diskutiert täglich mit dem Bibliothekar. Bleib geduldig und denk an das Buch!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="codex-cli-skripte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="konzept-eingabe.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="konzept-string.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -263,11 +229,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="codex-cli-skripte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="konzept-eingabe.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="konzept-string.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

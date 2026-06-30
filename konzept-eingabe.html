@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Das OpenAI/Codex SDK nutzen - Rust Projektvorschläge für Einsteiger</title>
+        <title>Benutzereingabe - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,86 +174,61 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-codex--openai--das-offizielle-sdk-nutzen"><a class="header" href="#-codex--openai--das-offizielle-sdk-nutzen">💻 Codex / OpenAI – Das offizielle SDK nutzen</a></h1>
-<p><em>Wie du die Codex CLI verlässt und die extrem mächtige OpenAI API direkt in deinen Code integrierst, um strukturierte Daten und autarke KI-Workflows zu generieren.</em></p>
-<hr>
-<h2 id="-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api"><a class="header" href="#-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api">🧠 Theorie: Volle Kontrolle durch die Programmierschnittstelle (API)</a></h2>
-<p>Die Codex CLI ist im Prinzip nur ein kleiner, nützlicher Kommandozeilen-Wrapper um die echte OpenAI API. Wenn du jedoch professionelle KI-Applikationen, eigene TUI-Tools (Terminal User Interfaces) oder hochspezifische Code-Generatoren für deine Firma bauen willst, kommst du nicht umhin, direkt das <strong>OpenAI SDK</strong> zu nutzen.</p>
-<ul>
-<li><strong>Sprachenvielfalt:</strong> OpenAI bietet stark gepflegte offizielle SDKs für Python und Node.js an. In der Rust-Welt hat sich das Open-Source Crate <code>async-openai</code> als hochperformanter Quasi-Standard etabliert.</li>
-<li><strong>Structured Outputs:</strong> Über das SDK kannst du das Modell kryptografisch zwingen, Antworten strikt in einem vorgegebenen JSON-Format zurückzugeben (z.B. garantiert passend zu einem Rust-<code>struct</code>). Das eliminiert Parsing-Fehler komplett.</li>
-<li><strong>Zusätzliche Endpoints:</strong> Das SDK gibt dir nicht nur Zugriff auf normale Chat-Completions (Text), sondern auch auf Vektor-Embeddings (für semantische Suchen), Audio-Transkriptionen oder Bild-Generierung.</li>
-</ul>
-<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
-<ul>
-<li><strong>API Keys exportieren:</strong> Du benötigst zwingend deinen geheimen <code>OPENAI_API_KEY</code> aus dem Entwickler-Dashboard. Stelle sicher, dass dieser sicher als Umgebungsvariable gesetzt ist, da alle SDKs ihn dort standardmäßig suchen.</li>
-<li><strong>Das richtige Paket laden:</strong> Füge in Rust <code>async-openai</code> (und meist <code>tokio</code>) zu deiner <code>Cargo.toml</code> hinzu oder installiere in Python die Bibliothek via <code>pip install openai</code>.</li>
-<li><strong>Asynchrone Programmierung:</strong> Moderne SDK-Aufrufe an externe APIs sind asynchron, um dein Programm nicht zu blockieren. Mach dich in Rust tiefgehend mit <code>tokio</code> (Async/Await) oder in Python mit <code>asyncio</code> vertraut.</li>
-</ul>
-<hr>
-<h2 id="-praxis-übungen-das-sdk-meistern-reichlich"><a class="header" href="#-praxis-übungen-das-sdk-meistern-reichlich">🛠️ Praxis-Übungen: Das SDK meistern (reichlich!)</a></h2>
-<blockquote class="blockquote-tag blockquote-tag-important">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Scripts zum Abschreiben! Lies die offizielle OpenAI API-Dokumentation und setze die Architektur-Anforderungen selbstständig in deinem Code um.</p>
-</blockquote>
-<h3 id="-grundlagen-requests--streaming"><a class="header" href="#-grundlagen-requests--streaming">🧭 Grundlagen: Requests &amp; Streaming</a></h3>
-<h4 id="übung-1-der-synchrone-hello-world-call"><a class="header" href="#übung-1-der-synchrone-hello-world-call">Übung 1: Der synchrone Hello-World-Call</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Schreibe ein minimales Skript (Rust oder Python), das das SDK importiert, ein Client-Objekt mit Authentifizierung erstellt und eine simple Chat-Anfrage (<code>role: "user"</code>) an das Modell <code>gpt-4o</code> sendet.</li>
-<li><strong>Hinweis:</strong> Greife tief in das zurückgegebene JSON-Response-Objekt (oft <code>response.choices[0].message.content</code>), um nur den reinen Text des Modells in der Konsole auszugeben.</li>
-</ul>
-<h4 id="übung-2-streaming-responses-einbauen"><a class="header" href="#übung-2-streaming-responses-einbauen">Übung 2: Streaming-Responses einbauen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Niemand wartet gerne 10 Sekunden auf lange Antworten. Baue deinen Code aus Übung 1 so um, dass die Antwort über einen asynchronen Stream Zeichen für Zeichen im Terminal ausgegeben wird (wie in ChatGPT).</li>
-<li><strong>Hinweis:</strong> In Python nutzt du oft <code>client.chat.completions.create(stream=True)</code>, in Rust arbeitest du mit iterierbaren Streams aus dem <code>async-openai</code> Crate.</li>
-</ul>
-<h4 id="übung-3-system-prompt-und-temperatur-regeln"><a class="header" href="#übung-3-system-prompt-und-temperatur-regeln">Übung 3: System-Prompt und Temperatur regeln</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Ergänze dein Skript. Füge eine Nachricht mit der speziellen Rolle <code>system</code> am Anfang des Arrays hinzu (“Du bist ein extrem mürrischer C-Programmierer”) und setze den API-Parameter <code>temperature</code> auf einen hohen Wert wie <code>1.5</code>.</li>
-<li><strong>Hinweis:</strong> Beobachte, wie dieser hohe Temperatur-Wert die Antwort extrem kreativ (oder teilweise völlig chaotisch) macht.</li>
-</ul>
-<h3 id="-strukturierte-daten-erzwingen"><a class="header" href="#-strukturierte-daten-erzwingen">🛡️ Strukturierte Daten erzwingen</a></h3>
-<h4 id="übung-4-den-json-mode-aktivieren"><a class="header" href="#übung-4-den-json-mode-aktivieren">Übung 4: Den JSON-Mode aktivieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Fordere die KI im Prompt auf, dir eine Liste mit 3 erfundenen Datenbank-Benutzernamen zu generieren. Setze im SDK-Aufruf den Parameter <code>response_format</code> auf den Typ <code>json_object</code>.</li>
-<li><strong>Hinweis:</strong> Achte darauf, dass du in deinem Nutzer-Prompt auch explizit erwähnst, dass die Antwort zwingend im JSON-Format ausgegeben werden muss, sonst wirft die API einen Fehler.</li>
-</ul>
-<h4 id="übung-5-structured-outputs-schema-enforcement"><a class="header" href="#übung-5-structured-outputs-schema-enforcement">Übung 5: Structured Outputs (Schema Enforcement)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Der moderne Weg! Definiere im SDK-Call ein extrem strenges JSON-Schema (Structured Output Format), das zwingend die Felder <code>name</code> (als String) und <code>age</code> (als Integer) verlangt.</li>
-<li><strong>Hinweis:</strong> Das Modell ist nun mathematisch gezwungen, exakt dieses Schema als JSON zurückzugeben. Kein fehleranfälliges Parsen von chaotischen Markdown-Blöcken (<code>```json</code>) mehr!</li>
-</ul>
-<h4 id="übung-6-rust-structs-direkt-deserialisieren"><a class="header" href="#übung-6-rust-structs-direkt-deserialisieren">Übung 6: Rust Structs direkt deserialisieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wenn du Rust nutzt: Nimm die garantierte JSON-Antwort aus Übung 5 und nutze das Crate <code>serde_json</code>, um den zurückgegebenen String sofort und fehlerfrei in ein stark typisiertes Rust <code>struct User { name: String, age: u8 }</code> zu verwandeln.</li>
-<li><strong>Hinweis:</strong> Das ist die absolute Basis für absturzsichere, typisierte KI-Pipelines.</li>
-</ul>
-<h3 id="-embeddings--tool-calling"><a class="header" href="#-embeddings--tool-calling">🔄 Embeddings &amp; Tool Calling</a></h3>
-<h4 id="übung-7-function-calling-aufsetzen"><a class="header" href="#übung-7-function-calling-aufsetzen">Übung 7: Function Calling aufsetzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Übergib dem SDK eine JSON-Tool-Definition für eine Funktion <code>get_file_size(filepath)</code>. Frage das Modell im Chat: “Wie groß ist die Datei <code>main.rs</code>?”</li>
-<li><strong>Hinweis:</strong> Das Modell wird dir nicht mit Text antworten, sondern den Aufruf deiner Funktion anfordern. Fange diesen Wunsch (<code>finish_reason == "tool_calls"</code>) im Code ab.</li>
-</ul>
-<h4 id="übung-8-vektor-embeddings-erzeugen"><a class="header" href="#übung-8-vektor-embeddings-erzeugen">Übung 8: Vektor-Embeddings erzeugen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Nutze nicht den normalen <code>/chat/completions</code> Endpoint, sondern den speziellen <code>/embeddings</code> Endpoint im SDK. Übergib den Satz “Hallo Welt” und lass dir den riesigen generierten Float-Vektor (die mathematische Repräsentation der Bedeutung) ausgeben.</li>
-<li><strong>Hinweis:</strong> Embeddings sind der essenzielle Schlüssel, um eigene RAG (Retrieval-Augmented Generation) Systeme oder smarte Wissensdatenbanken in Rust zu bauen.</li>
-</ul>
-<h4 id="übung-9-die-eigene-interaktive-cli-programmieren"><a class="header" href="#übung-9-die-eigene-interaktive-cli-programmieren">Übung 9: Die eigene interaktive CLI programmieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Baue eine rudimentäre, unendliche interaktive Shell-Schleife (<code>while true</code>). Der User tippt Text ein, das SDK schickt es (inklusive der im Array mitgeführten vorherigen Historie) an OpenAI, streamt die Antwort zurück, und der User kann erneut tippen.</li>
-<li><strong>Hinweis:</strong> Herzlichen Glückwunsch, du hast soeben deine allererste eigene KI-CLI von Grund auf selbst programmiert!</li>
-</ul>
+                        <h1 id="konzept-benutzereingabe-und-konvertierung-in-rust"><a class="header" href="#konzept-benutzereingabe-und-konvertierung-in-rust">Konzept: Benutzereingabe und Konvertierung in Rust</a></h1>
+<p>Herzlich willkommen zu einem der wichtigsten Themen in der Programmierung: Der Interaktion mit dem Benutzer! Ein Programm, das immer nur dasselbe tut und niemals auf das reagiert, was wir ihm sagen, ist auf Dauer ziemlich langweilig. Stell dir vor, du spielst ein Videospiel, bei dem du den Controller nicht benutzen darfst – du wärst nur ein passiver Zuschauer. Damit unsere Rust-Programme interaktiv werden, müssen wir lernen, wie wir Benutzereingaben lesen und verarbeiten können.</p>
+<p>In diesem Kapitel schauen wir uns das Konzept dahinter an, ohne uns gleich in komplizierten Code zu stürzen. Wir nutzen dazu ein paar einfache Analogien, damit du dir besser vorstellen kannst, was unter der Haube passiert.</p>
+<h2 id="der-rohe-text-alles-ist-ein-string"><a class="header" href="#der-rohe-text-alles-ist-ein-string">Der rohe Text: Alles ist ein String</a></h2>
+<p>Stell dir vor, dein Programm führt einen Dialog mit einem Benutzer. Du fragst: “Wie alt bist du?”. Der Benutzer tippt <code>25</code> auf seiner Tastatur ein und drückt die Eingabetaste.</p>
+<p>Was passiert jetzt in Rust? Man könnte meinen, Rust weiß sofort, dass es sich um die Zahl 25 handelt, mit der man rechnen kann. Aber das ist nicht der Fall! Für den Computer ist die Eingabe über die Tastatur zunächst einmal nichts weiter als “roher Text”. Rust sieht nicht die mathematische Zahl 25, sondern die Zeichenfolge – also den Text – bestehend aus der Ziffer ‘2’ und der Ziffer ‘5’. In der Welt der Programmierung nennt man so einen Text einen <code>String</code> (Zeichenkette).</p>
+<p>Stell dir vor, du bekommst einen Briefumschlag, in dem ein Zettel liegt. Auf dem Zettel steht “25”. Du kannst diesen Zettel lesen, aber du kannst den Zettel selbst nicht in einen Taschenrechner stecken und damit eine Matheaufgabe lösen. Du musst erst in deinem Kopf begreifen: “Ah, diese Zeichen bedeuten die Zahl Fünfundzwanzig”. Genauso geht es Rust.</p>
+<h2 id="der-puffer-ein-zwischenspeicher-für-den-dialog"><a class="header" href="#der-puffer-ein-zwischenspeicher-für-den-dialog">Der Puffer: Ein Zwischenspeicher für den Dialog</a></h2>
+<p>Bevor Rust überhaupt den Text verarbeiten kann, muss dieser irgendwo abgelegt werden. Wenn der Benutzer tippt, tröpfeln die Buchstaben und Zahlen einzeln in den Computer. Rust nutzt dafür etwas, das wir uns wie einen leeren Notizblock oder eine leere Kiste vorstellen können. In der Fachsprache nennt man das einen “Buffer” (Puffer) oder Zwischenspeicher.</p>
+<p>Der Prozess sieht so aus:</p>
+<ol>
+<li>Du legst einen leeren Notizblock bereit (erstellst einen leeren String).</li>
+<li>Du bittest Rust: “Bitte hör gut zu, was der Benutzer auf der Tastatur tippt, und schreibe alles genau so auf diesen Notizblock”.</li>
+<li>Der Benutzer tippt, drückt Enter, und Rust schreibt alles auf den Block.</li>
+</ol>
+<p>Dieser Notizblock ist sehr wichtig. Wenn der Benutzer nämlich aus Versehen “fünfundzwanzig” statt “25” eintippt, steht das Wort auf dem Block. Rust nimmt alles erst einmal wortwörtlich auf.</p>
+<h2 id="konvertierung-der-strenge-übersetzer"><a class="header" href="#konvertierung-der-strenge-übersetzer">Konvertierung: Der strenge Übersetzer</a></h2>
+<p>Jetzt haben wir also unseren Text auf dem Notizblock. Wenn wir ein Programm schreiben wollen, das berechnet, wie alt der Benutzer in 10 Jahren sein wird, müssen wir zu dieser 25 eine 10 addieren. Wenn wir aber versuchen, Text und eine Zahl zu addieren (“25” + 10), wird Rust streiken. Das wäre so, als würdest du versuchen, das Wort “Apfel” mit der Zahl 10 zu multiplizieren – es ergibt keinen Sinn.</p>
+<p>Hier kommt die sogenannte “Konvertierung” (Parsing) ins Spiel. Wir brauchen einen Übersetzer!</p>
+<p>Dieser Übersetzer hat eine ganz klare Aufgabe: Er schaut sich den Text auf dem Notizblock an und versucht, ihn in eine echte mathematische Zahl zu verwandeln.
+Stell dir den Übersetzer wie einen sehr strengen Beamten vor. Du reichst ihm den Zettel mit “25”. Er schaut ihn an, nickt, und gibt dir eine echte, rechenbare Zahl 25 zurück.</p>
+<p>Aber was passiert, wenn du ihm einen Zettel mit “Hallo” oder “25a” gibst und sagst: “Mach daraus eine Zahl!”? Der strenge Beamte wird den Kopf schütteln und sagen: “Tut mir leid, das ist keine Zahl. Ich kann das nicht übersetzen.”</p>
+<h2 id="fehlerbehandlung-was-passiert-wenn-der-übersetzer-streikt"><a class="header" href="#fehlerbehandlung-was-passiert-wenn-der-übersetzer-streikt">Fehlerbehandlung: Was passiert, wenn der Übersetzer streikt?</a></h2>
+<p>In vielen anderen Programmiersprachen würde das Programm an dieser Stelle einfach abstürzen. Der Bildschirm würde vielleicht Fehlermeldungen ausspucken, die für Anfänger schwer zu verstehen sind.</p>
+<p>Aber Rust ist anders. Rust legt extrem großen Wert auf Sicherheit und Zuverlässigkeit. Rust zwingt dich als Programmierer, dich genau um diese Fälle zu kümmern. Rust sagt dir quasi: “Hey, du möchtest, dass ich diesen Text in eine Zahl übersetze. Aber was soll ich tun, wenn der Benutzer Quatsch eingegeben hat? Das musst du mir vorher sagen!”</p>
+<p>Das bedeutet, dass du bei der Konvertierung von Benutzereingaben immer zwei mögliche Ausgänge planen musst:</p>
+<ol>
+<li><strong>Der Erfolgsfall:</strong> Der Text ließ sich problemlos in eine Zahl übersetzen. Wunderbar, wir können weiterrechnen!</li>
+<li><strong>Der Fehlerfall:</strong> Der Text war keine Zahl. Wir müssen dem Benutzer eine freundliche Fehlermeldung zeigen (“Bitte gib eine gültige Zahl ein!”) und ihn vielleicht noch einmal fragen.</li>
+</ol>
+<h2 id="unsichtbare-feinde-das-enter-zeichen"><a class="header" href="#unsichtbare-feinde-das-enter-zeichen">Unsichtbare Feinde: Das “Enter”-Zeichen</a></h2>
+<p>Es gibt noch eine kleine Tücke bei der Benutzereingabe, über die fast jeder Anfänger stolpert. Wenn der Benutzer “25” tippt und dann die Eingabetaste (Enter) drückt, um die Eingabe abzuschließen, wird dieses “Enter” ebenfalls vom Computer als Zeichen registriert!</p>
+<p>Auf unserem Notizblock steht also nicht einfach nur “25”, sondern eigentlich “25” gefolgt von einem unsichtbaren Zeilenumbruch.</p>
+<p>Wenn wir das unserem strengen Übersetzer geben, sagt er: “Da ist eine 2, da ist eine 5… aber was ist das für ein komisches unsichtbares Zeichen dahinter? Das kenne ich nicht in der Mathematik. Fehler!”</p>
+<p>Deshalb müssen wir vor der Übersetzung noch einen kleinen Schritt einbauen: Das Aufräumen. Wir nehmen unseren Text und schneiden alle unsichtbaren Leerzeichen, Tabulatoren oder Zeilenumbrüche am Anfang und am Ende ab. Erst dieser saubere, aufgeräumte Text wird dann dem Übersetzer übergeben.</p>
+<h2 id="zusammenfassung-des-ablaufs"><a class="header" href="#zusammenfassung-des-ablaufs">Zusammenfassung des Ablaufs</a></h2>
+<p>Um Benutzereingaben in Rust zu verarbeiten und als Zahlen zu nutzen, folgen wir also immer diesem Konzept:</p>
+<ol>
+<li><strong>Vorbereitung:</strong> Wir legen einen leeren Notizblock (String) bereit.</li>
+<li><strong>Empfang:</strong> Wir lauschen auf die Tastatur und schreiben den rohen Text des Benutzers auf den Block.</li>
+<li><strong>Säuberung:</strong> Wir entfernen unsichtbare Zeichen (wie das Enter-Zeichen) vom Text.</li>
+<li><strong>Übersetzung:</strong> Wir bitten Rust, den sauberen Text in eine Zahl zu konvertieren (Parsing).</li>
+<li><strong>Kontrolle:</strong> Wir gehen sicher, dass wir einen Plan haben, falls die Übersetzung fehlschlägt, weil der Benutzer keine Zahl eingegeben hat.</li>
+</ol>
+<p>Wenn du diesen Ablauf im Hinterkopf behältst, wird es dir sehr viel leichter fallen, die entsprechenden Rust-Befehle später zu verstehen und anzuwenden. Der Dialog zwischen Mensch und Maschine erfordert eben klare Regeln, damit es nicht zu Missverständnissen kommt!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="codex-cli-skripte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="konzept-kontrollfluss.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="konzept-ownership.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -263,11 +238,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="codex-cli-skripte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="konzept-kontrollfluss.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="konzept-ownership.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

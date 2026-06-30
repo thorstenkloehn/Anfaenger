@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Das OpenAI/Codex SDK nutzen - Rust Projektvorschläge für Einsteiger</title>
+        <title>Kontrollfluss - Rust Projektvorschläge für Einsteiger</title>
 
 
         <!-- Custom HTML head -->
@@ -174,86 +174,76 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="-codex--openai--das-offizielle-sdk-nutzen"><a class="header" href="#-codex--openai--das-offizielle-sdk-nutzen">💻 Codex / OpenAI – Das offizielle SDK nutzen</a></h1>
-<p><em>Wie du die Codex CLI verlässt und die extrem mächtige OpenAI API direkt in deinen Code integrierst, um strukturierte Daten und autarke KI-Workflows zu generieren.</em></p>
+                        <h1 id="das-konzept-des-kontrollflusses-in-rust"><a class="header" href="#das-konzept-des-kontrollflusses-in-rust">Das Konzept des Kontrollflusses in Rust</a></h1>
+<p>Herzlich willkommen zu einem der wichtigsten Konzepte in der Programmierung überhaupt: dem <strong>Kontrollfluss</strong>! Stell dir vor, du bist der Regisseur eines Films oder der Dirigent eines riesigen Orchesters. Ohne dich würden alle Musiker einfach wild durcheinander spielen oder die Schauspieler nicht wissen, wann sie ihren Text aufsagen sollen. In der Welt von Rust bist du dieser Dirigent. Du bestimmst, <em>wann</em>, <em>wie oft</em> und <em>unter welchen Bedingungen</em> bestimmte Dinge passieren. Genau das nennt man “Kontrollfluss”.</p>
+<h2 id="was-ist-kontrollfluss-eigentlich"><a class="header" href="#was-ist-kontrollfluss-eigentlich">Was ist Kontrollfluss eigentlich?</a></h2>
+<p>Normalerweise liest Rust dein Programm genau wie du ein Buch liest: von oben nach unten, Zeile für Zeile, Wort für Wort. Das ist toll und vorhersehbar, aber manchmal auch ein bisschen… langweilig. Was ist, wenn wir wollen, dass ein Programm je nach Situation unterschiedlich reagiert? Was ist, wenn wir Dinge wiederholen wollen, ohne sie hundertmal aufschreiben zu müssen?</p>
+<p>Hier kommen unsere Werkzeuge ins Spiel. Wir haben im Wesentlichen zwei große Kategorien: <strong>Entscheidungen</strong> und <strong>Wiederholungen</strong> (Schleifen). Lass uns diese Werkzeuge mit ein paar alltäglichen Beispielen vergleichen.</p>
 <hr>
-<h2 id="-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api"><a class="header" href="#-theorie-volle-kontrolle-durch-die-programmierschnittstelle-api">🧠 Theorie: Volle Kontrolle durch die Programmierschnittstelle (API)</a></h2>
-<p>Die Codex CLI ist im Prinzip nur ein kleiner, nützlicher Kommandozeilen-Wrapper um die echte OpenAI API. Wenn du jedoch professionelle KI-Applikationen, eigene TUI-Tools (Terminal User Interfaces) oder hochspezifische Code-Generatoren für deine Firma bauen willst, kommst du nicht umhin, direkt das <strong>OpenAI SDK</strong> zu nutzen.</p>
+<h2 id="1-entscheidungen-treffen-if-else-if-und-else"><a class="header" href="#1-entscheidungen-treffen-if-else-if-und-else">1. Entscheidungen treffen: if, else if und else</a></h2>
+<p>Das <code>if</code>-Konstrukt (auf Deutsch: “wenn”) ist wie eine <strong>Ampelanlage</strong> an einer Straßenkreuzung.</p>
+<p>Stell dir vor, du fährst mit dem Auto. Du kommst an eine Kreuzung mit einer Ampel.</p>
 <ul>
-<li><strong>Sprachenvielfalt:</strong> OpenAI bietet stark gepflegte offizielle SDKs für Python und Node.js an. In der Rust-Welt hat sich das Open-Source Crate <code>async-openai</code> als hochperformanter Quasi-Standard etabliert.</li>
-<li><strong>Structured Outputs:</strong> Über das SDK kannst du das Modell kryptografisch zwingen, Antworten strikt in einem vorgegebenen JSON-Format zurückzugeben (z.B. garantiert passend zu einem Rust-<code>struct</code>). Das eliminiert Parsing-Fehler komplett.</li>
-<li><strong>Zusätzliche Endpoints:</strong> Das SDK gibt dir nicht nur Zugriff auf normale Chat-Completions (Text), sondern auch auf Vektor-Embeddings (für semantische Suchen), Audio-Transkriptionen oder Bild-Generierung.</li>
+<li><strong>if (Wenn)</strong> die Ampel grün ist, dann fährst du über die Kreuzung.</li>
+<li><strong>else if (Oder wenn)</strong> die Ampel gelb ist, dann machst du dich bereit zum Anhalten.</li>
+<li><strong>else (Ansonsten)</strong> (die Ampel muss rot sein), dann bleibst du stehen.</li>
 </ul>
-<h2 id="-einstellungen--setup"><a class="header" href="#-einstellungen--setup">⚙️ Einstellungen &amp; Setup</a></h2>
-<ul>
-<li><strong>API Keys exportieren:</strong> Du benötigst zwingend deinen geheimen <code>OPENAI_API_KEY</code> aus dem Entwickler-Dashboard. Stelle sicher, dass dieser sicher als Umgebungsvariable gesetzt ist, da alle SDKs ihn dort standardmäßig suchen.</li>
-<li><strong>Das richtige Paket laden:</strong> Füge in Rust <code>async-openai</code> (und meist <code>tokio</code>) zu deiner <code>Cargo.toml</code> hinzu oder installiere in Python die Bibliothek via <code>pip install openai</code>.</li>
-<li><strong>Asynchrone Programmierung:</strong> Moderne SDK-Aufrufe an externe APIs sind asynchron, um dein Programm nicht zu blockieren. Mach dich in Rust tiefgehend mit <code>tokio</code> (Async/Await) oder in Python mit <code>asyncio</code> vertraut.</li>
-</ul>
+<p>In Rust nutzt du <code>if</code>, um dem Programm zu sagen: “Mache dies nur, wenn eine bestimmte Bedingung wahr ist.” Wenn die Bedingung nicht wahr ist, überspringt das Programm diesen Teil einfach – genau wie du nicht fährst, wenn die Ampel rot ist.</p>
+<p>Du kannst auch mehrere <code>if</code>s und <code>else</code>s miteinander verketten, wie <strong>Wegweiser</strong> auf einer Wanderung im Wald:
+“Wenn du zum See willst, gehe links. Oder wenn du zum Berg willst, gehe rechts. Ansonsten (wenn du keins von beidem willst), bleibe stehen und mach eine Pause.”</p>
+<p>Dieses Prinzip erlaubt es deinem Programm, schlau zu wirken. Es kann auf Benutzereingaben reagieren, Fehler abfangen und verschiedene Wege einschlagen, ganz flexibel.</p>
 <hr>
-<h2 id="-praxis-übungen-das-sdk-meistern-reichlich"><a class="header" href="#-praxis-übungen-das-sdk-meistern-reichlich">🛠️ Praxis-Übungen: Das SDK meistern (reichlich!)</a></h2>
-<blockquote class="blockquote-tag blockquote-tag-important">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Erinnerung:</strong> Hier gibt es keine fertigen Scripts zum Abschreiben! Lies die offizielle OpenAI API-Dokumentation und setze die Architektur-Anforderungen selbstständig in deinem Code um.</p>
-</blockquote>
-<h3 id="-grundlagen-requests--streaming"><a class="header" href="#-grundlagen-requests--streaming">🧭 Grundlagen: Requests &amp; Streaming</a></h3>
-<h4 id="übung-1-der-synchrone-hello-world-call"><a class="header" href="#übung-1-der-synchrone-hello-world-call">Übung 1: Der synchrone Hello-World-Call</a></h4>
+<h2 id="2-dinge-endlos-wiederholen-die-loop-schleife"><a class="header" href="#2-dinge-endlos-wiederholen-die-loop-schleife">2. Dinge endlos wiederholen: Die <code>loop</code>-Schleife</a></h2>
+<p>Kommen wir zu den Wiederholungen, in der Programmierung oft “Schleifen” (auf Englisch: Loops) genannt. Die einfachste, aber mächtigste davon ist das schlichte <code>loop</code>.</p>
+<p>Ein <code>loop</code> in Rust ist wie ein <strong>Hamsterrad</strong>. Einmal hineingesprungen, rennt der Hamster immer weiter, Runde um Runde, ohne jemals von alleine aufzuhören. Oder stell dir ein <strong>Fließband</strong> in einer großen Fabrik vor, das niemals abgeschaltet wird. Es bringt immer wieder das nächste Päckchen, endlos.</p>
+<p>Das Programm wiederholt den Block, den du ihm gegeben hast, bis in alle Ewigkeit. Aber keine Panik! Du bist ja der Dirigent. Du kannst dem Programm jederzeit den Befehl geben, das Hamsterrad anzuhalten. Das machst du mit einem speziellen “Notaus-Knopf”, dem sogenannten <code>break</code>-Befehl. Sobald Rust diesen Knopf sieht, bricht es aus der Endlosschleife aus und macht mit dem restlichen Programm ganz normal weiter.</p>
+<p>Dies ist unglaublich nützlich für Programme, die im Hintergrund laufen und auf etwas warten – wie ein Spiel, das die ganze Zeit auf deine Tastenbefehle wartet, oder ein Webserver, der ständig auf neue Anfragen lauscht.</p>
+<hr>
+<h2 id="3-wiederholen-solange-etwas-gilt-die-while-schleife"><a class="header" href="#3-wiederholen-solange-etwas-gilt-die-while-schleife">3. Wiederholen, solange etwas gilt: Die <code>while</code>-Schleife</a></h2>
+<p>Manchmal wollen wir aber nicht endlos laufen, sondern nur <em>solange</em> eine bestimmte Bedingung erfüllt ist. Hier kommt die <code>while</code>-Schleife (auf Deutsch: “während” oder “solange”) zum Einsatz.</p>
+<p>Stell dir vor, du isst einen Teller köstlicher Suppe.</p>
 <ul>
-<li><strong>Aufgabe:</strong> Schreibe ein minimales Skript (Rust oder Python), das das SDK importiert, ein Client-Objekt mit Authentifizierung erstellt und eine simple Chat-Anfrage (<code>role: "user"</code>) an das Modell <code>gpt-4o</code> sendet.</li>
-<li><strong>Hinweis:</strong> Greife tief in das zurückgegebene JSON-Response-Objekt (oft <code>response.choices[0].message.content</code>), um nur den reinen Text des Modells in der Konsole auszugeben.</li>
+<li><strong>Solange (while)</strong> noch Suppe auf dem Teller ist, nimmst du einen weiteren Löffel und isst ihn.</li>
+<li>Wenn der Teller leer ist (die Bedingung ist nicht mehr wahr), hörst du auf zu löffeln.</li>
 </ul>
-<h4 id="übung-2-streaming-responses-einbauen"><a class="header" href="#übung-2-streaming-responses-einbauen">Übung 2: Streaming-Responses einbauen</a></h4>
+<p>Oder denk an eine <strong>Tankanzeige im Auto</strong> an der Tankstelle.</p>
 <ul>
-<li><strong>Aufgabe:</strong> Niemand wartet gerne 10 Sekunden auf lange Antworten. Baue deinen Code aus Übung 1 so um, dass die Antwort über einen asynchronen Stream Zeichen für Zeichen im Terminal ausgegeben wird (wie in ChatGPT).</li>
-<li><strong>Hinweis:</strong> In Python nutzt du oft <code>client.chat.completions.create(stream=True)</code>, in Rust arbeitest du mit iterierbaren Streams aus dem <code>async-openai</code> Crate.</li>
+<li><strong>Solange</strong> der Tank nicht voll ist, fließt weiter Benzin hinein.</li>
+<li>Sobald der Tank voll ist, stoppt die Zapfsäule automatisch.</li>
 </ul>
-<h4 id="übung-3-system-prompt-und-temperatur-regeln"><a class="header" href="#übung-3-system-prompt-und-temperatur-regeln">Übung 3: System-Prompt und Temperatur regeln</a></h4>
+<p>Bei einer <code>while</code>-Schleife prüft Rust <em>vor jeder neuen Runde</em>, ob die Bedingung noch stimmt. Wenn ja, wird die Runde gedreht. Wenn nein, ist die Schleife sofort beendet. Das spart dir den Notaus-Knopf (<code>break</code>), den du beim endlosen <code>loop</code> brauchst, weil die Schleife von ganz alleine weiß, wann sie aufhören muss.</p>
+<hr>
+<h2 id="4-für-jedes-element-etwas-tun-die-for-schleife"><a class="header" href="#4-für-jedes-element-etwas-tun-die-for-schleife">4. Für jedes Element etwas tun: Die <code>for</code>-Schleife</a></h2>
+<p>Die letzte und in Rust vielleicht am häufigsten genutzte Schleife ist die <code>for</code>-Schleife (auf Deutsch: “für”). Sie ist perfekt dafür gemacht, wenn du eine klare Liste von Dingen hast und mit jedem einzelnen Ding etwas Bestimmtes machen möchtest.</p>
+<p>Stell dir vor, du hast einen <strong>Einkaufskorb</strong> voll mit verschiedenen Obstsorten frisch vom Markt.</p>
 <ul>
-<li><strong>Aufgabe:</strong> Ergänze dein Skript. Füge eine Nachricht mit der speziellen Rolle <code>system</code> am Anfang des Arrays hinzu (“Du bist ein extrem mürrischer C-Programmierer”) und setze den API-Parameter <code>temperature</code> auf einen hohen Wert wie <code>1.5</code>.</li>
-<li><strong>Hinweis:</strong> Beobachte, wie dieser hohe Temperatur-Wert die Antwort extrem kreativ (oder teilweise völlig chaotisch) macht.</li>
+<li><strong>Für (for)</strong> jedes einzelne Stück Obst im Korb: Nimm es heraus, wasche es ab und lege es in die saubere Obstschale.</li>
 </ul>
-<h3 id="-strukturierte-daten-erzwingen"><a class="header" href="#-strukturierte-daten-erzwingen">🛡️ Strukturierte Daten erzwingen</a></h3>
-<h4 id="übung-4-den-json-mode-aktivieren"><a class="header" href="#übung-4-den-json-mode-aktivieren">Übung 4: Den JSON-Mode aktivieren</a></h4>
+<p>Oder denk an einen <strong>Postboten</strong>, der an einem regnerischen Tag Briefe austrägt. Er hat einen Stapel Briefe in der Hand.</p>
 <ul>
-<li><strong>Aufgabe:</strong> Fordere die KI im Prompt auf, dir eine Liste mit 3 erfundenen Datenbank-Benutzernamen zu generieren. Setze im SDK-Aufruf den Parameter <code>response_format</code> auf den Typ <code>json_object</code>.</li>
-<li><strong>Hinweis:</strong> Achte darauf, dass du in deinem Nutzer-Prompt auch explizit erwähnst, dass die Antwort zwingend im JSON-Format ausgegeben werden muss, sonst wirft die API einen Fehler.</li>
+<li><strong>Für</strong> jeden Brief auf dem Stapel: Gehe zum entsprechenden Haus und wirf ihn in den richtigen Briefkasten. Sobald der Stapel in der Hand leer ist, ist der Postbote fertig und kann nach Hause gehen.</li>
 </ul>
-<h4 id="übung-5-structured-outputs-schema-enforcement"><a class="header" href="#übung-5-structured-outputs-schema-enforcement">Übung 5: Structured Outputs (Schema Enforcement)</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Der moderne Weg! Definiere im SDK-Call ein extrem strenges JSON-Schema (Structured Output Format), das zwingend die Felder <code>name</code> (als String) und <code>age</code> (als Integer) verlangt.</li>
-<li><strong>Hinweis:</strong> Das Modell ist nun mathematisch gezwungen, exakt dieses Schema als JSON zurückzugeben. Kein fehleranfälliges Parsen von chaotischen Markdown-Blöcken (<code>```json</code>) mehr!</li>
-</ul>
-<h4 id="übung-6-rust-structs-direkt-deserialisieren"><a class="header" href="#übung-6-rust-structs-direkt-deserialisieren">Übung 6: Rust Structs direkt deserialisieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Wenn du Rust nutzt: Nimm die garantierte JSON-Antwort aus Übung 5 und nutze das Crate <code>serde_json</code>, um den zurückgegebenen String sofort und fehlerfrei in ein stark typisiertes Rust <code>struct User { name: String, age: u8 }</code> zu verwandeln.</li>
-<li><strong>Hinweis:</strong> Das ist die absolute Basis für absturzsichere, typisierte KI-Pipelines.</li>
-</ul>
-<h3 id="-embeddings--tool-calling"><a class="header" href="#-embeddings--tool-calling">🔄 Embeddings &amp; Tool Calling</a></h3>
-<h4 id="übung-7-function-calling-aufsetzen"><a class="header" href="#übung-7-function-calling-aufsetzen">Übung 7: Function Calling aufsetzen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Übergib dem SDK eine JSON-Tool-Definition für eine Funktion <code>get_file_size(filepath)</code>. Frage das Modell im Chat: “Wie groß ist die Datei <code>main.rs</code>?”</li>
-<li><strong>Hinweis:</strong> Das Modell wird dir nicht mit Text antworten, sondern den Aufruf deiner Funktion anfordern. Fange diesen Wunsch (<code>finish_reason == "tool_calls"</code>) im Code ab.</li>
-</ul>
-<h4 id="übung-8-vektor-embeddings-erzeugen"><a class="header" href="#übung-8-vektor-embeddings-erzeugen">Übung 8: Vektor-Embeddings erzeugen</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Nutze nicht den normalen <code>/chat/completions</code> Endpoint, sondern den speziellen <code>/embeddings</code> Endpoint im SDK. Übergib den Satz “Hallo Welt” und lass dir den riesigen generierten Float-Vektor (die mathematische Repräsentation der Bedeutung) ausgeben.</li>
-<li><strong>Hinweis:</strong> Embeddings sind der essenzielle Schlüssel, um eigene RAG (Retrieval-Augmented Generation) Systeme oder smarte Wissensdatenbanken in Rust zu bauen.</li>
-</ul>
-<h4 id="übung-9-die-eigene-interaktive-cli-programmieren"><a class="header" href="#übung-9-die-eigene-interaktive-cli-programmieren">Übung 9: Die eigene interaktive CLI programmieren</a></h4>
-<ul>
-<li><strong>Aufgabe:</strong> Baue eine rudimentäre, unendliche interaktive Shell-Schleife (<code>while true</code>). Der User tippt Text ein, das SDK schickt es (inklusive der im Array mitgeführten vorherigen Historie) an OpenAI, streamt die Antwort zurück, und der User kann erneut tippen.</li>
-<li><strong>Hinweis:</strong> Herzlichen Glückwunsch, du hast soeben deine allererste eigene KI-CLI von Grund auf selbst programmiert!</li>
-</ul>
+<p>Die <code>for</code>-Schleife ist extrem sicher und bequem. Du musst dich nicht darum kümmern, wann du anfangen oder aufhören musst, und du riskierst keine Endlosschleife, in der der Postbote verzweifelt nach Briefen sucht, die gar nicht mehr da sind. Rust nimmt die Sammlung (den Korb, den Stapel Briefe, oder einfach eine Reihe von Zahlen, zum Beispiel von 1 bis 10) und geht sie automatisch Schritt für Schritt, Element für Element durch. Wenn das letzte Element erreicht ist, ist die Schleife beendet.</p>
+<hr>
+<h2 id="zusammenfassung-dein-werkzeugkasten-für-den-kontrollfluss"><a class="header" href="#zusammenfassung-dein-werkzeugkasten-für-den-kontrollfluss">Zusammenfassung: Dein Werkzeugkasten für den Kontrollfluss</a></h2>
+<p>Als Rust-Programmierer hast du nun einen fantastischen, virtuellen Werkzeugkasten, um den Ablauf deines Programms meisterhaft zu steuern:</p>
+<ol>
+<li><strong><code>if</code> / <code>else if</code> / <code>else</code></strong>: Die Verkehrsschilder und Ampeln, die entscheiden, in welche Richtung dein Programm an einer Kreuzung abbiegt.</li>
+<li><strong><code>loop</code></strong>: Das endlose Hamsterrad oder Fabrik-Fließband, das nur mit dem starken Notaus-Knopf (<code>break</code>) gestoppt werden kann.</li>
+<li><strong><code>while</code></strong>: Der Suppenlöffel, der fleißig solange arbeitet, wie eine Bedingung wahr ist (bis der Teller leer ist).</li>
+<li><strong><code>for</code></strong>: Der zuverlässige Postbote, der eine Liste von Dingen geordnet Stück für Stück abarbeitet, bis alles restlos erledigt ist.</li>
+</ol>
+<p>Mit diesen vier Konzepten kannst du nahezu jede logische Struktur aufbauen, die du für deine zukünftigen Programme brauchst. Du bist jetzt der Chef-Dirigent deines Rust-Programms! Viel Spaß beim Steuern des Flusses und beim Entwerfen deiner eigenen logischen Wege!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="codex-cli-skripte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="konzept-variablen.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="konzept-eingabe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -263,11 +253,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="codex-cli-skripte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="konzept-variablen.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="codex-cli-mega-praxis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="konzept-eingabe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

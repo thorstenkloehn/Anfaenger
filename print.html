@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-de4d588e.js";
+            window.path_to_searchindex_js = "searchindex-48d3f91e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-d8f04310.js"></script>
+        <script src="toc-285de61a.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -475,6 +475,257 @@ Aufgabe: Lies meine AGENTS.md.
 </table>
 </div>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzepte-statt-syntax-lernen"><a class="header" href="#konzepte-statt-syntax-lernen">Konzepte statt Syntax lernen</a></h1>
+<p>Oft ist es am Anfang hilfreicher, die <strong>Idee</strong> hinter einer Technik zu verstehen, als sich sofort Code-Zeilen zu merken. In Phase 1 dreht sich alles um diese Kern-Konzepte:</p>
+<h2 id="-variablen--datentypen-zahlen-texte-mutabilität"><a class="header" href="#-variablen--datentypen-zahlen-texte-mutabilität">🧱 Variablen &amp; Datentypen (Zahlen, Texte, Mutabilität)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Stell dir Variablen wie Kisten vor, in denen du Dinge (Daten) aufbewahrst.</li>
+<li><strong>In Rust wichtig:</strong> Standardmäßig sind diese Kisten “abgeschlossen” (immutable) – du kannst den Inhalt nicht mehr ändern, sobald er einmal drin ist. Willst du den Inhalt später austauschen können, musst du beim Erstellen der Kiste ausdrücklich sagen, dass sie veränderbar sein soll (mit dem Wort <code>mut</code>).</li>
+</ul>
+<h2 id="-kontrollfluss-ifelse-loop-while-for"><a class="header" href="#-kontrollfluss-ifelse-loop-while-for">🔀 Kontrollfluss (if/else, loop, while, for)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Kontrollfluss ist wie ein Wegweiser oder eine Ampel für dein Programm. Ohne ihn würde das Programm einfach nur stur von oben nach unten durchlaufen.</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li><code>if/else</code> sind Abzweigungen (“Wenn das Wetter schön ist, geh raus, ansonsten bleib drinnen”).</li>
+<li>Schleifen (<code>loop</code>, <code>while</code>, <code>for</code>) sagen dem Programm, dass es etwas immer wieder tun soll, bis eine bestimmte Bedingung erfüllt ist (z. B. “Lies Eingaben, bis der Nutzer ‘Ende’ eintippt”).</li>
+</ul>
+</li>
+</ul>
+<h2 id="-benutzereingabe-lesen-von-der-konsole-konvertierung"><a class="header" href="#-benutzereingabe-lesen-von-der-konsole-konvertierung">⌨️ Benutzereingabe (Lesen von der Konsole, Konvertierung)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Ein Programm ist nur interaktiv, wenn es auf uns reagiert.</li>
+<li><strong>In Rust wichtig:</strong> Alles, was wir über die Tastatur in die Konsole eingeben, versteht der Computer zuerst nur als simplen Text – selbst wenn wir eine <code>5</code> tippen. Wenn wir mit dieser <code>5</code> rechnen wollen, müssen wir den eingegebenen Text ausdrücklich in eine echte Zahl umwandeln (“parsen” oder konvertieren).</li>
+</ul>
+<h2 id="-ownership--borrowing-wer-besitzt-was-referenzen-nutzen"><a class="header" href="#-ownership--borrowing-wer-besitzt-was-referenzen-nutzen">🧠 Ownership &amp; Borrowing (Wer besitzt was? Referenzen nutzen)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Das ist die wichtigste Besonderheit in Rust und funktioniert wie im echten Leben (z. B. mit einem Buch).</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li><strong>Ownership:</strong> Wenn du ein Buch kaufst, gehört es dir. Wenn du es jemand anderem dauerhaft gibst, hast du es nicht mehr (Besitzerwechsel / Move).</li>
+<li><strong>Borrowing (Ausleihen):</strong> Statt das Buch für immer wegzugeben, kannst du es verleihen (Referenz <code>&amp;</code>). Andere dürfen es dann lesen. Wenn du es ausdrücklich erlaubst, dürfen sie sogar Notizen hineinschreiben (veränderbare Referenz <code>&amp;mut</code>). Aber am Ende gehört das Buch immer noch dir.</li>
+</ul>
+</li>
+</ul>
+<h2 id="-string-vs-str-texte-speichern-vergleichen-ausgeben"><a class="header" href="#-string-vs-str-texte-speichern-vergleichen-ausgeben">📝 String vs. &amp;str (Texte speichern, vergleichen, ausgeben)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> In Rust unterscheidet man sehr genau, wie und wo Texte im Speicher aufbewahrt werden.</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li>Ein <code>String</code> ist wie ein eigener Notizblock. Du bist der Besitzer, du kannst jederzeit neue Seiten hinzufügen, Text dranhängen oder wegradieren (er ist veränderbar und wächst bei Bedarf).</li>
+<li>Ein <code>&amp;str</code> (sprich “String Slice”) ist wie ein ausgedruckter Satz in einem Buch. Du schaust nur darauf (Referenz). Du kannst ihn lesen, aber du kannst keine Wörter einfach so austauschen oder den Text länger machen, da er feststeht.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzept-variablen-und-datentypen--dein-digitaler-umzug"><a class="header" href="#konzept-variablen-und-datentypen--dein-digitaler-umzug">Konzept: Variablen und Datentypen – Dein digitaler Umzug</a></h1>
+<p>Stell dir vor, du bereitest dich auf einen großen Umzug vor. Du hast eine Menge Dinge, die du von deiner alten Wohnung in die neue bringen möchtest. Was brauchst du dafür? Richtig, Umzugskartons! In der Welt des Programmierens, und ganz speziell in Rust, nennen wir diese Kartons <strong>Variablen</strong>.</p>
+<p>Eine Variable ist im Grunde genommen nichts anderes als ein Behälter, in dem du Informationen – also Daten – aufbewahren kannst. Damit du später in deinem neuen Zuhause (deinem Programm) auch weißt, was in welchem Karton ist, schreibst du mit einem dicken Stift etwas auf die Seite. Dieses Etikett ist der <strong>Name</strong> deiner Variablen.</p>
+<p>Wenn du also in Rust eine Variable anlegst, sagst du dem Computer eigentlich nur: „Hey, stell mir mal bitte einen Karton bereit, schreib dieses Etikett darauf und leg diesen bestimmten Wert hinein.“ Das Schlüsselwort, mit dem du nach einem solchen Karton fragst, lautet <code>let</code>. Es ist, als würdest du sagen: „Lass diesen Karton den Namen X haben und den Wert Y enthalten.“</p>
+<h2 id="das-geheimnis-der-verschlossenen-kartons-mutabilität"><a class="header" href="#das-geheimnis-der-verschlossenen-kartons-mutabilität">Das Geheimnis der verschlossenen Kartons: Mutabilität</a></h2>
+<p>Rust ist eine sehr sicherheitsbewusste Sprache. Wenn du beim Umzug einen Karton packst, möchtest du meistens, dass die Dinge sicher darin verstaut bleiben und nicht versehentlich herausfallen oder ausgetauscht werden.</p>
+<p>Deshalb macht Rust etwas Besonderes: Wenn du eine Variable anlegst (einen Karton packst), dann wird dieser Karton standardmäßig <strong>zugeklebt</strong>. Du kannst zwar jederzeit auf das Etikett schauen und den Inhalt betrachten, aber du kannst den Inhalt nicht mehr verändern. In der Fachsprache nennt man das <strong>Immutabilität</strong> (Unveränderlichkeit). Einmal gepackt, bleibt der Karton so, wie er ist. Das schützt dich davor, dass im Verlauf deines Programms aus Versehen etwas Wichtiges überschrieben wird.</p>
+<p>Was aber, wenn du einen Karton brauchst, in den du immer wieder neue Dinge hineinlegen oder alte Dinge herausnehmen möchtest? Zum Beispiel eine Kiste für dein Werkzeug, das du beim Umzug ständig griffbereit haben musst?</p>
+<p>Für diese Fälle gibt es in Rust das Zauberwort <code>mut</code> (kurz für mutable, also veränderbar). Wenn du bei der Bestellung deines Kartons dieses Wort hinzufügst, weiß Rust: „Aha, dieser Karton bleibt offen! Der Inhalt darf jederzeit verändert oder ausgetauscht werden.“</p>
+<p>Diese klare Trennung zwischen zugeklebten und offenen Kartons hilft dir als Programmierer, Fehler zu vermeiden. Du musst dir immer bewusst sein, ob eine Information für die Ewigkeit gedacht ist (zumindest solange das Programm läuft) oder ob sie sich verändern darf.</p>
+<h2 id="welche-kartons-gibt-es-eine-einführung-in-datentypen"><a class="header" href="#welche-kartons-gibt-es-eine-einführung-in-datentypen">Welche Kartons gibt es? Eine Einführung in Datentypen</a></h2>
+<p>Beim Packen wirst du schnell feststellen, dass nicht jeder Karton für jeden Gegenstand geeignet ist. Ein riesiger Karton ist perfekt für Kissen, aber völlig übertrieben für eine einzige Schraube. Für schwere Bücher brauchst du besonders stabile Kartons, während für Gläser spezielles Verpackungsmaterial nötig ist.</p>
+<p>Genauso funktioniert das auch in Rust. Der Computer muss wissen, <strong>welche Art</strong> von Daten du in einen Karton packen möchtest, damit er genau die richtige Größe und Form des Kartons bereitstellen kann. Das nennt man <strong>Datentypen</strong>.</p>
+<p>Rust ist eine „statisch typisierte“ Sprache. Das ist ein schickes Wort dafür, dass der Computer bei jedem Karton ganz genau wissen muss, was hineinkommt. Oft ist Rust aber schlau genug, um anhand des Inhalts zu erraten, was für ein Karton benötigt wird (das nennt man Typinferenz). Manchmal musst du es ihm aber auch ganz genau sagen.</p>
+<p>Schauen wir uns die wichtigsten Arten von Kisten (Datentypen) einmal an:</p>
+<h3 id="1-zahlen-numbers"><a class="header" href="#1-zahlen-numbers">1. Zahlen (Numbers)</a></h3>
+<p>Wenn du Zahlen aufbewahren möchtest, bietet dir Rust verschiedene Spezialkartons an, je nachdem, wie groß die Zahl werden kann und ob sie ein Vorzeichen (Plus oder Minus) hat.</p>
+<ul>
+<li><strong>Ganze Zahlen (Integers):</strong> Das sind Kisten für Zahlen ohne Komma (wie 1, 42, oder -10). Es gibt sehr kleine Kisten (für Zahlen bis 255) und riesige Kisten (für astronomisch große Zahlen). Der Standardkarton, den Rust meistens benutzt, wenn du ihm einfach eine Zahl gibst, ist eine mittelgroße Kiste für ganze Zahlen (oft das sogenannte <code>i32</code>). Stell dir das als den Allzweck-Umzugskarton vor.</li>
+<li><strong>Kommazahlen (Floating-Point Numbers):</strong> Wenn du Gewichte (wie 3.5 kg) oder Preise (wie 19.99 Euro) speichern willst, brauchst du einen anderen Kartontyp. Diese Kisten sind speziell dafür gebaut, Zahlen mit Nachkommastellen aufzubewahren. Auch hier gibt es verschiedene Größen, je nachdem, wie präzise die Zahl sein muss.</li>
+</ul>
+<h3 id="2-texte-und-buchstaben"><a class="header" href="#2-texte-und-buchstaben">2. Texte und Buchstaben</a></h3>
+<p>Das Speichern von Text ist beim Programmieren etwas komplizierter als man denkt. Rust unterscheidet zwischen verschiedenen Arten, Text aufzubewahren.</p>
+<ul>
+<li><strong>Der Notizzettel (Characters):</strong> Wenn du nur einen einzigen Buchstaben, ein einzelnes Zeichen oder auch ein Emoji speichern möchtest, gibt es dafür eine klitzekleine Box.</li>
+<li><strong>Der feste Textbaustein:</strong> Manchmal hast du Texte, die für immer feststehen und direkt in dein Programm gemeißelt sind. Das ist wie ein festes Etikett, das du nicht verändern kannst.</li>
+<li><strong>Der wachsende Ordner (String):</strong> Oft brauchst du aber eine Kiste, in die du immer mehr Text hineinstecken kannst. Zum Beispiel, wenn du den Namen eines Benutzers abfragen und speichern möchtest. Dafür gibt es eine spezielle Kiste (genannt <code>String</code>), die wie ein flexibler Aktenordner funktioniert. Sie kann größer werden, wenn du mehr Seiten (Buchstaben) hinzufügst.</li>
+</ul>
+<h3 id="3-der-lichtschalter-booleans"><a class="header" href="#3-der-lichtschalter-booleans">3. Der Lichtschalter (Booleans)</a></h3>
+<p>Manchmal musst du dir nur eine klitzekleine Information merken: Ja oder Nein? Wahr oder Falsch? Ein oder Aus?</p>
+<p>Für diese Fälle gibt es den winzigsten aller Kartons: den <strong>Boolean</strong>. Er ist wie ein Lichtschalter. Er kann nur zwei Zustände annehmen: <code>true</code> (Wahr) oder <code>false</code> (Falsch). Dieser Typ ist extrem nützlich, wenn dein Programm Entscheidungen treffen muss. (Zum Beispiel: „Ist die Tür offen? -&gt; false“).</p>
+<h2 id="zusammenfassung"><a class="header" href="#zusammenfassung">Zusammenfassung</a></h2>
+<p>Variablen sind das Fundament jedes Programms. Sie sind deine Umzugskartons:</p>
+<ul>
+<li>Mit <code>let</code> bestellst du einen neuen Karton und schreibst ein Etikett darauf.</li>
+<li>Standardmäßig werden alle Kartons sofort zugeklebt (Immutabilität).</li>
+<li>Wenn du das Zauberwort <code>mut</code> verwendest, bleibt der Karton offen, und du kannst den Inhalt später verändern.</li>
+<li>Rust achtet genau darauf, <strong>was</strong> du in die Kartons packst. Für Zahlen, Texte und simple Ja/Nein-Entscheidungen gibt es jeweils genau angepasste Karton-Typen (Datentypen).</li>
+</ul>
+<p>Indem du Rust sagst, was du brauchst, stellt die Sprache sicher, dass deine Daten immer perfekt verpackt sind und nichts kaputtgeht. So bleibt dein digitaler Umzug stressfrei und sicher!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="das-konzept-des-kontrollflusses-in-rust"><a class="header" href="#das-konzept-des-kontrollflusses-in-rust">Das Konzept des Kontrollflusses in Rust</a></h1>
+<p>Herzlich willkommen zu einem der wichtigsten Konzepte in der Programmierung überhaupt: dem <strong>Kontrollfluss</strong>! Stell dir vor, du bist der Regisseur eines Films oder der Dirigent eines riesigen Orchesters. Ohne dich würden alle Musiker einfach wild durcheinander spielen oder die Schauspieler nicht wissen, wann sie ihren Text aufsagen sollen. In der Welt von Rust bist du dieser Dirigent. Du bestimmst, <em>wann</em>, <em>wie oft</em> und <em>unter welchen Bedingungen</em> bestimmte Dinge passieren. Genau das nennt man “Kontrollfluss”.</p>
+<h2 id="was-ist-kontrollfluss-eigentlich"><a class="header" href="#was-ist-kontrollfluss-eigentlich">Was ist Kontrollfluss eigentlich?</a></h2>
+<p>Normalerweise liest Rust dein Programm genau wie du ein Buch liest: von oben nach unten, Zeile für Zeile, Wort für Wort. Das ist toll und vorhersehbar, aber manchmal auch ein bisschen… langweilig. Was ist, wenn wir wollen, dass ein Programm je nach Situation unterschiedlich reagiert? Was ist, wenn wir Dinge wiederholen wollen, ohne sie hundertmal aufschreiben zu müssen?</p>
+<p>Hier kommen unsere Werkzeuge ins Spiel. Wir haben im Wesentlichen zwei große Kategorien: <strong>Entscheidungen</strong> und <strong>Wiederholungen</strong> (Schleifen). Lass uns diese Werkzeuge mit ein paar alltäglichen Beispielen vergleichen.</p>
+<hr>
+<h2 id="1-entscheidungen-treffen-if-else-if-und-else"><a class="header" href="#1-entscheidungen-treffen-if-else-if-und-else">1. Entscheidungen treffen: if, else if und else</a></h2>
+<p>Das <code>if</code>-Konstrukt (auf Deutsch: “wenn”) ist wie eine <strong>Ampelanlage</strong> an einer Straßenkreuzung.</p>
+<p>Stell dir vor, du fährst mit dem Auto. Du kommst an eine Kreuzung mit einer Ampel.</p>
+<ul>
+<li><strong>if (Wenn)</strong> die Ampel grün ist, dann fährst du über die Kreuzung.</li>
+<li><strong>else if (Oder wenn)</strong> die Ampel gelb ist, dann machst du dich bereit zum Anhalten.</li>
+<li><strong>else (Ansonsten)</strong> (die Ampel muss rot sein), dann bleibst du stehen.</li>
+</ul>
+<p>In Rust nutzt du <code>if</code>, um dem Programm zu sagen: “Mache dies nur, wenn eine bestimmte Bedingung wahr ist.” Wenn die Bedingung nicht wahr ist, überspringt das Programm diesen Teil einfach – genau wie du nicht fährst, wenn die Ampel rot ist.</p>
+<p>Du kannst auch mehrere <code>if</code>s und <code>else</code>s miteinander verketten, wie <strong>Wegweiser</strong> auf einer Wanderung im Wald:
+“Wenn du zum See willst, gehe links. Oder wenn du zum Berg willst, gehe rechts. Ansonsten (wenn du keins von beidem willst), bleibe stehen und mach eine Pause.”</p>
+<p>Dieses Prinzip erlaubt es deinem Programm, schlau zu wirken. Es kann auf Benutzereingaben reagieren, Fehler abfangen und verschiedene Wege einschlagen, ganz flexibel.</p>
+<hr>
+<h2 id="2-dinge-endlos-wiederholen-die-loop-schleife"><a class="header" href="#2-dinge-endlos-wiederholen-die-loop-schleife">2. Dinge endlos wiederholen: Die <code>loop</code>-Schleife</a></h2>
+<p>Kommen wir zu den Wiederholungen, in der Programmierung oft “Schleifen” (auf Englisch: Loops) genannt. Die einfachste, aber mächtigste davon ist das schlichte <code>loop</code>.</p>
+<p>Ein <code>loop</code> in Rust ist wie ein <strong>Hamsterrad</strong>. Einmal hineingesprungen, rennt der Hamster immer weiter, Runde um Runde, ohne jemals von alleine aufzuhören. Oder stell dir ein <strong>Fließband</strong> in einer großen Fabrik vor, das niemals abgeschaltet wird. Es bringt immer wieder das nächste Päckchen, endlos.</p>
+<p>Das Programm wiederholt den Block, den du ihm gegeben hast, bis in alle Ewigkeit. Aber keine Panik! Du bist ja der Dirigent. Du kannst dem Programm jederzeit den Befehl geben, das Hamsterrad anzuhalten. Das machst du mit einem speziellen “Notaus-Knopf”, dem sogenannten <code>break</code>-Befehl. Sobald Rust diesen Knopf sieht, bricht es aus der Endlosschleife aus und macht mit dem restlichen Programm ganz normal weiter.</p>
+<p>Dies ist unglaublich nützlich für Programme, die im Hintergrund laufen und auf etwas warten – wie ein Spiel, das die ganze Zeit auf deine Tastenbefehle wartet, oder ein Webserver, der ständig auf neue Anfragen lauscht.</p>
+<hr>
+<h2 id="3-wiederholen-solange-etwas-gilt-die-while-schleife"><a class="header" href="#3-wiederholen-solange-etwas-gilt-die-while-schleife">3. Wiederholen, solange etwas gilt: Die <code>while</code>-Schleife</a></h2>
+<p>Manchmal wollen wir aber nicht endlos laufen, sondern nur <em>solange</em> eine bestimmte Bedingung erfüllt ist. Hier kommt die <code>while</code>-Schleife (auf Deutsch: “während” oder “solange”) zum Einsatz.</p>
+<p>Stell dir vor, du isst einen Teller köstlicher Suppe.</p>
+<ul>
+<li><strong>Solange (while)</strong> noch Suppe auf dem Teller ist, nimmst du einen weiteren Löffel und isst ihn.</li>
+<li>Wenn der Teller leer ist (die Bedingung ist nicht mehr wahr), hörst du auf zu löffeln.</li>
+</ul>
+<p>Oder denk an eine <strong>Tankanzeige im Auto</strong> an der Tankstelle.</p>
+<ul>
+<li><strong>Solange</strong> der Tank nicht voll ist, fließt weiter Benzin hinein.</li>
+<li>Sobald der Tank voll ist, stoppt die Zapfsäule automatisch.</li>
+</ul>
+<p>Bei einer <code>while</code>-Schleife prüft Rust <em>vor jeder neuen Runde</em>, ob die Bedingung noch stimmt. Wenn ja, wird die Runde gedreht. Wenn nein, ist die Schleife sofort beendet. Das spart dir den Notaus-Knopf (<code>break</code>), den du beim endlosen <code>loop</code> brauchst, weil die Schleife von ganz alleine weiß, wann sie aufhören muss.</p>
+<hr>
+<h2 id="4-für-jedes-element-etwas-tun-die-for-schleife"><a class="header" href="#4-für-jedes-element-etwas-tun-die-for-schleife">4. Für jedes Element etwas tun: Die <code>for</code>-Schleife</a></h2>
+<p>Die letzte und in Rust vielleicht am häufigsten genutzte Schleife ist die <code>for</code>-Schleife (auf Deutsch: “für”). Sie ist perfekt dafür gemacht, wenn du eine klare Liste von Dingen hast und mit jedem einzelnen Ding etwas Bestimmtes machen möchtest.</p>
+<p>Stell dir vor, du hast einen <strong>Einkaufskorb</strong> voll mit verschiedenen Obstsorten frisch vom Markt.</p>
+<ul>
+<li><strong>Für (for)</strong> jedes einzelne Stück Obst im Korb: Nimm es heraus, wasche es ab und lege es in die saubere Obstschale.</li>
+</ul>
+<p>Oder denk an einen <strong>Postboten</strong>, der an einem regnerischen Tag Briefe austrägt. Er hat einen Stapel Briefe in der Hand.</p>
+<ul>
+<li><strong>Für</strong> jeden Brief auf dem Stapel: Gehe zum entsprechenden Haus und wirf ihn in den richtigen Briefkasten. Sobald der Stapel in der Hand leer ist, ist der Postbote fertig und kann nach Hause gehen.</li>
+</ul>
+<p>Die <code>for</code>-Schleife ist extrem sicher und bequem. Du musst dich nicht darum kümmern, wann du anfangen oder aufhören musst, und du riskierst keine Endlosschleife, in der der Postbote verzweifelt nach Briefen sucht, die gar nicht mehr da sind. Rust nimmt die Sammlung (den Korb, den Stapel Briefe, oder einfach eine Reihe von Zahlen, zum Beispiel von 1 bis 10) und geht sie automatisch Schritt für Schritt, Element für Element durch. Wenn das letzte Element erreicht ist, ist die Schleife beendet.</p>
+<hr>
+<h2 id="zusammenfassung-dein-werkzeugkasten-für-den-kontrollfluss"><a class="header" href="#zusammenfassung-dein-werkzeugkasten-für-den-kontrollfluss">Zusammenfassung: Dein Werkzeugkasten für den Kontrollfluss</a></h2>
+<p>Als Rust-Programmierer hast du nun einen fantastischen, virtuellen Werkzeugkasten, um den Ablauf deines Programms meisterhaft zu steuern:</p>
+<ol>
+<li><strong><code>if</code> / <code>else if</code> / <code>else</code></strong>: Die Verkehrsschilder und Ampeln, die entscheiden, in welche Richtung dein Programm an einer Kreuzung abbiegt.</li>
+<li><strong><code>loop</code></strong>: Das endlose Hamsterrad oder Fabrik-Fließband, das nur mit dem starken Notaus-Knopf (<code>break</code>) gestoppt werden kann.</li>
+<li><strong><code>while</code></strong>: Der Suppenlöffel, der fleißig solange arbeitet, wie eine Bedingung wahr ist (bis der Teller leer ist).</li>
+<li><strong><code>for</code></strong>: Der zuverlässige Postbote, der eine Liste von Dingen geordnet Stück für Stück abarbeitet, bis alles restlos erledigt ist.</li>
+</ol>
+<p>Mit diesen vier Konzepten kannst du nahezu jede logische Struktur aufbauen, die du für deine zukünftigen Programme brauchst. Du bist jetzt der Chef-Dirigent deines Rust-Programms! Viel Spaß beim Steuern des Flusses und beim Entwerfen deiner eigenen logischen Wege!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzept-benutzereingabe-und-konvertierung-in-rust"><a class="header" href="#konzept-benutzereingabe-und-konvertierung-in-rust">Konzept: Benutzereingabe und Konvertierung in Rust</a></h1>
+<p>Herzlich willkommen zu einem der wichtigsten Themen in der Programmierung: Der Interaktion mit dem Benutzer! Ein Programm, das immer nur dasselbe tut und niemals auf das reagiert, was wir ihm sagen, ist auf Dauer ziemlich langweilig. Stell dir vor, du spielst ein Videospiel, bei dem du den Controller nicht benutzen darfst – du wärst nur ein passiver Zuschauer. Damit unsere Rust-Programme interaktiv werden, müssen wir lernen, wie wir Benutzereingaben lesen und verarbeiten können.</p>
+<p>In diesem Kapitel schauen wir uns das Konzept dahinter an, ohne uns gleich in komplizierten Code zu stürzen. Wir nutzen dazu ein paar einfache Analogien, damit du dir besser vorstellen kannst, was unter der Haube passiert.</p>
+<h2 id="der-rohe-text-alles-ist-ein-string"><a class="header" href="#der-rohe-text-alles-ist-ein-string">Der rohe Text: Alles ist ein String</a></h2>
+<p>Stell dir vor, dein Programm führt einen Dialog mit einem Benutzer. Du fragst: “Wie alt bist du?”. Der Benutzer tippt <code>25</code> auf seiner Tastatur ein und drückt die Eingabetaste.</p>
+<p>Was passiert jetzt in Rust? Man könnte meinen, Rust weiß sofort, dass es sich um die Zahl 25 handelt, mit der man rechnen kann. Aber das ist nicht der Fall! Für den Computer ist die Eingabe über die Tastatur zunächst einmal nichts weiter als “roher Text”. Rust sieht nicht die mathematische Zahl 25, sondern die Zeichenfolge – also den Text – bestehend aus der Ziffer ‘2’ und der Ziffer ‘5’. In der Welt der Programmierung nennt man so einen Text einen <code>String</code> (Zeichenkette).</p>
+<p>Stell dir vor, du bekommst einen Briefumschlag, in dem ein Zettel liegt. Auf dem Zettel steht “25”. Du kannst diesen Zettel lesen, aber du kannst den Zettel selbst nicht in einen Taschenrechner stecken und damit eine Matheaufgabe lösen. Du musst erst in deinem Kopf begreifen: “Ah, diese Zeichen bedeuten die Zahl Fünfundzwanzig”. Genauso geht es Rust.</p>
+<h2 id="der-puffer-ein-zwischenspeicher-für-den-dialog"><a class="header" href="#der-puffer-ein-zwischenspeicher-für-den-dialog">Der Puffer: Ein Zwischenspeicher für den Dialog</a></h2>
+<p>Bevor Rust überhaupt den Text verarbeiten kann, muss dieser irgendwo abgelegt werden. Wenn der Benutzer tippt, tröpfeln die Buchstaben und Zahlen einzeln in den Computer. Rust nutzt dafür etwas, das wir uns wie einen leeren Notizblock oder eine leere Kiste vorstellen können. In der Fachsprache nennt man das einen “Buffer” (Puffer) oder Zwischenspeicher.</p>
+<p>Der Prozess sieht so aus:</p>
+<ol>
+<li>Du legst einen leeren Notizblock bereit (erstellst einen leeren String).</li>
+<li>Du bittest Rust: “Bitte hör gut zu, was der Benutzer auf der Tastatur tippt, und schreibe alles genau so auf diesen Notizblock”.</li>
+<li>Der Benutzer tippt, drückt Enter, und Rust schreibt alles auf den Block.</li>
+</ol>
+<p>Dieser Notizblock ist sehr wichtig. Wenn der Benutzer nämlich aus Versehen “fünfundzwanzig” statt “25” eintippt, steht das Wort auf dem Block. Rust nimmt alles erst einmal wortwörtlich auf.</p>
+<h2 id="konvertierung-der-strenge-übersetzer"><a class="header" href="#konvertierung-der-strenge-übersetzer">Konvertierung: Der strenge Übersetzer</a></h2>
+<p>Jetzt haben wir also unseren Text auf dem Notizblock. Wenn wir ein Programm schreiben wollen, das berechnet, wie alt der Benutzer in 10 Jahren sein wird, müssen wir zu dieser 25 eine 10 addieren. Wenn wir aber versuchen, Text und eine Zahl zu addieren (“25” + 10), wird Rust streiken. Das wäre so, als würdest du versuchen, das Wort “Apfel” mit der Zahl 10 zu multiplizieren – es ergibt keinen Sinn.</p>
+<p>Hier kommt die sogenannte “Konvertierung” (Parsing) ins Spiel. Wir brauchen einen Übersetzer!</p>
+<p>Dieser Übersetzer hat eine ganz klare Aufgabe: Er schaut sich den Text auf dem Notizblock an und versucht, ihn in eine echte mathematische Zahl zu verwandeln.
+Stell dir den Übersetzer wie einen sehr strengen Beamten vor. Du reichst ihm den Zettel mit “25”. Er schaut ihn an, nickt, und gibt dir eine echte, rechenbare Zahl 25 zurück.</p>
+<p>Aber was passiert, wenn du ihm einen Zettel mit “Hallo” oder “25a” gibst und sagst: “Mach daraus eine Zahl!”? Der strenge Beamte wird den Kopf schütteln und sagen: “Tut mir leid, das ist keine Zahl. Ich kann das nicht übersetzen.”</p>
+<h2 id="fehlerbehandlung-was-passiert-wenn-der-übersetzer-streikt"><a class="header" href="#fehlerbehandlung-was-passiert-wenn-der-übersetzer-streikt">Fehlerbehandlung: Was passiert, wenn der Übersetzer streikt?</a></h2>
+<p>In vielen anderen Programmiersprachen würde das Programm an dieser Stelle einfach abstürzen. Der Bildschirm würde vielleicht Fehlermeldungen ausspucken, die für Anfänger schwer zu verstehen sind.</p>
+<p>Aber Rust ist anders. Rust legt extrem großen Wert auf Sicherheit und Zuverlässigkeit. Rust zwingt dich als Programmierer, dich genau um diese Fälle zu kümmern. Rust sagt dir quasi: “Hey, du möchtest, dass ich diesen Text in eine Zahl übersetze. Aber was soll ich tun, wenn der Benutzer Quatsch eingegeben hat? Das musst du mir vorher sagen!”</p>
+<p>Das bedeutet, dass du bei der Konvertierung von Benutzereingaben immer zwei mögliche Ausgänge planen musst:</p>
+<ol>
+<li><strong>Der Erfolgsfall:</strong> Der Text ließ sich problemlos in eine Zahl übersetzen. Wunderbar, wir können weiterrechnen!</li>
+<li><strong>Der Fehlerfall:</strong> Der Text war keine Zahl. Wir müssen dem Benutzer eine freundliche Fehlermeldung zeigen (“Bitte gib eine gültige Zahl ein!”) und ihn vielleicht noch einmal fragen.</li>
+</ol>
+<h2 id="unsichtbare-feinde-das-enter-zeichen"><a class="header" href="#unsichtbare-feinde-das-enter-zeichen">Unsichtbare Feinde: Das “Enter”-Zeichen</a></h2>
+<p>Es gibt noch eine kleine Tücke bei der Benutzereingabe, über die fast jeder Anfänger stolpert. Wenn der Benutzer “25” tippt und dann die Eingabetaste (Enter) drückt, um die Eingabe abzuschließen, wird dieses “Enter” ebenfalls vom Computer als Zeichen registriert!</p>
+<p>Auf unserem Notizblock steht also nicht einfach nur “25”, sondern eigentlich “25” gefolgt von einem unsichtbaren Zeilenumbruch.</p>
+<p>Wenn wir das unserem strengen Übersetzer geben, sagt er: “Da ist eine 2, da ist eine 5… aber was ist das für ein komisches unsichtbares Zeichen dahinter? Das kenne ich nicht in der Mathematik. Fehler!”</p>
+<p>Deshalb müssen wir vor der Übersetzung noch einen kleinen Schritt einbauen: Das Aufräumen. Wir nehmen unseren Text und schneiden alle unsichtbaren Leerzeichen, Tabulatoren oder Zeilenumbrüche am Anfang und am Ende ab. Erst dieser saubere, aufgeräumte Text wird dann dem Übersetzer übergeben.</p>
+<h2 id="zusammenfassung-des-ablaufs"><a class="header" href="#zusammenfassung-des-ablaufs">Zusammenfassung des Ablaufs</a></h2>
+<p>Um Benutzereingaben in Rust zu verarbeiten und als Zahlen zu nutzen, folgen wir also immer diesem Konzept:</p>
+<ol>
+<li><strong>Vorbereitung:</strong> Wir legen einen leeren Notizblock (String) bereit.</li>
+<li><strong>Empfang:</strong> Wir lauschen auf die Tastatur und schreiben den rohen Text des Benutzers auf den Block.</li>
+<li><strong>Säuberung:</strong> Wir entfernen unsichtbare Zeichen (wie das Enter-Zeichen) vom Text.</li>
+<li><strong>Übersetzung:</strong> Wir bitten Rust, den sauberen Text in eine Zahl zu konvertieren (Parsing).</li>
+<li><strong>Kontrolle:</strong> Wir gehen sicher, dass wir einen Plan haben, falls die Übersetzung fehlschlägt, weil der Benutzer keine Zahl eingegeben hat.</li>
+</ol>
+<p>Wenn du diesen Ablauf im Hinterkopf behältst, wird es dir sehr viel leichter fallen, die entsprechenden Rust-Befehle später zu verstehen und anzuwenden. Der Dialog zwischen Mensch und Maschine erfordert eben klare Regeln, damit es nicht zu Missverständnissen kommt!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="ownership-und-borrowing-das-herzstück-von-rust"><a class="header" href="#ownership-und-borrowing-das-herzstück-von-rust">Ownership und Borrowing: Das Herzstück von Rust</a></h1>
+<p>Rust ist bekannt für seine Sicherheit und Geschwindigkeit. Das Geheimnis dahinter? Ein Konzept namens “Ownership” (Besitzrecht) und “Borrowing” (Ausleihen). Am Anfang klingt das vielleicht etwas streng, aber stell dir vor, Rust wäre ein sehr gut organisierter und ziemlich pingeliger Bibliothekar.</p>
+<h2 id="was-ist-ownership"><a class="header" href="#was-ist-ownership">Was ist Ownership?</a></h2>
+<p>Stell dir vor, du hast ein ganz besonderes, handgeschriebenes Buch gekauft. Es ist <em>dein</em> Buch. Du bist der rechtmäßige Besitzer (“Owner”). In Rust hat jeder Wert (also jede Information, die im Speicher deines Computers liegt) genau einen Besitzer. Das ist die erste und wichtigste Regel.</p>
+<p>Wenn du in deinem Zimmer aufräumst und feststellst, dass du das Buch nicht mehr brauchst, wirfst du es ins Altpapier. In Rust passiert genau das Gleiche: Sobald der Besitzer eines Wertes “aus dem Sichtfeld verschwindet” (wir nennen das “out of scope”), wird der Wert automatisch weggeräumt. Der Speicherplatz ist wieder frei. Du musst dich nicht selbst darum kümmern, wann etwas gelöscht werden soll – Rusts Bibliothekar macht das ganz automatisch für dich.</p>
+<p>Aber was passiert, wenn du das Buch jemandem schenkst? In dem Moment, in dem du es weitergibst, bist du nicht mehr der Besitzer. Dein Freund ist jetzt der Owner. Du kannst das Buch nicht mehr lesen, denn du hast es schlichtweg nicht mehr in deinen Händen. Wenn du versuchst, es trotzdem zu lesen, wird der Bibliothekar (der Rust-Compiler) meckern und dich darauf hinweisen, dass das nicht dein Buch ist. Das nennt man in Rust einen “Move” (Umzug oder Übergabe).</p>
+<h2 id="warum-diese-strenge"><a class="header" href="#warum-diese-strenge">Warum diese Strenge?</a></h2>
+<p>Vielleicht fragst du dich, warum man ein Buch nicht einfach kopieren kann, anstatt es herzugeben. Nun, bei kleinen Dingen wie einem winzigen Notizzettel (zum Beispiel einer einfachen Zahl) macht Rust das tatsächlich! Es fertigt heimlich und schnell eine Kopie an. Aber bei einem dicken Lexikon (einem großen Stück Text oder komplexen Daten) würde das ständige Kopieren viel zu lange dauern und den gesamten Platz verbrauchen. Deshalb wird bei großen Dingen standardmäßig der Besitz komplett übergeben, anstatt sie zu kopieren.</p>
+<h2 id="borrowing-das-ausleihen"><a class="header" href="#borrowing-das-ausleihen">Borrowing: Das Ausleihen</a></h2>
+<p>Aber was ist, wenn du das Buch gar nicht für immer verschenken willst? Was, wenn du es nur einem Freund <em>leihen</em> möchtest, damit er mal einen Blick hineinwerfen kann?</p>
+<p>Hier kommt das “Borrowing” (Ausleihen) ins Spiel! In Rust kannst du Werte für eine bestimmte Zeit ausleihen, ohne deinen Besitz aufzugeben. Du gibst deinem Freund einfach eine Art Leseausweis oder eine Referenz.</p>
+<h3 id="die-eisernen-regeln-der-bibliothek"><a class="header" href="#die-eisernen-regeln-der-bibliothek">Die eisernen Regeln der Bibliothek</a></h3>
+<p>Unser Bibliothekar hat zwei sehr strenge Regeln für das Ausleihen, um völliges Chaos zu vermeiden:</p>
+<ol>
+<li>
+<p><strong>Die große Lese-Party (Shared Borrowing):</strong>
+Du kannst dein Buch an so viele Freunde gleichzeitig ausleihen, wie du möchtest, <em>solange alle nur darin lesen</em>. Stell dir vor, du hängst ein Plakat an die Wand. Jeder darf es anschauen. Aber niemand darf es mit einem Stift bemalen oder verändern. In Rust nennt man das eine unveränderliche (immutable) Referenz. Jeder darf gucken, aber anfassen ist verboten!</p>
+</li>
+<li>
+<p><strong>Der exklusive Künstler (Mutable Borrowing):</strong>
+Was ist, wenn jemand Notizen in das Buch machen oder ein Kapitel umschreiben soll? Dann darfst du es nur an <em>eine einzige Person</em> zur selben Zeit ausleihen. Stell dir vor, du gibst jemandem ein leeres Notizbuch und einen Stift. Wenn zwei Leute gleichzeitig versuchen würden, mit ihren Stiften auf derselben Seite zu schreiben, gäbe es ein furchtbares Gekritzel und niemand könnte es mehr lesen!
+Daher sagt der Bibliothekar klipp und klar: Entweder dürfen viele Leute gleichzeitig lesen (ohne zu schreiben), ODER genau eine Person darf schreiben (und dann darf in dieser Zeit niemand anderes lesen oder schreiben). Niemals beides gleichzeitig!</p>
+</li>
+</ol>
+<p>Diese Regeln klingen vielleicht am Anfang sehr restriktiv, aber sie sind absolut genial! Sie verhindern, dass dein Programm abstürzt oder seltsame Dinge tut, wenn zwei Teile deines Codes gleichzeitig versuchen, dieselben Daten zu verändern.</p>
+<h2 id="wie-fühlt-sich-das-in-der-praxis-an"><a class="header" href="#wie-fühlt-sich-das-in-der-praxis-an">Wie fühlt sich das in der Praxis an?</a></h2>
+<p>Wenn du anfängst, deine ersten Rust-Programme zu schreiben, wirst du öfter mal mit dem Bibliothekar (dem Compiler) diskutieren. Er wird dir Fehlermeldungen geben und sagen: “Hey, du hast dieses Buch gerade zum Schreiben verliehen, du kannst es jetzt nicht selbst lesen!” oder “Du hast das Buch verschenkt, warum versuchst du, immer noch darin zu blättern?”.</p>
+<p>Das kann am ersten Tag frustrierend sein, aber denk immer daran: Der Bibliothekar ist nicht böse auf dich. Er möchte nur verhindern, dass du später ein völlig zerstörtes Buch voller Fehler zurückbekommst. Er beschützt dich vor tiefgreifenden Problemen, die in anderen Programmiersprachen oft erst nach langer Zeit, mitten in der Nacht und unter großen Schmerzen gefunden werden.</p>
+<h2 id="zusammenfassung-für-den-start"><a class="header" href="#zusammenfassung-für-den-start">Zusammenfassung für den Start</a></h2>
+<ul>
+<li><strong>Ownership:</strong> Jeder Wert hat genau einen Besitzer. Wenn der Besitzer weg ist, wird aufgeräumt.</li>
+<li><strong>Move:</strong> Wenn du einen komplexen Wert weitergibst, verlierst du den Besitz.</li>
+<li><strong>Borrowing (Lesen):</strong> Du kannst Daten an viele Leute gleichzeitig zum reinen Lesen ausleihen.</li>
+<li><strong>Borrowing (Schreiben):</strong> Du kannst Daten an genau eine Person zum Verändern ausleihen – aber nur, wenn gerade niemand anders mitliest.</li>
+</ul>
+<p>Wenn du diese Bibliotheks-Regeln verinnerlicht hast, hast du die wichtigste Hürde in Rust bereits genommen. Der Rest ist nur Übung und Gewohnheit! Mach dir keine Sorgen, wenn der Compiler am Anfang oft meckert. Jeder noch so erfahrene Rust-Programmierer diskutiert täglich mit dem Bibliothekar. Bleib geduldig und denk an das Buch!</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzept-string-vs-str-in-rust--eine-reise-durch-die-welt-der-texte"><a class="header" href="#konzept-string-vs-str-in-rust--eine-reise-durch-die-welt-der-texte">Konzept: String vs. &amp;str in Rust – Eine Reise durch die Welt der Texte</a></h1>
+<p>Herzlich willkommen zu einem der spannendsten (und anfangs vielleicht etwas verwirrenden) Themen in Rust: der Umgang mit Texten. In vielen anderen Programmiersprachen gibt es einfach nur “Text” oder “String”, und man muss sich keine weiteren Gedanken darüber machen. Rust hingegen unterscheidet streng zwischen zwei Hauptarten von Texten: dem <code>String</code> (mit großem S) und dem <code>&amp;str</code> (oft als “String Slice” oder Zeichenketten-Referenz bezeichnet).</p>
+<p>Warum macht Rust das? Der Grund liegt in Rusts unermüdlichem Streben nach Sicherheit und Geschwindigkeit. Um das zu verstehen, brauchen wir keinen komplizierten Code, sondern wir nutzen unsere Vorstellungskraft.</p>
+<h2 id="der-dynamische-notizblock-string-vs-die-gedruckte-buchseite-str"><a class="header" href="#der-dynamische-notizblock-string-vs-die-gedruckte-buchseite-str">Der dynamische Notizblock (String) vs. die gedruckte Buchseite (&amp;str)</a></h2>
+<p>Stell dir vor, du hast einen dicken, unbeschriebenen Notizblock vor dir liegen. Du hast einen Bleistift und einen Radiergummi. Du kannst auf die erste Seite ein Wort schreiben, dann einen ganzen Satz hinzufügen. Wenn dir ein Wort nicht gefällt, radierst du es weg und schreibst ein neues darüber. Wenn die Seite voll ist, blätterst du um und schreibst weiter. Dein Text kann wachsen, schrumpfen und sich ständig verändern.</p>
+<p>Genau das ist ein <strong><code>String</code></strong> in Rust.</p>
+<p>Ein <code>String</code> ist wie dieser dynamische Notizblock. Er gehört dir (du hast “Ownership”), du kannst ihn jederzeit verändern, Buchstaben hinzufügen oder löschen. Da der Computer aber vorher nicht weiß, wie lang dein Text am Ende wird, muss er sich in einem speziellen, flexiblen Speicherbereich (dem sogenannten Heap) Platz dafür reservieren. Das ist ungeheuer praktisch, kostet aber auch ein kleines bisschen mehr Verwaltungsaufwand für den Computer, ähnlich wie du beim Schreiben auf dem Notizblock immer wieder blättern oder radieren musst.</p>
+<p>Nun stell dir im Gegensatz dazu ein gedrucktes Buch vor. Du schlägst eine Seite auf und liest den Text. Der Text steht dort schwarz auf weiß. Du kannst ihn nicht verändern, du kannst keine Wörter dazwischenquetschen und du kannst auch nichts wegradieren (außer du machst das Buch kaputt, aber das wollen wir hier nicht). Du betrachtest einfach nur den Text, der bereits existiert.</p>
+<p>Das ist ein <strong><code>&amp;str</code></strong> (String Slice).</p>
+<p>Ein <code>&amp;str</code> ist im Grunde nur ein Verweis, ein “Hinweis” auf einen Text, der irgendwo anders bereits existiert. Das “kaufmännische Und” (<code>&amp;</code>) in Rust steht genau für dieses Konzept des “Ausleihens” (Borrowing). Du besitzt den Text nicht, du darfst ihn nur ansehen. Weil der Text unveränderlich ist und seine Größe genau feststeht, kann der Computer ihn rasend schnell verarbeiten.</p>
+<h2 id="die-leuchtreklame-string-vs-die-tafel-mit-der-tageskarte-str"><a class="header" href="#die-leuchtreklame-string-vs-die-tafel-mit-der-tageskarte-str">Die Leuchtreklame (String) vs. die Tafel mit der Tageskarte (&amp;str)</a></h2>
+<p>Lass uns noch ein weiteres Bild bemalen, um das Konzept wirklich im Kopf zu verankern.</p>
+<p>Denk an eine moderne, programmierbare Leuchtreklame über einem Geschäft. Der Besitzer kann per App jederzeit den Text ändern: “Heute 20% Rabatt!”, dann eine Stunde später “Wir haben Mittagspause!”, und abends “Bis morgen!”. Die Anzeige ist flexibel, sie braucht Strom und eine aufwendige Steuerelektronik im Hintergrund. Die Leuchtreklame ist unser <strong><code>String</code></strong>. Sie ist dynamisch, sie gehört dem Besitzer und sie kann beliebig angepasst werden. Sie braucht aber auch mehr “Ressourcen”.</p>
+<p>Auf der anderen Seite steht vor einem kleinen Café eine Kreidetafel. Der Text darauf wurde am Morgen geschrieben: “Kaffee &amp; Kuchen”. Wenn du als Gast vorbeiläufst, siehst du diesen Text. Du hast ihn nicht geschrieben, du kannst ihn nicht ändern, du liest ihn nur ab. Die Tafel ist extrem simpel, braucht keinen Strom und erfüllt perfekt ihren Zweck, nämlich Information schnell und einfach zu vermitteln. Diese Tafel ist unser <strong><code>&amp;str</code></strong>. Er ist ein einfacher, schneller Blick auf etwas, das bereits da ist.</p>
+<h2 id="warum-diese-trennung-so-wichtig-ist"><a class="header" href="#warum-diese-trennung-so-wichtig-ist">Warum diese Trennung so wichtig ist</a></h2>
+<p>Als Anfänger fragt man sich oft: “Wann benutze ich was?” Da wir hier keine fertigen Codelösungen verraten wollen, hier ein paar wichtige Hinweise als Faustregel:</p>
+<ul>
+<li><strong>Wenn du den Text verändern musst:</strong> Du willst Wörter aneinanderhängen, Text von einem Benutzer einlesen oder Buchstaben ersetzen? Dann brauchst du die Flexibilität des dynamischen Notizblocks. Hier ist der <code>String</code> dein bester Freund.</li>
+<li><strong>Wenn du Text weitergeben oder einfach nur ausgeben willst:</strong> Du hast eine Funktion, die einen Text einfach nur auf dem Bildschirm anzeigen soll? Sie muss den Text nicht verändern oder besitzen. Dann ist es viel effizienter, ihr einfach einen Blick in das “gedruckte Buch” zu gewähren. In solchen Fällen verwendet man fast immer <code>&amp;str</code>.</li>
+</ul>
+<p>Rust zwingt dich durch diese Unterscheidung dazu, dir genau zu überlegen, wer wann welchen Text besitzen und verändern darf. Das fühlt sich anfangs vielleicht etwas streng an, ist aber das Geheimrezept, warum Rust-Programme so unglaublich schnell sind und fast niemals unerwartet abstürzen.</p>
+<p>Zusammenfassend: Denk immer an den Notizblock und das gedruckte Buch. Brauchst du den Radiergummi? Dann nimm den <code>String</code>. Reicht es, die Worte nur zu betrachten? Dann greif zum leichten und schnellen <code>&amp;str</code>. Viel Erfolg beim weiteren Erkunden der Rust-Welt!</p>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="phase-1-projektvorschläge-für-einsteiger"><a class="header" href="#phase-1-projektvorschläge-für-einsteiger">Phase 1: Projektvorschläge für Einsteiger</a></h1>
 <p>Jedes Projekt übt <strong>alle Grundlagen gleichzeitig</strong>:</p>
 <div class="table-wrapper">
@@ -545,6 +796,1476 @@ Gib die Zahlen 1 bis 100 aus. Bei Vielfachen von 3: „Fizz“, bei Vielfachen v
 Der Nutzer gibt eine Zahl ein. Das Programm prüft, ob sie eine Primzahl ist, und gibt das Ergebnis aus.</p>
 <p><strong>Themen:</strong> <code>u64</code>-Datentyp, <code>for</code>-Schleife, <code>if/else</code>, Benutzereingabe, Konvertierung</p>
 <hr><div style="break-before: page; page-break-before: always;"></div>
+<h1 id="100-projekte"><a class="header" href="#100-projekte">100 Projekte</a></h1>
+<p>Phase 1: Projekte für Einsteiger lesen
+Jedes Projekt übt alle Grundlagen gleichzeitig:
+Passives Auffrischen</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
+<tr><td>🧱 Variablen &amp; Datentypen</td><td>Zahlen, Texte, Mutabilität</td></tr>
+<tr><td>🔀 Kontrollfluss</td><td>if/else, loop, while, for</td></tr>
+<tr><td>⌨️ Benutzereingabe</td><td>Lesen von der Konsole, Konvertierung</td></tr>
+<tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt was? Referenzen nutzen</td></tr>
+<tr><td>📝 String vs. &amp;str</td><td>Texte speichern, vergleichen, ausgeben</td></tr>
+</tbody>
+</table>
+</div>
+<p>Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!</p>
+<hr>
+<h2 id="projekt-1-begrüßung-mit-eingabe"><a class="header" href="#projekt-1-begrüßung-mit-eingabe">Projekt 1: Begrüßung mit Eingabe</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 🧱 Variable für Text (String)
+    let mut name = String::new();
+    
+    println!("Bitte gib deinen Namen ein:");
+    
+    // ⌨️ Benutzereingabe
+    // 🧠 `&amp;mut name` = veränderbare Referenz übergeben (Borrowing)
+    io::stdin().read_line(&amp;mut name).expect("Fehler beim Lesen");
+    
+    // 📝 `.trim()` entfernt Leerzeichen/Zeilenumbrüche am Ende (&amp;str)
+    let name_trimmed = name.trim();
+    
+    // 🔀 Kontrollfluss
+    if name_trimmed == "Rust" {
+        println!("Oh, du heißt wie die Sprache!");
+    } else {
+        println!("Hallo, {}!", name_trimmed);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-2-zahlen-addieren-bis-100"><a class="header" href="#projekt-2-zahlen-addieren-bis-100">Projekt 2: Zahlen addieren bis 100</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 🧱 Veränderbare Zahl (i32)
+    let mut summe = 0;
+    
+    // 🔀 Kontrollfluss (for-Schleife)
+    for i in 1..=100 {
+        summe += i; // Addiere i zur Summe
+    }
+    
+    println!("Die Summe der Zahlen von 1 bis 100 ist: {}", summe);
+}</code></pre>
+<hr>
+<h2 id="projekt-3-passwort-prüfer"><a class="header" href="#projekt-3-passwort-prüfer">Projekt 3: Passwort-Prüfer</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 📝 &amp;str (fest vorgegebener Text)
+    let geheimnis = "rust123";
+    // 🧱 String (veränderbarer Text für Eingabe)
+    let mut eingabe = String::new();
+    
+    println!("Bitte Passwort eingeben:");
+    // ⌨️ Benutzereingabe mit Borrowing (&amp;mut)
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // 🔀 Kontrollfluss &amp; Vergleich
+    if eingabe.trim() == geheimnis {
+        println!("Zugriff gewährt!");
+    } else {
+        println!("Zugriff verweigert!");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-4-gerade-oder-ungerade"><a class="header" href="#projekt-4-gerade-oder-ungerade">Projekt 4: Gerade oder Ungerade</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung von String zu i32
+    let zahl: i32 = eingabe.trim().parse().expect("Das ist keine Zahl!");
+    
+    // 🔀 Kontrollfluss mit Modulo
+    if zahl % 2 == 0 {
+        println!("{} ist eine gerade Zahl.", zahl);
+    } else {
+        println!("{} ist eine ungerade Zahl.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-5-zählen-bis-zum-ziel"><a class="header" href="#projekt-5-zählen-bis-zum-ziel">Projekt 5: Zählen bis zum Ziel</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Bis wohin soll ich zählen?");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let ziel: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    // 🔀 while-Schleife
+    let mut aktuell = 1;
+    while aktuell &lt;= ziel {
+        println!("Zahl: {}", aktuell);
+        aktuell += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-6-lieblingsfarbe-erraten"><a class="header" href="#projekt-6-lieblingsfarbe-erraten">Projekt 6: Lieblingsfarbe erraten</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 🔀 Endlose loop-Schleife
+    loop {
+        println!("Errate meine Lieblingsfarbe (Tipp: Sie ist rot oder blau):");
+        let mut farbe = String::new();
+        io::stdin().read_line(&amp;mut farbe).expect("Fehler");
+        
+        // 📝 Vergleichen von &amp;str
+        if farbe.trim() == "rot" {
+            println!("Richtig! Rot ist super.");
+            break; // 🔀 Schleife beenden
+        } else {
+            println!("Falsch, versuche es nochmal!");
+        }
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-7-temperatur-umrechner"><a class="header" href="#projekt-7-temperatur-umrechner">Projekt 7: Temperatur-Umrechner</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib die Temperatur in Celsius ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // 🧱 f64 für Kommazahlen
+    let celsius: f64 = eingabe.trim().parse().expect("Zahl benötigt");
+    let fahrenheit = celsius * 1.8 + 32.0;
+    
+    println!("{}°C sind {}°F", celsius, fahrenheit);
+}</code></pre>
+<hr>
+<h2 id="projekt-8-wortlängen-messer"><a class="header" href="#projekt-8-wortlängen-messer">Projekt 8: Wortlängen-Messer</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib ein Wort ein:");
+    let mut wort = String::new();
+    io::stdin().read_line(&amp;mut wort).expect("Fehler");
+    
+    // 🧠 Borrowing: len() nutzt eine Referenz auf den String
+    let laenge = wort.trim().len();
+    
+    println!("Dein Wort hat {} Buchstaben.", laenge);
+}</code></pre>
+<hr>
+<h2 id="projekt-9-countdown"><a class="header" href="#projekt-9-countdown">Projekt 9: Countdown</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 🔀 for-Schleife rückwärts
+    for i in (1..=10).rev() {
+        println!("Countdown: {}", i);
+    }
+    println!("Start!");
+}</code></pre>
+<hr>
+<h2 id="projekt-10-einfacher-taschenrechner-addition"><a class="header" href="#projekt-10-einfacher-taschenrechner-addition">Projekt 10: Einfacher Taschenrechner (Addition)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut zahl1 = String::new();
+    let mut zahl2 = String::new();
+    
+    println!("Erste Zahl:");
+    io::stdin().read_line(&amp;mut zahl1).expect("Fehler");
+    
+    println!("Zweite Zahl:");
+    io::stdin().read_line(&amp;mut zahl2).expect("Fehler");
+    
+    let z1: f64 = zahl1.trim().parse().expect("Zahl erwartet");
+    let z2: f64 = zahl2.trim().parse().expect("Zahl erwartet");
+    
+    println!("Ergebnis: {}", z1 + z2);
+}</code></pre>
+<hr>
+<h2 id="projekt-11-zähler-bis-11"><a class="header" href="#projekt-11-zähler-bis-11">Projekt 11: Zähler bis 11</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 11;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-12-ist-die-zahl-größer-als-12"><a class="header" href="#projekt-12-ist-die-zahl-größer-als-12">Projekt 12: Ist die Zahl größer als 12?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 12 {
+        println!("Ja, {} ist größer als 12!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 12.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-13-textwiederholung"><a class="header" href="#projekt-13-textwiederholung">Projekt 13: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-14-altersprüfer-mindestalter-14"><a class="header" href="#projekt-14-altersprüfer-mindestalter-14">Projekt 14: Altersprüfer (Mindestalter 14)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 14 {
+        println!("Du hast das Mindestalter von 14 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 14.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-15-multiplikator-15"><a class="header" href="#projekt-15-multiplikator-15">Projekt 15: Multiplikator 15</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 15 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 15);
+}</code></pre>
+<hr>
+<h2 id="projekt-16-zähler-bis-16"><a class="header" href="#projekt-16-zähler-bis-16">Projekt 16: Zähler bis 16</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 16;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-17-ist-die-zahl-größer-als-17"><a class="header" href="#projekt-17-ist-die-zahl-größer-als-17">Projekt 17: Ist die Zahl größer als 17?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 17 {
+        println!("Ja, {} ist größer als 17!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 17.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-18-textwiederholung"><a class="header" href="#projekt-18-textwiederholung">Projekt 18: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-19-altersprüfer-mindestalter-19"><a class="header" href="#projekt-19-altersprüfer-mindestalter-19">Projekt 19: Altersprüfer (Mindestalter 19)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 19 {
+        println!("Du hast das Mindestalter von 19 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 19.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-20-multiplikator-20"><a class="header" href="#projekt-20-multiplikator-20">Projekt 20: Multiplikator 20</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 20 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 20);
+}</code></pre>
+<hr>
+<h2 id="projekt-21-zähler-bis-21"><a class="header" href="#projekt-21-zähler-bis-21">Projekt 21: Zähler bis 21</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 21;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-22-ist-die-zahl-größer-als-22"><a class="header" href="#projekt-22-ist-die-zahl-größer-als-22">Projekt 22: Ist die Zahl größer als 22?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 22 {
+        println!("Ja, {} ist größer als 22!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 22.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-23-textwiederholung"><a class="header" href="#projekt-23-textwiederholung">Projekt 23: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-24-altersprüfer-mindestalter-24"><a class="header" href="#projekt-24-altersprüfer-mindestalter-24">Projekt 24: Altersprüfer (Mindestalter 24)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 24 {
+        println!("Du hast das Mindestalter von 24 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 24.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-25-multiplikator-25"><a class="header" href="#projekt-25-multiplikator-25">Projekt 25: Multiplikator 25</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 25 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 25);
+}</code></pre>
+<hr>
+<h2 id="projekt-26-zähler-bis-26"><a class="header" href="#projekt-26-zähler-bis-26">Projekt 26: Zähler bis 26</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 26;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-27-ist-die-zahl-größer-als-27"><a class="header" href="#projekt-27-ist-die-zahl-größer-als-27">Projekt 27: Ist die Zahl größer als 27?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 27 {
+        println!("Ja, {} ist größer als 27!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 27.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-28-textwiederholung"><a class="header" href="#projekt-28-textwiederholung">Projekt 28: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-29-altersprüfer-mindestalter-29"><a class="header" href="#projekt-29-altersprüfer-mindestalter-29">Projekt 29: Altersprüfer (Mindestalter 29)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 29 {
+        println!("Du hast das Mindestalter von 29 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 29.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-30-multiplikator-30"><a class="header" href="#projekt-30-multiplikator-30">Projekt 30: Multiplikator 30</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 30 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 30);
+}</code></pre>
+<hr>
+<h2 id="projekt-31-zähler-bis-31"><a class="header" href="#projekt-31-zähler-bis-31">Projekt 31: Zähler bis 31</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 31;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-32-ist-die-zahl-größer-als-32"><a class="header" href="#projekt-32-ist-die-zahl-größer-als-32">Projekt 32: Ist die Zahl größer als 32?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 32 {
+        println!("Ja, {} ist größer als 32!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 32.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-33-textwiederholung"><a class="header" href="#projekt-33-textwiederholung">Projekt 33: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-34-altersprüfer-mindestalter-34"><a class="header" href="#projekt-34-altersprüfer-mindestalter-34">Projekt 34: Altersprüfer (Mindestalter 34)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 34 {
+        println!("Du hast das Mindestalter von 34 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 34.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-35-multiplikator-35"><a class="header" href="#projekt-35-multiplikator-35">Projekt 35: Multiplikator 35</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 35 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 35);
+}</code></pre>
+<hr>
+<h2 id="projekt-36-zähler-bis-36"><a class="header" href="#projekt-36-zähler-bis-36">Projekt 36: Zähler bis 36</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 36;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-37-ist-die-zahl-größer-als-37"><a class="header" href="#projekt-37-ist-die-zahl-größer-als-37">Projekt 37: Ist die Zahl größer als 37?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 37 {
+        println!("Ja, {} ist größer als 37!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 37.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-38-textwiederholung"><a class="header" href="#projekt-38-textwiederholung">Projekt 38: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-39-altersprüfer-mindestalter-39"><a class="header" href="#projekt-39-altersprüfer-mindestalter-39">Projekt 39: Altersprüfer (Mindestalter 39)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 39 {
+        println!("Du hast das Mindestalter von 39 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 39.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-40-multiplikator-40"><a class="header" href="#projekt-40-multiplikator-40">Projekt 40: Multiplikator 40</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 40 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 40);
+}</code></pre>
+<hr>
+<h2 id="projekt-41-zähler-bis-41"><a class="header" href="#projekt-41-zähler-bis-41">Projekt 41: Zähler bis 41</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 41;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-42-ist-die-zahl-größer-als-42"><a class="header" href="#projekt-42-ist-die-zahl-größer-als-42">Projekt 42: Ist die Zahl größer als 42?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 42 {
+        println!("Ja, {} ist größer als 42!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 42.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-43-textwiederholung"><a class="header" href="#projekt-43-textwiederholung">Projekt 43: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-44-altersprüfer-mindestalter-44"><a class="header" href="#projekt-44-altersprüfer-mindestalter-44">Projekt 44: Altersprüfer (Mindestalter 44)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 44 {
+        println!("Du hast das Mindestalter von 44 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 44.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-45-multiplikator-45"><a class="header" href="#projekt-45-multiplikator-45">Projekt 45: Multiplikator 45</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 45 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 45);
+}</code></pre>
+<hr>
+<h2 id="projekt-46-zähler-bis-46"><a class="header" href="#projekt-46-zähler-bis-46">Projekt 46: Zähler bis 46</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 46;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-47-ist-die-zahl-größer-als-47"><a class="header" href="#projekt-47-ist-die-zahl-größer-als-47">Projekt 47: Ist die Zahl größer als 47?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 47 {
+        println!("Ja, {} ist größer als 47!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 47.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-48-textwiederholung"><a class="header" href="#projekt-48-textwiederholung">Projekt 48: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-49-altersprüfer-mindestalter-49"><a class="header" href="#projekt-49-altersprüfer-mindestalter-49">Projekt 49: Altersprüfer (Mindestalter 49)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 49 {
+        println!("Du hast das Mindestalter von 49 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 49.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-50-multiplikator-50"><a class="header" href="#projekt-50-multiplikator-50">Projekt 50: Multiplikator 50</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 50 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 50);
+}</code></pre>
+<hr>
+<h2 id="projekt-51-zähler-bis-51"><a class="header" href="#projekt-51-zähler-bis-51">Projekt 51: Zähler bis 51</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 51;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-52-ist-die-zahl-größer-als-52"><a class="header" href="#projekt-52-ist-die-zahl-größer-als-52">Projekt 52: Ist die Zahl größer als 52?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 52 {
+        println!("Ja, {} ist größer als 52!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 52.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-53-textwiederholung"><a class="header" href="#projekt-53-textwiederholung">Projekt 53: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-54-altersprüfer-mindestalter-54"><a class="header" href="#projekt-54-altersprüfer-mindestalter-54">Projekt 54: Altersprüfer (Mindestalter 54)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 54 {
+        println!("Du hast das Mindestalter von 54 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 54.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-55-multiplikator-55"><a class="header" href="#projekt-55-multiplikator-55">Projekt 55: Multiplikator 55</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 55 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 55);
+}</code></pre>
+<hr>
+<h2 id="projekt-56-zähler-bis-56"><a class="header" href="#projekt-56-zähler-bis-56">Projekt 56: Zähler bis 56</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 56;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-57-ist-die-zahl-größer-als-57"><a class="header" href="#projekt-57-ist-die-zahl-größer-als-57">Projekt 57: Ist die Zahl größer als 57?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 57 {
+        println!("Ja, {} ist größer als 57!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 57.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-58-textwiederholung"><a class="header" href="#projekt-58-textwiederholung">Projekt 58: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-59-altersprüfer-mindestalter-59"><a class="header" href="#projekt-59-altersprüfer-mindestalter-59">Projekt 59: Altersprüfer (Mindestalter 59)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 59 {
+        println!("Du hast das Mindestalter von 59 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 59.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-60-multiplikator-60"><a class="header" href="#projekt-60-multiplikator-60">Projekt 60: Multiplikator 60</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 60 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 60);
+}</code></pre>
+<hr>
+<h2 id="projekt-61-zähler-bis-61"><a class="header" href="#projekt-61-zähler-bis-61">Projekt 61: Zähler bis 61</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 61;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-62-ist-die-zahl-größer-als-62"><a class="header" href="#projekt-62-ist-die-zahl-größer-als-62">Projekt 62: Ist die Zahl größer als 62?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 62 {
+        println!("Ja, {} ist größer als 62!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 62.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-63-textwiederholung"><a class="header" href="#projekt-63-textwiederholung">Projekt 63: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-64-altersprüfer-mindestalter-64"><a class="header" href="#projekt-64-altersprüfer-mindestalter-64">Projekt 64: Altersprüfer (Mindestalter 64)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 64 {
+        println!("Du hast das Mindestalter von 64 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 64.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-65-multiplikator-65"><a class="header" href="#projekt-65-multiplikator-65">Projekt 65: Multiplikator 65</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 65 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 65);
+}</code></pre>
+<hr>
+<h2 id="projekt-66-zähler-bis-66"><a class="header" href="#projekt-66-zähler-bis-66">Projekt 66: Zähler bis 66</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 66;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-67-ist-die-zahl-größer-als-67"><a class="header" href="#projekt-67-ist-die-zahl-größer-als-67">Projekt 67: Ist die Zahl größer als 67?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 67 {
+        println!("Ja, {} ist größer als 67!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 67.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-68-textwiederholung"><a class="header" href="#projekt-68-textwiederholung">Projekt 68: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-69-altersprüfer-mindestalter-69"><a class="header" href="#projekt-69-altersprüfer-mindestalter-69">Projekt 69: Altersprüfer (Mindestalter 69)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 69 {
+        println!("Du hast das Mindestalter von 69 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 69.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-70-multiplikator-70"><a class="header" href="#projekt-70-multiplikator-70">Projekt 70: Multiplikator 70</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 70 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 70);
+}</code></pre>
+<hr>
+<h2 id="projekt-71-zähler-bis-71"><a class="header" href="#projekt-71-zähler-bis-71">Projekt 71: Zähler bis 71</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 71;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-72-ist-die-zahl-größer-als-72"><a class="header" href="#projekt-72-ist-die-zahl-größer-als-72">Projekt 72: Ist die Zahl größer als 72?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 72 {
+        println!("Ja, {} ist größer als 72!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 72.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-73-textwiederholung"><a class="header" href="#projekt-73-textwiederholung">Projekt 73: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-74-altersprüfer-mindestalter-74"><a class="header" href="#projekt-74-altersprüfer-mindestalter-74">Projekt 74: Altersprüfer (Mindestalter 74)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 74 {
+        println!("Du hast das Mindestalter von 74 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 74.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-75-multiplikator-75"><a class="header" href="#projekt-75-multiplikator-75">Projekt 75: Multiplikator 75</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 75 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 75);
+}</code></pre>
+<hr>
+<h2 id="projekt-76-zähler-bis-76"><a class="header" href="#projekt-76-zähler-bis-76">Projekt 76: Zähler bis 76</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 76;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-77-ist-die-zahl-größer-als-77"><a class="header" href="#projekt-77-ist-die-zahl-größer-als-77">Projekt 77: Ist die Zahl größer als 77?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 77 {
+        println!("Ja, {} ist größer als 77!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 77.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-78-textwiederholung"><a class="header" href="#projekt-78-textwiederholung">Projekt 78: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-79-altersprüfer-mindestalter-79"><a class="header" href="#projekt-79-altersprüfer-mindestalter-79">Projekt 79: Altersprüfer (Mindestalter 79)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 79 {
+        println!("Du hast das Mindestalter von 79 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 79.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-80-multiplikator-80"><a class="header" href="#projekt-80-multiplikator-80">Projekt 80: Multiplikator 80</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 80 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 80);
+}</code></pre>
+<hr>
+<h2 id="projekt-81-zähler-bis-81"><a class="header" href="#projekt-81-zähler-bis-81">Projekt 81: Zähler bis 81</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 81;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-82-ist-die-zahl-größer-als-82"><a class="header" href="#projekt-82-ist-die-zahl-größer-als-82">Projekt 82: Ist die Zahl größer als 82?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 82 {
+        println!("Ja, {} ist größer als 82!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 82.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-83-textwiederholung"><a class="header" href="#projekt-83-textwiederholung">Projekt 83: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-84-altersprüfer-mindestalter-84"><a class="header" href="#projekt-84-altersprüfer-mindestalter-84">Projekt 84: Altersprüfer (Mindestalter 84)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 84 {
+        println!("Du hast das Mindestalter von 84 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 84.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-85-multiplikator-85"><a class="header" href="#projekt-85-multiplikator-85">Projekt 85: Multiplikator 85</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 85 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 85);
+}</code></pre>
+<hr>
+<h2 id="projekt-86-zähler-bis-86"><a class="header" href="#projekt-86-zähler-bis-86">Projekt 86: Zähler bis 86</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 86;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-87-ist-die-zahl-größer-als-87"><a class="header" href="#projekt-87-ist-die-zahl-größer-als-87">Projekt 87: Ist die Zahl größer als 87?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 87 {
+        println!("Ja, {} ist größer als 87!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 87.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-88-textwiederholung"><a class="header" href="#projekt-88-textwiederholung">Projekt 88: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-89-altersprüfer-mindestalter-89"><a class="header" href="#projekt-89-altersprüfer-mindestalter-89">Projekt 89: Altersprüfer (Mindestalter 89)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 89 {
+        println!("Du hast das Mindestalter von 89 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 89.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-90-multiplikator-90"><a class="header" href="#projekt-90-multiplikator-90">Projekt 90: Multiplikator 90</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 90 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 90);
+}</code></pre>
+<hr>
+<h2 id="projekt-91-zähler-bis-91"><a class="header" href="#projekt-91-zähler-bis-91">Projekt 91: Zähler bis 91</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 91;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-92-ist-die-zahl-größer-als-92"><a class="header" href="#projekt-92-ist-die-zahl-größer-als-92">Projekt 92: Ist die Zahl größer als 92?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 92 {
+        println!("Ja, {} ist größer als 92!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 92.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-93-textwiederholung"><a class="header" href="#projekt-93-textwiederholung">Projekt 93: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-94-altersprüfer-mindestalter-94"><a class="header" href="#projekt-94-altersprüfer-mindestalter-94">Projekt 94: Altersprüfer (Mindestalter 94)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 94 {
+        println!("Du hast das Mindestalter von 94 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 94.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-95-multiplikator-95"><a class="header" href="#projekt-95-multiplikator-95">Projekt 95: Multiplikator 95</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 95 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 95);
+}</code></pre>
+<hr>
+<h2 id="projekt-96-zähler-bis-96"><a class="header" href="#projekt-96-zähler-bis-96">Projekt 96: Zähler bis 96</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 96;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-97-ist-die-zahl-größer-als-97"><a class="header" href="#projekt-97-ist-die-zahl-größer-als-97">Projekt 97: Ist die Zahl größer als 97?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 97 {
+        println!("Ja, {} ist größer als 97!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 97.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-98-textwiederholung"><a class="header" href="#projekt-98-textwiederholung">Projekt 98: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-99-altersprüfer-mindestalter-99"><a class="header" href="#projekt-99-altersprüfer-mindestalter-99">Projekt 99: Altersprüfer (Mindestalter 99)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 99 {
+        println!("Du hast das Mindestalter von 99 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 99.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-100-multiplikator-100"><a class="header" href="#projekt-100-multiplikator-100">Projekt 100: Multiplikator 100</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 100 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 100);
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="phase-2-projektvorschläge-für-einsteiger"><a class="header" href="#phase-2-projektvorschläge-für-einsteiger">Phase 2: Projektvorschläge für Einsteiger</a></h1>
 <p>In dieser Phase vertiefen wir die Grundlagen und führen <strong>eigene Datentypen</strong> ein. Du wirst in jedem Projekt das Gelernte aus Phase 1 wiederholen und zusätzlich <code>Structs</code>, Methoden und <code>Enums</code> anwenden.</p>
 <h3 id="was-wir-wiederholen"><a class="header" href="#was-wir-wiederholen">Was wir wiederholen:</a></h3>

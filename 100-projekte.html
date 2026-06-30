@@ -1,0 +1,1703 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-48d3f91e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-285de61a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="100-projekte"><a class="header" href="#100-projekte">100 Projekte</a></h1>
+<p>Phase 1: Projekte für Einsteiger lesen
+Jedes Projekt übt alle Grundlagen gleichzeitig:
+Passives Auffrischen</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
+<tr><td>🧱 Variablen &amp; Datentypen</td><td>Zahlen, Texte, Mutabilität</td></tr>
+<tr><td>🔀 Kontrollfluss</td><td>if/else, loop, while, for</td></tr>
+<tr><td>⌨️ Benutzereingabe</td><td>Lesen von der Konsole, Konvertierung</td></tr>
+<tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt was? Referenzen nutzen</td></tr>
+<tr><td>📝 String vs. &amp;str</td><td>Texte speichern, vergleichen, ausgeben</td></tr>
+</tbody>
+</table>
+</div>
+<p>Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!</p>
+<hr>
+<h2 id="projekt-1-begrüßung-mit-eingabe"><a class="header" href="#projekt-1-begrüßung-mit-eingabe">Projekt 1: Begrüßung mit Eingabe</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 🧱 Variable für Text (String)
+    let mut name = String::new();
+    
+    println!("Bitte gib deinen Namen ein:");
+    
+    // ⌨️ Benutzereingabe
+    // 🧠 `&amp;mut name` = veränderbare Referenz übergeben (Borrowing)
+    io::stdin().read_line(&amp;mut name).expect("Fehler beim Lesen");
+    
+    // 📝 `.trim()` entfernt Leerzeichen/Zeilenumbrüche am Ende (&amp;str)
+    let name_trimmed = name.trim();
+    
+    // 🔀 Kontrollfluss
+    if name_trimmed == "Rust" {
+        println!("Oh, du heißt wie die Sprache!");
+    } else {
+        println!("Hallo, {}!", name_trimmed);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-2-zahlen-addieren-bis-100"><a class="header" href="#projekt-2-zahlen-addieren-bis-100">Projekt 2: Zahlen addieren bis 100</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 🧱 Veränderbare Zahl (i32)
+    let mut summe = 0;
+    
+    // 🔀 Kontrollfluss (for-Schleife)
+    for i in 1..=100 {
+        summe += i; // Addiere i zur Summe
+    }
+    
+    println!("Die Summe der Zahlen von 1 bis 100 ist: {}", summe);
+}</code></pre>
+<hr>
+<h2 id="projekt-3-passwort-prüfer"><a class="header" href="#projekt-3-passwort-prüfer">Projekt 3: Passwort-Prüfer</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 📝 &amp;str (fest vorgegebener Text)
+    let geheimnis = "rust123";
+    // 🧱 String (veränderbarer Text für Eingabe)
+    let mut eingabe = String::new();
+    
+    println!("Bitte Passwort eingeben:");
+    // ⌨️ Benutzereingabe mit Borrowing (&amp;mut)
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // 🔀 Kontrollfluss &amp; Vergleich
+    if eingabe.trim() == geheimnis {
+        println!("Zugriff gewährt!");
+    } else {
+        println!("Zugriff verweigert!");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-4-gerade-oder-ungerade"><a class="header" href="#projekt-4-gerade-oder-ungerade">Projekt 4: Gerade oder Ungerade</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung von String zu i32
+    let zahl: i32 = eingabe.trim().parse().expect("Das ist keine Zahl!");
+    
+    // 🔀 Kontrollfluss mit Modulo
+    if zahl % 2 == 0 {
+        println!("{} ist eine gerade Zahl.", zahl);
+    } else {
+        println!("{} ist eine ungerade Zahl.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-5-zählen-bis-zum-ziel"><a class="header" href="#projekt-5-zählen-bis-zum-ziel">Projekt 5: Zählen bis zum Ziel</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Bis wohin soll ich zählen?");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let ziel: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    // 🔀 while-Schleife
+    let mut aktuell = 1;
+    while aktuell &lt;= ziel {
+        println!("Zahl: {}", aktuell);
+        aktuell += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-6-lieblingsfarbe-erraten"><a class="header" href="#projekt-6-lieblingsfarbe-erraten">Projekt 6: Lieblingsfarbe erraten</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    // 🔀 Endlose loop-Schleife
+    loop {
+        println!("Errate meine Lieblingsfarbe (Tipp: Sie ist rot oder blau):");
+        let mut farbe = String::new();
+        io::stdin().read_line(&amp;mut farbe).expect("Fehler");
+        
+        // 📝 Vergleichen von &amp;str
+        if farbe.trim() == "rot" {
+            println!("Richtig! Rot ist super.");
+            break; // 🔀 Schleife beenden
+        } else {
+            println!("Falsch, versuche es nochmal!");
+        }
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-7-temperatur-umrechner"><a class="header" href="#projekt-7-temperatur-umrechner">Projekt 7: Temperatur-Umrechner</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib die Temperatur in Celsius ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // 🧱 f64 für Kommazahlen
+    let celsius: f64 = eingabe.trim().parse().expect("Zahl benötigt");
+    let fahrenheit = celsius * 1.8 + 32.0;
+    
+    println!("{}°C sind {}°F", celsius, fahrenheit);
+}</code></pre>
+<hr>
+<h2 id="projekt-8-wortlängen-messer"><a class="header" href="#projekt-8-wortlängen-messer">Projekt 8: Wortlängen-Messer</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib ein Wort ein:");
+    let mut wort = String::new();
+    io::stdin().read_line(&amp;mut wort).expect("Fehler");
+    
+    // 🧠 Borrowing: len() nutzt eine Referenz auf den String
+    let laenge = wort.trim().len();
+    
+    println!("Dein Wort hat {} Buchstaben.", laenge);
+}</code></pre>
+<hr>
+<h2 id="projekt-9-countdown"><a class="header" href="#projekt-9-countdown">Projekt 9: Countdown</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 🔀 for-Schleife rückwärts
+    for i in (1..=10).rev() {
+        println!("Countdown: {}", i);
+    }
+    println!("Start!");
+}</code></pre>
+<hr>
+<h2 id="projekt-10-einfacher-taschenrechner-addition"><a class="header" href="#projekt-10-einfacher-taschenrechner-addition">Projekt 10: Einfacher Taschenrechner (Addition)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut zahl1 = String::new();
+    let mut zahl2 = String::new();
+    
+    println!("Erste Zahl:");
+    io::stdin().read_line(&amp;mut zahl1).expect("Fehler");
+    
+    println!("Zweite Zahl:");
+    io::stdin().read_line(&amp;mut zahl2).expect("Fehler");
+    
+    let z1: f64 = zahl1.trim().parse().expect("Zahl erwartet");
+    let z2: f64 = zahl2.trim().parse().expect("Zahl erwartet");
+    
+    println!("Ergebnis: {}", z1 + z2);
+}</code></pre>
+<hr>
+<h2 id="projekt-11-zähler-bis-11"><a class="header" href="#projekt-11-zähler-bis-11">Projekt 11: Zähler bis 11</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 11;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-12-ist-die-zahl-größer-als-12"><a class="header" href="#projekt-12-ist-die-zahl-größer-als-12">Projekt 12: Ist die Zahl größer als 12?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 12 {
+        println!("Ja, {} ist größer als 12!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 12.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-13-textwiederholung"><a class="header" href="#projekt-13-textwiederholung">Projekt 13: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-14-altersprüfer-mindestalter-14"><a class="header" href="#projekt-14-altersprüfer-mindestalter-14">Projekt 14: Altersprüfer (Mindestalter 14)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 14 {
+        println!("Du hast das Mindestalter von 14 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 14.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-15-multiplikator-15"><a class="header" href="#projekt-15-multiplikator-15">Projekt 15: Multiplikator 15</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 15 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 15);
+}</code></pre>
+<hr>
+<h2 id="projekt-16-zähler-bis-16"><a class="header" href="#projekt-16-zähler-bis-16">Projekt 16: Zähler bis 16</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 16;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-17-ist-die-zahl-größer-als-17"><a class="header" href="#projekt-17-ist-die-zahl-größer-als-17">Projekt 17: Ist die Zahl größer als 17?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 17 {
+        println!("Ja, {} ist größer als 17!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 17.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-18-textwiederholung"><a class="header" href="#projekt-18-textwiederholung">Projekt 18: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-19-altersprüfer-mindestalter-19"><a class="header" href="#projekt-19-altersprüfer-mindestalter-19">Projekt 19: Altersprüfer (Mindestalter 19)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 19 {
+        println!("Du hast das Mindestalter von 19 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 19.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-20-multiplikator-20"><a class="header" href="#projekt-20-multiplikator-20">Projekt 20: Multiplikator 20</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 20 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 20);
+}</code></pre>
+<hr>
+<h2 id="projekt-21-zähler-bis-21"><a class="header" href="#projekt-21-zähler-bis-21">Projekt 21: Zähler bis 21</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 21;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-22-ist-die-zahl-größer-als-22"><a class="header" href="#projekt-22-ist-die-zahl-größer-als-22">Projekt 22: Ist die Zahl größer als 22?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 22 {
+        println!("Ja, {} ist größer als 22!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 22.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-23-textwiederholung"><a class="header" href="#projekt-23-textwiederholung">Projekt 23: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-24-altersprüfer-mindestalter-24"><a class="header" href="#projekt-24-altersprüfer-mindestalter-24">Projekt 24: Altersprüfer (Mindestalter 24)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 24 {
+        println!("Du hast das Mindestalter von 24 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 24.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-25-multiplikator-25"><a class="header" href="#projekt-25-multiplikator-25">Projekt 25: Multiplikator 25</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 25 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 25);
+}</code></pre>
+<hr>
+<h2 id="projekt-26-zähler-bis-26"><a class="header" href="#projekt-26-zähler-bis-26">Projekt 26: Zähler bis 26</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 26;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-27-ist-die-zahl-größer-als-27"><a class="header" href="#projekt-27-ist-die-zahl-größer-als-27">Projekt 27: Ist die Zahl größer als 27?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 27 {
+        println!("Ja, {} ist größer als 27!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 27.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-28-textwiederholung"><a class="header" href="#projekt-28-textwiederholung">Projekt 28: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-29-altersprüfer-mindestalter-29"><a class="header" href="#projekt-29-altersprüfer-mindestalter-29">Projekt 29: Altersprüfer (Mindestalter 29)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 29 {
+        println!("Du hast das Mindestalter von 29 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 29.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-30-multiplikator-30"><a class="header" href="#projekt-30-multiplikator-30">Projekt 30: Multiplikator 30</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 30 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 30);
+}</code></pre>
+<hr>
+<h2 id="projekt-31-zähler-bis-31"><a class="header" href="#projekt-31-zähler-bis-31">Projekt 31: Zähler bis 31</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 31;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-32-ist-die-zahl-größer-als-32"><a class="header" href="#projekt-32-ist-die-zahl-größer-als-32">Projekt 32: Ist die Zahl größer als 32?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 32 {
+        println!("Ja, {} ist größer als 32!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 32.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-33-textwiederholung"><a class="header" href="#projekt-33-textwiederholung">Projekt 33: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-34-altersprüfer-mindestalter-34"><a class="header" href="#projekt-34-altersprüfer-mindestalter-34">Projekt 34: Altersprüfer (Mindestalter 34)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 34 {
+        println!("Du hast das Mindestalter von 34 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 34.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-35-multiplikator-35"><a class="header" href="#projekt-35-multiplikator-35">Projekt 35: Multiplikator 35</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 35 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 35);
+}</code></pre>
+<hr>
+<h2 id="projekt-36-zähler-bis-36"><a class="header" href="#projekt-36-zähler-bis-36">Projekt 36: Zähler bis 36</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 36;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-37-ist-die-zahl-größer-als-37"><a class="header" href="#projekt-37-ist-die-zahl-größer-als-37">Projekt 37: Ist die Zahl größer als 37?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 37 {
+        println!("Ja, {} ist größer als 37!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 37.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-38-textwiederholung"><a class="header" href="#projekt-38-textwiederholung">Projekt 38: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-39-altersprüfer-mindestalter-39"><a class="header" href="#projekt-39-altersprüfer-mindestalter-39">Projekt 39: Altersprüfer (Mindestalter 39)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 39 {
+        println!("Du hast das Mindestalter von 39 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 39.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-40-multiplikator-40"><a class="header" href="#projekt-40-multiplikator-40">Projekt 40: Multiplikator 40</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 40 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 40);
+}</code></pre>
+<hr>
+<h2 id="projekt-41-zähler-bis-41"><a class="header" href="#projekt-41-zähler-bis-41">Projekt 41: Zähler bis 41</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 41;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-42-ist-die-zahl-größer-als-42"><a class="header" href="#projekt-42-ist-die-zahl-größer-als-42">Projekt 42: Ist die Zahl größer als 42?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 42 {
+        println!("Ja, {} ist größer als 42!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 42.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-43-textwiederholung"><a class="header" href="#projekt-43-textwiederholung">Projekt 43: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-44-altersprüfer-mindestalter-44"><a class="header" href="#projekt-44-altersprüfer-mindestalter-44">Projekt 44: Altersprüfer (Mindestalter 44)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 44 {
+        println!("Du hast das Mindestalter von 44 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 44.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-45-multiplikator-45"><a class="header" href="#projekt-45-multiplikator-45">Projekt 45: Multiplikator 45</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 45 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 45);
+}</code></pre>
+<hr>
+<h2 id="projekt-46-zähler-bis-46"><a class="header" href="#projekt-46-zähler-bis-46">Projekt 46: Zähler bis 46</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 46;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-47-ist-die-zahl-größer-als-47"><a class="header" href="#projekt-47-ist-die-zahl-größer-als-47">Projekt 47: Ist die Zahl größer als 47?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 47 {
+        println!("Ja, {} ist größer als 47!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 47.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-48-textwiederholung"><a class="header" href="#projekt-48-textwiederholung">Projekt 48: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-49-altersprüfer-mindestalter-49"><a class="header" href="#projekt-49-altersprüfer-mindestalter-49">Projekt 49: Altersprüfer (Mindestalter 49)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 49 {
+        println!("Du hast das Mindestalter von 49 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 49.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-50-multiplikator-50"><a class="header" href="#projekt-50-multiplikator-50">Projekt 50: Multiplikator 50</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 50 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 50);
+}</code></pre>
+<hr>
+<h2 id="projekt-51-zähler-bis-51"><a class="header" href="#projekt-51-zähler-bis-51">Projekt 51: Zähler bis 51</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 51;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-52-ist-die-zahl-größer-als-52"><a class="header" href="#projekt-52-ist-die-zahl-größer-als-52">Projekt 52: Ist die Zahl größer als 52?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 52 {
+        println!("Ja, {} ist größer als 52!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 52.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-53-textwiederholung"><a class="header" href="#projekt-53-textwiederholung">Projekt 53: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-54-altersprüfer-mindestalter-54"><a class="header" href="#projekt-54-altersprüfer-mindestalter-54">Projekt 54: Altersprüfer (Mindestalter 54)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 54 {
+        println!("Du hast das Mindestalter von 54 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 54.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-55-multiplikator-55"><a class="header" href="#projekt-55-multiplikator-55">Projekt 55: Multiplikator 55</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 55 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 55);
+}</code></pre>
+<hr>
+<h2 id="projekt-56-zähler-bis-56"><a class="header" href="#projekt-56-zähler-bis-56">Projekt 56: Zähler bis 56</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 56;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-57-ist-die-zahl-größer-als-57"><a class="header" href="#projekt-57-ist-die-zahl-größer-als-57">Projekt 57: Ist die Zahl größer als 57?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 57 {
+        println!("Ja, {} ist größer als 57!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 57.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-58-textwiederholung"><a class="header" href="#projekt-58-textwiederholung">Projekt 58: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-59-altersprüfer-mindestalter-59"><a class="header" href="#projekt-59-altersprüfer-mindestalter-59">Projekt 59: Altersprüfer (Mindestalter 59)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 59 {
+        println!("Du hast das Mindestalter von 59 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 59.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-60-multiplikator-60"><a class="header" href="#projekt-60-multiplikator-60">Projekt 60: Multiplikator 60</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 60 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 60);
+}</code></pre>
+<hr>
+<h2 id="projekt-61-zähler-bis-61"><a class="header" href="#projekt-61-zähler-bis-61">Projekt 61: Zähler bis 61</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 61;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-62-ist-die-zahl-größer-als-62"><a class="header" href="#projekt-62-ist-die-zahl-größer-als-62">Projekt 62: Ist die Zahl größer als 62?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 62 {
+        println!("Ja, {} ist größer als 62!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 62.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-63-textwiederholung"><a class="header" href="#projekt-63-textwiederholung">Projekt 63: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-64-altersprüfer-mindestalter-64"><a class="header" href="#projekt-64-altersprüfer-mindestalter-64">Projekt 64: Altersprüfer (Mindestalter 64)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 64 {
+        println!("Du hast das Mindestalter von 64 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 64.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-65-multiplikator-65"><a class="header" href="#projekt-65-multiplikator-65">Projekt 65: Multiplikator 65</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 65 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 65);
+}</code></pre>
+<hr>
+<h2 id="projekt-66-zähler-bis-66"><a class="header" href="#projekt-66-zähler-bis-66">Projekt 66: Zähler bis 66</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 66;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-67-ist-die-zahl-größer-als-67"><a class="header" href="#projekt-67-ist-die-zahl-größer-als-67">Projekt 67: Ist die Zahl größer als 67?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 67 {
+        println!("Ja, {} ist größer als 67!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 67.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-68-textwiederholung"><a class="header" href="#projekt-68-textwiederholung">Projekt 68: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-69-altersprüfer-mindestalter-69"><a class="header" href="#projekt-69-altersprüfer-mindestalter-69">Projekt 69: Altersprüfer (Mindestalter 69)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 69 {
+        println!("Du hast das Mindestalter von 69 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 69.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-70-multiplikator-70"><a class="header" href="#projekt-70-multiplikator-70">Projekt 70: Multiplikator 70</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 70 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 70);
+}</code></pre>
+<hr>
+<h2 id="projekt-71-zähler-bis-71"><a class="header" href="#projekt-71-zähler-bis-71">Projekt 71: Zähler bis 71</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 71;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-72-ist-die-zahl-größer-als-72"><a class="header" href="#projekt-72-ist-die-zahl-größer-als-72">Projekt 72: Ist die Zahl größer als 72?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 72 {
+        println!("Ja, {} ist größer als 72!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 72.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-73-textwiederholung"><a class="header" href="#projekt-73-textwiederholung">Projekt 73: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-74-altersprüfer-mindestalter-74"><a class="header" href="#projekt-74-altersprüfer-mindestalter-74">Projekt 74: Altersprüfer (Mindestalter 74)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 74 {
+        println!("Du hast das Mindestalter von 74 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 74.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-75-multiplikator-75"><a class="header" href="#projekt-75-multiplikator-75">Projekt 75: Multiplikator 75</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 75 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 75);
+}</code></pre>
+<hr>
+<h2 id="projekt-76-zähler-bis-76"><a class="header" href="#projekt-76-zähler-bis-76">Projekt 76: Zähler bis 76</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 76;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-77-ist-die-zahl-größer-als-77"><a class="header" href="#projekt-77-ist-die-zahl-größer-als-77">Projekt 77: Ist die Zahl größer als 77?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 77 {
+        println!("Ja, {} ist größer als 77!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 77.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-78-textwiederholung"><a class="header" href="#projekt-78-textwiederholung">Projekt 78: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-79-altersprüfer-mindestalter-79"><a class="header" href="#projekt-79-altersprüfer-mindestalter-79">Projekt 79: Altersprüfer (Mindestalter 79)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 79 {
+        println!("Du hast das Mindestalter von 79 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 79.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-80-multiplikator-80"><a class="header" href="#projekt-80-multiplikator-80">Projekt 80: Multiplikator 80</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 80 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 80);
+}</code></pre>
+<hr>
+<h2 id="projekt-81-zähler-bis-81"><a class="header" href="#projekt-81-zähler-bis-81">Projekt 81: Zähler bis 81</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 81;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-82-ist-die-zahl-größer-als-82"><a class="header" href="#projekt-82-ist-die-zahl-größer-als-82">Projekt 82: Ist die Zahl größer als 82?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 82 {
+        println!("Ja, {} ist größer als 82!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 82.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-83-textwiederholung"><a class="header" href="#projekt-83-textwiederholung">Projekt 83: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-84-altersprüfer-mindestalter-84"><a class="header" href="#projekt-84-altersprüfer-mindestalter-84">Projekt 84: Altersprüfer (Mindestalter 84)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 84 {
+        println!("Du hast das Mindestalter von 84 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 84.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-85-multiplikator-85"><a class="header" href="#projekt-85-multiplikator-85">Projekt 85: Multiplikator 85</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 85 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 85);
+}</code></pre>
+<hr>
+<h2 id="projekt-86-zähler-bis-86"><a class="header" href="#projekt-86-zähler-bis-86">Projekt 86: Zähler bis 86</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 86;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-87-ist-die-zahl-größer-als-87"><a class="header" href="#projekt-87-ist-die-zahl-größer-als-87">Projekt 87: Ist die Zahl größer als 87?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 87 {
+        println!("Ja, {} ist größer als 87!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 87.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-88-textwiederholung"><a class="header" href="#projekt-88-textwiederholung">Projekt 88: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-89-altersprüfer-mindestalter-89"><a class="header" href="#projekt-89-altersprüfer-mindestalter-89">Projekt 89: Altersprüfer (Mindestalter 89)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 89 {
+        println!("Du hast das Mindestalter von 89 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 89.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-90-multiplikator-90"><a class="header" href="#projekt-90-multiplikator-90">Projekt 90: Multiplikator 90</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 90 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 90);
+}</code></pre>
+<hr>
+<h2 id="projekt-91-zähler-bis-91"><a class="header" href="#projekt-91-zähler-bis-91">Projekt 91: Zähler bis 91</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 91;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-92-ist-die-zahl-größer-als-92"><a class="header" href="#projekt-92-ist-die-zahl-größer-als-92">Projekt 92: Ist die Zahl größer als 92?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 92 {
+        println!("Ja, {} ist größer als 92!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 92.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-93-textwiederholung"><a class="header" href="#projekt-93-textwiederholung">Projekt 93: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-94-altersprüfer-mindestalter-94"><a class="header" href="#projekt-94-altersprüfer-mindestalter-94">Projekt 94: Altersprüfer (Mindestalter 94)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 94 {
+        println!("Du hast das Mindestalter von 94 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 94.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-95-multiplikator-95"><a class="header" href="#projekt-95-multiplikator-95">Projekt 95: Multiplikator 95</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 95 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 95);
+}</code></pre>
+<hr>
+<h2 id="projekt-96-zähler-bis-96"><a class="header" href="#projekt-96-zähler-bis-96">Projekt 96: Zähler bis 96</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    let max = 96;
+    let mut count = 1;
+    // 🔀 while-Schleife
+    while count &lt;= max {
+        println!("Zähle: {}", count);
+        count += 1;
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-97-ist-die-zahl-größer-als-97"><a class="header" href="#projekt-97-ist-die-zahl-größer-als-97">Projekt 97: Ist die Zahl größer als 97?</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    // ⌨️ Konvertierung
+    let zahl: i32 = eingabe.trim().parse().expect("Zahl erwartet");
+    
+    // 🔀 if/else
+    if zahl &gt; 97 {
+        println!("Ja, {} ist größer als 97!", zahl);
+    } else {
+        println!("Nein, {} ist nicht größer als 97.", zahl);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-98-textwiederholung"><a class="header" href="#projekt-98-textwiederholung">Projekt 98: Textwiederholung</a></h2>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 📝 &amp;str
+    let wort = "Rust";
+    // 🔀 for-Schleife
+    for _ in 0..4 {
+        println!("Ich lerne {}", wort);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-99-altersprüfer-mindestalter-99"><a class="header" href="#projekt-99-altersprüfer-mindestalter-99">Projekt 99: Altersprüfer (Mindestalter 99)</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Wie alt bist du?");
+    // 🧱 String
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let alter: i32 = eingabe.trim().parse().expect("Alter erwartet");
+    
+    if alter &gt;= 99 {
+        println!("Du hast das Mindestalter von 99 erreicht!");
+    } else {
+        println!("Leider noch zu jung für 99.");
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-100-multiplikator-100"><a class="header" href="#projekt-100-multiplikator-100">Projekt 100: Multiplikator 100</a></h2>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Gib eine Zahl ein, um sie mit 100 zu multiplizieren:");
+    let mut eingabe = String::new();
+    io::stdin().read_line(&amp;mut eingabe).expect("Fehler");
+    
+    let zahl: i32 = eingabe.trim().parse().expect("Bitte eine Zahl eingeben");
+    
+    println!("Das Ergebnis ist: {}", zahl * 100);
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="phase2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="phase2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
