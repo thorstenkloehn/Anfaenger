@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-0d24b264.js";
+            window.path_to_searchindex_js = "searchindex-de4d588e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-562af6f3.js"></script>
+        <script src="toc-d8f04310.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -544,56 +544,123 @@ Gib die Zahlen 1 bis 100 aus. Bei Vielfachen von 3: „Fizz“, bei Vielfachen v
 <p><strong>Beschreibung:</strong>
 Der Nutzer gibt eine Zahl ein. Das Programm prüft, ob sie eine Primzahl ist, und gibt das Ergebnis aus.</p>
 <p><strong>Themen:</strong> <code>u64</code>-Datentyp, <code>for</code>-Schleife, <code>if/else</code>, Benutzereingabe, Konvertierung</p>
+<hr><div style="break-before: page; page-break-before: always;"></div>
+<h1 id="phase-2-projektvorschläge-für-einsteiger"><a class="header" href="#phase-2-projektvorschläge-für-einsteiger">Phase 2: Projektvorschläge für Einsteiger</a></h1>
+<p>In dieser Phase vertiefen wir die Grundlagen und führen <strong>eigene Datentypen</strong> ein. Du wirst in jedem Projekt das Gelernte aus Phase 1 wiederholen und zusätzlich <code>Structs</code>, Methoden und <code>Enums</code> anwenden.</p>
+<h3 id="was-wir-wiederholen"><a class="header" href="#was-wir-wiederholen">Was wir wiederholen:</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
+<tr><td>🧱 Variablen &amp; Datentypen</td><td>Zahlen, Texte, Mutabilität</td></tr>
+<tr><td>🔀 Kontrollfluss</td><td><code>if/else</code>, <code>loop</code>, <code>while</code>, <code>for</code></td></tr>
+<tr><td>⌨️ Benutzereingabe</td><td>Lesen von der Konsole, Konvertierung</td></tr>
+<tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt was? Referenzen nutzen</td></tr>
+<tr><td>📝 String vs. &amp;str</td><td>Texte speichern, vergleichen, ausgeben</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="neue-themen-in-jedem-projekt-angewendet"><a class="header" href="#neue-themen-in-jedem-projekt-angewendet">Neue Themen (in JEDEM Projekt angewendet):</a></h3>
+<ul>
+<li><strong>Structs &amp; Methoden (Die Basis):</strong> Eigene Datentypen definieren und mit <code>impl</code> Methoden (Funktionen, die zu dem Struct gehören) hinzufügen.</li>
+<li><strong>Enums (Die Basis):</strong> Eigene Aufzählungen erstellen, um feste Zustände oder Kategorien abzubilden.</li>
+<li><strong>Pattern Matching:</strong> Der <code>match</code>-Ausdruck (mit Exhaustiveness Checking – der Compiler zwingt dich, jeden Fall abzudecken) und das kompakte <code>if let</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Hinweis:</strong> Alle Projekte werden ohne fertige Code-Vorschläge begleitet. Erarbeite die Lösung eigenständig!</p>
+</blockquote>
 <hr>
-<h2 id="-projekt-11-wochentag-finder"><a class="header" href="#-projekt-11-wochentag-finder">📅 Projekt 11: Wochentag-Finder</a></h2>
+<h2 id="-projekt-1-kontaktverwaltung"><a class="header" href="#-projekt-1-kontaktverwaltung">📞 Projekt 1: Kontaktverwaltung</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer gibt ein Datum als Tag, Monat und Jahr ein. Das Programm berechnet, welcher Wochentag das war (z. B. Montag).</p>
-<p><strong>Themen:</strong> <code>u32</code>-Datentyp, Rechnen mit Zahlen, Benutzereingabe, <code>match</code> für Wochentagname</p>
+Der Nutzer kann neue Kontakte anlegen und alle Kontakte anzeigen. Jeder Kontakt hat einen Namen, ein Alter und eine Kategorie.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Kontakt</code> für die Daten.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Kategorie</code> (z.B. <code>Freund</code>, <code>Arbeit</code>, <code>Familie</code>).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>anzeigen(&amp;self)</code> für das Struct, die den Kontakt formatiert mit <code>match</code> für die Kategorie ausgibt.</li>
+</ul>
 <hr>
-<h2 id="-projekt-12-würfelspiel"><a class="header" href="#-projekt-12-würfelspiel">🎲 Projekt 12: Würfelspiel</a></h2>
+<h2 id="-projekt-2-to-do-liste"><a class="header" href="#-projekt-2-to-do-liste">📝 Projekt 2: To-Do-Liste</a></h2>
 <p><strong>Beschreibung:</strong>
-Zwei Spieler würfeln abwechselnd (Zufallszahl 1–6). Der erste Spieler, der 21 Punkte erreicht oder überschreitet, verliert. Das Programm zeigt jeden Wurf an.</p>
-<p><strong>Themen:</strong> Variablen, Zufallszahlen, <code>loop</code>, Benutzereingabe (zum Fortfahren), <code>String</code>-Ausgabe</p>
+Ein Programm, um Aufgaben hinzuzufügen und ihren Status zu ändern.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Aufgabe</code> mit Beschreibung und Status.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Status</code> (z.B. <code>Offen</code>, <code>InArbeit</code>, <code>Erledigt</code>).</li>
+<li>Schreibe eine <strong>Methode</strong> im <code>impl</code>-Block, um den Status einer Aufgabe zu aktualisieren. Gib mit <code>match</code> je nach Status eine passende Meldung aus.</li>
+</ul>
 <hr>
-<h2 id="-projekt-13-einfaches-bankkonto"><a class="header" href="#-projekt-13-einfaches-bankkonto">🏦 Projekt 13: Einfaches Bankkonto</a></h2>
+<h2 id="-projekt-3-pizza-bestellsystem"><a class="header" href="#-projekt-3-pizza-bestellsystem">🍕 Projekt 3: Pizza-Bestellsystem</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer kann Geld einzahlen, abheben oder den Kontostand anzeigen lassen. Das Programm verhindert, dass das Konto ins Negative geht.</p>
-<p><strong>Themen:</strong> <code>f64</code>, <code>mut</code>, <code>loop</code>, Benutzereingabe, <code>if/else</code>, <code>&amp;str</code> für Menüoptionen</p>
+Der Nutzer kann eine Pizza bestellen und die Größe auswählen. Das Programm berechnet den Preis.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Bestellung</code>.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Groesse</code> (<code>Klein</code>, <code>Mittel</code>, <code>Gross</code>).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>preis_berechnen(&amp;self)</code>, die mit einem <code>match</code>-Ausdruck über die Größe den richtigen Preis zurückgibt.</li>
+</ul>
 <hr>
-<h2 id="-projekt-14-wörter-zählen"><a class="header" href="#-projekt-14-wörter-zählen">🔤 Projekt 14: Wörter zählen</a></h2>
+<h2 id="-projekt-4-fahrzeug-inventar"><a class="header" href="#-projekt-4-fahrzeug-inventar">🚗 Projekt 4: Fahrzeug-Inventar</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer gibt einen Satz ein. Das Programm zählt die Wörter, Zeichen und Vokale und gibt alles aus.</p>
-<p><strong>Themen:</strong> <code>String</code>, <code>&amp;str</code>, <code>for</code>-Schleife über Zeichen, Benutzereingabe, Variablen</p>
+Der Nutzer gibt Fahrzeuge in ein System ein. Jedes Fahrzeug hat einen Hersteller und einen Typ.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Fahrzeug</code>.</li>
+<li>Nutze ein <strong>Enum</strong> <code>FahrzeugTyp</code> (<code>Auto</code>, <code>Motorrad</code>, <code>LKW</code>).</li>
+<li>Schreibe eine <strong>Methode</strong>, die mit <code>if let</code> (oder <code>match</code>) prüft, ob es sich um ein <code>Auto</code> handelt und dann eine spezielle Nachricht ausgibt.</li>
+</ul>
 <hr>
-<h2 id="-projekt-15-kollatz-folge"><a class="header" href="#-projekt-15-kollatz-folge">🔄 Projekt 15: Kollatz-Folge</a></h2>
+<h2 id="-projekt-5-geometrie-rechner-revival"><a class="header" href="#-projekt-5-geometrie-rechner-revival">📐 Projekt 5: Geometrie-Rechner (Revival)</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer gibt eine positive Zahl ein. Das Programm berechnet die Kollatz-Folge (gerade → halbieren, ungerade → mal 3 plus 1) und gibt jeden Schritt aus, bis 1 erreicht ist.</p>
-<p><strong>Themen:</strong> <code>u64</code>, <code>while</code>-Schleife, <code>if/else</code>, Benutzereingabe, Konvertierung</p>
+Ein Rechner für Flächeninhalte.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>Form</code>, das die nötigen Maße direkt enthält (z.B. <code>Kreis(f64)</code>, <code>Rechteck(f64, f64)</code>).</li>
+<li>Nutze ein <strong>Struct</strong> <code>Rechner</code>, das die letzte Berechnung speichert.</li>
+<li>Schreibe eine <strong>Methode</strong> <code>flaeche_berechnen</code>, die ein <code>Form</code>-Enum annimmt und per <code>match</code>-Ausdruck die Exhaustiveness Checking nutzt, um die Fläche zu berechnen.</li>
+</ul>
 <hr>
-<h2 id="-projekt-16-geometrie-rechner"><a class="header" href="#-projekt-16-geometrie-rechner">📐 Projekt 16: Geometrie-Rechner</a></h2>
+<h2 id="-projekt-6-wetterstation"><a class="header" href="#-projekt-6-wetterstation">🌡️ Projekt 6: Wetterstation</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer wählt eine Form (Kreis, Rechteck, Dreieck) und gibt die Maße ein. Das Programm berechnet Fläche und Umfang.</p>
-<p><strong>Themen:</strong> <code>f64</code>, <code>match</code>, Benutzereingabe, Konvertierung, <code>&amp;str</code> für Formnamen</p>
+Ein Programm, das Wetterberichte für Tage speichert.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Wetterbericht</code> mit Temperatur und Wetterlage.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Wetterlage</code> (<code>Sonnig</code>, <code>Regnerisch</code>, <code>Bewoelkt</code>).</li>
+<li>Implementiere eine <strong>Methode</strong>, die warnt, wenn es regnet, und empfiehlt, Sonnencreme bei Sonne zu nutzen (mit <code>match</code>).</li>
+</ul>
 <hr>
-<h2 id="-projekt-17-palindrom-prüfer"><a class="header" href="#-projekt-17-palindrom-prüfer">🔡 Projekt 17: Palindrom-Prüfer</a></h2>
+<h2 id="-projekt-7-haustier-simulator"><a class="header" href="#-projekt-7-haustier-simulator">🐶 Projekt 7: Haustier-Simulator</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer gibt ein Wort ein. Das Programm prüft, ob es ein Palindrom ist (z. B. „Rentner“), und gibt das Ergebnis aus.</p>
-<p><strong>Themen:</strong> <code>String</code>, <code>&amp;str</code>, Iteration über Zeichen, Benutzereingabe, <code>bool</code></p>
+Du kümmerst dich um ein virtuelles Haustier.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Haustier</code> mit Name, Hunger-Level und Stimmung.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Stimmung</code> (<code>Gluecklich</code>, <code>Hungrig</code>, <code>Muede</code>).</li>
+<li>Schreibe <strong>Methoden</strong> wie <code>fuettern(&amp;mut self)</code> oder <code>spielen(&amp;mut self)</code>, die die Stimmung per <code>match</code> anpassen.</li>
+</ul>
 <hr>
-<h2 id="-projekt-18-lernkarten-quiz"><a class="header" href="#-projekt-18-lernkarten-quiz">🎓 Projekt 18: Lernkarten-Quiz</a></h2>
+<h2 id="-projekt-8-mini-bibliothek"><a class="header" href="#-projekt-8-mini-bibliothek">📚 Projekt 8: Mini-Bibliothek</a></h2>
 <p><strong>Beschreibung:</strong>
-Das Programm enthält 10 feste Frage-Antwort-Paare. Es stellt die Fragen nacheinander, liest die Antwort ein und gibt am Ende die Punktzahl aus.</p>
-<p><strong>Themen:</strong> Arrays oder Tuples, <code>for</code>-Schleife, Benutzereingabe, String-Vergleich, Zähler</p>
+Bücher ausleihen und zurückgeben.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Buch</code> mit Titel und Verfügbarkeit.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Zustand</code> (<code>Verfuegbar</code>, <code>Ausgeliehen</code>).</li>
+<li>Implementiere eine <strong>Methode</strong> zum Ausleihen, die den Zustand mit <code>match</code> oder <code>if let</code> prüft und entsprechend ändert.</li>
+</ul>
 <hr>
-<h2 id="-projekt-19-einheiten-umrechner"><a class="header" href="#-projekt-19-einheiten-umrechner">📏 Projekt 19: Einheiten-Umrechner</a></h2>
+<h2 id="-projekt-9-rollenspiel-charakter"><a class="header" href="#-projekt-9-rollenspiel-charakter">⚔️ Projekt 9: Rollenspiel-Charakter</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer wählt eine Kategorie (Länge, Gewicht, Volumen) und gibt einen Wert mit Einheit ein. Das Programm rechnet in alle anderen Einheiten der Kategorie um.</p>
-<p><strong>Themen:</strong> <code>f64</code>, <code>match</code>, Benutzereingabe, <code>String</code> vs. <code>&amp;str</code>, Variablen</p>
+Erstelle einen Charakter für ein Spiel.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Charakter</code> mit Name, Lebenspunkten und Klasse.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Klasse</code> (<code>Magier</code>, <code>Krieger</code>, <code>Schurke</code>).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>angreifen(&amp;self)</code>, die mit <code>match</code> je nach Klasse eine andere Angriffs-Nachricht ausgibt.</li>
+</ul>
 <hr>
-<h2 id="-projekt-20-countdown-timer"><a class="header" href="#-projekt-20-countdown-timer">⏱️ Projekt 20: Countdown-Timer</a></h2>
+<h2 id="-projekt-10-erweitertes-bankkonto"><a class="header" href="#-projekt-10-erweitertes-bankkonto">🏦 Projekt 10: Erweitertes Bankkonto</a></h2>
 <p><strong>Beschreibung:</strong>
-Der Nutzer gibt eine Anzahl von Sekunden ein. Das Programm zählt von dieser Zahl bis 0 herunter und gibt jeden Schritt aus. Am Ende erscheint „Zeit abgelaufen!“.</p>
-<p><strong>Themen:</strong> <code>u32</code>, <code>for</code>-Schleife, Benutzereingabe, Konvertierung, <code>&amp;str</code>-Ausgabe</p>
+Ein Konto, das Transaktionen (Einzahlungen/Auszahlungen) verarbeitet.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Konto</code> mit dem aktuellen Saldo.</li>
+<li>Nutze ein <strong>Enum</strong> <code>Transaktion</code> (<code>Einzahlung(f64)</code>, <code>Auszahlung(f64)</code>).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>verarbeite(&amp;mut self, t: Transaktion)</code>, die das <code>Enum</code> mit <code>match</code> auswertet und den Saldo entsprechend aktualisiert.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="-bash-skripte--grundlagen--theorie"><a class="header" href="#-bash-skripte--grundlagen--theorie">🐚 Bash-Skripte – Grundlagen &amp; Theorie</a></h1>
 <p>Dieses Kapitel führt dich durch die wichtigsten Grundlagen des Bash-Scriptings. Da du dir explizit praxisbezogene Beispiele gewünscht hast, um es besser zu verstehen, findest du hier kurze Code-Schnipsel! Denk daran: Diese Beispiele zeigen dir, <em>wie</em> die Syntax funktioniert. Die großen Projekte baust du dann selbst auf Basis dieses Wissens.</p>
