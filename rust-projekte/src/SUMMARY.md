@@ -19,11 +19,20 @@
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
 
+- [Konzepte statt Syntax lernen](./phase2-konzepte.md)
+  - [Structs & Methoden](./konzept-structs.md)
+  - [Enums](./konzept-enums.md)
+  - [Pattern Matching](./konzept-matching.md)
 - [Projektvorschläge Phase 2](./phase2.md)
 - [100 Projekte - Themen anzeigen](./100-projekte-phase2.md)
 - [🐚 Bash-Skripte – Grundlagen](./bash-grundlagen.md)
 - [🐚 Bash-Theorie: Alle Themen](./bash-theorie-komplett.md)
 - [Bash-Projektvorschläge](./bash-projektvorschlaege.md)
+
+# Phase 3: Fehlerbehandlung & Collections
+
+- [Konzepte statt Syntax lernen](./phase3-konzepte.md)
+- [Projektvorschläge Phase 3](./phase3.md)
 
 # 🤖 Bonus: KI als Lernpartner
 
