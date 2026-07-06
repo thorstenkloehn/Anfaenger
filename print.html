@@ -16,8 +16,8 @@
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-0392ca55.css">
-        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
         <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-48d3f91e.js";
+            window.path_to_searchindex_js = "searchindex-79b13057.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-285de61a.js"></script>
+        <script src="toc-c400814b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2382,6 +2382,3751 @@ Ein Konto, das Transaktionen (Einzahlungen/Auszahlungen) verarbeitet.</p>
 <li>Nutze ein <strong>Enum</strong> <code>Transaktion</code> (<code>Einzahlung(f64)</code>, <code>Auszahlung(f64)</code>).</li>
 <li>Schreibe eine <strong>Methode</strong> <code>verarbeite(&amp;mut self, t: Transaktion)</code>, die das <code>Enum</code> mit <code>match</code> auswertet und den Saldo entsprechend aktualisiert.</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="100-projekte---themen-anzeigen"><a class="header" href="#100-projekte---themen-anzeigen">100 Projekte - Themen anzeigen</a></h1>
+<p>Phase 2: Projekte für Thema unten lesen
+Jedes Projekt übt alle:</p>
+<ul>
+<li><strong>Structs &amp; Methoden (Die Basis):</strong> Eigene Datentypen definieren und mit <code>impl</code> Methoden (Funktionen, die zu dem Struct gehören) hinzufügen.</li>
+<li><strong>Enums (Die Basis):</strong> Eigene Aufzählungen erstellen, um feste Zustände oder Kategorien abzubilden.</li>
+<li><strong>Pattern Matching:</strong> Der <code>match</code>-Ausdruck (mit Exhaustiveness Checking – der Compiler zwingt dich, jeden Fall abzudecken) und das kompakte <code>if let</code>.</li>
+</ul>
+<p>Passives Auffrischen</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
+<tr><td>📦 Structs &amp; Methoden</td><td>Eigene Datentypen &amp; <code>impl</code>-Funktionen</td></tr>
+<tr><td>🏷️ Enums</td><td>Feste Zustände &amp; Kategorien</td></tr>
+<tr><td>🔍 Pattern Matching</td><td><code>match</code> (Exhaustiveness) &amp; <code>if let</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!</p>
+<hr>
+<h2 id="projekt-1-ampelschaltung"><a class="header" href="#projekt-1-ampelschaltung">Projekt 1: Ampelschaltung</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Ampelphasen
+enum AmpelFarbe {
+    Rot,
+    Gelb,
+    Gruen,
+}
+
+// 📦 Struct für die Ampel selbst
+struct Ampel {
+    id: i32,
+    farbe: AmpelFarbe,
+}
+
+impl Ampel {
+    // 📦 Methode zum Anzeigen des aktuellen Status
+    fn anzeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.farbe {
+            AmpelFarbe::Rot =&gt; println!("Ampel {}: ROT - Bitte stehen bleiben!", self.id),
+            AmpelFarbe::Gelb =&gt; println!("Ampel {}: GELB - Bereitmachen!", self.id),
+            AmpelFarbe::Gruen =&gt; println!("Ampel {}: GRÜN - Freie Fahrt!", self.id),
+        }
+    }
+}
+
+fn main() {
+    let meine_ampel = Ampel {
+        id: 1,
+        farbe: AmpelFarbe::Rot,
+    };
+    meine_ampel.anzeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-2-temperatur-warnung"><a class="header" href="#projekt-2-temperatur-warnung">Projekt 2: Temperatur-Warnung</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Warnstufe
+enum Warnstufe {
+    Normal,
+    Warnung,
+    Alarm,
+}
+
+// 📦 Struct für den Temperatursensor
+struct Sensor {
+    bezeichnung: String,
+    temperatur: f64,
+}
+
+impl Sensor {
+    // 📦 Methode zur Bestimmung der Warnstufe
+    fn warnstufe(&amp;self) -&gt; Warnstufe {
+        if self.temperatur &gt; 80.0 {
+            Warnstufe::Alarm
+        } else if self.temperatur &gt; 50.0 {
+            Warnstufe::Warnung
+        } else {
+            Warnstufe::Normal
+        }
+    }
+}
+
+fn main() {
+    let sensor = Sensor {
+        bezeichnung: String::from("Hauptreaktor"),
+        temperatur: 55.4,
+    };
+    
+    // 🔍 Pattern Matching auf das Ergebnis der Methode
+    match sensor.warnstufe() {
+        Warnstufe::Normal =&gt; println!("Status von {}: Alles im grünen Bereich.", sensor.bezeichnung),
+        Warnstufe::Warnung =&gt; println!("Status von {}: Achtung, Temperatur erhöht!", sensor.bezeichnung),
+        Warnstufe::Alarm =&gt; println!("Status von {}: KRITISCH - Überhitzungsgefahr!", sensor.bezeichnung),
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-3-pizza-größen"><a class="header" href="#projekt-3-pizza-größen">Projekt 3: Pizza-Größen</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Pizzagrößen
+enum PizzaGroesse {
+    Klein,
+    Mittel,
+    Gross,
+}
+
+// 📦 Struct für die Pizza
+struct Pizza {
+    name: String,
+    groesse: PizzaGroesse,
+}
+
+impl Pizza {
+    // 📦 Methode zur Preisberechnung
+    fn preis(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.groesse {
+            PizzaGroesse::Klein =&gt; 6.50,
+            PizzaGroesse::Mittel =&gt; 8.50,
+            PizzaGroesse::Gross =&gt; 11.00,
+        }
+    }
+}
+
+fn main() {
+    let bestellung = Pizza {
+        name: String::from("Salami"),
+        groesse: PizzaGroesse::Mittel,
+    };
+    println!("Pizza {} kostet {} Euro.", bestellung.name, bestellung.preis());
+}</code></pre>
+<hr>
+<h2 id="projekt-4-buch-ausleihe"><a class="header" href="#projekt-4-buch-ausleihe">Projekt 4: Buch-Ausleihe</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Buchstatus
+enum BuchStatus {
+    Verfuegbar,
+    Ausgeliehen,
+}
+
+// 📦 Struct für ein Buch
+struct Buch {
+    titel: String,
+    status: BuchStatus,
+}
+
+impl Buch {
+    // 📦 Methode zum Ausleihen
+    fn ausleihen(&amp;mut self) {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let BuchStatus::Verfuegbar = self.status {
+            self.status = BuchStatus::Ausgeliehen;
+            println!("Das Buch '{}' wurde erfolgreich ausgeliehen.", self.titel);
+        } else {
+            println!("Entschuldigung, '{}' ist bereits ausgeliehen.", self.titel);
+        }
+    }
+}
+
+fn main() {
+    let mut mein_buch = Buch {
+        titel: String::from("Der Rust-Führer"),
+        status: BuchStatus::Verfuegbar,
+    };
+    mein_buch.ausleihen();
+}</code></pre>
+<hr>
+<h2 id="projekt-5-münz-zähler"><a class="header" href="#projekt-5-münz-zähler">Projekt 5: Münz-Zähler</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für Münzen
+enum Muenze {
+    Cent50,
+    Euro1,
+    Euro2,
+}
+
+// 📦 Struct für die Geldbörse
+struct Geldboerse {
+    besitzer: String,
+    wert: f64,
+}
+
+impl Geldboerse {
+    // 📦 Methode zum Hinzufügen einer Münze
+    fn muenze_einwerfen(&amp;mut self, m: Muenze) {
+        // 🔍 Pattern Matching
+        let betrag = match m {
+            Muenze::Cent50 =&gt; 0.50,
+            Muenze::Euro1 =&gt; 1.00,
+            Muenze::Euro2 =&gt; 2.00,
+        };
+        self.wert += betrag;
+        println!("{} wirft eine Münze ein. Neuer Wert: {} Euro.", self.besitzer, self.wert);
+    }
+}
+
+fn main() {
+    let mut boerse = Geldboerse {
+        besitzer: String::from("Thorsten"),
+        wert: 5.00,
+    };
+    boerse.muenze_einwerfen(Muenze::Euro2);
+}</code></pre>
+<hr>
+<h2 id="projekt-6-kaffee-bestellung"><a class="header" href="#projekt-6-kaffee-bestellung">Projekt 6: Kaffee-Bestellung</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für Kaffeearten
+enum KaffeeTyp {
+    Espresso,
+    Cappuccino,
+    Latte,
+}
+
+// 📦 Struct für das Getränk
+struct Kaffee {
+    typ: KaffeeTyp,
+    extra_milch: bool,
+}
+
+impl Kaffee {
+    // 📦 Methode zur Preisermittlung
+    fn preis(&amp;self) -&gt; f64 {
+        let basispreis = match self.typ {
+            KaffeeTyp::Espresso =&gt; 2.00,
+            KaffeeTyp::Cappuccino =&gt; 3.00,
+            KaffeeTyp::Latte =&gt; 3.50,
+        };
+        
+        if self.extra_milch {
+            basispreis + 0.50
+        } else {
+            basispreis
+        }
+    }
+}
+
+fn main() {
+    let bestellung = Kaffee {
+        typ: KaffeeTyp::Cappuccino,
+        extra_milch: true,
+    };
+    println!("Der Preis für deinen Kaffee beträgt {} Euro.", bestellung.preis());
+}</code></pre>
+<hr>
+<h2 id="projekt-7-benutzer-rolle"><a class="header" href="#projekt-7-benutzer-rolle">Projekt 7: Benutzer-Rolle</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Kontotyp
+enum AccountTyp {
+    Premium,
+    Standard,
+    Gast,
+}
+
+// 📦 Struct für einen Benutzer
+struct User {
+    name: String,
+    account: AccountTyp,
+}
+
+impl User {
+    // 📦 Methode zur Ermittlung des Speicherlimits
+    fn speicher_limit_gb(&amp;self) -&gt; i32 {
+        // 🔍 Pattern Matching (match)
+        match self.account {
+            AccountTyp::Premium =&gt; 1000,
+            AccountTyp::Standard =&gt; 50,
+            AccountTyp::Gast =&gt; 5,
+        }
+    }
+}
+
+fn main() {
+    let user = User {
+        name: String::from("Lisa"),
+        account: AccountTyp::Standard,
+    };
+    println!("Benutzerin {} hat ein Limit von {} GB.", user.name, user.speicher_limit_gb());
+}</code></pre>
+<hr>
+<h2 id="projekt-8-haustier-fütterung"><a class="header" href="#projekt-8-haustier-fütterung">Projekt 8: Haustier-Fütterung</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Hungerstatus
+enum HungerStatus {
+    Satt,
+    Hungrig,
+    SehrHungrig,
+}
+
+// 📦 Struct für ein Haustier
+struct Haustier {
+    name: String,
+    hunger: HungerStatus,
+}
+
+impl Haustier {
+    // 📦 Methode zur Statusprüfung
+    fn status_check(&amp;self) {
+        // 🔍 Pattern Matching
+        match self.hunger {
+            HungerStatus::Satt =&gt; println!("{} ist satt und schläft.", self.name),
+            HungerStatus::Hungrig =&gt; println!("{} schaut dich erwartungsvoll an. Futterzeit?", self.name),
+            HungerStatus::SehrHungrig =&gt; println!("Warnung: {} braucht dringend Futter!", self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_haustier = Haustier {
+        name: String::from("Minka"),
+        hunger: HungerStatus::Hungrig,
+    };
+    mein_haustier.status_check();
+}</code></pre>
+<hr>
+<h2 id="projekt-9-spiel-gegner"><a class="header" href="#projekt-9-spiel-gegner">Projekt 9: Spiel-Gegner</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Gegner-Klassen
+enum GegnerTyp {
+    Ork,
+    Goblin,
+    Drache,
+}
+
+// 📦 Struct für einen Spielgegner
+struct Gegner {
+    name: String,
+    typ: GegnerTyp,
+    leben: i32,
+}
+
+impl Gegner {
+    // 📦 Methode zur Schadensberechnung
+    fn basis_schaden(&amp;self) -&gt; i32 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            GegnerTyp::Goblin =&gt; 10,
+            GegnerTyp::Ork =&gt; 25,
+            GegnerTyp::Drache =&gt; 100,
+        }
+    }
+}
+
+fn main() {
+    let feind = Gegner {
+        name: String::from("Smaug"),
+        typ: GegnerTyp::Drache,
+        leben: 500,
+    };
+    println!("Gegner {} macht {} Schaden!", feind.name, feind.basis_schaden());
+}</code></pre>
+<hr>
+<h2 id="projekt-10-paket-zustellung"><a class="header" href="#projekt-10-paket-zustellung">Projekt 10: Paket-Zustellung</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Sendungsstatus
+enum SendungsStatus {
+    Sortierung,
+    Transport,
+    Geliefert,
+}
+
+// 📦 Struct für ein Paket
+struct Paket {
+    tracking_id: i32,
+    status: SendungsStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Fortschrittsanzeige
+    fn fortschritt(&amp;self) {
+        // 🔍 Pattern Matching mit match
+        match self.status {
+            SendungsStatus::Sortierung =&gt; println!("Paket {}: Wird im Paketzentrum sortiert.", self.tracking_id),
+            SendungsStatus::Transport =&gt; println!("Paket {}: Befindet sich in der Zustellung.", self.tracking_id),
+            SendungsStatus::Geliefert =&gt; println!("Paket {}: Erfolgreich zugestellt!", self.tracking_id),
+        }
+    }
+}
+
+fn main() {
+    let mein_paket = Paket {
+        tracking_id: 99482,
+        status: SendungsStatus::Transport,
+    };
+    mein_paket.fortschritt();
+}</code></pre>
+<hr>
+<h2 id="projekt-11-status-manager-heizung-11"><a class="header" href="#projekt-11-status-manager-heizung-11">Projekt 11: Status-Manager (Heizung 11)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Heizung"),
+        id: 11,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-12-ticket-system-ticket-12"><a class="header" href="#projekt-12-ticket-system-ticket-12">Projekt 12: Ticket-System (Ticket 12)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 12,
+        titel: String::from("Fehler in Modul 12"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-13-paket-tracker-paket-13"><a class="header" href="#projekt-13-paket-tracker-paket-13">Projekt 13: Paket-Tracker (Paket 13)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 13,
+        zielort: String::from("Muenchen"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-14-fahrzeug-klasse-fahrzeug-14"><a class="header" href="#projekt-14-fahrzeug-klasse-fahrzeug-14">Projekt 14: Fahrzeug-Klasse (Fahrzeug 14)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Audi"),
+        id: 14,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-15-mitarbeiter-rolle-mitarbeiter-15"><a class="header" href="#projekt-15-mitarbeiter-rolle-mitarbeiter-15">Projekt 15: Mitarbeiter-Rolle (Mitarbeiter 15)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 15,
+        name: String::from("Anna"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-16-status-manager-kuehlschrank-16"><a class="header" href="#projekt-16-status-manager-kuehlschrank-16">Projekt 16: Status-Manager (Kuehlschrank 16)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Kuehlschrank"),
+        id: 16,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-17-ticket-system-ticket-17"><a class="header" href="#projekt-17-ticket-system-ticket-17">Projekt 17: Ticket-System (Ticket 17)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 17,
+        titel: String::from("Fehler in Modul 17"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-18-paket-tracker-paket-18"><a class="header" href="#projekt-18-paket-tracker-paket-18">Projekt 18: Paket-Tracker (Paket 18)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 18,
+        zielort: String::from("Berlin"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-19-fahrzeug-klasse-fahrzeug-19"><a class="header" href="#projekt-19-fahrzeug-klasse-fahrzeug-19">Projekt 19: Fahrzeug-Klasse (Fahrzeug 19)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("BMW"),
+        id: 19,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-20-mitarbeiter-rolle-mitarbeiter-20"><a class="header" href="#projekt-20-mitarbeiter-rolle-mitarbeiter-20">Projekt 20: Mitarbeiter-Rolle (Mitarbeiter 20)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 20,
+        name: String::from("Ben"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-21-status-manager-router-21"><a class="header" href="#projekt-21-status-manager-router-21">Projekt 21: Status-Manager (Router 21)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Router"),
+        id: 21,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-22-ticket-system-ticket-22"><a class="header" href="#projekt-22-ticket-system-ticket-22">Projekt 22: Ticket-System (Ticket 22)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 22,
+        titel: String::from("Fehler in Modul 22"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-23-paket-tracker-paket-23"><a class="header" href="#projekt-23-paket-tracker-paket-23">Projekt 23: Paket-Tracker (Paket 23)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 23,
+        zielort: String::from("Hamburg"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-24-fahrzeug-klasse-fahrzeug-24"><a class="header" href="#projekt-24-fahrzeug-klasse-fahrzeug-24">Projekt 24: Fahrzeug-Klasse (Fahrzeug 24)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Mercedes"),
+        id: 24,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-25-mitarbeiter-rolle-mitarbeiter-25"><a class="header" href="#projekt-25-mitarbeiter-rolle-mitarbeiter-25">Projekt 25: Mitarbeiter-Rolle (Mitarbeiter 25)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 25,
+        name: String::from("Clara"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-26-status-manager-klimaanlage-26"><a class="header" href="#projekt-26-status-manager-klimaanlage-26">Projekt 26: Status-Manager (Klimaanlage 26)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Klimaanlage"),
+        id: 26,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-27-ticket-system-ticket-27"><a class="header" href="#projekt-27-ticket-system-ticket-27">Projekt 27: Ticket-System (Ticket 27)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 27,
+        titel: String::from("Fehler in Modul 27"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-28-paket-tracker-paket-28"><a class="header" href="#projekt-28-paket-tracker-paket-28">Projekt 28: Paket-Tracker (Paket 28)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 28,
+        zielort: String::from("Koeln"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-29-fahrzeug-klasse-fahrzeug-29"><a class="header" href="#projekt-29-fahrzeug-klasse-fahrzeug-29">Projekt 29: Fahrzeug-Klasse (Fahrzeug 29)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Volkswagen"),
+        id: 29,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-30-mitarbeiter-rolle-mitarbeiter-30"><a class="header" href="#projekt-30-mitarbeiter-rolle-mitarbeiter-30">Projekt 30: Mitarbeiter-Rolle (Mitarbeiter 30)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 30,
+        name: String::from("Daniel"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-31-status-manager-fernseher-31"><a class="header" href="#projekt-31-status-manager-fernseher-31">Projekt 31: Status-Manager (Fernseher 31)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Fernseher"),
+        id: 31,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-32-ticket-system-ticket-32"><a class="header" href="#projekt-32-ticket-system-ticket-32">Projekt 32: Ticket-System (Ticket 32)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 32,
+        titel: String::from("Fehler in Modul 32"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-33-paket-tracker-paket-33"><a class="header" href="#projekt-33-paket-tracker-paket-33">Projekt 33: Paket-Tracker (Paket 33)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 33,
+        zielort: String::from("Frankfurt"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-34-fahrzeug-klasse-fahrzeug-34"><a class="header" href="#projekt-34-fahrzeug-klasse-fahrzeug-34">Projekt 34: Fahrzeug-Klasse (Fahrzeug 34)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Porsche"),
+        id: 34,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-35-mitarbeiter-rolle-mitarbeiter-35"><a class="header" href="#projekt-35-mitarbeiter-rolle-mitarbeiter-35">Projekt 35: Mitarbeiter-Rolle (Mitarbeiter 35)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 35,
+        name: String::from("Emma"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-36-status-manager-drucker-36"><a class="header" href="#projekt-36-status-manager-drucker-36">Projekt 36: Status-Manager (Drucker 36)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Drucker"),
+        id: 36,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-37-ticket-system-ticket-37"><a class="header" href="#projekt-37-ticket-system-ticket-37">Projekt 37: Ticket-System (Ticket 37)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 37,
+        titel: String::from("Fehler in Modul 37"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-38-paket-tracker-paket-38"><a class="header" href="#projekt-38-paket-tracker-paket-38">Projekt 38: Paket-Tracker (Paket 38)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 38,
+        zielort: String::from("Stuttgart"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-39-fahrzeug-klasse-fahrzeug-39"><a class="header" href="#projekt-39-fahrzeug-klasse-fahrzeug-39">Projekt 39: Fahrzeug-Klasse (Fahrzeug 39)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Opel"),
+        id: 39,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-40-mitarbeiter-rolle-mitarbeiter-40"><a class="header" href="#projekt-40-mitarbeiter-rolle-mitarbeiter-40">Projekt 40: Mitarbeiter-Rolle (Mitarbeiter 40)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 40,
+        name: String::from("Felix"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-41-status-manager-lichtleiste-41"><a class="header" href="#projekt-41-status-manager-lichtleiste-41">Projekt 41: Status-Manager (Lichtleiste 41)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Lichtleiste"),
+        id: 41,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-42-ticket-system-ticket-42"><a class="header" href="#projekt-42-ticket-system-ticket-42">Projekt 42: Ticket-System (Ticket 42)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 42,
+        titel: String::from("Fehler in Modul 42"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-43-paket-tracker-paket-43"><a class="header" href="#projekt-43-paket-tracker-paket-43">Projekt 43: Paket-Tracker (Paket 43)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 43,
+        zielort: String::from("Duesseldorf"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-44-fahrzeug-klasse-fahrzeug-44"><a class="header" href="#projekt-44-fahrzeug-klasse-fahrzeug-44">Projekt 44: Fahrzeug-Klasse (Fahrzeug 44)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Ford"),
+        id: 44,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-45-mitarbeiter-rolle-mitarbeiter-45"><a class="header" href="#projekt-45-mitarbeiter-rolle-mitarbeiter-45">Projekt 45: Mitarbeiter-Rolle (Mitarbeiter 45)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 45,
+        name: String::from("Greta"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-46-status-manager-kamera-46"><a class="header" href="#projekt-46-status-manager-kamera-46">Projekt 46: Status-Manager (Kamera 46)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Kamera"),
+        id: 46,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-47-ticket-system-ticket-47"><a class="header" href="#projekt-47-ticket-system-ticket-47">Projekt 47: Ticket-System (Ticket 47)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 47,
+        titel: String::from("Fehler in Modul 47"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-48-paket-tracker-paket-48"><a class="header" href="#projekt-48-paket-tracker-paket-48">Projekt 48: Paket-Tracker (Paket 48)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 48,
+        zielort: String::from("Dortmund"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-49-fahrzeug-klasse-fahrzeug-49"><a class="header" href="#projekt-49-fahrzeug-klasse-fahrzeug-49">Projekt 49: Fahrzeug-Klasse (Fahrzeug 49)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Volvo"),
+        id: 49,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-50-mitarbeiter-rolle-mitarbeiter-50"><a class="header" href="#projekt-50-mitarbeiter-rolle-mitarbeiter-50">Projekt 50: Mitarbeiter-Rolle (Mitarbeiter 50)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 50,
+        name: String::from("Henry"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-51-status-manager-waschmaschine-51"><a class="header" href="#projekt-51-status-manager-waschmaschine-51">Projekt 51: Status-Manager (Waschmaschine 51)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Waschmaschine"),
+        id: 51,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-52-ticket-system-ticket-52"><a class="header" href="#projekt-52-ticket-system-ticket-52">Projekt 52: Ticket-System (Ticket 52)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 52,
+        titel: String::from("Fehler in Modul 52"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-53-paket-tracker-paket-53"><a class="header" href="#projekt-53-paket-tracker-paket-53">Projekt 53: Paket-Tracker (Paket 53)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 53,
+        zielort: String::from("Essen"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-54-fahrzeug-klasse-fahrzeug-54"><a class="header" href="#projekt-54-fahrzeug-klasse-fahrzeug-54">Projekt 54: Fahrzeug-Klasse (Fahrzeug 54)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Tesla"),
+        id: 54,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-55-mitarbeiter-rolle-mitarbeiter-55"><a class="header" href="#projekt-55-mitarbeiter-rolle-mitarbeiter-55">Projekt 55: Mitarbeiter-Rolle (Mitarbeiter 55)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 55,
+        name: String::from("Ida"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-56-status-manager-geschirrspueler-56"><a class="header" href="#projekt-56-status-manager-geschirrspueler-56">Projekt 56: Status-Manager (Geschirrspueler 56)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Geschirrspueler"),
+        id: 56,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-57-ticket-system-ticket-57"><a class="header" href="#projekt-57-ticket-system-ticket-57">Projekt 57: Ticket-System (Ticket 57)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 57,
+        titel: String::from("Fehler in Modul 57"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-58-paket-tracker-paket-58"><a class="header" href="#projekt-58-paket-tracker-paket-58">Projekt 58: Paket-Tracker (Paket 58)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 58,
+        zielort: String::from("Bremen"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-59-fahrzeug-klasse-fahrzeug-59"><a class="header" href="#projekt-59-fahrzeug-klasse-fahrzeug-59">Projekt 59: Fahrzeug-Klasse (Fahrzeug 59)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Renault"),
+        id: 59,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-60-mitarbeiter-rolle-mitarbeiter-60"><a class="header" href="#projekt-60-mitarbeiter-rolle-mitarbeiter-60">Projekt 60: Mitarbeiter-Rolle (Mitarbeiter 60)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 60,
+        name: String::from("Jakob"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-61-status-manager-heizung-61"><a class="header" href="#projekt-61-status-manager-heizung-61">Projekt 61: Status-Manager (Heizung 61)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Heizung"),
+        id: 61,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-62-ticket-system-ticket-62"><a class="header" href="#projekt-62-ticket-system-ticket-62">Projekt 62: Ticket-System (Ticket 62)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 62,
+        titel: String::from("Fehler in Modul 62"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-63-paket-tracker-paket-63"><a class="header" href="#projekt-63-paket-tracker-paket-63">Projekt 63: Paket-Tracker (Paket 63)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 63,
+        zielort: String::from("Muenchen"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-64-fahrzeug-klasse-fahrzeug-64"><a class="header" href="#projekt-64-fahrzeug-klasse-fahrzeug-64">Projekt 64: Fahrzeug-Klasse (Fahrzeug 64)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Audi"),
+        id: 64,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-65-mitarbeiter-rolle-mitarbeiter-65"><a class="header" href="#projekt-65-mitarbeiter-rolle-mitarbeiter-65">Projekt 65: Mitarbeiter-Rolle (Mitarbeiter 65)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 65,
+        name: String::from("Anna"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-66-status-manager-kuehlschrank-66"><a class="header" href="#projekt-66-status-manager-kuehlschrank-66">Projekt 66: Status-Manager (Kuehlschrank 66)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Kuehlschrank"),
+        id: 66,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-67-ticket-system-ticket-67"><a class="header" href="#projekt-67-ticket-system-ticket-67">Projekt 67: Ticket-System (Ticket 67)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 67,
+        titel: String::from("Fehler in Modul 67"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-68-paket-tracker-paket-68"><a class="header" href="#projekt-68-paket-tracker-paket-68">Projekt 68: Paket-Tracker (Paket 68)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 68,
+        zielort: String::from("Berlin"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-69-fahrzeug-klasse-fahrzeug-69"><a class="header" href="#projekt-69-fahrzeug-klasse-fahrzeug-69">Projekt 69: Fahrzeug-Klasse (Fahrzeug 69)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("BMW"),
+        id: 69,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-70-mitarbeiter-rolle-mitarbeiter-70"><a class="header" href="#projekt-70-mitarbeiter-rolle-mitarbeiter-70">Projekt 70: Mitarbeiter-Rolle (Mitarbeiter 70)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 70,
+        name: String::from("Ben"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-71-status-manager-router-71"><a class="header" href="#projekt-71-status-manager-router-71">Projekt 71: Status-Manager (Router 71)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Router"),
+        id: 71,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-72-ticket-system-ticket-72"><a class="header" href="#projekt-72-ticket-system-ticket-72">Projekt 72: Ticket-System (Ticket 72)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 72,
+        titel: String::from("Fehler in Modul 72"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-73-paket-tracker-paket-73"><a class="header" href="#projekt-73-paket-tracker-paket-73">Projekt 73: Paket-Tracker (Paket 73)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 73,
+        zielort: String::from("Hamburg"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-74-fahrzeug-klasse-fahrzeug-74"><a class="header" href="#projekt-74-fahrzeug-klasse-fahrzeug-74">Projekt 74: Fahrzeug-Klasse (Fahrzeug 74)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Mercedes"),
+        id: 74,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-75-mitarbeiter-rolle-mitarbeiter-75"><a class="header" href="#projekt-75-mitarbeiter-rolle-mitarbeiter-75">Projekt 75: Mitarbeiter-Rolle (Mitarbeiter 75)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 75,
+        name: String::from("Clara"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-76-status-manager-klimaanlage-76"><a class="header" href="#projekt-76-status-manager-klimaanlage-76">Projekt 76: Status-Manager (Klimaanlage 76)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Klimaanlage"),
+        id: 76,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-77-ticket-system-ticket-77"><a class="header" href="#projekt-77-ticket-system-ticket-77">Projekt 77: Ticket-System (Ticket 77)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 77,
+        titel: String::from("Fehler in Modul 77"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-78-paket-tracker-paket-78"><a class="header" href="#projekt-78-paket-tracker-paket-78">Projekt 78: Paket-Tracker (Paket 78)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 78,
+        zielort: String::from("Koeln"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-79-fahrzeug-klasse-fahrzeug-79"><a class="header" href="#projekt-79-fahrzeug-klasse-fahrzeug-79">Projekt 79: Fahrzeug-Klasse (Fahrzeug 79)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Volkswagen"),
+        id: 79,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-80-mitarbeiter-rolle-mitarbeiter-80"><a class="header" href="#projekt-80-mitarbeiter-rolle-mitarbeiter-80">Projekt 80: Mitarbeiter-Rolle (Mitarbeiter 80)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 80,
+        name: String::from("Daniel"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-81-status-manager-fernseher-81"><a class="header" href="#projekt-81-status-manager-fernseher-81">Projekt 81: Status-Manager (Fernseher 81)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Fernseher"),
+        id: 81,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-82-ticket-system-ticket-82"><a class="header" href="#projekt-82-ticket-system-ticket-82">Projekt 82: Ticket-System (Ticket 82)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 82,
+        titel: String::from("Fehler in Modul 82"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-83-paket-tracker-paket-83"><a class="header" href="#projekt-83-paket-tracker-paket-83">Projekt 83: Paket-Tracker (Paket 83)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 83,
+        zielort: String::from("Frankfurt"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-84-fahrzeug-klasse-fahrzeug-84"><a class="header" href="#projekt-84-fahrzeug-klasse-fahrzeug-84">Projekt 84: Fahrzeug-Klasse (Fahrzeug 84)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Porsche"),
+        id: 84,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-85-mitarbeiter-rolle-mitarbeiter-85"><a class="header" href="#projekt-85-mitarbeiter-rolle-mitarbeiter-85">Projekt 85: Mitarbeiter-Rolle (Mitarbeiter 85)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 85,
+        name: String::from("Emma"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-86-status-manager-drucker-86"><a class="header" href="#projekt-86-status-manager-drucker-86">Projekt 86: Status-Manager (Drucker 86)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Drucker"),
+        id: 86,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-87-ticket-system-ticket-87"><a class="header" href="#projekt-87-ticket-system-ticket-87">Projekt 87: Ticket-System (Ticket 87)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 87,
+        titel: String::from("Fehler in Modul 87"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-88-paket-tracker-paket-88"><a class="header" href="#projekt-88-paket-tracker-paket-88">Projekt 88: Paket-Tracker (Paket 88)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 88,
+        zielort: String::from("Stuttgart"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-89-fahrzeug-klasse-fahrzeug-89"><a class="header" href="#projekt-89-fahrzeug-klasse-fahrzeug-89">Projekt 89: Fahrzeug-Klasse (Fahrzeug 89)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Opel"),
+        id: 89,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-90-mitarbeiter-rolle-mitarbeiter-90"><a class="header" href="#projekt-90-mitarbeiter-rolle-mitarbeiter-90">Projekt 90: Mitarbeiter-Rolle (Mitarbeiter 90)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 90,
+        name: String::from("Felix"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-91-status-manager-lichtleiste-91"><a class="header" href="#projekt-91-status-manager-lichtleiste-91">Projekt 91: Status-Manager (Lichtleiste 91)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Lichtleiste"),
+        id: 91,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-92-ticket-system-ticket-92"><a class="header" href="#projekt-92-ticket-system-ticket-92">Projekt 92: Ticket-System (Ticket 92)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 92,
+        titel: String::from("Fehler in Modul 92"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-93-paket-tracker-paket-93"><a class="header" href="#projekt-93-paket-tracker-paket-93">Projekt 93: Paket-Tracker (Paket 93)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 93,
+        zielort: String::from("Duesseldorf"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-94-fahrzeug-klasse-fahrzeug-94"><a class="header" href="#projekt-94-fahrzeug-klasse-fahrzeug-94">Projekt 94: Fahrzeug-Klasse (Fahrzeug 94)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Ford"),
+        id: 94,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-95-mitarbeiter-rolle-mitarbeiter-95"><a class="header" href="#projekt-95-mitarbeiter-rolle-mitarbeiter-95">Projekt 95: Mitarbeiter-Rolle (Mitarbeiter 95)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 95,
+        name: String::from("Greta"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-96-status-manager-kamera-96"><a class="header" href="#projekt-96-status-manager-kamera-96">Projekt 96: Status-Manager (Kamera 96)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Status
+enum GeraeteStatus {
+    An,
+    Aus,
+    Standby,
+}
+
+// 📦 Struct für das Gerät
+struct Geraet {
+    name: String,
+    id: i32,
+    status: GeraeteStatus,
+}
+
+impl Geraet {
+    // 📦 Methode zur Statusanzeige
+    fn status_zeigen(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            GeraeteStatus::An =&gt; println!("Gerät {} ({}) ist eingeschaltet.", self.id, self.name),
+            GeraeteStatus::Aus =&gt; println!("Gerät {} ({}) ist ausgeschaltet.", self.id, self.name),
+            GeraeteStatus::Standby =&gt; println!("Gerät {} ({}) ist im Standby-Modus.", self.id, self.name),
+        }
+    }
+}
+
+fn main() {
+    let mein_geraet = Geraet {
+        name: String::from("Kamera"),
+        id: 96,
+        status: GeraeteStatus::Standby,
+    };
+    mein_geraet.status_zeigen();
+}</code></pre>
+<hr>
+<h2 id="projekt-97-ticket-system-ticket-97"><a class="header" href="#projekt-97-ticket-system-ticket-97">Projekt 97: Ticket-System (Ticket 97)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Priorität
+enum Prioritaet {
+    Niedrig,
+    Mittel,
+    Hoch,
+}
+
+// 📦 Struct für das Ticket
+struct Ticket {
+    id: i32,
+    titel: String,
+    prioritaet: Prioritaet,
+}
+
+impl Ticket {
+    // 📦 Methode zur Prioritätsprüfung
+    fn ist_dringend(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching mit dem kompakten `if let`
+        if let Prioritaet::Hoch = self.prioritaet {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+fn main() {
+    let ticket = Ticket {
+        id: 97,
+        titel: String::from("Fehler in Modul 97"),
+        prioritaet: Prioritaet::Hoch,
+    };
+    if ticket.ist_dringend() {
+        println!("Ticket {}: Dringende Bearbeitung erforderlich!", ticket.id);
+    } else {
+        println!("Ticket {}: Normale Bearbeitung.", ticket.id);
+    }
+}</code></pre>
+<hr>
+<h2 id="projekt-98-paket-tracker-paket-98"><a class="header" href="#projekt-98-paket-tracker-paket-98">Projekt 98: Paket-Tracker (Paket 98)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Paketstatus
+enum PaketStatus {
+    ImLager,
+    Unterwegs,
+    Zugestellt,
+}
+
+// 📦 Struct für das Paket
+struct Paket {
+    id: i32,
+    zielort: String,
+    status: PaketStatus,
+}
+
+impl Paket {
+    // 📦 Methode zur Statusanzeige
+    fn stationen_info(&amp;self) {
+        // 🔍 Pattern Matching (match)
+        match self.status {
+            PaketStatus::ImLager =&gt; println!("Paket {}: Noch im Lager in {}.", self.id, self.zielort),
+            PaketStatus::Unterwegs =&gt; println!("Paket {}: Auf dem Weg nach {}.", self.id, self.zielort),
+            PaketStatus::Zugestellt =&gt; println!("Paket {}: In {} angekommen.", self.id, self.zielort),
+        }
+    }
+}
+
+fn main() {
+    let paket = Paket {
+        id: 98,
+        zielort: String::from("Dortmund"),
+        status: PaketStatus::Unterwegs,
+    };
+    paket.stationen_info();
+}</code></pre>
+<hr>
+<h2 id="projekt-99-fahrzeug-klasse-fahrzeug-99"><a class="header" href="#projekt-99-fahrzeug-klasse-fahrzeug-99">Projekt 99: Fahrzeug-Klasse (Fahrzeug 99)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für den Fahrzeugtyp
+enum FahrzeugTyp {
+    Auto,
+    Motorrad,
+    Lkw,
+}
+
+// 📦 Struct für das Fahrzeug
+struct Fahrzeug {
+    hersteller: String,
+    id: i32,
+    typ: FahrzeugTyp,
+}
+
+impl Fahrzeug {
+    // 📦 Methode zur Mautberechnung
+    fn maut_berechnen(&amp;self) -&gt; f64 {
+        // 🔍 Pattern Matching (match)
+        match self.typ {
+            FahrzeugTyp::Motorrad =&gt; 2.50,
+            FahrzeugTyp::Auto =&gt; 5.00,
+            FahrzeugTyp::Lkw =&gt; 15.00,
+        }
+    }
+}
+
+fn main() {
+    let fahrzeug = Fahrzeug {
+        hersteller: String::from("Volvo"),
+        id: 99,
+        typ: FahrzeugTyp::Lkw,
+    };
+    println!("Die Mautgebühr für Fahrzeug {} ({}) beträgt {} Euro.", fahrzeug.id, fahrzeug.hersteller, fahrzeug.maut_berechnen());
+}</code></pre>
+<hr>
+<h2 id="projekt-100-mitarbeiter-rolle-mitarbeiter-100"><a class="header" href="#projekt-100-mitarbeiter-rolle-mitarbeiter-100">Projekt 100: Mitarbeiter-Rolle (Mitarbeiter 100)</a></h2>
+<pre class="playground"><code class="language-rust">// 🏷️ Enum für die Benutzerrollen
+enum Rolle {
+    Admin,
+    Entwickler,
+    Gast,
+}
+
+// 📦 Struct für einen Mitarbeiter
+struct Mitarbeiter {
+    id: i32,
+    name: String,
+    rolle: Rolle,
+}
+
+impl Mitarbeiter {
+    // 📦 Methode zur Berechtigungsprüfung
+    fn hat_schreibrechte(&amp;self) -&gt; bool {
+        // 🔍 Pattern Matching (match)
+        match self.rolle {
+            Rolle::Admin | Rolle::Entwickler =&gt; true,
+            Rolle::Gast =&gt; false,
+        }
+    }
+}
+
+fn main() {
+    let kollege = Mitarbeiter {
+        id: 100,
+        name: String::from("Henry"),
+        rolle: Rolle::Entwickler,
+    };
+    if kollege.hat_schreibrechte() {
+        println!("Mitarbeiter {} ({}) darf Änderungen vornehmen.", kollege.id, kollege.name);
+    } else {
+        println!("Mitarbeiter {} ({}) hat nur Leserechte.", kollege.id, kollege.name);
+    }
+}</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="-bash-skripte--grundlagen--theorie"><a class="header" href="#-bash-skripte--grundlagen--theorie">🐚 Bash-Skripte – Grundlagen &amp; Theorie</a></h1>
 <p>Dieses Kapitel führt dich durch die wichtigsten Grundlagen des Bash-Scriptings. Da du dir explizit praxisbezogene Beispiele gewünscht hast, um es besser zu verstehen, findest du hier kurze Code-Schnipsel! Denk daran: Diese Beispiele zeigen dir, <em>wie</em> die Syntax funktioniert. Die großen Projekte baust du dann selbst auf Basis dieses Wissens.</p>
@@ -10690,7 +14435,7 @@ erstellt</em></a>
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-abc7f01d.js"></script>
-        <script src="book-c22b7243.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 
