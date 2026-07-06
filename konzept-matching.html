@@ -1,0 +1,405 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pattern Matching - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-3a3cac91.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-670b0e1f.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-konzept-pattern-matching--intelligentes-sortieren"><a class="header" href="#-konzept-pattern-matching--intelligentes-sortieren">🎯 Konzept: Pattern Matching – Intelligentes Sortieren</a></h1>
+<p>Stell dir vor, du stehst an einem riesigen Sortierband in einer Postfiliale. Sekündlich rollen Pakete an dir vorbei: winzige Briefe, schwere Pakete, runde Rollen und manchmal sogar beschädigte Sendungen, bei denen die Adresse fehlt. Deine Aufgabe ist es, jedes Paket blitzschnell zu prüfen und in den richtigen Container zu werfen.</p>
+<p>Wenn du ein eckiges Paket siehst, kommt es in Box A. Wenn es eine Rolle ist, kommt es in Box B. Und wenn es gar keine Adresse hat, wandert es direkt in die Schadensabteilung.</p>
+<p>Genau das ist <strong>Pattern Matching</strong> (zu Deutsch: Musterabgleich) in Rust! Es ist wie eine hochentwickelte, intelligente Sortiermaschine. Du gibst ihr einen Wert und sagst: „Prüfe diesen Wert gegen verschiedene Schablonen. Sobald eine Schablone perfekt passt, führe die dazugehörige Aktion aus.“</p>
+<p>In diesem Kapitel lernst du, wie dieses Sortiersystem funktioniert und warum der Rust-Compiler dabei dein treuester (und strengster!) Assistent ist.</p>
+<hr>
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="die-schablonen-und-der-musterabgleich"><a class="header" href="#die-schablonen-und-der-musterabgleich">Die Schablonen und der Musterabgleich</a></h3>
+<p>Im Kern von Pattern Matching stehen zwei Dinge: der <strong>Wert</strong>, den du untersuchen willst, und die <strong>Muster</strong> (Schablonen), auf die der Wert passen soll.</p>
+<p>Ein Muster ist wie ein Plätzchenausstecher. Wenn der Teig (dein Wert) die richtige Form hat, passt er durch den Ausstecher. Wenn nicht, probiert die Maschine den nächsten Ausstecher aus.</p>
+<p>In Rust benutzen wir dafür den sogenannten <code>match</code>-Ausdruck. Das Ganze sieht vom Aufbau her so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match dein_wert {
+    schablone_1 =&gt; {
+        // Was soll passieren, wenn Schablone 1 passt?
+    },
+    schablone_2 =&gt; {
+        // Was soll passieren, wenn Schablone 2 passt?
+    },
+    // Weitere Schablonen...
+}
+<span class="boring">}</span></code></pre>
+<p>Die Maschine geht die Schablonen von oben nach unten durch. Sobald das erste passende Muster gefunden wird, stoppt Rust die Suche, führt den Code daneben aus und ignoriert alle weiteren Schablonen darunter.</p>
+<hr>
+<h3 id="exhaustiveness-checking-der-lückenlose-qualitätskontrolleur"><a class="header" href="#exhaustiveness-checking-der-lückenlose-qualitätskontrolleur">Exhaustiveness Checking: Der lückenlose Qualitätskontrolleur</a></h3>
+<p>Jetzt kommt die Besonderheit von Rust, die diese Sprache so sicher macht: das <strong>Exhaustiveness Checking</strong> (Lückenlosigkeitsprüfung).</p>
+<p>Stell dir vor, auf deinem Post-Sortierband taucht plötzlich ein dreieckiges Paket auf. Deine Sortiermaschine hat aber nur Fächer für eckige und runde Pakete. Was passiert? Das Band verstopft, die Maschine stürzt ab oder das Paket fällt herunter und geht verloren.</p>
+<p>Rust hasst solche unsicheren Zustände. Deshalb verhält sich der Rust-Compiler wie ein extrem strenger Chef der Qualitätskontrolle. Er schaut sich deine Sortiermaschine (<code>match</code>) an und fragt: „Hast du wirklich an <strong>jeden einzelnen Fall</strong> gedacht, der jemals eintreffen könnte?“</p>
+<p>Wenn du zum Beispiel einen Datentyp mit drei Möglichkeiten prüfst (z. B. eine Ampel mit Rot, Gelb und Grün), aber nur Schablonen für Rot und Grün eingebaut hast, wird der Compiler lautstark protestieren. Dein Programm wird sich gar nicht erst kompilieren lassen! Rust zwingt dich dazu, lückenlos zu sein.</p>
+<h4 id="das-auffangbecken-der-unterstrich-_"><a class="header" href="#das-auffangbecken-der-unterstrich-_">Das Auffangbecken: Der Unterstrich <code>_</code></a></h4>
+<p>Da wir aber nicht immer für jede erdenkliche Möglichkeit (wie jede Zahl von 1 bis zu einer Milliarde) eine eigene Schablone basteln können, gibt es ein universelles Auffangbecken: den Unterstrich <code>_</code>.</p>
+<p>Der Unterstrich ist das Muster für <strong>„alles andere“</strong> oder <strong>„sonstige Fälle“</strong>. Wenn kein anderes Muster vorher gepasst hat, greift garantiert dieses Muster. Es ist wie das Fach für den Restmüll oder die Fundgrube in unserer Postfiliale:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match zahl {
+    1 =&gt; { /* Spezialfall 1 */ },
+    2 =&gt; { /* Spezialfall 2 */ },
+    _ =&gt; { /* Für jede andere Zahl */ }
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="die-abkürzung-if-let-für-den-schnellen-check"><a class="header" href="#die-abkürzung-if-let-für-den-schnellen-check">Die Abkürzung: <code>if let</code> für den schnellen Check</a></h3>
+<p>Manchmal ist uns die große Sortiermaschine mit all ihren Fächern viel zu aufwendig. Stell dir vor, du hast einen großen Korb voll Post und suchst ausschließlich nach einem goldenen Umschlag. Wenn du ihn findest, möchtest du dich freuen. Alle anderen Briefe sind dir in diesem Moment völlig egal – du willst sie nicht sortieren, sondern einfach ignorieren.</p>
+<p>Wenn du dafür ein <code>match</code> benutzen würdest, müsstest du schreiben:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match umschlag {
+    Gold =&gt; { /* Freuen! */ },
+    _ =&gt; { /* Tu nichts */ }
+}
+<span class="boring">}</span></code></pre>
+<p>Das ist viel Tipparbeit für eine einzige Bedingung. Deshalb hat Rust eine bequeme Abkürzung eingebaut: das <code>if let</code>.</p>
+<p>Mit <code>if let</code> sagst du: „<em>Wenn</em> dieser Wert auf diese eine Schablone passt, dann mache folgendes. Ansonsten mach einfach weiter im Text.“</p>
+<p>Der abstrakte Aufbau sieht so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let schablone = wert {
+    // Wird nur ausgeführt, wenn das Muster passt
+}
+<span class="boring">}</span></code></pre>
+<p>Damit sparst du dir das Auffangbecken <code>_</code> und hältst deinen Code sauber und übersichtlich, wenn dich nur ein ganz bestimmter Fall interessiert.</p>
+<hr>
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Hier sind einige Aufgaben, mit denen du das Konzept des intelligenten Sortierens üben kannst. Versuche, die Logik zuerst auf einem Blatt Papier oder in Gedanken zu entwerfen, bevor du sie in Rust programmierst!</p>
+<h3 id="aufgabe-1-der-ampel-assistent"><a class="header" href="#aufgabe-1-der-ampel-assistent">Aufgabe 1: Der Ampel-Assistent</a></h3>
+<p>Erstelle ein Programm, das den Zustand einer Ampel simuliert.</p>
+<ul>
+<li>Nutze ein <code>match</code>, um auf die drei Ampelphasen (Rot, Gelb, Grün) zu reagieren.</li>
+<li>Drucke für jede Phase eine passende Aktion aus (z. B. „Halt!“, „Achtung!“, „Freie Fahrt!“).</li>
+<li><em>Herausforderung:</em> Versuche absichtlich, eine Phase wegzulassen, und beobachte, wie sich der Compiler beschwert!</li>
+</ul>
+<h3 id="aufgabe-2-der-noten-übersetzer"><a class="header" href="#aufgabe-2-der-noten-übersetzer">Aufgabe 2: Der Noten-Übersetzer</a></h3>
+<p>Schreibe eine Logik, die eine Schulnote von 1 bis 6 als Zahl entgegennimmt.</p>
+<ul>
+<li>Verwende ein <code>match</code>-Konstrukt.</li>
+<li>Gib für die Noten 1 bis 3 ein Lob aus.</li>
+<li>Gib für die Noten 4 und 5 eine Ermutigung aus.</li>
+<li>Reagiere bei einer 6 mit einem Hinweis auf Nachhilfe.</li>
+<li>Nutze das Auffangbecken <code>_</code>, um ungültige Eingaben (wie z. B. eine Note 0 oder 7) abzufangen und eine Fehlermeldung auszugeben.</li>
+</ul>
+<h3 id="aufgabe-3-der-schatzsucher-mit-if-let"><a class="header" href="#aufgabe-3-der-schatzsucher-mit-if-let">Aufgabe 3: Der Schatzsucher mit <code>if let</code></a></h3>
+<p>Stell dir vor, du hast eine Kiste, die entweder leer ist, ein normales Buch enthält oder eine wertvolle Goldmünze.</p>
+<ul>
+<li>Dich interessiert ausschließlich der Fall, dass sich eine Goldmünze in der Kiste befindet.</li>
+<li>Setze diese Prüfung mit dem kompakten <code>if let</code> um, sodass andere Inhalte einfach ignoriert werden.</li>
+</ul>
+<hr>
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Pattern Matching ist das Schweizer Taschenmesser in Rust. Hier sind 50 spannende Ideen für Projekte, bei denen du dieses Konzept perfekt einsetzen kannst:</p>
+<h3 id="spiele--simulationen"><a class="header" href="#spiele--simulationen">Spiele &amp; Simulationen</a></h3>
+<ol>
+<li><strong>Münzwurf-Simulator</strong>: Entscheide je nach Wurfseite über Gewinn oder Verlust.</li>
+<li><strong>Text-Adventure-Steuerung</strong>: Werte Spielerbefehle wie „Norden“, „Osten“, „Süden“, „Westen“ aus.</li>
+<li><strong>Schere-Stein-Papier</strong>: Vergleiche die Wahl beider Spieler per Musterabgleich.</li>
+<li><strong>Würfelspiel-Auswerter</strong>: Erkenne Sonderregeln beim Erreichen bestimmter Augenzahlen.</li>
+<li><strong>Karten-Stärkeberechner</strong>: Ordne Spielkarten (Ass, König, Dame, etc.) ihre Werte zu.</li>
+<li><strong>Tier-Simulator</strong>: Lasse Tiere je nach Typ unterschiedliche Geräusche machen.</li>
+<li><strong>Wetter-Simulator</strong>: Berechne die Kleidungsempfehlung basierend auf Sonnig, Regnerisch oder Schnee.</li>
+<li><strong>RPG-Kampfsystem</strong>: Bestimme den Schaden je nach Waffentyp (Schwert, Bogen, Magie).</li>
+<li><strong>Schachfiguren-Bewegung</strong>: Prüfe, ob ein Zug für die ausgewählte Figur erlaubt ist.</li>
+<li><strong>Labyrinth-Navigator</strong>: Reagiere auf Hindernisse (Wand, Falle, Ausgang) vor dem Spieler.</li>
+</ol>
+<h3 id="alltagshelfer--produktivität"><a class="header" href="#alltagshelfer--produktivität">Alltagshelfer &amp; Produktivität</a></h3>
+<ol start="11">
+<li><strong>Einfacher Taschenrechner</strong>: Führe Rechenoperationen basierend auf den Symbolen (+, -, *, /) aus.</li>
+<li><strong>Einheiten-Konverter</strong>: Rechne Längen um (Meter in Kilometer, Meilen, etc.).</li>
+<li><strong>Währungsrechner</strong>: Konvertiere Geldbeträge je nach Länderkürzel (EUR, USD, GBP).</li>
+<li><strong>Kalender-Helfer</strong>: Gib die Anzahl der Tage für jeden Monat aus.</li>
+<li><strong>Temperatur-Klassifizierer</strong>: Teile Temperaturen in Gefrierpunkt, Kalt, Angenehm und Heiß ein.</li>
+<li><strong>BMI-Analysator</strong>: Werte den Body-Mass-Index in Untergewicht, Normalgewicht und Übergewicht aus.</li>
+<li><strong>Alters-Checker</strong>: Entscheide über Eintrittspreise (Kind, Student, Erwachsener, Senior).</li>
+<li><strong>Rabatt-Kalkulator</strong>: Berechne Preise basierend auf Gutscheincodes.</li>
+<li><strong>Paket-Porto-Rechner</strong>: Bestimme Versandkosten nach Gewichtsklassen.</li>
+<li><strong>To-Do-Priorisierer</strong>: Ordne Aufgaben nach Wichtigkeit (Hoch, Mittel, Niedrig) verschiedene Farben zu.</li>
+</ol>
+<h3 id="textverarbeitung--parser"><a class="header" href="#textverarbeitung--parser">Textverarbeitung &amp; Parser</a></h3>
+<ol start="21">
+<li><strong>Vokal-Zähler</strong>: Prüfe einzelne Buchstaben darauf, ob es Vokale oder Konsonanten sind.</li>
+<li><strong>Befehlszeilen-Parser</strong>: Werte Startparameter deines Programms aus.</li>
+<li><strong>Satzzeichen-Filter</strong>: Entferne oder ersetze Satzzeichen je nach Typ.</li>
+<li><strong>Markdown-Konverter</strong>: Erkenne Überschriften-Symbole (#) am Zeilenanfang.</li>
+<li><strong>Emoji-Übersetzer</strong>: Ersetze Text-Smileys (wie <code>:)</code>) durch echte Emojis.</li>
+<li><strong>Telefonnummer-Formatierer</strong>: Erkenne Ländervorwahlen und formatiere den Rest.</li>
+<li><strong>Zensur-Filter</strong>: Erkenne Schimpfwörter und ersetze sie durch Sternchen.</li>
+<li><strong>Dateiendungs-Erkenner</strong>: Bestimme den Dateityp anhand der Endung (.txt, .jpg, .pdf).</li>
+<li><strong>Römische Zahlen</strong>: Konvertiere römische Ziffern (I, V, X, L, C, D, M) in Zahlen.</li>
+<li><strong>Morsecode-Decoder</strong>: Übersetze Morse-Signale in Buchstaben.</li>
+</ol>
+<h3 id="hardware--iot-simulationen"><a class="header" href="#hardware--iot-simulationen">Hardware &amp; IoT Simulationen</a></h3>
+<ol start="31">
+<li><strong>Ampelsteuerung</strong>: Schalte Phasen einer simulierten Straßenkreuzung.</li>
+<li><strong>Heizungsthermostat</strong>: Schalte die Heizung an oder aus, je nachdem, ob ein Schwellenwert erreicht ist.</li>
+<li><strong>Alarmanlagen-Status</strong>: Werte Sensor-Signale (Bewegung, Fenster offen, Rauch) aus.</li>
+<li><strong>Smart-Home-Licht</strong>: Ändere die Helligkeit je nach Tageszeit (Morgen, Mittag, Abend, Nacht).</li>
+<li><strong>Getränkeautomat</strong>: Prüfe den eingeworfenen Geldbetrag und gib das gewählte Getränk aus.</li>
+<li><strong>Fahrstuhl-Steuerung</strong>: Entscheide, in welches Stockwerk der Fahrstuhl als Nächstes fährt.</li>
+<li><strong>Tastatur-Layout-Mapper</strong>: Übersetze Tastendrücke in Aktionen.</li>
+<li><strong>Batteriestands-Warnung</strong>: Zeige LED-Farben (Grün, Gelb, Rot) je nach Ladestand an.</li>
+<li><strong>Lüftersteuerung</strong>: Passe die Lüftergeschwindigkeit an die CPU-Temperatur an.</li>
+<li><strong>Mikrowellen-Timer</strong>: Wähle das Heizprogramm je nach Speisentyp (Suppe, Pizza, Popcorn).</li>
+</ol>
+<h3 id="daten---systemwerkzeuge"><a class="header" href="#daten---systemwerkzeuge">Daten- &amp; Systemwerkzeuge</a></h3>
+<ol start="41">
+<li><strong>Fehlercode-Erklärer</strong>: Übersetze HTTP-Statuscodes (200, 404, 500) in lesbaren Text.</li>
+<li><strong>Benutzerrollen-Prüfer</strong>: Gewähre Rechte je nach Status (Admin, Editor, Gast).</li>
+<li><strong>Datenbank-Antwort-Sorter</strong>: Sortiere Datensätze nach Erfolg oder Fehlermeldung.</li>
+<li><strong>Dateisystem-Scanner</strong>: Unterscheide beim Scannen zwischen Dateien, Ordnern und Links.</li>
+<li><strong>Log-Datei-Filter</strong>: Filtere Log-Einträge nach Typ (INFO, WARN, ERROR).</li>
+<li><strong>Netzwerkprotokoll-Parser</strong>: Werte eintreffende Datenpakete aus.</li>
+<li><strong>JSON-Typen-Analysator</strong>: Erkenne, ob ein Wert ein Text, eine Zahl oder ein Array ist.</li>
+<li><strong>Arbeitsspeicher-Überwachung</strong>: Reagiere auf normalen, erhöhten oder kritischen Speicherverbrauch.</li>
+<li><strong>Backup-Planer</strong>: Entscheide je nach Wochentag, ob ein inkrementelles oder volles Backup nötig ist.</li>
+<li><strong>Prozess-Status-Monitor</strong>: Überwache Prozesse (Gestartet, Läuft, Gestoppt, Abgestürzt).</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Pattern Matching</strong> ist wie eine intelligente Sortiermaschine, die Werte mit verschiedenen Schablonen vergleicht.</li>
+<li>Der <code>match</code>-Ausdruck prüft Schablonen nacheinander von oben nach unten.</li>
+<li><strong>Exhaustiveness Checking</strong> bedeutet: Der Compiler zwingt dich, jeden möglich Fall abzudecken, um Abstürze zu verhindern.</li>
+<li>Mit dem Unterstrich <code>_</code> baust du ein praktisches <strong>Auffangbecken</strong> für alle sonstigen Fälle.</li>
+<li><strong><code>if let</code></strong> ist die bequeme Abkürzung, wenn du nur nach einer einzigen Schablone suchst und alles andere ignorieren möchtest.</li>
+</ul>
+<hr>
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-02-match.html">Das offizielle Rust-Buch: Pattern Matching (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/match.html">Rust by Example: Match (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html">Rust by Example: if let (Englisch)</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-enums.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="phase2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-enums.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="phase2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

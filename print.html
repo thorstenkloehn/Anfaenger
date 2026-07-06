@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-79b13057.js";
+            window.path_to_searchindex_js = "searchindex-3a3cac91.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-c400814b.js"></script>
+        <script src="toc-670b0e1f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2265,6 +2265,551 @@ fn main() {
     
     println!("Das Ergebnis ist: {}", zahl * 100);
 }</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzepte-statt-syntax-lernen-phase-2"><a class="header" href="#konzepte-statt-syntax-lernen-phase-2">Konzepte statt Syntax lernen (Phase 2)</a></h1>
+<p>Beim Programmierenlernen in Rust ist es entscheidend, zunächst die zugrunde liegenden Konzepte zu verstehen, anstatt nur die Syntax auswendig zu lernen. In Phase 2 dreht sich alles um eigene Datentypen und wie wir sie clever einsetzen:</p>
+<h2 id="-structs--methoden-die-basis"><a class="header" href="#-structs--methoden-die-basis">🧱 Structs &amp; Methoden (Die Basis)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Ein Struct (Struktur) ist wie ein selbst entworfener Bauplan für ein komplexes Objekt, zum Beispiel für ein Auto, einen Benutzer oder ein Haustier. Du kannst verschiedene Eigenschaften (Name, Alter, Farbe) an einem Ort zusammenfassen.</li>
+<li><strong>In Rust wichtig:</strong> Du kannst diesen Datentypen nicht nur Daten geben, sondern auch direkt eigene Funktionen (Methoden) dranhängen, die genau zu diesem Struct gehören (mit <code>impl</code>). So weiß das Auto selbst, wie es hupt oder beschleunigt!</li>
+</ul>
+<h2 id="-enums-die-basis"><a class="header" href="#-enums-die-basis">🔠 Enums (Die Basis)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Ein Enum (Aufzählung) ist wie eine Liste von festen Zuständen oder Optionen. Stell dir eine Ampel vor: Sie kann Rot, Gelb oder Grün sein. Ein Wochentag kann Montag bis Sonntag sein.</li>
+<li><strong>In Rust wichtig:</strong> Rust-Enums können viel mehr als in anderen Sprachen. Jede Option kann sogar eigene Daten mit sich herumtragen (z. B. hat die Option “Fehler” eine genaue Fehlermeldung im Gepäck). Sie sind perfekt, um Klarheit und Sicherheit in dein Programm zu bringen.</li>
+</ul>
+<h2 id="-pattern-matching-match--if-let"><a class="header" href="#-pattern-matching-match--if-let">🎯 Pattern Matching (match &amp; if let)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Pattern Matching ist wie ein extrem intelligenter Filter oder Sortierer für deine Daten. Es prüft, in welchen Zustand (z. B. welches Enum) deine Daten gerade passen, und reagiert entsprechend.</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li>Der <code>match</code>-Ausdruck besitzt ein sogenanntes <strong>Exhaustiveness Checking</strong> (Vollständigkeitsprüfung). Das bedeutet: Der Rust-Compiler zwingt dich dazu, absolut jeden erdenklichen Fall abzudecken! Du kannst keinen Zustand vergessen, was Fehler fast unmöglich macht.</li>
+<li>Das kompakte <code>if let</code> ist die Kurzform, wenn dich nur ein einziger Zustand interessiert und du den Rest einfach ignorieren willst.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-konzept-structs--methoden--die-baupläne-deiner-daten"><a class="header" href="#-konzept-structs--methoden--die-baupläne-deiner-daten">🧱 Konzept: Structs &amp; Methoden – Die Baupläne deiner Daten</a></h1>
+<p>Stell dir vor, du baust ein Videospiel. Dein Spiel hat viele verschiedene Charaktere. Jeder Charakter hat einen Namen, Lebenspunkte, eine Zauberkraft und eine Position auf der Karte.</p>
+<p>Bisher hast du gelernt, dass du jede dieser Informationen in einer eigenen Variablen speichern kannst. Aber was passiert, wenn du zehn Charaktere hast? Dann hättest du vierzig einzelne Variablen! Das wird schnell unübersichtlich und fehleranfällig.</p>
+<p>Wie wäre es, wenn wir uns einen eigenen <strong>Bauplan</strong> für einen Charakter zeichnen könnten? Einen Bauplan, der beschreibt, welche Eigenschaften jeder Charakter besitzt, und wie sich ein Charakter verhält? In Rust nennen wir solche Baupläne <strong>Structs</strong> (Strukturen) und die dazugehörigen Aktionen <strong>Methoden</strong>.</p>
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="1-was-ist-ein-struct"><a class="header" href="#1-was-ist-ein-struct">1. Was ist ein Struct?</a></h3>
+<p>Ein <code>struct</code> ist dein persönlicher, maßgeschneiderter Datentyp. Du nutzt ihn, um zusammengehörende Variablen wie in einer Kiste zu bündeln.</p>
+<p>Stell dir ein Struct wie den <strong>Bauplan eines Hauses</strong> vor. Im Bauplan steht: „Jedes Haus hat eine Wandfarbe, eine Anzahl an Fenstern und eine Angabe, ob es eine Garage besitzt.“ Der Bauplan selbst ist noch kein echtes Haus, er beschreibt nur, wie ein Haus aufgebaut sein muss.</p>
+<p>Erst wenn du nach diesem Bauplan ein echtes Haus errichtest, entsteht ein konkreter Gegenstand (eine sogenannte <em>Instanz</em> des Structs). Dieses Haus hat dann zum Beispiel die Farbe Rot, 8 Fenster und eine Garage. Ein anderes Haus hat vielleicht die Farbe Blau, 4 Fenster und keine Garage. Beide stammen vom selben Bauplan ab, sind aber eigenständige Gegenstände.</p>
+<p>In Rust deklarierst du einen solchen Bauplan mit dem Schlüsselwort <code>struct</code> gefolgt von geschweiften Klammern. Darin listest du die Eigenschaften (Feldnamen) und deren Datentypen auf:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct NameDesBauplans {
+    eigenschaft_eins: Typ,
+    eigenschaft_zwei: Typ,
+}
+<span class="boring">}</span></code></pre>
+<p>Wenn du nun ein echtes Objekt aus diesem Bauplan erstellen möchtest, füllst du die Eigenschaften mit Werten:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mein_gegenstand = NameDesBauplans {
+    eigenschaft_eins: wert_eins,
+    eigenschaft_zwei: wert_zwei,
+};
+<span class="boring">}</span></code></pre>
+<p>Um auf eine bestimmte Eigenschaft zuzugreifen (z. B. um zu sehen, welche Wandfarbe dein Haus hat), benutzt du den <strong>Punkt-Operator</strong> <code>.</code>:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let farbe = mein_gegenstand.eigenschaft_eins;
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="2-was-sind-methoden-und-der-impl-block"><a class="header" href="#2-was-sind-methoden-und-der-impl-block">2. Was sind Methoden und der <code>impl</code>-Block?</a></h3>
+<p>Ein Haus steht nicht nur stumm in der Landschaft. Vielleicht möchtest du das Haus streichen oder die Haustür abschließen. In der Programmierung nennen wir Aktionen, die direkt mit einem Gegenstand verknüpft sind, <strong>Methoden</strong>.</p>
+<p>In Rust trennen wir die Daten (Eigenschaften im <code>struct</code>) streng von den Aktionen (Funktionen). Die Aktionen schreiben wir in einen sogenannten <strong>Implementierungs-Block</strong>, kurz <code>impl</code>.</p>
+<p>Stell dir das so vor: Das <code>struct</code> ist die Hardware (das Auto), und der <code>impl</code>-Block ist das Handbuch mit den Knöpfen und Funktionen (wie <code>gas_geben</code> oder <code>hupen</code>).</p>
+<p>Die abstrakte Syntax für einen <code>impl</code>-Block sieht so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl NameDesBauplans {
+    fn meine_methode(&amp;self) {
+        // Hier steht, was die Aktion tut
+    }
+}
+<span class="boring">}</span></code></pre>
+<h4 id="das-geheimnis-von-self"><a class="header" href="#das-geheimnis-von-self">Das Geheimnis von <code>self</code></a></h4>
+<p>Wenn du eine Methode in einem <code>impl</code>-Block schreibst, ist der allererste Parameter in der Klammer fast immer ein magisches Wort: <code>self</code> (auf Deutsch: „ich selbst“).</p>
+<p>Damit weiß die Methode, auf welches konkrete Objekt sie angewendet wird. Rust unterscheidet hier drei wichtige Varianten:</p>
+<ol>
+<li><strong><code>&amp;self</code> (Der Lese-Blick):</strong>
+Du möchtest das Objekt nur betrachten, ohne es zu verändern. Das ist, als würdest du auf den Tacho deines Autos schauen. Du liest den Wert ab, aber das Auto bleibt genau so, wie es ist.</li>
+<li><strong><code>&amp;mut self</code> (Das Verändern):</strong>
+Du möchtest das Objekt verändern. Das ist, als würdest du das Auto umlackieren oder Benzin nachtanken. Dafür muss dein Objekt als veränderbar (<code>mut</code>) deklariert sein.</li>
+<li><strong><code>self</code> (Das Aufbrauchen):</strong>
+Du möchtest das Objekt komplett übernehmen und dabei eventuell zerstören oder umwandeln. Das ist, als würdest du ein Geschenk auspacken (das Geschenkpapier ist danach zerrissen) oder ein Auto in der Schrottpresse zerquetschen. Danach existiert das ursprüngliche Objekt nicht mehr in deinem Programm.</li>
+</ol>
+<h4 id="assoziierte-funktionen-die-fabriken"><a class="header" href="#assoziierte-funktionen-die-fabriken">Assoziierte Funktionen (Die Fabriken)</a></h4>
+<p>Manchmal möchtest du eine Funktion schreiben, die zu deinem Bauplan gehört, aber kein fertiges Objekt benötigt. Der bekannteste Fall ist eine Funktion, die ein neues Objekt überhaupt erst erschafft!</p>
+<p>Weil diese Funktion kein fertiges Objekt vor sich hat, nutzt sie <strong>kein</strong> <code>self</code>. In Rust nennen wir das eine assoziierte Funktion. Du rufst sie später mit einem doppelten Doppelpunkt <code>::</code> auf:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl NameDesBauplans {
+    fn neu(wert: Typ) -&gt; NameDesBauplans {
+        // Erschaffe und gib ein neues Objekt zurück
+    }
+}
+
+// Aufruf:
+let neues_objekt = NameDesBauplans::neu(wert);
+<span class="boring">}</span></code></pre>
+<hr>
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Versuche, diese Aufgaben selbstständig zu lösen. Schreibe die Baupläne und das Verhalten, ohne fertigen Code zu kopieren!</p>
+<h3 id="aufgabe-1-das-haustier-zentrum-"><a class="header" href="#aufgabe-1-das-haustier-zentrum-">Aufgabe 1: Das Haustier-Zentrum 🐱</a></h3>
+<p>Entwirf ein System für ein Haustier.</p>
+<ul>
+<li><strong>Der Bauplan (Struct):</strong> Erstelle ein Struct für ein Haustier. Es soll einen Namen, eine Tierart (z. B. „Katze“) und ein Hungerlevel (eine ganze Zahl von 0 bis 100) speichern.</li>
+<li><strong>Die Aktionen (Methoden):</strong>
+<ul>
+<li>Implementiere eine Methode <code>fuettern(&amp;mut self)</code>. Wenn das Tier gefüttert wird, soll das Hungerlevel um einen bestimmten Wert sinken.</li>
+<li>Implementiere eine Methode <code>status_zeigen(&amp;self)</code>. Diese soll den Namen, die Tierart und das aktuelle Hungerlevel auf dem Bildschirm ausgeben.</li>
+<li>Erstelle eine assoziierte Funktion <code>neu(name, tierart)</code>, die ein neues Haustier mit einem Hungerlevel von standardmäßig 50 (weder satt noch am Verhungern) zurückgibt.</li>
+</ul>
+</li>
+</ul>
+<h3 id="aufgabe-2-der-kaffeebereiter-"><a class="header" href="#aufgabe-2-der-kaffeebereiter-">Aufgabe 2: Der Kaffeebereiter ☕</a></h3>
+<p>Simuliere eine Kaffeemaschine im Büro.</p>
+<ul>
+<li><strong>Der Bauplan (Struct):</strong> Die Kaffeemaschine benötigt einen Wasservorrat (in Millilitern) und einen Kaffeebohnenvorrat (in Gramm).</li>
+<li><strong>Die Aktionen (Methoden):</strong>
+<ul>
+<li>Schreibe eine Methode <code>nachfuellen(&amp;mut self, wasser, bohnen)</code>, um die Vorräte aufzustocken.</li>
+<li>Schreibe eine Methode <code>kaffee_bruehen(&amp;mut self)</code>. Diese Methode soll prüfen, ob noch genug Wasser (z. B. 150 ml) und genug Bohnen (z. B. 15 g) vorhanden sind. Wenn ja, ziehe die Mengen ab und gib eine Erfolgsmeldung aus. Wenn nein, gib eine Fehlermeldung aus, dass die Maschine nachgefüllt werden muss.</li>
+</ul>
+</li>
+</ul>
+<h3 id="aufgabe-3-der-geometrie-prüfer-"><a class="header" href="#aufgabe-3-der-geometrie-prüfer-">Aufgabe 3: Der Geometrie-Prüfer 📐</a></h3>
+<p>Arbeite mit geometrischen Formen.</p>
+<ul>
+<li><strong>Der Bauplan (Struct):</strong> Erstelle ein Struct für ein Rechteck mit einer Breite und einer Höhe.</li>
+<li><strong>Die Aktionen (Methoden):</strong>
+<ul>
+<li>Implementiere eine Methode <code>flaeche(&amp;self)</code>, die die Fläche des Rechtecks berechnet und zurückgibt.</li>
+<li>Implementiere eine Methode <code>ist_quadrat(&amp;self)</code>, die prüft, ob Breite und Höhe gleich lang sind, und einen Wahrheitswert (<code>true</code> oder <code>false</code>) zurückgibt.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Hier sind 50 Ideen für kleine Programme und Konzepte, die du mit Structs und Methoden in Rust umsetzen kannst. Nutze sie als Inspiration für deine eigenen Projekte!</p>
+<h3 id="spiele--abenteuer"><a class="header" href="#spiele--abenteuer">Spiele &amp; Abenteuer</a></h3>
+<ol>
+<li><strong>Helden-Charakter:</strong> Speichere HP, XP und Name mit einer Methode zum Schadennehmen.</li>
+<li><strong>Gegner-Monster:</strong> Verwalte Angriffskraft und Rüstung mit einer Kampf-Methode.</li>
+<li><strong>Spieler-Inventar:</strong> Simuliere das Hinzufügen und Entfernen von Gegenständen in einer Tasche.</li>
+<li><strong>Würfelbecher:</strong> Speichere Augenzahlen und schüttle sie mit einer Methode.</li>
+<li><strong>Highscore-Eintrag:</strong> Verwalte Spielername, Score und Datum eines Rekords.</li>
+<li><strong>Schachfigur:</strong> Speichere Farbe, Typ und Koordinaten mit einer Methode zur Positionsprüfung.</li>
+<li><strong>Spielfeld-Kachel:</strong> Verwalte Geländeart und Begehbarkeit.</li>
+<li><strong>Quiz-Frage:</strong> Speichere Frage, Antwortmöglichkeiten und die richtige Antwort mit einer Methode zum Prüfen.</li>
+<li><strong>Virtuelles Tamagotchi:</strong> Simuliere Hunger, Müdigkeit und Spielfreude über Zeit-Methoden.</li>
+<li><strong>Text-Adventure-Raum:</strong> Speichere Raumbeschreibung und mögliche Ausgänge.</li>
+</ol>
+<h3 id="werkzeuge--nützliches"><a class="header" href="#werkzeuge--nützliches">Werkzeuge &amp; Nützliches</a></h3>
+<ol start="11">
+<li><strong>Eieruhr:</strong> Verwalte eine Minutenzahl und verringere sie mit einer Takt-Methode.</li>
+<li><strong>Münzzähler:</strong> Zähle Münzwerte und berechne die Gesamtsumme deiner Sparbüchse.</li>
+<li><strong>Passwort-Validator:</strong> Speichere ein Passwort und prüfe per Methode seine Sicherheitskriterien.</li>
+<li><strong>Smartphone-Akku:</strong> Simuliere Ladestand und Akkugesundheit bei Nutzung und Laden.</li>
+<li><strong>Ampel:</strong> Verwalte die Farben Rot, Gelb, Grün und schalte sie in der richtigen Reihenfolge weiter.</li>
+<li><strong>Temperatur-Konverter:</strong> Speichere Grad in Celsius und biete Methoden für Kelvin/Fahrenheit.</li>
+<li><strong>Zeitmesser:</strong> Simuliere eine Stoppuhr mit Start- und Stopp-Methoden.</li>
+<li><strong>Notizzettel:</strong> Speichere Titel und Textinhalt mit einer Methode zum Anhängen von Text.</li>
+<li><strong>RGB-Farbe:</strong> Speichere Rot-, Grün- und Blauwerte mit einer Methode zum Mischen zweier Farben.</li>
+<li><strong>Taschenrechner:</strong> Ein Struct, das Zwischenergebnisse speichert und Rechenmethoden anbietet.</li>
+</ol>
+<h3 id="simulationen--natur"><a class="header" href="#simulationen--natur">Simulationen &amp; Natur</a></h3>
+<ol start="21">
+<li><strong>Kreis-Rechner:</strong> Berechne Umfang und Fläche über den Radius.</li>
+<li><strong>Punkt im 2D-Raum:</strong> Speichere X- und Y-Koordinaten mit einer Methode zur Distanzberechnung.</li>
+<li><strong>Vektor-Mathematik:</strong> Simuliere 3D-Vektoren und implementiere das Skalarprodukt.</li>
+<li><strong>Bruch-Rechner:</strong> Speichere Zähler und Nenner mit einer Methode zum Kürzen des Bruchs.</li>
+<li><strong>Virtuelle Pflanze:</strong> Simuliere Wachstum basierend auf Wasser- und Sonnenlichtmenge.</li>
+<li><strong>Wetterbericht:</strong> Speichere Temperatur, Windstärke und Regenwahrscheinlichkeit.</li>
+<li><strong>Pendel-Simulation:</strong> Berechne Schwingungsdauer anhand der Pendellänge.</li>
+<li><strong>Auto-Tacho:</strong> Verwalte aktuellen Gang, Drehzahl und Geschwindigkeit.</li>
+<li><strong>Roboter-Arm:</strong> Simuliere Gelenkwinkel und ändere sie mit Sicherheitsgrenzen.</li>
+<li><strong>Planeten-Umlaufbahn:</strong> Speichere Masse und Sonnenabstand mit Geschwindigkeitsberechnung.</li>
+</ol>
+<h3 id="medien--freizeit"><a class="header" href="#medien--freizeit">Medien &amp; Freizeit</a></h3>
+<ol start="31">
+<li><strong>Buch-Eintrag:</strong> Speichere Titel, Autor und ob es ausgeliehen ist.</li>
+<li><strong>Musik-Lied:</strong> Verwalte Titel, Interpret und Länge in Sekunden.</li>
+<li><strong>Foto-Metadaten:</strong> Speichere Auflösung, Dateigröße und Kamera-Modell.</li>
+<li><strong>Rezept-Zutaten:</strong> Verwalte Zutatenmengen und skaliere sie für mehr Portionen.</li>
+<li><strong>Kino-Saal:</strong> Verwalte Sitzreihen und Plätze mit einer Methode zur Sitzplatzreservierung.</li>
+<li><strong>Fahrkarte:</strong> Speichere Start, Ziel, Preis und Gültigkeitsstatus.</li>
+<li><strong>Kalender-Eintrag:</strong> Verwalte Datum, Uhrzeit und Beschreibung mit Überschneidungsprüfung.</li>
+<li><strong>Vokabeltrainer:</strong> Speichere ein deutsches und ein fremdsprachiges Wort zum Abfragen.</li>
+<li><strong>Pizza-Bestellung:</strong> Wähle Pizza-Größe und Beläge und berechne den Preis.</li>
+<li><strong>Audio-Lautstärke:</strong> Verwalte Lautstärke und Stummschaltung mit Dämpfungsmethoden.</li>
+</ol>
+<h3 id="organisation--verwaltung"><a class="header" href="#organisation--verwaltung">Organisation &amp; Verwaltung</a></h3>
+<ol start="41">
+<li><strong>Bankkonto:</strong> Speichere Kontonummer, Inhaber und Saldo mit Einzahlungs- und Abhebemethoden.</li>
+<li><strong>Warenkorb-Artikel:</strong> Verwalte Produkt, Preis und ANzahl.</li>
+<li><strong>To-Do-Aufgabe:</strong> Speichere Beschreibung, Priorität und Erledigt-Status.</li>
+<li><strong>Gästebucheintrag:</strong> Speichere Name, E-Mail und Nachrichtentext.</li>
+<li><strong>Paket-Sendung:</strong> Verwalte Gewicht, Absender, Empfänger und Lieferstatus.</li>
+<li><strong>Studenten-Profil:</strong> Speichere Name, Matrikelnummer und eine Liste von Noten mit Notenschnitt.</li>
+<li><strong>Hotelzimmer:</strong> Verwalte Zimmernummer, Bettenanzahl und Belegungsstatus.</li>
+<li><strong>Mitarbeiter-Daten:</strong> Speichere Gehalt, Abteilung und Einstellungsjahr.</li>
+<li><strong>Fitness-Aktivität:</strong> Verwalte Dauer, Sportart und verbrannte Kalorien.</li>
+<li><strong>Zoo-Gehege:</strong> Speichere Gehegegröße, Tierart und Futterbedarf der Tiere im Gehege.</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung-1"><a class="header" href="#-zusammenfassung-1">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Structs</strong> sind deine eigenen, benutzerdefinierten Datentypen. Sie funktionieren wie <strong>Baupläne</strong> für Kisten, in denen du verschiedene zusammenhängende Variablen (Felder) verpackst.</li>
+<li>Der <strong><code>impl</code>-Block</strong> trennt die Struktur der Daten von den Aktionen. Hier schreibst du alle Funktionen und Methoden hinein, die zu deinem Struct gehören.</li>
+<li><strong>Methoden</strong> sind Aktionen eines Objekts. Sie verwenden als ersten Parameter <strong><code>self</code></strong> (bzw. <code>&amp;self</code> oder <code>&amp;mut self</code>), um auf die Eigenschaften des konkreten Objekts zuzugreifen.</li>
+<li><strong>Assoziierte Funktionen</strong> verwenden kein <code>self</code>. Sie werden oft als „Konstruktoren“ (häufig <code>new</code> genannt) genutzt, um neue Objekte nach dem Bauplan zu erstellen. Sie werden mit <code>BauplanName::funktion()</code> aufgerufen.</li>
+</ul>
+<hr>
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch05-00-structs.html">Das offizielle Rust-Buch: Structs (Englisch)</a></li>
+<li><a href="https://rust-lang-de.github.io/rustbook-de/ch05-00-structs.html">Die deutsche Übersetzung des Rust-Buchs: Structs (Deutsch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/custom_types/structs.html">Rust by Example: Custom Types &amp; Structs (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/fn/methods.html">Rust by Example: Methods (Englisch)</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-konzept-enums--klare-zustände-und-optionen"><a class="header" href="#-konzept-enums--klare-zustände-und-optionen">🔠 Konzept: Enums – Klare Zustände und Optionen</a></h1>
+<p>Stell dir vor, du stehst in einem Aufzug. Auf dem Bedienfeld siehst du verschiedene Knöpfe: Erdgeschoss, 1. Stock, 2. Stock und Keller. Der Aufzug kann sich immer nur auf einem einzigen dieser Stockwerke befinden. Er kann unmöglich gleichzeitig im Keller sein und im 2. Stock stehen. Oder stell dir eine Ampel vor: Sie zeigt entweder Rot, Gelb oder Grün – aber niemals alle drei gleichzeitig (zumindest nicht im Normalbetrieb!).</p>
+<p>In der echten Welt begegnen uns solche festen Auswahlen ständig. Und genau für diese Situationen gibt es in Rust ein extrem mächtiges Werkzeug namens <strong>Enums</strong> (kurz für <em>Enumerations</em>, zu Deutsch: Aufzählungen).</p>
+<p>Ein Enum erlaubt es dir, einen eigenen Datentyp zu erschaffen, der aus einer festen Liste von vordefinierten, sich gegenseitig ausschließenden Auswahlmöglichkeiten besteht.</p>
+<hr>
+<h2 id="-theorie-1"><a class="header" href="#-theorie-1">🧠 Theorie</a></h2>
+<h3 id="was-sind-enums-und-wozu-braucht-man-sie"><a class="header" href="#was-sind-enums-und-wozu-braucht-man-sie">Was sind Enums und wozu braucht man sie?</a></h3>
+<p>Wenn du programmierst, möchtest du oft Zustände oder Kategorien darstellen. Ohne Enums müsste man sich mit Behelfslösungen herumschlagen. Du könntest zum Beispiel Zahlen verwenden:</p>
+<ul>
+<li><code>0</code> steht für “Aus”</li>
+<li><code>1</code> steht für “An”</li>
+<li><code>2</code> steht für “Standby”</li>
+</ul>
+<p>Das Problem dabei? Du musst dir ständig merken, was die Zahlen bedeuten. Und was passiert, wenn jemand versehentlich eine <code>3</code> einträgt? Dein Programm weiß dann nicht, was es tun soll, und stürzt im schlimmsten Fall ab.</p>
+<p>Ein Enum löst dieses Problem elegant. Du definierst damit genau, welche Zustände erlaubt sind. Der Compiler (unser strenger Bibliothekar) passt dann penibel darauf auf, dass niemand einen ungültigen Zustand einschmuggelt.</p>
+<h3 id="wie-sieht-die-struktur-in-rust-aus"><a class="header" href="#wie-sieht-die-struktur-in-rust-aus">Wie sieht die Struktur in Rust aus?</a></h3>
+<p>Um ein Enum zu definieren, nutzt du das Schlüsselwort <code>enum</code>, gefolgt von einem Namen und den möglichen Optionen (den sogenannten Varianten) in geschweiften Klammern:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum GeraeteZustand {
+    Aus,
+    An,
+    Standby,
+}
+<span class="boring">}</span></code></pre>
+<p>Wenn du dieses Enum in deinem Programm benutzen möchtest, greifst du über den Namen des Enums und zwei Doppelpunkte (<code>::</code>) auf die einzelnen Varianten zu:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mein_geraet = GeraeteZustand::Standby;
+<span class="boring">}</span></code></pre>
+<h3 id="der-wahre-superheld-enums-mit-eigenen-daten"><a class="header" href="#der-wahre-superheld-enums-mit-eigenen-daten">Der wahre Superheld: Enums mit eigenen Daten</a></h3>
+<p>In vielen anderen Programmiersprachen sind Enums nur einfache Listen von Wörtern. In Rust hingegen sind sie echte Allrounder! Jede Option in einem Enum kann nämlich <strong>eigene Daten mit sich herumtragen</strong>.</p>
+<p>Stell dir das wie verschiedene Briefumschläge vor:</p>
+<ul>
+<li>Der Umschlag <code>StandardBrief</code> ist ganz flach und enthält keine zusätzlichen Objekte.</li>
+<li>Der Umschlag <code>Paket</code> ist dick und enthält ein Gewicht (eine Zahl) und eine Adresse (einen Text).</li>
+<li>Der Umschlag <code>Einschreiben</code> enthält einen Empfänger-Namen und eine Tracking-Nummer.</li>
+</ul>
+<p>In Rust-Syntax sieht das konzeptionell so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum PostSendung {
+    StandardBrief,                            // Keine Zusatzdaten
+    Paket(u32, String),                       // Trägt ein Gewicht (Zahl) und eine Adresse (Text)
+    Einschreiben(String, u64),                // Trägt einen Empfänger (Text) und eine Sendungsnummer
+}
+<span class="boring">}</span></code></pre>
+<p>Das macht Enums unglaublich flexibel, da du unterschiedliche Datenstrukturen unter einem einzigen gemeinsamen Namen zusammenfassen kannst!</p>
+<h3 id="wie-werten-wir-enums-aus-der-weichensteller-match"><a class="header" href="#wie-werten-wir-enums-aus-der-weichensteller-match">Wie werten wir Enums aus? Der Weichensteller <code>match</code></a></h3>
+<p>Ein Enum zu haben ist toll, aber wir müssen auch darauf reagieren können. Das perfekte Werkzeug dafür ist <code>match</code>.</p>
+<p>Stell dir <code>match</code> wie einen großen Bahnhof mit verschiedenen Gleisen vor. Je nachdem, welche Option dein Enum hat, wird der Zug auf ein anderes Gleis geleitet:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match meine_sendung {
+    PostSendung::StandardBrief =&gt; {
+        // Gleis 1: Aktion für einen normalen Brief
+    }
+    PostSendung::Paket(gewicht, adresse) =&gt; {
+        // Gleis 2: Aktion für ein Paket. 
+        // Hier hast du sofort Zugriff auf das Gewicht und die Adresse!
+    }
+    PostSendung::Einschreiben(empfaenger, nummer) =&gt; {
+        // Gleis 3: Aktion für ein Einschreiben
+    }
+}
+<span class="boring">}</span></code></pre>
+<p><strong>Wichtig:</strong> Rust verlangt hierbei absolute Gründlichkeit! Du musst bei einem <code>match</code> immer <em>alle</em> möglichen Varianten deines Enums abdecken. Vergisst du auch nur eine einzige Option, weigert sich der Compiler, dein Programm zu bauen. Das ist ein genialer Schutzmechanismus, der Fehler im Keim erstickt.</p>
+<hr>
+<h2 id="-praxis-aufgaben-keine-codelösungen-1"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-1">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Versuche, die folgenden Aufgaben theoretisch zu durchdenken und die entsprechenden Enums auf einem Blatt Papier oder in einer leeren Datei zu entwerfen. Schreibe noch keine vollständigen Programme, sondern konzentriere dich auf die logische Struktur.</p>
+<h3 id="aufgabe-1-die-smarte-ampel"><a class="header" href="#aufgabe-1-die-smarte-ampel">Aufgabe 1: Die smarte Ampel</a></h3>
+<ol>
+<li>Entwirfe ein Enum namens <code>AmpelPhase</code> mit den typischen Zuständen einer Straßenampel.</li>
+<li>Überlege dir, wie du eine zusätzliche Variante für eine defekte Ampel (z.B. “BlinktGelb”) einbauen kannst.</li>
+<li>Skizziere im Kopf ein <code>match</code>-Muster, das für jede Phase das passende Verhalten des Autofahrers ausgibt (z.B. “Stehen bleiben!”, “Vorsicht!”, “Freie Fahrt!”).</li>
+</ol>
+<h3 id="aufgabe-2-das-bestellsystem-deiner-lieblings-pizzeria"><a class="header" href="#aufgabe-2-das-bestellsystem-deiner-lieblings-pizzeria">Aufgabe 2: Das Bestellsystem deiner Lieblings-Pizzeria</a></h3>
+<ol>
+<li>Erstelle ein Enum <code>BestellStatus</code> für eine Pizza-Bestellung. Die Zustände sollen sein: <em>Eingegangen</em>, <em>In Zubereitung</em>, <em>Im Ofen</em>, <em>Geliefert</em>.</li>
+<li>Wenn die Pizza <em>Geliefert</em> wird, wollen wir wissen, welcher Bote sie bringt. Füge dieser Variante ein entsprechendes Datenfeld für den Namen des Boten (einen Text) hinzu.</li>
+<li>Überlege dir, wie du mit <code>match</code> dem Kunden eine Benachrichtigung anzeigen kannst, die je nach Zustand variiert.</li>
+</ol>
+<h3 id="aufgabe-3-ein-einfaches-haustierspiel"><a class="header" href="#aufgabe-3-ein-einfaches-haustierspiel">Aufgabe 3: Ein einfaches Haustierspiel</a></h3>
+<ol>
+<li>Definiere ein Enum <code>TierAktion</code> für die Aktionen eines virtuellen Haustiers. Mögliche Aktionen sind: <em>Schlafen</em>, <em>Spielen</em>, <em>Füttern</em>.</li>
+<li>Beim <em>Füttern</em> soll das Haustier unterschiedliche Nahrung bekommen. Hänge an die Variante <em>Füttern</em> einen Text an, der die Futtersorte beschreibt (z.B. “Karotte” oder “Fisch”).</li>
+<li>Wie könnte ein <code>match</code> aussehen, das bei der Fütterung reagiert und je nach Futter eine andere Nachricht ausgibt?</li>
+</ol>
+<hr>
+<h2 id="-50-projekte-1"><a class="header" href="#-50-projekte-1">🚀 50 Projekte</a></h2>
+<p>Hier findest du 50 Ideen für kleine Programme und Systeme, bei denen Enums die Hauptrolle spielen. Du kannst diese Liste als Inspiration nutzen, um eigene Projekte zu starten!</p>
+<ol>
+<li><strong>Wetterstation</strong>: Wetterlagen (Sonne, Regen, Schnee, Nebel, Sturm).</li>
+<li><strong>Himmelsrichtungen-Kompass</strong>: Navigation mit Norden, Osten, Süden, Westen.</li>
+<li><strong>Kreditkarten-Validator</strong>: Zahlungsarten (Visa, MasterCard, PayPal, Überweisung).</li>
+<li><strong>Spielcharakter-Klassen</strong>: Rollenspiel-Klassen (Krieger, Magier, Dieb, Heiler).</li>
+<li><strong>Ampelschaltung</strong>: Zustände einer Kreuzungsampel steuern.</li>
+<li><strong>Fahrzeug-Konfigurator</strong>: Antriebsarten (Benzin, Diesel, Elektro, Hybrid).</li>
+<li><strong>Dateisystem-Explorer</strong>: Dateitypen (Ordner, Textdatei, Bilddatei, Ausführbar).</li>
+<li><strong>Fehlermeldungs-Handler</strong>: Eigene Systemfehler kategorisieren (Netzwerkfehler, Dateifehler, Rechtefehler).</li>
+<li><strong>Kaffeemaschine</strong>: Kaffeevarianten (Espresso, Cappuccino, LatteMacchiato, KaffeeSchwarz).</li>
+<li><strong>Taschenrechner</strong>: Mathematische Operationen (Addition, Subtraktion, Multiplikation, Division).</li>
+<li><strong>Smart-Home-Licht</strong>: Lichtzustände (Aus, Ein(Helligkeit), Farbe(Rot, Gruen, Blau)).</li>
+<li><strong>Zustand eines Wassertropfens</strong>: Aggregatzustände (Fest, Flüssig, Gasförmig).</li>
+<li><strong>Bestellverfolgung</strong>: Paketstatus (Vorbereitung, Sortierung, Transport, Zustellung).</li>
+<li><strong>Spielkarten-Farben</strong>: Kartenspiel-Farben (Kreuz, Pik, Herz, Karo).</li>
+<li><strong>Benutzer-Rollen</strong>: Berechtigungen (Admin, Moderator, PremiumUser, Gast).</li>
+<li><strong>Verbindung zur Datenbank</strong>: Verbindungsstatus (Getrennt, Verbinde, Verbunden, Fehler(Grund)).</li>
+<li><strong>Musik-Player</strong>: Player-Zustände (Play, Pause, Stop).</li>
+<li><strong>Dokumenten-Editor</strong>: Formatierungsstile (Fett, Kursiv, Unterstrichen, Normal).</li>
+<li><strong>Temperatur-Umrechner</strong>: Temperatureinheiten (Celsius, Fahrenheit, Kelvin).</li>
+<li><strong>Währungs-Umrechner</strong>: Währungen (Euro, Dollar, Yen, Pfund).</li>
+<li><strong>Tierstimmen-Generator</strong>: Tierarten (Hund, Katze, Kuh, Schaf).</li>
+<li><strong>Menüauswahl im Spiel</strong>: Hauptmenü-Optionen (Start, Optionen, Credits, Beenden).</li>
+<li><strong>Logbuch-Schreiber</strong>: Log-Levels (Info, Warnung, Fehler, Debug).</li>
+<li><strong>Paketversand-Rechner</strong>: Paketgrößen (S, M, L, XL).</li>
+<li><strong>Bibliotheks-Verwaltung</strong>: Buch-Status (Verfügbar, Ausgeliehen(Datum), Verloren).</li>
+<li><strong>Aufgabenplaner</strong>: Prioritäten (Niedrig, Mittel, Hoch, Kritisch).</li>
+<li><strong>Fahrstuhl-Steuerung</strong>: Fahrtrichtung (Aufwärts, Abwärts, Stillstand).</li>
+<li><strong>Klimaanlage</strong>: Modi (Kühlen, Heizen, Lüften, Automatik).</li>
+<li><strong>Roboter-Bewegung</strong>: Befehle (Gehe(Schritte), Drehe(Winkel), Stop).</li>
+<li><strong>Formen-Zeichner</strong>: Geometrische Formen (Kreis(Radius), Rechteck(Breite, Hoehe), Dreieck).</li>
+<li><strong>Koch-Timer</strong>: Gargrad für Steaks (Rare, Medium, WellDone).</li>
+<li><strong>Münz-Sortierer</strong>: Euro-Münzen (1 Cent bis 2 Euro).</li>
+<li><strong>Flugticket-Klassen</strong>: Sitzplatzklassen (Economy, Business, FirstClass).</li>
+<li><strong>Sensor-Messung</strong>: Sensor-Status (Bereit, Messend, Kalibrierung, Defekt).</li>
+<li><strong>E-Mail-Ordner</strong>: Ordner-Kategorien (Posteingang, Spam, Entwürfe, Papierkorb).</li>
+<li><strong>Spieler-Status</strong>: Gesundheit (Gesund, Vergiftet, Gelähmt, K.o.).</li>
+<li><strong>Monats-Finder</strong>: Die 12 Monate des Jahres als Enum.</li>
+<li><strong>Fahrradgang-Schaltung</strong>: Gänge eines Fahrrads.</li>
+<li><strong>Netzwerk-Protokoll</strong>: Nachrichtentypen (Ping, Pong, Daten(Inhalt), Abmelden).</li>
+<li><strong>Drucker-Warteschlange</strong>: Status des Druckauftrags (Wartend, Druckend, Abgebrochen, Fertig).</li>
+<li><strong>Zwei-Faktor-Authentifizierung</strong>: Verifikationsmethoden (SMS(Nummer), Email(Adresse), AuthenticatorApp).</li>
+<li><strong>Sprachauswahl</strong>: Unterstützte Sprachen (Deutsch, Englisch, Französisch, Spanisch).</li>
+<li><strong>Kino-Sitzplätze</strong>: Reservierungsstatus (Frei, Reserviert, Besetzt).</li>
+<li><strong>Farbmischer</strong>: Grundfarben (Rot, Gelb, Blau).</li>
+<li><strong>E-Book-Reader</strong>: Lese-Modus (TagModus, NachtModus, SepiaModus).</li>
+<li><strong>Fahrzeugschein-Klassen</strong>: Führerscheinklassen (A, B, C, D).</li>
+<li><strong>Pizza-Größen</strong>: Durchmesser (Single, Family, Party).</li>
+<li><strong>Haushaltsgeräte-Status</strong>: Waschmaschinen-Programme (Baumwolle, Pflegeleicht, Wolle, Schleudern).</li>
+<li><strong>Social-Media-Reaktionen</strong>: Like-Typen (Like, Love, Haha, Wow, Sad, Angry).</li>
+<li><strong>Schnittstellen-Format</strong>: API-Antworttyp (Erfolg(Daten), ClientFehler(Code), ServerFehler(Code)).</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung-2"><a class="header" href="#-zusammenfassung-2">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Enums (Aufzählungen)</strong> fassen eine feste Liste von sich gegenseitig ausschließenden Auswahlmöglichkeiten unter einem gemeinsamen Typnamen zusammen.</li>
+<li>Sie machen dein Programm <strong>sicherer und lesbarer</strong>, da du verständliche Namen statt kryptischer Zahlen oder Texte als Zustände nutzt.</li>
+<li>In Rust können Enums <strong>zusätzliche Daten</strong> an jede einzelne Variante anhängen – das unterscheidet sie von vielen anderen Sprachen und macht sie extrem mächtig.</li>
+<li>Mit dem Weichensteller <strong><code>match</code></strong> kannst du Enums sicher und übersichtlich auswerten. Rust zwingt dich dazu, jeden Fall zu berücksichtigen, damit kein Zustand vergessen wird.</li>
+</ul>
+<hr>
+<h2 id="-links-1"><a class="header" href="#-links-1">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html">Das offizielle Rust-Buch: Enums definieren</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/custom_types/enum.html">Rust by Example: Custom Types - Enums</a></li>
+<li><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-kontrollfluss.md">Konzept: Kontrollfluss (für die Nutzung von <code>match</code>)</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-konzept-pattern-matching--intelligentes-sortieren"><a class="header" href="#-konzept-pattern-matching--intelligentes-sortieren">🎯 Konzept: Pattern Matching – Intelligentes Sortieren</a></h1>
+<p>Stell dir vor, du stehst an einem riesigen Sortierband in einer Postfiliale. Sekündlich rollen Pakete an dir vorbei: winzige Briefe, schwere Pakete, runde Rollen und manchmal sogar beschädigte Sendungen, bei denen die Adresse fehlt. Deine Aufgabe ist es, jedes Paket blitzschnell zu prüfen und in den richtigen Container zu werfen.</p>
+<p>Wenn du ein eckiges Paket siehst, kommt es in Box A. Wenn es eine Rolle ist, kommt es in Box B. Und wenn es gar keine Adresse hat, wandert es direkt in die Schadensabteilung.</p>
+<p>Genau das ist <strong>Pattern Matching</strong> (zu Deutsch: Musterabgleich) in Rust! Es ist wie eine hochentwickelte, intelligente Sortiermaschine. Du gibst ihr einen Wert und sagst: „Prüfe diesen Wert gegen verschiedene Schablonen. Sobald eine Schablone perfekt passt, führe die dazugehörige Aktion aus.“</p>
+<p>In diesem Kapitel lernst du, wie dieses Sortiersystem funktioniert und warum der Rust-Compiler dabei dein treuester (und strengster!) Assistent ist.</p>
+<hr>
+<h2 id="-theorie-2"><a class="header" href="#-theorie-2">🧠 Theorie</a></h2>
+<h3 id="die-schablonen-und-der-musterabgleich"><a class="header" href="#die-schablonen-und-der-musterabgleich">Die Schablonen und der Musterabgleich</a></h3>
+<p>Im Kern von Pattern Matching stehen zwei Dinge: der <strong>Wert</strong>, den du untersuchen willst, und die <strong>Muster</strong> (Schablonen), auf die der Wert passen soll.</p>
+<p>Ein Muster ist wie ein Plätzchenausstecher. Wenn der Teig (dein Wert) die richtige Form hat, passt er durch den Ausstecher. Wenn nicht, probiert die Maschine den nächsten Ausstecher aus.</p>
+<p>In Rust benutzen wir dafür den sogenannten <code>match</code>-Ausdruck. Das Ganze sieht vom Aufbau her so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match dein_wert {
+    schablone_1 =&gt; {
+        // Was soll passieren, wenn Schablone 1 passt?
+    },
+    schablone_2 =&gt; {
+        // Was soll passieren, wenn Schablone 2 passt?
+    },
+    // Weitere Schablonen...
+}
+<span class="boring">}</span></code></pre>
+<p>Die Maschine geht die Schablonen von oben nach unten durch. Sobald das erste passende Muster gefunden wird, stoppt Rust die Suche, führt den Code daneben aus und ignoriert alle weiteren Schablonen darunter.</p>
+<hr>
+<h3 id="exhaustiveness-checking-der-lückenlose-qualitätskontrolleur"><a class="header" href="#exhaustiveness-checking-der-lückenlose-qualitätskontrolleur">Exhaustiveness Checking: Der lückenlose Qualitätskontrolleur</a></h3>
+<p>Jetzt kommt die Besonderheit von Rust, die diese Sprache so sicher macht: das <strong>Exhaustiveness Checking</strong> (Lückenlosigkeitsprüfung).</p>
+<p>Stell dir vor, auf deinem Post-Sortierband taucht plötzlich ein dreieckiges Paket auf. Deine Sortiermaschine hat aber nur Fächer für eckige und runde Pakete. Was passiert? Das Band verstopft, die Maschine stürzt ab oder das Paket fällt herunter und geht verloren.</p>
+<p>Rust hasst solche unsicheren Zustände. Deshalb verhält sich der Rust-Compiler wie ein extrem strenger Chef der Qualitätskontrolle. Er schaut sich deine Sortiermaschine (<code>match</code>) an und fragt: „Hast du wirklich an <strong>jeden einzelnen Fall</strong> gedacht, der jemals eintreffen könnte?“</p>
+<p>Wenn du zum Beispiel einen Datentyp mit drei Möglichkeiten prüfst (z. B. eine Ampel mit Rot, Gelb und Grün), aber nur Schablonen für Rot und Grün eingebaut hast, wird der Compiler lautstark protestieren. Dein Programm wird sich gar nicht erst kompilieren lassen! Rust zwingt dich dazu, lückenlos zu sein.</p>
+<h4 id="das-auffangbecken-der-unterstrich-_"><a class="header" href="#das-auffangbecken-der-unterstrich-_">Das Auffangbecken: Der Unterstrich <code>_</code></a></h4>
+<p>Da wir aber nicht immer für jede erdenkliche Möglichkeit (wie jede Zahl von 1 bis zu einer Milliarde) eine eigene Schablone basteln können, gibt es ein universelles Auffangbecken: den Unterstrich <code>_</code>.</p>
+<p>Der Unterstrich ist das Muster für <strong>„alles andere“</strong> oder <strong>„sonstige Fälle“</strong>. Wenn kein anderes Muster vorher gepasst hat, greift garantiert dieses Muster. Es ist wie das Fach für den Restmüll oder die Fundgrube in unserer Postfiliale:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match zahl {
+    1 =&gt; { /* Spezialfall 1 */ },
+    2 =&gt; { /* Spezialfall 2 */ },
+    _ =&gt; { /* Für jede andere Zahl */ }
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="die-abkürzung-if-let-für-den-schnellen-check"><a class="header" href="#die-abkürzung-if-let-für-den-schnellen-check">Die Abkürzung: <code>if let</code> für den schnellen Check</a></h3>
+<p>Manchmal ist uns die große Sortiermaschine mit all ihren Fächern viel zu aufwendig. Stell dir vor, du hast einen großen Korb voll Post und suchst ausschließlich nach einem goldenen Umschlag. Wenn du ihn findest, möchtest du dich freuen. Alle anderen Briefe sind dir in diesem Moment völlig egal – du willst sie nicht sortieren, sondern einfach ignorieren.</p>
+<p>Wenn du dafür ein <code>match</code> benutzen würdest, müsstest du schreiben:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match umschlag {
+    Gold =&gt; { /* Freuen! */ },
+    _ =&gt; { /* Tu nichts */ }
+}
+<span class="boring">}</span></code></pre>
+<p>Das ist viel Tipparbeit für eine einzige Bedingung. Deshalb hat Rust eine bequeme Abkürzung eingebaut: das <code>if let</code>.</p>
+<p>Mit <code>if let</code> sagst du: „<em>Wenn</em> dieser Wert auf diese eine Schablone passt, dann mache folgendes. Ansonsten mach einfach weiter im Text.“</p>
+<p>Der abstrakte Aufbau sieht so aus:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let schablone = wert {
+    // Wird nur ausgeführt, wenn das Muster passt
+}
+<span class="boring">}</span></code></pre>
+<p>Damit sparst du dir das Auffangbecken <code>_</code> und hältst deinen Code sauber und übersichtlich, wenn dich nur ein ganz bestimmter Fall interessiert.</p>
+<hr>
+<h2 id="-praxis-aufgaben-keine-codelösungen-2"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-2">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Hier sind einige Aufgaben, mit denen du das Konzept des intelligenten Sortierens üben kannst. Versuche, die Logik zuerst auf einem Blatt Papier oder in Gedanken zu entwerfen, bevor du sie in Rust programmierst!</p>
+<h3 id="aufgabe-1-der-ampel-assistent"><a class="header" href="#aufgabe-1-der-ampel-assistent">Aufgabe 1: Der Ampel-Assistent</a></h3>
+<p>Erstelle ein Programm, das den Zustand einer Ampel simuliert.</p>
+<ul>
+<li>Nutze ein <code>match</code>, um auf die drei Ampelphasen (Rot, Gelb, Grün) zu reagieren.</li>
+<li>Drucke für jede Phase eine passende Aktion aus (z. B. „Halt!“, „Achtung!“, „Freie Fahrt!“).</li>
+<li><em>Herausforderung:</em> Versuche absichtlich, eine Phase wegzulassen, und beobachte, wie sich der Compiler beschwert!</li>
+</ul>
+<h3 id="aufgabe-2-der-noten-übersetzer"><a class="header" href="#aufgabe-2-der-noten-übersetzer">Aufgabe 2: Der Noten-Übersetzer</a></h3>
+<p>Schreibe eine Logik, die eine Schulnote von 1 bis 6 als Zahl entgegennimmt.</p>
+<ul>
+<li>Verwende ein <code>match</code>-Konstrukt.</li>
+<li>Gib für die Noten 1 bis 3 ein Lob aus.</li>
+<li>Gib für die Noten 4 und 5 eine Ermutigung aus.</li>
+<li>Reagiere bei einer 6 mit einem Hinweis auf Nachhilfe.</li>
+<li>Nutze das Auffangbecken <code>_</code>, um ungültige Eingaben (wie z. B. eine Note 0 oder 7) abzufangen und eine Fehlermeldung auszugeben.</li>
+</ul>
+<h3 id="aufgabe-3-der-schatzsucher-mit-if-let"><a class="header" href="#aufgabe-3-der-schatzsucher-mit-if-let">Aufgabe 3: Der Schatzsucher mit <code>if let</code></a></h3>
+<p>Stell dir vor, du hast eine Kiste, die entweder leer ist, ein normales Buch enthält oder eine wertvolle Goldmünze.</p>
+<ul>
+<li>Dich interessiert ausschließlich der Fall, dass sich eine Goldmünze in der Kiste befindet.</li>
+<li>Setze diese Prüfung mit dem kompakten <code>if let</code> um, sodass andere Inhalte einfach ignoriert werden.</li>
+</ul>
+<hr>
+<h2 id="-50-projekte-2"><a class="header" href="#-50-projekte-2">🚀 50 Projekte</a></h2>
+<p>Pattern Matching ist das Schweizer Taschenmesser in Rust. Hier sind 50 spannende Ideen für Projekte, bei denen du dieses Konzept perfekt einsetzen kannst:</p>
+<h3 id="spiele--simulationen"><a class="header" href="#spiele--simulationen">Spiele &amp; Simulationen</a></h3>
+<ol>
+<li><strong>Münzwurf-Simulator</strong>: Entscheide je nach Wurfseite über Gewinn oder Verlust.</li>
+<li><strong>Text-Adventure-Steuerung</strong>: Werte Spielerbefehle wie „Norden“, „Osten“, „Süden“, „Westen“ aus.</li>
+<li><strong>Schere-Stein-Papier</strong>: Vergleiche die Wahl beider Spieler per Musterabgleich.</li>
+<li><strong>Würfelspiel-Auswerter</strong>: Erkenne Sonderregeln beim Erreichen bestimmter Augenzahlen.</li>
+<li><strong>Karten-Stärkeberechner</strong>: Ordne Spielkarten (Ass, König, Dame, etc.) ihre Werte zu.</li>
+<li><strong>Tier-Simulator</strong>: Lasse Tiere je nach Typ unterschiedliche Geräusche machen.</li>
+<li><strong>Wetter-Simulator</strong>: Berechne die Kleidungsempfehlung basierend auf Sonnig, Regnerisch oder Schnee.</li>
+<li><strong>RPG-Kampfsystem</strong>: Bestimme den Schaden je nach Waffentyp (Schwert, Bogen, Magie).</li>
+<li><strong>Schachfiguren-Bewegung</strong>: Prüfe, ob ein Zug für die ausgewählte Figur erlaubt ist.</li>
+<li><strong>Labyrinth-Navigator</strong>: Reagiere auf Hindernisse (Wand, Falle, Ausgang) vor dem Spieler.</li>
+</ol>
+<h3 id="alltagshelfer--produktivität"><a class="header" href="#alltagshelfer--produktivität">Alltagshelfer &amp; Produktivität</a></h3>
+<ol start="11">
+<li><strong>Einfacher Taschenrechner</strong>: Führe Rechenoperationen basierend auf den Symbolen (+, -, *, /) aus.</li>
+<li><strong>Einheiten-Konverter</strong>: Rechne Längen um (Meter in Kilometer, Meilen, etc.).</li>
+<li><strong>Währungsrechner</strong>: Konvertiere Geldbeträge je nach Länderkürzel (EUR, USD, GBP).</li>
+<li><strong>Kalender-Helfer</strong>: Gib die Anzahl der Tage für jeden Monat aus.</li>
+<li><strong>Temperatur-Klassifizierer</strong>: Teile Temperaturen in Gefrierpunkt, Kalt, Angenehm und Heiß ein.</li>
+<li><strong>BMI-Analysator</strong>: Werte den Body-Mass-Index in Untergewicht, Normalgewicht und Übergewicht aus.</li>
+<li><strong>Alters-Checker</strong>: Entscheide über Eintrittspreise (Kind, Student, Erwachsener, Senior).</li>
+<li><strong>Rabatt-Kalkulator</strong>: Berechne Preise basierend auf Gutscheincodes.</li>
+<li><strong>Paket-Porto-Rechner</strong>: Bestimme Versandkosten nach Gewichtsklassen.</li>
+<li><strong>To-Do-Priorisierer</strong>: Ordne Aufgaben nach Wichtigkeit (Hoch, Mittel, Niedrig) verschiedene Farben zu.</li>
+</ol>
+<h3 id="textverarbeitung--parser"><a class="header" href="#textverarbeitung--parser">Textverarbeitung &amp; Parser</a></h3>
+<ol start="21">
+<li><strong>Vokal-Zähler</strong>: Prüfe einzelne Buchstaben darauf, ob es Vokale oder Konsonanten sind.</li>
+<li><strong>Befehlszeilen-Parser</strong>: Werte Startparameter deines Programms aus.</li>
+<li><strong>Satzzeichen-Filter</strong>: Entferne oder ersetze Satzzeichen je nach Typ.</li>
+<li><strong>Markdown-Konverter</strong>: Erkenne Überschriften-Symbole (#) am Zeilenanfang.</li>
+<li><strong>Emoji-Übersetzer</strong>: Ersetze Text-Smileys (wie <code>:)</code>) durch echte Emojis.</li>
+<li><strong>Telefonnummer-Formatierer</strong>: Erkenne Ländervorwahlen und formatiere den Rest.</li>
+<li><strong>Zensur-Filter</strong>: Erkenne Schimpfwörter und ersetze sie durch Sternchen.</li>
+<li><strong>Dateiendungs-Erkenner</strong>: Bestimme den Dateityp anhand der Endung (.txt, .jpg, .pdf).</li>
+<li><strong>Römische Zahlen</strong>: Konvertiere römische Ziffern (I, V, X, L, C, D, M) in Zahlen.</li>
+<li><strong>Morsecode-Decoder</strong>: Übersetze Morse-Signale in Buchstaben.</li>
+</ol>
+<h3 id="hardware--iot-simulationen"><a class="header" href="#hardware--iot-simulationen">Hardware &amp; IoT Simulationen</a></h3>
+<ol start="31">
+<li><strong>Ampelsteuerung</strong>: Schalte Phasen einer simulierten Straßenkreuzung.</li>
+<li><strong>Heizungsthermostat</strong>: Schalte die Heizung an oder aus, je nachdem, ob ein Schwellenwert erreicht ist.</li>
+<li><strong>Alarmanlagen-Status</strong>: Werte Sensor-Signale (Bewegung, Fenster offen, Rauch) aus.</li>
+<li><strong>Smart-Home-Licht</strong>: Ändere die Helligkeit je nach Tageszeit (Morgen, Mittag, Abend, Nacht).</li>
+<li><strong>Getränkeautomat</strong>: Prüfe den eingeworfenen Geldbetrag und gib das gewählte Getränk aus.</li>
+<li><strong>Fahrstuhl-Steuerung</strong>: Entscheide, in welches Stockwerk der Fahrstuhl als Nächstes fährt.</li>
+<li><strong>Tastatur-Layout-Mapper</strong>: Übersetze Tastendrücke in Aktionen.</li>
+<li><strong>Batteriestands-Warnung</strong>: Zeige LED-Farben (Grün, Gelb, Rot) je nach Ladestand an.</li>
+<li><strong>Lüftersteuerung</strong>: Passe die Lüftergeschwindigkeit an die CPU-Temperatur an.</li>
+<li><strong>Mikrowellen-Timer</strong>: Wähle das Heizprogramm je nach Speisentyp (Suppe, Pizza, Popcorn).</li>
+</ol>
+<h3 id="daten---systemwerkzeuge"><a class="header" href="#daten---systemwerkzeuge">Daten- &amp; Systemwerkzeuge</a></h3>
+<ol start="41">
+<li><strong>Fehlercode-Erklärer</strong>: Übersetze HTTP-Statuscodes (200, 404, 500) in lesbaren Text.</li>
+<li><strong>Benutzerrollen-Prüfer</strong>: Gewähre Rechte je nach Status (Admin, Editor, Gast).</li>
+<li><strong>Datenbank-Antwort-Sorter</strong>: Sortiere Datensätze nach Erfolg oder Fehlermeldung.</li>
+<li><strong>Dateisystem-Scanner</strong>: Unterscheide beim Scannen zwischen Dateien, Ordnern und Links.</li>
+<li><strong>Log-Datei-Filter</strong>: Filtere Log-Einträge nach Typ (INFO, WARN, ERROR).</li>
+<li><strong>Netzwerkprotokoll-Parser</strong>: Werte eintreffende Datenpakete aus.</li>
+<li><strong>JSON-Typen-Analysator</strong>: Erkenne, ob ein Wert ein Text, eine Zahl oder ein Array ist.</li>
+<li><strong>Arbeitsspeicher-Überwachung</strong>: Reagiere auf normalen, erhöhten oder kritischen Speicherverbrauch.</li>
+<li><strong>Backup-Planer</strong>: Entscheide je nach Wochentag, ob ein inkrementelles oder volles Backup nötig ist.</li>
+<li><strong>Prozess-Status-Monitor</strong>: Überwache Prozesse (Gestartet, Läuft, Gestoppt, Abgestürzt).</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung-3"><a class="header" href="#-zusammenfassung-3">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Pattern Matching</strong> ist wie eine intelligente Sortiermaschine, die Werte mit verschiedenen Schablonen vergleicht.</li>
+<li>Der <code>match</code>-Ausdruck prüft Schablonen nacheinander von oben nach unten.</li>
+<li><strong>Exhaustiveness Checking</strong> bedeutet: Der Compiler zwingt dich, jeden möglich Fall abzudecken, um Abstürze zu verhindern.</li>
+<li>Mit dem Unterstrich <code>_</code> baust du ein praktisches <strong>Auffangbecken</strong> für alle sonstigen Fälle.</li>
+<li><strong><code>if let</code></strong> ist die bequeme Abkürzung, wenn du nur nach einer einzigen Schablone suchst und alles andere ignorieren möchtest.</li>
+</ul>
+<hr>
+<h2 id="-links-2"><a class="header" href="#-links-2">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-02-match.html">Das offizielle Rust-Buch: Pattern Matching (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/match.html">Rust by Example: Match (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html">Rust by Example: if let (Englisch)</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="phase-2-projektvorschläge-für-einsteiger"><a class="header" href="#phase-2-projektvorschläge-für-einsteiger">Phase 2: Projektvorschläge für Einsteiger</a></h1>
 <p>In dieser Phase vertiefen wir die Grundlagen und führen <strong>eigene Datentypen</strong> ein. Du wirst in jedem Projekt das Gelernte aus Phase 1 wiederholen und zusätzlich <code>Structs</code>, Methoden und <code>Enums</code> anwenden.</p>
@@ -6203,7 +6748,7 @@ begruessung "Linux-Fan"
 <li><strong>Aufgabe C:</strong> Schreibe ein Skript, das ein Argument (Dateinamen) übergeben bekommt. Das Skript prüft, ob die Datei existiert (<code>-f</code>). Wenn nicht, erstellt es die Datei mit <code>touch</code>.</li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-1"><a class="header" href="#-zusammenfassung-1">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-4"><a class="header" href="#-zusammenfassung-4">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -6375,7 +6920,7 @@ begruessung "Linux-Fan"
 <li>Ein KI-Agent Wrapper in Bash (Kommunikation mit einer API per <code>curl</code>).</li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-2"><a class="header" href="#-zusammenfassung-2">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-5"><a class="header" href="#-zusammenfassung-5">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -6472,6 +7017,148 @@ begruessung "Linux-Fan"
 <hr>
 <p><strong>Hinweis für den Lernpfad:</strong>
 Wir können nun eine dieser Ideen auswählen und daraus eine Schritt-für-Schritt-Lektion machen. Dabei werde ich dir keine fertigen Skripte vorgeben, sondern dir immer Fragen stellen, dir die benötigten Bash-Befehle erklären und dich zum Ziel führen. Welche Idee wollen wir als Erstes angehen?</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="konzepte-statt-syntax-lernen-1"><a class="header" href="#konzepte-statt-syntax-lernen-1">Konzepte statt Syntax lernen</a></h1>
+<p>Beim Programmierenlernen in Rust ist es entscheidend, zunächst die zugrunde liegenden Konzepte zu verstehen, anstatt nur die Syntax auswendig zu lernen. Hier sind die wichtigsten Kernkonzepte im Überblick:</p>
+<h2 id="-systematische-fehlerbehandlung-result--option"><a class="header" href="#-systematische-fehlerbehandlung-result--option">🛡️ Systematische Fehlerbehandlung (Result &amp; Option)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> In vielen Programmiersprachen stürzen Programme bei Fehlern einfach ab oder werfen schwer nachvollziehbare Ausnahmen (Exceptions). Rust geht einen anderen Weg: Fehler werden als ganz normale Rückgabewerte behandelt. Der Compiler zwingt dich dazu, mögliche Fehler von vornherein einzuplanen und sicher mit ihnen umzugehen.</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li><strong>Result (<code>Result&lt;T, E&gt;</code>):</strong> Stell dir vor, du bestellst ein Paket. Das Paket kommt an und enthält entweder deine bestellte Ware (<code>Ok</code>) oder einen Rücksendebeleg mit der Begründung, warum die Lieferung fehlgeschlagen ist (<code>Err</code>). Du musst das Paket öffnen und für beide Fälle (Erfolg oder Fehler) eine Lösung bereithalten.</li>
+<li><strong>Option (<code>Option&lt;T&gt;</code>):</strong> Das steht für Werte, die existieren können, aber nicht müssen. Wie eine Schublade: Sie ist entweder leer (<code>None</code>) oder es liegt etwas darin (<code>Some</code>). Der Compiler sorgt dafür, dass du nicht versehentlich auf eine leere Schublade zugreifst, ohne vorher nachzusehen.</li>
+</ul>
+</li>
+</ul>
+<h2 id="-collections-datenstrukturen-der-standardbibliothek"><a class="header" href="#-collections-datenstrukturen-der-standardbibliothek">🗄️ Collections (Datenstrukturen der Standardbibliothek)</a></h2>
+<ul>
+<li><strong>Konzept:</strong> Bisher haben wir Daten meist in einzelnen Variablen gespeichert. In echten Anwendungen müssen wir aber oft Gruppen von Elementen verwalten – zum Beispiel eine Liste von Aufgaben oder eine Zuordnung von Benutzernamen zu deren Profilen.</li>
+<li><strong>In Rust wichtig:</strong>
+<ul>
+<li><strong>Vektoren (<code>Vec&lt;T&gt;</code>):</strong> Ein Vektor ist wie eine dynamische Liste. Du kannst dir das wie eine Reihe von beschrifteten Kartons vorstellen, die du beliebig erweitern oder verkleinern kannst. Du kannst jederzeit am Ende neue Elemente hinzufügen oder entfernen. Wichtig: Alle Elemente in einem Vektor müssen denselben Datentyp besitzen.</li>
+<li><strong>HashMaps (<code>HashMap&lt;K, V&gt;</code>):</strong> Das ist wie ein Wörterbuch oder ein Telefonbuch. Du hast einen eindeutigen Schlüssel (z. B. ein Wort oder einen Namen) und einen dazugehörigen Wert (z. B. die Übersetzung oder eine Telefonnummer). Über den Schlüssel kannst du den Wert extrem schnell nachschlagen.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="phase-3-projektvorschläge-für-einsteiger"><a class="header" href="#phase-3-projektvorschläge-für-einsteiger">Phase 3: Projektvorschläge für Einsteiger</a></h1>
+<p>In dieser Phase vertiefen wir die <strong>Collections</strong> (Datenstrukturen der Standardbibliothek) und die <strong>Systematische Fehlerbehandlung</strong> (Result &amp; Option). Du wirst in jedem Projekt das Gelernte aus den Phasen 1 und 2 wiederholen (wie Structs, Enums und Pattern Matching) und diese um dynamische Speicherstrukturen und robusten Code erweitern.</p>
+<h3 id="was-wir-wiederholen-1"><a class="header" href="#was-wir-wiederholen-1">Was wir wiederholen:</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
+<tr><td>🧱 Grundlagen</td><td>Variablen, Datentypen, Kontrollfluss, Benutzereingabe</td></tr>
+<tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt Daten? Referenzen (<code>&amp;</code> und <code>&amp;mut</code>)</td></tr>
+<tr><td>📝 String vs. &amp;str</td><td>Wandelbare Texte vs. feste Text-Slices</td></tr>
+<tr><td>📦 Structs &amp; Methoden</td><td>Eigene Datentypen mit <code>impl</code>-Blöcken strukturieren</td></tr>
+<tr><td>🏷️ Enums &amp; Pattern Matching</td><td>Feste Zustände abbilden und mit <code>match</code>/<code>if let</code> auswerten</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="neue-themen-in-jedem-projekt-angewendet-1"><a class="header" href="#neue-themen-in-jedem-projekt-angewendet-1">Neue Themen (in JEDEM Projekt angewendet):</a></h3>
+<ul>
+<li><strong>Collections (Standardbibliothek):</strong> Nutze <code>Vec&lt;T&gt;</code> für dynamische Listen oder <code>HashMap&lt;K, V&gt;</code> für Schlüssel-Wert-Zuordnungen.</li>
+<li><strong>Systematische Fehlerbehandlung:</strong> Nutze <code>Result&lt;T, E&gt;</code> für fehleranfällige Operationen und <code>Option&lt;T&gt;</code> für Werte, die fehlen können. Kehre Fehler sauber um, statt das Programm abstürzen zu lassen.</li>
+</ul>
+<blockquote>
+<p><strong>Hinweis:</strong> Alle Projekte werden ohne fertige Code-Vorschläge begleitet. Erarbeite die Lösung eigenständig!</p>
+</blockquote>
+<hr>
+<h2 id="-projekt-1-hotelzimmer-verwaltung"><a class="header" href="#-projekt-1-hotelzimmer-verwaltung">🏨 Projekt 1: Hotelzimmer-Verwaltung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Programm zur Buchung von Hotelzimmern.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Zimmer</code> mit Zimmernummer und Status.</li>
+<li>Nutze ein <strong>Enum</strong> <code>ZimmerStatus</code> (<code>Frei</code>, <code>Belegt</code>).</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Zimmer&gt;</code> zur Verwaltung aller Zimmer im Hotel.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>zimmer_buchen(&amp;mut self, nummer: u32) -&gt; Result&lt;(), String&gt;</code>. Wenn das Zimmer bereits belegt ist oder nicht existiert, gib ein <code>Err</code> mit einer Fehlermeldung zurück, andernfalls buche das Zimmer und gib <code>Ok(())</code> zurück.</li>
+</ul>
+<hr>
+<h2 id="-projekt-2-warenkorb-system"><a class="header" href="#-projekt-2-warenkorb-system">🛍️ Projekt 2: Warenkorb-System</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Warenkorb für einen Online-Shop.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Artikelname zu Anzahl) im <code>Warenkorb</code>-Struct.</li>
+<li>Schreibe eine <strong>Methode</strong> <code>artikel_entfernen(&amp;mut self, name: &amp;str, menge: u32) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Nutze Pattern Matching, um zu prüfen, ob der Artikel existiert. Wenn die zu entfernende Menge größer als der Bestand ist oder der Artikel fehlt, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr>
+<h2 id="-benutzer-datenbank"><a class="header" href="#-benutzer-datenbank">👥 Benutzer-Datenbank</a></h2>
+<p><strong>Beschreibung:</strong>
+Eine einfache Benutzerverwaltung für eine Anwendung.</p>
+<ul>
+<li>Erstelle ein <strong>Struct</strong> <code>User</code> mit Name und E-Mail-Adresse.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, User&gt;</code></strong> (Benutzername zu Benutzerdaten).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>benutzer_suchen(&amp;self, benutzername: &amp;str) -&gt; Option&lt;&amp;User&gt;</code>.</li>
+<li>Das Programm soll <code>Some(&amp;User)</code> zurückgeben, falls der Benutzer existiert, andernfalls <code>None</code>. Nutze <code>if let</code> im Hauptprogramm, um das Ergebnis sicher auszugeben.</li>
+</ul>
+<hr>
+<h2 id="-projekt-4-inventar---lagerverwaltung"><a class="header" href="#-projekt-4-inventar---lagerverwaltung">📦 Projekt 4: Inventar- &amp; Lagerverwaltung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Bestandskontrolle in einem Lager.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>LagerFehler</code> (z. B. <code>ArtikelNichtGefunden</code>, <code>ZuWenigBestand</code>).</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> zur Speicherung der Artikel und deren Stückzahlen.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>entnahme(&amp;mut self, artikel: &amp;str, anzahl: u32) -&gt; Result&lt;(), LagerFehler&gt;</code>. Behandle die Fehler systematisch.</li>
+</ul>
+<hr>
+<h2 id="-projekt-5-schüler---notenverwaltung"><a class="header" href="#-projekt-5-schüler---notenverwaltung">🏫 Projekt 5: Schüler- &amp; Notenverwaltung</a></h2>
+<p><strong>Beschreibung:</strong>
+Eine Notenverwaltung für eine Schulklasse.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;u32&gt;&gt;</code></strong> (Schülername zu einer Liste von Noten).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>durchschnitt_berechnen(&amp;self, name: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Gib ein <code>Err</code> zurück, falls der Schüler nicht existiert oder noch keine Noten eingetragen hat (verhindere Division durch Null!).</li>
+</ul>
+<hr>
+<h2 id="-projekt-6-deutsch-englisch-wörterbuch"><a class="header" href="#-projekt-6-deutsch-englisch-wörterbuch">📝 Projekt 6: Deutsch-Englisch Wörterbuch</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Übersetzungswerkzeug für Vokabeln.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, String&gt;</code></strong> (deutsches Wort zu englischem Wort).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>uebersetzen(&amp;self, wort: &amp;str) -&gt; Result&lt;String, String&gt;</code>.</li>
+<li>Falls das Wort nicht im Wörterbuch ist, gib ein <code>Err("Wort nicht gefunden")</code> zurück.</li>
+</ul>
+<hr>
+<h2 id="-projekt-7-wahl-auswertung"><a class="header" href="#-projekt-7-wahl-auswertung">🗳️ Projekt 7: Wahl-Auswertung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Programm zur Stimmauszählung bei einer Wahl.</p>
+<ul>
+<li>Nutze eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Kandidat zu Stimmenzahl).</li>
+<li>Schreibe eine <strong>Methode</strong> <code>gewinner_ermitteln(&amp;self) -&gt; Option&lt;String&gt;</code>.</li>
+<li>Die Methode ermittelt den Kandidaten mit den meisten Stimmen. Falls noch keine Stimmen abgegeben wurden (HashMap ist leer), gib <code>None</code> zurück, andernfalls <code>Some(Kandidatenname)</code>.</li>
+</ul>
+<hr>
+<h2 id="-projekt-8-parkhaus-manager"><a class="header" href="#-projekt-8-parkhaus-manager">🚗 Projekt 8: Parkhaus-Manager</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die Belegung in einem Parkhaus.</p>
+<ul>
+<li>Erstelle ein <strong>Struct</strong> <code>Parkhaus</code> mit einem Vektor von Parkplätzen.</li>
+<li>Schreibe eine <strong>Methode</strong> <code>finde_freien_platz(&amp;self) -&gt; Option&lt;usize&gt;</code>, die den Index des ersten freien Platzes sucht.</li>
+<li>Schreibe eine <strong>Methode</strong> <code>parken(&amp;mut self, kennzeichen: String) -&gt; Result&lt;usize, String&gt;</code>, die den freien Platz belegt oder ein <code>Err("Parkhaus voll")</code> zurückgibt.</li>
+</ul>
+<hr>
+<h2 id="-projekt-9-status-tracker-für-chat-nutzer"><a class="header" href="#-projekt-9-status-tracker-für-chat-nutzer">💬 Projekt 9: Status-Tracker für Chat-Nutzer</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte den Online-Status von Benutzern in einem Chat.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>OnlineStatus</code> (<code>Online</code>, <code>Offline</code>, <code>Abwesend</code>).</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, OnlineStatus&gt;</code></strong> (Benutzername zu Status).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>status_aendern(&amp;mut self, name: &amp;str, neuer_status: OnlineStatus) -&gt; Result&lt;(), String&gt;</code>. Gibt ein <code>Err</code> zurück, falls der Benutzername im System nicht registriert ist.</li>
+</ul>
+<hr>
+<h2 id="-projekt-10-einnahmen-ausgaben-rechner"><a class="header" href="#-projekt-10-einnahmen-ausgaben-rechner">💰 Projekt 10: Einnahmen-Ausgaben-Rechner</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Haushaltsbuch zur Erfassung von Geldbewegungen.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Transaktion</code> mit Betrag und Kategorie.</li>
+<li>Nutze ein <strong>Enum</strong> <code>TransaktionsTyp</code> (<code>Einnahme</code>, <code>Ausgabe</code>).</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Transaktion&gt;</code> zur Auflistung aller Einträge.</li>
+<li>Schreibe eine <strong>Methode</strong> <code>letzte_transaktion(&amp;self) -&gt; Option&lt;&amp;Transaktion&gt;</code>, die den letzten Eintrag zurückgibt oder <code>None</code>, wenn noch keine Buchung vorgenommen wurde.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="-bonus-lektion-ki-als-lernpartner--antigravity-verstehen--nutzen"><a class="header" href="#-bonus-lektion-ki-als-lernpartner--antigravity-verstehen--nutzen">🤖 Bonus-Lektion: KI als Lernpartner – Antigravity verstehen &amp; nutzen</a></h1>
 <p>Diese Lektion ist <strong>kein Rust-Thema</strong> – sie ist etwas anderes:<br>Du lernst, wie dein KI-Assistent (Antigravity) funktioniert, wo er lebt und wie du ihn so einsetzen kannst, dass <strong>auch er mitlernt</strong> – durch dein Projekt.</p>
@@ -6621,7 +7308,7 @@ Wir können nun eine dieser Ideen auswählen und daraus eine Schritt-für-Schrit
 <p>Füge in der <code>AGENTS.md</code> im Projekt-Root eine neue Lernphase ein.<br>Zum Beispiel: <strong>Phase 5 – KI als Werkzeug im Entwicklungsalltag</strong></p>
 <p>Beschreibe, was der Agent in dieser Phase beachten soll.</p>
 <hr>
-<h2 id="-zusammenfassung-3"><a class="header" href="#-zusammenfassung-3">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-6"><a class="header" href="#-zusammenfassung-6">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -9824,7 +10511,7 @@ fn
 </li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-4"><a class="header" href="#-zusammenfassung-4">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -10286,7 +10973,7 @@ was du tun willst. Ich möchte jeden Schritt verstehen.
 </li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-5"><a class="header" href="#-zusammenfassung-5">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -11925,7 +12612,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 </li>
 </ol>
 <hr>
-<h2 id="-zusammenfassung-6"><a class="header" href="#-zusammenfassung-6">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-9"><a class="header" href="#-zusammenfassung-9">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -13035,7 +13722,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <li><strong>Lösung:</strong> Erstelle im Projektordner die Datei <code>.zed/settings.json</code>. Alle darin definierten Werte überschreiben die globalen Einstellungen ausschließlich für dieses Projekt.</li>
 </ul>
 <hr>
-<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-10"><a class="header" href="#-zusammenfassung-10">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -13385,7 +14072,7 @@ Die Lösungen beschreiben die exakten Tastenkombinationen und Befehlssequenzen i
 <li><strong>Lösung:</strong> Erstelle und editiere die Datei <code>~/.vimrc</code> (für klassisches Vim) bzw. <code>~/.config/nvim/init.lua</code> (oder <code>init.vim</code> für Neovim) und füge dort Befehle wie <code>set number</code> und <code>syntax on</code> hinzu.</li>
 </ul>
 <hr>
-<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-11"><a class="header" href="#-zusammenfassung-11">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -13737,7 +14424,7 @@ ohne KI-Hilfe.
 </table>
 </div>
 <hr>
-<h2 id="-zusammenfassung-9"><a class="header" href="#-zusammenfassung-9">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-12"><a class="header" href="#-zusammenfassung-12">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -14204,7 +14891,7 @@ Projekte 46–50:  Vollständige Systeme (Router, Planer, Mini-Antigravity)
 </table>
 </div>
 <hr>
-<h2 id="-zusammenfassung-10"><a class="header" href="#-zusammenfassung-10">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-13"><a class="header" href="#-zusammenfassung-13">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
