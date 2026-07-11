@@ -14,7 +14,7 @@ print_step() {
 }
 
 # Ask for sudo at the beginning
-echo "Dieses Skript benötigt Root-Rechte für die Installation von Paketen (Apt, Flatpak)."
+echo "Dieses Skript benötigt Root-Rechte für die Installation von Paketen (Apt)."
 sudo -v
 
 # Keep sudo alive
@@ -55,22 +55,38 @@ echo "Installiere Hilfsprogramme..."
 sudo apt install -y unzip wget
 
 # ==========================================
-# STEP 3: Flatpak & Anki installieren
+# STEP 3: Anki installieren (Offizielle Version)
 # ==========================================
-print_step "Flatpak & Anki installieren"
+print_step "Anki installieren"
 
-if command -v flatpak &>/dev/null; then
-    echo "Flatpak ist bereits installiert."
+if command -v anki &>/dev/null; then
+    echo "Anki ist bereits installiert."
 else
-    echo "Installiere Flatpak..."
-    sudo apt install -y flatpak
+    echo "Installiere Abhängigkeiten für Anki und Entpackung (zstd)..."
+    sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3 libxcb-icccm4 libxcb-keysyms1 zstd
+
+    echo "Erstelle download-Verzeichnis..."
+    mkdir -p download
+    cd download
+
+    echo "Lade Anki 26.05 herunter..."
+    wget -q --show-progress https://github.com/ankitects/anki/releases/download/26.05/anki-26.05-linux-x86_64.tar.zst
+
+    echo "Entpacke Anki..."
+    tar -xaf anki-26.05-linux-x86_64.tar.zst
+
+    echo "Betrete anki-linux Ordner..."
+    cd anki-linux
+
+    echo "Führe Anki-Installationsskript aus..."
+    sudo ./install.sh
+
+    echo "Bereinige download-Verzeichnis..."
+    cd ../..
+    rm -rf download
+
+    echo "Anki wurde erfolgreich installiert."
 fi
-
-echo "Füge Flathub-Repository hinzu..."
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-echo "Installiere Anki über Flatpak (kann einen Moment dauern)..."
-sudo flatpak install flathub net.ankiweb.Anki -y
 
 # ==========================================
 # STEP 4: Abschluss
@@ -80,7 +96,7 @@ print_step "Setup abgeschlossen!"
 echo -e "\n===================================================="
 echo "🎯 Alles erledigt!"
 echo "- mdBook ist einsatzbereit ('mdbook serve' im Ordner 'rust-projekte')."
-echo "- Anki wurde über Flatpak installiert."
-echo "  Starte Anki über dein Anwendungsmenü oder mit:"
-echo "  flatpak run net.ankiweb.Anki &"
+echo "- Anki wurde erfolgreich installiert."
+echo "  Starte Anki über dein Anwendungsmenü oder im Terminal mit:"
+echo "  anki &"
 echo "===================================================="

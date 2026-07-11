@@ -65,10 +65,42 @@ Anki ist ein kostenloses Karteikarten-Programm, das auf dem Prinzip der Spaced R
 
 ### 💻 Installationsschritte auf Ubuntu
 
-Es gibt zwei einfache Wege, Anki unter Ubuntu zu installieren:
+Es gibt verschiedene Wege, Anki unter Ubuntu zu installieren:
 
-#### Option A: Über Flatpak (Empfohlen für die neueste Version)
-Flatpak liefert immer die aktuellste Version von Anki inklusive aller benötigten Abhängigkeiten.
+#### Option A: Manuelle Installation der offiziellen Linux-Version (Empfohlen)
+Dies lädt die offizielle Version 26.05 direkt von GitHub herunter und installiert sie systemweit.
+
+1. Installiere die benötigten Systembibliotheken und `zstd` zum Entpacken:
+   ```bash
+   sudo apt update
+   sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3 libxcb-icccm4 libxcb-keysyms1 zstd
+   ```
+2. Erstelle ein Download-Verzeichnis und wechsle hinein:
+   ```bash
+   mkdir -p download && cd download
+   ```
+3. Lade Anki 26.05 herunter:
+   ```bash
+   wget https://github.com/ankitects/anki/releases/download/26.05/anki-26.05-linux-x86_64.tar.zst
+   ```
+4. Entpacke das Archiv:
+   ```bash
+   tar -xaf anki-26.05-linux-x86_64.tar.zst
+   ```
+5. Wechsle in das entpackte Verzeichnis und führe das Installationsskript aus:
+   ```bash
+   cd anki-linux
+   sudo ./install.sh
+   ```
+6. Bereinige das Download-Verzeichnis:
+   ```bash
+   cd ../..
+   rm -rf download
+   ```
+7. Starte Anki über dein Anwendungsmenü oder durch Eingabe von `anki` im Terminal.
+
+#### Option B: Über Flatpak (Alternative für isolierte Version)
+Flatpak liefert eine aktuelle Version von Anki inklusive aller benötigten Abhängigkeiten in einer Sandbox.
 
 1. Installiere Flatpak und füge das Flathub-Repository hinzu:
    ```bash
@@ -85,7 +117,7 @@ Flatpak liefert immer die aktuellste Version von Anki inklusive aller benötigte
    flatpak run net.ankiweb.Anki &
    ```
 
-#### Option B: Über die Ubuntu-Paketquellen (Schnell, aber oft ältere Version)
+#### Option C: Über die Ubuntu-Paketquellen (Schnell, aber oft veraltet)
 Dies ist der direkteste Weg über das Standard-System, allerdings sind die Versionen in den Paketquellen meist älter.
 
 1. Installiere Anki mit apt:
