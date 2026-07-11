@@ -1,6 +1,8 @@
 # Inhaltsverzeichnis
 
 [Einleitung](./einleitung.md)
+- [🛠️ System-Setup](./setup.md)
+
 
 # 🗺️ Projektplanung
 
@@ -16,6 +18,8 @@
   - [String vs &str](./konzept-string.md)
 - [Projektvorschläge Phase 1](./phase1.md)
 - [100 Projekte](./100-projekte.md)
+- [📇 Anki-Lernkarten](./anki.md)
+
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
 
