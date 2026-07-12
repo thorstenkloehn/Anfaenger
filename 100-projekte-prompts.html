@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte – Nur Prompts (Modulares Prinzip) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">5.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">6.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html" class="active"><strong aria-hidden="true">7.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">8.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">9.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">9.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">9.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">9.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">11.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">12.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">13.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">14.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">15.</strong> Konzepte statt Syntax lernen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">17.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">18.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">19.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">20.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">21.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">22.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">23.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">24.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">25.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">26.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">27.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">28.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">29.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">29.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">29.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">30.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">31.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">31.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">31.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">31.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">31.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">31.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">31.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">31.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">31.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">31.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">31.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">31.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">32.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">32.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">32.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">32.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">32.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">32.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">32.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">32.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">32.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">32.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">33.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">34.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">35.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">36.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">37.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">38.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projekte--nur-prompts-modulares-prinzip"><a class="header" href="#100-projekte--nur-prompts-modulares-prinzip">100 Projekte – Nur Prompts (Modulares Prinzip)</a></h1>
+<p>In diesem Kapitel erfährst du, wie du die 100 Projekte aus Phase 1 mithilfe von künstlicher Intelligenz (KI) erarbeitest, ohne fertigen Code abzuschreiben. Das Ziel ist <strong>passives Auffrischen</strong>: Du lässt die KI den Code schreiben, begleitest sie dabei aber Schritt für Schritt und verstehst dadurch jede Zeile.</p>
+<p>Dazu nutzen wir <strong>das modulare Prinzip</strong> und lernen den Unterschied zwischen ungenauen "Monster-Prompts" und präzisen Einzelschritten.</p>
+<hr />
+<h2 id="jedes-projekt-übt-alle-grundlagen-gleichzeitig"><a class="header" href="#jedes-projekt-übt-alle-grundlagen-gleichzeitig">Jedes Projekt übt alle Grundlagen gleichzeitig</a></h2>
+<p>Jedes der 100 Projekte ist so konzipiert, dass es die fünf Kernbereiche von Rusts Phase 1 kombiniert:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Thema</th><th style="text-align: left">Was du lernst</th></tr></thead><tbody>
+<tr><td style="text-align: left">🧱 Variablen &amp; Datentypen</td><td style="text-align: left">Zahlen, Texte, Mutabilität</td></tr>
+<tr><td style="text-align: left">🔀 Kontrollfluss</td><td style="text-align: left"><code>if/else</code>, <code>loop</code>, <code>while</code>, <code>for</code></td></tr>
+<tr><td style="text-align: left">⌨️ Benutzereingabe</td><td style="text-align: left">Lesen von der Konsole, Konvertierung</td></tr>
+<tr><td style="text-align: left">🧠 Ownership &amp; Borrowing</td><td style="text-align: left">Wer besitzt was? Referenzen nutzen</td></tr>
+<tr><td style="text-align: left">📝 String vs. &amp;str</td><td style="text-align: left">Texte speichern, vergleichen, ausgeben</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="das-modulare-prinzip-vom-monster-prompt-zum-präzisions-input"><a class="header" href="#das-modulare-prinzip-vom-monster-prompt-zum-präzisions-input">Das Modulare Prinzip: Vom Monster-Prompt zum Präzisions-Input</a></h2>
+<h3 id="was-ist-ein-monster-prompt"><a class="header" href="#was-ist-ein-monster-prompt">Was ist ein "Monster-Prompt"?</a></h3>
+<p>Ein Monster-Prompt ist eine lange, ungegliederte Anweisung, bei der du der KI alle Anforderungen auf einmal vorwirfst.</p>
+<p><em>Beispiel:</em></p>
+<blockquote>
+<p>"Schreibe mir ein Rust-Programm, das ein Passwort einliest, prüft ob es richtig ist, mir 3 Versuche gibt, Eingabefehler abfängt und mir am Ende ausgibt, ob der Login erfolgreich war. Nutze Strings und Borrowing."</p>
+</blockquote>
+<p><strong>Das Problem:</strong> Die KI generiert sofort 40–60 Zeilen fertigen Code. Als Anfänger verliert man schnell den Überblick, übersieht Fehler und versteht nicht, welche Zeile wofür verantwortlich ist. Wenn das Programm nicht läuft, ist das Frustpotenzial hoch.</p>
+<h3 id="was-ist-ein-präzisions-input-das-modulare-prinzip"><a class="header" href="#was-ist-ein-präzisions-input-das-modulare-prinzip">Was ist ein "Präzisions-Input" (Das Modulare Prinzip)?</a></h3>
+<p>Anstatt die KI alles auf einmal bauen zu lassen, teilen wir das Projekt in <strong>Module</strong> auf. Du fütterst die KI mit präzisen Anweisungen für jeden einzelnen Teilschritt. Erst wenn Schritt 1 läuft und du ihn verstanden hast, machst du mit Schritt 2 weiter.</p>
+<p><em>Vorteile:</em></p>
+<ol>
+<li><strong>Verständnis:</strong> Du siehst genau, wie sich der Code mit jedem Schritt weiterentwickelt.</li>
+<li><strong>Fehlersuche:</strong> Wenn etwas schiefgeht, weißt du sofort, dass der Fehler im letzten kleinen Modul liegt.</li>
+<li><strong>Lerneffekt:</strong> Du bestimmst das Tempo und liest nur kleine, verdauliche Codestücke.</li>
+</ol>
+<hr />
+<h2 id="modulare-prompt-workflows-beispiele-zum-mitmachen"><a class="header" href="#modulare-prompt-workflows-beispiele-zum-mitmachen">Modulare Prompt-Workflows: Beispiele zum Mitmachen</a></h2>
+<p>Hier zeigen wir dir, wie du typische Projekte modular planen und mit Prompts anleiten kannst. <em>Hinweis: Die KI liefert dir den Code – deine Aufgabe ist es, die Prompts zu senden und den Code Zeile für Zeile nachzuvollziehen!</em></p>
+<h3 id="beispiel-1-der-passwort-prüfer"><a class="header" href="#beispiel-1-der-passwort-prüfer">Beispiel 1: Der Passwort-Prüfer</a></h3>
+<h4 id="-modul-1-die-datenbasis-schaffen"><a class="header" href="#-modul-1-die-datenbasis-schaffen">🛠️ Modul 1: Die Datenbasis schaffen</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Erstelle ein minimales Rust-Programm mit einer <code>main</code>-Funktion. Definiere darin ein festes Passwort als unveränderlichen Text (<code>&amp;str</code>). Gib einen Begrüßungstext aus. Erkläre kurz den Unterschied zwischen <code>String</code> und <code>&amp;str</code> in deinem Code."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie legt die Grundstruktur des Programms an und erklärt dir den Unterschied zwischen statischen Texten (<code>&amp;str</code>) und dynamischen Zeichenketten.</li>
+</ul>
+<h4 id="-modul-2-die-interaktivität-hinzufügen-benutzereingabe"><a class="header" href="#-modul-2-die-interaktivität-hinzufügen-benutzereingabe">🛠️ Modul 2: Die Interaktivität hinzufügen (Benutzereingabe)</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Erweitere den bestehenden Code. Der Benutzer soll nun aufgefordert werden, ein Passwort über die Konsole einzugeben. Speichere diese Eingabe in einem veränderbaren <code>String</code>. Erkläre, warum wir hier <code>&amp;mut</code> (Borrowing) bei <code>read_line</code> nutzen müssen."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie importiert das Ein-/Ausgabe-Modul (<code>std::io</code>), erstellt einen veränderbaren Puffer und bindet die Eingabe über eine veränderliche Referenz ein.</li>
+</ul>
+<h4 id="-modul-3-logik--vergleich-einbauen"><a class="header" href="#-modul-3-logik--vergleich-einbauen">🛠️ Modul 3: Logik &amp; Vergleich einbauen</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Füge nun den Vergleich hinzu. Entferne Leerzeichen und Zeilenumbrüche von der Benutzereingabe mit <code>.trim()</code>. Vergleiche die bereinigte Eingabe mit dem festen Passwort aus Schritt 1. Gib 'Zugriff erlaubt' oder 'Zugriff verweigert' aus."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie baut eine <code>if/else</code>-Verzweigung auf und wendet String-Methoden zur Bereinigung an.</li>
+</ul>
+<hr />
+<h3 id="beispiel-2-ein-flexibler-temperatur-umrechner"><a class="header" href="#beispiel-2-ein-flexibler-temperatur-umrechner">Beispiel 2: Ein flexibler Temperatur-Umrechner</a></h3>
+<h4 id="-modul-1-eingabe--umwandlung"><a class="header" href="#-modul-1-eingabe--umwandlung">🛠️ Modul 1: Eingabe &amp; Umwandlung</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Erstelle ein Rust-Programm, das den Benutzer nach einer Temperatur in Celsius fragt. Lies die Eingabe von der Konsole und konvertiere (parse) sie in eine Fließkommazahl (<code>f64</code>). Fange Fehler ab, falls keine gültige Zahl eingegeben wurde."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie demonstriert die Fehlerbehandlung bei der Typkonvertierung von <code>String</code> zu <code>f64</code>.</li>
+</ul>
+<h4 id="-modul-2-berechnung--kontrollfluss"><a class="header" href="#-modul-2-berechnung--kontrollfluss">🛠️ Modul 2: Berechnung &amp; Kontrollfluss</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Erweitere das Programm: Berechne die Temperatur in Fahrenheit (Formel: Celsius * 1.8 + 32). Gib das Ergebnis aus. Nutze eine <code>if/else</code>-Struktur, um eine Warnung auszugeben, falls die Temperatur über 30 Grad Celsius liegt."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie fügt die mathematische Formel und eine Kontrollstruktur für Schwellenwerte hinzu.</li>
+</ul>
+<h4 id="-modul-3-modularisierung-mit-funktionen-ownership"><a class="header" href="#-modul-3-modularisierung-mit-funktionen-ownership">🛠️ Modul 3: Modularisierung mit Funktionen (Ownership)</a></h4>
+<ul>
+<li><strong>Dein Präzisions-Input:</strong>
+<blockquote>
+<p>"Lagere die Celsius-zu-Fahrenheit-Berechnung in eine eigene Funktion aus. Achte darauf, wie Werte übergeben werden (Ownership). Erkläre, ob der Wert kopiert oder verschoben wird."</p>
+</blockquote>
+</li>
+<li><strong>Was die KI im Hintergrund macht:</strong>
+Sie zeigt dir, wie primitive Datentypen (wie <code>f64</code>) in Rust das <code>Copy</code>-Trait implementieren und daher ohne Ownership-Probleme an Funktionen übergeben werden können.</li>
+</ul>
+<hr />
+<h2 id="so-wendest-du-das-modulare-prinzip-auf-alle-100-projekte-an"><a class="header" href="#so-wendest-du-das-modulare-prinzip-auf-alle-100-projekte-an">So wendest du das Modulare Prinzip auf alle 100 Projekte an</a></h2>
+<p>Wenn du ein neues Projekt aus der Liste beginnst, gehe immer nach folgendem Muster vor:</p>
+<ol>
+<li><strong>Analysiere das Ziel:</strong> Welche Ein- und Ausgaben sind nötig?</li>
+<li><strong>Schneide Module:</strong> Zerlege das Projekt in mindestens 3 Einzelschritte (z.B. 1. Datenstruktur &amp; statische Werte -&gt; 2. Benutzereingabe &amp; Konvertierung -&gt; 3. Logik &amp; Schleifen).</li>
+<li><strong>Formuliere Schritt-Prompts:</strong> Frage die KI nach einem Schritt nach dem anderen.</li>
+<li><strong>Fordere Erklärungen:</strong> Lass dir von der KI immer erklären, <em>warum</em> sie bestimmte Rust-Besonderheiten (wie <code>&amp;mut</code>, <code>.trim()</code> oder Ownership) in diesem Schritt verwendet hat.</li>
+<li><strong>Reflektiere aktiv:</strong> Lies den generierten Code aufmerksam durch. Kannst du den Datenfluss nachvollziehen?</li>
+</ol>
+<p>Durch diesen modularen Dialog lernst du nicht nur Rust-Syntax, sondern verinnerlichst auch das algorithmische Denken und den sicheren Umgang mit KI-Assistenten.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="100-projekte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="anki.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="100-projekte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="anki.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
