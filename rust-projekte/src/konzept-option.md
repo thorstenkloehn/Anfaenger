@@ -1,206 +1,172 @@
-# 🔍 Fehlerbehandlung mit Option<T>
+# 🔍 Fehlerbehandlung mit Option<T> – Werte, die fehlen dürfen
 
-Stell dir vor, du öffnest eine Schublade in deiner Küche, in der du normalerweise deine Lieblingstasse aufbewahrst. Manchmal steht die Tasse genau dort, wo sie sein soll. Manchmal hat sie aber jemand in die Spülmaschine gestellt, und die Schublade ist komplett leer.
+Im echten Leben begegnen uns ständig optionale Dinge:
+* Eine E-Mail-Adresse im Profil eines Benutzers (manche haben keine hinterlegt).
+* Die Antwort auf eine Suchanfrage in einer Liste (entweder wir finden das Element oder nicht).
+* Ein Schrankfach (entweder es liegt etwas darin oder es ist leer).
 
-In vielen klassischen Programmiersprachen ist diese Situation brandgefährlich. Wenn du versuchst, aus einer leeren Schublade zu trinken, stürzt dein gesamtes Programm ab. Rust geht hier einen völlig anderen, revolutionären Weg: Es zwingt dich dazu, vor dem Trinken erst nachzusehen, ob die Tasse überhaupt da ist!
+In traditionellen Programmiersprachen (wie C, Java, Python oder JavaScript) wird das Fehlen eines Wertes durch das Schlüsselwort `null`, `nil` oder `None` ausgedrückt. Das Problem dabei: Der Compiler kann nicht prüfen, ob du vor der Benutzung einer Variable geprüft hast, ob diese `null` ist. Wenn du es vergisst, stürzt dein Programm zur Laufzeit mit einer `NullPointerException` (oder Ähnlichem) ab. 
 
-In diesem Kapitel erfährst du, wie Rust das Fehlen von Werten sicher und elegant löst, ohne dass dein Programm jemals unerwartet abstürzt.
+Rust geht einen radikal anderen Weg: **Es gibt kein `null`**. Jede normale Variable *muss* immer einen gültigen Wert besitzen. Wenn ein Wert jedoch fehlen darf, zwingt Rust dich, diesen in den Typ `Option<T>` einzupacken.
 
 ---
 
-## 🧠 Theorie
+## 🧠 Theorie: Was ist `Option<T>`?
 
-### Das Problem der Null-Pointer (Der Milliarden-Dollar-Fehler)
-
-In fast allen gängigen Programmiersprachen (wie Java, C++, Python oder JavaScript) gibt es das Konzept von `null`, `nil` oder `None`. Es bedeutet einfach: "Hier ist kein Wert". 
-
-Das Problem daran ist, dass diese Sprachen dir erlauben, eine Variable so zu behandeln, als wäre immer ein Wert da. Wenn du zum Beispiel den Namen eines Benutzers ausgeben willst:
-
-```java
-// Java-Beispiel
-String name = benutzer.getName();
-System.out.println(name.toUpperCase());
-```
-
-Wenn `benutzer.getName()` nun `null` zurückgibt (weil kein Name eingetragen wurde), stürzt dieses Java-Programm sofort mit einer `NullPointerException` ab. 
-
-Der Erfinder der Null-Referenz, Tony Hoare, nannte diese Erfindung rückblickend seinen **„Billion Dollar Mistake“** (Milliarden-Dollar-Fehler). Sie ist die Ursache für unzählige Abstürze, Sicherheitslücken und frustrierte Entwickler weltweit.
-
-### Wie Rust das Problem löst: Das `Option<T>`-Enum
-
-Rust macht Schluss mit diesem Chaos. In Rust gibt es das klassische `null` schlichtweg nicht! Jede normale Variable **muss** immer einen gültigen Wert besitzen. 
-
-Was machen wir aber, wenn ein Wert tatsächlich mal fehlen kann? Zum Beispiel bei:
-- Einer Suche in einer Datenbank, die kein Ergebnis liefert.
-- Einem optionalen Feld im Profil eines Nutzers (z.B. die Website-URL).
-- Dem Auslesen einer Datei, die vielleicht gar nicht existiert.
-
-Für diese Fälle hat Rust den Datentyp `Option<T>` in seiner Standardbibliothek. Es handelt sich dabei um ein ganz normales Enum, das zwei Zustände annehmen kann:
+`Option<T>` ist ein ganz normales, in der Standardbibliothek eingebautes Enum. Seine Definition sieht so aus:
 
 ```rust
 enum Option<T> {
-    Some(T), // Ein Wert vom Typ T ist vorhanden
-    None,    // Kein Wert vorhanden
+    Some(T), // Es existiert ein Wert vom Typ T
+    None,    // Es existiert kein Wert
 }
 ```
 
-Das geniale daran: `Option<T>` is ein komplett anderer Typ als `T`. Eine Variable vom Typ `Option<String>` ist kein `String`. Du kannst sie nicht wie einen String behandeln, keine String-Methoden darauf aufrufen und sie nicht direkt ausgeben. Sie ist wie ein verschlossenes Paket. Erst wenn du das Paket öffnest, kommst du an den eigentlichen Wert heran.
+Das Geniale an dieser Konstruktion ist: Eine `Option<String>` is ein völlig anderer Datentyp als ein normaler `String`. Du kannst eine `Option<String>` nicht ausgeben, verlassen, manipulieren oder einer anderen String-Variable zuweisen, ohne sie vorher explizit zu **entpacken**.
 
-### Option auspacken: Der sichere Weg mit `match`
+```
+[ Deine Variable ]
+        |
+        v
++-----------------------+
+|        Option         |
+|  +-----------------+  |
+|  |     Some(T)     |  | ---> Enthält den echten Wert
+|  +-----------------+  |
+|          oder         |
+|  +-----------------+  |
+|  |      None       |  | ---> Ist komplett leer
+|  +-----------------+  |
++-----------------------+
+```
 
-Der gründlichste und sicherste Weg, eine `Option` auszupacken, ist Pattern Matching mit `match`. Rust verlangt von dir, dass du lückenlos (`exhaustive`) sowohl den Fall mit Wert (`Some`) als auch den Fall ohne Wert (`None`) behandelst:
+---
 
+## 🛠️ Option auspacken: Sicher vs. Unsicher
+
+Um an den Wert in `Some` heranzukommen, musst du die Option öffnen. Hierfür gibt es verschiedene Wege:
+
+### 1. Der sichere Weg mit Pattern Matching (`match`)
+Das ist das mächtigste Werkzeug. Da `match` in Rust lückenlos sein muss, zwingt dich der Compiler, auch den Fall zu behandeln, in dem kein Wert da ist:
 ```rust
-let benutzername: Option<String> = einige_suchfunktion();
+let website_url: Option<String> = Some(String::from("https://rust-lang.org"));
 
-match benutzername {
-    Some(name) => println!("Willkommen zurück, {}!", name),
-    None => println!("Willkommen, Gast!"),
+match website_url {
+    Some(url) => println!("Die Website lautet: {}", url),
+    None => println!("Keine Website hinterlegt."),
 }
 ```
 
-Wenn du einen der beiden Fälle vergisst, wird der Compiler dein Programm nicht übersetzen. Du bist also absolut sicher vor Abstürzen durch vergessene "Null"-Werte.
-
-### Die schnelle Abkürzung: `if let`
-
-Manchmal interessiert dich nur, ob ein Wert da ist, und du willst den leeren Fall einfach ignorieren. Statt eines sperrigen `match` kannst du dafür das kompakte `if let` nutzen:
-
+### 2. Der kompakte Weg mit `if let`
+Wenn dich nur der Fall interessiert, in dem ein Wert existiert, und du den leeren Fall ignorieren möchtest:
 ```rust
-let optionales_profilbild: Option<String> = hole_profilbild();
+let optionaler_name: Option<String> = Some(String::from("Thorsten"));
 
-if let Some(bild_url) = optionales_profilbild {
-    println!("Profilbild wird geladen von: {}", bild_url);
+if let Some(name) = optionaler_name {
+    println!("Hallo, {}!", name);
 }
-// Der None-Fall wird hier einfach stillschweigend ignoriert.
 ```
 
-### Der ungeduldige Holzhammer: `unwrap` und `expect`
+### 3. Der bequeme Fallback mit `unwrap_or`
+Sehr oft möchtest du einen Standardwert verwenden, falls kein Wert existiert:
+```rust
+let port: Option<u32> = None;
+let aktiver_port = port.unwrap_or(8080); // Wenn None, wird 8080 verwendet
+```
 
-Es gibt Situationen, in denen du absolut sicher bist, dass ein Paket einen Wert enthält. Oder dir ist es recht, wenn das Programm abstürzt, falls kein Wert da ist (z.B. beim Schreiben von schnellen Prototypen oder Tests).
-
-Dafür gibt es zwei Methoden:
-
-1. **`unwrap()`**: Holt den Wert aus `Some` heraus. Ist die Option jedoch `None`, stürzt das Programm sofort mit einem lauten Knall (*Panic*) ab.
-   ```rust
-   let wert = optionale_zahl.unwrap(); // Gefährlich!
-   ```
-
-2. **`expect("Fehlermeldung")`**: Funktioniert genau wie `unwrap()`, lässt dich aber eine eigene Fehlermeldung angeben, die beim Absturz ausgegeben wird. Das macht die Fehlersuche deutlich einfacher.
-   ```rust
-   let konfig = lies_einstellungen().expect("Die Konfigurationsdatei fehlt!");
-   ```
+### 4. Der gefährliche Holzhammer: `unwrap()` und `expect()`
+Mit `.unwrap()` holst du den Wert blind aus dem Paket. Wenn die Option jedoch `None` ist, **stürzt dein Programm sofort mit einer Panic ab!**
+```rust
+let zahl: Option<i32> = None;
+let x = zahl.unwrap(); // ❌ BOOM! Absturz zur Laufzeit!
+```
+Mit `.expect("Fehlermeldung")` verhält es sich genauso, allerdings kannst du eine eigene Fehlermeldung für den Absturz definieren:
+```rust
+let konfig = lies_einstellungen().expect("Einstellungsdatei konnte nicht gelesen werden!");
+```
 
 > [!WARNING]
-> Verwende `unwrap()` und `expect()` mit äußerster Vorsicht! In produktivem Code solltest du sie fast nie benutzen. Nutze stattdessen immer `match`, `if let` oder Hilfsmethoden wie `unwrap_or()`, um Standardwerte festzulegen, wenn kein Wert vorhanden ist.
+> Verwende `unwrap()` fast ausschließlich in Tests oder beim schnellen Prototyping. In produktivem Code solltest du immer sichere Alternativen wie `match` oder `unwrap_or` bevorzugen.
 
 ---
 
-## 🛠️ Praxis-Aufgaben (Keine Codelösungen)
+## 🔄 Fortgeschrittene Methoden auf `Option`
 
-Versuche, die folgenden Aufgaben theoretisch zu durchdenken. Entwirfe die Datenstrukturen und den Ablauf im Kopf oder auf einem Blatt Papier. Schreibe keinen fertigen Code!
+Rust bietet eine Vielzahl nützlicher Methoden, um Optionen zu manipulieren, ohne sie mühsam auspacken zu müssen:
 
-### Aufgabe 1: Die Artikelsuche im Online-Shop
-1. Du hast eine Liste von Produkten. Jedes Produkt hat eine ID (Zahl) und einen Namen (Text).
-2. Entwirfe eine Suchfunktion, die nach einer ID sucht. Überlege, welchen Rückgabetyp diese Funktion haben muss, da die ID existieren kann oder eben nicht.
-3. Skizziere, wie du das Ergebnis dieser Suche mit `match` auswertest, um dem Kunden entweder den Namen des Produkts anzuzeigen oder eine freundliche Meldung wie „Artikel nicht gefunden“ auszugeben.
+| Methode | Beschreibung | Beispiel |
+|---|---|---|
+| `.is_some()` | Gibt `true` zurück, wenn ein Wert vorhanden ist. | `opt.is_some()` |
+| `.is_none()` | Gibt `true` zurück, wenn kein Wert vorhanden ist. | `opt.is_none()` |
+| `.map()` | Transformiert den inneren Wert, falls vorhanden. | `opt.map(|x| x * 2)` |
+| `.and_then()` | Verketter Operationen, die selbst wieder eine Option liefern. | `opt.and_then(finde_user)` |
+| `.ok_or()` | Wandelt eine `Option<T>` in ein `Result<T, E>` um. | `opt.ok_or("Fehler")` |
 
-### Aufgabe 2: Der optionale Rucksack im Rollenspiel
-1. Ein Held in einem RPG hat einen Ausrüstungsslot für einen Rucksack. Der Rucksack kann angelegt sein oder nicht.
-2. Wenn ein Rucksack angelegt ist, hat er ein bestimmtes Eigengewicht (Zahl). Wenn kein Rucksack angelegt ist, gibt es kein zusätzliches Gewicht.
-3. Überlege dir, wie du den Rucksack-Slot als `Option` darstellst.
-4. Skizziere eine Logik, die das Gesamtgewicht des Helden berechnet. Nutze dafür `if let` oder `match`, um das Gewicht des Rucksacks nur dann zu addieren, wenn er auch wirklich da ist.
+### Beispiel für `.map()`
+```rust
+let optionale_zahl = Some(5);
+// Wenn ein Wert da ist, verdopple ihn. Wenn None, bleibt es None.
+let verdoppelt = optionale_zahl.map(|n| n * 2); // Some(10)
+```
 
-### Aufgabe 3: Standard-Lautstärke für einen Audio-Player
-1. Ein Benutzer kann in einer Musik-App eine Wunsch-Lautstärke von 0 bis 100 einstellen.
-2. Diese Einstellung ist optional: Hat der Benutzer nichts eingestellt, soll die App auf den Standardwert `80` zurückgreifen.
-3. Wie würdest du diese optionale Einstellung in Rust abbilden?
-4. Welche Methoden bietet Rust auf `Option`, um elegant an den eingestellten Wert zu kommen oder – falls dieser fehlt – automatisch den Standardwert `80` zu wählen, ohne das Programm zum Absturz zu bringen? (Tipp: Schau dir in der Dokumentation die Methode `unwrap_or` an).
+### Beispiel für `.and_then()` (Flachklopfen von verschachtelten Optionen)
+```rust
+fn hole_user(id: u32) -> Option<User> { ... }
+fn hole_profilbild(user: User) -> Option<String> { ... }
 
----
-
-## 🚀 50 Projekte
-
-Hier sind 50 kleine Programmierideen und Übungen, bei denen `Option<T>` eine zentrale Rolle spielt:
-
-### Datensuche & Listen
-1. **Ersthelfer**: Finde das erste Element in einer Liste, das eine bestimmte Bedingung erfüllt.
-2. **Letzter Zeuge**: Finde das letzte Element in einer Liste von Benutzereingaben.
-3. **Mittelwert-Finder**: Berechne den Durchschnitt einer Liste (Achtung: Was, wenn die Liste leer ist?).
-4. **Wörtersuche**: Suche in einem Text nach einem bestimmten Wort und gib dessen Position zurück.
-5. **Nächster Nachbar**: Finde in einer Liste von Zahlen den Wert, der einer Zielzahl am nächsten ist.
-6. **Maximalwert-Detektor**: Ermittle die größte Zahl aus einer Liste (Rückgabe ist leer bei leerer Liste).
-7. **Min-Max-Paar**: Finde gleichzeitig das Minimum und Maximum einer Zahlenreihe.
-8. **Index-Finder**: Finde den Index eines Zeichens in einem String.
-9. **Datenbank-Simulator**: Suche einen User-Datensatz anhand einer E-Mail-Adresse.
-10. **Wörterbuch-Abfrage**: Schlage ein deutsches Wort nach und gib die englische Übersetzung zurück.
-
-### Spiele & Simulationen
-11. **Inventar-Slot**: Ein Gegenstandsslot im Spiel, der leer sein kann.
-12. **Highscore-Vergleicher**: Vergleiche den aktuellen Score mit dem bisherigen Highscore (der anfangs noch nicht existiert).
-13. **Spieler-Ziel**: Speichere den aktuellen Gegner, den ein Spieler anvisiert hat.
-14. **Gilden-Anführer**: Bestimme den Anführer einer Gilde (kann vakant sein).
-15. **Schatzkisten-Inhalt**: Eine Kiste, die beim Öffnen entweder ein Item enthält oder leer ist.
-16. **Nächster Spielzug**: Berechne den besten Zug für eine KI (gibt `None` zurück, wenn kein Zug mehr möglich ist).
-17. **Würfel-Glück**: Ein Würfelwurf, der unter bestimmten Bedingungen ungültig sein kann.
-18. **Lebenspunkte-Regeneration**: Berechne die Heilung basierend auf einem optionalen Heiltrank-Effekt.
-19. **Waffen-Aufsatz**: Ein Visier auf einem Gewehr, das montiert sein kann oder nicht.
-20. **Aktives Quest**: Verwalte das aktuell vom Spieler verfolgte Abenteuer.
-
-### Web & Netzwerke
-21. **API-Schlüssel-Prüfer**: Lies den API-Key aus den Headern einer Anfrage aus.
-22. **Profilbild-URL**: Lade ein Standardbild, falls der Nutzer keine eigene Profilbild-URL hinterlegt hat.
-23. **Query-Parameter**: Extrahiere einen optionalen Filter-Parameter (z.B. `?sort=desc`) aus einer URL.
-24. **Port-Finder**: Bestimme den Netzwerk-Port aus einer Konfiguration (nutze Standardwert `8080`, falls nicht definiert).
-25. **HTTP-Referer**: Ermittle die Website, von der der Besucher weitergeleitet wurde.
-26. **Wlan-Verbindung**: Speichere den Namen des aktuell verbundenen WLANs.
-27. **Session-Token**: Prüfe, ob ein temporäres Login-Token im Browser des Nutzers vorhanden ist.
-28. **Download-Fortschritt**: Berechne die verbleibende Zeit (ist unbestimmt, solange der Download nicht gestartet ist).
-29. **IP-Adresse**: Ermittle die IP-Adresse des Absenders einer Nachricht.
-30. **Webhook-Payload**: Lies optionale Metadaten aus einem eingehenden Webhook aus.
-
-### Text- & Dateiverarbeitung
-31. **Umgebungsvariable**: Lies die Variable `PATH` aus dem Betriebssystem aus.
-32. **Dateiendungs-Extraktor**: Hole die Endung einer Datei (z.B. `txt` aus `dokument.txt` – Achtung bei Dateien ohne Endung!).
-33. **Zahlen-Parser**: Versuche einen Text in eine Zahl umzuwandeln (gibt `None` zurück, wenn der Text Buchstaben enthält).
-34. **Konfigurations-Lader**: Suche nach einer Konfigurationsdatei an verschiedenen Standard-Orten.
-35. **Erste Zeile**: Lies die allererste Zeile einer Textdatei aus (was, wenn die Datei leer ist?).
-36. **CSV-Spalten-Parser**: Extrahiere den Wert der 5. Spalte einer CSV-Zeile.
-37. **JSON-Wert**: Suche nach einem optionalen Key in einem verschachtelten JSON-Objekt.
-38. **Kommentar-Zeilen**: Finde den ersten Kommentar im Quellcode.
-39. **Pfad-Vereinfacher**: Hole das übergeordnete Verzeichnis eines Pfades (gibt `None` bei der Root-Ebene zurück).
-40. **Regex-Captures**: Finde die erste Übereinstimmung einer Regex-Suche.
-
-### System & Hardware
-41. **Akku-Ladestand**: Zeige den Ladestand an (ist `None`, wenn es sich um einen Desktop-PC ohne Akku handelt).
-42. **Temperatursensor**: Lies den Sensor aus (gibt `None` zurück, falls der Sensor getrennt wurde).
-43. **Zweit-Monitor**: Ermittle die Auflösung des zweiten angeschlossenen Bildschirms.
-44. **GPS-Koordinaten**: Hole die aktuelle GPS-Position (kann im Tunnel oder bei deaktiviertem GPS fehlen).
-45. **USB-Gerät**: Erkenne das zuletzt eingesteckte USB-Gerät.
-46. **System-Uhrzeit**: Synchronisiere die Uhrzeit mit einem NTP-Server (kann fehlschlagen/fehlen).
-47. **Freier Speicherplatz**: Berechne den freien Speicherplatz auf einem optionalen Netzlaufwerk.
-48. **Lüfterdrehzahl**: Überwache die Drehzahl eines Lüfters (einige Lüfter haben keinen Drehzahlmesser).
-49. **Drucker-Auswahl**: Finde den Standarddrucker im System.
-50. **Hardware-Beschleunigung**: Prüfe, ob eine kompatible Grafikkarte für GPU-Berechnungen vorhanden ist.
+// Ohne and_then hätten wir: Option<Option<String>>
+// Mit and_then wird es flach zu: Option<String>
+let profilbild_url = hole_user(42).and_then(hole_profilbild);
+```
 
 ---
 
-## 💡 Zusammenfassung
+## ⚠️ Typische Einsteigerfehler bei Option
 
-- **Kein `null` in Rust**: Rust eliminiert die Gefahr von Null-Pointer-Abstürzen komplett an der Wurzel.
-- **`Option<T>`**: Ist ein Enum mit zwei Varianten: `Some(wert)` (Wert vorhanden) und `None` (kein Wert vorhanden).
-- **Kapselung**: Eine `Option<T>` ist nicht direkt benutzbar. Du musst sie erst auspacken.
-- **Sicheres Entpacken**: 
-  - Mit **`match`** behandelst du lückenlos alle Fälle.
-  - Mit **`if let`** greifst du schnell auf `Some` zu und ignorierst `None`.
-  - Hilfsmethoden wie **`unwrap_or(standard)`** erlauben es dir, sicher einen Standardwert festzulegen.
-- **Gefährliches Entpacken**: **`unwrap()`** und **`expect()`** bringen dein Programm bei `None` zum Absturz. Benutze sie nur im Notfall oder für Tests!
+### Fehler 1: Direktes Rechnen mit Option
+```rust
+let x: Option<i32> = Some(10);
+let y = x + 5; // ❌ FEHLER! Du kannst eine Option<i32> nicht mit einem i32 addieren.
+```
+*Lösung:* Nutze `unwrap_or` oder `map`:
+```rust
+let y = x.unwrap_or(0) + 5;
+```
+
+### Fehler 2: Verwechseln mit Result
+`Option` hat keine Fehler-Informationen. Es sagt nur "Da ist nichts". Wenn du wissen willst, *warum* nichts da ist (z. B. Netzwerkfehler vs. Berechtigungsfehler), verwende `Result`.
 
 ---
 
-## 📚 Links
+## 🛠️ Praxis-Aufgaben (Keine Codelösungen!)
 
-- [Das offizielle Rust-Buch: Das Option-Enum](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values)
-- [Rust by Example: Option & unwrap](https://doc.rust-lang.org/rust-by-example/error/option_unwrap.html)
-- [Rust-Dokumentation: std::option::Option](https://doc.rust-lang.org/std/option/enum.Option.html)
-- [Konzept: Enums](./konzept-enums.md)
-- [Konzept: Pattern Matching](./konzept-matching.md)
+### Aufgabe 1: Leicht – Die Artikelsuche
+1. **Ziel:** Suche nach einer Artikel-ID in einer Liste.
+2. **Details:**
+   - Schreibe eine Funktion `finde_artikel(id: u32) -> Option<String>`.
+   - Die Funktion soll bei ID `1` den Namen `"Buch"` zurückgeben, bei allen anderen IDs `None`.
+   - Werte das Ergebnis in `main` mit einem `match` aus.
+
+### Aufgabe 2: Mittel – Der optionale Rabatt
+1. **Ziel:** Berechne den Endpreis eines Artikels unter Berücksichtigung eines optionalen Rabatts.
+2. **Details:**
+   - Schreibe eine Funktion `berechne_preis(basispreis: f64, rabatt: Option<f64>) -> f64`.
+   - Falls der Rabatt `Some(wert)` ist, ziehe den Wert (in Prozent) ab. Falls er `None` is, gilt der Basispreis.
+3. **Tipps:** Nutze `unwrap_or(0.0)`, um einen Standard-Rabatt von 0 Prozent zu setzen.
+
+### Aufgabe 3: Schwer – Das verschachtelte Adressbuch
+1. **Ziel:** Suche nach der Postleitzahl eines Benutzers in einer verschachtelten Struktur.
+2. **Details:**
+   - Ein `Benutzer` hat ein optionales Feld `adresse: Option<Adresse>`.
+   - Eine `Adresse` hat ein optionales Feld `postleitzahl: Option<String>`.
+   - Schreibe eine Funktion `hole_plz(benutzer: &Benutzer) -> Option<String>`, die die PLZ extrahiert.
+3. **Tipps:** Nutze `.and_then()`, um die Optionen sauber zu verketten, ohne mehrfache `if let`-Verschachtelungen aufzubauen.
+
+---
+
+## 📌 Merkzettel: Option
+
+* Rust hat **kein `null`**.
+* `Option<T>` drückt aus, dass ein Wert vorhanden sein kann (`Some(T)`) oder nicht (`None`).
+* Um an den Wert zu kommen, musst du ihn **sicher entpacken** (z. B. mit `match`, `if let` oder `unwrap_or`).
+* `unwrap()` kann das Programm zum Absturz bringen und sollte vermieden werden.

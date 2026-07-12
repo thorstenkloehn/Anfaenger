@@ -3,4 +3,13 @@ rust-projekte/node_modules
 rust-projekte/package-lock.json
 judge0
 
+# Binaries and Temp Files
+test
+tempCodeRunnerFile
+*.o
+*.out
+.DS_Store
+.vscode/
+
+
 

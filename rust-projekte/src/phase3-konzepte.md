@@ -1,449 +1,244 @@
 # Konzepte statt Syntax lernen (Phase 3)
 
-Beim Programmierenlernen in Rust ist es entscheidend, zunächst die zugrunde liegenden Konzepte zu verstehen, anstatt nur die Syntax auswendig zu lernen. In Phase 3 dreht sich alles um **sicheren Umgang mit Fehlern** und **dynamische Datenspeicherung**.
+Willkommen im detailliertesten Theorie- und Praxis-Leitfaden für Phase 3 deiner Rust-Reise! 
+
+Wenn du als Programmieranfänger von anderen Sprachen (wie Python, JavaScript oder Java) kommst oder komplett neu in die Softwareentwicklung einsteigst, wirst du in dieser Phase feststellen, dass Rust einige Dinge völlig anders macht. In Phase 1 und 2 ging es um die reine Struktur deines Programms (Variablen, Structs, Enums). Jetzt in Phase 3 lernen wir, wie dein Programm mit der unvorhersehbaren Realität interagiert.
+
+Dieser Leitfaden ist so aufgebaut, dass du jedes Konzept bis ins kleinste Detail verstehst. Wir betrachten die Theorie, die Hardware-Ebene (was im RAM-Speicher passiert), Analogien aus dem echten Leben und die praktischen Stolpersteine.
 
 ---
 
-## ⚠️ 1. Fehlerbehandlung mit Result\<T, E\>
+## 🗺️ Das "Big Picture" von Phase 3
 
-### Die Analogie: Das Paket-Tracking-System
+Bevor wir in die einzelnen Typen einsteigen, lass uns einen Schritt zurücktreten und das Gesamtbild betrachten. Warum fassen wir **Fehlerbehandlung** (`Result`, `Option`) und **Collections** (`Vec`, `HashMap`) in einer einzigen Phase zusammen?
 
-Stell dir vor, du bestellst online ein Paket. Das Logistikunternehmen gibt dir immer eine klare Rückmeldung: Entweder ist dein Paket angekommen (`Ok`) oder es gab ein Problem mit einer Fehlerbeschreibung (`Err`). Du kannst nicht einfach davon ausgehen, dass das Paket da ist – du musst immer prüfen!
+Der Grund ist einfach: Sie sind untrennbar miteinander verbunden.
+* Wenn du ein Element aus einem **Vektor** (`Vec`) holen willst, kann es sein, dass der Index nicht existiert. Rust gibt dir in diesem Fall eine **`Option`** zurück.
+* Wenn du einen Eintrag in einer **`HashMap`** suchst, ist dieser eventuell nicht da. Auch hier erhältst du eine **`Option`**.
+* Wenn du eine Datei von der Festplatte in einen Vektor einlesen willst, kann die Festplatte voll oder gesperrt sein. Rust gibt dir hierfür ein **`Result`** zurück.
 
-Genau das macht `Result<T, E>` in Rust. Eine Funktion, die fehlschlagen kann, gibt immer einen `Result`-Wert zurück. Der Aufrufer **muss** damit umgehen – der Compiler lässt es nicht zu, einen möglichen Fehler zu ignorieren.
+In Rust arbeiten diese vier Werkzeuge Hand in Hand. Sie bilden das Fundament für stabilen Code.
 
-### Theorie: Der Result-Enum
+---
 
+## 1. Fehlerbehandlung: Typsystem vs. Exceptions
+
+Um zu verstehen, warum Rusts Fehlerbehandlung so genial ist, müssen wir uns ansehen, wie andere Programmiersprachen scheitern.
+
+### Das Exception-Modell (Java, Python, C#, C++, JavaScript)
+In den meisten Sprachen wird mit sogenannten **Ausnahmen (Exceptions)** gearbeitet. Der Ablauf sieht so aus:
+1. Eine Funktion versucht, eine Datei zu öffnen.
+2. Die Datei existiert nicht.
+3. Die Funktion bricht abrupt ab und "wirft" eine Exception (`FileNotFoundException`).
+4. Das Programm stoppt an dieser Stelle und sucht im sogenannten Aufrufstapel (Call Stack) nach oben hin nach einem Block namens `try { ... } catch (Exception e) { ... }`.
+5. Wird kein solcher Block gefunden, stürzt das gesamte Programm ab.
+
+#### Warum das problematisch ist:
+* **Exceptions sind unsichtbar:** Wenn du eine Funktion `lies_daten()` aufrufst, siehst du am Quellcode nicht, ob diese Funktion abstürzen kann. Du musst darauf hoffen, dass der Entwickler der Funktion das in der Dokumentation erwähnt hat.
+* **Unvorhersehbarer Kontrollfluss:** Exceptions erzeugen unsichtbare Sprünge im Code. Das macht es extrem schwer zu verstehen, welcher Code bei einem Fehler als Nächstes ausgeführt wird. Es zerstört die lineare Lesbarkeit des Codes.
+* **Hohe Kosten für die CPU:** Wenn eine Exception geworfen wird, muss die Laufzeitumgebung der Sprache den gesamten Call Stack rückwärts durchlaufen (das nennt man *Stack Unwinding*). Das kostet enorm viel Rechenzeit.
+
+### Das C-Modell (Fehlercodes)
+In der Sprache C gibt es keine Exceptions. Hier gibt eine Funktion im Fehlerfall oft einfach eine magische Zahl zurück (z. B. `-1` für Fehler und `0` für Erfolg).
+
+#### Warum das problematisch ist:
+* **Leicht zu ignorieren:** Du kannst die Rückgabenummer einfach ignorieren und so tun, als wäre alles okay. Das führt zu unberechenbarem Verhalten und schweren Sicherheitslücken.
+
+### Der Rust-Weg: Fehler sind normale Daten im Typsystem
+Rust sagt: **Ein Fehler ist keine Ausnahme, sondern ein völlig normales Ergebnis.** 
+
+Wenn eine Operation fehlschlagen kann, ist ihr Rückgabetyp nicht der gewünschte Wert (z. B. `String`), sondern ein Kombinations-Typ: `Result<String, FehlerTyp>`. 
+Der Compiler zwingt dich über sein Typsystem, dieses Paket zu öffnen und beide Fälle (Erfolg und Misserfolg) zu behandeln. Du kannst den Fehler nicht aus Versehen ignorieren, weil der Compiler sich weigert, das Programm zu übersetzen!
+
+---
+
+## 2. Option<T> – Die Lösung für das "Nichts"
+
+Der Erfinder der Null-Referenz, Tony Hoare, bezeichnete die Erfindung von `null` im Jahr 2009 als seinen **„Billion Dollar Mistake“**. In fast allen Sprachen kann eine Referenz auf ein Objekt `null` (oder `None` / `nil`) sein. Wenn man vergisst zu prüfen, ob die Variable leer ist, stürzt das Programm ab (`NullPointerException`).
+
+Rust hat **kein `null`**. Eine Variable vom Typ `i32` enthält garantiert immer eine Zahl. Eine Variable vom Typ `String` enthält garantiert immer einen Text.
+
+Wenn ein Wert jedoch tatsächlich fehlen kann, nutzen wir `Option<T>`.
+
+### Die Analogie: Das Post-Schließfach
+Stell dir ein Schließfach bei der Post vor. Du hast einen Schlüssel für Fach Nummer 42. Du öffnest die Tür. Es gibt genau zwei Möglichkeiten:
+1. Es liegt ein Paket im Fach: `Some(Paket)`
+2. Das Fach ist völlig leer: `None`
+
+```
+                   +------------------------+
+                   |       Option<T>        |
+                   +------------------------+
+                               |
+              +----------------+----------------+
+              |                                 |
+              v                                 v
+      +---------------+                 +---------------+
+      |    Some(T)    |                 |     None      |
+      | (Wert ist da) |                 | (Nichts da)   |
+      +---------------+                 +---------------+
+```
+
+### Der Option-Enum im Detail
 ```rust
-// Result ist ein eingebauter Enum in Rust (kein Import nötig):
-// enum Result<T, E> {
-//     Ok(T),   // Erfolgsfall: enthält den Wert vom Typ T
-//     Err(E),  // Fehlerfall: enthält die Fehlerbeschreibung vom Typ E
-// }
-
-// Beispiel: Eine Funktion, die fehlschlagen kann
-fn dividiere(a: f64, b: f64) -> Result<f64, String> {
-    if b == 0.0 {
-        // Fehlerfall: Wir geben Err mit einer Beschreibung zurück
-        Err(String::from("Division durch Null ist nicht erlaubt!"))
-    } else {
-        // Erfolgsfall: Wir geben Ok mit dem Ergebnis zurück
-        Ok(a / b)
-    }
-}
-
-fn main() {
-    // Variante 1: Mit match – vollständige Kontrolle
-    match dividiere(10.0, 2.0) {
-        Ok(ergebnis) => println!("Ergebnis: {}", ergebnis),
-        Err(fehler)  => println!("Fehler: {}", fehler),
-    }
-
-    // Variante 2: Mit if let – nur den Erfolgsfall behandeln
-    if let Ok(wert) = dividiere(10.0, 0.0) {
-        println!("Wert: {}", wert);
-    } else {
-        println!("Die Division ist fehlgeschlagen.");
-    }
-
-    // Variante 3: unwrap_or – Standardwert bei Fehler
-    let ergebnis = dividiere(10.0, 0.0).unwrap_or(0.0);
-    println!("Ergebnis (mit Fallback): {}", ergebnis); // 0.0
-
-    // Variante 4: expect – bei Fehler Programm beenden mit Nachricht
-    // Nur in Situationen verwenden, wo ein Fehler wirklich unmöglich sein sollte!
-    let sicher = dividiere(10.0, 2.0).expect("Das sollte nie fehlschlagen!");
-    println!("Sicheres Ergebnis: {}", sicher);
+// So ist Option in der Standardbibliothek definiert (generisch über Typ T):
+enum Option<T> {
+    Some(T),
+    None,
 }
 ```
 
-### Theorie: Fehlerweiterleitung mit dem ?-Operator
+### Praktischer Unterschied: `String` vs. `Option<String>`
+* Ein `String` ist direkt nutzbar: Du kannst `.len()` aufrufen, ihn ausgeben oder verändern.
+* Eine `Option<String>` ist ein **Container**. Du kannst nicht direkt auf die Methoden des Strings zugreifen. Du musst den Container erst öffnen!
 
-Der `?`-Operator ist die eleganteste Art, Fehler weiterzureichen. Er sagt: "Wenn das `Ok` ist, gib mir den Wert. Wenn das `Err` ist, gibt diesen Fehler sofort aus der Funktion zurück."
+#### Das Kochrezept zum Entpacken einer `Option`:
+
+1. **`match` (Das Schweizer Taschenmesser):**
+   ```rust
+   let name: Option<String> = Some(String::from("Peter"));
+   
+   match name {
+       Some(n) => println!("Name ist: {}", n),
+       None => println!("Kein Name vorhanden."),
+   }
+   ```
+   *Vorteil:* Absolut sicher. Der Compiler prüft, ob du beide Fälle behandelt hast.
+
+2. **`if let` (Der schnelle Zugriff):**
+   ```rust
+   if let Some(n) = name {
+       println!("Name ist: {}", n);
+   }
+   // Der None-Fall wird hier einfach ignoriert.
+   ```
+
+3. **`unwrap_or` (Der Standardwert):**
+   ```rust
+   let n = name.unwrap_or(String::from("Unbekannt"));
+   ```
+
+---
+
+## 3. Result<T, E> – Umgang mit echten Fehlern
+
+Während `Option` signalisiert, dass ein Wert *fehlt* (was völlig normal sein kann), signalisiert `Result`, dass eine Operation *fehlgeschlagen* ist.
+
+### Die Analogie: Die Online-Bestellung
+Du bestellst ein Buch im Internet. Nach drei Tagen kommt der Postbote:
+* Entweder er übergibt dir das Paket mit dem Buch: `Ok(Buch)`
+* Oder er übergibt dir einen Zettel, auf dem steht, warum es nicht geklappt hat (z. B. "Adresse nicht gefunden"): `Err(FehlerUrsache)`
 
 ```rust
-use std::fs;
-use std::io;
+enum Result<T, E> {
+    Ok(T),  // Erfolgsfall: Enthält Daten vom Typ T
+    Err(E), // Fehlerfall: Enthält Fehlerdetails vom Typ E
+}
+```
 
-// Diese Funktion kann scheitern, deshalb gibt sie Result zurück.
-fn lies_datei(pfad: &str) -> Result<String, io::Error> {
-    // Mit ? wird der Fehler automatisch weitergereicht,
-    // falls fs::read_to_string fehlschlägt.
-    let inhalt = fs::read_to_string(pfad)?;
+### Die Fehler-Weiterleitung mit `?`
+Sehr oft willst oder kannst du einen Fehler nicht direkt an Ort und Stelle beheben. Stell dir vor, du schreibst eine Funktion, die Einstellungen aus einer Datei liest. Wenn die Datei fehlt, kann die Lesefunktion das nicht reparieren. Sie muss den Fehler an das Hauptprogramm (`main`) zurückmelden.
+
+Hierfür nutzen wir den `?`-Operator. Er ist eine Abkürzung für: "Wenn die Operation fehlschlägt, brich diese Funktion sofort ab und gib den Fehler zurück."
+
+#### Die Mechanik Schritt für Schritt:
+```rust
+use std::fs::File;
+use std::io::{self, Read};
+
+fn lies_einstellungen() -> Result<String, io::Error> {
+    // 1. Versuche, die Datei zu öffnen.
+    // Wenn File::open fehlschlägt, wird der Fehler SOFORT aus dieser
+    // Funktion zurückgegeben. Wenn es klappt, wird die Datei entpackt.
+    let mut datei = File::open("config.txt")?; 
+
+    let mut inhalt = String::new();
+    
+    // 2. Versuche, den Inhalt zu lesen.
+    // Auch hier: Bei Fehler sofortiger Abbruch und Rückgabe des Fehlers.
+    datei.read_to_string(&mut inhalt)?;
+
+    // 3. Wenn alles geklappt hat, verpacke das Ergebnis in Ok()
     Ok(inhalt)
 }
-
-// Ohne ? müsste man schreiben:
-fn lies_datei_lang(pfad: &str) -> Result<String, io::Error> {
-    match fs::read_to_string(pfad) {
-        Ok(inhalt) => Ok(inhalt),
-        Err(e) => Err(e), // Fehler manuell weiterreichen
-    }
-}
-
-fn main() {
-    match lies_datei("beispiel.txt") {
-        Ok(text)  => println!("Inhalt: {}", text),
-        Err(fehler) => println!("Konnte Datei nicht lesen: {}", fehler),
-    }
-}
-```
-
-### Typische Einsteigerfehler bei Result
-
-```rust
-// ❌ Fehler 1: unwrap() in produktivem Code verwenden
-// let zahl: i32 = "keine Zahl".parse().unwrap(); // Panic! Programm stürzt ab!
-// ✅ Lösung: match, if let oder unwrap_or verwenden.
-
-// ❌ Fehler 2: Result-Wert ignorieren
-// dividiere(10.0, 0.0); // Compiler-Warnung: "unused `Result` that must be used"
-// ✅ Lösung: Immer mit dem Result umgehen oder mit let _ = ... explizit ignorieren.
-
-// ❌ Fehler 3: ? in Funktionen ohne Result-Rückgabetyp verwenden
-// fn main() {
-//     let text = fs::read_to_string("datei.txt")?; // Fehler! main gibt () zurück.
-// }
-// ✅ Lösung: main() kann auch Result zurückgeben:
-// fn main() -> Result<(), Box<dyn std::error::Error>> { ... }
 ```
 
 ---
 
-## 🔍 2. Fehlerbehandlung mit Option\<T\>
+## 4. Vec<T> – Dynamische Listen auf dem Heap
 
-### Die Analogie: Die Suchfunktion im Wörterbuch
+Ein Array in Rust hat eine feste Größe (z. B. `[i32; 5]`). Es liegt direkt auf dem Stack. Ein Vektor (`Vec<T>`) hingegen ist eine dynamisch wachsende Liste, die auf dem **Heap** gespeichert wird.
 
-Wenn du in einem Wörterbuch ein Wort suchst, gibt es zwei Möglichkeiten: Du findest die Übersetzung (`Some`) oder das Wort ist nicht drin (`None`). Eine gute Suchfunktion stürzt nicht ab, wenn das Wort fehlt – sie teilt dir einfach mit, dass kein Ergebnis gefunden wurde.
+### Das Speicherlayout im Detail
+Ein Vektor belegt auf dem Stack immer genau drei Werte (24 Bytes auf 64-Bit-Systemen):
+1. **Pointer:** Die Speicheradresse im Heap, an der das erste Element liegt.
+2. **Length (Länge):** Wie viele Elemente aktuell im Vektor liegen.
+3. **Capacity (Kapazität):** Für wie viele Elemente auf dem Heap bereits Speicher reserviert ist.
 
-### Theorie: Der Option-Enum
-
-```rust
-// Option ist wie Result, aber ohne Fehlerbeschreibung:
-// enum Option<T> {
-//     Some(T), // Ein Wert ist vorhanden
-//     None,    // Kein Wert vorhanden
-// }
-
-// Beispiel: Suche in einem Vec
-fn finde_ersten_geraden(zahlen: &[i32]) -> Option<i32> {
-    for &zahl in zahlen {
-        if zahl % 2 == 0 {
-            return Some(zahl); // Gefunden!
-        }
-    }
-    None // Nichts gefunden
-}
-
-fn main() {
-    let zahlen = vec![1, 3, 5, 4, 7];
-
-    // Variante 1: match
-    match finde_ersten_geraden(&zahlen) {
-        Some(zahl) => println!("Erste gerade Zahl: {}", zahl),
-        None       => println!("Keine gerade Zahl gefunden."),
-    }
-
-    // Variante 2: if let
-    if let Some(wert) = finde_ersten_geraden(&zahlen) {
-        println!("Gefunden: {}", wert);
-    }
-
-    // Variante 3: unwrap_or – Standardwert wenn None
-    let ergebnis = finde_ersten_geraden(&[1, 3, 5]).unwrap_or(-1);
-    println!("Ergebnis: {}", ergebnis); // -1 (Fallback)
-
-    // Variante 4: map – Wert transformieren wenn Some
-    let verdoppelt = finde_ersten_geraden(&zahlen).map(|x| x * 2);
-    println!("{:?}", verdoppelt); // Some(8)
-
-    // Hilfsmethoden
-    let x: Option<i32> = Some(5);
-    println!("Ist Some: {}", x.is_some()); // true
-    println!("Ist None: {}", x.is_none()); // false
-}
+```
+Stack:                          Heap:
++------------------------+      +-------------------------+
+| Pointer  | 0x1000      | ---> | Index 0 | 10            |
+| Length   | 3          |      | Index 1 | 20            |
+| Capacity | 4          |      | Index 2 | 30            |
++------------------------+      | Index 3 | [Freier Platz]|
+                                +-------------------------+
 ```
 
-### Typische Einsteigerfehler bei Option
-
-```rust
-// ❌ Fehler 1: Direkter Zugriff auf Option ohne Prüfung
-// let zahlen: Vec<i32> = vec![1, 2, 3];
-// let erster: i32 = zahlen.first(); // Fehler! first() gibt Option<&i32> zurück.
-// ✅ Lösung: zahlen.first().copied().unwrap_or(0)
-
-// ❌ Fehler 2: Option mit None in Berechnungen verwenden
-// let x: Option<i32> = None;
-// let y = x + 1; // Fehler! Kann nicht mit Option rechnen.
-// ✅ Lösung: x.unwrap_or(0) + 1 oder x.map(|v| v + 1)
-
-// ❌ Fehler 3: Option und Result verwechseln
-// Option hat kein Err-Äquivalent – es gibt einfach nichts.
-// Result hat eine Fehlerbeschreibung.
-// Faustregel: Fehlschlag mit Grund → Result. Fehlende Daten → Option.
-```
+### Was passiert beim Wachsen (Reallozierung)?
+Wenn du ein 4. Element hinzufügst, passt es in den freien Platz (Index 3). Die Länge erhöht sich auf 4.
+Wenn du nun ein 5. Element hinzufügen willst, ist die Kapazität erschöpft. Nun passiert Folgendes:
+1. Rust fordert einen neuen, doppelt so großen Speicherbereich auf dem Heap an (Kapazität 8).
+2. Alle bisherigen Elemente werden an die neue Adresse kopiert.
+3. Der alte Speicherbereich wird freigegeben.
+4. Der Pointer auf dem Stack wird auf die neue Adresse umgebogen.
 
 ---
 
-## 🗃️ 3. Vektoren (Vec\<T\>)
+## 5. HashMap<K, V> – Schlüssel-Wert-Tabellen
 
-### Die Analogie: Die dynamische Einkaufsliste
+Eine HashMap speichert Daten in Form von Schlüssel-Wert-Paaren (Key-Value). Statt über eine Zahl greifst du über einen beliebigen Typ (z. B. einen `String`) auf die Daten zu.
 
-Ein normales Array in Rust ist wie ein beschriftetes, unveränderbares Regal – du weißt beim Bauen genau, wie viele Fächer es hat. Ein `Vec<T>` hingegen ist wie eine Einkaufsliste auf einem Zettel: Du kannst jederzeit neue Punkte hinzufügen, welche durchstreichen und der Zettel wächst ganz automatisch mit.
+### Wie funktioniert der O(1) Zugriff?
+Wenn du in einem Telefonbuch nach "Anna" suchst, blätterst du nicht jede Seite von vorne durch. Du nutzt das Register.
+Eine HashMap nutzt eine **Hash-Funktion**. Sie berechnet aus dem Schlüssel (z. B. `"Anna"`) eine eindeutige Zahl. Diese Zahl bestimmt direkt die Speicheradresse. Dadurch dauert der Zugriff immer gleich lang – egal wie viele Elemente in der HashMap gespeichert sind.
 
-### Theorie: Vektoren erstellen und befüllen
-
-```rust
-fn main() {
-    // Einen leeren Vec erstellen (Typ muss annotiert werden)
-    let mut zahlen: Vec<i32> = Vec::new();
-
-    // Elemente hinzufügen
-    zahlen.push(10);
-    zahlen.push(20);
-    zahlen.push(30);
-    println!("{:?}", zahlen); // [10, 20, 30]
-
-    // Kurzschreibweise mit vec!-Makro
-    let fruechte = vec!["Apfel", "Banane", "Kirsche"];
-
-    // Auf Elemente zugreifen
-    // Methode 1: Index [] – GEFÄHRLICH, Panic bei out of bounds!
-    println!("Erste Frucht: {}", fruechte[0]);
-
-    // Methode 2: .get() – SICHER, gibt Option<&T> zurück
-    match fruechte.get(10) { // Index 10 existiert nicht!
-        Some(frucht) => println!("Gefunden: {}", frucht),
-        None         => println!("Index existiert nicht."), // Kein Absturz!
-    }
-
-    // Iterieren
-    for frucht in &fruechte { // & um Ownership zu behalten
-        println!("Ich mag: {}", frucht);
-    }
-
-    // Nützliche Methoden
-    println!("Anzahl: {}", zahlen.len());        // Länge
-    println!("Leer? {}", zahlen.is_empty());    // false
-    zahlen.pop();                                // Letztes Element entfernen
-    println!("Nach pop: {:?}", zahlen);          // [10, 20]
-
-    // Sortieren
-    let mut unsortiert = vec![3, 1, 4, 1, 5, 9, 2];
-    unsortiert.sort();
-    println!("Sortiert: {:?}", unsortiert); // [1, 1, 2, 3, 4, 5, 9]
-
-    // Filtern mit retain
-    let mut gerade = vec![1, 2, 3, 4, 5, 6];
-    gerade.retain(|&x| x % 2 == 0);
-    println!("Nur gerade: {:?}", gerade); // [2, 4, 6]
-}
-```
-
-### Theorie: Ownership und Vektoren
-
-```rust
-// Wenn du einen Vec in eine Funktion übergibst, verlierst du die Ownership!
-let namen = vec!["Anna", "Bob", "Clara"];
-
-fn drucke_namen(liste: Vec<&str>) { // Ownership wird übernommen
-    for name in liste {
-        println!("{}", name);
-    }
-} // liste wird hier gelöscht
-
-drucke_namen(namen);
-// println!("{:?}", namen); // ❌ Fehler! namen wurde bewegt (moved).
-
-// ✅ Lösung: Als Referenz übergeben
-let namen2 = vec!["Anna", "Bob", "Clara"];
-fn drucke_namen_ref(liste: &Vec<&str>) {
-    for name in liste {
-        println!("{}", name);
-    }
-}
-drucke_namen_ref(&namen2);
-println!("Noch da: {:?}", namen2); // ✅ namen2 ist noch gültig!
-
-// Noch idiomatischer: &[&str] statt &Vec<&str>
-fn drucke_namen_slice(liste: &[&str]) {
-    for name in liste { println!("{}", name); }
-}
-drucke_namen_slice(&namen2); // ✅
-```
-
-### Typische Einsteigerfehler bei Vektoren
-
-```rust
-// ❌ Fehler 1: Index-Zugriff außerhalb des Bereichs (Panic!)
-// let v = vec![1, 2, 3];
-// println!("{}", v[5]); // PANIC: index out of bounds: the len is 3 but the index is 5
-// ✅ Lösung: v.get(5) verwenden, das Option<&i32> zurückgibt.
-
-// ❌ Fehler 2: Vektor verändern während er iteriert wird
-// let mut v = vec![1, 2, 3];
-// for x in &v {
-//     v.push(*x * 2); // Fehler! Kann nicht ändern während ausgeliehen.
-// }
-// ✅ Lösung: Neuen Vec erstellen oder indices verwenden.
-
-// ❌ Fehler 3: Vec<&str> mit lokalen Strings befüllen (Lifetime-Problem)
-// fn erzeuge_liste() -> Vec<&str> { // Fehler: missing lifetime specifier
-//     let s = String::from("hallo");
-//     vec![&s] // s wird am Ende der Funktion gelöscht!
-// }
-// ✅ Lösung: Vec<String> zurückgeben statt Vec<&str>.
-```
-
----
-
-## 🗺️ 4. HashMaps (HashMap\<K, V\>)
-
-### Die Analogie: Das Telefonbuch
-
-Eine HashMap ist wie ein digitales Telefonbuch: Du kennst den Namen (Schlüssel/Key) und kannst sofort die Telefonnummer (Wert/Value) nachschlagen, ohne das gesamte Buch von vorne bis hinten durchsuchen zu müssen. Das Nachschlagen ist extrem schnell – nahezu unabhängig davon, wie viele Einträge das Buch hat!
-
-### Theorie: HashMaps erstellen und verwenden
-
-```rust
-use std::collections::HashMap; // HashMap muss importiert werden!
-
-fn main() {
-    // Eine neue HashMap erstellen
-    let mut telefonnummern: HashMap<String, String> = HashMap::new();
-
-    // Einträge hinzufügen mit insert()
-    telefonnummern.insert(String::from("Anna"), String::from("0171-1234567"));
-    telefonnummern.insert(String::from("Bob"),  String::from("0172-9876543"));
-
-    // Mit vec! und zip initialisieren
-    let namen = vec!["Clara", "David"];
-    let nummern = vec!["0173-111", "0174-222"];
-    let verzeichnis: HashMap<_, _> = namen.iter().zip(nummern.iter()).collect();
-
-    // Wert nachschlagen mit get() – gibt Option<&V> zurück
-    match telefonnummern.get("Anna") {
-        Some(nummer) => println!("Annas Nummer: {}", nummer),
-        None         => println!("Anna nicht gefunden."),
-    }
-
-    // Iterieren über alle Einträge (Reihenfolge ist NICHT garantiert!)
-    for (name, nummer) in &telefonnummern {
-        println!("{}: {}", name, nummer);
-    }
-
-    // Enthält einen Schlüssel?
-    println!("Enthält Bob: {}", telefonnummern.contains_key("Bob")); // true
-
-    // Eintrag entfernen
-    telefonnummern.remove("Bob");
-
-    // Länge
-    println!("Einträge: {}", telefonnummern.len());
-}
-```
-
-### Theorie: Die Entry-API (Modernes Einfügen)
-
-Die Entry-API ist das eleganteste Werkzeug für HashMaps. Sie löst das Problem "Füge ein, wenn nicht vorhanden; aktualisiere wenn vorhanden" in einer einzigen Zeile.
+### Die Entry-API: Effiziente Updates
+Oft möchte man prüfen, ob ein Schlüssel bereits existiert, und ihn nur dann einfügen oder anpassen. Die Entry-API von Rust löst das extrem elegant und performant:
 
 ```rust
 use std::collections::HashMap;
 
-fn main() {
-    let text = "hallo welt hallo rust welt welt";
+let mut scores = HashMap::new();
+scores.insert(String::from("Blau"), 10);
 
-    // Wörter zählen mit Entry-API
-    let mut wort_zaehler: HashMap<&str, u32> = HashMap::new();
-
-    for wort in text.split_whitespace() {
-        // entry(): Gibt einen Entry (Eintragsreferenz) zurück.
-        // or_insert(): Fügt 0 ein wenn nicht vorhanden, gibt Referenz auf den Wert zurück.
-        let zaehler = wort_zaehler.entry(wort).or_insert(0);
-        *zaehler += 1; // Wert über Referenz erhöhen (Dereferenzierung mit *)
-    }
-
-    println!("{:?}", wort_zaehler);
-    // {"hallo": 2, "welt": 3, "rust": 1} (Reihenfolge kann variieren)
-
-    // or_insert_with: Nur berechnen wenn wirklich nötig (lazy)
-    let mut cache: HashMap<String, Vec<i32>> = HashMap::new();
-    cache.entry(String::from("evens")).or_insert_with(|| {
-        (0..10).filter(|x| x % 2 == 0).collect()
-    });
-}
-```
-
-### Theorie: Ownership bei HashMaps
-
-```rust
-use std::collections::HashMap;
-
-// Achtung: Wenn du einen String als Key einfügst, übernimmt die HashMap die Ownership!
-let mut map: HashMap<String, i32> = HashMap::new();
-
-let schluessel = String::from("punkte");
-let wert = 100;
-
-map.insert(schluessel, wert);
-// println!("{}", schluessel); // ❌ Fehler! schluessel wurde in die Map bewegt.
-
-// i32 implementiert Copy, deshalb bleibt wert gültig:
-println!("{}", wert); // ✅
-
-// Lösung: Referenz als Key (wenn der Wert länger lebt als die Map)
-let s = String::from("name");
-let mut map2: HashMap<&str, i32> = HashMap::new();
-map2.insert(&s, 42); // Referenz – s bleibt Besitzer
-println!("{}", s); // ✅ s ist noch gültig
-```
-
-### Typische Einsteigerfehler bei HashMaps
-
-```rust
-// ❌ Fehler 1: HashMap ohne Import verwenden
-// let map = HashMap::new(); // Fehler: use of undeclared type `HashMap`
-// ✅ Lösung: use std::collections::HashMap; oben hinzufügen.
-
-// ❌ Fehler 2: Direkter Index-Zugriff auf nicht vorhandenen Key (Panic!)
-// let map: HashMap<&str, i32> = HashMap::new();
-// let wert = map["nichtVorhanden"]; // PANIC!
-// ✅ Lösung: map.get("nichtVorhanden") verwenden.
-
-// ❌ Fehler 3: Reihenfolge der Einträge erwarten
-// HashMaps garantieren KEINE bestimmte Reihenfolge der Elemente!
-// ✅ Lösung: Für sortierte Ausgabe: let mut schluessel: Vec<_> = map.keys().collect();
-//           schluessel.sort(); for k in schluessel { ... }
+// entry() prüft, ob "Blau" existiert.
+// or_insert() fügt 0 ein, falls nicht vorhanden.
+// Es gibt eine veränderbare Referenz (&mut) auf den Wert zurück.
+let score = scores.entry(String::from("Blau")).or_insert(0);
+*score += 5; // Erhöht den Wert direkt in der HashMap
 ```
 
 ---
 
-## 🚀 Wie du diese Phase am besten nutzt
+## 🛠️ Vergleichstabelle: Die vier Kernkonzepte
 
-**1. Verstehe den Unterschied:** `Result` ist für Operationen, die aus einem guten Grund fehlschlagen können (Datei nicht gefunden, ungültige Eingabe). `Option` ist für Werte, die einfach fehlen können (kein Element gefunden, optionales Feld).
-
-**2. Vermeide unwrap() im echten Code:** Gewöhne dir von Anfang an an, mit `match`, `if let` oder `unwrap_or` zu arbeiten. Dein Programm wird dadurch nie unerwartet abstürzen.
-
-**3. Wähle die richtige Kollektion:**
-- Brauchst du eine geordnete, indizierbare Liste? → `Vec<T>`
-- Brauchst du schnellen Zugriff über einen Schlüssel? → `HashMap<K, V>`
-
-**4. Kombiniere alles:** Die Stärke dieser Phase liegt in der Kombination. Eine `HashMap<String, Vec<String>>` (Schlüssel zu Liste von Werten) oder `Vec<Result<i32, String>>` (Liste von Ergebnissen) sind völlig normal.
-
-> [!TIP]
-> Lese den Absatz aus den 100-Projekten für Phase 3, bevor du mit dem Prompt-Katalog beginnst. Viele der dort gezeigten Muster (z.B. `HashMap::entry().or_insert()`) werden sich in deinen eigenen Projekten immer wiederholen.
+| Konzept | Wann verwenden? | Rückgabetyp bei Abfrage | Wichtige Methode |
+|---|---|---|---|
+| **`Option<T>`** | Wenn ein Wert optional ist oder fehlen kann | `Option<&T>` | `.unwrap_or()`, `.map()` |
+| **`Result<T, E>`** | Wenn eine Operation fehlschlagen kann | `Result<T, E>` | `.unwrap_or()`, `?`-Operator |
+| **`Vec<T>`** | Für dynamisch wachsende Listen | `Option<&T>` (via `.get()`) | `.push()`, `.pop()`, `.len()` |
+| **`HashMap<K, V>`** | Für Assoziationen (Schlüssel -> Wert) | `Option<&V>` (via `.get()`) | `.insert()`, `.entry()` |
 
 ---
 
-## 📌 Merkzettel: Phase 3 auf einen Blick
+## ❓ FAQ – Häufige Fragen von Anfängern
 
-> [!IMPORTANT]
-> **Die 4 Kernkonzepte der Phase 3:**
->
-> * **Result\<T, E\>:** Für Operationen, die fehlschlagen können. `Ok(wert)` bei Erfolg, `Err(fehler)` bei Misserfolg. Mit `match` oder `?` (Weiterleitungsoperator) sicher handhaben. NIEMALS `unwrap()` in produktivem Code verwenden!
->
-> * **Option\<T\>:** Für Werte, die fehlen können (kein Fehlergrund). `Some(wert)` wenn vorhanden, `None` wenn nicht. Sicher entpacken mit `match`, `if let`, `unwrap_or(standardwert)` oder `map(|x| ...)`.
->
-> * **Vec\<T\>:** Eine dynamische, wachsende Liste auf dem Heap. Zugriff mit `[]` (Panic bei out of bounds!) oder sicher mit `.get()` (gibt `Option`). Ownership beim Übergeben an Funktionen beachten – besser als `&[T]` übergeben.
->
-> * **HashMap\<K, V\>:** Ein Schlüssel-Wert-Speicher mit sehr schnellem Zugriff (O(1)). Import nötig! Zugriff mit `.get(key)` (gibt `Option`). Die Entry-API (`.entry(key).or_insert(wert)`) ist der idiomatische Weg zum sicheren Einfügen und Aktualisieren.
+### F1: Wann benutze ich `Option` und wann `Result`?
+* **Regel:** Nutze `Option`, wenn das Fehlen eines Wertes ein völlig normaler Zustand ist (z. B. ein Benutzer hat kein Profilbild). Nutze `Result`, wenn etwas schiefgegangen ist, das so eigentlich nicht geplant war (z. B. die Datenbank ist nicht erreichbar).
+
+### F2: Warum stürzt mein Programm ab, wenn ich `.unwrap()` nutze?
+* **Antwort:** `.unwrap()` ist ein Versprechen an den Compiler: "Ich garantiere, dass hier ein Wert drin ist." Ist die Box jedoch leer (`None` oder `Err`), bricht Rust die Ausführung ab, um Folgeschäden (wie Speicherfehler) zu verhindern. Nutze stattdessen immer `match` oder `unwrap_or`.
+
+### F3: Warum ist `HashMap` manchmal langsamer als `Vec` bei sehr kleinen Datenmengen?
+* **Antwort:** Das Berechnen des Hashes erfordert CPU-Zyklen. Bei sehr kleinen Listen (z. B. unter 10 Elementen) kann das Durchsuchen eines Vektors schneller sein als die Berechnung eines Hash-Wertes. Für größere Datenmengen ist die HashMap jedoch unschlagbar.

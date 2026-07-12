@@ -254,6 +254,22 @@ xdg-open https://gemini.google.com/app
 
 ---
 
+## 🪙 Token-Verbrauch & Effizienz (Laufzeit-Optimierung)
+
+Um sicherzustellen, dass die KI-Agenten schnell antworten und nicht in API-Limits (z. B. `429 RESOURCE_EXHAUSTED` / Quoten-Limits) laufen, sollte der Token-Verbrauch überwacht werden:
+
+*   **Normaler Verbrauch (< 10.000 Tokens):** Kurze Präzisionsfragen, gezielte Dateiänderungen, kurze Anweisungen.
+*   **Starker Verbrauch (10.000 – 30.000 Tokens):** Einlesen mehrerer großer Buchkapitel, Generierung von Kapiteln mit über 500 Zeilen, parallele Ausführung mehrerer komplexer Subagenten.
+*   **Zu starker Verbrauch (> 30.000 Tokens):** Generierung riesiger Monolith-Dateien (z. B. 2.000+ Zeilen in einem Rutsch), ständiges Einlesen des gesamten Projektordners, unstrukturierte Chats mit langen Verlaufshistorien.
+
+### 💡 Best Practices zur Token-Reduzierung:
+1. **Regeln kurz halten:** AGENTS.md-Dateien und Skills immer so kurz wie möglich fassen.
+2. **Modularisieren:** Große Themen in mehrere kleinere Konzept-Dateien aufteilen.
+3. **Kontext leeren:** Nach Abschluss großer Aufgaben den Chatverlauf zurücksetzen.
+
+---
+
 > 🦀 **Lernprinzip:** Rust lernt man durch Ausprobieren – nicht durch Zuschauen.  
 > Der KI-Agent ist dein Begleiter, nicht dein Ghostwriter.  
 > **Schreibe den Code selbst – frage die KI, wenn du feststeckst.**
+

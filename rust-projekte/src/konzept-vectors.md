@@ -1,240 +1,222 @@
-# 🗃️ Vektoren (Vec<T>)
+# Vektoren (Vec<T>) – Dynamische Listen in Rust
 
-Herzlich willkommen zu einem der wichtigsten Werkzeuge in Rust, wenn es um das Verwalten von Datensammlungen geht: den Vektoren (`Vec<T>`).
+Arrays (`[T; N]`) sind hervorragend geeignet, wenn du eine Datensammlung mit einer festen, unveränderlichen Größe verwalten möchtest. Ein typisches Beispiel sind die Koordinaten eines Punkts im dreidimensionalen Raum: Sie bestehen immer aus genau drei Werten (X, Y, Z). Da diese Größe bereits beim Schreiben des Codes feststeht, kann der Compiler den Speicherplatz dafür direkt auf dem schnellen Stack-Speicher reservieren.
 
-Bisher hast du vielleicht schon Arrays kennengelernt. Arrays sind super, wenn du im Voraus genau weißt, wie viele Elemente du speichern willst – zum Beispiel die 7 Wochentage oder die 12 Monate des Jahres. Aber was ist, wenn du eine Einkaufsliste schreibst, bei der du noch nicht weißt, wie viele Artikel am Ende darauf landen? Oder wenn du ein Spiel programmierst und die Anzahl der Gegner auf dem Bildschirm ständig wechselt?
+In der realen Programmierpraxis wissen wir jedoch fast nie im Voraus, wie viele Daten wir verarbeiten müssen. Denk an:
+* Eine To-Do-Liste, in die der Benutzer beliebig viele Aufgaben eintragen kann.
+* Den Chat-Verlauf einer App, der sekündlich um neue Nachrichten wächst.
+* Die Liste der Gegner in einem Videospiel, die ständig besiegt werden oder neu spawnen.
 
-Genau hier kommen Vektoren ins Spiel. Sie sind dynamisch, flexibel und können während der Laufzeit deines Programms beliebig wachsen oder schrumpfen.
-
-In diesem Kapitel schauen wir uns an, wie Vektoren im Speicher funktionieren, wie Rusts Ownership-Modell auf sie wirkt und wie man sicher mit ihnen arbeitet, ohne dass das Programm abstürzt.
-
----
-
-## 🧠 Theorie
-
-### Die Analogie: Das modulare Regalsystem
-
-Stell dir vor, du kaufst ein klassisches Bücherregal aus Holz, das genau Platz für 10 Bücher bietet. Dieses Regal ist wie ein **Array** in Rust. Seine Größe ist fest in die Struktur des Holzes eingebaut. Du kannst nicht einfach ein 11. Buch hineinstellen, ohne das Regal zu beschädigen oder ein neues zu kaufen.
-
-Ein **Vektor** (`Vec<T>`) hingegen ist wie ein modulares Regalsystem. Du startest mit einem kleinen Brett, das Platz für ein paar Bücher bietet. Sobald du mehr Bücher kaufst, schraubst du einfach ein weiteres Brett an. Das Regal wächst mit deiner Bibliothek.
-
-Doch wie macht der Computer das im Hintergrund?
-
-### Stack vs. Heap: Wo liegen die Daten?
-
-Um zu verstehen, wie ein Vektor funktioniert, müssen wir einen Blick in den Arbeitsspeicher werfen. Ein Vektor teilt sich in zwei Bereiche auf:
-
-1. **Die Verwaltungszentrale auf dem Stack:**
-   Auf dem schnellen, aber starren Stack speichert Rust die Metadaten des Vektors. Das sind drei Werte (jeweils mit der Größe eines Zeigers, z. B. 64 Bit auf modernen Systemen):
-   - **Pointer (Zeiger):** Die genaue Adresse im Speicher (auf dem Heap), wo das allererste Element deines Vektors liegt.
-   - **Länge (Length):** Die Anzahl der Elemente, die sich aktuell *tatsächlich* im Vektor befinden.
-   - **Kapazität (Capacity):** Die Anzahl der Elemente, für die auf dem Heap bereits Speicherplatz reserviert wurde.
-
-2. **Die eigentlichen Daten auf dem Heap:**
-   Auf dem flexiblen Heap liegen die eigentlichen Elemente des Vektors direkt hintereinander aufgereiht im Speicher.
-
-### Wie ein Vektor wächst: Die Reallozierung
-
-Was passiert, wenn du einen neuen Gegenstand in deinen Vektor legst (z. B. mit `.push()`), die Länge aber bereits der Kapazität entspricht? Das Regal ist voll!
-
-In diesem Moment passiert im Hintergrund etwas Spannendes:
-1. **Neuen Platz suchen:** Rust bittet das Betriebssystem um einen neuen, größeren und zusammenhängenden Speicherbereich auf dem Heap. In der Regel wird die Kapazität dabei verdoppelt (z. B. von 4 auf 8 Plätze).
-2. **Umziehen:** Rust kopiert alle bisherigen Elemente an den neuen Ort.
-3. **Aufräumen:** Der alte Speicherbereich auf dem Heap wird freigegeben.
-4. **Update:** Der Zeiger auf dem Stack wird auf die neue Adresse umgebogen, die Kapazität wird aktualisiert und das neue Element wird am Ende angehängt.
-
-> [!NOTE]
-> Dieses "Umziehen" (Reallozierung) kostet Zeit. Wenn du im Voraus weißt, dass dein Vektor ungefähr 1000 Elemente enthalten wird, kannst du Rust mit `Vec::with_capacity(1000)` anweisen, sofort genügend Platz zu reservieren. Dadurch verhinderst du unnötige Umzüge im Speicher und machst dein Programm spürbar schneller.
-
-### Ownership und Vektoren: Wer besitzt die Daten?
-
-In Rust gilt das Gesetz der Ownership: Jeder Wert hat genau einen Besitzer. Bei einem Vektor verhält es sich so:
-- **Der Vektor besitzt seine Elemente.** Wenn du ein Element in einen Vektor einfügst, übergibst du die Ownership an den Vektor.
-- **Automatisches Aufräumen (Drop):** Wenn der Vektor selbst das Ende seines Gültigkeitsbereichs (Scope) erreicht und gelöscht wird, löscht Rust automatisch auch alle darin enthaltenen Elemente und gibt deren Speicher auf dem Heap frei. Es entstehen keine Speicherlecks!
-
-Das führt jedoch zu einer wichtigen Einschränkung beim Zugriff:
-- Du kannst nicht einfach ein Element aus der Mitte des Vektors herauskopieren, wenn der Datentyp keine automatische Kopie erlaubt (wie z. B. `String`). Der Code `let element = mein_vektor[0];` würde einen Compilerfehler verursachen, weil du damit versuchen würdest, dem Vektor die Ownership an diesem Element zu stehlen, wodurch eine "Lücke" im Vektor entstehen würde.
-- **Lösungen:** Entweder nimmst du nur eine Referenz (`let element = &mein_vektor[0];`), kopierst den Wert explizit (`let element = mein_vektor[0].clone();`) oder entnimmst ihn kontrolliert (z. B. mit `.pop()` am Ende oder `.remove(index)` in der Mitte, was jedoch die nachfolgenden Elemente im Speicher verschieben muss).
-
-### Sicheres Arbeiten: Panics und Iterator-Invalidierung
-
-Zwei häufige Fehlerquellen lauern beim Umgang mit dynamischen Listen:
-
-#### 1. Der Index-Absturz (Out of Bounds)
-Wenn dein Vektor 3 Elemente hat und du versuchst, auf das Element am Index 5 zuzugreifen (`mein_vektor[5]`), stürzt dein Programm sofort mit einer sogenannten `Panic` ab.
-- **Sicherer Zugriff mit `.get()`:** Verwende stattdessen die Methode `.get(index)`. Diese gibt eine `Option<&T>` zurück. Existiert der Index, erhältst du `Some(&wert)`. Existiert er nicht, erhältst du `None`. Dein Programm stürzt nicht ab, und du kannst den Fehler sauber behandeln.
-
-#### 2. Iterator-Invalidierung
-Stell dir vor, du läufst durch eine Liste von Zahlen und fügst bei jeder geraden Zahl eine neue Zahl am Ende der Liste hinzu. Wenn die Liste während des Durchlaufens ihre Kapazität überschreitet, zieht sie im Speicher um. Dein Iterator würde plötzlich auf den alten, mittlerweile freigegebenen Speicher zeigen – ein schwerwiegender Sicherheitsfehler!
-- **Rusts Rettung:** Der Borrow Checker verhindert das zur Compilezeit. Du darfst keine veränderliche Referenz auf den Vektor haben (um Elemente hinzuzufügen), während du gleichzeitig eine unveränderliche Referenz halte (um über die Elemente zu iterieren). Der Compiler bricht mit einer Fehlermeldung ab und schützt dich vor diesem Bug.
+Für all diese Fälle bietet Rust den Datentyp **`Vec<T>`** (kurz für Vektor). Ein Vektor ist eine dynamisch wachsende Liste, die zur Laufzeit vergrößert oder verkleinert werden kann. In diesem Kapitel lernst du bis ins kleinste Detail, wie Vektoren im Speicher funktionieren, wie du sicher mit ihnen arbeitest und wie du typische Performance-Fallen vermeidest.
 
 ---
 
-## 🛠️ Praxis-Aufgaben (Keine Codelösungen)
+## 🧠 Speicher-Theorie: Stack vs. Heap bei Vektoren
 
-Versuche, die folgenden Aufgaben selbstständig zu lösen. Verwende dabei die besprochenen Konzepte und die Tipps, um sicheren Code zu schreiben.
+Um Vektoren wirklich zu verstehen und effizienten Code zu schreiben, müssen wir betrachten, wie Rust die Daten im RAM-Speicher deines Computers ablegt. Ein Vektor teilt sich immer in zwei Speicherbereiche auf: den **Stack** und den **Heap**.
 
-### Aufgabe 1: Leicht (Grundlagen & Syntax) – Die Einkaufsliste
-1. **Zielbeschreibung:** Erstelle eine einfache Einkaufsliste, füge Artikel hinzu und frage das erste Element sicher ab.
-2. **Code-Gerüst:** Ergänze den Code an den Stellen mit `todo!()`.
-   ```rust
-   fn main() {
-       // 1. Erstelle einen leeren, veränderbaren Vektor für Strings
-       let mut einkaufsliste: Vec<String> = todo!();
+### Die Verwaltungsdaten auf dem Stack
+Wenn du eine Variable `let mut zahlen = Vec::new();` erstellst, belegt diese Variable auf dem Stack immer exakt die Größe von drei Systemwörtern. Auf einem modernen 64-Bit-System entspricht ein Systemwort 8 Bytes, was bedeutet, dass ein Vektor auf dem Stack immer genau **24 Bytes** groß ist – unabhängig davon, ob er leer ist oder eine Million Elemente enthält!
 
-       // 2. Füge drei Artikel deiner Wahl hinzu (z. B. "Äpfel", "Milch", "Brot")
-       todo!();
+Diese 24 Bytes teilen sich auf in drei Felder:
+1. **Zeiger (Pointer):** Die genaue 64-Bit-Speicheradresse im Heap, an der das allererste Element deiner Liste liegt.
+2. **Länge (Length):** Eine 64-Bit-Ganzzahl (`usize`), die angibt, wie viele Elemente sich aktuell *tatsächlich* im Vektor befinden.
+3. **Kapazität (Capacity):** Eine 64-Bit-Ganzzahl (`usize`), die angibt, für wie viele Elemente auf dem Heap bereits zusammenhängender Speicherplatz reserviert wurde.
 
-       // 3. Greife sicher auf das erste Element zu, ohne dass das Programm abstürzen kann
-       // Tipp: Nutze die .get()-Methode und ein match-Konstrukt oder if-let!
-       match todo!() {
-           Some(artikel) => println!("Erster Artikel: {}", artikel),
-           None => println!("Die Einkaufsliste ist leer!"),
-       }
-   }
-   ```
-3. **Didaktische Tipps:**
-   - Nutze `Vec::new()` oder das Makro `vec![]` zum Erstellen.
-   - Mit `.push(wert)` kannst du Elemente an das Ende des Vektors anhängen. Denke daran, dass ein `&str` mit `.to_string()` oder `String::from()` in einen `String` umgewandelt werden muss.
-4. **Testfall:** Stelle sicher, dass beim Ausführen deines Programms der erste Artikel auf der Konsole ausgegeben wird. Wenn du die Hinzufügung auskommentierst, sollte das Programm nicht abstürzen, sondern die Meldung ausgeben, dass die Liste leer ist.
+### Die Nutzdaten auf dem Heap
+Die eigentlichen Elemente deines Vektors (die Werte vom Typ `T`) werden auf dem flexiblen **Heap-Speicher** abgelegt. Rust garantiert, dass diese Elemente im Heap immer in einem einzigen, lückenlosen und zusammenhängenden Block Speicher direkt hintereinander liegen. 
 
-### Aufgabe 2: Mittel (Kombination & kleine Anwendungen) – Der Temperatur-Filter
-1. **Aufgabenstellung:** Schreibe eine Funktion, die eine Liste von gemessenen Temperaturen filtert und nur die Temperaturen zurückgibt, die über einem bestimmten Grenzwert liegen.
-2. **Anforderungen:**
-   - Die Funktion soll einen Vektor von Kommazahlen (`f64`) und einen Grenzwert (`f64`) als Parameter annehmen.
-   - Da wir die Originalwerte nicht zerstören wollen, soll die Funktion die Eingabewerte als Referenz entgegennehmen.
-   - Die Funktion soll einen neuen Vektor mit den gefilterten Temperaturen zurückgeben.
-3. **Didaktische Tipps:**
-   - Übergib den Eingabe-Vektor als `&Vec<f64>` oder besser als Slice `&[f64]`.
-   - Iteriere mit einer `for`-Schleife über den Vektor (z. B. `for &temp in list`), um Kopien der Zahlen zu vergleichen, da `f64` das `Copy`-Trait implementiert.
-4. **Testfälle:**
-   Implementiere einen Test in deinem Code, um die Funktion zu prüfen:
-   ```rust
-   #[test]
-   fn test_temperatur_filter() {
-       let messwerte = vec![15.5, 22.0, 9.8, 30.1, 18.2];
-       let grenzwert = 20.0;
-       let ergebnis = filter_temperaturen(&messwerte, grenzwert);
-       assert_eq!(ergebnis, vec![22.0, 30.1]);
-   }
-   ```
+Das hat einen enormen Vorteil für die Geschwindigkeit deines Programms: Da die Daten direkt hintereinander liegen, kann die CPU sie extrem effizient in ihren ultraschnellen Cache-Speicher laden. Man spricht hierbei von **räumlicher Lokalität (Spatial Locality)**.
 
-### Aufgabe 3: Schwer (Architektur & fortgeschrittene Konzepte) – Das undo-fähige Notizbuch
-1. **Szenario:** Du möchtest ein einfaches Notizbuch programmieren, das Änderungen rückgängig machen kann. Wenn eine Notiz geändert oder gelöscht wird, soll der vorherige Zustand in einer Historie gespeichert werden.
-2. **Architekturvorgaben:**
-   - Erstelle eine Struktur `Notizbuch` mit zwei Feldern: `notizen: Vec<String>` (für die aktuellen Notizen) und `historie: Vec<String>` (für gelöschte oder überschriebene Notizen).
-   - Implementiere folgende Methoden:
-     - `new()`: Erstellt ein leeres Notizbuch.
-     - `hinzufuegen(&mut self, text: String)`: Fügt eine neue Notiz hinzu.
-     - `ersetzen(&mut self, index: usize, neuer_text: String) -> Result<(), String>`: Ersetzt die Notiz am angegebenen Index. Die *alte* Notiz muss in die `historie` verschoben werden. Falls der Index ungültig ist, soll ein Fehler zurückgegeben werden.
-     - `rueckgaengig(&mut self) -> Result<(), String>`: Nimmt den letzten Eintrag aus der `historie` und hängt ihn wieder an die aktiven `notizen` an. Falls die Historie leer ist, soll ein Fehler zurückgegeben werden.
-3. **Tipps zur Herangehensweise:**
-   - Verwende `Result` für Fehlerbehandlung, um ungültige Indizes abzufangen.
-   - Nutze Methoden wie `.push()`, `.pop()` und `.remove()`, um Elemente zwischen den Vektoren zu bewegen.
-   - Denke an Ownership: Um ein Element aus dem Vektor zu ersetzen, kannst du `std::mem::replace` verwenden oder das Element mit `.remove(index)` entfernen und ein neues mit `.insert(index, ...)` einfügen.
-4. **Schnittstellen (API):**
-   ```rust
-   struct Notizbuch {
-       notizen: Vec<String>,
-       historie: Vec<String>,
-   }
-
-   impl Notizbuch {
-       fn new() -> Self { todo!() }
-       fn hinzufuegen(&mut self, text: String) { todo!() }
-       fn ersetzen(&mut self, index: usize, neuer_text: String) -> Result<(), String> { todo!() }
-       fn rueckgaengig(&mut self) -> Result<(), String> { todo!() }
-   }
-   ```
-5. **Integrationstest:**
-   ```rust
-   #[test]
-   fn test_notizbuch_historie() {
-       let mut buch = Notizbuch::new();
-       buch.hinzufuegen("Einkaufen gehen".to_string());
-       buch.hinzufuegen("Rost lernen".to_string());
-       
-       assert!(buch.ersetzen(1, "Rust lernen".to_string()).is_ok());
-       assert_eq!(buch.notizen[1], "Rust lernen");
-       assert_eq!(buch.historie[0], "Rost lernen");
-       
-       assert!(buch.rueckgaengig().is_ok());
-       assert_eq!(buch.notizen.last().unwrap(), "Rost lernen");
-   }
-   ```
+```
+STACK (Die Variable im Code, 24 Bytes):
++------------------------------------------+
+| Pointer  | 0x00007f8a12c0               | --+
+| Length   | 3                            |   |
+| Capacity | 4                            |   |
++------------------------------------------+   |
+                                               v
+HEAP (Der dynamische Speicherbereich):         |
+Adresse 0x00007f8a12c0:                        |
++------------------------------------------+   |
+| Index 0  | Wert: 10                     | <-+ (Hier fängt der Vektor an)
+| Index 1  | Wert: 20                     |
+| Index 2  | Wert: 30                     |
+| Index 3  | [Reservierter freier Platz]  |
++------------------------------------------+
+```
 
 ---
 
-## 🚀 50 Projekte
+## 🔄 Wie ein Vektor wächst: Die Reallozierung
 
-Hier sind 50 kurze Projektideen, mit denen du den Umgang mit Vektoren in verschiedenen Schwierigkeitsgraden üben kannst:
+Was passiert, wenn du mit `.push()` ein neues Element an einen Vektor anhängst? Rust prüft das Verhältnis von Länge und Kapazität:
 
-1. **Einfache To-Do-Liste:** Aufgaben per Konsole hinzufügen und auflisten.
-2. **Noten-Durchschnittsrechner:** Noten in Vektor speichern und Durchschnitt berechnen.
-3. **Zufallsauswahl-Generator:** Eine Liste von Namen eintragen und einen zufälligen Gewinner ziehen.
-4. **Wort-Statistik:** Einen Text einlesen, in Wörter zerlegen und die Anzahl der Wörter zählen.
-5. **Winkelsummen-Prüfer:** Vektor von Winkeln prüfen, ob sie ein gültiges Vieleck bilden.
-6. **Einkaufswagen:** Artikel mit Preisen in einem Vektor verwalten und die Summe berechnen.
-7. **Kartenstapel:** Kartendeck als Vektor von Enums erstellen und mischen.
-8. **Highscore-Tabelle:** Liste der Top-10-Scores verwalten und automatisch sortieren.
-9. **FIFO-Warteschlange:** Kundenservice-Simulation (First In, First Out) mit `.push()` und `.remove(0)`.
-10. **LIFO-Stack:** Ein Stapel von Büchern (Last In, First Out) mit `.push()` und `.pop()`.
-11. **Duplikat-Entferner:** Einen Vektor bereinigen, sodass jeder Wert nur einmal vorkommt.
-12. **Primzahlen-Sieb:** Das Sieb des Eratosthenes mithilfe eines Vektors von Booleans umsetzen.
-13. **Palindrom-Prüfer:** Prüfen, ob ein Vektor von Zeichen vorwärts wie rückwärts identisch ist.
-14. **Wetterstation:** Temperaturen speichern und den kältesten und wärmsten Tag ermitteln.
-15. **CSV-Parser:** Eine einzelne CSV-Zeile an den Kommas trennen und in einen Vektor aufteilen.
-16. **Wort-Anagramm-Tester:** Zwei Wörter in Zeichen-Vektoren zerlegen, sortieren und vergleichen.
-17. **Log-Dateien-Filter:** Eine Liste von Log-Einträgen durchsuchen und nur "ERROR"-Einträge filtern.
-18. **Römische Zahlen:** Einen Vektor als Nachschlagetabelle für römische Schriftzeichen nutzen.
-19. **Musik-Playlist:** Lieder in einem Vektor verwalten, abspielen und mischen.
-20. **Teilnehmer-Gruppierer:** Eine Liste von Personen zufällig in Zweierteams aufteilen.
-21. **Vokabeltrainer:** Ein Vektor von Tupeln `(Deutsch, Englisch)` für ein einfaches Quiz nutzen.
-22. **Sitzplatzreservierung:** Einen Vektor von Booleans nutzen, um freie und belegte Kinositze anzuzeigen.
-23. **Börsenkurs-Analysator:** Kurshistorie analysieren und den maximalen Gewinn (Kauf- und Verkaufszeitpunkt) finden.
-24. **Run-Length-Encoding (RLE):** Zeichenfolgen komprimieren (z. B. `['A', 'A', 'B']` zu `[('A', 2), ('B', 1)]`).
-25. **Matrix-Transponierung:** Ein 2D-Gitter (Vektor von Vektoren) an der Diagonale spiegeln.
-26. **Morsecode-Übersetzer:** Text in einen Vektor aus Morse-Zeichen (`.`, `-`) übersetzen.
-27. **Zahlen-Sortierer:** Einen benutzerdefinierten Sortieralgorithmus (z. B. Bubble Sort) auf einem Vektor implementieren.
-28. **Wegfinder-Tracker:** Die Koordinaten eines zurückgelegten Pfades als Vektor von Structs speichern.
-29. **Text-Zeilen-Formatierer:** Einen langen String in einen Vektor von Zeilen mit maximal 80 Zeichen aufteilen.
-30. **Einfacher Compiler-Tokenizer:** Quellcode-Text in eine Liste von Token (Schlüsselwörter, Zahlen, Operatoren) zerlegen.
-31. **Bild-Pixel-Graustufen:** Ein Bild als Vektor von Helligkeitswerten repräsentieren und invertieren.
-32. **Inventar-System:** Gegenstände in einem Rollenspiel-Inventar hinzufügen, entfernen und stapeln.
-33. **Wahlkabinen-Simulator:** Stimmen für verschiedene Kandidaten zählen und den Sieger ermitteln.
-34. **Einfacher Chat-Verlauf:** Die letzten 50 Nachrichten in einem Vektor speichern und alte Einträge löschen.
-35. **Kommandozeilen-History:** Die vom Benutzer eingegebenen Befehle speichern und durchsuchbar machen.
-36. **Frequenzanalyse:** Die Häufigkeit von Buchstaben in einem Text ermitteln und sortiert ausgeben.
-37. **Dateiendungs-Filter:** Eine Liste von Dateinamen nach bestimmten Endungen (z. B. `.txt`) filtern.
-38. **Rucksack-Problem:** Eine Liste von Gegenständen filtern, um den maximalen Wert bei begrenztem Gewicht zu finden.
-39. **Taschenrechner-Verlauf:** Mathematische Gleichungen und Ergebnisse in einem Verlauf-Vektor speichern.
-40. **Bruchrechner-Sammlung:** Brüche als Structs in einem Vektor speichern und alle addieren.
-41. **Social-Media-Feed:** Posts in einem Vektor verwalten und nach "Likes" sortieren.
-42. **Sudoku-Validierer:** Prüfen, ob ein Vektor mit 9 Zahlen die Sudoku-Regeln (1-9 ohne Duplikate) erfüllt.
-43. **Netzwerk-Paket-Buffer:** Eingehende Datenpakete zwischenspeichern und der Reihe nach verarbeiten.
-44. **Paketdienst-Routenplaner:** Adressen-Vektor nach der geografischen Nähe sortieren.
-45. **Text-Diff-Viewer:** Zwei Listen von Textzeilen vergleichen und Abweichungen anzeigen.
-46. **Münzwechsler:** Einen Vektor von verfügbaren Münzen nutzen, um Wechselgeld optimal aufzuteilen.
-47. **Auto-Vervollständigung:** Eine Liste von Wörtern filtern, die mit den vom Benutzer eingegebenen Buchstaben beginnen.
-48. **Rezept-Skalierer:** Zutatenmengen in einer Liste proportional für eine andere Personenanzahl umrechnen.
-49. **Turnierbaum-Generator:** Paarungen für ein K.-o.-System aus einer Liste von Spielern erstellen.
-50. **Verzeichnisstruktur-Flachleger:** Alle Dateien aus verschachtelten Ordnern in einer flachen Liste sammeln.
+### Fall 1: Länge < Kapazität
+Es ist noch ungenutzter, reservierter Platz auf dem Heap vorhanden (im obigen Diagramm am Index 3).
+* Rust schreibt das neue Element direkt an die Speicheradresse von Index 3.
+* Die Länge wird auf dem Stack um 1 erhöht (von 3 auf 4).
+* *Performance:* Diese Operation ist extrem schnell und benötigt fast keine Rechenzeit.
+
+### Fall 2: Länge == Kapazität
+Der reservierte Speicher auf dem Heap ist komplett voll. Es gibt keinen Platz mehr für ein weiteres Element. Da der Speicher lückenlos sein muss, kann Rust nicht einfach irgendwo anders auf dem Heap weiterschreiben. Nun wird eine **Reallozierung (Reallocation)** ausgelöst:
+
+1. **Neuen Speicher anfordern:** Rust bittet das Betriebssystem um einen neuen, zusammenhängenden Speicherblock auf dem Heap, der groß genug ist. Als Faustregel gilt: Rust **verdoppelt** die bisherige Kapazität (z. B. von 4 auf 8 Plätze).
+2. **Daten umziehen:** Alle bisherigen Elemente werden Bit für Bit an die neue Speicheradresse kopiert.
+3. **Alten Speicher freigeben:** Der alte, zu klein gewordene Speicherblock wird dem Betriebssystem wieder zur Verfügung gestellt.
+4. **Stack aktualisieren:** Der Pointer auf dem Stack wird auf die neue Adresse umgebogen, die Kapazität wird verdoppelt und die neue Länge wird eingetragen.
+
+> [!IMPORTANT]
+> Eine Reallozierung ist eine langsame Operation, da das Betriebssystem nach freiem Speicher suchen muss und alle Daten kopiert werden müssen. Wenn ein Vektor sehr groß wird und häufig umziehen muss, bremst das dein Programm spürbar aus.
+
+### Die Lösung: `Vec::with_capacity`
+Wenn du bereits im Voraus ahnst, wie viele Elemente dein Vektor ungefähr aufnehmen wird (z. B. beim Einlesen einer Datei mit 100 Zeilen), solltest du den Vektor immer mit einer vorab definierten Kapazität erstellen:
+
+```rust
+// Reserviert sofort Platz für 100 Elemente auf dem Heap.
+// Es werden keine Reallozierungen beim Befüllen stattfinden!
+let mut daten = Vec::with_capacity(100);
+```
 
 ---
 
-## 💡 Zusammenfassung
+## 🛠️ Vektoren erstellen, befüllen und manipulieren
 
-- **Dynamische Größe:** Im Gegensatz zu Arrays können Vektoren (`Vec<T>`) zur Laufzeit wachsen und schrumpfen.
-- **Speicheraufteilung:** Die Metadaten (Pointer, Length, Capacity) liegen auf dem Stack, während die eigentlichen Daten hintereinander auf dem Heap liegen.
-- **Reallozierung:** Wenn die Kapazität erschöpft ist, reserviert Rust automatisch einen neuen, größeren Speicherbereich auf dem Heap und kopiert die Daten dorthin.
-- **Ownership:** Vektoren besitzen ihre Elemente. Wird der Vektor gelöscht, werden alle Elemente ebenfalls gelöscht (Drop).
-- **Sicherer Zugriff:** Indexierung mit `[]` kann bei ungültigen Indizes zum Absturz (`Panic`) führen. Nutze `.get()` für einen sicheren Zugriff, der eine `Option` zurückgibt.
-- **Iterator-Sicherheit:** Der Borrow Checker verhindert zur Compilezeit, dass ein Vektor verändert wird, während man über ihn iteriert (Iterator-Invalidierung).
+Es gibt verschiedene Möglichkeiten, einen Vektor in Rust zu erzeugen:
+
+### 1. Einen leeren Vektor erstellen
+Wenn du noch keine Daten hast, erstellst du einen leeren Vektor. Da Rust den Typ der Elemente nicht erraten kann, musst du ihn explizit angeben:
+```rust
+let mut zahlen: Vec<i32> = Vec::new();
+```
+
+### 2. Das `vec!`-Makro nutzen
+Wenn du den Vektor direkt mit Startwerten initialisieren möchtest:
+```rust
+let fruechte = vec![String::from("Apfel"), String::from("Banane")];
+```
+
+### 3. Elemente hinzufügen und entfernen
+* **`.push(wert)`**: Hängt ein Element an das Ende der Liste an.
+* **`.pop()`**: Entfernt das letzte Element und gibt es als `Option<T>` zurück (`Some(wert)` oder `None`, falls der Vektor leer war).
+* **`.insert(index, wert)`**: Fügt ein Element an einer beliebigen Stelle ein. **Achtung:** Diese Operation ist langsam, da alle nachfolgenden Elemente im Speicher um eine Position nach hinten verschoben werden müssen!
+* **`.remove(index)`**: Entfernt ein Element an einer Position. Auch dies ist langsam, da nachfolgende Elemente nach vorne aufrücken müssen.
+* **`.retain(|x| bedingung)`**: Filtert den Vektor und behält nur Elemente, die die Bedingung erfüllen.
 
 ---
 
-## 📚 Links
+## 🔍 Sicherer Zugriff auf Elemente
 
-- [Offizielle Rust-Dokumentation für `Vec`](https://doc.rust-lang.org/std/vec/struct.Vec.html)
-- [Kapitel 8.1 im offiziellen Rust-Buch: Vectors](https://doc.rust-lang.org/book/ch08-01-vectors.html)
-- [Rust by Example: Vectors](https://doc.rust-lang.org/rust-by-example/std/vec.html)
+### Der direkte Index-Zugriff `[]` (Gefährlich!)
+Du kannst über eckige Klammern direkt auf Elemente zugreifen:
+```rust
+let v = vec![10, 20, 30];
+let x = v[0]; // 10
+```
+Wenn du jedoch versuchst, auf `v[5]` zuzugreifen, stürzt dein Programm sofort mit einer **Panic** ab. In Rust wollen wir unkontrollierte Abstürze unter allen Umständen vermeiden.
+
+### Der sichere Zugriff mit `.get()`
+Nutze stattdessen immer die Methode `.get(index)`, welche eine `Option<&T>` zurückgibt:
+```rust
+let v = vec![10, 20, 30];
+
+match v.get(5) {
+    Some(wert) => println!("Wert am Index 5: {}", wert),
+    None => println!("Dieser Index existiert nicht!"), // Kein Absturz!
+}
+```
+
+---
+
+## 🔄 Iteration und Ownership
+
+Beim Durchlaufen eines Vektors mit einer Schleife musst du dich entscheiden, wie du auf die Elemente zugreifen willst. Es gibt drei Arten der Iteration:
+
+### 1. Unveränderliche Referenz (`&v`)
+Du möchtest die Elemente nur lesen. Der Vektor bleibt danach unberührt und nutzbar:
+```rust
+let v = vec![1, 2, 3];
+for zahl in &v {
+    println!("Zahl: {}", zahl);
+}
+// v kann hiernach normal weiterverwendet werden!
+```
+
+### 2. Veränderliche Referenz (`&mut v`)
+Du möchtest die Elemente im Vektor direkt verändern:
+```rust
+let mut v = vec![1, 2, 3];
+for zahl in &mut v {
+    *zahl *= 2; // Verdoppelt jeden Wert im Vektor direkt im Speicher
+}
+```
+
+### 3. Konsumierende Iteration (`v`)
+Du übergibst die Ownership der Elemente an die Schleife. Der Vektor wird dabei zerstört:
+```rust
+let v = vec![String::from("A"), String::from("B")];
+for s in v {
+    println!("Besitze nun: {}", s); // s besitzt den String
+}
+// v existiert hiernach nicht mehr!
+```
+
+---
+
+## ⚠️ Typische Compilerfehler und wie man sie behebt
+
+### Fehler 1: Während der Iteration den Vektor verändern
+```rust
+let mut v = vec![1, 2, 3];
+for x in &v {
+    v.push(*x); // ❌ COMPILER-FEHLER!
+}
+```
+*Warum:* Du leihst dir den Vektor für die Schleife unveränderbar aus (`&v`). Gleichzeitig versuchst du mit `v.push()`, den Vektor veränderbar auszuleihen. Rust verbietet dies, da eine Reallozierung im Speicher den Iterator ungültig machen würde (Iterator-Invalidierung).
+*Lösung:* Sammle die neuen Werte in einem separaten Vektor und hänge sie nach der Schleife an.
+
+### Fehler 2: Eigentum aus dem Vektor stehlen
+```rust
+let v = vec![String::from("Rust")];
+let name = v[0]; // ❌ COMPILER-FEHLER!
+```
+*Warum:* `String` implementiert kein `Copy`. Mit `v[0]` versuchst du, den String aus dem Vektor herauszubewegen (Move). Das würde eine ungültige Lücke im Vektor hinterlassen.
+*Lösung:* Nimm eine Referenz (`let name = &v[0];`) oder klone den String explizit (`let name = v[0].clone();`).
+
+---
+
+## 🛠️ Praxis-Aufgaben (Keine Codelösungen!)
+
+### Aufgabe 1: Leicht – Der Filtereinkauf
+1. **Ziel:** Erstelle eine Liste von Preisen (Kommazahlen) und filtere alle Preise heraus, die über 10.0 € liegen.
+2. **Details:** 
+   - Erstelle einen Vektor mit fünf beliebigen Preisen.
+   - Iteriere über diesen Vektor und füge alle Preise, die $\le 10.0$ sind, in einen neuen Vektor ein.
+   - Gib den neuen Vektor auf der Konsole aus.
+3. **Tipps:** Überlege, ob du für den Filter-Vektor `Vec::new()` nutzt und wie du mit `.push()` Elemente anfügst.
+
+### Aufgabe 2: Mittel – Der Notenschnitt-Rechner
+1. **Ziel:** Berechne den Notendurchschnitt einer Klasse, aber fange ungültige Eingaben ab.
+2. **Details:**
+   - Schreibe eine Funktion, die einen Slice von Noten (`&[u32]`) entgegennimmt.
+   - Die Funktion soll den Durchschnitt als `Result<f64, String>` zurückgeben.
+   - Falls die übergebene Liste leer ist, soll ein `Err` zurückgegeben werden (verhindere Division durch Null!).
+3. **Tipps:** Nutze Methoden wie `.is_empty()` und `.len()` auf dem Slice.
+
+### Aufgabe 3: Schwer – Der Stack-basierte Text-Editor
+1. **Ziel:** Simuliere die "Rückgängig"-Funktion (Undo) eines Text-Editors.
+2. **Details:**
+   - Erstelle ein Struct `TextEditor` mit einem Vektor `historie`, der alte Zustände des geschriebenen Textes speichert.
+   - Implementiere Methoden zum Schreiben von Text (fügt den neuen Zustand zur Historie hinzu) und eine `undo`-Methode.
+   - Die `undo`-Methode soll den letzten Zustand entfernen und den vorherigen zurückgeben. Falls kein Zustand mehr da ist, gib ein `None` zurück.
+3. **Tipps:** Nutze `.pop()`, um das letzte Element sicher zu entfernen und dessen Besitz zurückzuerhalten.
+
+---
+
+## 📌 Merkzettel: Vektoren auf einen Blick
+
+* Vektoren sind dynamische Listen auf dem **Heap**.
+* Sie belegen auf dem Stack immer genau **24 Bytes** (Pointer, Length, Capacity).
+* Der direkte Index-Zugriff `v[i]` kann abstürzen. Nutze immer **`.get(i)`** für sicheren Zugriff.
+* Um unnötige Kopiervorgänge (Reallozierungen) zu vermeiden, nutze **`Vec::with_capacity()`**.
+* Verwende in Funktionen immer Slices **`&[T]`** statt `&Vec<T>`, um maximale Flexibilität zu gewährleisten.
