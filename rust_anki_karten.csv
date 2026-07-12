@@ -1,25 +1,50 @@
-Wie deklariert man in Rust eine veränderbare Variable?;let mut name = wert;
+Welches Schlüsselwort deklariert eine unveränderbare Variable?;let
+Wie macht man eine Variable explizit veränderbar?;Mit dem Schlüsselwort mut (z. B. let mut name = wert;)
 Welcher Datentyp wird in Rust standardmäßig für ganze Zahlen verwendet?;i32 (32-Bit Integer)
-Wie deklariert man eine Konstante in Rust?;Mit dem Schlüsselwort const (z. B. const MAX_PUNKTE: u32 = 100;)
-Was ist der Unterschied zwischen i8 und u8?;i8 kann negative Zahlen speichern (signed), u8 nur positive (unsigned).
-Wie deklariert man einen Boolean mit dem Wert "wahr"?;let is_active = true;
+Welcher Datentyp speichert vorzeichenlose 8-Bit-Ganzzahlen?;u8 (vorzeichenlos, 8-Bit)
+Wie deklariert man eine Konstante in Rust?;Mit dem Schlüsselwort const und Angabe des Typs (z. B. const MAX_PUNKTE: u32 = 100;)
+Was unterscheidet eine Konstante von einer unveränderbaren Variable?;Konstanten müssen einen expliziten Typ haben und sind immer zur Compilezeit bekannt.
+Welcher Datentyp repräsentiert einen Wahrheitswert?;bool (z. B. let is_active = true;)
+Welches Zeichen umschließt einen Zeichen-Datentyp (char)?;Einfache Anführungszeichen (z. B. 'a')
+Wie gibt man den Typ einer Variable explizit an (Typannotation)?;Mit einem Doppelpunkt nach dem Namen (z. B. let x: i32 = 5;)
+Was versteht man unter Typinferenz?;Der Compiler leitet den Typ einer Variable automatisch aus ihrem Wert ab.
 Brauchen Bedingungen in einem if-Statement in Rust Klammern?;Nein, man schreibt einfach if x > 5 { ... }.
+Wie gibt man einen Wert aus einem if-else-Block zurück?;Indem man den Block als Ausdruck verwendet und das Semikolon weglässt (z. B. let x = if bedingung { 1 } else { 0 };).
 Mit welchem Schlüsselwort erstellt man eine Endlosschleife?;loop
-Wie beendet man eine Schleife vorzeitig?;Mit dem Schlüsselwort break;
-Wie durchläuft man in Rust die Zahlen 1 bis einschließlich 5 mit einer for-Schleife?;for i in 1..=5 { ... }
-Kann ein if-Ausdruck in Rust einen Wert zurückgeben?;Ja, z. B. let x = if bedingung { 1 } else { 0 };
+Wie bricht man aus einer Schleife aus und gibt gleichzeitig einen Wert zurück?;Mit break gefolgt vom Wert (z. B. break wert;).
+Wie springt man zum nächsten Schleifendurchlauf?;Mit dem Schlüsselwort continue;
+Wie durchläuft man in Rust die Zahlen 1 bis 5 (ohne 5) mit einer for-Schleife?;for i in 1..5 { ... }
+Wie durchläuft man die Zahlen 1 bis einschließlich 5 mit einer for-Schleife?;for i in 1..=5 { ... }
+Welches Konstrukt wird in Rust anstelle eines klassischen switch verwendet?;match
+Was passiert, wenn in einem match-Block nicht alle Fälle abgedeckt sind?;Es gibt einen Compilerfehler, da match-Ausdrücke vollständig (exhaustiv) sein müssen.
+Welches Symbol dient als Auffang-Muster (wildcard) in einem match?;Der Unterstrich (_)
 Welche Bibliothek muss importiert werden, um Benutzereingaben zu lesen?;std::io (meist use std::io;)
 Wie liest man eine Zeile von der Standardeingabe in einen String namens input ein?;io::stdin().read_line(&mut input)
-Wofür wird .expect("Fehlermeldung") beim Einlesen verwendet?;Um das Programm bei einem Fehler geordnet mit einer Meldung abstürzen zu lassen (Panic).
-Wie konvertiert man einen String in eine Zahl (z. B. u32)?;Mit der .parse() Methode, z.B. let zahl: u32 = text.trim().parse().expect("...");
+Warum muss man beim Einlesen von der Standardeingabe eine veränderbare Referenz (&mut) übergeben?;Damit die Methode read_line den eingelesenen Text direkt in den String schreiben kann.
+Welcher Typ wird von read_line zurückgegeben?;Ein Result-Typ (std::io::Result), der im Erfolgsfall die Anzahl der gelesenen Bytes enthält.
 Wofür ist .trim() vor dem Parsen einer Eingabe wichtig?;Um unsichtbare Zeichen wie den Zeilenumbruch vom Drücken der Enter-Taste zu entfernen.
+Wie konvertiert man einen String in eine Zahl (z. B. u32)?;Mit der .parse() Methode, z. B. let zahl: u32 = text.trim().parse().expect("...");
+Wofür wird .expect("Fehlermeldung") verwendet?;Um das Programm bei einem Fehler geordnet mit einer Meldung abstürzen zu lassen (Panic).
+Wie fängt man Fehler beim Parsen ab, ohne dass das Programm abstürzt?;Mit einem match-Ausdruck auf das Resultat (Ok(wert) und Err(fehler)).
+Was ist der Unterschied zwischen unwrap() und expect()?;unwrap() stürzt direkt ab, expect() gibt im Fehlerfall eine eigene Fehlermeldung aus.
+Wie wandelt man eine Zahl in einen String um?;Mit der .to_string() Methode (z. B. zahl.to_string())
 Wie viele Owner kann ein Wert in Rust gleichzeitig haben?;Genau einen.
 Was passiert mit einem Wert, wenn sein Owner den Gültigkeitsbereich (Scope) verlässt?;Der Wert wird automatisch gelöscht (Drop).
-Wie übergibt man eine Variable an eine Funktion, *ohne* den Ownership abzugeben?;Man übergibt eine Referenz mit & (z. B. &variable).
+Welcher Begriff beschreibt das Übergeben eines Werts, wodurch der alte Besitzer ihn nicht mehr nutzen kann?;Move (Verschiebung)
+Wie übergibt man eine Variable an eine Funktion, ohne den Ownership abzugeben?;Man übergibt eine Referenz mit & (z. B. &variable) – Borrowing.
+Welches Symbol kennzeichnet eine Referenz?;Das kaufmännische Und (&)
+Wie viele unveränderbare Referenzen darf es gleichzeitig auf einen Wert geben?;Beliebig viele.
 Wie viele veränderbare (mutable) Referenzen auf denselben Wert darf es gleichzeitig geben?;Genau eine (um Data Races zu verhindern).
 Darf man gleichzeitig unveränderbare (&T) und veränderbare (&mut T) Referenzen haben?;Nein, das ist verboten.
+Was versteht man unter einer Dangling Reference und verhindert Rust diese?;Eine ungültige Referenz auf gelöschten Speicher; Rust verhindert dies zur Compilezeit.
+Welcher Teil des Compilers prüft die Gültigkeit von Referenzen?;Der Borrow Checker
 Welcher String-Typ kann zur Laufzeit wachsen und verändert werden?;String
 Welcher String-Typ ist meist fest im Programmcode verankert (String Slice)?;&str
 Wie erstellt man einen neuen, leeren String?;String::new()
 Wie wandelt man einen Text-Slice ("Hallo") in einen veränderbaren String um?;String::from("Hallo") oder "Hallo".to_string()
+Mit welchem Methode hängt man ein einzelnes Zeichen an einen String an?;Mit der Methode .push('c')
 Wie fügt man Text an einen bestehenden String an?;Mit .push_str(" text")
+Sind Strings in Rust standardmäßig UTF-8-kodiert?;Ja.
+Wie ermittelt man die Länge eines Strings in Bytes?;Mit der Methode .len()
+Warum ist direkter Index-Zugriff auf Zeichen eines Strings nicht ohne Weiteres erlaubt?;Da Rust-Strings UTF-8-kodiert sind und Zeichen eine unterschiedliche Byte-Breite haben können.
+Wie durchläuft man die einzelnen Zeichen (Unicode-Skalarwerte) eines Strings?;Mit der Methode .chars()

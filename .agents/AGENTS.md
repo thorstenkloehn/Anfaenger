@@ -7,4 +7,6 @@
 - Antigravity: Coden.
 - Copilot: Vervollständigung.
 - IDE-Agenten: Planung.
+- Claude Code: Terminal-Agent.
+- Codex CLI: Terminal-Assistent.
 - Vibe Coding: Beschreibung.

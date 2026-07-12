@@ -33,6 +33,7 @@
   - [Pattern Matching](./konzept-matching.md)
 - [Projektvorschläge Phase 2](./phase2.md)
 - [100 Projekte - Themen anzeigen](./100-projekte-phase2.md)
+- [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase2.md)
 - [🐚 Bash-Skripte – Grundlagen](./bash-grundlagen.md)
 - [🐚 Bash-Theorie: Alle Themen](./bash-theorie-komplett.md)
 - [Bash-Projektvorschläge](./bash-projektvorschlaege.md)
@@ -40,7 +41,23 @@
 # Phase 3: Fehlerbehandlung & Collections
 
 - [Konzepte statt Syntax lernen](./phase3-konzepte.md)
+  - [Vektoren & Listen](./konzept-vectors.md)
+  - [HashMaps](./konzept-hashmaps.md)
+  - [Option](./konzept-option.md)
+  - [Result](./konzept-result.md)
 - [Projektvorschläge Phase 3](./phase3.md)
+- [100 Projekte - Fehlerbehandlung & Collections](./100-projekte-phase3.md)
+- [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase3.md)
+
+# Phase 4: Module, Pfade & Crates
+
+- [Konzepte statt Syntax lernen](./phase4-konzepte.md)
+  - [Module & Sichtbarkeit](./konzept-module.md)
+  - [Pfade & Importe](./konzept-pfade.md)
+  - [Crates & Cargo](./konzept-crates.md)
+- [Projektvorschläge Phase 4](./phase4.md)
+- [100 Projekte - Module, Pfade & Crates](./100-projekte-phase4.md)
+- [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase4.md)
 
 # 🤖 Bonus: KI als Lernpartner
 
