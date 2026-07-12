@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy sidebar-visible" dir="ltr">
+<html lang="de" class="navy" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,57 +7,43 @@
 
 
         <!-- Custom HTML head -->
-
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-e96d0476.css">
-        <link rel="stylesheet" href="css/chrome-d279d366.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-
-        <!-- Provide site root and default themes to javascript -->
-        <script>
-            const path_to_root = "";
-            const default_light_theme = "navy";
-            const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3a3cac91.js";
-        </script>
-        <!-- Start loading toc.js asap -->
-        <script src="toc-670b0e1f.js"></script>
     </head>
-    <body>
-    <div id="mdbook-help-container">
-        <div id="mdbook-help-popup">
-            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
-            <div>
-                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
-                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
-                <p>Press <kbd>?</kbd> to show this help</p>
-                <p>Press <kbd>Esc</kbd> to hide this help</p>
-            </div>
-        </div>
-    </div>
-    <div id="mdbook-body-container">
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                let theme = localStorage.getItem('mdbook-theme');
-                let sidebar = localStorage.getItem('mdbook-sidebar');
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -71,69 +57,87 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
-            let theme;
+            var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            const html = document.documentElement;
+            var html = document.querySelector('html');
             html.classList.remove('navy')
             html.classList.add(theme);
-            html.classList.add("js");
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
 
-        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            let sidebar = null;
-            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
-                sidebar_toggle.checked = false;
             }
-            if (sidebar === 'visible') {
-                sidebar_toggle.checked = true;
-            } else {
-                html.classList.remove('sidebar-visible');
-            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
-            <!-- populated by js -->
-            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
-            <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
-            </noscript>
-            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">2.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">3.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">3.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">3.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">3.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">3.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">3.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">4.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">5.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">6.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">7.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">7.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">7.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">8.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">9.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">10.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">11.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">12.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">13.</strong> Konzepte statt Syntax lernen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">14.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">15.</strong> Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">16.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">17.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">18.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">19.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">20.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">21.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">22.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">23.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">24.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">25.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">26.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">27.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">28.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">28.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">28.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">29.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">30.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">30.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">30.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">30.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">30.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">30.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">30.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">30.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">30.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">30.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">30.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">30.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">31.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">31.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">31.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">31.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">31.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">31.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">31.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">31.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">31.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">31.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html" class="active"><strong aria-hidden="true">32.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">33.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">34.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">35.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">36.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">37.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <div id="mdbook-page-wrapper" class="page-wrapper">
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="mdbook-menu-bar-hover-placeholder"></div>
-                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
                         </label>
-                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
                         </button>
-                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
                         </button>
                     </div>
 
@@ -141,45 +145,40 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="mdbook-search-wrapper" class="hidden">
-                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
-                        <div class="search-wrapper">
-                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
-                            <div class="spinner-wrapper">
-                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
-                            </div>
-                        </div>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
-                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
-                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
-                        <ul id="mdbook-searchresults">
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="mdbook-content" class="content">
+                <div id="content" class="content">
                     <main>
                         <h1 id="-zed-ide--der-performante-editor-mit-ki"><a class="header" href="#-zed-ide--der-performante-editor-mit-ki">⚡ Zed IDE – Der performante Editor mit KI</a></h1>
 <p><em>Ein blitzschneller, in Rust geschriebener Editor mit tief integrierter KI.</em></p>
-<hr>
+<hr />
 <p>In dieser Lektion lernen wir <strong>Zed</strong> kennen. Zed ist ein moderner, extrem performanter Code-Editor, der vom Team hinter Atom und VS Code entwickelt wurde. Da er komplett in Rust geschrieben ist und auf die Grafikkarte (GPU) zur Darstellung setzt, fühlt er sich unglaublich reaktiv an. Zudem hat er KI-Features und Team-Kollaboration direkt im Kern eingebaut.</p>
 <p>Als Rust-Einsteiger ist Zed eine fantastische Wahl: Er unterstützt Rust „out of the box“ über den <code>rust-analyzer</code> und bringt dich durch seine Geschwindigkeit direkt in den Programmier-Flow.</p>
-<hr>
+<hr />
 <h2 id="-theorie-was-ist-zed-ide"><a class="header" href="#-theorie-was-ist-zed-ide">🧠 Theorie: Was ist Zed IDE?</a></h2>
 <h3 id="warum-zed"><a class="header" href="#warum-zed">Warum Zed?</a></h3>
 <p>Die meisten modernen Editoren (wie VS Code) basieren auf Webtechnologien (Electron). Das macht sie flexibel, aber oft auch träge und speicherhungrig. Zed geht einen anderen Weg:</p>
@@ -197,7 +196,7 @@
 <li><strong>Inline-Fehler:</strong> Compiler-Fehler und Warnungen werden direkt neben dem betroffenen Code angezeigt.</li>
 <li><strong>Code Lens:</strong> Kleine klickbare Buttons über Funktionen (z. B. <code>Run</code> oder <code>Debug</code> über der <code>main</code>-Funktion oder über Tests).</li>
 </ol>
-<hr>
+<hr />
 <h2 id="-praxis-aufgaben"><a class="header" href="#-praxis-aufgaben">🛠️ Praxis-Aufgaben</a></h2>
 <h3 id="aufgabe-a-zed-installieren--projekt-öffnen"><a class="header" href="#aufgabe-a-zed-installieren--projekt-öffnen">Aufgabe A: Zed installieren &amp; Projekt öffnen</a></h3>
 <ol>
@@ -206,7 +205,7 @@
 <li>Öffne die <code>src/main.rs</code>. Warte kurz, bis in der Statusleiste unten rechts das Symbol für den <code>rust-analyzer</code> aktiv wird.</li>
 <li>Bewege deinen Cursor über eine Standard-Rust-Funktion (z. B. <code>println!</code>) und beobachte, ob dir die Typ-Informationen und Dokumentationen angezeigt werden.</li>
 </ol>
-<hr>
+<hr />
 <h3 id="aufgabe-b-assistant-panel--inline-assist-erkunden"><a class="header" href="#aufgabe-b-assistant-panel--inline-assist-erkunden">Aufgabe B: Assistant Panel &amp; Inline Assist erkunden</a></h3>
 <ol>
 <li>Drücke <code>Ctrl+Shift+I</code> (oder <code>Cmd+Shift+I</code> auf dem Mac), um das <strong>Assistant Panel</strong> auf der rechten Seite zu öffnen.</li>
@@ -214,7 +213,7 @@
 <li>Stelle der KI eine Frage: <code>Wie erstelle ich einen Vektor in Rust?</code> und beobachte die Antwort.</li>
 <li>Gehe zurück in deine <code>main.rs</code>, markiere eine Zeile Code und drücke <code>Ctrl+Enter</code> (oder <code>Cmd+Enter</code>), um den <strong>Inline Assist</strong> zu starten. Tippe: <code>Füge einen erklärenden Kommentar hinzu</code> und drücke erneut Enter. Schau dir das rot/grüne Diff an und nimm die Änderung mit <code>Tab</code> an.</li>
 </ol>
-<hr>
+<hr />
 <h3 id="aufgabe-c-settingsjson-anpassen"><a class="header" href="#aufgabe-c-settingsjson-anpassen">Aufgabe C: settings.json anpassen</a></h3>
 <ol>
 <li>Öffne die Befehlspalette mit <code>Ctrl+Shift+P</code> (oder <code>Cmd+Shift+P</code>).</li>
@@ -231,134 +230,134 @@
 </li>
 <li>Speichere die Datei. Zed übernimmt alle Änderungen sofort – ganz ohne Neustart!</li>
 </ol>
-<hr>
-<h2 id="-50-übungen-mit-lösungen"><a class="header" href="#-50-übungen-mit-lösungen">🚀 50 Übungen mit Lösungen</a></h2>
+<hr />
+<h2 id="-50-Übungen-mit-lösungen"><a class="header" href="#-50-Übungen-mit-lösungen">🚀 50 Übungen mit Lösungen</a></h2>
 <p>Hier findest du 50 praktische Aufgaben, um Zed IDE wie ein Profi zu bedienen und für dein Rust-Lernen optimal einzusetzen.</p>
-<blockquote class="blockquote-tag blockquote-tag-important">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p><strong>Das Buchkonzept verbietet fertigen Rust-Code als Lösung.</strong>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Das Buchkonzept verbietet fertigen Rust-Code als Lösung.</strong>
 Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Shortcuts, die KI-Steuerung und die Konfiguration des Editors!</p>
 </blockquote>
-<hr>
+<hr />
 <h3 id="-einstieg-110-navigation-und-editor-grundlagen"><a class="header" href="#-einstieg-110-navigation-und-editor-grundlagen">🟢 Einstieg (1–10): Navigation und Editor-Grundlagen</a></h3>
-<h4 id="übung-1-die-befehlspalette-command-palette"><a class="header" href="#übung-1-die-befehlspalette-command-palette">Übung 1: Die Befehlspalette (Command Palette)</a></h4>
+<h4 id="Übung-1-die-befehlspalette-command-palette"><a class="header" href="#Übung-1-die-befehlspalette-command-palette">Übung 1: Die Befehlspalette (Command Palette)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie öffnest du die Befehlspalette, um nach Befehlen wie „Theme wechseln“ oder „Settings öffnen“ zu suchen?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Shift+P</code> (Linux/Windows) oder <code>Cmd+Shift+P</code> (macOS).</li>
 </ul>
-<h4 id="übung-2-schnelle-dateisuche-project-search"><a class="header" href="#übung-2-schnelle-dateisuche-project-search">Übung 2: Schnelle Dateisuche (Project Search)</a></h4>
+<h4 id="Übung-2-schnelle-dateisuche-project-search"><a class="header" href="#Übung-2-schnelle-dateisuche-project-search">Übung 2: Schnelle Dateisuche (Project Search)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Dein Projekt hat viele Dateien. Wie öffnest du die Dateisuche, um ohne Maus direkt zu <code>lib.rs</code> zu springen?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+P</code> (Linux/Windows) oder <code>Cmd+P</code> (macOS) und tippe den Dateinamen ein.</li>
 </ul>
-<h4 id="übung-3-projektbaum-sidebar-umschalten"><a class="header" href="#übung-3-projektbaum-sidebar-umschalten">Übung 3: Projektbaum (Sidebar) umschalten</a></h4>
+<h4 id="Übung-3-projektbaum-sidebar-umschalten"><a class="header" href="#Übung-3-projektbaum-sidebar-umschalten">Übung 3: Projektbaum (Sidebar) umschalten</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du brauchst mehr Platz zum Schreiben. Mit welchem Shortcut blendest du den linken Projektbaum ein oder aus?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+B</code> (Linux/Windows) oder <code>Cmd+B</code> (macOS).</li>
 </ul>
-<h4 id="übung-4-zur-definition-springen"><a class="header" href="#übung-4-zur-definition-springen">Übung 4: Zur Definition springen</a></h4>
+<h4 id="Übung-4-zur-definition-springen"><a class="header" href="#Übung-4-zur-definition-springen">Übung 4: Zur Definition springen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du siehst im Code einen Funktionsaufruf und möchtest wissen, wo diese Funktion definiert ist. Wie springst du dorthin?</li>
 <li><strong>Lösung:</strong> Setze den Cursor auf die Funktion und drücke <code>F12</code> (oder halte <code>Ctrl</code>/<code>Cmd</code> gedrückt und klicke auf die Funktion).</li>
 </ul>
-<h4 id="übung-5-letzte-position-zurückspringen"><a class="header" href="#übung-5-letzte-position-zurückspringen">Übung 5: Letzte Position (Zurückspringen)</a></h4>
+<h4 id="Übung-5-letzte-position-zurückspringen"><a class="header" href="#Übung-5-letzte-position-zurückspringen">Übung 5: Letzte Position (Zurückspringen)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du bist mittels <code>F12</code> in eine andere Datei gesprungen. Wie kommst du schnell wieder an deine Ausgangsstelle zurück?</li>
 <li><strong>Lösung:</strong> Drücke <code>Alt+Left</code> (Linux/Windows) oder <code>Ctrl+-</code> (macOS).</li>
 </ul>
-<h4 id="übung-6-terminal-in-zed-öffnen"><a class="header" href="#übung-6-terminal-in-zed-öffnen">Übung 6: Terminal in Zed öffnen</a></h4>
+<h4 id="Übung-6-terminal-in-zed-öffnen"><a class="header" href="#Übung-6-terminal-in-zed-öffnen">Übung 6: Terminal in Zed öffnen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest <code>cargo run</code> direkt im Editor ausführen. Wie öffnest du das integrierte Terminal?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+` </code> (Control und Backtick).</li>
 </ul>
-<h4 id="übung-7-zeile-duplizieren"><a class="header" href="#übung-7-zeile-duplizieren">Übung 7: Zeile duplizieren</a></h4>
+<h4 id="Übung-7-zeile-duplizieren"><a class="header" href="#Übung-7-zeile-duplizieren">Übung 7: Zeile duplizieren</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie kopierst du die aktuelle Zeile schnell nach unten, ohne sie manuell zu markieren?</li>
 <li><strong>Lösung:</strong> Drücke <code>Shift+Alt+Down</code> (Linux/Windows) oder <code>Shift+Option+Down</code> (macOS).</li>
 </ul>
-<h4 id="übung-8-code-formatieren"><a class="header" href="#übung-8-code-formatieren">Übung 8: Code formatieren</a></h4>
+<h4 id="Übung-8-code-formatieren"><a class="header" href="#Übung-8-code-formatieren">Übung 8: Code formatieren</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Dein Rust-Code ist unordentlich eingerückt. Wie bringst du Zed dazu, die Datei sauber zu formatieren?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Shift+I</code> (unter Windows/Linux bei Standard-Keymap oft <code>Shift+Alt+F</code>) oder nutze die Befehlspalette (<code>Format Document</code>). Alternativ <code>"format_on_save": true</code> in den Settings aktivieren.</li>
 </ul>
-<h4 id="übung-9-fehler-und-warnungen-anzeigen-diagnostics"><a class="header" href="#übung-9-fehler-und-warnungen-anzeigen-diagnostics">Übung 9: Fehler und Warnungen anzeigen (Diagnostics)</a></h4>
+<h4 id="Übung-9-fehler-und-warnungen-anzeigen-diagnostics"><a class="header" href="#Übung-9-fehler-und-warnungen-anzeigen-diagnostics">Übung 9: Fehler und Warnungen anzeigen (Diagnostics)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Der Compiler meldet Fehler im Projekt. Wie springst du direkt zum nächsten Compilerfehler im aktuellen Puffer?</li>
 <li><strong>Lösung:</strong> Drücke <code>F8</code> für den nächsten Fehler oder <code>Shift+F8</code> für den vorherigen Fehler.</li>
 </ul>
-<h4 id="übung-10-zeilenkommentar-umschalten"><a class="header" href="#übung-10-zeilenkommentar-umschalten">Übung 10: Zeilenkommentar umschalten</a></h4>
+<h4 id="Übung-10-zeilenkommentar-umschalten"><a class="header" href="#Übung-10-zeilenkommentar-umschalten">Übung 10: Zeilenkommentar umschalten</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie kommentierst du eine oder mehrere markierte Zeilen schnell aus?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+/</code> (Linux/Windows) oder <code>Cmd+/</code> (macOS).</li>
 </ul>
-<hr>
+<hr />
 <h3 id="-mittelstufe-1125-ki-integration-und-feineinstellungen"><a class="header" href="#-mittelstufe-1125-ki-integration-und-feineinstellungen">🟡 Mittelstufe (11–25): KI-Integration und Feineinstellungen</a></h3>
-<h4 id="übung-11-assistant-panel-öffnenschließen"><a class="header" href="#übung-11-assistant-panel-öffnenschließen">Übung 11: Assistant Panel öffnen/schließen</a></h4>
+<h4 id="Übung-11-assistant-panel-öffnenschließen"><a class="header" href="#Übung-11-assistant-panel-öffnenschließen">Übung 11: Assistant Panel öffnen/schließen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie öffnest du das KI-Assistant-Panel auf der rechten Seite, um Fragen zu stellen?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Shift+I</code> (Linux/Windows) oder <code>Cmd+Shift+I</code> (macOS).</li>
 </ul>
-<h4 id="übung-12-inline-assist-starten"><a class="header" href="#übung-12-inline-assist-starten">Übung 12: Inline Assist starten</a></h4>
+<h4 id="Übung-12-inline-assist-starten"><a class="header" href="#Übung-12-inline-assist-starten">Übung 12: Inline Assist starten</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest Code direkt an deiner Cursorposition von der KI generieren oder umschreiben lassen. Welchen Shortcut nutzt du?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Enter</code> (Linux/Windows) oder <code>Cmd+Enter</code> (macOS).</li>
 </ul>
-<h4 id="übung-13-ki-modell-wechseln"><a class="header" href="#übung-13-ki-modell-wechseln">Übung 13: KI-Modell wechseln</a></h4>
+<h4 id="Übung-13-ki-modell-wechseln"><a class="header" href="#Übung-13-ki-modell-wechseln">Übung 13: KI-Modell wechseln</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest im Assistant Panel zwischen verschiedenen Modellen (z. B. Gemini, Claude, GPT-4) wechseln. Wo stellst du das ein?</li>
 <li><strong>Lösung:</strong> Klicke im Assistant Panel unten auf den Modellnamen (Dropdown) oder öffne deine <code>settings.json</code> und passe den Key <code>"assistant"</code> bzw. <code>"default_model"</code> an.</li>
 </ul>
-<h4 id="übung-14-datei-als-ki-kontext-übergeben-file"><a class="header" href="#übung-14-datei-als-ki-kontext-übergeben-file">Übung 14: Datei als KI-Kontext übergeben (<code>/file</code>)</a></h4>
+<h4 id="Übung-14-datei-als-ki-kontext-übergeben-file"><a class="header" href="#Übung-14-datei-als-ki-kontext-übergeben-file">Übung 14: Datei als KI-Kontext übergeben (<code>/file</code>)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du stellst der KI im Assistant Panel eine Frage zu deiner <code>src/utils.rs</code>. Wie fügst du den Inhalt dieser Datei als Kontext in deinen Chat ein?</li>
 <li><strong>Lösung:</strong> Tippe im Chat <code>/file src/utils.rs</code> ein. Zed bettet die Datei automatisch als Referenz ein.</li>
 </ul>
-<h4 id="übung-15-aktiven-tab-als-kontext-übergeben-active_edit"><a class="header" href="#übung-15-aktiven-tab-als-kontext-übergeben-active_edit">Übung 15: Aktiven Tab als Kontext übergeben (<code>/active_edit</code>)</a></h4>
+<h4 id="Übung-15-aktiven-tab-als-kontext-übergeben-active_edit"><a class="header" href="#Übung-15-aktiven-tab-als-kontext-übergeben-active_edit">Übung 15: Aktiven Tab als Kontext übergeben (<code>/active_edit</code>)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie stellst du sicher, dass die KI im Assistant Panel immer den Code der Datei sieht, an der du gerade arbeitest?</li>
 <li><strong>Lösung:</strong> Nutze den Slash-Befehl <code>/active_edit</code> oder <code>/editor</code> im Chatfenster des Assistant Panels.</li>
 </ul>
-<h4 id="übung-16-terminal-output-an-die-ki-senden-terminal"><a class="header" href="#übung-16-terminal-output-an-die-ki-senden-terminal">Übung 16: Terminal-Output an die KI senden (<code>/terminal</code>)</a></h4>
+<h4 id="Übung-16-terminal-output-an-die-ki-senden-terminal"><a class="header" href="#Übung-16-terminal-output-an-die-ki-senden-terminal">Übung 16: Terminal-Output an die KI senden (<code>/terminal</code>)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Dein <code>cargo build</code> schlägt fehl. Wie leitest du die letzte Fehlermeldung aus dem Terminal direkt an das Assistant Panel weiter?</li>
 <li><strong>Lösung:</strong> Tippe im Assistant Panel <code>/terminal</code> ein, um die letzten Zeilen deines Terminals in den Kontext aufzunehmen.</li>
 </ul>
-<h4 id="übung-17-vim-modus-aktivieren"><a class="header" href="#übung-17-vim-modus-aktivieren">Übung 17: Vim-Modus aktivieren</a></h4>
+<h4 id="Übung-17-vim-modus-aktivieren"><a class="header" href="#Übung-17-vim-modus-aktivieren">Übung 17: Vim-Modus aktivieren</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du programmierst gerne mit Vim-Tastaturbefehlen. Wie aktivierst du das in Zed?</li>
 <li><strong>Lösung:</strong> Füge in deiner <code>settings.json</code> die Zeile <code>"vim_mode": true</code> hinzu.</li>
 </ul>
-<h4 id="übung-18-tab-gruppen-panes-teilen"><a class="header" href="#übung-18-tab-gruppen-panes-teilen">Übung 18: Tab-Gruppen (Panes) teilen</a></h4>
+<h4 id="Übung-18-tab-gruppen-panes-teilen"><a class="header" href="#Übung-18-tab-gruppen-panes-teilen">Übung 18: Tab-Gruppen (Panes) teilen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest <code>main.rs</code> links und <code>lib.rs</code> rechts gleichzeitig sehen. Wie teilst du den Editor-Bildschirm vertikal?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+\</code> (Linux/Windows) oder <code>Cmd+\</code> (macOS) oder ziehe den Tab mit der Maus an den rechten Rand.</li>
 </ul>
-<h4 id="übung-19-symbole-in-der-aktuellen-datei-suchen-outline"><a class="header" href="#übung-19-symbole-in-der-aktuellen-datei-suchen-outline">Übung 19: Symbole in der aktuellen Datei suchen (Outline)</a></h4>
+<h4 id="Übung-19-symbole-in-der-aktuellen-datei-suchen-outline"><a class="header" href="#Übung-19-symbole-in-der-aktuellen-datei-suchen-outline">Übung 19: Symbole in der aktuellen Datei suchen (Outline)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie lässt du dir alle Structs, Enums und Funktionen der aktuellen Datei übersichtlich auflisten, um schnell zu ihnen zu springen?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Shift+O</code> (Linux/Windows) oder <code>Cmd+Shift+O</code> (macOS) (Outline View).</li>
 </ul>
-<h4 id="übung-20-projektweite-symbolsuche"><a class="header" href="#übung-20-projektweite-symbolsuche">Übung 20: Projektweite Symbolsuche</a></h4>
+<h4 id="Übung-20-projektweite-symbolsuche"><a class="header" href="#Übung-20-projektweite-symbolsuche">Übung 20: Projektweite Symbolsuche</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du suchst das Struct <code>UserDatabase</code> irgendwo in deinem gesamten Projekt. Wie findest du es?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+T</code> (Linux/Windows) oder <code>Cmd+T</code> (macOS) und tippe den Namen des Structs ein.</li>
 </ul>
-<h4 id="übung-21-theme-zur-laufzeit-wechseln"><a class="header" href="#übung-21-theme-zur-laufzeit-wechseln">Übung 21: Theme zur Laufzeit wechseln</a></h4>
+<h4 id="Übung-21-theme-zur-laufzeit-wechseln"><a class="header" href="#Übung-21-theme-zur-laufzeit-wechseln">Übung 21: Theme zur Laufzeit wechseln</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie wechselst du das Aussehen (Theme) von Zed, ohne in die JSON-Datei zu gehen?</li>
 <li><strong>Lösung:</strong> Öffne die Befehlspalette (<code>Ctrl/Cmd+Shift+P</code>), tippe <code>theme</code> ein und wähle <code>theme: select</code>. Navigiere mit den Pfeiltasten durch die Liste.</li>
 </ul>
-<h4 id="übung-22-zeilennummern-umschalten"><a class="header" href="#übung-22-zeilennummern-umschalten">Übung 22: Zeilennummern umschalten</a></h4>
+<h4 id="Übung-22-zeilennummern-umschalten"><a class="header" href="#Übung-22-zeilennummern-umschalten">Übung 22: Zeilennummern umschalten</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest die Zeilennummern am linken Rand ausblenden. Wo geht das?</li>
 <li><strong>Lösung:</strong> In der <code>settings.json</code> den Wert <code>"line_numbers": "none"</code> (oder <code>"relative"</code> für relative Zeilennummern) setzen.</li>
 </ul>
-<h4 id="übung-23-unsichtbare-zeichen-anzeigen-whitespace"><a class="header" href="#übung-23-unsichtbare-zeichen-anzeigen-whitespace">Übung 23: Unsichtbare Zeichen anzeigen (Whitespace)</a></h4>
+<h4 id="Übung-23-unsichtbare-zeichen-anzeigen-whitespace"><a class="header" href="#Übung-23-unsichtbare-zeichen-anzeigen-whitespace">Übung 23: Unsichtbare Zeichen anzeigen (Whitespace)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Um Einrückungsfehler zu finden, möchtest du Leerzeichen und Tabs als kleine Punkte/Pfeile sehen. Wie aktivierst du das?</li>
 <li><strong>Lösung:</strong> Trage <code>"show_whitespaces": "all"</code> (oder <code>"boundary"</code>) in deine <code>settings.json</code> ein.</li>
 </ul>
-<h4 id="übung-24-schriftart-anpassen"><a class="header" href="#übung-24-schriftart-anpassen">Übung 24: Schriftart anpassen</a></h4>
+<h4 id="Übung-24-schriftart-anpassen"><a class="header" href="#Übung-24-schriftart-anpassen">Übung 24: Schriftart anpassen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie stellst du eine installierte Entwickler-Schriftart (z. B. „JetBrains Mono“ oder „Fira Code“) in Zed ein?</li>
 <li><strong>Lösung:</strong> Füge in der <code>settings.json</code> Folgendes hinzu:
@@ -366,54 +365,54 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-25-zoomfaktor-des-editors-ändern"><a class="header" href="#übung-25-zoomfaktor-des-editors-ändern">Übung 25: Zoomfaktor des Editors ändern</a></h4>
+<h4 id="Übung-25-zoomfaktor-des-editors-ändern"><a class="header" href="#Übung-25-zoomfaktor-des-editors-ändern">Übung 25: Zoomfaktor des Editors ändern</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest für einen Vortrag die gesamte Benutzeroberfläche vergrößern.</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl++</code> (oder <code>Cmd++</code> auf macOS). Zum Verkleinern <code>Ctrl+-</code> / <code>Cmd+-</code>.</li>
 </ul>
-<hr>
+<hr />
 <h3 id="-fortgeschritten-2640-workflows-und-fortgeschrittene-features"><a class="header" href="#-fortgeschritten-2640-workflows-und-fortgeschrittene-features">🔴 Fortgeschritten (26–40): Workflows und fortgeschrittene Features</a></h3>
-<h4 id="übung-26-multi-cursor-modus"><a class="header" href="#übung-26-multi-cursor-modus">Übung 26: Multi-Cursor-Modus</a></h4>
+<h4 id="Übung-26-multi-cursor-modus"><a class="header" href="#Übung-26-multi-cursor-modus">Übung 26: Multi-Cursor-Modus</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest fünf Variablen gleichzeitig umbenennen, die untereinander stehen. Wie setzt du mehrere Cursor untereinander?</li>
 <li><strong>Lösung:</strong> Halte <code>Alt</code> (Linux/Windows) bzw. <code>Option</code> (macOS) gedrückt und klicke an die gewünschten Stellen, oder drücke <code>Ctrl+Alt+Down</code>/<code>Cmd+Option+Down</code>.</li>
 </ul>
-<h4 id="übung-27-alle-vorkommen-eines-wortes-markieren"><a class="header" href="#übung-27-alle-vorkommen-eines-wortes-markieren">Übung 27: Alle Vorkommen eines Wortes markieren</a></h4>
+<h4 id="Übung-27-alle-vorkommen-eines-wortes-markieren"><a class="header" href="#Übung-27-alle-vorkommen-eines-wortes-markieren">Übung 27: Alle Vorkommen eines Wortes markieren</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du hast ein Wort markiert und möchtest alle weiteren Vorkommen dieses Wortes im Dokument gleichzeitig bearbeiten.</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+D</code> (Linux/Windows) oder <code>Cmd+D</code> (macOS) wiederholt, um das nächste Vorkommen auszuwählen.</li>
 </ul>
-<h4 id="übung-28-multi-buffer-öffnen-suchen-in-allen-dateien"><a class="header" href="#übung-28-multi-buffer-öffnen-suchen-in-allen-dateien">Übung 28: Multi-Buffer öffnen (Suchen in allen Dateien)</a></h4>
+<h4 id="Übung-28-multi-buffer-öffnen-suchen-in-allen-dateien"><a class="header" href="#Übung-28-multi-buffer-öffnen-suchen-in-allen-dateien">Übung 28: Multi-Buffer öffnen (Suchen in allen Dateien)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du suchst nach einem Begriff im ganzen Projekt und möchtest alle Fundstellen in einem einzigen, editierbaren „Super-Puffer“ bearbeiten. Wie geht das?</li>
 <li><strong>Lösung:</strong> Drücke <code>Ctrl+Shift+F</code> (Linux/Windows) oder <code>Cmd+Shift+F</code> (macOS), tippe deinen Suchbegriff ein und drücke Enter. Es öffnet sich ein Multi-Buffer. Änderungen dort werden in alle echten Dateien zurückgeschrieben!</li>
 </ul>
-<h4 id="übung-29-git-gutter-nutzen"><a class="header" href="#übung-29-git-gutter-nutzen">Übung 29: Git-Gutter nutzen</a></h4>
+<h4 id="Übung-29-git-gutter-nutzen"><a class="header" href="#Übung-29-git-gutter-nutzen">Übung 29: Git-Gutter nutzen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Woran erkennst du in Zed, welche Zeilen du seit dem letzten Git-Commit verändert, hinzugefügt oder gelöscht hast?</li>
 <li><strong>Lösung:</strong> Links neben den Zeilennummern erscheint ein farbiger Balken (Gutter): Grün für hinzugefügt, Blau für geändert, ein kleines Symbol für gelöscht.</li>
 </ul>
-<h4 id="übung-30-git-änderungen-zurücksetzen-revert"><a class="header" href="#übung-30-git-änderungen-zurücksetzen-revert">Übung 30: Git-Änderungen zurücksetzen (Revert)</a></h4>
+<h4 id="Übung-30-git-Änderungen-zurücksetzen-revert"><a class="header" href="#Übung-30-git-Änderungen-zurücksetzen-revert">Übung 30: Git-Änderungen zurücksetzen (Revert)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie kannst du eine Änderung in einer Datei direkt über den Gutter auf den letzten Git-Stand zurücksetzen?</li>
 <li><strong>Lösung:</strong> Klicke auf den farbigen Balken im Gutter und wähle das Rückgängig-Symbol (Revert).</li>
 </ul>
-<h4 id="übung-31-custom-tasks-konfigurieren-tasksjson"><a class="header" href="#übung-31-custom-tasks-konfigurieren-tasksjson">Übung 31: Custom Tasks konfigurieren (<code>tasks.json</code>)</a></h4>
+<h4 id="Übung-31-custom-tasks-konfigurieren-tasksjson"><a class="header" href="#Übung-31-custom-tasks-konfigurieren-tasksjson">Übung 31: Custom Tasks konfigurieren (<code>tasks.json</code>)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest einen benutzerdefinierten Befehl (z. B. <code>cargo clippy --all-targets</code>) über ein Zed-Menü ausführbar machen. Wo definierst du diesen?</li>
 <li><strong>Lösung:</strong> Erstelle im Verzeichnis <code>.zed/</code> deines Projekts eine Datei namens <code>tasks.json</code> und definiere dort deine Tasks.</li>
 </ul>
-<h4 id="übung-32-custom-tasks-ausführen"><a class="header" href="#übung-32-custom-tasks-ausführen">Übung 32: Custom Tasks ausführen</a></h4>
+<h4 id="Übung-32-custom-tasks-ausführen"><a class="header" href="#Übung-32-custom-tasks-ausführen">Übung 32: Custom Tasks ausführen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie startest du die in <code>tasks.json</code> definierten Aufgaben im Editor?</li>
 <li><strong>Lösung:</strong> Öffne die Befehlspalette und suche nach <code>task: spawn</code>, wähle dann den gewünschten Task aus der Liste.</li>
 </ul>
-<h4 id="übung-33-keymap-anpassen-keymapjson"><a class="header" href="#übung-33-keymap-anpassen-keymapjson">Übung 33: Keymap anpassen (<code>keymap.json</code>)</a></h4>
+<h4 id="Übung-33-keymap-anpassen-keymapjson"><a class="header" href="#Übung-33-keymap-anpassen-keymapjson">Übung 33: Keymap anpassen (<code>keymap.json</code>)</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest den Befehl <code>workspace: new search</code> auf die Taste <code>F3</code> legen. In welcher Datei machst du das?</li>
 <li><strong>Lösung:</strong> Öffne die Befehlspalette, tippe <code>keymap</code> und wähle <code>zed: open keymap</code>. Trage dort die Tastenzuweisung im JSON-Format ein.</li>
 </ul>
-<h4 id="übung-34-rust-analyzer-einstellungen-anpassen"><a class="header" href="#übung-34-rust-analyzer-einstellungen-anpassen">Übung 34: Rust-Analyzer-Einstellungen anpassen</a></h4>
+<h4 id="Übung-34-rust-analyzer-einstellungen-anpassen"><a class="header" href="#Übung-34-rust-analyzer-einstellungen-anpassen">Übung 34: Rust-Analyzer-Einstellungen anpassen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest dem <code>rust-analyzer</code> in Zed mitteilen, dass er standardmäßig <code>clippy</code> statt <code>check</code> zur Code-Prüfung verwenden soll. Wie konfigurierst du das?</li>
 <li><strong>Lösung:</strong> In der <code>settings.json</code> unter dem Key <code>"lsp"</code> folgende Konfiguration einfügen:
@@ -429,27 +428,27 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-35-kollaborations-kanal-beitreten"><a class="header" href="#übung-35-kollaborations-kanal-beitreten">Übung 35: Kollaborations-Kanal beitreten</a></h4>
+<h4 id="Übung-35-kollaborations-kanal-beitreten"><a class="header" href="#Übung-35-kollaborations-kanal-beitreten">Übung 35: Kollaborations-Kanal beitreten</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie trittst du einem geteilten Programmierkanal bei, um mit anderen an einem Projekt zu arbeiten?</li>
 <li><strong>Lösung:</strong> Klicke oben rechts auf das „Collab“-Symbol (Personen-Icon) oder drücke <code>Ctrl+Shift+C</code> / <code>Cmd+Shift+C</code>, wähle einen Kanal oder lade jemanden über den Link ein.</li>
 </ul>
-<h4 id="übung-36-shared-screen-folgen"><a class="header" href="#übung-36-shared-screen-folgen">Übung 36: Shared Screen folgen</a></h4>
+<h4 id="Übung-36-shared-screen-folgen"><a class="header" href="#Übung-36-shared-screen-folgen">Übung 36: Shared Screen folgen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du bist in einer Kollaborations-Session. Wie folgst du der Ansicht (dem Cursor) deines Kollegen?</li>
 <li><strong>Lösung:</strong> Klicke in der Kanalliste oben rechts auf den Avatar des Kollegen. Dein Editor springt nun automatisch immer dorthin, wo er editiert.</li>
 </ul>
-<h4 id="übung-37-markdown-vorschau-öffnen"><a class="header" href="#übung-37-markdown-vorschau-öffnen">Übung 37: Markdown-Vorschau öffnen</a></h4>
+<h4 id="Übung-37-markdown-vorschau-öffnen"><a class="header" href="#Übung-37-markdown-vorschau-öffnen">Übung 37: Markdown-Vorschau öffnen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du schreibst eine <code>README.md</code> und möchtest eine Live-HTML-Vorschau in Zed sehen.</li>
 <li><strong>Lösung:</strong> Öffne die Befehlspalette und wähle <code>markdown: open preview</code> (oder nutze den entsprechenden Shortcut <code>Ctrl+Shift+M</code> / <code>Cmd+Shift+M</code>).</li>
 </ul>
-<h4 id="übung-38-rechtschreibprüfung-konfigurieren"><a class="header" href="#übung-38-rechtschreibprüfung-konfigurieren">Übung 38: Rechtschreibprüfung konfigurieren</a></h4>
+<h4 id="Übung-38-rechtschreibprüfung-konfigurieren"><a class="header" href="#Übung-38-rechtschreibprüfung-konfigurieren">Übung 38: Rechtschreibprüfung konfigurieren</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Wie verhinderst du, dass Zed englische Fachbegriffe im Code rot unterstreicht?</li>
 <li><strong>Lösung:</strong> In der <code>settings.json</code> kannst du die Rechtschreibprüfung über <code>"spell_checking": false</code> komplett ausschalten oder Wörter zu einem Wörterbuch hinzufügen.</li>
 </ul>
-<h4 id="übung-39-integriertes-terminal-verhalten-anpassen"><a class="header" href="#übung-39-integriertes-terminal-verhalten-anpassen">Übung 39: Integriertes Terminal-Verhalten anpassen</a></h4>
+<h4 id="Übung-39-integriertes-terminal-verhalten-anpassen"><a class="header" href="#Übung-39-integriertes-terminal-verhalten-anpassen">Übung 39: Integriertes Terminal-Verhalten anpassen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest, dass dein Terminal beim Öffnen immer eine bestimmte Shell (z. B. <code>fish</code> statt <code>bash</code>) verwendet. Wo stellst du das ein?</li>
 <li><strong>Lösung:</strong> Füge in der <code>settings.json</code> Folgendes hinzu:
@@ -461,7 +460,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-40-lokales-llm-mit-ollama-anbinden"><a class="header" href="#übung-40-lokales-llm-mit-ollama-anbinden">Übung 40: Lokales LLM mit Ollama anbinden</a></h4>
+<h4 id="Übung-40-lokales-llm-mit-ollama-anbinden"><a class="header" href="#Übung-40-lokales-llm-mit-ollama-anbinden">Übung 40: Lokales LLM mit Ollama anbinden</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du willst aus Datenschutzgründen keine Online-KI nutzen. Wie sagst du Zed, dass es ein lokales Ollama-Modell verwenden soll?</li>
 <li><strong>Lösung:</strong> Trage in der <code>settings.json</code> Folgendes ein:
@@ -472,34 +471,34 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<hr>
+<hr />
 <h3 id="-challenge-4150-komplexe-workflows-und-optimierung"><a class="header" href="#-challenge-4150-komplexe-workflows-und-optimierung">⚡ Challenge (41–50): Komplexe Workflows und Optimierung</a></h3>
-<h4 id="übung-41-eigene-prompt-vorlagen-system-prompts-nutzen"><a class="header" href="#übung-41-eigene-prompt-vorlagen-system-prompts-nutzen">Übung 41: Eigene Prompt-Vorlagen (System-Prompts) nutzen</a></h4>
+<h4 id="Übung-41-eigene-prompt-vorlagen-system-prompts-nutzen"><a class="header" href="#Übung-41-eigene-prompt-vorlagen-system-prompts-nutzen">Übung 41: Eigene Prompt-Vorlagen (System-Prompts) nutzen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest der KI im Assistant Panel eine feste Rolle zuweisen (z. B. „Du bist ein strenger Rust-Compiler-Lehrer“). Wie machst du das?</li>
 <li><strong>Lösung:</strong> Klicke im Assistant Panel oben auf den System-Prompt-Bereich (oder füge einen <code>/system</code>-Befehl hinzu) und definiere dort die Rolle, bevor du den Chat beginnst.</li>
 </ul>
-<h4 id="übung-42-refactoring-workflow-mit-inline-assist"><a class="header" href="#übung-42-refactoring-workflow-mit-inline-assist">Übung 42: Refactoring-Workflow mit Inline Assist</a></h4>
+<h4 id="Übung-42-refactoring-workflow-mit-inline-assist"><a class="header" href="#Übung-42-refactoring-workflow-mit-inline-assist">Übung 42: Refactoring-Workflow mit Inline Assist</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du hast eine lange Funktion und möchtest sie in zwei kleinere Funktionen aufteilen. Wie gehst du vor?</li>
 <li><strong>Lösung:</strong> Markiere die Funktion, öffne den Inline Assist (<code>Ctrl/Cmd+Enter</code>), tippe <code>Extrahiere den inneren Schleifenteil in eine eigene Funktion namens hilfs_funktion</code> und prüfe das generierte Diff genau, bevor du es annimmst.</li>
 </ul>
-<h4 id="übung-43-cargo-dependencies-per-ki-hinzufügen"><a class="header" href="#übung-43-cargo-dependencies-per-ki-hinzufügen">Übung 43: Cargo-Dependencies per KI hinzufügen</a></h4>
+<h4 id="Übung-43-cargo-dependencies-per-ki-hinzufügen"><a class="header" href="#Übung-43-cargo-dependencies-per-ki-hinzufügen">Übung 43: Cargo-Dependencies per KI hinzufügen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du brauchst die <code>serde</code>-Bibliothek. Wie lässt du Zed die <code>Cargo.toml</code> anpassen?</li>
 <li><strong>Lösung:</strong> Öffne <code>Cargo.toml</code>, markiere die Sektion <code>[dependencies]</code>, starte Inline Assist und tippe: <code>Füge serde mit dem Feature derive hinzu</code>.</li>
 </ul>
-<h4 id="übung-44-tests-generieren-lassen"><a class="header" href="#übung-44-tests-generieren-lassen">Übung 44: Tests generieren lassen</a></h4>
+<h4 id="Übung-44-tests-generieren-lassen"><a class="header" href="#Übung-44-tests-generieren-lassen">Übung 44: Tests generieren lassen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du hast ein Struct mit Berechnungslogik. Wie lässt du die KI das Testgerüst erstellen?</li>
 <li><strong>Lösung:</strong> Markiere das Struct und die Methoden, öffne das Assistant Panel, referenziere die Datei und frage: <code>Schreibe Unit-Tests für diese Methoden, nutze typische Rust-Testkonventionen</code>.</li>
 </ul>
-<h4 id="übung-45-diagnostics-auswerten-und-erklären-lassen"><a class="header" href="#übung-45-diagnostics-auswerten-und-erklären-lassen">Übung 45: Diagnostics auswerten und erklären lassen</a></h4>
+<h4 id="Übung-45-diagnostics-auswerten-und-erklären-lassen"><a class="header" href="#Übung-45-diagnostics-auswerten-und-erklären-lassen">Übung 45: Diagnostics auswerten und erklären lassen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du verstehst eine Lifetime-Fehlermeldung des Compilers nicht. Wie hilft dir Zed?</li>
 <li><strong>Lösung:</strong> Markiere den fehlerhaften Codebereich, öffne das Assistant Panel, füge den Fehler via <code>/terminal</code> oder Kopieren ein und frage: <code>Erkläre mir diese Fehlermeldung und gib mir Denkanstöße zur Behebung (keinen fertigen Code!)</code>.</li>
 </ul>
-<h4 id="übung-46-externe-cli-tools-via-task-einbinden"><a class="header" href="#übung-46-externe-cli-tools-via-task-einbinden">Übung 46: Externe CLI-Tools via Task einbinden</a></h4>
+<h4 id="Übung-46-externe-cli-tools-via-task-einbinden"><a class="header" href="#Übung-46-externe-cli-tools-via-task-einbinden">Übung 46: Externe CLI-Tools via Task einbinden</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest das Tool <code>cargo-tarpaulin</code> (für Testabdeckung) direkt als Task in Zed starten. Wie sieht die <code>tasks.json</code> aus?</li>
 <li><strong>Lösung:</strong>
@@ -513,12 +512,12 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-47-performance-tuning-für-zed"><a class="header" href="#übung-47-performance-tuning-für-zed">Übung 47: Performance-Tuning für Zed</a></h4>
+<h4 id="Übung-47-performance-tuning-für-zed"><a class="header" href="#Übung-47-performance-tuning-für-zed">Übung 47: Performance-Tuning für Zed</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Auf älteren Laptops kann die GPU-Beschleunigung Akku fressen. Wie schaltest du Zed in einen batteriesparenderen Modus?</li>
 <li><strong>Lösung:</strong> In der <code>settings.json</code> kannst du <code>"low_performance_mode": true</code> einstellen, um die GPU-Belastung zu reduzieren.</li>
 </ul>
-<h4 id="übung-48-eigene-keybindings-für-inline-assist"><a class="header" href="#übung-48-eigene-keybindings-für-inline-assist">Übung 48: Eigene Keybindings für Inline Assist</a></h4>
+<h4 id="Übung-48-eigene-keybindings-für-inline-assist"><a class="header" href="#Übung-48-eigene-keybindings-für-inline-assist">Übung 48: Eigene Keybindings für Inline Assist</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest Inline Assist auf eine andere Tastenkombination legen, da <code>Ctrl+Enter</code> bereits belegt ist.</li>
 <li><strong>Lösung:</strong> Trage in deiner <code>keymap.json</code> ein:
@@ -533,7 +532,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-49-dateispezifische-settings"><a class="header" href="#übung-49-dateispezifische-settings">Übung 49: Dateispezifische Settings</a></h4>
+<h4 id="Übung-49-dateispezifische-settings"><a class="header" href="#Übung-49-dateispezifische-settings">Übung 49: Dateispezifische Settings</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest, dass in Rust-Dateien Tabulatoren als 4 Leerzeichen eingefügt werden, in JSON-Dateien aber als 2 Leerzeichen.</li>
 <li><strong>Lösung:</strong> Nutze sprachspezifische Blöcke in deiner <code>settings.json</code>:
@@ -550,19 +549,14 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 </code></pre>
 </li>
 </ul>
-<h4 id="übung-50-workspace-level-einstellungen"><a class="header" href="#übung-50-workspace-level-einstellungen">Übung 50: Workspace-Level Einstellungen</a></h4>
+<h4 id="Übung-50-workspace-level-einstellungen"><a class="header" href="#Übung-50-workspace-level-einstellungen">Übung 50: Workspace-Level Einstellungen</a></h4>
 <ul>
 <li><strong>Aufgabe:</strong> Du möchtest bestimmte Editor-Einstellungen nur für ein einziges Projekt festlegen (nicht global).</li>
 <li><strong>Lösung:</strong> Erstelle im Projektordner die Datei <code>.zed/settings.json</code>. Alle darin definierten Werte überschreiben die globalen Einstellungen ausschließlich für dieses Projekt.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Begriff</th><th>Erklärung</th></tr>
-</thead>
-<tbody>
+<div class="table-wrapper"><table><thead><tr><th>Begriff</th><th>Erklärung</th></tr></thead><tbody>
 <tr><td><strong>GPUI</strong></td><td>Zeds eigenes, GPU-beschleunigtes UI-Framework für maximale Geschwindigkeit.</td></tr>
 <tr><td><strong>Assistant Panel</strong></td><td>Das KI-Chatfenster auf der rechten Seite (<code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code>).</td></tr>
 <tr><td><strong>Inline Assist</strong></td><td>KI-Generierung direkt im Editorpuffer (<code>Ctrl+Enter</code> / <code>Cmd+Enter</code>).</td></tr>
@@ -570,10 +564,9 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <tr><td><strong>Slash-Befehle</strong></td><td>Befehle im Chat (z. B. <code>/file</code>, <code>/terminal</code>), um gezielt Kontext an die KI zu übergeben.</td></tr>
 <tr><td><strong>Multi-Buffer</strong></td><td>Eine Ansicht, die Suchergebnisse aus mehreren Dateien in einem einzigen Puffer editierbar macht.</td></tr>
 <tr><td><strong>settings.json</strong></td><td>Die zentrale Konfigurationsdatei von Zed für Themes, Fonts und Verhalten.</td></tr>
-</tbody>
-</table>
+</tbody></table>
 </div>
-<hr>
+<hr />
 <h2 id="-weiterführende-links"><a class="header" href="#-weiterführende-links">📚 Weiterführende Links</a></h2>
 <ul>
 <li><a href="https://zed.dev">Offizielle Zed-Website</a> – Download und Dokumentation.</li>
@@ -587,11 +580,11 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="codex-cli-mega-praxis.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                                <i class="fa fa-angle-left"></i>
                             </a>
 
                             <a rel="next prefetch" href="vim.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                                <i class="fa fa-angle-right"></i>
                             </a>
 
                         <div style="clear: both"></div>
@@ -601,21 +594,16 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="codex-cli-mega-praxis.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                        <i class="fa fa-angle-left"></i>
                     </a>
 
                     <a rel="next prefetch" href="vim.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
-        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
-        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
-        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
-        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -624,16 +612,15 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-09f2665d.js"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-609e4cb8.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-
 
 
     </div>
