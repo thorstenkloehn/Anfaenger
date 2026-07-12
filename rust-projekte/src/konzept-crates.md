@@ -1,12 +1,28 @@
-# 📚 Crates und Cargo – Die Bausteine deines Rust-Projekts
+# 📚 Packages, Crates und Cargo – Die Bausteine deines Rust-Projekts
 
 Stell dir vor, du möchtest ein großes, stabiles Haus aus Lego bauen. Du könntest natürlich versuchen, jeden einzelnen Legostein selbst aus flüssigem Kunststoff zu gießen. Aber das wäre unglaublich mühsam, zeitaufwendig und wahrscheinlich würden die Steine am Ende nicht perfekt zusammenpassen. Stattdessen greifst du auf fertige, genormte Bausteine zurück, die perfekt ineinandergreifen, und konzentrierst dich ganz auf die Architektur deines Hauses.
 
-In der Rust-Welt ist das genau so! Du musst das Rad (oder den Sortieralgorithmus, den Netzwerk-Client und den JSON-Parser) nicht jedes Mal neu erfinden. Rust bietet dir mit **Crates** (den Bausteinen) und **Cargo** (dem genialen Bauleiter und Paketmanager) ein mächtiges Ökosystem, mit dem du fertige Programmteile blitzschnell und sicher in dein Projekt integrieren kannst.
+In der Rust-Welt ist das genau so! Du musst das Rad (oder den Sortieralgorithmus, den Netzwerk-Client und den JSON-Parser) nicht jedes Mal neu erfinden. Rust bietet dir mit **Packages** (den Versandkartons), **Crates** (den Bausteinen) und **Cargo** (dem genialen Bauleiter und Paketmanager) ein mächtiges Ökosystem, mit dem du fertige Programmteile blitzschnell und sicher in dein Projekt integrieren kannst.
 
 ---
 
 ## 🧠 Theorie
+
+### Was sind Packages (Pakete)?
+
+Ein **Package** (Paket) ist eine Cargo-Funktionalität, die es dir ermöglicht, ein oder mehrere Crates zu bauen, zu testen und zu teilen. Ein Package wird physisch durch ein Verzeichnis definiert, in dem sich eine `Cargo.toml`-Datei befindet.
+
+Für ein Package gelten strenge Regeln in Rust:
+1. **Eine Cargo.toml:** Ein Package besitzt genau eine `Cargo.toml`-Datei. Diese beschreibt, wie die im Package enthaltenen Crates gebaut werden (Metadaten, Abhängigkeiten etc.).
+2. **Mindestens ein Crate:** Ein Package muss mindestens ein Crate enthalten (entweder ein Library Crate oder ein Binary Crate).
+3. **Maximal eine Library:** Ein Package darf *höchstens eine* Library Crate (`src/lib.rs`) enthalten.
+4. **Beliebig viele Binaries:** Ein Package kann beliebig viele Binary Crates enthalten (z. B. die Hauptdatei `src/main.rs` und weitere ausführbare Programme unter `src/bin/`).
+
+#### Die Analogie: Der Werkzeugkoffer
+Stell dir ein **Package** wie einen gelieferten Werkzeugkoffer vor. Auf dem Koffer klebt ein Zettel mit der Packliste und dem Namen des Herstellers (die `Cargo.toml`). 
+In diesem Koffer befinden sich verschiedene Werkzeuge – die **Crates**. Das Hauptwerkzeug ist vielleicht eine Bohrmaschine (eine Library Crate, die du in anderen Projekten verwenden kannst). Zusätzlich liegen dem Koffer noch kleine Anleitungen oder Testwerkzeuge bei (Binary Crates), die du direkt ausführen kannst.
+
+---
 
 ### Was sind Crates?
 

@@ -1,6 +1,6 @@
-# Phase 4: Projektvorschläge zu Modulen, Pfaden & Crates
+# Phase 4: Projektvorschläge zu Modulen, Pfaden, Packages & Crates
 
-In dieser Phase lernst du, wie du größere Rust-Projekte organisierst, indem du deinen Code in mehrere Module aufteilst, Importpfade richtig nutzt und externe Bibliotheken (Crates) einbindest. Du wirst erfahren, wie du durch eine klare Kapselung Wartbarkeit und Lesbarkeit deines Codes drastisch verbesserst.
+In dieser Phase lernst du, wie du größere Rust-Projekte organisierst, indem du dein Projekt in Packages strukturierst, Code in mehrere Module aufteilst, Importpfade richtig nutzt und externe Bibliotheken (Crates) einbindest. Du wirst erfahren, wie du durch eine klare Kapselung Wartbarkeit und Lesbarkeit deines Codes drastisch verbesserst.
 
 ### Was wir wiederholen:
 | Thema | Was du wiederholst |
@@ -10,10 +10,11 @@ In dieser Phase lernst du, wie du größere Rust-Projekte organisierst, indem du
 | 📦 Strukturierung | Eigene Typen mit `struct` und `enum` |
 
 ### Neue Themen (in JEDEM Projekt angewendet):
+* **Packages (Pakete):** Strukturierung von Projekten mit einer `Cargo.toml`, die eine Library und/oder mehrere Binaries enthält.
+* **Crates & Cargo:** Einbinden und Nutzen externer Abhängigkeiten aus `crates.io` und Verwalten des Projekts.
 * **Module (`mod`):** Aufteilen von Code in separate Dateien und Ordner.
 * **Pfade (`use`, `super`, `crate`):** Navigieren in der Modulhierarchie und gezieltes Importieren von Funktionen und Typen.
 * **Kapselung & Sichtbarkeit (`pub`, `pub(crate)`):** Verbergen von Implementierungsdetails und Definieren klarer öffentlicher Schnittstellen.
-* **Cargo & Crates:** Einbinden und Nutzen externer Abhängigkeiten aus `crates.io`.
 
 ---
 

@@ -1,6 +1,6 @@
-# 100 Projekte - Module, Pfade & Crates
+# 100 Projekte - Module, Pfade, Packages & Crates
 
-In dieser Phase 4 vertiefen wir die **Code-Organisation** und das **Crates-Ökosystem** in Rust.
+In dieser Phase 4 vertiefen wir die **Code-Organisation**, die **Projektstrukturierung mit Packages** und das **Crates-Ökosystem** in Rust.
 Jedes Projekt kombiniert das Gelernte aus den Phasen 1, 2 und 3 (wie Structs, Enums, Collections, Fehlerbehandlung, Pattern Matching) und erweitert dies um modulare Architektur, Import-Pfade und die Einbindung externer Crates.
 
 | Thema | Was du lernst |
@@ -11,7 +11,7 @@ Jedes Projekt kombiniert das Gelernte aus den Phasen 1, 2 und 3 (wie Structs, En
 | 🗃️ Collections & Fehler | `Vec<T>`, `HashMap<K, V>`, `Result<T, E>` und `Option<T>` |
 | 📂 Module & Sichtbarkeit | Code aufteilen mit `mod`, Kapselung mit `pub` und `pub(crate)` |
 | 🔗 Pfade & Importe | Navigieren mit `use`, `super`, `self` und `crate`, Re-Exporting |
-| 📚 Cargo & Crates | Einbinden von externen Bibliotheken aus crates.io in der `Cargo.toml` |
+| 📚 Packages, Cargo & Crates | Strukturierung in Packages mit Cargo und Einbinden von externen Bibliotheken aus crates.io in der `Cargo.toml` |
 
 Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!
 
@@ -3230,9 +3230,9 @@ fn main() {
 
 ---
 
-## Phase 4: Projekte 51 bis 75 (Cargo & Crates)
+## Phase 4: Projekte 51 bis 75 (Packages, Cargo & Crates)
 
-In dieser Phase 4 (Projekte 51 bis 75) liegt der Fokus auf der **Einbindung und praktischen Nutzung von externen Abhängigkeiten (Crates)** über den Paketmanager Cargo. 
+In dieser Phase 4 (Projekte 51 bis 75) liegt der Fokus auf der **Strukturierung von Rust-Projekten in Packages und der Einbindung und praktischen Nutzung von externen Abhängigkeiten (Crates)** über den Paketmanager Cargo. 
 Jedes Projekt zeigt, wie du Bibliotheken aus dem Rust-Ökosystem (`crates.io`) einbindest und diese mit den Konzepten der vorherigen Phasen (Variablen, Enums, Structs, Fehlerbehandlung, Collections) kombinierst.
 
 ---

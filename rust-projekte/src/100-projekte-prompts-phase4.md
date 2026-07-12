@@ -1,7 +1,7 @@
-# 100 Projekte – Nur Prompts (Modulares Prinzip) (Phase 4)
+# 100 Projekte – Nur Prompts (Modulares Prinzip) (Phase 4 – Module, Pfade, Packages & Crates)
 
-In diesem Kapitel erarbeitest du die 100 Projekte aus **Phase 4 (Module, Pfade & Crates)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
-Das Ziel ist das **passive Auffrischen** und aktive Verstehen der Modul- und Datenstrukturen in Rust.
+In diesem Kapitel erarbeitest du die 100 Projekte aus **Phase 4 (Module, Pfade, Packages & Crates)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
+Das Ziel ist das **passive Auffrischen** und aktive Verstehen der Projekt-, Modul- und Datenstrukturen in Rust.
 
 | Thema | Was du lernst |
 | :--- | :--- |
@@ -11,14 +11,14 @@ Das Ziel ist das **passive Auffrischen** und aktive Verstehen der Modul- und Dat
 | 🗃️ Collections & Fehler | `Vec<T>`, `HashMap<K, V>`, `Result<T, E>` und `Option<T>` |
 | 📂 Module & Sichtbarkeit | Code aufteilen mit `mod`, Kapselung mit `pub` und `pub(crate)` |
 | 🔗 Pfade & Importe | Navigieren mit `use`, `super`, `self` und `crate`, Re-Exporting |
-| 📚 Cargo & Crates | Einbinden von externen Bibliotheken aus crates.io in der `Cargo.toml` |
+| 📚 Packages, Cargo & Crates | Strukturierung in Packages mit Cargo und Einbinden von externen Bibliotheken aus crates.io in der `Cargo.toml` |
 
 ---
 ## Der modulare Prompt-Katalog für alle 100 Projekte (Phase 4)
 Hier findest du für jedes Projekt den genauen modularen Ablauf mit Präzisions-Prompts. Kopiere diese in den Chat mit deiner KI.
 ## 100 Projekte – Nur Prompts (Modulares Prinzip) (Phase 4 – Teil 1: 1 bis 25)
 
-In diesem Kapitel erarbeitest du die ersten 25 Projekte aus **Phase 4 (Module, Pfade & Crates)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
+In diesem Kapitel erarbeitest du die ersten 25 Projekte aus **Phase 4 (Module, Pfade, Packages & Crates)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
 Das Ziel ist das **passive Auffrischen** und aktive Verstehen von Modularisierung, Importpfaden, Kapselung und externen Abhängigkeiten in Rust.
 
 | Thema | Was du lernst |
@@ -26,7 +26,7 @@ Das Ziel ist das **passive Auffrischen** und aktive Verstehen von Modularisierun
 | 📦 Module (`mod`) | Aufteilen von Code in separate Dateien und Ordner. |
 | 🗺️ Pfade (`use`, `super`, `crate`) | Navigieren in der Modulhierarchie und Importieren von Elementen. |
 | 🛡️ Sichtbarkeit (`pub`, `pub(crate)`) | Kapselung von Daten und gezieltes Verbergen von Implementierungsdetails. |
-| 🔗 Cargo & Crates | Einbinden und Nutzen externer Bibliotheken. |
+| 🔗 Packages, Cargo & Crates | Strukturierung in Packages mit Cargo und Einbinden und Nutzen externer Bibliotheken. |
 
 ---
 

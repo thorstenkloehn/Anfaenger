@@ -49,14 +49,14 @@
 - [100 Projekte - Fehlerbehandlung & Collections](./100-projekte-phase3.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase3.md)
 
-# Phase 4: Module, Pfade & Crates
+# Phase 4: Module, Pfade, Packages & Crates
 
 - [Konzepte statt Syntax lernen](./phase4-konzepte.md)
+  - [Packages, Crates & Cargo](./konzept-crates.md)
   - [Module & Sichtbarkeit](./konzept-module.md)
   - [Pfade & Importe](./konzept-pfade.md)
-  - [Crates & Cargo](./konzept-crates.md)
 - [Projektvorschläge Phase 4](./phase4.md)
-- [100 Projekte - Module, Pfade & Crates](./100-projekte-phase4.md)
+- [100 Projekte - Module, Pfade, Packages & Crates](./100-projekte-phase4.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase4.md)
 
 # 🤖 Bonus: KI als Lernpartner
