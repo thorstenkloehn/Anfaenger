@@ -173,198 +173,173 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-fehlerbehandlung-mit-option"><a class="header" href="#-fehlerbehandlung-mit-option">🔍 Fehlerbehandlung mit Option<T></a></h1>
-<p>Stell dir vor, du öffnest eine Schublade in deiner Küche, in der du normalerweise deine Lieblingstasse aufbewahrst. Manchmal steht die Tasse genau dort, wo sie sein soll. Manchmal hat sie aber jemand in die Spülmaschine gestellt, und die Schublade ist komplett leer.</p>
-<p>In vielen klassischen Programmiersprachen ist diese Situation brandgefährlich. Wenn du versuchst, aus einer leeren Schublade zu trinken, stürzt dein gesamtes Programm ab. Rust geht hier einen völlig anderen, revolutionären Weg: Es zwingt dich dazu, vor dem Trinken erst nachzusehen, ob die Tasse überhaupt da ist!</p>
-<p>In diesem Kapitel erfährst du, wie Rust das Fehlen von Werten sicher und elegant löst, ohne dass dein Programm jemals unerwartet abstürzt.</p>
-<hr />
-<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
-<h3 id="das-problem-der-null-pointer-der-milliarden-dollar-fehler"><a class="header" href="#das-problem-der-null-pointer-der-milliarden-dollar-fehler">Das Problem der Null-Pointer (Der Milliarden-Dollar-Fehler)</a></h3>
-<p>In fast allen gängigen Programmiersprachen (wie Java, C++, Python oder JavaScript) gibt es das Konzept von <code>null</code>, <code>nil</code> oder <code>None</code>. Es bedeutet einfach: "Hier ist kein Wert".</p>
-<p>Das Problem daran ist, dass diese Sprachen dir erlauben, eine Variable so zu behandeln, als wäre immer ein Wert da. Wenn du zum Beispiel den Namen eines Benutzers ausgeben willst:</p>
-<pre><code class="language-java">// Java-Beispiel
-String name = benutzer.getName();
-System.out.println(name.toUpperCase());
-</code></pre>
-<p>Wenn <code>benutzer.getName()</code> nun <code>null</code> zurückgibt (weil kein Name eingetragen wurde), stürzt dieses Java-Programm sofort mit einer <code>NullPointerException</code> ab.</p>
-<p>Der Erfinder der Null-Referenz, Tony Hoare, nannte diese Erfindung rückblickend seinen <strong>„Billion Dollar Mistake“</strong> (Milliarden-Dollar-Fehler). Sie ist die Ursache für unzählige Abstürze, Sicherheitslücken und frustrierte Entwickler weltweit.</p>
-<h3 id="wie-rust-das-problem-löst-das-optiont-enum"><a class="header" href="#wie-rust-das-problem-löst-das-optiont-enum">Wie Rust das Problem löst: Das <code>Option&lt;T&gt;</code>-Enum</a></h3>
-<p>Rust macht Schluss mit diesem Chaos. In Rust gibt es das klassische <code>null</code> schlichtweg nicht! Jede normale Variable <strong>muss</strong> immer einen gültigen Wert besitzen.</p>
-<p>Was machen wir aber, wenn ein Wert tatsächlich mal fehlen kann? Zum Beispiel bei:</p>
+                        <h1 id="-fehlerbehandlung-mit-option--werte-die-fehlen-dürfen"><a class="header" href="#-fehlerbehandlung-mit-option--werte-die-fehlen-dürfen">🔍 Fehlerbehandlung mit Option<T> – Werte, die fehlen dürfen</a></h1>
+<p>Im echten Leben begegnen uns ständig optionale Dinge:</p>
 <ul>
-<li>Einer Suche in einer Datenbank, die kein Ergebnis liefert.</li>
-<li>Einem optionalen Feld im Profil eines Nutzers (z.B. die Website-URL).</li>
-<li>Dem Auslesen einer Datei, die vielleicht gar nicht existiert.</li>
+<li>Eine E-Mail-Adresse im Profil eines Benutzers (manche haben keine hinterlegt).</li>
+<li>Die Antwort auf eine Suchanfrage in einer Liste (entweder wir finden das Element oder nicht).</li>
+<li>Ein Schrankfach (entweder es liegt etwas darin oder es ist leer).</li>
 </ul>
-<p>Für diese Fälle hat Rust den Datentyp <code>Option&lt;T&gt;</code> in seiner Standardbibliothek. Es handelt sich dabei um ein ganz normales Enum, das zwei Zustände annehmen kann:</p>
+<p>In traditionellen Programmiersprachen (wie C, Java, Python oder JavaScript) wird das Fehlen eines Wertes durch das Schlüsselwort <code>null</code>, <code>nil</code> oder <code>None</code> ausgedrückt. Das Problem dabei: Der Compiler kann nicht prüfen, ob du vor der Benutzung einer Variable geprüft hast, ob diese <code>null</code> ist. Wenn du es vergisst, stürzt dein Programm zur Laufzeit mit einer <code>NullPointerException</code> (oder Ähnlichem) ab.</p>
+<p>Rust geht einen radikal anderen Weg: <strong>Es gibt kein <code>null</code></strong>. Jede normale Variable <em>muss</em> immer einen gültigen Wert besitzen. Wenn ein Wert jedoch fehlen darf, zwingt Rust dich, diesen in den Typ <code>Option&lt;T&gt;</code> einzupacken.</p>
+<hr />
+<h2 id="-theorie-was-ist-optiont"><a class="header" href="#-theorie-was-ist-optiont">🧠 Theorie: Was ist <code>Option&lt;T&gt;</code>?</a></h2>
+<p><code>Option&lt;T&gt;</code> ist ein ganz normales, in der Standardbibliothek eingebautes Enum. Seine Definition sieht so aus:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>enum Option&lt;T&gt; {
-    Some(T), // Ein Wert vom Typ T ist vorhanden
-    None,    // Kein Wert vorhanden
+    Some(T), // Es existiert ein Wert vom Typ T
+    None,    // Es existiert kein Wert
 }
 <span class="boring">}</span></code></pre></pre>
-<p>Das geniale daran: <code>Option&lt;T&gt;</code> is ein komplett anderer Typ als <code>T</code>. Eine Variable vom Typ <code>Option&lt;String&gt;</code> ist kein <code>String</code>. Du kannst sie nicht wie einen String behandeln, keine String-Methoden darauf aufrufen und sie nicht direkt ausgeben. Sie ist wie ein verschlossenes Paket. Erst wenn du das Paket öffnest, kommst du an den eigentlichen Wert heran.</p>
-<h3 id="option-auspacken-der-sichere-weg-mit-match"><a class="header" href="#option-auspacken-der-sichere-weg-mit-match">Option auspacken: Der sichere Weg mit <code>match</code></a></h3>
-<p>Der gründlichste und sicherste Weg, eine <code>Option</code> auszupacken, ist Pattern Matching mit <code>match</code>. Rust verlangt von dir, dass du lückenlos (<code>exhaustive</code>) sowohl den Fall mit Wert (<code>Some</code>) als auch den Fall ohne Wert (<code>None</code>) behandelst:</p>
+<p>Das Geniale an dieser Konstruktion ist: Eine <code>Option&lt;String&gt;</code> is ein völlig anderer Datentyp als ein normaler <code>String</code>. Du kannst eine <code>Option&lt;String&gt;</code> nicht ausgeben, verlassen, manipulieren oder einer anderen String-Variable zuweisen, ohne sie vorher explizit zu <strong>entpacken</strong>.</p>
+<pre><code>[ Deine Variable ]
+        |
+        v
++-----------------------+
+|        Option         |
+|  +-----------------+  |
+|  |     Some(T)     |  | ---&gt; Enthält den echten Wert
+|  +-----------------+  |
+|          oder         |
+|  +-----------------+  |
+|  |      None       |  | ---&gt; Ist komplett leer
+|  +-----------------+  |
++-----------------------+
+</code></pre>
+<hr />
+<h2 id="-option-auspacken-sicher-vs-unsicher"><a class="header" href="#-option-auspacken-sicher-vs-unsicher">🛠️ Option auspacken: Sicher vs. Unsicher</a></h2>
+<p>Um an den Wert in <code>Some</code> heranzukommen, musst du die Option öffnen. Hierfür gibt es verschiedene Wege:</p>
+<h3 id="1-der-sichere-weg-mit-pattern-matching-match"><a class="header" href="#1-der-sichere-weg-mit-pattern-matching-match">1. Der sichere Weg mit Pattern Matching (<code>match</code>)</a></h3>
+<p>Das ist das mächtigste Werkzeug. Da <code>match</code> in Rust lückenlos sein muss, zwingt dich der Compiler, auch den Fall zu behandeln, in dem kein Wert da ist:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let benutzername: Option&lt;String&gt; = einige_suchfunktion();
+</span>let website_url: Option&lt;String&gt; = Some(String::from("https://rust-lang.org"));
 
-match benutzername {
-    Some(name) =&gt; println!("Willkommen zurück, {}!", name),
-    None =&gt; println!("Willkommen, Gast!"),
+match website_url {
+    Some(url) =&gt; println!("Die Website lautet: {}", url),
+    None =&gt; println!("Keine Website hinterlegt."),
 }
 <span class="boring">}</span></code></pre></pre>
-<p>Wenn du einen der beiden Fälle vergisst, wird der Compiler dein Programm nicht übersetzen. Du bist also absolut sicher vor Abstürzen durch vergessene "Null"-Werte.</p>
-<h3 id="die-schnelle-abkürzung-if-let"><a class="header" href="#die-schnelle-abkürzung-if-let">Die schnelle Abkürzung: <code>if let</code></a></h3>
-<p>Manchmal interessiert dich nur, ob ein Wert da ist, und du willst den leeren Fall einfach ignorieren. Statt eines sperrigen <code>match</code> kannst du dafür das kompakte <code>if let</code> nutzen:</p>
+<h3 id="2-der-kompakte-weg-mit-if-let"><a class="header" href="#2-der-kompakte-weg-mit-if-let">2. Der kompakte Weg mit <code>if let</code></a></h3>
+<p>Wenn dich nur der Fall interessiert, in dem ein Wert existiert, und du den leeren Fall ignorieren möchtest:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let optionales_profilbild: Option&lt;String&gt; = hole_profilbild();
+</span>let optionaler_name: Option&lt;String&gt; = Some(String::from("Thorsten"));
 
-if let Some(bild_url) = optionales_profilbild {
-    println!("Profilbild wird geladen von: {}", bild_url);
+if let Some(name) = optionaler_name {
+    println!("Hallo, {}!", name);
 }
-// Der None-Fall wird hier einfach stillschweigend ignoriert.
 <span class="boring">}</span></code></pre></pre>
-<h3 id="der-ungeduldige-holzhammer-unwrap-und-expect"><a class="header" href="#der-ungeduldige-holzhammer-unwrap-und-expect">Der ungeduldige Holzhammer: <code>unwrap</code> und <code>expect</code></a></h3>
-<p>Es gibt Situationen, in denen du absolut sicher bist, dass ein Paket einen Wert enthält. Oder dir ist es recht, wenn das Programm abstürzt, falls kein Wert da ist (z.B. beim Schreiben von schnellen Prototypen oder Tests).</p>
-<p>Dafür gibt es zwei Methoden:</p>
-<ol>
-<li>
-<p><strong><code>unwrap()</code></strong>: Holt den Wert aus <code>Some</code> heraus. Ist die Option jedoch <code>None</code>, stürzt das Programm sofort mit einem lauten Knall (<em>Panic</em>) ab.</p>
+<h3 id="3-der-bequeme-fallback-mit-unwrap_or"><a class="header" href="#3-der-bequeme-fallback-mit-unwrap_or">3. Der bequeme Fallback mit <code>unwrap_or</code></a></h3>
+<p>Sehr oft möchtest du einen Standardwert verwenden, falls kein Wert existiert:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let wert = optionale_zahl.unwrap(); // Gefährlich!
+</span>let port: Option&lt;u32&gt; = None;
+let aktiver_port = port.unwrap_or(8080); // Wenn None, wird 8080 verwendet
 <span class="boring">}</span></code></pre></pre>
-</li>
-<li>
-<p><strong><code>expect("Fehlermeldung")</code></strong>: Funktioniert genau wie <code>unwrap()</code>, lässt dich aber eine eigene Fehlermeldung angeben, die beim Absturz ausgegeben wird. Das macht die Fehlersuche deutlich einfacher.</p>
+<h3 id="4-der-gefährliche-holzhammer-unwrap-und-expect"><a class="header" href="#4-der-gefährliche-holzhammer-unwrap-und-expect">4. Der gefährliche Holzhammer: <code>unwrap()</code> und <code>expect()</code></a></h3>
+<p>Mit <code>.unwrap()</code> holst du den Wert blind aus dem Paket. Wenn die Option jedoch <code>None</code> ist, <strong>stürzt dein Programm sofort mit einer Panic ab!</strong></p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let konfig = lies_einstellungen().expect("Die Konfigurationsdatei fehlt!");
+</span>let zahl: Option&lt;i32&gt; = None;
+let x = zahl.unwrap(); // ❌ BOOM! Absturz zur Laufzeit!
 <span class="boring">}</span></code></pre></pre>
-</li>
-</ol>
+<p>Mit <code>.expect("Fehlermeldung")</code> verhält es sich genauso, allerdings kannst du eine eigene Fehlermeldung für den Absturz definieren:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let konfig = lies_einstellungen().expect("Einstellungsdatei konnte nicht gelesen werden!");
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>[!WARNING]
-Verwende <code>unwrap()</code> und <code>expect()</code> mit äußerster Vorsicht! In produktivem Code solltest du sie fast nie benutzen. Nutze stattdessen immer <code>match</code>, <code>if let</code> oder Hilfsmethoden wie <code>unwrap_or()</code>, um Standardwerte festzulegen, wenn kein Wert vorhanden ist.</p>
+Verwende <code>unwrap()</code> fast ausschließlich in Tests oder beim schnellen Prototyping. In produktivem Code solltest du immer sichere Alternativen wie <code>match</code> oder <code>unwrap_or</code> bevorzugen.</p>
 </blockquote>
 <hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Versuche, die folgenden Aufgaben theoretisch zu durchdenken. Entwirfe die Datenstrukturen und den Ablauf im Kopf oder auf einem Blatt Papier. Schreibe keinen fertigen Code!</p>
-<h3 id="aufgabe-1-die-artikelsuche-im-online-shop"><a class="header" href="#aufgabe-1-die-artikelsuche-im-online-shop">Aufgabe 1: Die Artikelsuche im Online-Shop</a></h3>
-<ol>
-<li>Du hast eine Liste von Produkten. Jedes Produkt hat eine ID (Zahl) und einen Namen (Text).</li>
-<li>Entwirfe eine Suchfunktion, die nach einer ID sucht. Überlege, welchen Rückgabetyp diese Funktion haben muss, da die ID existieren kann oder eben nicht.</li>
-<li>Skizziere, wie du das Ergebnis dieser Suche mit <code>match</code> auswertest, um dem Kunden entweder den Namen des Produkts anzuzeigen oder eine freundliche Meldung wie „Artikel nicht gefunden“ auszugeben.</li>
-</ol>
-<h3 id="aufgabe-2-der-optionale-rucksack-im-rollenspiel"><a class="header" href="#aufgabe-2-der-optionale-rucksack-im-rollenspiel">Aufgabe 2: Der optionale Rucksack im Rollenspiel</a></h3>
-<ol>
-<li>Ein Held in einem RPG hat einen Ausrüstungsslot für einen Rucksack. Der Rucksack kann angelegt sein oder nicht.</li>
-<li>Wenn ein Rucksack angelegt ist, hat er ein bestimmtes Eigengewicht (Zahl). Wenn kein Rucksack angelegt ist, gibt es kein zusätzliches Gewicht.</li>
-<li>Überlege dir, wie du den Rucksack-Slot als <code>Option</code> darstellst.</li>
-<li>Skizziere eine Logik, die das Gesamtgewicht des Helden berechnet. Nutze dafür <code>if let</code> oder <code>match</code>, um das Gewicht des Rucksacks nur dann zu addieren, wenn er auch wirklich da ist.</li>
-</ol>
-<h3 id="aufgabe-3-standard-lautstärke-für-einen-audio-player"><a class="header" href="#aufgabe-3-standard-lautstärke-für-einen-audio-player">Aufgabe 3: Standard-Lautstärke für einen Audio-Player</a></h3>
-<ol>
-<li>Ein Benutzer kann in einer Musik-App eine Wunsch-Lautstärke von 0 bis 100 einstellen.</li>
-<li>Diese Einstellung ist optional: Hat der Benutzer nichts eingestellt, soll die App auf den Standardwert <code>80</code> zurückgreifen.</li>
-<li>Wie würdest du diese optionale Einstellung in Rust abbilden?</li>
-<li>Welche Methoden bietet Rust auf <code>Option</code>, um elegant an den eingestellten Wert zu kommen oder – falls dieser fehlt – automatisch den Standardwert <code>80</code> zu wählen, ohne das Programm zum Absturz zu bringen? (Tipp: Schau dir in der Dokumentation die Methode <code>unwrap_or</code> an).</li>
-</ol>
+<h2 id="-fortgeschrittene-methoden-auf-option"><a class="header" href="#-fortgeschrittene-methoden-auf-option">🔄 Fortgeschrittene Methoden auf <code>Option</code></a></h2>
+<p>Rust bietet eine Vielzahl nützlicher Methoden, um Optionen zu manipulieren, ohne sie mühsam auspacken zu müssen:</p>
+<div class="table-wrapper"><table><thead><tr><th>Methode</th><th>Beschreibung</th><th>Beispiel</th></tr></thead><tbody>
+<tr><td><code>.is_some()</code></td><td>Gibt <code>true</code> zurück, wenn ein Wert vorhanden ist.</td><td><code>opt.is_some()</code></td></tr>
+<tr><td><code>.is_none()</code></td><td>Gibt <code>true</code> zurück, wenn kein Wert vorhanden ist.</td><td><code>opt.is_none()</code></td></tr>
+<tr><td><code>.map()</code></td><td>Transformiert den inneren Wert, falls vorhanden.</td><td>`opt.map(</td></tr>
+<tr><td><code>.and_then()</code></td><td>Verketter Operationen, die selbst wieder eine Option liefern.</td><td><code>opt.and_then(finde_user)</code></td></tr>
+<tr><td><code>.ok_or()</code></td><td>Wandelt eine <code>Option&lt;T&gt;</code> in ein <code>Result&lt;T, E&gt;</code> um.</td><td><code>opt.ok_or("Fehler")</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="beispiel-für-map"><a class="header" href="#beispiel-für-map">Beispiel für <code>.map()</code></a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let optionale_zahl = Some(5);
+// Wenn ein Wert da ist, verdopple ihn. Wenn None, bleibt es None.
+let verdoppelt = optionale_zahl.map(|n| n * 2); // Some(10)
+<span class="boring">}</span></code></pre></pre>
+<h3 id="beispiel-für-and_then-flachklopfen-von-verschachtelten-optionen"><a class="header" href="#beispiel-für-and_then-flachklopfen-von-verschachtelten-optionen">Beispiel für <code>.and_then()</code> (Flachklopfen von verschachtelten Optionen)</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn hole_user(id: u32) -&gt; Option&lt;User&gt; { ... }
+fn hole_profilbild(user: User) -&gt; Option&lt;String&gt; { ... }
+
+// Ohne and_then hätten wir: Option&lt;Option&lt;String&gt;&gt;
+// Mit and_then wird es flach zu: Option&lt;String&gt;
+let profilbild_url = hole_user(42).and_then(hole_profilbild);
+<span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kleine Programmierideen und Übungen, bei denen <code>Option&lt;T&gt;</code> eine zentrale Rolle spielt:</p>
-<h3 id="datensuche--listen"><a class="header" href="#datensuche--listen">Datensuche &amp; Listen</a></h3>
-<ol>
-<li><strong>Ersthelfer</strong>: Finde das erste Element in einer Liste, das eine bestimmte Bedingung erfüllt.</li>
-<li><strong>Letzter Zeuge</strong>: Finde das letzte Element in einer Liste von Benutzereingaben.</li>
-<li><strong>Mittelwert-Finder</strong>: Berechne den Durchschnitt einer Liste (Achtung: Was, wenn die Liste leer ist?).</li>
-<li><strong>Wörtersuche</strong>: Suche in einem Text nach einem bestimmten Wort und gib dessen Position zurück.</li>
-<li><strong>Nächster Nachbar</strong>: Finde in einer Liste von Zahlen den Wert, der einer Zielzahl am nächsten ist.</li>
-<li><strong>Maximalwert-Detektor</strong>: Ermittle die größte Zahl aus einer Liste (Rückgabe ist leer bei leerer Liste).</li>
-<li><strong>Min-Max-Paar</strong>: Finde gleichzeitig das Minimum und Maximum einer Zahlenreihe.</li>
-<li><strong>Index-Finder</strong>: Finde den Index eines Zeichens in einem String.</li>
-<li><strong>Datenbank-Simulator</strong>: Suche einen User-Datensatz anhand einer E-Mail-Adresse.</li>
-<li><strong>Wörterbuch-Abfrage</strong>: Schlage ein deutsches Wort nach und gib die englische Übersetzung zurück.</li>
-</ol>
-<h3 id="spiele--simulationen"><a class="header" href="#spiele--simulationen">Spiele &amp; Simulationen</a></h3>
-<ol start="11">
-<li><strong>Inventar-Slot</strong>: Ein Gegenstandsslot im Spiel, der leer sein kann.</li>
-<li><strong>Highscore-Vergleicher</strong>: Vergleiche den aktuellen Score mit dem bisherigen Highscore (der anfangs noch nicht existiert).</li>
-<li><strong>Spieler-Ziel</strong>: Speichere den aktuellen Gegner, den ein Spieler anvisiert hat.</li>
-<li><strong>Gilden-Anführer</strong>: Bestimme den Anführer einer Gilde (kann vakant sein).</li>
-<li><strong>Schatzkisten-Inhalt</strong>: Eine Kiste, die beim Öffnen entweder ein Item enthält oder leer ist.</li>
-<li><strong>Nächster Spielzug</strong>: Berechne den besten Zug für eine KI (gibt <code>None</code> zurück, wenn kein Zug mehr möglich ist).</li>
-<li><strong>Würfel-Glück</strong>: Ein Würfelwurf, der unter bestimmten Bedingungen ungültig sein kann.</li>
-<li><strong>Lebenspunkte-Regeneration</strong>: Berechne die Heilung basierend auf einem optionalen Heiltrank-Effekt.</li>
-<li><strong>Waffen-Aufsatz</strong>: Ein Visier auf einem Gewehr, das montiert sein kann oder nicht.</li>
-<li><strong>Aktives Quest</strong>: Verwalte das aktuell vom Spieler verfolgte Abenteuer.</li>
-</ol>
-<h3 id="web--netzwerke"><a class="header" href="#web--netzwerke">Web &amp; Netzwerke</a></h3>
-<ol start="21">
-<li><strong>API-Schlüssel-Prüfer</strong>: Lies den API-Key aus den Headern einer Anfrage aus.</li>
-<li><strong>Profilbild-URL</strong>: Lade ein Standardbild, falls der Nutzer keine eigene Profilbild-URL hinterlegt hat.</li>
-<li><strong>Query-Parameter</strong>: Extrahiere einen optionalen Filter-Parameter (z.B. <code>?sort=desc</code>) aus einer URL.</li>
-<li><strong>Port-Finder</strong>: Bestimme den Netzwerk-Port aus einer Konfiguration (nutze Standardwert <code>8080</code>, falls nicht definiert).</li>
-<li><strong>HTTP-Referer</strong>: Ermittle die Website, von der der Besucher weitergeleitet wurde.</li>
-<li><strong>Wlan-Verbindung</strong>: Speichere den Namen des aktuell verbundenen WLANs.</li>
-<li><strong>Session-Token</strong>: Prüfe, ob ein temporäres Login-Token im Browser des Nutzers vorhanden ist.</li>
-<li><strong>Download-Fortschritt</strong>: Berechne die verbleibende Zeit (ist unbestimmt, solange der Download nicht gestartet ist).</li>
-<li><strong>IP-Adresse</strong>: Ermittle die IP-Adresse des Absenders einer Nachricht.</li>
-<li><strong>Webhook-Payload</strong>: Lies optionale Metadaten aus einem eingehenden Webhook aus.</li>
-</ol>
-<h3 id="text---dateiverarbeitung"><a class="header" href="#text---dateiverarbeitung">Text- &amp; Dateiverarbeitung</a></h3>
-<ol start="31">
-<li><strong>Umgebungsvariable</strong>: Lies die Variable <code>PATH</code> aus dem Betriebssystem aus.</li>
-<li><strong>Dateiendungs-Extraktor</strong>: Hole die Endung einer Datei (z.B. <code>txt</code> aus <code>dokument.txt</code> – Achtung bei Dateien ohne Endung!).</li>
-<li><strong>Zahlen-Parser</strong>: Versuche einen Text in eine Zahl umzuwandeln (gibt <code>None</code> zurück, wenn der Text Buchstaben enthält).</li>
-<li><strong>Konfigurations-Lader</strong>: Suche nach einer Konfigurationsdatei an verschiedenen Standard-Orten.</li>
-<li><strong>Erste Zeile</strong>: Lies die allererste Zeile einer Textdatei aus (was, wenn die Datei leer ist?).</li>
-<li><strong>CSV-Spalten-Parser</strong>: Extrahiere den Wert der 5. Spalte einer CSV-Zeile.</li>
-<li><strong>JSON-Wert</strong>: Suche nach einem optionalen Key in einem verschachtelten JSON-Objekt.</li>
-<li><strong>Kommentar-Zeilen</strong>: Finde den ersten Kommentar im Quellcode.</li>
-<li><strong>Pfad-Vereinfacher</strong>: Hole das übergeordnete Verzeichnis eines Pfades (gibt <code>None</code> bei der Root-Ebene zurück).</li>
-<li><strong>Regex-Captures</strong>: Finde die erste Übereinstimmung einer Regex-Suche.</li>
-</ol>
-<h3 id="system--hardware"><a class="header" href="#system--hardware">System &amp; Hardware</a></h3>
-<ol start="41">
-<li><strong>Akku-Ladestand</strong>: Zeige den Ladestand an (ist <code>None</code>, wenn es sich um einen Desktop-PC ohne Akku handelt).</li>
-<li><strong>Temperatursensor</strong>: Lies den Sensor aus (gibt <code>None</code> zurück, falls der Sensor getrennt wurde).</li>
-<li><strong>Zweit-Monitor</strong>: Ermittle die Auflösung des zweiten angeschlossenen Bildschirms.</li>
-<li><strong>GPS-Koordinaten</strong>: Hole die aktuelle GPS-Position (kann im Tunnel oder bei deaktiviertem GPS fehlen).</li>
-<li><strong>USB-Gerät</strong>: Erkenne das zuletzt eingesteckte USB-Gerät.</li>
-<li><strong>System-Uhrzeit</strong>: Synchronisiere die Uhrzeit mit einem NTP-Server (kann fehlschlagen/fehlen).</li>
-<li><strong>Freier Speicherplatz</strong>: Berechne den freien Speicherplatz auf einem optionalen Netzlaufwerk.</li>
-<li><strong>Lüfterdrehzahl</strong>: Überwache die Drehzahl eines Lüfters (einige Lüfter haben keinen Drehzahlmesser).</li>
-<li><strong>Drucker-Auswahl</strong>: Finde den Standarddrucker im System.</li>
-<li><strong>Hardware-Beschleunigung</strong>: Prüfe, ob eine kompatible Grafikkarte für GPU-Berechnungen vorhanden ist.</li>
-</ol>
+<h2 id="-typische-einsteigerfehler-bei-option"><a class="header" href="#-typische-einsteigerfehler-bei-option">⚠️ Typische Einsteigerfehler bei Option</a></h2>
+<h3 id="fehler-1-direktes-rechnen-mit-option"><a class="header" href="#fehler-1-direktes-rechnen-mit-option">Fehler 1: Direktes Rechnen mit Option</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x: Option&lt;i32&gt; = Some(10);
+let y = x + 5; // ❌ FEHLER! Du kannst eine Option&lt;i32&gt; nicht mit einem i32 addieren.
+<span class="boring">}</span></code></pre></pre>
+<p><em>Lösung:</em> Nutze <code>unwrap_or</code> oder <code>map</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let y = x.unwrap_or(0) + 5;
+<span class="boring">}</span></code></pre></pre>
+<h3 id="fehler-2-verwechseln-mit-result"><a class="header" href="#fehler-2-verwechseln-mit-result">Fehler 2: Verwechseln mit Result</a></h3>
+<p><code>Option</code> hat keine Fehler-Informationen. Es sagt nur "Da ist nichts". Wenn du wissen willst, <em>warum</em> nichts da ist (z. B. Netzwerkfehler vs. Berechtigungsfehler), verwende <code>Result</code>.</p>
 <hr />
-<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--die-artikelsuche"><a class="header" href="#aufgabe-1-leicht--die-artikelsuche">Aufgabe 1: Leicht – Die Artikelsuche</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Suche nach einer Artikel-ID in einer Liste.</li>
+<li><strong>Details:</strong>
 <ul>
-<li><strong>Kein <code>null</code> in Rust</strong>: Rust eliminiert die Gefahr von Null-Pointer-Abstürzen komplett an der Wurzel.</li>
-<li><strong><code>Option&lt;T&gt;</code></strong>: Ist ein Enum mit zwei Varianten: <code>Some(wert)</code> (Wert vorhanden) und <code>None</code> (kein Wert vorhanden).</li>
-<li><strong>Kapselung</strong>: Eine <code>Option&lt;T&gt;</code> ist nicht direkt benutzbar. Du musst sie erst auspacken.</li>
-<li><strong>Sicheres Entpacken</strong>:
-<ul>
-<li>Mit <strong><code>match</code></strong> behandelst du lückenlos alle Fälle.</li>
-<li>Mit <strong><code>if let</code></strong> greifst du schnell auf <code>Some</code> zu und ignorierst <code>None</code>.</li>
-<li>Hilfsmethoden wie <strong><code>unwrap_or(standard)</code></strong> erlauben es dir, sicher einen Standardwert festzulegen.</li>
+<li>Schreibe eine Funktion <code>finde_artikel(id: u32) -&gt; Option&lt;String&gt;</code>.</li>
+<li>Die Funktion soll bei ID <code>1</code> den Namen <code>"Buch"</code> zurückgeben, bei allen anderen IDs <code>None</code>.</li>
+<li>Werte das Ergebnis in <code>main</code> mit einem <code>match</code> aus.</li>
 </ul>
 </li>
-<li><strong>Gefährliches Entpacken</strong>: <strong><code>unwrap()</code></strong> und <strong><code>expect()</code></strong> bringen dein Programm bei <code>None</code> zum Absturz. Benutze sie nur im Notfall oder für Tests!</li>
-</ul>
-<hr />
-<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+</ol>
+<h3 id="aufgabe-2-mittel--der-optionale-rabatt"><a class="header" href="#aufgabe-2-mittel--der-optionale-rabatt">Aufgabe 2: Mittel – Der optionale Rabatt</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Berechne den Endpreis eines Artikels unter Berücksichtigung eines optionalen Rabatts.</li>
+<li><strong>Details:</strong>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values">Das offizielle Rust-Buch: Das Option-Enum</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/error/option_unwrap.html">Rust by Example: Option &amp; unwrap</a></li>
-<li><a href="https://doc.rust-lang.org/std/option/enum.Option.html">Rust-Dokumentation: std::option::Option</a></li>
-<li><a href="./konzept-enums.html">Konzept: Enums</a></li>
-<li><a href="./konzept-matching.html">Konzept: Pattern Matching</a></li>
+<li>Schreibe eine Funktion <code>berechne_preis(basispreis: f64, rabatt: Option&lt;f64&gt;) -&gt; f64</code>.</li>
+<li>Falls der Rabatt <code>Some(wert)</code> ist, ziehe den Wert (in Prozent) ab. Falls er <code>None</code> is, gilt der Basispreis.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Nutze <code>unwrap_or(0.0)</code>, um einen Standard-Rabatt von 0 Prozent zu setzen.</li>
+</ol>
+<h3 id="aufgabe-3-schwer--das-verschachtelte-adressbuch"><a class="header" href="#aufgabe-3-schwer--das-verschachtelte-adressbuch">Aufgabe 3: Schwer – Das verschachtelte Adressbuch</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Suche nach der Postleitzahl eines Benutzers in einer verschachtelten Struktur.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Ein <code>Benutzer</code> hat ein optionales Feld <code>adresse: Option&lt;Adresse&gt;</code>.</li>
+<li>Eine <code>Adresse</code> hat ein optionales Feld <code>postleitzahl: Option&lt;String&gt;</code>.</li>
+<li>Schreibe eine Funktion <code>hole_plz(benutzer: &amp;Benutzer) -&gt; Option&lt;String&gt;</code>, die die PLZ extrahiert.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Nutze <code>.and_then()</code>, um die Optionen sauber zu verketten, ohne mehrfache <code>if let</code>-Verschachtelungen aufzubauen.</li>
+</ol>
+<hr />
+<h2 id="-merkzettel-option"><a class="header" href="#-merkzettel-option">📌 Merkzettel: Option</a></h2>
+<ul>
+<li>Rust hat <strong>kein <code>null</code></strong>.</li>
+<li><code>Option&lt;T&gt;</code> drückt aus, dass ein Wert vorhanden sein kann (<code>Some(T)</code>) oder nicht (<code>None</code>).</li>
+<li>Um an den Wert zu kommen, musst du ihn <strong>sicher entpacken</strong> (z. B. mit <code>match</code>, <code>if let</code> oder <code>unwrap_or</code>).</li>
+<li><code>unwrap()</code> kann das Programm zum Absturz bringen und sollte vermieden werden.</li>
 </ul>
 
                     </main>
@@ -396,22 +371,6 @@ Verwende <code>unwrap()</code> und <code>expect()</code> mit äußerster Vorsich
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

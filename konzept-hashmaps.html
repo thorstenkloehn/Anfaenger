@@ -173,138 +173,166 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-hashmaps-hashmapk-v"><a class="header" href="#-hashmaps-hashmapk-v">🗺️ HashMaps (HashMap&lt;K, V&gt;)</a></h1>
-<p>Stell dir vor, du hast eine riesige Kiste voller Bücher und möchtest ein bestimmtes Buch finden. Wenn die Bücher einfach wild durcheinanderliegen, musst du jedes einzelne Buch in die Hand nehmen und nachsehen. Das entspricht der Suche in einer Liste oder einem Vektor. Wenn du deine Bücher jedoch in ein Regal stellst und sie nach dem Nachnamen des Autors sortierst, findest du sie viel schneller.</p>
-<p>Genau das macht eine <strong>HashMap</strong> in Rust. Sie ist eine Datenstruktur, mit der du Daten nicht über eine einfache Nummer (einen Index) ansprichst, sondern über einen frei wählbaren Schlüssel (den <strong>Key</strong>). Zu jedem Schlüssel gehört genau ein Wert (der <strong>Value</strong>).</p>
-<p>In diesem Kapitel lernst du die fundamentalen Konzepte hinter dieser mächtigen Datenstruktur kennen.</p>
+                        <h1 id="hashmaps-hashmapk-v--schlüssel-wert-speicher-in-rust"><a class="header" href="#hashmaps-hashmapk-v--schlüssel-wert-speicher-in-rust">HashMaps (HashMap&lt;K, V&gt;) – Schlüssel-Wert-Speicher in Rust</a></h1>
+<p>Vektoren (<code>Vec&lt;T&gt;</code>) und Arrays (<code>[T; N]</code>) sind hervorragend geeignet, wenn wir über eine fortlaufende Ganzzahl (den Index <code>0, 1, 2, ...</code>) auf unsere Elemente zugreifen wollen. Manchmal wollen wir unsere Daten jedoch mit einem beliebigen anderen Datentyp verknüpfen.</p>
+<p>Stell dir vor:</p>
+<ul>
+<li>Du möchtest die Telefonnummer einer Person anhand ihres Namens (z. B. <code>"Anna"</code>) suchen.</li>
+<li>Du möchtest den Lagerbestand eines Produkts anhand seiner Artikelnummer (z. B. <code>"ART-9982"</code>) abfragen.</li>
+<li>Du möchtest zählen, wie oft einzelne Wörter in einem Buch vorkommen.</li>
+</ul>
+<p>In all diesen Fällen müssten wir bei einem Vektor die gesamte Liste von vorne bis hinten durchsuchen, um den passenden Eintrag zu finden. Bei einer Million Einträgen würde das viel zu lange dauern.</p>
+<p>Die <strong><code>HashMap&lt;K, V&gt;</code></strong> löst dieses Problem. Sie speichert Paare aus einem <strong>Schlüssel (Key)</strong> vom Typ <code>K</code> und einem <strong>Wert (Value)</strong> vom Typ <code>V</code>. Über den Schlüssel kannst du in konstanter Zeit auf den zugeordneten Wert zugreifen.</p>
 <hr />
-<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
-<h3 id="wie-schlüssel-wert-zuordnungen-funktionieren"><a class="header" href="#wie-schlüssel-wert-zuordnungen-funktionieren">Wie Schlüssel-Wert-Zuordnungen funktionieren</a></h3>
-<p>Eine HashMap ordnet einem eindeutigen Schlüssel (Key) einen bestimmten Wert (Value) zu. In Rust schreiben wir das als <code>HashMap&lt;K, V&gt;</code>, wobei <code>K</code> für den Typ des Schlüssels und <code>V</code> für den Typ des Wertes steht.</p>
-<p>Aber wie schafft es der Computer, bei Millionen von Einträgen in Bruchteilen einer Sekunde genau den richtigen Wert zu finden?</p>
-<p>Das Geheimnis liegt im <strong>Hashing</strong>:</p>
+<h2 id="-speicher-theorie-wie-funktioniert-eine-hashmap"><a class="header" href="#-speicher-theorie-wie-funktioniert-eine-hashmap">🧠 Speicher-Theorie: Wie funktioniert eine HashMap?</a></h2>
+<p>Um zu verstehen, warum HashMaps so extrem schnell sind und warum sie manche Einschränkungen haben, müssen wir uns ihre Funktionsweise ansehen.</p>
+<h3 id="was-ist-hashing"><a class="header" href="#was-ist-hashing">Was ist Hashing?</a></h3>
+<p>Das Wort "Hash" bedeutet im Englischen "zerhacken". Eine <strong>Hash-Funktion</strong> ist ein mathematischer Algorithmus. Er nimmt einen beliebigen Schlüssel (z. B. einen String <code>"Anna"</code>) und berechnet daraus eine Zahl (den sogenannten Hash-Wert).</p>
+<p>Wenn du ein Element in eine HashMap einfügst:</p>
 <ol>
-<li><strong>Der Hash-Wert:</strong> Wenn du einen Schlüssel in die HashMap legst (z. B. das Wort <code>"Apfel"</code>), schickt die HashMap diesen Schlüssel durch eine sogenannte <em>Hash-Funktion</em>. Diese mathematische Funktion berechnet aus dem Schlüssel eine große Zahl – den sogenannten Hash.</li>
-<li><strong>Die Speicheradresse (Bucket):</strong> Diese Zahl wird verwendet, um einen Speicherplatz (einen sogenannten <em>Bucket</em> oder Eimer) in einem internen Array zu bestimmen. Dort wird das Paar aus Schlüssel und Wert abgelegt.</li>
-<li><strong>Kollisionen:</strong> Da es unendlich viele mögliche Schlüssel, aber nur begrenzt Speicherplätze gibt, kann es vorkommen, dass zwei unterschiedliche Schlüssel denselben Speicherplatz zugewiesen bekommen. Das nennt man eine <em>Kollision</em>. HashMaps haben integrierte Mechanismen (wie das Verketten von Elementen oder das Weitersuchen im Speicher), um Kollisionen im Hintergrund aufzulösen. Für dich als Entwickler passiert das völlig unsichtbar.</li>
+<li><strong>Hash berechnen:</strong> Die HashMap schickt deinen Schlüssel durch ihre Hash-Funktion.</li>
+<li><strong>Index bestimmen:</strong> Aus der berechneten Zahl bestimmt die HashMap einen Index (einen sogenannten <em>Bucket</em> oder Eimer) in einem internen, festen Array.</li>
+<li><strong>Abspeichern:</strong> Das Paar aus Schlüssel und Wert wird an diesem Index abgelegt.</li>
 </ol>
-<h3 id="die-geschwindigkeit-komplexität"><a class="header" href="#die-geschwindigkeit-komplexität">Die Geschwindigkeit (Komplexität)</a></h3>
-<p>Warum benutzen wir nicht immer Vektoren? Vektoren sind super, wenn wir über Indizes (<code>0, 1, 2, ...</code>) auf Daten zugreifen. Müssen wir aber nach einem bestimmten Element anhand seines Namens suchen, müssen wir im schlimmsten Fall den gesamten Vektor von vorne bis hinten durchsuchen.</p>
+<p>Wenn du den Wert später wieder suchst, macht die HashMap genau dasselbe: Sie jagt den Schlüssel erneut durch die Hash-Funktion, erhält denselben Index und liest den Wert direkt aus. Es ist keine Schleife und kein Suchen erforderlich!</p>
+<pre><code>Schlüssel (Key)      Hash-Funktion       Internes Array (Buckets)
++-------------+     +---------------+     +-----------------------+
+|  "Anna"     | --&gt; | SIP-Hash      | --&gt; | Index 42 | Wert: 95   |
++-------------+     +---------------+     +-----------------------+
+</code></pre>
+<h3 id="die-zugriffsgeschwindigkeit-o1"><a class="header" href="#die-zugriffsgeschwindigkeit-o1">Die Zugriffsgeschwindigkeit (O(1))</a></h3>
+<p>Da der Speicherplatz direkt berechnet wird, ist der Zugriff auf eine HashMap im Durchschnitt unabhängig von der Anzahl der gespeicherten Elemente:</p>
 <ul>
-<li><strong>Durchschnittliche Laufzeit $O(1)$ (Konstante Zeit):</strong> Sowohl das Einfügen eines neuen Paares als auch das Suchen nach einem Schlüssel dauert im Durchschnitt immer gleich lang. Es ist völlig egal, ob deine HashMap 10 Einträge oder 10.000.000 Einträge hat – der Zugriff erfolgt fast augenblicklich. Die Hash-Funktion berechnet den Index direkt, ohne suchen zu müssen.</li>
-<li><strong>Schlechtester Fall (Worst Case) $O(n)$:</strong> Falls extrem viele Kollisionen auftreten (weil die Hash-Funktion schlecht arbeitet oder die Schlüssel absichtlich so gewählt wurden, dass sie kollidieren), kann die Suche auf eine lineare Suche absinken. Rust verwendet standardmäßig eine kryptografisch sichere Hash-Funktion (SipHash 1-3), um sich gegen solche Angriffe (DoS-Attacken) zu schützen. Das macht sie minimal langsamer als ungesicherte HashMaps, dafür aber extrem sicher.</li>
+<li><strong>Laufzeit $O(1)$ (Konstante Zeit):</strong> Das Suchen, Einfügen und Löschen dauert bei 10 Einträgen exakt genauso lang wie bei 10.000.000 Einträgen. Das macht HashMaps zur idealen Wahl für große Datenmengen, die schnell durchsucht werden müssen.</li>
 </ul>
-<h3 id="ownership-und-keys-wer-besitzt-die-daten"><a class="header" href="#ownership-und-keys-wer-besitzt-die-daten">Ownership und Keys: Wer besitzt die Daten?</a></h3>
-<p>Rusts strenges Ownership-System gilt natürlich auch für HashMaps. Wenn du ein Schlüssel-Wert-Paar in eine HashMap einfügst, müssen wir uns fragen: Was passiert mit dem Besitz der Daten?</p>
-<p>Das hängt vom Typ ab:</p>
+<h3 id="kollisionen-und-sicherheit"><a class="header" href="#kollisionen-und-sicherheit">Kollisionen und Sicherheit</a></h3>
+<p>Manchmal kann es vorkommen, dass zwei völlig unterschiedliche Schlüssel durch die Hash-Funktion denselben Index zugewiesen bekommen. Das nennt man eine <strong>Kollision</strong>.</p>
 <ul>
-<li><strong>Copy-Typen:</strong> Wenn dein Schlüssel oder Wert einen Typ hat, der das <code>Copy</code>-Trait implementiert (wie <code>i32</code>, <code>u32</code>, <code>f64</code>, <code>char</code>), werden die Daten einfach in die HashMap kopiert. Die ursprünglichen Variablen bleiben weiterhin nutzbar.</li>
-<li><strong>Verschobene Typen (Moved Types):</strong> Wenn die Typen <code>Copy</code> nicht implementieren (wie <code>String</code> oder <code>Vec</code>), wechselt der Besitz (Ownership) zur HashMap. Die HashMap wird zum alleinigen Eigentümer dieser Daten. Wenn du versuchst, die ursprüngliche Variable danach weiterzuverwenden, wird der Compiler einen Fehler melden.</li>
-<li><strong>Referenzen:</strong> Du kannst auch Referenzen (z. B. <code>&amp;str</code>) als Schlüssel verwenden. Das erfordert jedoch, dass du dich mit Lifetimes (Lebensdauern) beschäftigst, da die HashMap nicht länger leben darf als die Daten, auf die die Referenzen zeigen. Für den Anfang ist es meistens einfacher, der HashMap den Besitz (z. B. via <code>String</code>) zu übergeben.</li>
+<li>Rust-HashMaps lösen Kollisionen im Hintergrund automatisch auf (mittels einer Technik namens <em>Robin Hood Hashing</em>).</li>
+<li><strong>DoS-Schutz:</strong> In manchen Sprachen können Angreifer durch geschickt gewählte Eingaben absichtlich extrem viele Kollisionen erzwingen, was die Datenbank extrem verlangsamt und zum Absturz bringt. Um das zu verhindern, nutzt Rust standardmäßig die kryptografisch sichere Hash-Funktion <strong>SipHash 1-3</strong>. Das macht sie minimal langsamer als unsichere HashMaps, aber absolut resistent gegen solche Angriffe.</li>
 </ul>
-<h3 id="die-entry-api-effizienz-und-eleganz"><a class="header" href="#die-entry-api-effizienz-und-eleganz">Die Entry-API: Effizienz und Eleganz</a></h3>
-<p>Stell dir vor, du möchtest zählen, wie oft Wörter in einem Text vorkommen.
-Ein naiver Ansatz wäre:</p>
+<hr />
+<h2 id="-hashmaps-erstellen-und-benutzen"><a class="header" href="#-hashmaps-erstellen-und-benutzen">🛠️ HashMaps erstellen und benutzen</a></h2>
+<p>Da HashMaps im Gegensatz zu Vektoren nicht ganz so häufig im Standard-Programmablauf gebraucht werden, sind sie nicht standardmäßig im globalen Namensraum verfügbar. Du musst sie zuerst importieren:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap; // WICHTIG! Ohne diesen Import kompiliert der Code nicht.
+<span class="boring">}</span></code></pre></pre>
+<h3 id="1-eine-neue-hashmap-erstellen"><a class="header" href="#1-eine-neue-hashmap-erstellen">1. Eine neue HashMap erstellen</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut telefonbuch: HashMap&lt;String, String&gt; = HashMap::new();
+<span class="boring">}</span></code></pre></pre>
+<h3 id="2-elemente-hinzufügen-insert"><a class="header" href="#2-elemente-hinzufügen-insert">2. Elemente hinzufügen (<code>insert</code>)</a></h3>
+<p>Mit <code>.insert(key, value)</code> fügst du Einträge hinzu. Wenn der Schlüssel bereits existiert, wird der alte Wert überschrieben und von der Methode zurückgegeben (verpackt in <code>Some(alter_wert)</code>):</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>telefonbuch.insert(String::from("Anna"), String::from("0172-123"));
+telefonbuch.insert(String::from("Bob"), String::from("0173-987"));
+<span class="boring">}</span></code></pre></pre>
+<h3 id="3-werte-sicher-auslesen-get"><a class="header" href="#3-werte-sicher-auslesen-get">3. Werte sicher auslesen (<code>get</code>)</a></h3>
+<p>Die Methode <code>.get()</code> nimmt eine Referenz auf den Schlüssel und gibt eine <code>Option&lt;&amp;V&gt;</code> zurück. So verhinderst du Abstürze, falls der Schlüssel nicht existiert:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match telefonbuch.get("Anna") {
+    Some(nummer) =&gt; println!("Annas Nummer: {}", nummer),
+    None =&gt; println!("Kein Eintrag für Anna gefunden!"),
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="4-einträge-entfernen-remove"><a class="header" href="#4-einträge-entfernen-remove">4. Einträge entfernen (<code>remove</code>)</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>telefonbuch.remove("Bob"); // Löscht Bob aus der HashMap
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h2 id="-die-entry-api-der-geheime-star-von-rusts-hashmap"><a class="header" href="#-die-entry-api-der-geheime-star-von-rusts-hashmap">🔑 Die Entry-API: Der geheime Star von Rusts HashMap</a></h2>
+<p>Ein extrem häufiges Szenario beim Programmieren ist:</p>
 <ol>
-<li>Prüfe, ob das Wort schon in der HashMap existiert.</li>
-<li>Wenn ja: Hol den aktuellen Zählerwert, addiere 1 und speichere ihn wieder ab.</li>
-<li>Wenn nein: Füge das Wort mit dem Wert 1 ein.</li>
+<li>Prüfe, ob ein Schlüssel in der Map existiert.</li>
+<li>Falls nein: Füge ihn mit einem Standardwert hinzu.</li>
+<li>Falls ja (oder danach): Ändere den Wert (z. B. addiere 1).</li>
 </ol>
-<p>Das Problem dabei: Der Computer muss zweimal in der HashMap nachschlagen (einmal zum Prüfen, einmal zum Einfügen/Aktualisieren). Das ist ineffizient und unschön zu schreiben.</p>
-<p>Hier kommt die <strong>Entry-API</strong> von Rust ins Spiel. Mit ihr kannst du in einem einzigen Schritt prüfen und manipulieren.</p>
+<p>In vielen Programmiersprachen musst du dafür mehrmals in der Map nachschlagen, was ineffizient ist. Rust bietet dafür die <strong>Entry-API</strong>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut zaehler: HashMap&lt;String, i32&gt; = HashMap::new();
+let name = String::from("Anna");
+
+// entry() sucht nach dem Schlüssel.
+// or_insert() fügt den Wert 0 ein, falls der Schlüssel FEHLT.
+// Am Ende erhalten wir in jedem Fall eine veränderliche Referenz (&amp;mut) auf den Wert!
+let punkte_referenz = zaehler.entry(name).or_insert(0);
+
+// Jetzt können wir den Wert direkt im Speicher verändern:
+*punkte_referenz += 10;
+<span class="boring">}</span></code></pre></pre>
+<p>Dieses Muster wird besonders häufig beim Zählen von Elementen (z. B. Wörtern in einem Text) verwendet.</p>
+<hr />
+<h2 id="-ownership-in-hashmaps"><a class="header" href="#-ownership-in-hashmaps">⚠️ Ownership in HashMaps</a></h2>
+<p>Beim Arbeiten mit HashMaps musst du gut aufpassen, wer der Besitzer (Owner) der Schlüssel und Werte ist.</p>
 <ul>
-<li>Die Methode <code>entry(key)</code> gibt ein <code>Entry</code>-Enum zurück, das entweder <code>Occupied</code> (belegt) oder <code>Vacant</code> (frei) darstellt.</li>
-<li>Mit Methoden wie <code>.or_insert(default_value)</code> kannst du sagen: "Falls der Schlüssel noch nicht da ist, füge diesen Standardwert ein."</li>
-<li>Das Geniale daran: Diese Methode gibt eine veränderliche Referenz (<code>&amp;mut V</code>) auf den Wert in der HashMap zurück. Du kannst diesen Wert direkt im Anschluss manipulieren (z. B. erhöhen), unabhängig davon, ob er gerade erst eingefügt wurde oder schon da war.</li>
+<li><strong>Verschiebung (Move):</strong> Wenn du Typen in die HashMap einfügst, die das <code>Copy</code>-Trait nicht implementieren (z. B. <code>String</code> oder <code>Vec</code>), übernimmt die HashMap die Ownership an diesen Daten. Die ursprünglichen Variablen sind danach ungültig.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let key = String::from("Benutzer123");
+let val = String::from("Online");
+
+let mut status = HashMap::new();
+status.insert(key, val);
+
+// println!("{}", key); // ❌ FEHLER! key wurde in die HashMap verschoben!
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><strong>Lösung:</strong> Wenn du die Schlüssel danach noch brauchst, musst du sie entweder klonen (<code>.clone()</code>) oder mit Referenzen arbeiten (was jedoch fortgeschrittene Lifetimes erfordert).</li>
 </ul>
 <hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Versuche, die folgenden Aufgaben selbstständig zu lösen. Verwende dabei die Konzepte von Ownership und der Entry-API.</p>
-<h3 id="1-der-wort-häufigkeitszähler"><a class="header" href="#1-der-wort-häufigkeitszähler">1. Der Wort-Häufigkeitszähler</a></h3>
-<p>Schreibe ein Programm, das einen längeren Text analysiert und zählt, wie oft jedes Wort darin vorkommt.</p>
-<ul>
-<li><strong>Anforderung:</strong> Verwende die Entry-API, um die Zählerstände der Wörter effizient zu erhöhen.</li>
-<li><strong>Tipp:</strong> Achte darauf, Satzzeichen zu entfernen und Wörter in Kleinbuchstaben umzuwandeln, damit "Apfel!" und "apfel" als das gleiche Wort gezählt werden.</li>
-</ul>
-<h3 id="2-das-telefonbuch-mit-gruppen"><a class="header" href="#2-das-telefonbuch-mit-gruppen">2. Das Telefonbuch mit Gruppen</a></h3>
-<p>Implementiere ein einfaches Telefonbuch, bei dem Kontakte in Gruppen (z. B. "Familie", "Freunde", "Arbeit") organisiert sind.</p>
-<ul>
-<li><strong>Anforderung:</strong> Jeder Gruppe soll eine Liste von Namen zugeordnet sein.</li>
-<li><strong>Tipp:</strong> Überlege gut, welche Typen du für <code>K</code> und <code>V</code> wählen musst. Wie kannst du verhindern, dass beim Hinzufügen eines Kontakts eine bereits bestehende Gruppe überschrieben wird?</li>
-</ul>
-<h3 id="3-datenbank-cache-simulation"><a class="header" href="#3-datenbank-cache-simulation">3. Datenbank-Cache-Simulation</a></h3>
-<p>Simuliere ein System, das teure Datenbankabfragen in einer HashMap zwischenspeichert (cacht).</p>
-<ul>
-<li><strong>Anforderung:</strong> Wenn ein Benutzer nach Daten fragt, prüfe zuerst, ob diese im Cache (der HashMap) liegen. Wenn ja, gib sie direkt zurück. Wenn nein, simuliere eine "teure Abfrage" (z. B. durch eine Ausgabe auf der Konsole und kurzes Warten), speichere das Ergebnis im Cache ab und gib es zurück.</li>
-</ul>
-<hr />
-<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kurze Projektideen, mit denen du dein Wissen über HashMaps festigen kannst:</p>
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--der-vokabeltrainer"><a class="header" href="#aufgabe-1-leicht--der-vokabeltrainer">Aufgabe 1: Leicht – Der Vokabeltrainer</a></h3>
 <ol>
-<li><strong>Vokabeltrainer:</strong> Ein Programm, das Fremdwörter und ihre Übersetzungen speichert und abfragt.</li>
-<li><strong>Noten-Manager:</strong> Zuordnung von Schülernamen zu einer Liste ihrer Schulnoten.</li>
-<li><strong>Warenkorb:</strong> Speicherung von Produkt-IDs und deren Anzahl in einem Onlineshop.</li>
-<li><strong>IP-Länder-Lookup:</strong> Zuordnung von IP-Adressen zu Herkunftsländern.</li>
-<li><strong>DNS-Simulator:</strong> Zuordnung von Domainnamen zu IP-Adressen.</li>
-<li><strong>Mitarbeiter-Verzeichnis:</strong> Verwaltung von Personalnummern und Mitarbeiterdetails.</li>
-<li><strong>Länder-Hauptstadt-Quiz:</strong> Ein interaktives Quiz, das Hauptstädte abfragt.</li>
-<li><strong>Plagiat-Scanner:</strong> Zählen von gleichen Sätzen in zwei Textdokumenten.</li>
-<li><strong>Social-Media-Follower:</strong> Zuordnung von Nutzernamen zu Listen ihrer Follower.</li>
-<li><strong>Paket-Tracking:</strong> Zuordnung von Tracking-IDs zu ihrem aktuellen Lieferstatus.</li>
-<li><strong>Chatroom-Verwaltung:</strong> Zuordnung von Raum-IDs zu den darin aktiven Benutzern.</li>
-<li><strong>Inventar-System:</strong> Zuordnung von Gegenständen in einem Spiel zu ihrer Anzahl im Rucksack.</li>
-<li><strong>Highscore-Tabelle:</strong> Speicherung von Spielernamen und ihren Höchstpunktzahlen.</li>
-<li><strong>Geburtstagskalender:</strong> Zuordnung von Monaten zu den Geburtstagen in diesem Monat.</li>
-<li><strong>Koffeingehalt-Rechner:</strong> Zuordnung von Getränken zu ihrem Koffeingehalt pro 100 ml.</li>
-<li><strong>Morsecodierer:</strong> Zuordnung von Buchstaben zu Morsezeichen und umgekehrt.</li>
-<li><strong>Menükarte:</strong> Zuordnung von Gerichten zu ihren Preisen.</li>
-<li><strong>Lagerbestand-Warnung:</strong> Prüfung, welche Produkte im Warenlager unter einen Mindestbestand fallen.</li>
-<li><strong>Umfrage-Auswerter:</strong> Auszählung von Stimmen bei einer Multiple-Choice-Umfrage.</li>
-<li><strong>Rezept-Zutaten-Skalierer:</strong> Zuordnung von Zutaten zu Mengen, die je nach Personenanzahl hochgerechnet werden.</li>
-<li><strong>Bibliotheks-System:</strong> Zuordnung von Buch-ISBNs zu ihrem Verleihstatus (verliehen an Person X).</li>
-<li><strong>Buslinien-Planer:</strong> Zuordnung von Buslinien-Nummern zu einer Liste ihrer Haltestellen.</li>
-<li><strong>Fehlercode-Lexikon:</strong> Zuordnung von HTTP-Statuscodes (z. B. 404) zu ihren Bedeutungen.</li>
-<li><strong>RGB-Farben-Sucher:</strong> Zuordnung von Farbnamen (z. B. "Red") zu ihren RGB-Werten.</li>
-<li><strong>Währungsrechner:</strong> Zuordnung von Währungskürzeln (EUR, USD) zu ihren aktuellen Wechselkursen.</li>
-<li><strong>Haushaltsbuch:</strong> Zuordnung von Ausgabenkategorien zu den monatlichen Gesamtausgaben.</li>
-<li><strong>Passwort-Manager (vereinfacht):</strong> Zuordnung von Webseiten zu verschlüsselten Passwörtern.</li>
-<li><strong>Buchstaben-Häufigkeitsanalyse:</strong> Zählen, wie oft jeder einzelne Buchstabe in einem Text vorkommt.</li>
-<li><strong>Veranstaltungs-Planer:</strong> Zuordnung von Daten zu Events, die an diesem Tag stattfinden.</li>
-<li><strong>Flugplan-Anzeiger:</strong> Zuordnung von Flugnummern zu Abflugzeiten und Gates.</li>
-<li><strong>Lieblingsfilme-Liste:</strong> Zuordnung von Genres zu den persönlichen Top-Filmen.</li>
-<li><strong>Zutaten-Allergie-Checker:</strong> Zuordnung von Lebensmitteln zu enthaltenen Allergenen.</li>
-<li><strong>Musik-Playlist-Manager:</strong> Zuordnung von Playlist-Namen zu einer Liste von Songs.</li>
-<li><strong>Server-Status-Monitor:</strong> Zuordnung von Servernamen zu ihren aktuellen Liveness-Status (Online/Offline).</li>
-<li><strong>Projekt-Task-Board:</strong> Zuordnung von Projektmitgliedern zu ihren zugewiesenen Aufgaben.</li>
-<li><strong>Paketdienst-Preise:</strong> Zuordnung von Gewichtsklassen zu Versandkosten.</li>
-<li><strong>Kfz-Kennzeichen-Finder:</strong> Zuordnung von Städte-Kürzeln (z. B. "HH") zu den Städtenamen.</li>
-<li><strong>Schachturnier-Ergebnisse:</strong> Zuordnung von Spielern zu ihren erzielten Punkten im Turnier.</li>
-<li><strong>Fitness-Tracker:</strong> Zuordnung von Wochentagen zu verbrannten Kalorien.</li>
-<li><strong>Smart-Home-Status:</strong> Zuordnung von Räumen zu den dort aktiven Smart-Geräten.</li>
-<li><strong>Game-Controller-Mapping:</strong> Zuordnung von Tasten zu Aktionen im Spiel.</li>
-<li><strong>Kundenkarten-Punkte:</strong> Zuordnung von Kundennummern zu ihren gesammelten Treuepunkten.</li>
-<li><strong>Wetter-Station-Historie:</strong> Zuordnung von Uhrzeiten zu Temperaturmesswerten.</li>
-<li><strong>Programmiersprachen-Finder:</strong> Zuordnung von Dateiendungen (.rs, .py, .js) zu den Sprachen.</li>
-<li><strong>Steuerrechner:</strong> Zuordnung von Einkommensstufen zu Steuersätzen.</li>
-<li><strong>Emoji-Tastatur:</strong> Zuordnung von Text-Shortcodes (z. B. ":smile:") zu Emojis.</li>
-<li><strong>Wegbeschreibungs-Netzwerk:</strong> Zuordnung von Städten zu ihren Nachbarstädten und Entfernungen.</li>
-<li><strong>Rechte-Verwaltung:</strong> Zuordnung von Benutzerrollen (Admin, User) zu ihren Berechtigungen.</li>
-<li><strong>Wort-Anagramm-Finder:</strong> Gruppierung von Wörtern in einer HashMap, die dieselben Buchstaben enthalten.</li>
-<li><strong>System-Konfiguration:</strong> Zuordnung von Einstellungs-Schlüsseln (z. B. "theme") zu ihren Werten.</li>
+<li><strong>Ziel:</strong> Erstelle eine einfache Zuordnung von deutschen Wörtern zu ihren englischen Übersetzungen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Erstelle eine HashMap.</li>
+<li>Füge drei Vokabelpaare hinzu (z. B. "Hund" -&gt; "dog").</li>
+<li>Frage den Benutzer über die Konsole nach einem deutschen Wort und gib die englische Übersetzung aus. Falls das Wort nicht existiert, gib eine Fehlermeldung aus.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Vergiss nicht, <code>use std::collections::HashMap;</code> ganz oben in die Datei zu schreiben!</li>
+</ol>
+<h3 id="aufgabe-2-mittel--der-wortzähler"><a class="header" href="#aufgabe-2-mittel--der-wortzähler">Aufgabe 2: Mittel – Der Wortzähler</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Zähle, wie oft jedes Wort in einer Liste vorkommt.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Gegeben ist eine Liste von Wörtern (z. B. <code>vec!["Apfel", "Birne", "Apfel", "Banane", "Birne", "Apfel"]</code>).</li>
+<li>Verwende eine HashMap, um die Häufigkeit jedes Worts zu zählen.</li>
+<li>Nutze die Entry-API (<code>.entry().or_insert()</code>), um den Zähler im Erfolgsfall zu erhöhen.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Der Schlüssel ist der Name des Obstes (<code>String</code> oder <code>&amp;str</code>), der Wert ist die Anzahl (<code>i32</code> oder <code>u32</code>).</li>
+</ol>
+<h3 id="aufgabe-3-schwer--der-in-memory-datenbank-cache"><a class="header" href="#aufgabe-3-schwer--der-in-memory-datenbank-cache">Aufgabe 3: Schwer – Der In-Memory-Datenbank-Cache</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Simuliere einen Cache für langsame Berechnungen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Schreibe eine Struktur <code>Cache</code> mit einer HashMap.</li>
+<li>Implementiere eine Methode <code>hole_quadrat(&amp;mut self, zahl: u32) -&gt; u32</code>.</li>
+<li>Die Methode soll prüfen, ob das Quadrat der Zahl bereits in der HashMap berechnet wurde. Wenn ja, gib es direkt zurück.</li>
+<li>Wenn nein, simuliere eine "teure Berechnung" (z. B. durch eine Konsolenausgabe "Berechne..."), speichere das Ergebnis in der HashMap ab und gib es zurück.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Die Methode benötigt <code>&amp;mut self</code>, da sie neue Werte in die HashMap schreiben muss, falls diese noch nicht existieren.</li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<h2 id="-merkzettel-hashmaps"><a class="header" href="#-merkzettel-hashmaps">📌 Merkzettel: HashMaps</a></h2>
 <ul>
-<li><strong>Key-Value:</strong> Eine <code>HashMap&lt;K, V&gt;</code> speichert Daten als Schlüssel-Wert-Paare.</li>
-<li><strong>Schnelligkeit:</strong> Suchen, Einfügen und Löschen funktionieren im Durchschnitt in <strong>konstanter Zeit $O(1)$</strong>, da die Position über eine Hash-Funktion berechnet wird.</li>
-<li><strong>Ownership:</strong> Werte, die kein <code>Copy</code> implementieren, werden beim Einfügen in die HashMap verschoben (Moved).</li>
-<li><strong>Entry-API:</strong> Ermöglicht hocheffiziente und lesbare Modifikationen von Werten in einem einzigen Schritt, ohne doppeltes Suchen.</li>
-</ul>
-<hr />
-<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
-<ul>
-<li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Offizielles Rust-Buch (Kapitel über HashMaps)</a></li>
-<li><a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html">Rust Standardbibliothek: Dokumentation für std::collections::HashMap</a></li>
+<li>HashMaps speichern Daten als <strong>Schlüssel-Wert-Paare</strong>.</li>
+<li>Der Zugriff ist extrem schnell (durchschnittliche Laufzeit <strong>$O(1)$</strong>).</li>
+<li>Sie erfordern den Import mit <strong><code>use std::collections::HashMap;</code></strong>.</li>
+<li>Werte ohne <code>Copy</code> werden beim Einfügen in die HashMap <strong>verschoben (Moved)</strong>.</li>
+<li>Die <strong>Entry-API</strong> ist der eleganteste Weg, um Werte zu prüfen und gleichzeitig zu aktualisieren.</li>
 </ul>
 
                     </main>
@@ -336,22 +364,6 @@ Ein naiver Ansatz wäre:</p>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

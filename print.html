@@ -16213,1141 +16213,937 @@ begruessung "Linux-Fan"
 <p><strong>Hinweis für den Lernpfad:</strong>
 Wir können nun eine dieser Ideen auswählen und daraus eine Schritt-für-Schritt-Lektion machen. Dabei werde ich dir keine fertigen Skripte vorgeben, sondern dir immer Fragen stellen, dir die benötigten Bash-Befehle erklären und dich zum Ziel führen. Welche Idee wollen wir als Erstes angehen?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="konzepte-statt-syntax-lernen-phase-3"><a class="header" href="#konzepte-statt-syntax-lernen-phase-3">Konzepte statt Syntax lernen (Phase 3)</a></h1>
-<p>Beim Programmierenlernen in Rust ist es entscheidend, zunächst die zugrunde liegenden Konzepte zu verstehen, anstatt nur die Syntax auswendig zu lernen. In Phase 3 dreht sich alles um <strong>sicheren Umgang mit Fehlern</strong> und <strong>dynamische Datenspeicherung</strong>.</p>
+<p>Willkommen im detailliertesten Theorie- und Praxis-Leitfaden für Phase 3 deiner Rust-Reise!</p>
+<p>Wenn du als Programmieranfänger von anderen Sprachen (wie Python, JavaScript oder Java) kommst oder komplett neu in die Softwareentwicklung einsteigst, wirst du in dieser Phase feststellen, dass Rust einige Dinge völlig anders macht. In Phase 1 und 2 ging es um die reine Struktur deines Programms (Variablen, Structs, Enums). Jetzt in Phase 3 lernen wir, wie dein Programm mit der unvorhersehbaren Realität interagiert.</p>
+<p>Dieser Leitfaden ist so aufgebaut, dass du jedes Konzept bis ins kleinste Detail verstehst. Wir betrachten die Theorie, die Hardware-Ebene (was im RAM-Speicher passiert), Analogien aus dem echten Leben und die praktischen Stolpersteine.</p>
 <hr />
-<h2 id="-1-fehlerbehandlung-mit-resultt-e"><a class="header" href="#-1-fehlerbehandlung-mit-resultt-e">⚠️ 1. Fehlerbehandlung mit Result&lt;T, E&gt;</a></h2>
-<h3 id="die-analogie-das-paket-tracking-system"><a class="header" href="#die-analogie-das-paket-tracking-system">Die Analogie: Das Paket-Tracking-System</a></h3>
-<p>Stell dir vor, du bestellst online ein Paket. Das Logistikunternehmen gibt dir immer eine klare Rückmeldung: Entweder ist dein Paket angekommen (<code>Ok</code>) oder es gab ein Problem mit einer Fehlerbeschreibung (<code>Err</code>). Du kannst nicht einfach davon ausgehen, dass das Paket da ist – du musst immer prüfen!</p>
-<p>Genau das macht <code>Result&lt;T, E&gt;</code> in Rust. Eine Funktion, die fehlschlagen kann, gibt immer einen <code>Result</code>-Wert zurück. Der Aufrufer <strong>muss</strong> damit umgehen – der Compiler lässt es nicht zu, einen möglichen Fehler zu ignorieren.</p>
-<h3 id="theorie-der-result-enum"><a class="header" href="#theorie-der-result-enum">Theorie: Der Result-Enum</a></h3>
-<pre><pre class="playground"><code class="language-rust">// Result ist ein eingebauter Enum in Rust (kein Import nötig):
-// enum Result&lt;T, E&gt; {
-//     Ok(T),   // Erfolgsfall: enthält den Wert vom Typ T
-//     Err(E),  // Fehlerfall: enthält die Fehlerbeschreibung vom Typ E
-// }
-
-// Beispiel: Eine Funktion, die fehlschlagen kann
-fn dividiere(a: f64, b: f64) -&gt; Result&lt;f64, String&gt; {
-    if b == 0.0 {
-        // Fehlerfall: Wir geben Err mit einer Beschreibung zurück
-        Err(String::from("Division durch Null ist nicht erlaubt!"))
-    } else {
-        // Erfolgsfall: Wir geben Ok mit dem Ergebnis zurück
-        Ok(a / b)
-    }
+<h2 id="-das-big-picture-von-phase-3"><a class="header" href="#-das-big-picture-von-phase-3">🗺️ Das "Big Picture" von Phase 3</a></h2>
+<p>Bevor wir in die einzelnen Typen einsteigen, lass uns einen Schritt zurücktreten und das Gesamtbild betrachten. Warum fassen wir <strong>Fehlerbehandlung</strong> (<code>Result</code>, <code>Option</code>) und <strong>Collections</strong> (<code>Vec</code>, <code>HashMap</code>) in einer einzigen Phase zusammen?</p>
+<p>Der Grund ist einfach: Sie sind untrennbar miteinander verbunden.</p>
+<ul>
+<li>Wenn du ein Element aus einem <strong>Vektor</strong> (<code>Vec</code>) holen willst, kann es sein, dass der Index nicht existiert. Rust gibt dir in diesem Fall eine <strong><code>Option</code></strong> zurück.</li>
+<li>Wenn du einen Eintrag in einer <strong><code>HashMap</code></strong> suchst, ist dieser eventuell nicht da. Auch hier erhältst du eine <strong><code>Option</code></strong>.</li>
+<li>Wenn du eine Datei von der Festplatte in einen Vektor einlesen willst, kann die Festplatte voll oder gesperrt sein. Rust gibt dir hierfür ein <strong><code>Result</code></strong> zurück.</li>
+</ul>
+<p>In Rust arbeiten diese vier Werkzeuge Hand in Hand. Sie bilden das Fundament für stabilen Code.</p>
+<hr />
+<h2 id="1-fehlerbehandlung-typsystem-vs-exceptions"><a class="header" href="#1-fehlerbehandlung-typsystem-vs-exceptions">1. Fehlerbehandlung: Typsystem vs. Exceptions</a></h2>
+<p>Um zu verstehen, warum Rusts Fehlerbehandlung so genial ist, müssen wir uns ansehen, wie andere Programmiersprachen scheitern.</p>
+<h3 id="das-exception-modell-java-python-c-c-javascript"><a class="header" href="#das-exception-modell-java-python-c-c-javascript">Das Exception-Modell (Java, Python, C#, C++, JavaScript)</a></h3>
+<p>In den meisten Sprachen wird mit sogenannten <strong>Ausnahmen (Exceptions)</strong> gearbeitet. Der Ablauf sieht so aus:</p>
+<ol>
+<li>Eine Funktion versucht, eine Datei zu öffnen.</li>
+<li>Die Datei existiert nicht.</li>
+<li>Die Funktion bricht abrupt ab und "wirft" eine Exception (<code>FileNotFoundException</code>).</li>
+<li>Das Programm stoppt an dieser Stelle und sucht im sogenannten Aufrufstapel (Call Stack) nach oben hin nach einem Block namens <code>try { ... } catch (Exception e) { ... }</code>.</li>
+<li>Wird kein solcher Block gefunden, stürzt das gesamte Programm ab.</li>
+</ol>
+<h4 id="warum-das-problematisch-ist"><a class="header" href="#warum-das-problematisch-ist">Warum das problematisch ist:</a></h4>
+<ul>
+<li><strong>Exceptions sind unsichtbar:</strong> Wenn du eine Funktion <code>lies_daten()</code> aufrufst, siehst du am Quellcode nicht, ob diese Funktion abstürzen kann. Du musst darauf hoffen, dass der Entwickler der Funktion das in der Dokumentation erwähnt hat.</li>
+<li><strong>Unvorhersehbarer Kontrollfluss:</strong> Exceptions erzeugen unsichtbare Sprünge im Code. Das macht es extrem schwer zu verstehen, welcher Code bei einem Fehler als Nächstes ausgeführt wird. Es zerstört die lineare Lesbarkeit des Codes.</li>
+<li><strong>Hohe Kosten für die CPU:</strong> Wenn eine Exception geworfen wird, muss die Laufzeitumgebung der Sprache den gesamten Call Stack rückwärts durchlaufen (das nennt man <em>Stack Unwinding</em>). Das kostet enorm viel Rechenzeit.</li>
+</ul>
+<h3 id="das-c-modell-fehlercodes"><a class="header" href="#das-c-modell-fehlercodes">Das C-Modell (Fehlercodes)</a></h3>
+<p>In der Sprache C gibt es keine Exceptions. Hier gibt eine Funktion im Fehlerfall oft einfach eine magische Zahl zurück (z. B. <code>-1</code> für Fehler und <code>0</code> für Erfolg).</p>
+<h4 id="warum-das-problematisch-ist-1"><a class="header" href="#warum-das-problematisch-ist-1">Warum das problematisch ist:</a></h4>
+<ul>
+<li><strong>Leicht zu ignorieren:</strong> Du kannst die Rückgabenummer einfach ignorieren und so tun, als wäre alles okay. Das führt zu unberechenbarem Verhalten und schweren Sicherheitslücken.</li>
+</ul>
+<h3 id="der-rust-weg-fehler-sind-normale-daten-im-typsystem"><a class="header" href="#der-rust-weg-fehler-sind-normale-daten-im-typsystem">Der Rust-Weg: Fehler sind normale Daten im Typsystem</a></h3>
+<p>Rust sagt: <strong>Ein Fehler ist keine Ausnahme, sondern ein völlig normales Ergebnis.</strong></p>
+<p>Wenn eine Operation fehlschlagen kann, ist ihr Rückgabetyp nicht der gewünschte Wert (z. B. <code>String</code>), sondern ein Kombinations-Typ: <code>Result&lt;String, FehlerTyp&gt;</code>.
+Der Compiler zwingt dich über sein Typsystem, dieses Paket zu öffnen und beide Fälle (Erfolg und Misserfolg) zu behandeln. Du kannst den Fehler nicht aus Versehen ignorieren, weil der Compiler sich weigert, das Programm zu übersetzen!</p>
+<hr />
+<h2 id="2-option--die-lösung-für-das-nichts"><a class="header" href="#2-option--die-lösung-für-das-nichts">2. Option<T> – Die Lösung für das "Nichts"</a></h2>
+<p>Der Erfinder der Null-Referenz, Tony Hoare, bezeichnete die Erfindung von <code>null</code> im Jahr 2009 als seinen <strong>„Billion Dollar Mistake“</strong>. In fast allen Sprachen kann eine Referenz auf ein Objekt <code>null</code> (oder <code>None</code> / <code>nil</code>) sein. Wenn man vergisst zu prüfen, ob die Variable leer ist, stürzt das Programm ab (<code>NullPointerException</code>).</p>
+<p>Rust hat <strong>kein <code>null</code></strong>. Eine Variable vom Typ <code>i32</code> enthält garantiert immer eine Zahl. Eine Variable vom Typ <code>String</code> enthält garantiert immer einen Text.</p>
+<p>Wenn ein Wert jedoch tatsächlich fehlen kann, nutzen wir <code>Option&lt;T&gt;</code>.</p>
+<h3 id="die-analogie-das-post-schließfach"><a class="header" href="#die-analogie-das-post-schließfach">Die Analogie: Das Post-Schließfach</a></h3>
+<p>Stell dir ein Schließfach bei der Post vor. Du hast einen Schlüssel für Fach Nummer 42. Du öffnest die Tür. Es gibt genau zwei Möglichkeiten:</p>
+<ol>
+<li>Es liegt ein Paket im Fach: <code>Some(Paket)</code></li>
+<li>Das Fach ist völlig leer: <code>None</code></li>
+</ol>
+<pre><code>                   +------------------------+
+                   |       Option&lt;T&gt;        |
+                   +------------------------+
+                               |
+              +----------------+----------------+
+              |                                 |
+              v                                 v
+      +---------------+                 +---------------+
+      |    Some(T)    |                 |     None      |
+      | (Wert ist da) |                 | (Nichts da)   |
+      +---------------+                 +---------------+
+</code></pre>
+<h3 id="der-option-enum-im-detail"><a class="header" href="#der-option-enum-im-detail">Der Option-Enum im Detail</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// So ist Option in der Standardbibliothek definiert (generisch über Typ T):
+enum Option&lt;T&gt; {
+    Some(T),
+    None,
 }
+<span class="boring">}</span></code></pre></pre>
+<h3 id="praktischer-unterschied-string-vs-optionstring"><a class="header" href="#praktischer-unterschied-string-vs-optionstring">Praktischer Unterschied: <code>String</code> vs. <code>Option&lt;String&gt;</code></a></h3>
+<ul>
+<li>Ein <code>String</code> ist direkt nutzbar: Du kannst <code>.len()</code> aufrufen, ihn ausgeben oder verändern.</li>
+<li>Eine <code>Option&lt;String&gt;</code> ist ein <strong>Container</strong>. Du kannst nicht direkt auf die Methoden des Strings zugreifen. Du musst den Container erst öffnen!</li>
+</ul>
+<h4 id="das-kochrezept-zum-entpacken-einer-option"><a class="header" href="#das-kochrezept-zum-entpacken-einer-option">Das Kochrezept zum Entpacken einer <code>Option</code>:</a></h4>
+<ol>
+<li>
+<p><strong><code>match</code> (Das Schweizer Taschenmesser):</strong></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let name: Option&lt;String&gt; = Some(String::from("Peter"));
 
-fn main() {
-    // Variante 1: Mit match – vollständige Kontrolle
-    match dividiere(10.0, 2.0) {
-        Ok(ergebnis) =&gt; println!("Ergebnis: {}", ergebnis),
-        Err(fehler)  =&gt; println!("Fehler: {}", fehler),
-    }
+match name {
+    Some(n) =&gt; println!("Name ist: {}", n),
+    None =&gt; println!("Kein Name vorhanden."),
+}
+<span class="boring">}</span></code></pre></pre>
+<p><em>Vorteil:</em> Absolut sicher. Der Compiler prüft, ob du beide Fälle behandelt hast.</p>
+</li>
+<li>
+<p><strong><code>if let</code> (Der schnelle Zugriff):</strong></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let Some(n) = name {
+    println!("Name ist: {}", n);
+}
+// Der None-Fall wird hier einfach ignoriert.
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li>
+<p><strong><code>unwrap_or</code> (Der Standardwert):</strong></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let n = name.unwrap_or(String::from("Unbekannt"));
+<span class="boring">}</span></code></pre></pre>
+</li>
+</ol>
+<hr />
+<h2 id="3-resultt-e--umgang-mit-echten-fehlern"><a class="header" href="#3-resultt-e--umgang-mit-echten-fehlern">3. Result&lt;T, E&gt; – Umgang mit echten Fehlern</a></h2>
+<p>Während <code>Option</code> signalisiert, dass ein Wert <em>fehlt</em> (was völlig normal sein kann), signalisiert <code>Result</code>, dass eine Operation <em>fehlgeschlagen</em> ist.</p>
+<h3 id="die-analogie-die-online-bestellung"><a class="header" href="#die-analogie-die-online-bestellung">Die Analogie: Die Online-Bestellung</a></h3>
+<p>Du bestellst ein Buch im Internet. Nach drei Tagen kommt der Postbote:</p>
+<ul>
+<li>Entweder er übergibt dir das Paket mit dem Buch: <code>Ok(Buch)</code></li>
+<li>Oder er übergibt dir einen Zettel, auf dem steht, warum es nicht geklappt hat (z. B. "Adresse nicht gefunden"): <code>Err(FehlerUrsache)</code></li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Result&lt;T, E&gt; {
+    Ok(T),  // Erfolgsfall: Enthält Daten vom Typ T
+    Err(E), // Fehlerfall: Enthält Fehlerdetails vom Typ E
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="die-fehler-weiterleitung-mit-"><a class="header" href="#die-fehler-weiterleitung-mit-">Die Fehler-Weiterleitung mit <code>?</code></a></h3>
+<p>Sehr oft willst oder kannst du einen Fehler nicht direkt an Ort und Stelle beheben. Stell dir vor, du schreibst eine Funktion, die Einstellungen aus einer Datei liest. Wenn die Datei fehlt, kann die Lesefunktion das nicht reparieren. Sie muss den Fehler an das Hauptprogramm (<code>main</code>) zurückmelden.</p>
+<p>Hierfür nutzen wir den <code>?</code>-Operator. Er ist eine Abkürzung für: "Wenn die Operation fehlschlägt, brich diese Funktion sofort ab und gib den Fehler zurück."</p>
+<h4 id="die-mechanik-schritt-für-schritt"><a class="header" href="#die-mechanik-schritt-für-schritt">Die Mechanik Schritt für Schritt:</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fs::File;
+use std::io::{self, Read};
 
-    // Variante 2: Mit if let – nur den Erfolgsfall behandeln
-    if let Ok(wert) = dividiere(10.0, 0.0) {
-        println!("Wert: {}", wert);
-    } else {
-        println!("Die Division ist fehlgeschlagen.");
-    }
+fn lies_einstellungen() -&gt; Result&lt;String, io::Error&gt; {
+    // 1. Versuche, die Datei zu öffnen.
+    // Wenn File::open fehlschlägt, wird der Fehler SOFORT aus dieser
+    // Funktion zurückgegeben. Wenn es klappt, wird die Datei entpackt.
+    let mut datei = File::open("config.txt")?; 
 
-    // Variante 3: unwrap_or – Standardwert bei Fehler
-    let ergebnis = dividiere(10.0, 0.0).unwrap_or(0.0);
-    println!("Ergebnis (mit Fallback): {}", ergebnis); // 0.0
+    let mut inhalt = String::new();
+    
+    // 2. Versuche, den Inhalt zu lesen.
+    // Auch hier: Bei Fehler sofortiger Abbruch und Rückgabe des Fehlers.
+    datei.read_to_string(&amp;mut inhalt)?;
 
-    // Variante 4: expect – bei Fehler Programm beenden mit Nachricht
-    // Nur in Situationen verwenden, wo ein Fehler wirklich unmöglich sein sollte!
-    let sicher = dividiere(10.0, 2.0).expect("Das sollte nie fehlschlagen!");
-    println!("Sicheres Ergebnis: {}", sicher);
-}</code></pre></pre>
-<h3 id="theorie-fehlerweiterleitung-mit-dem--operator"><a class="header" href="#theorie-fehlerweiterleitung-mit-dem--operator">Theorie: Fehlerweiterleitung mit dem ?-Operator</a></h3>
-<p>Der <code>?</code>-Operator ist die eleganteste Art, Fehler weiterzureichen. Er sagt: "Wenn das <code>Ok</code> ist, gib mir den Wert. Wenn das <code>Err</code> ist, gibt diesen Fehler sofort aus der Funktion zurück."</p>
-<pre><pre class="playground"><code class="language-rust">use std::fs;
-use std::io;
-
-// Diese Funktion kann scheitern, deshalb gibt sie Result zurück.
-fn lies_datei(pfad: &amp;str) -&gt; Result&lt;String, io::Error&gt; {
-    // Mit ? wird der Fehler automatisch weitergereicht,
-    // falls fs::read_to_string fehlschlägt.
-    let inhalt = fs::read_to_string(pfad)?;
+    // 3. Wenn alles geklappt hat, verpacke das Ergebnis in Ok()
     Ok(inhalt)
 }
-
-// Ohne ? müsste man schreiben:
-fn lies_datei_lang(pfad: &amp;str) -&gt; Result&lt;String, io::Error&gt; {
-    match fs::read_to_string(pfad) {
-        Ok(inhalt) =&gt; Ok(inhalt),
-        Err(e) =&gt; Err(e), // Fehler manuell weiterreichen
-    }
-}
-
-fn main() {
-    match lies_datei("beispiel.txt") {
-        Ok(text)  =&gt; println!("Inhalt: {}", text),
-        Err(fehler) =&gt; println!("Konnte Datei nicht lesen: {}", fehler),
-    }
-}</code></pre></pre>
-<h3 id="typische-einsteigerfehler-bei-result"><a class="header" href="#typische-einsteigerfehler-bei-result">Typische Einsteigerfehler bei Result</a></h3>
-<pre><pre class="playground"><code class="language-rust">// ❌ Fehler 1: unwrap() in produktivem Code verwenden
-// let zahl: i32 = "keine Zahl".parse().unwrap(); // Panic! Programm stürzt ab!
-// ✅ Lösung: match, if let oder unwrap_or verwenden.
-
-// ❌ Fehler 2: Result-Wert ignorieren
-// dividiere(10.0, 0.0); // Compiler-Warnung: "unused `Result` that must be used"
-// ✅ Lösung: Immer mit dem Result umgehen oder mit let _ = ... explizit ignorieren.
-
-// ❌ Fehler 3: ? in Funktionen ohne Result-Rückgabetyp verwenden
-// fn main() {
-//     let text = fs::read_to_string("datei.txt")?; // Fehler! main gibt () zurück.
-// }
-// ✅ Lösung: main() kann auch Result zurückgeben:
-// fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; { ... }</code></pre></pre>
-<hr />
-<h2 id="-2-fehlerbehandlung-mit-optiont"><a class="header" href="#-2-fehlerbehandlung-mit-optiont">🔍 2. Fehlerbehandlung mit Option&lt;T&gt;</a></h2>
-<h3 id="die-analogie-die-suchfunktion-im-wörterbuch"><a class="header" href="#die-analogie-die-suchfunktion-im-wörterbuch">Die Analogie: Die Suchfunktion im Wörterbuch</a></h3>
-<p>Wenn du in einem Wörterbuch ein Wort suchst, gibt es zwei Möglichkeiten: Du findest die Übersetzung (<code>Some</code>) oder das Wort ist nicht drin (<code>None</code>). Eine gute Suchfunktion stürzt nicht ab, wenn das Wort fehlt – sie teilt dir einfach mit, dass kein Ergebnis gefunden wurde.</p>
-<h3 id="theorie-der-option-enum"><a class="header" href="#theorie-der-option-enum">Theorie: Der Option-Enum</a></h3>
-<pre><pre class="playground"><code class="language-rust">// Option ist wie Result, aber ohne Fehlerbeschreibung:
-// enum Option&lt;T&gt; {
-//     Some(T), // Ein Wert ist vorhanden
-//     None,    // Kein Wert vorhanden
-// }
-
-// Beispiel: Suche in einem Vec
-fn finde_ersten_geraden(zahlen: &amp;[i32]) -&gt; Option&lt;i32&gt; {
-    for &amp;zahl in zahlen {
-        if zahl % 2 == 0 {
-            return Some(zahl); // Gefunden!
-        }
-    }
-    None // Nichts gefunden
-}
-
-fn main() {
-    let zahlen = vec![1, 3, 5, 4, 7];
-
-    // Variante 1: match
-    match finde_ersten_geraden(&amp;zahlen) {
-        Some(zahl) =&gt; println!("Erste gerade Zahl: {}", zahl),
-        None       =&gt; println!("Keine gerade Zahl gefunden."),
-    }
-
-    // Variante 2: if let
-    if let Some(wert) = finde_ersten_geraden(&amp;zahlen) {
-        println!("Gefunden: {}", wert);
-    }
-
-    // Variante 3: unwrap_or – Standardwert wenn None
-    let ergebnis = finde_ersten_geraden(&amp;[1, 3, 5]).unwrap_or(-1);
-    println!("Ergebnis: {}", ergebnis); // -1 (Fallback)
-
-    // Variante 4: map – Wert transformieren wenn Some
-    let verdoppelt = finde_ersten_geraden(&amp;zahlen).map(|x| x * 2);
-    println!("{:?}", verdoppelt); // Some(8)
-
-    // Hilfsmethoden
-    let x: Option&lt;i32&gt; = Some(5);
-    println!("Ist Some: {}", x.is_some()); // true
-    println!("Ist None: {}", x.is_none()); // false
-}</code></pre></pre>
-<h3 id="typische-einsteigerfehler-bei-option"><a class="header" href="#typische-einsteigerfehler-bei-option">Typische Einsteigerfehler bei Option</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// ❌ Fehler 1: Direkter Zugriff auf Option ohne Prüfung
-// let zahlen: Vec&lt;i32&gt; = vec![1, 2, 3];
-// let erster: i32 = zahlen.first(); // Fehler! first() gibt Option&lt;&amp;i32&gt; zurück.
-// ✅ Lösung: zahlen.first().copied().unwrap_or(0)
-
-// ❌ Fehler 2: Option mit None in Berechnungen verwenden
-// let x: Option&lt;i32&gt; = None;
-// let y = x + 1; // Fehler! Kann nicht mit Option rechnen.
-// ✅ Lösung: x.unwrap_or(0) + 1 oder x.map(|v| v + 1)
-
-// ❌ Fehler 3: Option und Result verwechseln
-// Option hat kein Err-Äquivalent – es gibt einfach nichts.
-// Result hat eine Fehlerbeschreibung.
-// Faustregel: Fehlschlag mit Grund → Result. Fehlende Daten → Option.
 <span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-3-vektoren-vect"><a class="header" href="#-3-vektoren-vect">🗃️ 3. Vektoren (Vec&lt;T&gt;)</a></h2>
-<h3 id="die-analogie-die-dynamische-einkaufsliste"><a class="header" href="#die-analogie-die-dynamische-einkaufsliste">Die Analogie: Die dynamische Einkaufsliste</a></h3>
-<p>Ein normales Array in Rust ist wie ein beschriftetes, unveränderbares Regal – du weißt beim Bauen genau, wie viele Fächer es hat. Ein <code>Vec&lt;T&gt;</code> hingegen ist wie eine Einkaufsliste auf einem Zettel: Du kannst jederzeit neue Punkte hinzufügen, welche durchstreichen und der Zettel wächst ganz automatisch mit.</p>
-<h3 id="theorie-vektoren-erstellen-und-befüllen"><a class="header" href="#theorie-vektoren-erstellen-und-befüllen">Theorie: Vektoren erstellen und befüllen</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main() {
-    // Einen leeren Vec erstellen (Typ muss annotiert werden)
-    let mut zahlen: Vec&lt;i32&gt; = Vec::new();
-
-    // Elemente hinzufügen
-    zahlen.push(10);
-    zahlen.push(20);
-    zahlen.push(30);
-    println!("{:?}", zahlen); // [10, 20, 30]
-
-    // Kurzschreibweise mit vec!-Makro
-    let fruechte = vec!["Apfel", "Banane", "Kirsche"];
-
-    // Auf Elemente zugreifen
-    // Methode 1: Index [] – GEFÄHRLICH, Panic bei out of bounds!
-    println!("Erste Frucht: {}", fruechte[0]);
-
-    // Methode 2: .get() – SICHER, gibt Option&lt;&amp;T&gt; zurück
-    match fruechte.get(10) { // Index 10 existiert nicht!
-        Some(frucht) =&gt; println!("Gefunden: {}", frucht),
-        None         =&gt; println!("Index existiert nicht."), // Kein Absturz!
-    }
-
-    // Iterieren
-    for frucht in &amp;fruechte { // &amp; um Ownership zu behalten
-        println!("Ich mag: {}", frucht);
-    }
-
-    // Nützliche Methoden
-    println!("Anzahl: {}", zahlen.len());        // Länge
-    println!("Leer? {}", zahlen.is_empty());    // false
-    zahlen.pop();                                // Letztes Element entfernen
-    println!("Nach pop: {:?}", zahlen);          // [10, 20]
-
-    // Sortieren
-    let mut unsortiert = vec![3, 1, 4, 1, 5, 9, 2];
-    unsortiert.sort();
-    println!("Sortiert: {:?}", unsortiert); // [1, 1, 2, 3, 4, 5, 9]
-
-    // Filtern mit retain
-    let mut gerade = vec![1, 2, 3, 4, 5, 6];
-    gerade.retain(|&amp;x| x % 2 == 0);
-    println!("Nur gerade: {:?}", gerade); // [2, 4, 6]
-}</code></pre></pre>
-<h3 id="theorie-ownership-und-vektoren"><a class="header" href="#theorie-ownership-und-vektoren">Theorie: Ownership und Vektoren</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// Wenn du einen Vec in eine Funktion übergibst, verlierst du die Ownership!
-let namen = vec!["Anna", "Bob", "Clara"];
-
-fn drucke_namen(liste: Vec&lt;&amp;str&gt;) { // Ownership wird übernommen
-    for name in liste {
-        println!("{}", name);
-    }
-} // liste wird hier gelöscht
-
-drucke_namen(namen);
-// println!("{:?}", namen); // ❌ Fehler! namen wurde bewegt (moved).
-
-// ✅ Lösung: Als Referenz übergeben
-let namen2 = vec!["Anna", "Bob", "Clara"];
-fn drucke_namen_ref(liste: &amp;Vec&lt;&amp;str&gt;) {
-    for name in liste {
-        println!("{}", name);
-    }
-}
-drucke_namen_ref(&amp;namen2);
-println!("Noch da: {:?}", namen2); // ✅ namen2 ist noch gültig!
-
-// Noch idiomatischer: &amp;[&amp;str] statt &amp;Vec&lt;&amp;str&gt;
-fn drucke_namen_slice(liste: &amp;[&amp;str]) {
-    for name in liste { println!("{}", name); }
-}
-drucke_namen_slice(&amp;namen2); // ✅
-<span class="boring">}</span></code></pre></pre>
-<h3 id="typische-einsteigerfehler-bei-vektoren"><a class="header" href="#typische-einsteigerfehler-bei-vektoren">Typische Einsteigerfehler bei Vektoren</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// ❌ Fehler 1: Index-Zugriff außerhalb des Bereichs (Panic!)
-// let v = vec![1, 2, 3];
-// println!("{}", v[5]); // PANIC: index out of bounds: the len is 3 but the index is 5
-// ✅ Lösung: v.get(5) verwenden, das Option&lt;&amp;i32&gt; zurückgibt.
-
-// ❌ Fehler 2: Vektor verändern während er iteriert wird
-// let mut v = vec![1, 2, 3];
-// for x in &amp;v {
-//     v.push(*x * 2); // Fehler! Kann nicht ändern während ausgeliehen.
-// }
-// ✅ Lösung: Neuen Vec erstellen oder indices verwenden.
-
-// ❌ Fehler 3: Vec&lt;&amp;str&gt; mit lokalen Strings befüllen (Lifetime-Problem)
-// fn erzeuge_liste() -&gt; Vec&lt;&amp;str&gt; { // Fehler: missing lifetime specifier
-//     let s = String::from("hallo");
-//     vec![&amp;s] // s wird am Ende der Funktion gelöscht!
-// }
-// ✅ Lösung: Vec&lt;String&gt; zurückgeben statt Vec&lt;&amp;str&gt;.
-<span class="boring">}</span></code></pre></pre>
+<h2 id="4-vec--dynamische-listen-auf-dem-heap"><a class="header" href="#4-vec--dynamische-listen-auf-dem-heap">4. Vec<T> – Dynamische Listen auf dem Heap</a></h2>
+<p>Ein Array in Rust hat eine feste Größe (z. B. <code>[i32; 5]</code>). Es liegt direkt auf dem Stack. Ein Vektor (<code>Vec&lt;T&gt;</code>) hingegen ist eine dynamisch wachsende Liste, die auf dem <strong>Heap</strong> gespeichert wird.</p>
+<h3 id="das-speicherlayout-im-detail"><a class="header" href="#das-speicherlayout-im-detail">Das Speicherlayout im Detail</a></h3>
+<p>Ein Vektor belegt auf dem Stack immer genau drei Werte (24 Bytes auf 64-Bit-Systemen):</p>
+<ol>
+<li><strong>Pointer:</strong> Die Speicheradresse im Heap, an der das erste Element liegt.</li>
+<li><strong>Length (Länge):</strong> Wie viele Elemente aktuell im Vektor liegen.</li>
+<li><strong>Capacity (Kapazität):</strong> Für wie viele Elemente auf dem Heap bereits Speicher reserviert ist.</li>
+</ol>
+<pre><code>Stack:                          Heap:
++------------------------+      +-------------------------+
+| Pointer  | 0x1000      | ---&gt; | Index 0 | 10            |
+| Length   | 3          |      | Index 1 | 20            |
+| Capacity | 4          |      | Index 2 | 30            |
++------------------------+      | Index 3 | [Freier Platz]|
+                                +-------------------------+
+</code></pre>
+<h3 id="was-passiert-beim-wachsen-reallozierung"><a class="header" href="#was-passiert-beim-wachsen-reallozierung">Was passiert beim Wachsen (Reallozierung)?</a></h3>
+<p>Wenn du ein 4. Element hinzufügst, passt es in den freien Platz (Index 3). Die Länge erhöht sich auf 4.
+Wenn du nun ein 5. Element hinzufügen willst, ist die Kapazität erschöpft. Nun passiert Folgendes:</p>
+<ol>
+<li>Rust fordert einen neuen, doppelt so großen Speicherbereich auf dem Heap an (Kapazität 8).</li>
+<li>Alle bisherigen Elemente werden an die neue Adresse kopiert.</li>
+<li>Der alte Speicherbereich wird freigegeben.</li>
+<li>Der Pointer auf dem Stack wird auf die neue Adresse umgebogen.</li>
+</ol>
 <hr />
-<h2 id="-4-hashmaps-hashmapk-v"><a class="header" href="#-4-hashmaps-hashmapk-v">🗺️ 4. HashMaps (HashMap&lt;K, V&gt;)</a></h2>
-<h3 id="die-analogie-das-telefonbuch"><a class="header" href="#die-analogie-das-telefonbuch">Die Analogie: Das Telefonbuch</a></h3>
-<p>Eine HashMap ist wie ein digitales Telefonbuch: Du kennst den Namen (Schlüssel/Key) und kannst sofort die Telefonnummer (Wert/Value) nachschlagen, ohne das gesamte Buch von vorne bis hinten durchsuchen zu müssen. Das Nachschlagen ist extrem schnell – nahezu unabhängig davon, wie viele Einträge das Buch hat!</p>
-<h3 id="theorie-hashmaps-erstellen-und-verwenden"><a class="header" href="#theorie-hashmaps-erstellen-und-verwenden">Theorie: HashMaps erstellen und verwenden</a></h3>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap; // HashMap muss importiert werden!
-
-fn main() {
-    // Eine neue HashMap erstellen
-    let mut telefonnummern: HashMap&lt;String, String&gt; = HashMap::new();
-
-    // Einträge hinzufügen mit insert()
-    telefonnummern.insert(String::from("Anna"), String::from("0171-1234567"));
-    telefonnummern.insert(String::from("Bob"),  String::from("0172-9876543"));
-
-    // Mit vec! und zip initialisieren
-    let namen = vec!["Clara", "David"];
-    let nummern = vec!["0173-111", "0174-222"];
-    let verzeichnis: HashMap&lt;_, _&gt; = namen.iter().zip(nummern.iter()).collect();
-
-    // Wert nachschlagen mit get() – gibt Option&lt;&amp;V&gt; zurück
-    match telefonnummern.get("Anna") {
-        Some(nummer) =&gt; println!("Annas Nummer: {}", nummer),
-        None         =&gt; println!("Anna nicht gefunden."),
-    }
-
-    // Iterieren über alle Einträge (Reihenfolge ist NICHT garantiert!)
-    for (name, nummer) in &amp;telefonnummern {
-        println!("{}: {}", name, nummer);
-    }
-
-    // Enthält einen Schlüssel?
-    println!("Enthält Bob: {}", telefonnummern.contains_key("Bob")); // true
-
-    // Eintrag entfernen
-    telefonnummern.remove("Bob");
-
-    // Länge
-    println!("Einträge: {}", telefonnummern.len());
-}</code></pre></pre>
-<h3 id="theorie-die-entry-api-modernes-einfügen"><a class="header" href="#theorie-die-entry-api-modernes-einfügen">Theorie: Die Entry-API (Modernes Einfügen)</a></h3>
-<p>Die Entry-API ist das eleganteste Werkzeug für HashMaps. Sie löst das Problem "Füge ein, wenn nicht vorhanden; aktualisiere wenn vorhanden" in einer einzigen Zeile.</p>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
-
-fn main() {
-    let text = "hallo welt hallo rust welt welt";
-
-    // Wörter zählen mit Entry-API
-    let mut wort_zaehler: HashMap&lt;&amp;str, u32&gt; = HashMap::new();
-
-    for wort in text.split_whitespace() {
-        // entry(): Gibt einen Entry (Eintragsreferenz) zurück.
-        // or_insert(): Fügt 0 ein wenn nicht vorhanden, gibt Referenz auf den Wert zurück.
-        let zaehler = wort_zaehler.entry(wort).or_insert(0);
-        *zaehler += 1; // Wert über Referenz erhöhen (Dereferenzierung mit *)
-    }
-
-    println!("{:?}", wort_zaehler);
-    // {"hallo": 2, "welt": 3, "rust": 1} (Reihenfolge kann variieren)
-
-    // or_insert_with: Nur berechnen wenn wirklich nötig (lazy)
-    let mut cache: HashMap&lt;String, Vec&lt;i32&gt;&gt; = HashMap::new();
-    cache.entry(String::from("evens")).or_insert_with(|| {
-        (0..10).filter(|x| x % 2 == 0).collect()
-    });
-}</code></pre></pre>
-<h3 id="theorie-ownership-bei-hashmaps"><a class="header" href="#theorie-ownership-bei-hashmaps">Theorie: Ownership bei HashMaps</a></h3>
+<h2 id="5-hashmapk-v--schlüssel-wert-tabellen"><a class="header" href="#5-hashmapk-v--schlüssel-wert-tabellen">5. HashMap&lt;K, V&gt; – Schlüssel-Wert-Tabellen</a></h2>
+<p>Eine HashMap speichert Daten in Form von Schlüssel-Wert-Paaren (Key-Value). Statt über eine Zahl greifst du über einen beliebigen Typ (z. B. einen <code>String</code>) auf die Daten zu.</p>
+<h3 id="wie-funktioniert-der-o1-zugriff"><a class="header" href="#wie-funktioniert-der-o1-zugriff">Wie funktioniert der O(1) Zugriff?</a></h3>
+<p>Wenn du in einem Telefonbuch nach "Anna" suchst, blätterst du nicht jede Seite von vorne durch. Du nutzt das Register.
+Eine HashMap nutzt eine <strong>Hash-Funktion</strong>. Sie berechnet aus dem Schlüssel (z. B. <code>"Anna"</code>) eine eindeutige Zahl. Diese Zahl bestimmt direkt die Speicheradresse. Dadurch dauert der Zugriff immer gleich lang – egal wie viele Elemente in der HashMap gespeichert sind.</p>
+<h3 id="die-entry-api-effiziente-updates"><a class="header" href="#die-entry-api-effiziente-updates">Die Entry-API: Effiziente Updates</a></h3>
+<p>Oft möchte man prüfen, ob ein Schlüssel bereits existiert, und ihn nur dann einfügen oder anpassen. Die Entry-API von Rust löst das extrem elegant und performant:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::collections::HashMap;
 
-// Achtung: Wenn du einen String als Key einfügst, übernimmt die HashMap die Ownership!
-let mut map: HashMap&lt;String, i32&gt; = HashMap::new();
+let mut scores = HashMap::new();
+scores.insert(String::from("Blau"), 10);
 
-let schluessel = String::from("punkte");
-let wert = 100;
-
-map.insert(schluessel, wert);
-// println!("{}", schluessel); // ❌ Fehler! schluessel wurde in die Map bewegt.
-
-// i32 implementiert Copy, deshalb bleibt wert gültig:
-println!("{}", wert); // ✅
-
-// Lösung: Referenz als Key (wenn der Wert länger lebt als die Map)
-let s = String::from("name");
-let mut map2: HashMap&lt;&amp;str, i32&gt; = HashMap::new();
-map2.insert(&amp;s, 42); // Referenz – s bleibt Besitzer
-println!("{}", s); // ✅ s ist noch gültig
-<span class="boring">}</span></code></pre></pre>
-<h3 id="typische-einsteigerfehler-bei-hashmaps"><a class="header" href="#typische-einsteigerfehler-bei-hashmaps">Typische Einsteigerfehler bei HashMaps</a></h3>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// ❌ Fehler 1: HashMap ohne Import verwenden
-// let map = HashMap::new(); // Fehler: use of undeclared type `HashMap`
-// ✅ Lösung: use std::collections::HashMap; oben hinzufügen.
-
-// ❌ Fehler 2: Direkter Index-Zugriff auf nicht vorhandenen Key (Panic!)
-// let map: HashMap&lt;&amp;str, i32&gt; = HashMap::new();
-// let wert = map["nichtVorhanden"]; // PANIC!
-// ✅ Lösung: map.get("nichtVorhanden") verwenden.
-
-// ❌ Fehler 3: Reihenfolge der Einträge erwarten
-// HashMaps garantieren KEINE bestimmte Reihenfolge der Elemente!
-// ✅ Lösung: Für sortierte Ausgabe: let mut schluessel: Vec&lt;_&gt; = map.keys().collect();
-//           schluessel.sort(); for k in schluessel { ... }
+// entry() prüft, ob "Blau" existiert.
+// or_insert() fügt 0 ein, falls nicht vorhanden.
+// Es gibt eine veränderbare Referenz (&amp;mut) auf den Wert zurück.
+let score = scores.entry(String::from("Blau")).or_insert(0);
+*score += 5; // Erhöht den Wert direkt in der HashMap
 <span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-wie-du-diese-phase-am-besten-nutzt-2"><a class="header" href="#-wie-du-diese-phase-am-besten-nutzt-2">🚀 Wie du diese Phase am besten nutzt</a></h2>
-<p><strong>1. Verstehe den Unterschied:</strong> <code>Result</code> ist für Operationen, die aus einem guten Grund fehlschlagen können (Datei nicht gefunden, ungültige Eingabe). <code>Option</code> ist für Werte, die einfach fehlen können (kein Element gefunden, optionales Feld).</p>
-<p><strong>2. Vermeide unwrap() im echten Code:</strong> Gewöhne dir von Anfang an an, mit <code>match</code>, <code>if let</code> oder <code>unwrap_or</code> zu arbeiten. Dein Programm wird dadurch nie unerwartet abstürzen.</p>
-<p><strong>3. Wähle die richtige Kollektion:</strong></p>
+<h2 id="-vergleichstabelle-die-vier-kernkonzepte"><a class="header" href="#-vergleichstabelle-die-vier-kernkonzepte">🛠️ Vergleichstabelle: Die vier Kernkonzepte</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Wann verwenden?</th><th>Rückgabetyp bei Abfrage</th><th>Wichtige Methode</th></tr></thead><tbody>
+<tr><td><strong><code>Option&lt;T&gt;</code></strong></td><td>Wenn ein Wert optional ist oder fehlen kann</td><td><code>Option&lt;&amp;T&gt;</code></td><td><code>.unwrap_or()</code>, <code>.map()</code></td></tr>
+<tr><td><strong><code>Result&lt;T, E&gt;</code></strong></td><td>Wenn eine Operation fehlschlagen kann</td><td><code>Result&lt;T, E&gt;</code></td><td><code>.unwrap_or()</code>, <code>?</code>-Operator</td></tr>
+<tr><td><strong><code>Vec&lt;T&gt;</code></strong></td><td>Für dynamisch wachsende Listen</td><td><code>Option&lt;&amp;T&gt;</code> (via <code>.get()</code>)</td><td><code>.push()</code>, <code>.pop()</code>, <code>.len()</code></td></tr>
+<tr><td><strong><code>HashMap&lt;K, V&gt;</code></strong></td><td>Für Assoziationen (Schlüssel -&gt; Wert)</td><td><code>Option&lt;&amp;V&gt;</code> (via <code>.get()</code>)</td><td><code>.insert()</code>, <code>.entry()</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-faq--häufige-fragen-von-anfängern"><a class="header" href="#-faq--häufige-fragen-von-anfängern">❓ FAQ – Häufige Fragen von Anfängern</a></h2>
+<h3 id="f1-wann-benutze-ich-option-und-wann-result"><a class="header" href="#f1-wann-benutze-ich-option-und-wann-result">F1: Wann benutze ich <code>Option</code> und wann <code>Result</code>?</a></h3>
 <ul>
-<li>Brauchst du eine geordnete, indizierbare Liste? → <code>Vec&lt;T&gt;</code></li>
-<li>Brauchst du schnellen Zugriff über einen Schlüssel? → <code>HashMap&lt;K, V&gt;</code></li>
+<li><strong>Regel:</strong> Nutze <code>Option</code>, wenn das Fehlen eines Wertes ein völlig normaler Zustand ist (z. B. ein Benutzer hat kein Profilbild). Nutze <code>Result</code>, wenn etwas schiefgegangen ist, das so eigentlich nicht geplant war (z. B. die Datenbank ist nicht erreichbar).</li>
 </ul>
-<p><strong>4. Kombiniere alles:</strong> Die Stärke dieser Phase liegt in der Kombination. Eine <code>HashMap&lt;String, Vec&lt;String&gt;&gt;</code> (Schlüssel zu Liste von Werten) oder <code>Vec&lt;Result&lt;i32, String&gt;&gt;</code> (Liste von Ergebnissen) sind völlig normal.</p>
-<blockquote>
-<p>[!TIP]
-Lese den Absatz aus den 100-Projekten für Phase 3, bevor du mit dem Prompt-Katalog beginnst. Viele der dort gezeigten Muster (z.B. <code>HashMap::entry().or_insert()</code>) werden sich in deinen eigenen Projekten immer wiederholen.</p>
-</blockquote>
+<h3 id="f2-warum-stürzt-mein-programm-ab-wenn-ich-unwrap-nutze"><a class="header" href="#f2-warum-stürzt-mein-programm-ab-wenn-ich-unwrap-nutze">F2: Warum stürzt mein Programm ab, wenn ich <code>.unwrap()</code> nutze?</a></h3>
+<ul>
+<li><strong>Antwort:</strong> <code>.unwrap()</code> ist ein Versprechen an den Compiler: "Ich garantiere, dass hier ein Wert drin ist." Ist die Box jedoch leer (<code>None</code> oder <code>Err</code>), bricht Rust die Ausführung ab, um Folgeschäden (wie Speicherfehler) zu verhindern. Nutze stattdessen immer <code>match</code> oder <code>unwrap_or</code>.</li>
+</ul>
+<h3 id="f3-warum-ist-hashmap-manchmal-langsamer-als-vec-bei-sehr-kleinen-datenmengen"><a class="header" href="#f3-warum-ist-hashmap-manchmal-langsamer-als-vec-bei-sehr-kleinen-datenmengen">F3: Warum ist <code>HashMap</code> manchmal langsamer als <code>Vec</code> bei sehr kleinen Datenmengen?</a></h3>
+<ul>
+<li><strong>Antwort:</strong> Das Berechnen des Hashes erfordert CPU-Zyklen. Bei sehr kleinen Listen (z. B. unter 10 Elementen) kann das Durchsuchen eines Vektors schneller sein als die Berechnung eines Hash-Wertes. Für größere Datenmengen ist die HashMap jedoch unschlagbar.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vektoren-vec--dynamische-listen-in-rust"><a class="header" href="#vektoren-vec--dynamische-listen-in-rust">Vektoren (Vec<T>) – Dynamische Listen in Rust</a></h1>
+<p>Arrays (<code>[T; N]</code>) sind hervorragend geeignet, wenn du eine Datensammlung mit einer festen, unveränderlichen Größe verwalten möchtest. Ein typisches Beispiel sind die Koordinaten eines Punkts im dreidimensionalen Raum: Sie bestehen immer aus genau drei Werten (X, Y, Z). Da diese Größe bereits beim Schreiben des Codes feststeht, kann der Compiler den Speicherplatz dafür direkt auf dem schnellen Stack-Speicher reservieren.</p>
+<p>In der realen Programmierpraxis wissen wir jedoch fast nie im Voraus, wie viele Daten wir verarbeiten müssen. Denk an:</p>
+<ul>
+<li>Eine To-Do-Liste, in die der Benutzer beliebig viele Aufgaben eintragen kann.</li>
+<li>Den Chat-Verlauf einer App, der sekündlich um neue Nachrichten wächst.</li>
+<li>Die Liste der Gegner in einem Videospiel, die ständig besiegt werden oder neu spawnen.</li>
+</ul>
+<p>Für all diese Fälle bietet Rust den Datentyp <strong><code>Vec&lt;T&gt;</code></strong> (kurz für Vektor). Ein Vektor ist eine dynamisch wachsende Liste, die zur Laufzeit vergrößert oder verkleinert werden kann. In diesem Kapitel lernst du bis ins kleinste Detail, wie Vektoren im Speicher funktionieren, wie du sicher mit ihnen arbeitest und wie du typische Performance-Fallen vermeidest.</p>
 <hr />
-<h2 id="-merkzettel-phase-3-auf-einen-blick"><a class="header" href="#-merkzettel-phase-3-auf-einen-blick">📌 Merkzettel: Phase 3 auf einen Blick</a></h2>
+<h2 id="-speicher-theorie-stack-vs-heap-bei-vektoren"><a class="header" href="#-speicher-theorie-stack-vs-heap-bei-vektoren">🧠 Speicher-Theorie: Stack vs. Heap bei Vektoren</a></h2>
+<p>Um Vektoren wirklich zu verstehen und effizienten Code zu schreiben, müssen wir betrachten, wie Rust die Daten im RAM-Speicher deines Computers ablegt. Ein Vektor teilt sich immer in zwei Speicherbereiche auf: den <strong>Stack</strong> und den <strong>Heap</strong>.</p>
+<h3 id="die-verwaltungsdaten-auf-dem-stack"><a class="header" href="#die-verwaltungsdaten-auf-dem-stack">Die Verwaltungsdaten auf dem Stack</a></h3>
+<p>Wenn du eine Variable <code>let mut zahlen = Vec::new();</code> erstellst, belegt diese Variable auf dem Stack immer exakt die Größe von drei Systemwörtern. Auf einem modernen 64-Bit-System entspricht ein Systemwort 8 Bytes, was bedeutet, dass ein Vektor auf dem Stack immer genau <strong>24 Bytes</strong> groß ist – unabhängig davon, ob er leer ist oder eine Million Elemente enthält!</p>
+<p>Diese 24 Bytes teilen sich auf in drei Felder:</p>
+<ol>
+<li><strong>Zeiger (Pointer):</strong> Die genaue 64-Bit-Speicheradresse im Heap, an der das allererste Element deiner Liste liegt.</li>
+<li><strong>Länge (Length):</strong> Eine 64-Bit-Ganzzahl (<code>usize</code>), die angibt, wie viele Elemente sich aktuell <em>tatsächlich</em> im Vektor befinden.</li>
+<li><strong>Kapazität (Capacity):</strong> Eine 64-Bit-Ganzzahl (<code>usize</code>), die angibt, für wie viele Elemente auf dem Heap bereits zusammenhängender Speicherplatz reserviert wurde.</li>
+</ol>
+<h3 id="die-nutzdaten-auf-dem-heap"><a class="header" href="#die-nutzdaten-auf-dem-heap">Die Nutzdaten auf dem Heap</a></h3>
+<p>Die eigentlichen Elemente deines Vektors (die Werte vom Typ <code>T</code>) werden auf dem flexiblen <strong>Heap-Speicher</strong> abgelegt. Rust garantiert, dass diese Elemente im Heap immer in einem einzigen, lückenlosen und zusammenhängenden Block Speicher direkt hintereinander liegen.</p>
+<p>Das hat einen enormen Vorteil für die Geschwindigkeit deines Programms: Da die Daten direkt hintereinander liegen, kann die CPU sie extrem effizient in ihren ultraschnellen Cache-Speicher laden. Man spricht hierbei von <strong>räumlicher Lokalität (Spatial Locality)</strong>.</p>
+<pre><code>STACK (Die Variable im Code, 24 Bytes):
++------------------------------------------+
+| Pointer  | 0x00007f8a12c0               | --+
+| Length   | 3                            |   |
+| Capacity | 4                            |   |
++------------------------------------------+   |
+                                               v
+HEAP (Der dynamische Speicherbereich):         |
+Adresse 0x00007f8a12c0:                        |
++------------------------------------------+   |
+| Index 0  | Wert: 10                     | &lt;-+ (Hier fängt der Vektor an)
+| Index 1  | Wert: 20                     |
+| Index 2  | Wert: 30                     |
+| Index 3  | [Reservierter freier Platz]  |
++------------------------------------------+
+</code></pre>
+<hr />
+<h2 id="-wie-ein-vektor-wächst-die-reallozierung"><a class="header" href="#-wie-ein-vektor-wächst-die-reallozierung">🔄 Wie ein Vektor wächst: Die Reallozierung</a></h2>
+<p>Was passiert, wenn du mit <code>.push()</code> ein neues Element an einen Vektor anhängst? Rust prüft das Verhältnis von Länge und Kapazität:</p>
+<h3 id="fall-1-länge--kapazität"><a class="header" href="#fall-1-länge--kapazität">Fall 1: Länge &lt; Kapazität</a></h3>
+<p>Es ist noch ungenutzter, reservierter Platz auf dem Heap vorhanden (im obigen Diagramm am Index 3).</p>
+<ul>
+<li>Rust schreibt das neue Element direkt an die Speicheradresse von Index 3.</li>
+<li>Die Länge wird auf dem Stack um 1 erhöht (von 3 auf 4).</li>
+<li><em>Performance:</em> Diese Operation ist extrem schnell und benötigt fast keine Rechenzeit.</li>
+</ul>
+<h3 id="fall-2-länge--kapazität"><a class="header" href="#fall-2-länge--kapazität">Fall 2: Länge == Kapazität</a></h3>
+<p>Der reservierte Speicher auf dem Heap ist komplett voll. Es gibt keinen Platz mehr für ein weiteres Element. Da der Speicher lückenlos sein muss, kann Rust nicht einfach irgendwo anders auf dem Heap weiterschreiben. Nun wird eine <strong>Reallozierung (Reallocation)</strong> ausgelöst:</p>
+<ol>
+<li><strong>Neuen Speicher anfordern:</strong> Rust bittet das Betriebssystem um einen neuen, zusammenhängenden Speicherblock auf dem Heap, der groß genug ist. Als Faustregel gilt: Rust <strong>verdoppelt</strong> die bisherige Kapazität (z. B. von 4 auf 8 Plätze).</li>
+<li><strong>Daten umziehen:</strong> Alle bisherigen Elemente werden Bit für Bit an die neue Speicheradresse kopiert.</li>
+<li><strong>Alten Speicher freigeben:</strong> Der alte, zu klein gewordene Speicherblock wird dem Betriebssystem wieder zur Verfügung gestellt.</li>
+<li><strong>Stack aktualisieren:</strong> Der Pointer auf dem Stack wird auf die neue Adresse umgebogen, die Kapazität wird verdoppelt und die neue Länge wird eingetragen.</li>
+</ol>
 <blockquote>
 <p>[!IMPORTANT]
-<strong>Die 4 Kernkonzepte der Phase 3:</strong></p>
-<ul>
-<li>
-<p><strong>Result&lt;T, E&gt;:</strong> Für Operationen, die fehlschlagen können. <code>Ok(wert)</code> bei Erfolg, <code>Err(fehler)</code> bei Misserfolg. Mit <code>match</code> oder <code>?</code> (Weiterleitungsoperator) sicher handhaben. NIEMALS <code>unwrap()</code> in produktivem Code verwenden!</p>
-</li>
-<li>
-<p><strong>Option&lt;T&gt;:</strong> Für Werte, die fehlen können (kein Fehlergrund). <code>Some(wert)</code> wenn vorhanden, <code>None</code> wenn nicht. Sicher entpacken mit <code>match</code>, <code>if let</code>, <code>unwrap_or(standardwert)</code> oder <code>map(|x| ...)</code>.</p>
-</li>
-<li>
-<p><strong>Vec&lt;T&gt;:</strong> Eine dynamische, wachsende Liste auf dem Heap. Zugriff mit <code>[]</code> (Panic bei out of bounds!) oder sicher mit <code>.get()</code> (gibt <code>Option</code>). Ownership beim Übergeben an Funktionen beachten – besser als <code>&amp;[T]</code> übergeben.</p>
-</li>
-<li>
-<p><strong>HashMap&lt;K, V&gt;:</strong> Ein Schlüssel-Wert-Speicher mit sehr schnellem Zugriff (O(1)). Import nötig! Zugriff mit <code>.get(key)</code> (gibt <code>Option</code>). Die Entry-API (<code>.entry(key).or_insert(wert)</code>) ist der idiomatische Weg zum sicheren Einfügen und Aktualisieren.</p>
-</li>
-</ul>
+Eine Reallozierung ist eine langsame Operation, da das Betriebssystem nach freiem Speicher suchen muss und alle Daten kopiert werden müssen. Wenn ein Vektor sehr groß wird und häufig umziehen muss, bremst das dein Programm spürbar aus.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-vektoren-vec"><a class="header" href="#-vektoren-vec">🗃️ Vektoren (Vec<T>)</a></h1>
-<p>Herzlich willkommen zu einem der wichtigsten Werkzeuge in Rust, wenn es um das Verwalten von Datensammlungen geht: den Vektoren (<code>Vec&lt;T&gt;</code>).</p>
-<p>Bisher hast du vielleicht schon Arrays kennengelernt. Arrays sind super, wenn du im Voraus genau weißt, wie viele Elemente du speichern willst – zum Beispiel die 7 Wochentage oder die 12 Monate des Jahres. Aber was ist, wenn du eine Einkaufsliste schreibst, bei der du noch nicht weißt, wie viele Artikel am Ende darauf landen? Oder wenn du ein Spiel programmierst und die Anzahl der Gegner auf dem Bildschirm ständig wechselt?</p>
-<p>Genau hier kommen Vektoren ins Spiel. Sie sind dynamisch, flexibel und können während der Laufzeit deines Programms beliebig wachsen oder schrumpfen.</p>
-<p>In diesem Kapitel schauen wir uns an, wie Vektoren im Speicher funktionieren, wie Rusts Ownership-Modell auf sie wirkt und wie man sicher mit ihnen arbeitet, ohne dass das Programm abstürzt.</p>
-<hr />
-<h2 id="-theorie-4"><a class="header" href="#-theorie-4">🧠 Theorie</a></h2>
-<h3 id="die-analogie-das-modulare-regalsystem"><a class="header" href="#die-analogie-das-modulare-regalsystem">Die Analogie: Das modulare Regalsystem</a></h3>
-<p>Stell dir vor, du kaufst ein klassisches Bücherregal aus Holz, das genau Platz für 10 Bücher bietet. Dieses Regal ist wie ein <strong>Array</strong> in Rust. Seine Größe ist fest in die Struktur des Holzes eingebaut. Du kannst nicht einfach ein 11. Buch hineinstellen, ohne das Regal zu beschädigen oder ein neues zu kaufen.</p>
-<p>Ein <strong>Vektor</strong> (<code>Vec&lt;T&gt;</code>) hingegen ist wie ein modulares Regalsystem. Du startest mit einem kleinen Brett, das Platz für ein paar Bücher bietet. Sobald du mehr Bücher kaufst, schraubst du einfach ein weiteres Brett an. Das Regal wächst mit deiner Bibliothek.</p>
-<p>Doch wie macht der Computer das im Hintergrund?</p>
-<h3 id="stack-vs-heap-wo-liegen-die-daten"><a class="header" href="#stack-vs-heap-wo-liegen-die-daten">Stack vs. Heap: Wo liegen die Daten?</a></h3>
-<p>Um zu verstehen, wie ein Vektor funktioniert, müssen wir einen Blick in den Arbeitsspeicher werfen. Ein Vektor teilt sich in zwei Bereiche auf:</p>
-<ol>
-<li>
-<p><strong>Die Verwaltungszentrale auf dem Stack:</strong>
-Auf dem schnellen, aber starren Stack speichert Rust die Metadaten des Vektors. Das sind drei Werte (jeweils mit der Größe eines Zeigers, z. B. 64 Bit auf modernen Systemen):</p>
-<ul>
-<li><strong>Pointer (Zeiger):</strong> Die genaue Adresse im Speicher (auf dem Heap), wo das allererste Element deines Vektors liegt.</li>
-<li><strong>Länge (Length):</strong> Die Anzahl der Elemente, die sich aktuell <em>tatsächlich</em> im Vektor befinden.</li>
-<li><strong>Kapazität (Capacity):</strong> Die Anzahl der Elemente, für die auf dem Heap bereits Speicherplatz reserviert wurde.</li>
-</ul>
-</li>
-<li>
-<p><strong>Die eigentlichen Daten auf dem Heap:</strong>
-Auf dem flexiblen Heap liegen die eigentlichen Elemente des Vektors direkt hintereinander aufgereiht im Speicher.</p>
-</li>
-</ol>
-<h3 id="wie-ein-vektor-wächst-die-reallozierung"><a class="header" href="#wie-ein-vektor-wächst-die-reallozierung">Wie ein Vektor wächst: Die Reallozierung</a></h3>
-<p>Was passiert, wenn du einen neuen Gegenstand in deinen Vektor legst (z. B. mit <code>.push()</code>), die Länge aber bereits der Kapazität entspricht? Das Regal ist voll!</p>
-<p>In diesem Moment passiert im Hintergrund etwas Spannendes:</p>
-<ol>
-<li><strong>Neuen Platz suchen:</strong> Rust bittet das Betriebssystem um einen neuen, größeren und zusammenhängenden Speicherbereich auf dem Heap. In der Regel wird die Kapazität dabei verdoppelt (z. B. von 4 auf 8 Plätze).</li>
-<li><strong>Umziehen:</strong> Rust kopiert alle bisherigen Elemente an den neuen Ort.</li>
-<li><strong>Aufräumen:</strong> Der alte Speicherbereich auf dem Heap wird freigegeben.</li>
-<li><strong>Update:</strong> Der Zeiger auf dem Stack wird auf die neue Adresse umgebogen, die Kapazität wird aktualisiert und das neue Element wird am Ende angehängt.</li>
-</ol>
-<blockquote>
-<p>[!NOTE]
-Dieses "Umziehen" (Reallozierung) kostet Zeit. Wenn du im Voraus weißt, dass dein Vektor ungefähr 1000 Elemente enthalten wird, kannst du Rust mit <code>Vec::with_capacity(1000)</code> anweisen, sofort genügend Platz zu reservieren. Dadurch verhinderst du unnötige Umzüge im Speicher und machst dein Programm spürbar schneller.</p>
-</blockquote>
-<h3 id="ownership-und-vektoren-wer-besitzt-die-daten"><a class="header" href="#ownership-und-vektoren-wer-besitzt-die-daten">Ownership und Vektoren: Wer besitzt die Daten?</a></h3>
-<p>In Rust gilt das Gesetz der Ownership: Jeder Wert hat genau einen Besitzer. Bei einem Vektor verhält es sich so:</p>
-<ul>
-<li><strong>Der Vektor besitzt seine Elemente.</strong> Wenn du ein Element in einen Vektor einfügst, übergibst du die Ownership an den Vektor.</li>
-<li><strong>Automatisches Aufräumen (Drop):</strong> Wenn der Vektor selbst das Ende seines Gültigkeitsbereichs (Scope) erreicht und gelöscht wird, löscht Rust automatisch auch alle darin enthaltenen Elemente und gibt deren Speicher auf dem Heap frei. Es entstehen keine Speicherlecks!</li>
-</ul>
-<p>Das führt jedoch zu einer wichtigen Einschränkung beim Zugriff:</p>
-<ul>
-<li>Du kannst nicht einfach ein Element aus der Mitte des Vektors herauskopieren, wenn der Datentyp keine automatische Kopie erlaubt (wie z. B. <code>String</code>). Der Code <code>let element = mein_vektor[0];</code> würde einen Compilerfehler verursachen, weil du damit versuchen würdest, dem Vektor die Ownership an diesem Element zu stehlen, wodurch eine "Lücke" im Vektor entstehen würde.</li>
-<li><strong>Lösungen:</strong> Entweder nimmst du nur eine Referenz (<code>let element = &amp;mein_vektor[0];</code>), kopierst den Wert explizit (<code>let element = mein_vektor[0].clone();</code>) oder entnimmst ihn kontrolliert (z. B. mit <code>.pop()</code> am Ende oder <code>.remove(index)</code> in der Mitte, was jedoch die nachfolgenden Elemente im Speicher verschieben muss).</li>
-</ul>
-<h3 id="sicheres-arbeiten-panics-und-iterator-invalidierung"><a class="header" href="#sicheres-arbeiten-panics-und-iterator-invalidierung">Sicheres Arbeiten: Panics und Iterator-Invalidierung</a></h3>
-<p>Zwei häufige Fehlerquellen lauern beim Umgang mit dynamischen Listen:</p>
-<h4 id="1-der-index-absturz-out-of-bounds"><a class="header" href="#1-der-index-absturz-out-of-bounds">1. Der Index-Absturz (Out of Bounds)</a></h4>
-<p>Wenn dein Vektor 3 Elemente hat und du versuchst, auf das Element am Index 5 zuzugreifen (<code>mein_vektor[5]</code>), stürzt dein Programm sofort mit einer sogenannten <code>Panic</code> ab.</p>
-<ul>
-<li><strong>Sicherer Zugriff mit <code>.get()</code>:</strong> Verwende stattdessen die Methode <code>.get(index)</code>. Diese gibt eine <code>Option&lt;&amp;T&gt;</code> zurück. Existiert der Index, erhältst du <code>Some(&amp;wert)</code>. Existiert er nicht, erhältst du <code>None</code>. Dein Programm stürzt nicht ab, und du kannst den Fehler sauber behandeln.</li>
-</ul>
-<h4 id="2-iterator-invalidierung"><a class="header" href="#2-iterator-invalidierung">2. Iterator-Invalidierung</a></h4>
-<p>Stell dir vor, du läufst durch eine Liste von Zahlen und fügst bei jeder geraden Zahl eine neue Zahl am Ende der Liste hinzu. Wenn die Liste während des Durchlaufens ihre Kapazität überschreitet, zieht sie im Speicher um. Dein Iterator würde plötzlich auf den alten, mittlerweile freigegebenen Speicher zeigen – ein schwerwiegender Sicherheitsfehler!</p>
-<ul>
-<li><strong>Rusts Rettung:</strong> Der Borrow Checker verhindert das zur Compilezeit. Du darfst keine veränderliche Referenz auf den Vektor haben (um Elemente hinzuzufügen), während du gleichzeitig eine unveränderliche Referenz halte (um über die Elemente zu iterieren). Der Compiler bricht mit einer Fehlermeldung ab und schützt dich vor diesem Bug.</li>
-</ul>
-<hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen-4"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-4">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Versuche, die folgenden Aufgaben selbstständig zu lösen. Verwende dabei die besprochenen Konzepte und die Tipps, um sicheren Code zu schreiben.</p>
-<h3 id="aufgabe-1-leicht-grundlagen--syntax--die-einkaufsliste"><a class="header" href="#aufgabe-1-leicht-grundlagen--syntax--die-einkaufsliste">Aufgabe 1: Leicht (Grundlagen &amp; Syntax) – Die Einkaufsliste</a></h3>
-<ol>
-<li><strong>Zielbeschreibung:</strong> Erstelle eine einfache Einkaufsliste, füge Artikel hinzu und frage das erste Element sicher ab.</li>
-<li><strong>Code-Gerüst:</strong> Ergänze den Code an den Stellen mit <code>todo!()</code>.
-<pre><pre class="playground"><code class="language-rust">fn main() {
-    // 1. Erstelle einen leeren, veränderbaren Vektor für Strings
-    let mut einkaufsliste: Vec&lt;String&gt; = todo!();
-
-    // 2. Füge drei Artikel deiner Wahl hinzu (z. B. "Äpfel", "Milch", "Brot")
-    todo!();
-
-    // 3. Greife sicher auf das erste Element zu, ohne dass das Programm abstürzen kann
-    // Tipp: Nutze die .get()-Methode und ein match-Konstrukt oder if-let!
-    match todo!() {
-        Some(artikel) =&gt; println!("Erster Artikel: {}", artikel),
-        None =&gt; println!("Die Einkaufsliste ist leer!"),
-    }
-}</code></pre></pre>
-</li>
-<li><strong>Didaktische Tipps:</strong>
-<ul>
-<li>Nutze <code>Vec::new()</code> oder das Makro <code>vec![]</code> zum Erstellen.</li>
-<li>Mit <code>.push(wert)</code> kannst du Elemente an das Ende des Vektors anhängen. Denke daran, dass ein <code>&amp;str</code> mit <code>.to_string()</code> oder <code>String::from()</code> in einen <code>String</code> umgewandelt werden muss.</li>
-</ul>
-</li>
-<li><strong>Testfall:</strong> Stelle sicher, dass beim Ausführen deines Programms der erste Artikel auf der Konsole ausgegeben wird. Wenn du die Hinzufügung auskommentierst, sollte das Programm nicht abstürzen, sondern die Meldung ausgeben, dass die Liste leer ist.</li>
-</ol>
-<h3 id="aufgabe-2-mittel-kombination--kleine-anwendungen--der-temperatur-filter"><a class="header" href="#aufgabe-2-mittel-kombination--kleine-anwendungen--der-temperatur-filter">Aufgabe 2: Mittel (Kombination &amp; kleine Anwendungen) – Der Temperatur-Filter</a></h3>
-<ol>
-<li><strong>Aufgabenstellung:</strong> Schreibe eine Funktion, die eine Liste von gemessenen Temperaturen filtert und nur die Temperaturen zurückgibt, die über einem bestimmten Grenzwert liegen.</li>
-<li><strong>Anforderungen:</strong>
-<ul>
-<li>Die Funktion soll einen Vektor von Kommazahlen (<code>f64</code>) und einen Grenzwert (<code>f64</code>) als Parameter annehmen.</li>
-<li>Da wir die Originalwerte nicht zerstören wollen, soll die Funktion die Eingabewerte als Referenz entgegennehmen.</li>
-<li>Die Funktion soll einen neuen Vektor mit den gefilterten Temperaturen zurückgeben.</li>
-</ul>
-</li>
-<li><strong>Didaktische Tipps:</strong>
-<ul>
-<li>Übergib den Eingabe-Vektor als <code>&amp;Vec&lt;f64&gt;</code> oder besser als Slice <code>&amp;[f64]</code>.</li>
-<li>Iteriere mit einer <code>for</code>-Schleife über den Vektor (z. B. <code>for &amp;temp in list</code>), um Kopien der Zahlen zu vergleichen, da <code>f64</code> das <code>Copy</code>-Trait implementiert.</li>
-</ul>
-</li>
-<li><strong>Testfälle:</strong>
-Implementiere einen Test in deinem Code, um die Funktion zu prüfen:
+<h3 id="die-lösung-vecwith_capacity"><a class="header" href="#die-lösung-vecwith_capacity">Die Lösung: <code>Vec::with_capacity</code></a></h3>
+<p>Wenn du bereits im Voraus ahnst, wie viele Elemente dein Vektor ungefähr aufnehmen wird (z. B. beim Einlesen einer Datei mit 100 Zeilen), solltest du den Vektor immer mit einer vorab definierten Kapazität erstellen:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[test]
-fn test_temperatur_filter() {
-    let messwerte = vec![15.5, 22.0, 9.8, 30.1, 18.2];
-    let grenzwert = 20.0;
-    let ergebnis = filter_temperaturen(&amp;messwerte, grenzwert);
-    assert_eq!(ergebnis, vec![22.0, 30.1]);
-}
+</span>// Reserviert sofort Platz für 100 Elemente auf dem Heap.
+// Es werden keine Reallozierungen beim Befüllen stattfinden!
+let mut daten = Vec::with_capacity(100);
 <span class="boring">}</span></code></pre></pre>
-</li>
-</ol>
-<h3 id="aufgabe-3-schwer-architektur--fortgeschrittene-konzepte--das-undo-fähige-notizbuch"><a class="header" href="#aufgabe-3-schwer-architektur--fortgeschrittene-konzepte--das-undo-fähige-notizbuch">Aufgabe 3: Schwer (Architektur &amp; fortgeschrittene Konzepte) – Das undo-fähige Notizbuch</a></h3>
-<ol>
-<li><strong>Szenario:</strong> Du möchtest ein einfaches Notizbuch programmieren, das Änderungen rückgängig machen kann. Wenn eine Notiz geändert oder gelöscht wird, soll der vorherige Zustand in einer Historie gespeichert werden.</li>
-<li><strong>Architekturvorgaben:</strong>
-<ul>
-<li>Erstelle eine Struktur <code>Notizbuch</code> mit zwei Feldern: <code>notizen: Vec&lt;String&gt;</code> (für die aktuellen Notizen) und <code>historie: Vec&lt;String&gt;</code> (für gelöschte oder überschriebene Notizen).</li>
-<li>Implementiere folgende Methoden:
-<ul>
-<li><code>new()</code>: Erstellt ein leeres Notizbuch.</li>
-<li><code>hinzufuegen(&amp;mut self, text: String)</code>: Fügt eine neue Notiz hinzu.</li>
-<li><code>ersetzen(&amp;mut self, index: usize, neuer_text: String) -&gt; Result&lt;(), String&gt;</code>: Ersetzt die Notiz am angegebenen Index. Die <em>alte</em> Notiz muss in die <code>historie</code> verschoben werden. Falls der Index ungültig ist, soll ein Fehler zurückgegeben werden.</li>
-<li><code>rueckgaengig(&amp;mut self) -&gt; Result&lt;(), String&gt;</code>: Nimmt den letzten Eintrag aus der <code>historie</code> und hängt ihn wieder an die aktiven <code>notizen</code> an. Falls die Historie leer ist, soll ein Fehler zurückgegeben werden.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Tipps zur Herangehensweise:</strong>
-<ul>
-<li>Verwende <code>Result</code> für Fehlerbehandlung, um ungültige Indizes abzufangen.</li>
-<li>Nutze Methoden wie <code>.push()</code>, <code>.pop()</code> und <code>.remove()</code>, um Elemente zwischen den Vektoren zu bewegen.</li>
-<li>Denke an Ownership: Um ein Element aus dem Vektor zu ersetzen, kannst du <code>std::mem::replace</code> verwenden oder das Element mit <code>.remove(index)</code> entfernen und ein neues mit <code>.insert(index, ...)</code> einfügen.</li>
-</ul>
-</li>
-<li><strong>Schnittstellen (API):</strong>
+<hr />
+<h2 id="-vektoren-erstellen-befüllen-und-manipulieren"><a class="header" href="#-vektoren-erstellen-befüllen-und-manipulieren">🛠️ Vektoren erstellen, befüllen und manipulieren</a></h2>
+<p>Es gibt verschiedene Möglichkeiten, einen Vektor in Rust zu erzeugen:</p>
+<h3 id="1-einen-leeren-vektor-erstellen"><a class="header" href="#1-einen-leeren-vektor-erstellen">1. Einen leeren Vektor erstellen</a></h3>
+<p>Wenn du noch keine Daten hast, erstellst du einen leeren Vektor. Da Rust den Typ der Elemente nicht erraten kann, musst du ihn explizit angeben:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Notizbuch {
-    notizen: Vec&lt;String&gt;,
-    historie: Vec&lt;String&gt;,
-}
+</span>let mut zahlen: Vec&lt;i32&gt; = Vec::new();
+<span class="boring">}</span></code></pre></pre>
+<h3 id="2-das-vec-makro-nutzen"><a class="header" href="#2-das-vec-makro-nutzen">2. Das <code>vec!</code>-Makro nutzen</a></h3>
+<p>Wenn du den Vektor direkt mit Startwerten initialisieren möchtest:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let fruechte = vec![String::from("Apfel"), String::from("Banane")];
+<span class="boring">}</span></code></pre></pre>
+<h3 id="3-elemente-hinzufügen-und-entfernen"><a class="header" href="#3-elemente-hinzufügen-und-entfernen">3. Elemente hinzufügen und entfernen</a></h3>
+<ul>
+<li><strong><code>.push(wert)</code></strong>: Hängt ein Element an das Ende der Liste an.</li>
+<li><strong><code>.pop()</code></strong>: Entfernt das letzte Element und gibt es als <code>Option&lt;T&gt;</code> zurück (<code>Some(wert)</code> oder <code>None</code>, falls der Vektor leer war).</li>
+<li><strong><code>.insert(index, wert)</code></strong>: Fügt ein Element an einer beliebigen Stelle ein. <strong>Achtung:</strong> Diese Operation ist langsam, da alle nachfolgenden Elemente im Speicher um eine Position nach hinten verschoben werden müssen!</li>
+<li><strong><code>.remove(index)</code></strong>: Entfernt ein Element an einer Position. Auch dies ist langsam, da nachfolgende Elemente nach vorne aufrücken müssen.</li>
+<li><strong><code>.retain(|x| bedingung)</code></strong>: Filtert den Vektor und behält nur Elemente, die die Bedingung erfüllen.</li>
+</ul>
+<hr />
+<h2 id="-sicherer-zugriff-auf-elemente"><a class="header" href="#-sicherer-zugriff-auf-elemente">🔍 Sicherer Zugriff auf Elemente</a></h2>
+<h3 id="der-direkte-index-zugriff--gefährlich"><a class="header" href="#der-direkte-index-zugriff--gefährlich">Der direkte Index-Zugriff <code>[]</code> (Gefährlich!)</a></h3>
+<p>Du kannst über eckige Klammern direkt auf Elemente zugreifen:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![10, 20, 30];
+let x = v[0]; // 10
+<span class="boring">}</span></code></pre></pre>
+<p>Wenn du jedoch versuchst, auf <code>v[5]</code> zuzugreifen, stürzt dein Programm sofort mit einer <strong>Panic</strong> ab. In Rust wollen wir unkontrollierte Abstürze unter allen Umständen vermeiden.</p>
+<h3 id="der-sichere-zugriff-mit-get"><a class="header" href="#der-sichere-zugriff-mit-get">Der sichere Zugriff mit <code>.get()</code></a></h3>
+<p>Nutze stattdessen immer die Methode <code>.get(index)</code>, welche eine <code>Option&lt;&amp;T&gt;</code> zurückgibt:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![10, 20, 30];
 
-impl Notizbuch {
-    fn new() -&gt; Self { todo!() }
-    fn hinzufuegen(&amp;mut self, text: String) { todo!() }
-    fn ersetzen(&amp;mut self, index: usize, neuer_text: String) -&gt; Result&lt;(), String&gt; { todo!() }
-    fn rueckgaengig(&amp;mut self) -&gt; Result&lt;(), String&gt; { todo!() }
+match v.get(5) {
+    Some(wert) =&gt; println!("Wert am Index 5: {}", wert),
+    None =&gt; println!("Dieser Index existiert nicht!"), // Kein Absturz!
 }
 <span class="boring">}</span></code></pre></pre>
-</li>
-<li><strong>Integrationstest:</strong>
+<hr />
+<h2 id="-iteration-und-ownership"><a class="header" href="#-iteration-und-ownership">🔄 Iteration und Ownership</a></h2>
+<p>Beim Durchlaufen eines Vektors mit einer Schleife musst du dich entscheiden, wie du auf die Elemente zugreifen willst. Es gibt drei Arten der Iteration:</p>
+<h3 id="1-unveränderliche-referenz-v"><a class="header" href="#1-unveränderliche-referenz-v">1. Unveränderliche Referenz (<code>&amp;v</code>)</a></h3>
+<p>Du möchtest die Elemente nur lesen. Der Vektor bleibt danach unberührt und nutzbar:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[test]
-fn test_notizbuch_historie() {
-    let mut buch = Notizbuch::new();
-    buch.hinzufuegen("Einkaufen gehen".to_string());
-    buch.hinzufuegen("Rost lernen".to_string());
-    
-    assert!(buch.ersetzen(1, "Rust lernen".to_string()).is_ok());
-    assert_eq!(buch.notizen[1], "Rust lernen");
-    assert_eq!(buch.historie[0], "Rost lernen");
-    
-    assert!(buch.rueckgaengig().is_ok());
-    assert_eq!(buch.notizen.last().unwrap(), "Rost lernen");
+</span>let v = vec![1, 2, 3];
+for zahl in &amp;v {
+    println!("Zahl: {}", zahl);
+}
+// v kann hiernach normal weiterverwendet werden!
+<span class="boring">}</span></code></pre></pre>
+<h3 id="2-veränderliche-referenz-mut-v"><a class="header" href="#2-veränderliche-referenz-mut-v">2. Veränderliche Referenz (<code>&amp;mut v</code>)</a></h3>
+<p>Du möchtest die Elemente im Vektor direkt verändern:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut v = vec![1, 2, 3];
+for zahl in &amp;mut v {
+    *zahl *= 2; // Verdoppelt jeden Wert im Vektor direkt im Speicher
 }
 <span class="boring">}</span></code></pre></pre>
+<h3 id="3-konsumierende-iteration-v"><a class="header" href="#3-konsumierende-iteration-v">3. Konsumierende Iteration (<code>v</code>)</a></h3>
+<p>Du übergibst die Ownership der Elemente an die Schleife. Der Vektor wird dabei zerstört:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![String::from("A"), String::from("B")];
+for s in v {
+    println!("Besitze nun: {}", s); // s besitzt den String
+}
+// v existiert hiernach nicht mehr!
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h2 id="-typische-compilerfehler-und-wie-man-sie-behebt"><a class="header" href="#-typische-compilerfehler-und-wie-man-sie-behebt">⚠️ Typische Compilerfehler und wie man sie behebt</a></h2>
+<h3 id="fehler-1-während-der-iteration-den-vektor-verändern"><a class="header" href="#fehler-1-während-der-iteration-den-vektor-verändern">Fehler 1: Während der Iteration den Vektor verändern</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut v = vec![1, 2, 3];
+for x in &amp;v {
+    v.push(*x); // ❌ COMPILER-FEHLER!
+}
+<span class="boring">}</span></code></pre></pre>
+<p><em>Warum:</em> Du leihst dir den Vektor für die Schleife unveränderbar aus (<code>&amp;v</code>). Gleichzeitig versuchst du mit <code>v.push()</code>, den Vektor veränderbar auszuleihen. Rust verbietet dies, da eine Reallozierung im Speicher den Iterator ungültig machen würde (Iterator-Invalidierung).
+<em>Lösung:</em> Sammle die neuen Werte in einem separaten Vektor und hänge sie nach der Schleife an.</p>
+<h3 id="fehler-2-eigentum-aus-dem-vektor-stehlen"><a class="header" href="#fehler-2-eigentum-aus-dem-vektor-stehlen">Fehler 2: Eigentum aus dem Vektor stehlen</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![String::from("Rust")];
+let name = v[0]; // ❌ COMPILER-FEHLER!
+<span class="boring">}</span></code></pre></pre>
+<p><em>Warum:</em> <code>String</code> implementiert kein <code>Copy</code>. Mit <code>v[0]</code> versuchst du, den String aus dem Vektor herauszubewegen (Move). Das würde eine ungültige Lücke im Vektor hinterlassen.
+<em>Lösung:</em> Nimm eine Referenz (<code>let name = &amp;v[0];</code>) oder klone den String explizit (<code>let name = v[0].clone();</code>).</p>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen-4"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-4">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--der-filtereinkauf"><a class="header" href="#aufgabe-1-leicht--der-filtereinkauf">Aufgabe 1: Leicht – Der Filtereinkauf</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Erstelle eine Liste von Preisen (Kommazahlen) und filtere alle Preise heraus, die über 10.0 € liegen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Erstelle einen Vektor mit fünf beliebigen Preisen.</li>
+<li>Iteriere über diesen Vektor und füge alle Preise, die $\le 10.0$ sind, in einen neuen Vektor ein.</li>
+<li>Gib den neuen Vektor auf der Konsole aus.</li>
+</ul>
 </li>
+<li><strong>Tipps:</strong> Überlege, ob du für den Filter-Vektor <code>Vec::new()</code> nutzt und wie du mit <code>.push()</code> Elemente anfügst.</li>
 </ol>
-<hr />
-<h2 id="-50-projekte-3"><a class="header" href="#-50-projekte-3">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kurze Projektideen, mit denen du den Umgang mit Vektoren in verschiedenen Schwierigkeitsgraden üben kannst:</p>
+<h3 id="aufgabe-2-mittel--der-notenschnitt-rechner"><a class="header" href="#aufgabe-2-mittel--der-notenschnitt-rechner">Aufgabe 2: Mittel – Der Notenschnitt-Rechner</a></h3>
 <ol>
-<li><strong>Einfache To-Do-Liste:</strong> Aufgaben per Konsole hinzufügen und auflisten.</li>
-<li><strong>Noten-Durchschnittsrechner:</strong> Noten in Vektor speichern und Durchschnitt berechnen.</li>
-<li><strong>Zufallsauswahl-Generator:</strong> Eine Liste von Namen eintragen und einen zufälligen Gewinner ziehen.</li>
-<li><strong>Wort-Statistik:</strong> Einen Text einlesen, in Wörter zerlegen und die Anzahl der Wörter zählen.</li>
-<li><strong>Winkelsummen-Prüfer:</strong> Vektor von Winkeln prüfen, ob sie ein gültiges Vieleck bilden.</li>
-<li><strong>Einkaufswagen:</strong> Artikel mit Preisen in einem Vektor verwalten und die Summe berechnen.</li>
-<li><strong>Kartenstapel:</strong> Kartendeck als Vektor von Enums erstellen und mischen.</li>
-<li><strong>Highscore-Tabelle:</strong> Liste der Top-10-Scores verwalten und automatisch sortieren.</li>
-<li><strong>FIFO-Warteschlange:</strong> Kundenservice-Simulation (First In, First Out) mit <code>.push()</code> und <code>.remove(0)</code>.</li>
-<li><strong>LIFO-Stack:</strong> Ein Stapel von Büchern (Last In, First Out) mit <code>.push()</code> und <code>.pop()</code>.</li>
-<li><strong>Duplikat-Entferner:</strong> Einen Vektor bereinigen, sodass jeder Wert nur einmal vorkommt.</li>
-<li><strong>Primzahlen-Sieb:</strong> Das Sieb des Eratosthenes mithilfe eines Vektors von Booleans umsetzen.</li>
-<li><strong>Palindrom-Prüfer:</strong> Prüfen, ob ein Vektor von Zeichen vorwärts wie rückwärts identisch ist.</li>
-<li><strong>Wetterstation:</strong> Temperaturen speichern und den kältesten und wärmsten Tag ermitteln.</li>
-<li><strong>CSV-Parser:</strong> Eine einzelne CSV-Zeile an den Kommas trennen und in einen Vektor aufteilen.</li>
-<li><strong>Wort-Anagramm-Tester:</strong> Zwei Wörter in Zeichen-Vektoren zerlegen, sortieren und vergleichen.</li>
-<li><strong>Log-Dateien-Filter:</strong> Eine Liste von Log-Einträgen durchsuchen und nur "ERROR"-Einträge filtern.</li>
-<li><strong>Römische Zahlen:</strong> Einen Vektor als Nachschlagetabelle für römische Schriftzeichen nutzen.</li>
-<li><strong>Musik-Playlist:</strong> Lieder in einem Vektor verwalten, abspielen und mischen.</li>
-<li><strong>Teilnehmer-Gruppierer:</strong> Eine Liste von Personen zufällig in Zweierteams aufteilen.</li>
-<li><strong>Vokabeltrainer:</strong> Ein Vektor von Tupeln <code>(Deutsch, Englisch)</code> für ein einfaches Quiz nutzen.</li>
-<li><strong>Sitzplatzreservierung:</strong> Einen Vektor von Booleans nutzen, um freie und belegte Kinositze anzuzeigen.</li>
-<li><strong>Börsenkurs-Analysator:</strong> Kurshistorie analysieren und den maximalen Gewinn (Kauf- und Verkaufszeitpunkt) finden.</li>
-<li><strong>Run-Length-Encoding (RLE):</strong> Zeichenfolgen komprimieren (z. B. <code>['A', 'A', 'B']</code> zu <code>[('A', 2), ('B', 1)]</code>).</li>
-<li><strong>Matrix-Transponierung:</strong> Ein 2D-Gitter (Vektor von Vektoren) an der Diagonale spiegeln.</li>
-<li><strong>Morsecode-Übersetzer:</strong> Text in einen Vektor aus Morse-Zeichen (<code>.</code>, <code>-</code>) übersetzen.</li>
-<li><strong>Zahlen-Sortierer:</strong> Einen benutzerdefinierten Sortieralgorithmus (z. B. Bubble Sort) auf einem Vektor implementieren.</li>
-<li><strong>Wegfinder-Tracker:</strong> Die Koordinaten eines zurückgelegten Pfades als Vektor von Structs speichern.</li>
-<li><strong>Text-Zeilen-Formatierer:</strong> Einen langen String in einen Vektor von Zeilen mit maximal 80 Zeichen aufteilen.</li>
-<li><strong>Einfacher Compiler-Tokenizer:</strong> Quellcode-Text in eine Liste von Token (Schlüsselwörter, Zahlen, Operatoren) zerlegen.</li>
-<li><strong>Bild-Pixel-Graustufen:</strong> Ein Bild als Vektor von Helligkeitswerten repräsentieren und invertieren.</li>
-<li><strong>Inventar-System:</strong> Gegenstände in einem Rollenspiel-Inventar hinzufügen, entfernen und stapeln.</li>
-<li><strong>Wahlkabinen-Simulator:</strong> Stimmen für verschiedene Kandidaten zählen und den Sieger ermitteln.</li>
-<li><strong>Einfacher Chat-Verlauf:</strong> Die letzten 50 Nachrichten in einem Vektor speichern und alte Einträge löschen.</li>
-<li><strong>Kommandozeilen-History:</strong> Die vom Benutzer eingegebenen Befehle speichern und durchsuchbar machen.</li>
-<li><strong>Frequenzanalyse:</strong> Die Häufigkeit von Buchstaben in einem Text ermitteln und sortiert ausgeben.</li>
-<li><strong>Dateiendungs-Filter:</strong> Eine Liste von Dateinamen nach bestimmten Endungen (z. B. <code>.txt</code>) filtern.</li>
-<li><strong>Rucksack-Problem:</strong> Eine Liste von Gegenständen filtern, um den maximalen Wert bei begrenztem Gewicht zu finden.</li>
-<li><strong>Taschenrechner-Verlauf:</strong> Mathematische Gleichungen und Ergebnisse in einem Verlauf-Vektor speichern.</li>
-<li><strong>Bruchrechner-Sammlung:</strong> Brüche als Structs in einem Vektor speichern und alle addieren.</li>
-<li><strong>Social-Media-Feed:</strong> Posts in einem Vektor verwalten und nach "Likes" sortieren.</li>
-<li><strong>Sudoku-Validierer:</strong> Prüfen, ob ein Vektor mit 9 Zahlen die Sudoku-Regeln (1-9 ohne Duplikate) erfüllt.</li>
-<li><strong>Netzwerk-Paket-Buffer:</strong> Eingehende Datenpakete zwischenspeichern und der Reihe nach verarbeiten.</li>
-<li><strong>Paketdienst-Routenplaner:</strong> Adressen-Vektor nach der geografischen Nähe sortieren.</li>
-<li><strong>Text-Diff-Viewer:</strong> Zwei Listen von Textzeilen vergleichen und Abweichungen anzeigen.</li>
-<li><strong>Münzwechsler:</strong> Einen Vektor von verfügbaren Münzen nutzen, um Wechselgeld optimal aufzuteilen.</li>
-<li><strong>Auto-Vervollständigung:</strong> Eine Liste von Wörtern filtern, die mit den vom Benutzer eingegebenen Buchstaben beginnen.</li>
-<li><strong>Rezept-Skalierer:</strong> Zutatenmengen in einer Liste proportional für eine andere Personenanzahl umrechnen.</li>
-<li><strong>Turnierbaum-Generator:</strong> Paarungen für ein K.-o.-System aus einer Liste von Spielern erstellen.</li>
-<li><strong>Verzeichnisstruktur-Flachleger:</strong> Alle Dateien aus verschachtelten Ordnern in einer flachen Liste sammeln.</li>
+<li><strong>Ziel:</strong> Berechne den Notendurchschnitt einer Klasse, aber fange ungültige Eingaben ab.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Schreibe eine Funktion, die einen Slice von Noten (<code>&amp;[u32]</code>) entgegennimmt.</li>
+<li>Die Funktion soll den Durchschnitt als <code>Result&lt;f64, String&gt;</code> zurückgeben.</li>
+<li>Falls die übergebene Liste leer ist, soll ein <code>Err</code> zurückgegeben werden (verhindere Division durch Null!).</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Nutze Methoden wie <code>.is_empty()</code> und <code>.len()</code> auf dem Slice.</li>
 </ol>
-<hr />
-<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
-<ul>
-<li><strong>Dynamische Größe:</strong> Im Gegensatz zu Arrays können Vektoren (<code>Vec&lt;T&gt;</code>) zur Laufzeit wachsen und schrumpfen.</li>
-<li><strong>Speicheraufteilung:</strong> Die Metadaten (Pointer, Length, Capacity) liegen auf dem Stack, während die eigentlichen Daten hintereinander auf dem Heap liegen.</li>
-<li><strong>Reallozierung:</strong> Wenn die Kapazität erschöpft ist, reserviert Rust automatisch einen neuen, größeren Speicherbereich auf dem Heap und kopiert die Daten dorthin.</li>
-<li><strong>Ownership:</strong> Vektoren besitzen ihre Elemente. Wird der Vektor gelöscht, werden alle Elemente ebenfalls gelöscht (Drop).</li>
-<li><strong>Sicherer Zugriff:</strong> Indexierung mit <code>[]</code> kann bei ungültigen Indizes zum Absturz (<code>Panic</code>) führen. Nutze <code>.get()</code> für einen sicheren Zugriff, der eine <code>Option</code> zurückgibt.</li>
-<li><strong>Iterator-Sicherheit:</strong> Der Borrow Checker verhindert zur Compilezeit, dass ein Vektor verändert wird, während man über ihn iteriert (Iterator-Invalidierung).</li>
-</ul>
-<hr />
-<h2 id="-links-4"><a class="header" href="#-links-4">📚 Links</a></h2>
-<ul>
-<li><a href="https://doc.rust-lang.org/std/vec/struct.Vec.html">Offizielle Rust-Dokumentation für <code>Vec</code></a></li>
-<li><a href="https://doc.rust-lang.org/book/ch08-01-vectors.html">Kapitel 8.1 im offiziellen Rust-Buch: Vectors</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/std/vec.html">Rust by Example: Vectors</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-hashmaps-hashmapk-v"><a class="header" href="#-hashmaps-hashmapk-v">🗺️ HashMaps (HashMap&lt;K, V&gt;)</a></h1>
-<p>Stell dir vor, du hast eine riesige Kiste voller Bücher und möchtest ein bestimmtes Buch finden. Wenn die Bücher einfach wild durcheinanderliegen, musst du jedes einzelne Buch in die Hand nehmen und nachsehen. Das entspricht der Suche in einer Liste oder einem Vektor. Wenn du deine Bücher jedoch in ein Regal stellst und sie nach dem Nachnamen des Autors sortierst, findest du sie viel schneller.</p>
-<p>Genau das macht eine <strong>HashMap</strong> in Rust. Sie ist eine Datenstruktur, mit der du Daten nicht über eine einfache Nummer (einen Index) ansprichst, sondern über einen frei wählbaren Schlüssel (den <strong>Key</strong>). Zu jedem Schlüssel gehört genau ein Wert (der <strong>Value</strong>).</p>
-<p>In diesem Kapitel lernst du die fundamentalen Konzepte hinter dieser mächtigen Datenstruktur kennen.</p>
-<hr />
-<h2 id="-theorie-5"><a class="header" href="#-theorie-5">🧠 Theorie</a></h2>
-<h3 id="wie-schlüssel-wert-zuordnungen-funktionieren"><a class="header" href="#wie-schlüssel-wert-zuordnungen-funktionieren">Wie Schlüssel-Wert-Zuordnungen funktionieren</a></h3>
-<p>Eine HashMap ordnet einem eindeutigen Schlüssel (Key) einen bestimmten Wert (Value) zu. In Rust schreiben wir das als <code>HashMap&lt;K, V&gt;</code>, wobei <code>K</code> für den Typ des Schlüssels und <code>V</code> für den Typ des Wertes steht.</p>
-<p>Aber wie schafft es der Computer, bei Millionen von Einträgen in Bruchteilen einer Sekunde genau den richtigen Wert zu finden?</p>
-<p>Das Geheimnis liegt im <strong>Hashing</strong>:</p>
+<h3 id="aufgabe-3-schwer--der-stack-basierte-text-editor"><a class="header" href="#aufgabe-3-schwer--der-stack-basierte-text-editor">Aufgabe 3: Schwer – Der Stack-basierte Text-Editor</a></h3>
 <ol>
-<li><strong>Der Hash-Wert:</strong> Wenn du einen Schlüssel in die HashMap legst (z. B. das Wort <code>"Apfel"</code>), schickt die HashMap diesen Schlüssel durch eine sogenannte <em>Hash-Funktion</em>. Diese mathematische Funktion berechnet aus dem Schlüssel eine große Zahl – den sogenannten Hash.</li>
-<li><strong>Die Speicheradresse (Bucket):</strong> Diese Zahl wird verwendet, um einen Speicherplatz (einen sogenannten <em>Bucket</em> oder Eimer) in einem internen Array zu bestimmen. Dort wird das Paar aus Schlüssel und Wert abgelegt.</li>
-<li><strong>Kollisionen:</strong> Da es unendlich viele mögliche Schlüssel, aber nur begrenzt Speicherplätze gibt, kann es vorkommen, dass zwei unterschiedliche Schlüssel denselben Speicherplatz zugewiesen bekommen. Das nennt man eine <em>Kollision</em>. HashMaps haben integrierte Mechanismen (wie das Verketten von Elementen oder das Weitersuchen im Speicher), um Kollisionen im Hintergrund aufzulösen. Für dich als Entwickler passiert das völlig unsichtbar.</li>
+<li><strong>Ziel:</strong> Simuliere die "Rückgängig"-Funktion (Undo) eines Text-Editors.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Erstelle ein Struct <code>TextEditor</code> mit einem Vektor <code>historie</code>, der alte Zustände des geschriebenen Textes speichert.</li>
+<li>Implementiere Methoden zum Schreiben von Text (fügt den neuen Zustand zur Historie hinzu) und eine <code>undo</code>-Methode.</li>
+<li>Die <code>undo</code>-Methode soll den letzten Zustand entfernen und den vorherigen zurückgeben. Falls kein Zustand mehr da ist, gib ein <code>None</code> zurück.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Nutze <code>.pop()</code>, um das letzte Element sicher zu entfernen und dessen Besitz zurückzuerhalten.</li>
 </ol>
-<h3 id="die-geschwindigkeit-komplexität"><a class="header" href="#die-geschwindigkeit-komplexität">Die Geschwindigkeit (Komplexität)</a></h3>
-<p>Warum benutzen wir nicht immer Vektoren? Vektoren sind super, wenn wir über Indizes (<code>0, 1, 2, ...</code>) auf Daten zugreifen. Müssen wir aber nach einem bestimmten Element anhand seines Namens suchen, müssen wir im schlimmsten Fall den gesamten Vektor von vorne bis hinten durchsuchen.</p>
+<hr />
+<h2 id="-merkzettel-vektoren-auf-einen-blick"><a class="header" href="#-merkzettel-vektoren-auf-einen-blick">📌 Merkzettel: Vektoren auf einen Blick</a></h2>
 <ul>
-<li><strong>Durchschnittliche Laufzeit $O(1)$ (Konstante Zeit):</strong> Sowohl das Einfügen eines neuen Paares als auch das Suchen nach einem Schlüssel dauert im Durchschnitt immer gleich lang. Es ist völlig egal, ob deine HashMap 10 Einträge oder 10.000.000 Einträge hat – der Zugriff erfolgt fast augenblicklich. Die Hash-Funktion berechnet den Index direkt, ohne suchen zu müssen.</li>
-<li><strong>Schlechtester Fall (Worst Case) $O(n)$:</strong> Falls extrem viele Kollisionen auftreten (weil die Hash-Funktion schlecht arbeitet oder die Schlüssel absichtlich so gewählt wurden, dass sie kollidieren), kann die Suche auf eine lineare Suche absinken. Rust verwendet standardmäßig eine kryptografisch sichere Hash-Funktion (SipHash 1-3), um sich gegen solche Angriffe (DoS-Attacken) zu schützen. Das macht sie minimal langsamer als ungesicherte HashMaps, dafür aber extrem sicher.</li>
+<li>Vektoren sind dynamische Listen auf dem <strong>Heap</strong>.</li>
+<li>Sie belegen auf dem Stack immer genau <strong>24 Bytes</strong> (Pointer, Length, Capacity).</li>
+<li>Der direkte Index-Zugriff <code>v[i]</code> kann abstürzen. Nutze immer <strong><code>.get(i)</code></strong> für sicheren Zugriff.</li>
+<li>Um unnötige Kopiervorgänge (Reallozierungen) zu vermeiden, nutze <strong><code>Vec::with_capacity()</code></strong>.</li>
+<li>Verwende in Funktionen immer Slices <strong><code>&amp;[T]</code></strong> statt <code>&amp;Vec&lt;T&gt;</code>, um maximale Flexibilität zu gewährleisten.</li>
 </ul>
-<h3 id="ownership-und-keys-wer-besitzt-die-daten"><a class="header" href="#ownership-und-keys-wer-besitzt-die-daten">Ownership und Keys: Wer besitzt die Daten?</a></h3>
-<p>Rusts strenges Ownership-System gilt natürlich auch für HashMaps. Wenn du ein Schlüssel-Wert-Paar in eine HashMap einfügst, müssen wir uns fragen: Was passiert mit dem Besitz der Daten?</p>
-<p>Das hängt vom Typ ab:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hashmaps-hashmapk-v--schlüssel-wert-speicher-in-rust"><a class="header" href="#hashmaps-hashmapk-v--schlüssel-wert-speicher-in-rust">HashMaps (HashMap&lt;K, V&gt;) – Schlüssel-Wert-Speicher in Rust</a></h1>
+<p>Vektoren (<code>Vec&lt;T&gt;</code>) und Arrays (<code>[T; N]</code>) sind hervorragend geeignet, wenn wir über eine fortlaufende Ganzzahl (den Index <code>0, 1, 2, ...</code>) auf unsere Elemente zugreifen wollen. Manchmal wollen wir unsere Daten jedoch mit einem beliebigen anderen Datentyp verknüpfen.</p>
+<p>Stell dir vor:</p>
 <ul>
-<li><strong>Copy-Typen:</strong> Wenn dein Schlüssel oder Wert einen Typ hat, der das <code>Copy</code>-Trait implementiert (wie <code>i32</code>, <code>u32</code>, <code>f64</code>, <code>char</code>), werden die Daten einfach in die HashMap kopiert. Die ursprünglichen Variablen bleiben weiterhin nutzbar.</li>
-<li><strong>Verschobene Typen (Moved Types):</strong> Wenn die Typen <code>Copy</code> nicht implementieren (wie <code>String</code> oder <code>Vec</code>), wechselt der Besitz (Ownership) zur HashMap. Die HashMap wird zum alleinigen Eigentümer dieser Daten. Wenn du versuchst, die ursprüngliche Variable danach weiterzuverwenden, wird der Compiler einen Fehler melden.</li>
-<li><strong>Referenzen:</strong> Du kannst auch Referenzen (z. B. <code>&amp;str</code>) als Schlüssel verwenden. Das erfordert jedoch, dass du dich mit Lifetimes (Lebensdauern) beschäftigst, da die HashMap nicht länger leben darf als die Daten, auf die die Referenzen zeigen. Für den Anfang ist es meistens einfacher, der HashMap den Besitz (z. B. via <code>String</code>) zu übergeben.</li>
+<li>Du möchtest die Telefonnummer einer Person anhand ihres Namens (z. B. <code>"Anna"</code>) suchen.</li>
+<li>Du möchtest den Lagerbestand eines Produkts anhand seiner Artikelnummer (z. B. <code>"ART-9982"</code>) abfragen.</li>
+<li>Du möchtest zählen, wie oft einzelne Wörter in einem Buch vorkommen.</li>
 </ul>
-<h3 id="die-entry-api-effizienz-und-eleganz"><a class="header" href="#die-entry-api-effizienz-und-eleganz">Die Entry-API: Effizienz und Eleganz</a></h3>
-<p>Stell dir vor, du möchtest zählen, wie oft Wörter in einem Text vorkommen.
-Ein naiver Ansatz wäre:</p>
+<p>In all diesen Fällen müssten wir bei einem Vektor die gesamte Liste von vorne bis hinten durchsuchen, um den passenden Eintrag zu finden. Bei einer Million Einträgen würde das viel zu lange dauern.</p>
+<p>Die <strong><code>HashMap&lt;K, V&gt;</code></strong> löst dieses Problem. Sie speichert Paare aus einem <strong>Schlüssel (Key)</strong> vom Typ <code>K</code> und einem <strong>Wert (Value)</strong> vom Typ <code>V</code>. Über den Schlüssel kannst du in konstanter Zeit auf den zugeordneten Wert zugreifen.</p>
+<hr />
+<h2 id="-speicher-theorie-wie-funktioniert-eine-hashmap"><a class="header" href="#-speicher-theorie-wie-funktioniert-eine-hashmap">🧠 Speicher-Theorie: Wie funktioniert eine HashMap?</a></h2>
+<p>Um zu verstehen, warum HashMaps so extrem schnell sind und warum sie manche Einschränkungen haben, müssen wir uns ihre Funktionsweise ansehen.</p>
+<h3 id="was-ist-hashing"><a class="header" href="#was-ist-hashing">Was ist Hashing?</a></h3>
+<p>Das Wort "Hash" bedeutet im Englischen "zerhacken". Eine <strong>Hash-Funktion</strong> ist ein mathematischer Algorithmus. Er nimmt einen beliebigen Schlüssel (z. B. einen String <code>"Anna"</code>) und berechnet daraus eine Zahl (den sogenannten Hash-Wert).</p>
+<p>Wenn du ein Element in eine HashMap einfügst:</p>
 <ol>
-<li>Prüfe, ob das Wort schon in der HashMap existiert.</li>
-<li>Wenn ja: Hol den aktuellen Zählerwert, addiere 1 und speichere ihn wieder ab.</li>
-<li>Wenn nein: Füge das Wort mit dem Wert 1 ein.</li>
+<li><strong>Hash berechnen:</strong> Die HashMap schickt deinen Schlüssel durch ihre Hash-Funktion.</li>
+<li><strong>Index bestimmen:</strong> Aus der berechneten Zahl bestimmt die HashMap einen Index (einen sogenannten <em>Bucket</em> oder Eimer) in einem internen, festen Array.</li>
+<li><strong>Abspeichern:</strong> Das Paar aus Schlüssel und Wert wird an diesem Index abgelegt.</li>
 </ol>
-<p>Das Problem dabei: Der Computer muss zweimal in der HashMap nachschlagen (einmal zum Prüfen, einmal zum Einfügen/Aktualisieren). Das ist ineffizient und unschön zu schreiben.</p>
-<p>Hier kommt die <strong>Entry-API</strong> von Rust ins Spiel. Mit ihr kannst du in einem einzigen Schritt prüfen und manipulieren.</p>
-<ul>
-<li>Die Methode <code>entry(key)</code> gibt ein <code>Entry</code>-Enum zurück, das entweder <code>Occupied</code> (belegt) oder <code>Vacant</code> (frei) darstellt.</li>
-<li>Mit Methoden wie <code>.or_insert(default_value)</code> kannst du sagen: "Falls der Schlüssel noch nicht da ist, füge diesen Standardwert ein."</li>
-<li>Das Geniale daran: Diese Methode gibt eine veränderliche Referenz (<code>&amp;mut V</code>) auf den Wert in der HashMap zurück. Du kannst diesen Wert direkt im Anschluss manipulieren (z. B. erhöhen), unabhängig davon, ob er gerade erst eingefügt wurde oder schon da war.</li>
-</ul>
-<hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen-5"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-5">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Versuche, die folgenden Aufgaben selbstständig zu lösen. Verwende dabei die Konzepte von Ownership und der Entry-API.</p>
-<h3 id="1-der-wort-häufigkeitszähler"><a class="header" href="#1-der-wort-häufigkeitszähler">1. Der Wort-Häufigkeitszähler</a></h3>
-<p>Schreibe ein Programm, das einen längeren Text analysiert und zählt, wie oft jedes Wort darin vorkommt.</p>
-<ul>
-<li><strong>Anforderung:</strong> Verwende die Entry-API, um die Zählerstände der Wörter effizient zu erhöhen.</li>
-<li><strong>Tipp:</strong> Achte darauf, Satzzeichen zu entfernen und Wörter in Kleinbuchstaben umzuwandeln, damit "Apfel!" und "apfel" als das gleiche Wort gezählt werden.</li>
-</ul>
-<h3 id="2-das-telefonbuch-mit-gruppen"><a class="header" href="#2-das-telefonbuch-mit-gruppen">2. Das Telefonbuch mit Gruppen</a></h3>
-<p>Implementiere ein einfaches Telefonbuch, bei dem Kontakte in Gruppen (z. B. "Familie", "Freunde", "Arbeit") organisiert sind.</p>
-<ul>
-<li><strong>Anforderung:</strong> Jeder Gruppe soll eine Liste von Namen zugeordnet sein.</li>
-<li><strong>Tipp:</strong> Überlege gut, welche Typen du für <code>K</code> und <code>V</code> wählen musst. Wie kannst du verhindern, dass beim Hinzufügen eines Kontakts eine bereits bestehende Gruppe überschrieben wird?</li>
-</ul>
-<h3 id="3-datenbank-cache-simulation"><a class="header" href="#3-datenbank-cache-simulation">3. Datenbank-Cache-Simulation</a></h3>
-<p>Simuliere ein System, das teure Datenbankabfragen in einer HashMap zwischenspeichert (cacht).</p>
-<ul>
-<li><strong>Anforderung:</strong> Wenn ein Benutzer nach Daten fragt, prüfe zuerst, ob diese im Cache (der HashMap) liegen. Wenn ja, gib sie direkt zurück. Wenn nein, simuliere eine "teure Abfrage" (z. B. durch eine Ausgabe auf der Konsole und kurzes Warten), speichere das Ergebnis im Cache ab und gib es zurück.</li>
-</ul>
-<hr />
-<h2 id="-50-projekte-4"><a class="header" href="#-50-projekte-4">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kurze Projektideen, mit denen du dein Wissen über HashMaps festigen kannst:</p>
-<ol>
-<li><strong>Vokabeltrainer:</strong> Ein Programm, das Fremdwörter und ihre Übersetzungen speichert und abfragt.</li>
-<li><strong>Noten-Manager:</strong> Zuordnung von Schülernamen zu einer Liste ihrer Schulnoten.</li>
-<li><strong>Warenkorb:</strong> Speicherung von Produkt-IDs und deren Anzahl in einem Onlineshop.</li>
-<li><strong>IP-Länder-Lookup:</strong> Zuordnung von IP-Adressen zu Herkunftsländern.</li>
-<li><strong>DNS-Simulator:</strong> Zuordnung von Domainnamen zu IP-Adressen.</li>
-<li><strong>Mitarbeiter-Verzeichnis:</strong> Verwaltung von Personalnummern und Mitarbeiterdetails.</li>
-<li><strong>Länder-Hauptstadt-Quiz:</strong> Ein interaktives Quiz, das Hauptstädte abfragt.</li>
-<li><strong>Plagiat-Scanner:</strong> Zählen von gleichen Sätzen in zwei Textdokumenten.</li>
-<li><strong>Social-Media-Follower:</strong> Zuordnung von Nutzernamen zu Listen ihrer Follower.</li>
-<li><strong>Paket-Tracking:</strong> Zuordnung von Tracking-IDs zu ihrem aktuellen Lieferstatus.</li>
-<li><strong>Chatroom-Verwaltung:</strong> Zuordnung von Raum-IDs zu den darin aktiven Benutzern.</li>
-<li><strong>Inventar-System:</strong> Zuordnung von Gegenständen in einem Spiel zu ihrer Anzahl im Rucksack.</li>
-<li><strong>Highscore-Tabelle:</strong> Speicherung von Spielernamen und ihren Höchstpunktzahlen.</li>
-<li><strong>Geburtstagskalender:</strong> Zuordnung von Monaten zu den Geburtstagen in diesem Monat.</li>
-<li><strong>Koffeingehalt-Rechner:</strong> Zuordnung von Getränken zu ihrem Koffeingehalt pro 100 ml.</li>
-<li><strong>Morsecodierer:</strong> Zuordnung von Buchstaben zu Morsezeichen und umgekehrt.</li>
-<li><strong>Menükarte:</strong> Zuordnung von Gerichten zu ihren Preisen.</li>
-<li><strong>Lagerbestand-Warnung:</strong> Prüfung, welche Produkte im Warenlager unter einen Mindestbestand fallen.</li>
-<li><strong>Umfrage-Auswerter:</strong> Auszählung von Stimmen bei einer Multiple-Choice-Umfrage.</li>
-<li><strong>Rezept-Zutaten-Skalierer:</strong> Zuordnung von Zutaten zu Mengen, die je nach Personenanzahl hochgerechnet werden.</li>
-<li><strong>Bibliotheks-System:</strong> Zuordnung von Buch-ISBNs zu ihrem Verleihstatus (verliehen an Person X).</li>
-<li><strong>Buslinien-Planer:</strong> Zuordnung von Buslinien-Nummern zu einer Liste ihrer Haltestellen.</li>
-<li><strong>Fehlercode-Lexikon:</strong> Zuordnung von HTTP-Statuscodes (z. B. 404) zu ihren Bedeutungen.</li>
-<li><strong>RGB-Farben-Sucher:</strong> Zuordnung von Farbnamen (z. B. "Red") zu ihren RGB-Werten.</li>
-<li><strong>Währungsrechner:</strong> Zuordnung von Währungskürzeln (EUR, USD) zu ihren aktuellen Wechselkursen.</li>
-<li><strong>Haushaltsbuch:</strong> Zuordnung von Ausgabenkategorien zu den monatlichen Gesamtausgaben.</li>
-<li><strong>Passwort-Manager (vereinfacht):</strong> Zuordnung von Webseiten zu verschlüsselten Passwörtern.</li>
-<li><strong>Buchstaben-Häufigkeitsanalyse:</strong> Zählen, wie oft jeder einzelne Buchstabe in einem Text vorkommt.</li>
-<li><strong>Veranstaltungs-Planer:</strong> Zuordnung von Daten zu Events, die an diesem Tag stattfinden.</li>
-<li><strong>Flugplan-Anzeiger:</strong> Zuordnung von Flugnummern zu Abflugzeiten und Gates.</li>
-<li><strong>Lieblingsfilme-Liste:</strong> Zuordnung von Genres zu den persönlichen Top-Filmen.</li>
-<li><strong>Zutaten-Allergie-Checker:</strong> Zuordnung von Lebensmitteln zu enthaltenen Allergenen.</li>
-<li><strong>Musik-Playlist-Manager:</strong> Zuordnung von Playlist-Namen zu einer Liste von Songs.</li>
-<li><strong>Server-Status-Monitor:</strong> Zuordnung von Servernamen zu ihren aktuellen Liveness-Status (Online/Offline).</li>
-<li><strong>Projekt-Task-Board:</strong> Zuordnung von Projektmitgliedern zu ihren zugewiesenen Aufgaben.</li>
-<li><strong>Paketdienst-Preise:</strong> Zuordnung von Gewichtsklassen zu Versandkosten.</li>
-<li><strong>Kfz-Kennzeichen-Finder:</strong> Zuordnung von Städte-Kürzeln (z. B. "HH") zu den Städtenamen.</li>
-<li><strong>Schachturnier-Ergebnisse:</strong> Zuordnung von Spielern zu ihren erzielten Punkten im Turnier.</li>
-<li><strong>Fitness-Tracker:</strong> Zuordnung von Wochentagen zu verbrannten Kalorien.</li>
-<li><strong>Smart-Home-Status:</strong> Zuordnung von Räumen zu den dort aktiven Smart-Geräten.</li>
-<li><strong>Game-Controller-Mapping:</strong> Zuordnung von Tasten zu Aktionen im Spiel.</li>
-<li><strong>Kundenkarten-Punkte:</strong> Zuordnung von Kundennummern zu ihren gesammelten Treuepunkten.</li>
-<li><strong>Wetter-Station-Historie:</strong> Zuordnung von Uhrzeiten zu Temperaturmesswerten.</li>
-<li><strong>Programmiersprachen-Finder:</strong> Zuordnung von Dateiendungen (.rs, .py, .js) zu den Sprachen.</li>
-<li><strong>Steuerrechner:</strong> Zuordnung von Einkommensstufen zu Steuersätzen.</li>
-<li><strong>Emoji-Tastatur:</strong> Zuordnung von Text-Shortcodes (z. B. ":smile:") zu Emojis.</li>
-<li><strong>Wegbeschreibungs-Netzwerk:</strong> Zuordnung von Städten zu ihren Nachbarstädten und Entfernungen.</li>
-<li><strong>Rechte-Verwaltung:</strong> Zuordnung von Benutzerrollen (Admin, User) zu ihren Berechtigungen.</li>
-<li><strong>Wort-Anagramm-Finder:</strong> Gruppierung von Wörtern in einer HashMap, die dieselben Buchstaben enthalten.</li>
-<li><strong>System-Konfiguration:</strong> Zuordnung von Einstellungs-Schlüsseln (z. B. "theme") zu ihren Werten.</li>
-</ol>
-<hr />
-<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
-<ul>
-<li><strong>Key-Value:</strong> Eine <code>HashMap&lt;K, V&gt;</code> speichert Daten als Schlüssel-Wert-Paare.</li>
-<li><strong>Schnelligkeit:</strong> Suchen, Einfügen und Löschen funktionieren im Durchschnitt in <strong>konstanter Zeit $O(1)$</strong>, da die Position über eine Hash-Funktion berechnet wird.</li>
-<li><strong>Ownership:</strong> Werte, die kein <code>Copy</code> implementieren, werden beim Einfügen in die HashMap verschoben (Moved).</li>
-<li><strong>Entry-API:</strong> Ermöglicht hocheffiziente und lesbare Modifikationen von Werten in einem einzigen Schritt, ohne doppeltes Suchen.</li>
-</ul>
-<hr />
-<h2 id="-links-5"><a class="header" href="#-links-5">📚 Links</a></h2>
-<ul>
-<li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Offizielles Rust-Buch (Kapitel über HashMaps)</a></li>
-<li><a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html">Rust Standardbibliothek: Dokumentation für std::collections::HashMap</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-fehlerbehandlung-mit-option"><a class="header" href="#-fehlerbehandlung-mit-option">🔍 Fehlerbehandlung mit Option<T></a></h1>
-<p>Stell dir vor, du öffnest eine Schublade in deiner Küche, in der du normalerweise deine Lieblingstasse aufbewahrst. Manchmal steht die Tasse genau dort, wo sie sein soll. Manchmal hat sie aber jemand in die Spülmaschine gestellt, und die Schublade ist komplett leer.</p>
-<p>In vielen klassischen Programmiersprachen ist diese Situation brandgefährlich. Wenn du versuchst, aus einer leeren Schublade zu trinken, stürzt dein gesamtes Programm ab. Rust geht hier einen völlig anderen, revolutionären Weg: Es zwingt dich dazu, vor dem Trinken erst nachzusehen, ob die Tasse überhaupt da ist!</p>
-<p>In diesem Kapitel erfährst du, wie Rust das Fehlen von Werten sicher und elegant löst, ohne dass dein Programm jemals unerwartet abstürzt.</p>
-<hr />
-<h2 id="-theorie-6"><a class="header" href="#-theorie-6">🧠 Theorie</a></h2>
-<h3 id="das-problem-der-null-pointer-der-milliarden-dollar-fehler"><a class="header" href="#das-problem-der-null-pointer-der-milliarden-dollar-fehler">Das Problem der Null-Pointer (Der Milliarden-Dollar-Fehler)</a></h3>
-<p>In fast allen gängigen Programmiersprachen (wie Java, C++, Python oder JavaScript) gibt es das Konzept von <code>null</code>, <code>nil</code> oder <code>None</code>. Es bedeutet einfach: "Hier ist kein Wert".</p>
-<p>Das Problem daran ist, dass diese Sprachen dir erlauben, eine Variable so zu behandeln, als wäre immer ein Wert da. Wenn du zum Beispiel den Namen eines Benutzers ausgeben willst:</p>
-<pre><code class="language-java">// Java-Beispiel
-String name = benutzer.getName();
-System.out.println(name.toUpperCase());
+<p>Wenn du den Wert später wieder suchst, macht die HashMap genau dasselbe: Sie jagt den Schlüssel erneut durch die Hash-Funktion, erhält denselben Index und liest den Wert direkt aus. Es ist keine Schleife und kein Suchen erforderlich!</p>
+<pre><code>Schlüssel (Key)      Hash-Funktion       Internes Array (Buckets)
++-------------+     +---------------+     +-----------------------+
+|  "Anna"     | --&gt; | SIP-Hash      | --&gt; | Index 42 | Wert: 95   |
++-------------+     +---------------+     +-----------------------+
 </code></pre>
-<p>Wenn <code>benutzer.getName()</code> nun <code>null</code> zurückgibt (weil kein Name eingetragen wurde), stürzt dieses Java-Programm sofort mit einer <code>NullPointerException</code> ab.</p>
-<p>Der Erfinder der Null-Referenz, Tony Hoare, nannte diese Erfindung rückblickend seinen <strong>„Billion Dollar Mistake“</strong> (Milliarden-Dollar-Fehler). Sie ist die Ursache für unzählige Abstürze, Sicherheitslücken und frustrierte Entwickler weltweit.</p>
-<h3 id="wie-rust-das-problem-löst-das-optiont-enum"><a class="header" href="#wie-rust-das-problem-löst-das-optiont-enum">Wie Rust das Problem löst: Das <code>Option&lt;T&gt;</code>-Enum</a></h3>
-<p>Rust macht Schluss mit diesem Chaos. In Rust gibt es das klassische <code>null</code> schlichtweg nicht! Jede normale Variable <strong>muss</strong> immer einen gültigen Wert besitzen.</p>
-<p>Was machen wir aber, wenn ein Wert tatsächlich mal fehlen kann? Zum Beispiel bei:</p>
+<h3 id="die-zugriffsgeschwindigkeit-o1"><a class="header" href="#die-zugriffsgeschwindigkeit-o1">Die Zugriffsgeschwindigkeit (O(1))</a></h3>
+<p>Da der Speicherplatz direkt berechnet wird, ist der Zugriff auf eine HashMap im Durchschnitt unabhängig von der Anzahl der gespeicherten Elemente:</p>
 <ul>
-<li>Einer Suche in einer Datenbank, die kein Ergebnis liefert.</li>
-<li>Einem optionalen Feld im Profil eines Nutzers (z.B. die Website-URL).</li>
-<li>Dem Auslesen einer Datei, die vielleicht gar nicht existiert.</li>
+<li><strong>Laufzeit $O(1)$ (Konstante Zeit):</strong> Das Suchen, Einfügen und Löschen dauert bei 10 Einträgen exakt genauso lang wie bei 10.000.000 Einträgen. Das macht HashMaps zur idealen Wahl für große Datenmengen, die schnell durchsucht werden müssen.</li>
 </ul>
-<p>Für diese Fälle hat Rust den Datentyp <code>Option&lt;T&gt;</code> in seiner Standardbibliothek. Es handelt sich dabei um ein ganz normales Enum, das zwei Zustände annehmen kann:</p>
+<h3 id="kollisionen-und-sicherheit"><a class="header" href="#kollisionen-und-sicherheit">Kollisionen und Sicherheit</a></h3>
+<p>Manchmal kann es vorkommen, dass zwei völlig unterschiedliche Schlüssel durch die Hash-Funktion denselben Index zugewiesen bekommen. Das nennt man eine <strong>Kollision</strong>.</p>
+<ul>
+<li>Rust-HashMaps lösen Kollisionen im Hintergrund automatisch auf (mittels einer Technik namens <em>Robin Hood Hashing</em>).</li>
+<li><strong>DoS-Schutz:</strong> In manchen Sprachen können Angreifer durch geschickt gewählte Eingaben absichtlich extrem viele Kollisionen erzwingen, was die Datenbank extrem verlangsamt und zum Absturz bringt. Um das zu verhindern, nutzt Rust standardmäßig die kryptografisch sichere Hash-Funktion <strong>SipHash 1-3</strong>. Das macht sie minimal langsamer als unsichere HashMaps, aber absolut resistent gegen solche Angriffe.</li>
+</ul>
+<hr />
+<h2 id="-hashmaps-erstellen-und-benutzen"><a class="header" href="#-hashmaps-erstellen-und-benutzen">🛠️ HashMaps erstellen und benutzen</a></h2>
+<p>Da HashMaps im Gegensatz zu Vektoren nicht ganz so häufig im Standard-Programmablauf gebraucht werden, sind sie nicht standardmäßig im globalen Namensraum verfügbar. Du musst sie zuerst importieren:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap; // WICHTIG! Ohne diesen Import kompiliert der Code nicht.
+<span class="boring">}</span></code></pre></pre>
+<h3 id="1-eine-neue-hashmap-erstellen"><a class="header" href="#1-eine-neue-hashmap-erstellen">1. Eine neue HashMap erstellen</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut telefonbuch: HashMap&lt;String, String&gt; = HashMap::new();
+<span class="boring">}</span></code></pre></pre>
+<h3 id="2-elemente-hinzufügen-insert"><a class="header" href="#2-elemente-hinzufügen-insert">2. Elemente hinzufügen (<code>insert</code>)</a></h3>
+<p>Mit <code>.insert(key, value)</code> fügst du Einträge hinzu. Wenn der Schlüssel bereits existiert, wird der alte Wert überschrieben und von der Methode zurückgegeben (verpackt in <code>Some(alter_wert)</code>):</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>telefonbuch.insert(String::from("Anna"), String::from("0172-123"));
+telefonbuch.insert(String::from("Bob"), String::from("0173-987"));
+<span class="boring">}</span></code></pre></pre>
+<h3 id="3-werte-sicher-auslesen-get"><a class="header" href="#3-werte-sicher-auslesen-get">3. Werte sicher auslesen (<code>get</code>)</a></h3>
+<p>Die Methode <code>.get()</code> nimmt eine Referenz auf den Schlüssel und gibt eine <code>Option&lt;&amp;V&gt;</code> zurück. So verhinderst du Abstürze, falls der Schlüssel nicht existiert:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>match telefonbuch.get("Anna") {
+    Some(nummer) =&gt; println!("Annas Nummer: {}", nummer),
+    None =&gt; println!("Kein Eintrag für Anna gefunden!"),
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="4-einträge-entfernen-remove"><a class="header" href="#4-einträge-entfernen-remove">4. Einträge entfernen (<code>remove</code>)</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>telefonbuch.remove("Bob"); // Löscht Bob aus der HashMap
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h2 id="-die-entry-api-der-geheime-star-von-rusts-hashmap"><a class="header" href="#-die-entry-api-der-geheime-star-von-rusts-hashmap">🔑 Die Entry-API: Der geheime Star von Rusts HashMap</a></h2>
+<p>Ein extrem häufiges Szenario beim Programmieren ist:</p>
+<ol>
+<li>Prüfe, ob ein Schlüssel in der Map existiert.</li>
+<li>Falls nein: Füge ihn mit einem Standardwert hinzu.</li>
+<li>Falls ja (oder danach): Ändere den Wert (z. B. addiere 1).</li>
+</ol>
+<p>In vielen Programmiersprachen musst du dafür mehrmals in der Map nachschlagen, was ineffizient ist. Rust bietet dafür die <strong>Entry-API</strong>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut zaehler: HashMap&lt;String, i32&gt; = HashMap::new();
+let name = String::from("Anna");
+
+// entry() sucht nach dem Schlüssel.
+// or_insert() fügt den Wert 0 ein, falls der Schlüssel FEHLT.
+// Am Ende erhalten wir in jedem Fall eine veränderliche Referenz (&amp;mut) auf den Wert!
+let punkte_referenz = zaehler.entry(name).or_insert(0);
+
+// Jetzt können wir den Wert direkt im Speicher verändern:
+*punkte_referenz += 10;
+<span class="boring">}</span></code></pre></pre>
+<p>Dieses Muster wird besonders häufig beim Zählen von Elementen (z. B. Wörtern in einem Text) verwendet.</p>
+<hr />
+<h2 id="-ownership-in-hashmaps"><a class="header" href="#-ownership-in-hashmaps">⚠️ Ownership in HashMaps</a></h2>
+<p>Beim Arbeiten mit HashMaps musst du gut aufpassen, wer der Besitzer (Owner) der Schlüssel und Werte ist.</p>
+<ul>
+<li><strong>Verschiebung (Move):</strong> Wenn du Typen in die HashMap einfügst, die das <code>Copy</code>-Trait nicht implementieren (z. B. <code>String</code> oder <code>Vec</code>), übernimmt die HashMap die Ownership an diesen Daten. Die ursprünglichen Variablen sind danach ungültig.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let key = String::from("Benutzer123");
+let val = String::from("Online");
+
+let mut status = HashMap::new();
+status.insert(key, val);
+
+// println!("{}", key); // ❌ FEHLER! key wurde in die HashMap verschoben!
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><strong>Lösung:</strong> Wenn du die Schlüssel danach noch brauchst, musst du sie entweder klonen (<code>.clone()</code>) oder mit Referenzen arbeiten (was jedoch fortgeschrittene Lifetimes erfordert).</li>
+</ul>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen-5"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-5">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--der-vokabeltrainer"><a class="header" href="#aufgabe-1-leicht--der-vokabeltrainer">Aufgabe 1: Leicht – Der Vokabeltrainer</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Erstelle eine einfache Zuordnung von deutschen Wörtern zu ihren englischen Übersetzungen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Erstelle eine HashMap.</li>
+<li>Füge drei Vokabelpaare hinzu (z. B. "Hund" -&gt; "dog").</li>
+<li>Frage den Benutzer über die Konsole nach einem deutschen Wort und gib die englische Übersetzung aus. Falls das Wort nicht existiert, gib eine Fehlermeldung aus.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Vergiss nicht, <code>use std::collections::HashMap;</code> ganz oben in die Datei zu schreiben!</li>
+</ol>
+<h3 id="aufgabe-2-mittel--der-wortzähler"><a class="header" href="#aufgabe-2-mittel--der-wortzähler">Aufgabe 2: Mittel – Der Wortzähler</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Zähle, wie oft jedes Wort in einer Liste vorkommt.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Gegeben ist eine Liste von Wörtern (z. B. <code>vec!["Apfel", "Birne", "Apfel", "Banane", "Birne", "Apfel"]</code>).</li>
+<li>Verwende eine HashMap, um die Häufigkeit jedes Worts zu zählen.</li>
+<li>Nutze die Entry-API (<code>.entry().or_insert()</code>), um den Zähler im Erfolgsfall zu erhöhen.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Der Schlüssel ist der Name des Obstes (<code>String</code> oder <code>&amp;str</code>), der Wert ist die Anzahl (<code>i32</code> oder <code>u32</code>).</li>
+</ol>
+<h3 id="aufgabe-3-schwer--der-in-memory-datenbank-cache"><a class="header" href="#aufgabe-3-schwer--der-in-memory-datenbank-cache">Aufgabe 3: Schwer – Der In-Memory-Datenbank-Cache</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Simuliere einen Cache für langsame Berechnungen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Schreibe eine Struktur <code>Cache</code> mit einer HashMap.</li>
+<li>Implementiere eine Methode <code>hole_quadrat(&amp;mut self, zahl: u32) -&gt; u32</code>.</li>
+<li>Die Methode soll prüfen, ob das Quadrat der Zahl bereits in der HashMap berechnet wurde. Wenn ja, gib es direkt zurück.</li>
+<li>Wenn nein, simuliere eine "teure Berechnung" (z. B. durch eine Konsolenausgabe "Berechne..."), speichere das Ergebnis in der HashMap ab und gib es zurück.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Die Methode benötigt <code>&amp;mut self</code>, da sie neue Werte in die HashMap schreiben muss, falls diese noch nicht existieren.</li>
+</ol>
+<hr />
+<h2 id="-merkzettel-hashmaps"><a class="header" href="#-merkzettel-hashmaps">📌 Merkzettel: HashMaps</a></h2>
+<ul>
+<li>HashMaps speichern Daten als <strong>Schlüssel-Wert-Paare</strong>.</li>
+<li>Der Zugriff ist extrem schnell (durchschnittliche Laufzeit <strong>$O(1)$</strong>).</li>
+<li>Sie erfordern den Import mit <strong><code>use std::collections::HashMap;</code></strong>.</li>
+<li>Werte ohne <code>Copy</code> werden beim Einfügen in die HashMap <strong>verschoben (Moved)</strong>.</li>
+<li>Die <strong>Entry-API</strong> ist der eleganteste Weg, um Werte zu prüfen und gleichzeitig zu aktualisieren.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-fehlerbehandlung-mit-option--werte-die-fehlen-dürfen"><a class="header" href="#-fehlerbehandlung-mit-option--werte-die-fehlen-dürfen">🔍 Fehlerbehandlung mit Option<T> – Werte, die fehlen dürfen</a></h1>
+<p>Im echten Leben begegnen uns ständig optionale Dinge:</p>
+<ul>
+<li>Eine E-Mail-Adresse im Profil eines Benutzers (manche haben keine hinterlegt).</li>
+<li>Die Antwort auf eine Suchanfrage in einer Liste (entweder wir finden das Element oder nicht).</li>
+<li>Ein Schrankfach (entweder es liegt etwas darin oder es ist leer).</li>
+</ul>
+<p>In traditionellen Programmiersprachen (wie C, Java, Python oder JavaScript) wird das Fehlen eines Wertes durch das Schlüsselwort <code>null</code>, <code>nil</code> oder <code>None</code> ausgedrückt. Das Problem dabei: Der Compiler kann nicht prüfen, ob du vor der Benutzung einer Variable geprüft hast, ob diese <code>null</code> ist. Wenn du es vergisst, stürzt dein Programm zur Laufzeit mit einer <code>NullPointerException</code> (oder Ähnlichem) ab.</p>
+<p>Rust geht einen radikal anderen Weg: <strong>Es gibt kein <code>null</code></strong>. Jede normale Variable <em>muss</em> immer einen gültigen Wert besitzen. Wenn ein Wert jedoch fehlen darf, zwingt Rust dich, diesen in den Typ <code>Option&lt;T&gt;</code> einzupacken.</p>
+<hr />
+<h2 id="-theorie-was-ist-optiont"><a class="header" href="#-theorie-was-ist-optiont">🧠 Theorie: Was ist <code>Option&lt;T&gt;</code>?</a></h2>
+<p><code>Option&lt;T&gt;</code> ist ein ganz normales, in der Standardbibliothek eingebautes Enum. Seine Definition sieht so aus:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>enum Option&lt;T&gt; {
-    Some(T), // Ein Wert vom Typ T ist vorhanden
-    None,    // Kein Wert vorhanden
+    Some(T), // Es existiert ein Wert vom Typ T
+    None,    // Es existiert kein Wert
 }
 <span class="boring">}</span></code></pre></pre>
-<p>Das geniale daran: <code>Option&lt;T&gt;</code> is ein komplett anderer Typ als <code>T</code>. Eine Variable vom Typ <code>Option&lt;String&gt;</code> ist kein <code>String</code>. Du kannst sie nicht wie einen String behandeln, keine String-Methoden darauf aufrufen und sie nicht direkt ausgeben. Sie ist wie ein verschlossenes Paket. Erst wenn du das Paket öffnest, kommst du an den eigentlichen Wert heran.</p>
-<h3 id="option-auspacken-der-sichere-weg-mit-match"><a class="header" href="#option-auspacken-der-sichere-weg-mit-match">Option auspacken: Der sichere Weg mit <code>match</code></a></h3>
-<p>Der gründlichste und sicherste Weg, eine <code>Option</code> auszupacken, ist Pattern Matching mit <code>match</code>. Rust verlangt von dir, dass du lückenlos (<code>exhaustive</code>) sowohl den Fall mit Wert (<code>Some</code>) als auch den Fall ohne Wert (<code>None</code>) behandelst:</p>
+<p>Das Geniale an dieser Konstruktion ist: Eine <code>Option&lt;String&gt;</code> is ein völlig anderer Datentyp als ein normaler <code>String</code>. Du kannst eine <code>Option&lt;String&gt;</code> nicht ausgeben, verlassen, manipulieren oder einer anderen String-Variable zuweisen, ohne sie vorher explizit zu <strong>entpacken</strong>.</p>
+<pre><code>[ Deine Variable ]
+        |
+        v
++-----------------------+
+|        Option         |
+|  +-----------------+  |
+|  |     Some(T)     |  | ---&gt; Enthält den echten Wert
+|  +-----------------+  |
+|          oder         |
+|  +-----------------+  |
+|  |      None       |  | ---&gt; Ist komplett leer
+|  +-----------------+  |
++-----------------------+
+</code></pre>
+<hr />
+<h2 id="-option-auspacken-sicher-vs-unsicher"><a class="header" href="#-option-auspacken-sicher-vs-unsicher">🛠️ Option auspacken: Sicher vs. Unsicher</a></h2>
+<p>Um an den Wert in <code>Some</code> heranzukommen, musst du die Option öffnen. Hierfür gibt es verschiedene Wege:</p>
+<h3 id="1-der-sichere-weg-mit-pattern-matching-match"><a class="header" href="#1-der-sichere-weg-mit-pattern-matching-match">1. Der sichere Weg mit Pattern Matching (<code>match</code>)</a></h3>
+<p>Das ist das mächtigste Werkzeug. Da <code>match</code> in Rust lückenlos sein muss, zwingt dich der Compiler, auch den Fall zu behandeln, in dem kein Wert da ist:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let benutzername: Option&lt;String&gt; = einige_suchfunktion();
+</span>let website_url: Option&lt;String&gt; = Some(String::from("https://rust-lang.org"));
 
-match benutzername {
-    Some(name) =&gt; println!("Willkommen zurück, {}!", name),
-    None =&gt; println!("Willkommen, Gast!"),
+match website_url {
+    Some(url) =&gt; println!("Die Website lautet: {}", url),
+    None =&gt; println!("Keine Website hinterlegt."),
 }
 <span class="boring">}</span></code></pre></pre>
-<p>Wenn du einen der beiden Fälle vergisst, wird der Compiler dein Programm nicht übersetzen. Du bist also absolut sicher vor Abstürzen durch vergessene "Null"-Werte.</p>
-<h3 id="die-schnelle-abkürzung-if-let"><a class="header" href="#die-schnelle-abkürzung-if-let">Die schnelle Abkürzung: <code>if let</code></a></h3>
-<p>Manchmal interessiert dich nur, ob ein Wert da ist, und du willst den leeren Fall einfach ignorieren. Statt eines sperrigen <code>match</code> kannst du dafür das kompakte <code>if let</code> nutzen:</p>
+<h3 id="2-der-kompakte-weg-mit-if-let"><a class="header" href="#2-der-kompakte-weg-mit-if-let">2. Der kompakte Weg mit <code>if let</code></a></h3>
+<p>Wenn dich nur der Fall interessiert, in dem ein Wert existiert, und du den leeren Fall ignorieren möchtest:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let optionales_profilbild: Option&lt;String&gt; = hole_profilbild();
+</span>let optionaler_name: Option&lt;String&gt; = Some(String::from("Thorsten"));
 
-if let Some(bild_url) = optionales_profilbild {
-    println!("Profilbild wird geladen von: {}", bild_url);
+if let Some(name) = optionaler_name {
+    println!("Hallo, {}!", name);
 }
-// Der None-Fall wird hier einfach stillschweigend ignoriert.
 <span class="boring">}</span></code></pre></pre>
-<h3 id="der-ungeduldige-holzhammer-unwrap-und-expect"><a class="header" href="#der-ungeduldige-holzhammer-unwrap-und-expect">Der ungeduldige Holzhammer: <code>unwrap</code> und <code>expect</code></a></h3>
-<p>Es gibt Situationen, in denen du absolut sicher bist, dass ein Paket einen Wert enthält. Oder dir ist es recht, wenn das Programm abstürzt, falls kein Wert da ist (z.B. beim Schreiben von schnellen Prototypen oder Tests).</p>
-<p>Dafür gibt es zwei Methoden:</p>
-<ol>
-<li>
-<p><strong><code>unwrap()</code></strong>: Holt den Wert aus <code>Some</code> heraus. Ist die Option jedoch <code>None</code>, stürzt das Programm sofort mit einem lauten Knall (<em>Panic</em>) ab.</p>
+<h3 id="3-der-bequeme-fallback-mit-unwrap_or"><a class="header" href="#3-der-bequeme-fallback-mit-unwrap_or">3. Der bequeme Fallback mit <code>unwrap_or</code></a></h3>
+<p>Sehr oft möchtest du einen Standardwert verwenden, falls kein Wert existiert:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let wert = optionale_zahl.unwrap(); // Gefährlich!
+</span>let port: Option&lt;u32&gt; = None;
+let aktiver_port = port.unwrap_or(8080); // Wenn None, wird 8080 verwendet
 <span class="boring">}</span></code></pre></pre>
-</li>
-<li>
-<p><strong><code>expect("Fehlermeldung")</code></strong>: Funktioniert genau wie <code>unwrap()</code>, lässt dich aber eine eigene Fehlermeldung angeben, die beim Absturz ausgegeben wird. Das macht die Fehlersuche deutlich einfacher.</p>
+<h3 id="4-der-gefährliche-holzhammer-unwrap-und-expect"><a class="header" href="#4-der-gefährliche-holzhammer-unwrap-und-expect">4. Der gefährliche Holzhammer: <code>unwrap()</code> und <code>expect()</code></a></h3>
+<p>Mit <code>.unwrap()</code> holst du den Wert blind aus dem Paket. Wenn die Option jedoch <code>None</code> ist, <strong>stürzt dein Programm sofort mit einer Panic ab!</strong></p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let konfig = lies_einstellungen().expect("Die Konfigurationsdatei fehlt!");
+</span>let zahl: Option&lt;i32&gt; = None;
+let x = zahl.unwrap(); // ❌ BOOM! Absturz zur Laufzeit!
 <span class="boring">}</span></code></pre></pre>
-</li>
-</ol>
+<p>Mit <code>.expect("Fehlermeldung")</code> verhält es sich genauso, allerdings kannst du eine eigene Fehlermeldung für den Absturz definieren:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let konfig = lies_einstellungen().expect("Einstellungsdatei konnte nicht gelesen werden!");
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>[!WARNING]
-Verwende <code>unwrap()</code> und <code>expect()</code> mit äußerster Vorsicht! In produktivem Code solltest du sie fast nie benutzen. Nutze stattdessen immer <code>match</code>, <code>if let</code> oder Hilfsmethoden wie <code>unwrap_or()</code>, um Standardwerte festzulegen, wenn kein Wert vorhanden ist.</p>
+Verwende <code>unwrap()</code> fast ausschließlich in Tests oder beim schnellen Prototyping. In produktivem Code solltest du immer sichere Alternativen wie <code>match</code> oder <code>unwrap_or</code> bevorzugen.</p>
 </blockquote>
 <hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen-6"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-6">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Versuche, die folgenden Aufgaben theoretisch zu durchdenken. Entwirfe die Datenstrukturen und den Ablauf im Kopf oder auf einem Blatt Papier. Schreibe keinen fertigen Code!</p>
-<h3 id="aufgabe-1-die-artikelsuche-im-online-shop"><a class="header" href="#aufgabe-1-die-artikelsuche-im-online-shop">Aufgabe 1: Die Artikelsuche im Online-Shop</a></h3>
-<ol>
-<li>Du hast eine Liste von Produkten. Jedes Produkt hat eine ID (Zahl) und einen Namen (Text).</li>
-<li>Entwirfe eine Suchfunktion, die nach einer ID sucht. Überlege, welchen Rückgabetyp diese Funktion haben muss, da die ID existieren kann oder eben nicht.</li>
-<li>Skizziere, wie du das Ergebnis dieser Suche mit <code>match</code> auswertest, um dem Kunden entweder den Namen des Produkts anzuzeigen oder eine freundliche Meldung wie „Artikel nicht gefunden“ auszugeben.</li>
-</ol>
-<h3 id="aufgabe-2-der-optionale-rucksack-im-rollenspiel"><a class="header" href="#aufgabe-2-der-optionale-rucksack-im-rollenspiel">Aufgabe 2: Der optionale Rucksack im Rollenspiel</a></h3>
-<ol>
-<li>Ein Held in einem RPG hat einen Ausrüstungsslot für einen Rucksack. Der Rucksack kann angelegt sein oder nicht.</li>
-<li>Wenn ein Rucksack angelegt ist, hat er ein bestimmtes Eigengewicht (Zahl). Wenn kein Rucksack angelegt ist, gibt es kein zusätzliches Gewicht.</li>
-<li>Überlege dir, wie du den Rucksack-Slot als <code>Option</code> darstellst.</li>
-<li>Skizziere eine Logik, die das Gesamtgewicht des Helden berechnet. Nutze dafür <code>if let</code> oder <code>match</code>, um das Gewicht des Rucksacks nur dann zu addieren, wenn er auch wirklich da ist.</li>
-</ol>
-<h3 id="aufgabe-3-standard-lautstärke-für-einen-audio-player"><a class="header" href="#aufgabe-3-standard-lautstärke-für-einen-audio-player">Aufgabe 3: Standard-Lautstärke für einen Audio-Player</a></h3>
-<ol>
-<li>Ein Benutzer kann in einer Musik-App eine Wunsch-Lautstärke von 0 bis 100 einstellen.</li>
-<li>Diese Einstellung ist optional: Hat der Benutzer nichts eingestellt, soll die App auf den Standardwert <code>80</code> zurückgreifen.</li>
-<li>Wie würdest du diese optionale Einstellung in Rust abbilden?</li>
-<li>Welche Methoden bietet Rust auf <code>Option</code>, um elegant an den eingestellten Wert zu kommen oder – falls dieser fehlt – automatisch den Standardwert <code>80</code> zu wählen, ohne das Programm zum Absturz zu bringen? (Tipp: Schau dir in der Dokumentation die Methode <code>unwrap_or</code> an).</li>
-</ol>
+<h2 id="-fortgeschrittene-methoden-auf-option"><a class="header" href="#-fortgeschrittene-methoden-auf-option">🔄 Fortgeschrittene Methoden auf <code>Option</code></a></h2>
+<p>Rust bietet eine Vielzahl nützlicher Methoden, um Optionen zu manipulieren, ohne sie mühsam auspacken zu müssen:</p>
+<div class="table-wrapper"><table><thead><tr><th>Methode</th><th>Beschreibung</th><th>Beispiel</th></tr></thead><tbody>
+<tr><td><code>.is_some()</code></td><td>Gibt <code>true</code> zurück, wenn ein Wert vorhanden ist.</td><td><code>opt.is_some()</code></td></tr>
+<tr><td><code>.is_none()</code></td><td>Gibt <code>true</code> zurück, wenn kein Wert vorhanden ist.</td><td><code>opt.is_none()</code></td></tr>
+<tr><td><code>.map()</code></td><td>Transformiert den inneren Wert, falls vorhanden.</td><td>`opt.map(</td></tr>
+<tr><td><code>.and_then()</code></td><td>Verketter Operationen, die selbst wieder eine Option liefern.</td><td><code>opt.and_then(finde_user)</code></td></tr>
+<tr><td><code>.ok_or()</code></td><td>Wandelt eine <code>Option&lt;T&gt;</code> in ein <code>Result&lt;T, E&gt;</code> um.</td><td><code>opt.ok_or("Fehler")</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="beispiel-für-map"><a class="header" href="#beispiel-für-map">Beispiel für <code>.map()</code></a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let optionale_zahl = Some(5);
+// Wenn ein Wert da ist, verdopple ihn. Wenn None, bleibt es None.
+let verdoppelt = optionale_zahl.map(|n| n * 2); // Some(10)
+<span class="boring">}</span></code></pre></pre>
+<h3 id="beispiel-für-and_then-flachklopfen-von-verschachtelten-optionen"><a class="header" href="#beispiel-für-and_then-flachklopfen-von-verschachtelten-optionen">Beispiel für <code>.and_then()</code> (Flachklopfen von verschachtelten Optionen)</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn hole_user(id: u32) -&gt; Option&lt;User&gt; { ... }
+fn hole_profilbild(user: User) -&gt; Option&lt;String&gt; { ... }
+
+// Ohne and_then hätten wir: Option&lt;Option&lt;String&gt;&gt;
+// Mit and_then wird es flach zu: Option&lt;String&gt;
+let profilbild_url = hole_user(42).and_then(hole_profilbild);
+<span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-50-projekte-5"><a class="header" href="#-50-projekte-5">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kleine Programmierideen und Übungen, bei denen <code>Option&lt;T&gt;</code> eine zentrale Rolle spielt:</p>
-<h3 id="datensuche--listen"><a class="header" href="#datensuche--listen">Datensuche &amp; Listen</a></h3>
-<ol>
-<li><strong>Ersthelfer</strong>: Finde das erste Element in einer Liste, das eine bestimmte Bedingung erfüllt.</li>
-<li><strong>Letzter Zeuge</strong>: Finde das letzte Element in einer Liste von Benutzereingaben.</li>
-<li><strong>Mittelwert-Finder</strong>: Berechne den Durchschnitt einer Liste (Achtung: Was, wenn die Liste leer ist?).</li>
-<li><strong>Wörtersuche</strong>: Suche in einem Text nach einem bestimmten Wort und gib dessen Position zurück.</li>
-<li><strong>Nächster Nachbar</strong>: Finde in einer Liste von Zahlen den Wert, der einer Zielzahl am nächsten ist.</li>
-<li><strong>Maximalwert-Detektor</strong>: Ermittle die größte Zahl aus einer Liste (Rückgabe ist leer bei leerer Liste).</li>
-<li><strong>Min-Max-Paar</strong>: Finde gleichzeitig das Minimum und Maximum einer Zahlenreihe.</li>
-<li><strong>Index-Finder</strong>: Finde den Index eines Zeichens in einem String.</li>
-<li><strong>Datenbank-Simulator</strong>: Suche einen User-Datensatz anhand einer E-Mail-Adresse.</li>
-<li><strong>Wörterbuch-Abfrage</strong>: Schlage ein deutsches Wort nach und gib die englische Übersetzung zurück.</li>
-</ol>
-<h3 id="spiele--simulationen-1"><a class="header" href="#spiele--simulationen-1">Spiele &amp; Simulationen</a></h3>
-<ol start="11">
-<li><strong>Inventar-Slot</strong>: Ein Gegenstandsslot im Spiel, der leer sein kann.</li>
-<li><strong>Highscore-Vergleicher</strong>: Vergleiche den aktuellen Score mit dem bisherigen Highscore (der anfangs noch nicht existiert).</li>
-<li><strong>Spieler-Ziel</strong>: Speichere den aktuellen Gegner, den ein Spieler anvisiert hat.</li>
-<li><strong>Gilden-Anführer</strong>: Bestimme den Anführer einer Gilde (kann vakant sein).</li>
-<li><strong>Schatzkisten-Inhalt</strong>: Eine Kiste, die beim Öffnen entweder ein Item enthält oder leer ist.</li>
-<li><strong>Nächster Spielzug</strong>: Berechne den besten Zug für eine KI (gibt <code>None</code> zurück, wenn kein Zug mehr möglich ist).</li>
-<li><strong>Würfel-Glück</strong>: Ein Würfelwurf, der unter bestimmten Bedingungen ungültig sein kann.</li>
-<li><strong>Lebenspunkte-Regeneration</strong>: Berechne die Heilung basierend auf einem optionalen Heiltrank-Effekt.</li>
-<li><strong>Waffen-Aufsatz</strong>: Ein Visier auf einem Gewehr, das montiert sein kann oder nicht.</li>
-<li><strong>Aktives Quest</strong>: Verwalte das aktuell vom Spieler verfolgte Abenteuer.</li>
-</ol>
-<h3 id="web--netzwerke"><a class="header" href="#web--netzwerke">Web &amp; Netzwerke</a></h3>
-<ol start="21">
-<li><strong>API-Schlüssel-Prüfer</strong>: Lies den API-Key aus den Headern einer Anfrage aus.</li>
-<li><strong>Profilbild-URL</strong>: Lade ein Standardbild, falls der Nutzer keine eigene Profilbild-URL hinterlegt hat.</li>
-<li><strong>Query-Parameter</strong>: Extrahiere einen optionalen Filter-Parameter (z.B. <code>?sort=desc</code>) aus einer URL.</li>
-<li><strong>Port-Finder</strong>: Bestimme den Netzwerk-Port aus einer Konfiguration (nutze Standardwert <code>8080</code>, falls nicht definiert).</li>
-<li><strong>HTTP-Referer</strong>: Ermittle die Website, von der der Besucher weitergeleitet wurde.</li>
-<li><strong>Wlan-Verbindung</strong>: Speichere den Namen des aktuell verbundenen WLANs.</li>
-<li><strong>Session-Token</strong>: Prüfe, ob ein temporäres Login-Token im Browser des Nutzers vorhanden ist.</li>
-<li><strong>Download-Fortschritt</strong>: Berechne die verbleibende Zeit (ist unbestimmt, solange der Download nicht gestartet ist).</li>
-<li><strong>IP-Adresse</strong>: Ermittle die IP-Adresse des Absenders einer Nachricht.</li>
-<li><strong>Webhook-Payload</strong>: Lies optionale Metadaten aus einem eingehenden Webhook aus.</li>
-</ol>
-<h3 id="text---dateiverarbeitung"><a class="header" href="#text---dateiverarbeitung">Text- &amp; Dateiverarbeitung</a></h3>
-<ol start="31">
-<li><strong>Umgebungsvariable</strong>: Lies die Variable <code>PATH</code> aus dem Betriebssystem aus.</li>
-<li><strong>Dateiendungs-Extraktor</strong>: Hole die Endung einer Datei (z.B. <code>txt</code> aus <code>dokument.txt</code> – Achtung bei Dateien ohne Endung!).</li>
-<li><strong>Zahlen-Parser</strong>: Versuche einen Text in eine Zahl umzuwandeln (gibt <code>None</code> zurück, wenn der Text Buchstaben enthält).</li>
-<li><strong>Konfigurations-Lader</strong>: Suche nach einer Konfigurationsdatei an verschiedenen Standard-Orten.</li>
-<li><strong>Erste Zeile</strong>: Lies die allererste Zeile einer Textdatei aus (was, wenn die Datei leer ist?).</li>
-<li><strong>CSV-Spalten-Parser</strong>: Extrahiere den Wert der 5. Spalte einer CSV-Zeile.</li>
-<li><strong>JSON-Wert</strong>: Suche nach einem optionalen Key in einem verschachtelten JSON-Objekt.</li>
-<li><strong>Kommentar-Zeilen</strong>: Finde den ersten Kommentar im Quellcode.</li>
-<li><strong>Pfad-Vereinfacher</strong>: Hole das übergeordnete Verzeichnis eines Pfades (gibt <code>None</code> bei der Root-Ebene zurück).</li>
-<li><strong>Regex-Captures</strong>: Finde die erste Übereinstimmung einer Regex-Suche.</li>
-</ol>
-<h3 id="system--hardware"><a class="header" href="#system--hardware">System &amp; Hardware</a></h3>
-<ol start="41">
-<li><strong>Akku-Ladestand</strong>: Zeige den Ladestand an (ist <code>None</code>, wenn es sich um einen Desktop-PC ohne Akku handelt).</li>
-<li><strong>Temperatursensor</strong>: Lies den Sensor aus (gibt <code>None</code> zurück, falls der Sensor getrennt wurde).</li>
-<li><strong>Zweit-Monitor</strong>: Ermittle die Auflösung des zweiten angeschlossenen Bildschirms.</li>
-<li><strong>GPS-Koordinaten</strong>: Hole die aktuelle GPS-Position (kann im Tunnel oder bei deaktiviertem GPS fehlen).</li>
-<li><strong>USB-Gerät</strong>: Erkenne das zuletzt eingesteckte USB-Gerät.</li>
-<li><strong>System-Uhrzeit</strong>: Synchronisiere die Uhrzeit mit einem NTP-Server (kann fehlschlagen/fehlen).</li>
-<li><strong>Freier Speicherplatz</strong>: Berechne den freien Speicherplatz auf einem optionalen Netzlaufwerk.</li>
-<li><strong>Lüfterdrehzahl</strong>: Überwache die Drehzahl eines Lüfters (einige Lüfter haben keinen Drehzahlmesser).</li>
-<li><strong>Drucker-Auswahl</strong>: Finde den Standarddrucker im System.</li>
-<li><strong>Hardware-Beschleunigung</strong>: Prüfe, ob eine kompatible Grafikkarte für GPU-Berechnungen vorhanden ist.</li>
-</ol>
+<h2 id="-typische-einsteigerfehler-bei-option"><a class="header" href="#-typische-einsteigerfehler-bei-option">⚠️ Typische Einsteigerfehler bei Option</a></h2>
+<h3 id="fehler-1-direktes-rechnen-mit-option"><a class="header" href="#fehler-1-direktes-rechnen-mit-option">Fehler 1: Direktes Rechnen mit Option</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x: Option&lt;i32&gt; = Some(10);
+let y = x + 5; // ❌ FEHLER! Du kannst eine Option&lt;i32&gt; nicht mit einem i32 addieren.
+<span class="boring">}</span></code></pre></pre>
+<p><em>Lösung:</em> Nutze <code>unwrap_or</code> oder <code>map</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let y = x.unwrap_or(0) + 5;
+<span class="boring">}</span></code></pre></pre>
+<h3 id="fehler-2-verwechseln-mit-result"><a class="header" href="#fehler-2-verwechseln-mit-result">Fehler 2: Verwechseln mit Result</a></h3>
+<p><code>Option</code> hat keine Fehler-Informationen. Es sagt nur "Da ist nichts". Wenn du wissen willst, <em>warum</em> nichts da ist (z. B. Netzwerkfehler vs. Berechtigungsfehler), verwende <code>Result</code>.</p>
 <hr />
-<h2 id="-zusammenfassung-9"><a class="header" href="#-zusammenfassung-9">💡 Zusammenfassung</a></h2>
+<h2 id="-praxis-aufgaben-keine-codelösungen-6"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-6">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--die-artikelsuche"><a class="header" href="#aufgabe-1-leicht--die-artikelsuche">Aufgabe 1: Leicht – Die Artikelsuche</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Suche nach einer Artikel-ID in einer Liste.</li>
+<li><strong>Details:</strong>
 <ul>
-<li><strong>Kein <code>null</code> in Rust</strong>: Rust eliminiert die Gefahr von Null-Pointer-Abstürzen komplett an der Wurzel.</li>
-<li><strong><code>Option&lt;T&gt;</code></strong>: Ist ein Enum mit zwei Varianten: <code>Some(wert)</code> (Wert vorhanden) und <code>None</code> (kein Wert vorhanden).</li>
-<li><strong>Kapselung</strong>: Eine <code>Option&lt;T&gt;</code> ist nicht direkt benutzbar. Du musst sie erst auspacken.</li>
-<li><strong>Sicheres Entpacken</strong>:
-<ul>
-<li>Mit <strong><code>match</code></strong> behandelst du lückenlos alle Fälle.</li>
-<li>Mit <strong><code>if let</code></strong> greifst du schnell auf <code>Some</code> zu und ignorierst <code>None</code>.</li>
-<li>Hilfsmethoden wie <strong><code>unwrap_or(standard)</code></strong> erlauben es dir, sicher einen Standardwert festzulegen.</li>
+<li>Schreibe eine Funktion <code>finde_artikel(id: u32) -&gt; Option&lt;String&gt;</code>.</li>
+<li>Die Funktion soll bei ID <code>1</code> den Namen <code>"Buch"</code> zurückgeben, bei allen anderen IDs <code>None</code>.</li>
+<li>Werte das Ergebnis in <code>main</code> mit einem <code>match</code> aus.</li>
 </ul>
 </li>
-<li><strong>Gefährliches Entpacken</strong>: <strong><code>unwrap()</code></strong> und <strong><code>expect()</code></strong> bringen dein Programm bei <code>None</code> zum Absturz. Benutze sie nur im Notfall oder für Tests!</li>
-</ul>
-<hr />
-<h2 id="-links-6"><a class="header" href="#-links-6">📚 Links</a></h2>
+</ol>
+<h3 id="aufgabe-2-mittel--der-optionale-rabatt"><a class="header" href="#aufgabe-2-mittel--der-optionale-rabatt">Aufgabe 2: Mittel – Der optionale Rabatt</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Berechne den Endpreis eines Artikels unter Berücksichtigung eines optionalen Rabatts.</li>
+<li><strong>Details:</strong>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values">Das offizielle Rust-Buch: Das Option-Enum</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/error/option_unwrap.html">Rust by Example: Option &amp; unwrap</a></li>
-<li><a href="https://doc.rust-lang.org/std/option/enum.Option.html">Rust-Dokumentation: std::option::Option</a></li>
-<li><a href="./konzept-enums.html">Konzept: Enums</a></li>
-<li><a href="./konzept-matching.html">Konzept: Pattern Matching</a></li>
+<li>Schreibe eine Funktion <code>berechne_preis(basispreis: f64, rabatt: Option&lt;f64&gt;) -&gt; f64</code>.</li>
+<li>Falls der Rabatt <code>Some(wert)</code> ist, ziehe den Wert (in Prozent) ab. Falls er <code>None</code> is, gilt der Basispreis.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-fehlerbehandlung-mit-resultt-e"><a class="header" href="#-fehlerbehandlung-mit-resultt-e">⚠️ Fehlerbehandlung mit Result&lt;T, E&gt;</a></h1>
-<p>Fehler gehören zum Programmieren wie der Kaffee am Morgen. Aber wie wir mit ihnen umgehen, entscheidet darüber, ob unsere Software stabil läuft oder unerwartet abstürzt. In diesem Kapitel lernst du, wie Rust das Thema Fehlerbehandlung anpackt. Du wirst sehen, dass Rust einen ganz anderen Weg geht als viele andere Programmiersprachen – und warum dieser Weg deinen Code sicherer und verständlicher macht.</p>
-<hr />
-<h2 id="-theorie-7"><a class="header" href="#-theorie-7">🧠 Theorie</a></h2>
-<h3 id="1-warum-nutzt-rust-keine-exceptions"><a class="header" href="#1-warum-nutzt-rust-keine-exceptions">1. Warum nutzt Rust keine Exceptions?</a></h3>
-<p>In vielen modernen Sprachen (wie Java, Python oder C++) werden Fehler über sogenannte <strong>Exceptions (Ausnahmen)</strong> behandelt. Wenn dort etwas schiefgeht, wird eine Exception "geworfen", die den normalen Programmablauf sofort unterbricht und den Stack nach oben wandert, bis sie irgendwo abgefangen wird. Wenn sie niemand abfängt, stürzt das Programm ab.</p>
-<p>Rust verzichtet ganz bewusst auf dieses Konzept. Die Gründe dafür sind:</p>
+</li>
+<li><strong>Tipps:</strong> Nutze <code>unwrap_or(0.0)</code>, um einen Standard-Rabatt von 0 Prozent zu setzen.</li>
+</ol>
+<h3 id="aufgabe-3-schwer--das-verschachtelte-adressbuch"><a class="header" href="#aufgabe-3-schwer--das-verschachtelte-adressbuch">Aufgabe 3: Schwer – Das verschachtelte Adressbuch</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Suche nach der Postleitzahl eines Benutzers in einer verschachtelten Struktur.</li>
+<li><strong>Details:</strong>
 <ul>
-<li><strong>Exceptions sind unsichtbar:</strong> Wenn du eine Funktion aufrufst, siehst du ihrer Signatur meistens nicht an, ob sie eine Exception werfen kann und welche das sein könnte. Das führt dazu, dass man leicht vergisst, Fehler abzufangen.</li>
-<li><strong>Unvorhersehbarer Kontrollfluss:</strong> Exceptions erzeugen unsichtbare Sprünge im Code. Das macht es schwer zu verstehen, welcher Code bei einem Fehler eigentlich als Nächstes ausgeführt wird.</li>
-<li><strong>Performance:</strong> Das sogenannte "Stack Unwinding" (das Zurückverfolgen des Aufrufstapels beim Auflegen einer Exception) ist laufzeitintensiv und kostet Performance.</li>
+<li>Ein <code>Benutzer</code> hat ein optionales Feld <code>adresse: Option&lt;Adresse&gt;</code>.</li>
+<li>Eine <code>Adresse</code> hat ein optionales Feld <code>postleitzahl: Option&lt;String&gt;</code>.</li>
+<li>Schreibe eine Funktion <code>hole_plz(benutzer: &amp;Benutzer) -&gt; Option&lt;String&gt;</code>, die die PLZ extrahiert.</li>
 </ul>
-<p><strong>Rusts Philosophie:</strong> Behebbare Fehler sind keine Ausnahmezustände, sondern völlig normale Ergebnisse einer Operation. Sie werden als ganz normale Daten behandelt und sind fest im Typsystem verankert. Der Compiler zwingt dich dazu, dich mit ihnen zu befassen, bevor dein Programm überhaupt kompiliert werden kann!</p>
+</li>
+<li><strong>Tipps:</strong> Nutze <code>.and_then()</code>, um die Optionen sauber zu verketten, ohne mehrfache <code>if let</code>-Verschachtelungen aufzubauen.</li>
+</ol>
 <hr />
-<h3 id="2-wie-ist-der-resultt-e-enum-aufgebaut"><a class="header" href="#2-wie-ist-der-resultt-e-enum-aufgebaut">2. Wie ist der <code>Result&lt;T, E&gt;</code>-Enum aufgebaut?</a></h3>
-<p>Um einen Wert zurückzugeben, der entweder ein Erfolg oder ein Fehler sein kann, nutzt Rust den integrierten Typ <code>Result&lt;T, E&gt;</code>. Dies ist ein einfacher Enum mit zwei Varianten:</p>
+<h2 id="-merkzettel-option"><a class="header" href="#-merkzettel-option">📌 Merkzettel: Option</a></h2>
+<ul>
+<li>Rust hat <strong>kein <code>null</code></strong>.</li>
+<li><code>Option&lt;T&gt;</code> drückt aus, dass ein Wert vorhanden sein kann (<code>Some(T)</code>) oder nicht (<code>None</code>).</li>
+<li>Um an den Wert zu kommen, musst du ihn <strong>sicher entpacken</strong> (z. B. mit <code>match</code>, <code>if let</code> oder <code>unwrap_or</code>).</li>
+<li><code>unwrap()</code> kann das Programm zum Absturz bringen und sollte vermieden werden.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-fehlerbehandlung-mit-resultt-e--operationen-die-fehlschlagen-können"><a class="header" href="#-fehlerbehandlung-mit-resultt-e--operationen-die-fehlschlagen-können">⚠️ Fehlerbehandlung mit Result&lt;T, E&gt; – Operationen, die fehlschlagen können</a></h1>
+<p>Jedes Programm, das mit der Außenwelt interagiert, wird früher oder später mit Fehlern konfrontiert:</p>
+<ul>
+<li>Eine Datei soll geöffnet werden, existiert aber nicht.</li>
+<li>Eine Website soll aufgerufen werden, der Server ist jedoch offline.</li>
+<li>Der Benutzer gibt statt einer Zahl Text in ein Eingabefeld ein.</li>
+</ul>
+<p>In den meisten modernen Programmierkonzepten werden Fehler als <strong>Exceptions (Ausnahmen)</strong> behandelt. Tritt ein Fehler auf, wird er nach oben geworfen (geworfen) und bringt das Programm zum Absturz, falls er nicht abgefangen wird.</p>
+<p>Rust bricht radikal mit diesem Konzept. In Rust sind Fehler keine katastrophalen Ausnahmen, sondern <strong>normale, erwartbare Rückgabewerte</strong>, die fest im Typsystem verankert sind. Der Compiler zwingt dich dazu, dich mit ihnen zu befassen.</p>
+<hr />
+<h2 id="-theorie-was-ist-resultt-e"><a class="header" href="#-theorie-was-ist-resultt-e">🧠 Theorie: Was ist <code>Result&lt;T, E&gt;</code>?</a></h2>
+<p><code>Result&lt;T, E&gt;</code> ist ein eingebautes Enum mit zwei Zuständen:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>enum Result&lt;T, E&gt; {
-    Ok(T),
-    Err(E),
+    Ok(T),  // Die Operation war erfolgreich. Enthält den Wert vom Typ T.
+    Err(E), // Die Operation ist fehlgeschlagen. Enthält die Fehlerursache vom Typ E.
 }
 <span class="boring">}</span></code></pre></pre>
-<ul>
-<li><strong><code>T</code></strong> und <strong><code>E</code></strong> sind Platzhalter für Typen (Generics).</li>
-<li><strong><code>Ok(T)</code></strong>: Repräsentiert den Erfolgsfall und enthält den eigentlichen Rückgabewert vom Typ <code>T</code>.</li>
-<li><strong><code>Err(E)</code></strong>: Repräsentiert den Fehlerfall und enthält Details zum Fehler vom Typ <code>E</code>.</li>
-</ul>
-<p>Da <code>Result</code> mit dem Attribut <code>#[must_use]</code> versehen ist, gibt der Rust-Compiler eine Warnung aus, wenn du eine Funktion aufrufst, die ein <code>Result</code> zurückgibt, und dieses einfach ignorierst. Du musst dich aktiv entscheiden, wie du mit dem potenziellen Fehler umgehst.</p>
+<p>Das Besondere an Rust ist die Annotation <code>#[must_use]</code> für <code>Result</code>. Wenn du eine Funktion aufrufst, die ein <code>Result</code> zurückgibt, und dieses Ergebnis ignorierst, gibt der Compiler eine Warnung aus. Du <em>musst</em> dich entscheiden, wie du damit umgehst.</p>
+<pre><code>[ Funktionsaufruf ]
+        |
+        v
++-----------------------+
+|        Result         |
+|  +-----------------+  |
+|  |      Ok(T)      |  | ---&gt; Alles super! Wert vom Typ T ist da.
+|  +-----------------+  |
+|          oder         |
+|  +-----------------+  |
+|  |     Err(E)      |  | ---&gt; Fehler! Details vom Typ E vorhanden.
+|  +-----------------+  |
++-----------------------+
+</code></pre>
 <hr />
-<h3 id="3-fehler-behandeln-und-weiterreichen"><a class="header" href="#3-fehler-behandeln-und-weiterreichen">3. Fehler behandeln und weiterreichen</a></h3>
-<p>Es gibt verschiedene Möglichkeiten, mit einem <code>Result</code> zu arbeiten:</p>
-<h4 id="a-explizites-entpacken-mit-match"><a class="header" href="#a-explizites-entpacken-mit-match">A) Explizites Entpacken mit <code>match</code></a></h4>
-<p>Der sicherste und präziseste Weg, ein <code>Result</code> zu verarbeiten, ist das Pattern Matching mit <code>match</code>. Hierbei musst du sowohl den Erfolgsfall (<code>Ok</code>) als auch den Fehlerfall (<code>Err</code>) explizit behandeln.</p>
+<h2 id="-mit-result-arbeiten"><a class="header" href="#-mit-result-arbeiten">🛠️ Mit Result arbeiten</a></h2>
+<p>Genau wie bei <code>Option</code> gibt es verschiedene Wege, ein <code>Result</code> zu verarbeiten:</p>
+<h3 id="1-die-lückenlose-prüfung-mit-match"><a class="header" href="#1-die-lückenlose-prüfung-mit-match">1. Die lückenlose Prüfung mit <code>match</code></a></h3>
+<p>Das sicherste Werkzeug. Du behandelst Erfolg und Misserfolg separat:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>// Beispielhafter Kontrollfluss (Pseudocode)
-match ergebnis {
-    Ok(wert) =&gt; {
-        // Tu etwas mit dem erfolgreichen Wert
-    }
-    Err(fehler) =&gt; {
-        // Reagiere auf den Fehler
+</span>fn dividiere(a: f64, b: f64) -&gt; Result&lt;f64, String&gt; {
+    if b == 0.0 {
+        Err(String::from("Division durch Null ist verboten!"))
+    } else {
+        Ok(a / b)
     }
 }
+
+match dividiere(10.0, 0.0) {
+    Ok(ergebnis) =&gt; println!("Ergebnis: {}", ergebnis),
+    Err(fehler) =&gt; println!("Fehler aufgetreten: {}", fehler),
+}
 <span class="boring">}</span></code></pre></pre>
-<h4 id="b-kompaktes-auswerten-mit-if-let"><a class="header" href="#b-kompaktes-auswerten-mit-if-let">B) Kompaktes Auswerten mit <code>if let</code></a></h4>
-<p>Manchmal interessiert dich nur der Erfolgsfall oder du möchtest im Fehlerfall nur eine kurze Aktion ausführen, ohne das komplette <code>match</code>-Gerüst aufbauen zu müssen. Hierfür eignet sich <code>if let</code>:</p>
+<h3 id="2-nur-auf-fehler-reagieren-mit-if-let"><a class="header" href="#2-nur-auf-fehler-reagieren-mit-if-let">2. Nur auf Fehler reagieren mit <code>if let</code></a></h3>
+<p>Wenn dich nur der Fehlerfall interessiert (z. B. um eine Fehlermeldung anzuzeigen):</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>// Beispielhafter Kontrollfluss (Pseudocode)
-if let Err(fehler) = ergebnis {
-    // Reagiere nur, wenn ein Fehler aufgetreten ist
+</span>if let Err(e) = dividiere(10.0, 0.0) {
+    println!("Achtung: {}", e);
 }
 <span class="boring">}</span></code></pre></pre>
-<h4 id="c-fehler-elegant-weiterreichen-mit-dem-fragezeichen-operator-"><a class="header" href="#c-fehler-elegant-weiterreichen-mit-dem-fragezeichen-operator-">C) Fehler elegant weiterreichen mit dem Fragezeichen-Operator (<code>?</code>)</a></h4>
-<p>In echten Programmen möchtest du einen Fehler oft nicht direkt an Ort und Stelle behandeln, sondern ihn an die aufrufende Funktion "hochreichen", damit diese entscheidet, was zu tun ist.</p>
-<p>Dafür hat Rust den <strong>Fragezeichen-Operator (<code>?</code>)</strong> eingeführt. Wenn du <code>?</code> an einen Funktionsaufruf anhängst, der ein <code>Result</code> zurückgibt, passiert folgendes:</p>
+<h3 id="3-einen-standardwert-nutzen-mit-unwrap_or"><a class="header" href="#3-einen-standardwert-nutzen-mit-unwrap_or">3. Einen Standardwert nutzen mit <code>unwrap_or</code></a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let ergebnis = dividiere(10.0, 0.0).unwrap_or(0.0); // Verwendet 0.0 im Fehlerfall
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h2 id="-der--operator-die-abkürzung-für-fehlerweiterleitung"><a class="header" href="#-der--operator-die-abkürzung-für-fehlerweiterleitung">🚀 Der <code>?</code>-Operator: Die Abkürzung für Fehlerweiterleitung</a></h2>
+<p>In echten Programmen möchtest du einen Fehler oft nicht direkt in der Funktion behandeln, sondern ihn nach oben an die aufrufende Funktion weitergeben, damit diese sich darum kümmert.</p>
+<p>Der <code>?</code>-Operator ist die eleganteste Methode dafür. Er bedeutet:</p>
 <ol>
-<li>Wenn das Ergebnis <code>Ok(wert)</code> is, wird der Wert entpackt und direkt zurückgegeben. Das Programm läuft in der aktuellen Funktion weiter.</li>
-<li>Wenn das Ergebnis <code>Err(fehler)</code> ist, wird die aktuelle Funktion <strong>sofort abgebrochen</strong> (Early Return) und der Fehler wird als Rückgabewert der gesamten Funktion zurückgegeben.</li>
+<li>Wenn das Ergebnis <code>Ok(wert)</code> ist, entpacke es und fahre mit der Funktion fort.</li>
+<li>Wenn das Ergebnis <code>Err(fehler)</code> ist, breche die aktuelle Funktion <strong>sofort ab (Early Return)</strong> und gib den Fehler nach oben zurück.</li>
 </ol>
-<p><strong>Wichtigste Regel für <code>?</code>:</strong> Du kannst den <code>?</code>-Operator nur in Funktionen verwenden, die selbst wiederum ein <code>Result</code> (oder einen anderen kompatiblen Typ wie <code>Option</code>) als Rückgabetyp definiert haben! Der Fehlertyp der aufgerufenen Funktion muss außerdem in den Fehlertyp der umgebenden Funktion konvertierbar sein.</p>
+<h3 id="wie-das--im-hintergrund-funktioniert"><a class="header" href="#wie-das--im-hintergrund-funktioniert">Wie das ? im Hintergrund funktioniert</a></h3>
+<p>Der <code>?</code>-Operator entspricht folgendem <code>match</code>-Block:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Dieser Code:
+let datei = File::open("daten.txt")?;
+
+// Entspricht exakt diesem Code:
+let datei = match File::open("daten.txt") {
+    Ok(f) =&gt; f,
+    Err(e) =&gt; return Err(e.into()), // Gibt den Fehler sofort zurück
+};
+<span class="boring">}</span></code></pre></pre>
+<p><em>Hinweis:</em> Das <code>.into()</code> sorgt im Hintergrund dafür, dass der Fehler automatisch in den Fehlertyp der umgebenden Funktion konvertiert wird, sofern eine entsprechende Konvertierung definiert ist.</p>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Die goldene Regel des <code>?</code>-Operators:</strong>
+Du kannst den <code>?</code>-Operator nur in Funktionen verwenden, die selbst ein <code>Result</code> (oder einen anderen kompatiblen Typ wie <code>Option</code>) als Rückgabetyp haben!</p>
+</blockquote>
 <hr />
-<h2 id="-praxis-aufgaben-keine-codelösungen-7"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-7">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
-<p>Probier die folgenden Aufgaben selbstständig aus, um ein Gefühl für <code>Result</code> zu bekommen. Schreibe den Code von Grund auf selbst und nutze die Fehlermeldungen des Compilers als Hilfestellung!</p>
-<h3 id="1-aufgabe-der-robuste-alter-parser"><a class="header" href="#1-aufgabe-der-robuste-alter-parser">1. Aufgabe: Der Robuste Alter-Parser</a></h3>
-<p>Schreibe ein kleines Programm, das eine Zahl als Text (z.B. <code>"25"</code>) entgegennimmt und versucht, diese in eine Ganzzahl (<code>u32</code>) umzuwandeln.</p>
-<ul>
-<li>Da die Eingabe fehlerhaft sein könnte (z.B. <code>"acht"</code> statt <code>"8"</code>), kann das Parsen fehlschlagen.</li>
-<li>Deine Funktion soll ein <code>Result&lt;u32, String&gt;</code> zurückgeben. Im Erfolgsfall liefert sie die Zahl, im Fehlerfall eine verständliche Fehlermeldung als Text.</li>
-<li>Nutze in der <code>main</code>-Funktion ein <code>match</code>, um das Ergebnis auszuwerten und dem Benutzer eine entsprechende Rückmeldung auf der Konsole auszugeben.</li>
-</ul>
-<h3 id="2-aufgabe-die-sichere-division"><a class="header" href="#2-aufgabe-die-sichere-division">2. Aufgabe: Die sichere Division</a></h3>
-<p>Implementiere eine Funktion zur Division zweier Zahlen.</p>
-<ul>
-<li>Da eine Division durch Null mathematisch nicht definiert ist, soll deine Funktion diesen Fall abfangen.</li>
-<li>Wenn der Divisor ungleich Null ist, gib das Ergebnis verpackt in <code>Ok</code> zurück.</li>
-<li>Wenn der Divisor Null ist, gib einen passenden Fehler verpackt in <code>Err</code> zurück.</li>
-<li>Verwende in deiner <code>main</code>-Funktion <code>if let</code>, um gezielt auf den Fehlerfall zu reagieren und eine Warnung auszugeben.</li>
-</ul>
-<h3 id="3-aufgabe-fehlerverkettung-beim-dateilesen"><a class="header" href="#3-aufgabe-fehlerverkettung-beim-dateilesen">3. Aufgabe: Fehlerverkettung beim Dateilesen</a></h3>
-<p>Erstelle eine Funktion, die den Inhalt einer Datei ausliest und die erste Zeile zurückgibt.</p>
-<ul>
-<li>Hierbei können zwei Dinge schiefgehen: Die Datei kann nicht geöffnet werden, oder das Lesen der Zeile schlägt fehl.</li>
-<li>Verwende den Fragezeichen-Operator (<code>?</code>), um eventuelle Fehler der Standardbibliothek (<code>std::io::Error</code>) direkt an den Aufrufer deiner Funktion weiterzureichen.</li>
-<li>Die Signatur deiner Funktion sollte als Rückgabetyp <code>Result&lt;String, std::io::Error&gt;</code> besitzen.</li>
-</ul>
+<h2 id="-eigene-fehlertypen-definieren"><a class="header" href="#-eigene-fehlertypen-definieren">🛠️ Eigene Fehlertypen definieren</a></h2>
+<p>Für kleine Programme reicht es oft, Fehlermeldungen als einfachen Text (<code>String</code>) zurückzugeben. In professionellen Anwendungen definiert man jedoch eigene Fehlertypen als Enums. Das macht den Code extrem robust und flexibel.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Ein eigener Fehlertyp für ein Benutzer-Registrierungssystem
+enum RegistrierungsFehler {
+    NameZuKurz,
+    EmailUngueltig,
+    BenutzerExistiertBereits,
+}
+
+// Verwendung in einer Funktion
+fn benutzer_registrieren(name: &amp;str, email: &amp;str) -&gt; Result&lt;(), RegistrierungsFehler&gt; {
+    if name.len() &lt; 3 {
+        return Err(RegistrierungsFehler::NameZuKurz);
+    }
+    if !email.contains('@') {
+        return Err(RegistrierungsFehler::EmailUngueltig);
+    }
+    Ok(())
+}
+<span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-50-projekte-6"><a class="header" href="#-50-projekte-6">🚀 50 Projekte</a></h2>
-<p>Hier sind 50 kurze Projektideen und Übungsszenarien, bei denen du die Fehlerbehandlung mit <code>Result</code> trainieren kannst. Jede Idee konzentriert sich auf typische Fehlerquellen in realen Anwendungen:</p>
+<h2 id="-praxis-aufgaben-keine-codelösungen-7"><a class="header" href="#-praxis-aufgaben-keine-codelösungen-7">🛠️ Praxis-Aufgaben (Keine Codelösungen!)</a></h2>
+<h3 id="aufgabe-1-leicht--der-alters-parser"><a class="header" href="#aufgabe-1-leicht--der-alters-parser">Aufgabe 1: Leicht – Der Alters-Parser</a></h3>
 <ol>
-<li><strong>Dateileser mit Pfadprüfung:</strong> Eine Funktion, die prüft, ob ein Dateipfad existiert, bevor sie versucht, ihn zu öffnen.</li>
-<li><strong>JSON-Parser für Profile:</strong> Ein Parser, der Benutzereingaben in ein JSON-Objekt umwandelt und ungültige JSON-Formate abfängt.</li>
-<li><strong>Temperatur-Validierung:</strong> Ein Konverter für Celsius in Kelvin, der Temperaturen unter dem absoluten Nullpunkt (-273,15 °C) abweist.</li>
-<li><strong>Passwort-Stärke-Prüfer:</strong> Ein Passwort-Validator, der Fehler zurückgibt, wenn das Passwort zu kurz ist oder keine Sonderzeichen enthält.</li>
-<li><strong>Alter-Eingabe-Parser:</strong> Ein CLI-Tool, das das Alter abfragt und negative Werte sowie Eingaben über 120 Jahren als Fehler zurückweist.</li>
-<li><strong>HTTP-Status-Interpreter:</strong> Eine Funktion, die numerische HTTP-Statuscodes auswertet und bei unbekannten Codes einen Fehler liefert.</li>
-<li><strong>CSV-Spalten-Extraktor:</strong> Ein Skript, das eine Zeile einer CSV-Datei liest und prüft, ob die erwartete Anzahl an Spalten vorhanden ist.</li>
-<li><strong>IP-Adressen-Parser:</strong> Ein Konverter, der einen String in eine IP-Adresse parsen will und ungültige Formate (z.B. 999.999.999.999) abfängt.</li>
-<li><strong>Datenbank-Simulator:</strong> Eine Mock-Datenbank, die beim Suchen nach einer ID einen Fehler zurückgibt, wenn der Datensatz nicht existiert.</li>
-<li><strong>Taschenrechner mit Null-Schutz:</strong> Ein Divisions-Rechner, der die Division durch Null explizit abfängt.</li>
-<li><strong>Port-Belegungs-Scanner:</strong> Ein Tool, das versucht, einen Netzwerk-Port zu binden, und Fehler ausgibt, falls dieser bereits belegt ist.</li>
-<li><strong>Datei-Backup-Ersteller:</strong> Eine Funktion, die eine Datei kopiert und Fehler meldet, wenn die Quelldatei fehlt oder Schreibrechte fehlen.</li>
-<li><strong>URL-Syntax-Prüfer:</strong> Ein Parser für URLs, der Fehler wirft, falls das Protokoll (http/https) fehlt.</li>
-<li><strong>Kalenderdatum-Validator:</strong> Eine Datumsprüfung, die Fehleingaben wie den 31. April oder den 30. Februar abfängt.</li>
-<li><strong>XML-Tag-Validator:</strong> Ein einfacher XML-Scanner, der prüft, ob alle geöffneten Tags auch wieder korrekt geschlossen werden.</li>
-<li><strong>Umgebungsvariablen-Ausleser:</strong> Eine Funktion, die wichtige Systemvariablen liest und einen Fehler wirft, wenn diese nicht gesetzt sind.</li>
-<li><strong>Integer-Überlauf-Detektor:</strong> Eine Additionsfunktion, die prüft, ob das Ergebnis den maximalen Wert des Typs überschreitet.</li>
-<li><strong>E-Mail-Format-Prüfer:</strong> Ein Validierer, der prüft, ob ein String ein gültiges E-Mail-Format besitzt (z.B. Vorhandensein von <code>@</code> und <code>.</code>).</li>
-<li><strong>Quadratwurzel-Rechner:</strong> Eine mathematische Funktion, die bei negativen Zahlen als Eingabe einen Fehler zurückgibt.</li>
-<li><strong>Text-Chiffrierer:</strong> Ein Verschlüsselungstool, das Fehler ausgibt, wenn der Schlüssel nicht die erforderliche Länge hat.</li>
-<li><strong>INI-Konfigurations-Lader:</strong> Ein Parser, der eine Konfigurationsdatei einliest und Fehler bei fehlerhaften Schlüssel-Wert-Paaren meldet.</li>
-<li><strong>Array-Index-Prüfer:</strong> Eine Funktion für sicheren Array-Zugriff, die einen Fehler zurückgibt, anstatt das Programm abstürzen zu lassen.</li>
-<li><strong>UUID-Längen-Prüfer:</strong> Ein Validierer, der prüft, ob eine übergebene UUID exakt 36 Zeichen lang ist.</li>
-<li><strong>Schimpfwort-Filter:</strong> Ein Text-Scanner, der einen Fehler zurückgibt, wenn der Text blockierte Wörter enthält.</li>
-<li><strong>Dateigrößen-Wächter:</strong> Ein Upload-Simulator, der prüft, ob eine Datei ein vordefiniertes Größenlimit überschreitet.</li>
-<li><strong>Ping-Timeout-Simulator:</strong> Ein Netzwerk-Tool, das eine Verbindung simuliert und bei zu hoher Latenz einen Timeout-Fehler ausgibt.</li>
-<li><strong>Log-Datei-Parser:</strong> Ein Analysetool für Server-Logs, das Zeilennummern ausgibt, in denen das Log-Format fehlerhaft ist.</li>
-<li><strong>Schachzug-Validator:</strong> Ein System, das prüft, ob ein Zug (z.B. E2 nach E5 für einen Bauern) regelkonform ist.</li>
-<li><strong>Wechselkurs-Rechner:</strong> Ein Währungsumrechner, der einen Fehler liefert, wenn für ein Währungspaar kein Kurs existiert.</li>
-<li><strong>DNS-Resolver-Mock:</strong> Eine Namensauflösung, die Fehler zurückgibt, wenn eine Domain nicht im Mock-DNS registriert ist.</li>
-<li><strong>Verzeichnis-Ersteller:</strong> Eine Funktion, die einen neuen Ordner anlegt und Fehler abfängt, wenn dieser bereits existiert.</li>
-<li><strong>Token-Ablauf-Prüfer:</strong> Ein Authentifizierungssystem, das prüft, ob der Timestamp eines Tokens in der Vergangenheit liegt.</li>
-<li><strong>Bild-Header-Parser:</strong> Ein Tool, das versucht, die Dimensionen aus einer Bilddatei zu lesen, und bei korrupten Headern abbricht.</li>
-<li><strong>API-Rate-Limiter:</strong> Ein Simulator, der Anfragen zählt und bei Überschreitung des Limits einen "Too Many Requests"-Fehler zurückgibt.</li>
-<li><strong>Markdown-Header-Parser:</strong> Eine Funktion, die prüft, ob eine Zeile eine gültige Überschrift (beginnend mit <code>#</code>) ist.</li>
-<li><strong>Binär-Konverter:</strong> Ein Übersetzer für Binärstrings in Dezimalzahlen, der Fehler bei Zeichen außer <code>0</code> und <code>1</code> wirft.</li>
-<li><strong>Luhn-Kreditkartenprüfer:</strong> Ein Validierungsalgorithmus für Kreditkartennummern, der fehlerhafte Nummern als Fehler ausgibt.</li>
-<li><strong>Sudoku-Zeilenprüfer:</strong> Eine Funktion, die eine Zeile eines Sudokus auf doppelte Zahlen prüft und bei Verstößen Fehler meldet.</li>
-<li><strong>Archiv-Entpacker:</strong> Ein Entpacker, der CRC-Prüfsummen abgleicht und bei beschädigten Archiven Fehler meldet.</li>
-<li><strong>Geodaten-Validator:</strong> Ein System, das prüft, ob Breitengrade zwischen -90 und 90 und Längengrade zwischen -180 und 180 liegen.</li>
-<li><strong>Hex-Farbcode-Prüfer:</strong> Ein Parser für CSS-Farbcodes, der Fehler bei ungültigen Zeichen oder falscher Länge (z.B. <code>#G12345</code>) wirft.</li>
-<li><strong>Morsecode-Decoder:</strong> Ein Decoder, der bei unleserlichen Signalen (kein Punkt oder Strich) Fehler ausgibt.</li>
-<li><strong>Benutzer-Login-System:</strong> Ein Login-Prozess, der zwischen "Benutzer existiert nicht" und "Passwort falsch" unterscheidet.</li>
-<li><strong>Sensor-Messwert-Filter:</strong> Ein Programm, das Sensorwerte glättet und bei plötzlichen Ausreißern (z.B. 0V statt 5V) Fehler ausgibt.</li>
-<li><strong>CLI-Argumenten-Prüfer:</strong> Ein Parser für Startparameter, der fehlende Pflichtparameter als Fehler zurückgibt.</li>
-<li><strong>Datei-Verschieber:</strong> Ein System, das Dateien verschiebt und Fehler abfängt, wenn das Zielverzeichnis schreibgeschützt ist.</li>
-<li><strong>Base64-Decoder:</strong> Ein Tool, das Base64-Strings dekodiert und bei ungültigen Zeichen (<code>=</code>, <code>+</code>, <code>/</code> an falschen Stellen) abbricht.</li>
-<li><strong>Zeitzonen-Offset-Rechner:</strong> Ein Zeitberechner, der ungültige Zeitzonen-Offsets (z.B. +15 Stunden) abfängt.</li>
-<li><strong>Cäsar-Chiffre-Rotator:</strong> Ein Verschiebungs-Chiffre, der negative oder zu große Rotationswerte (über 25) als Fehler zurückweist.</li>
-<li><strong>Savegame-Parser:</strong> Ein Lader für Spielstände, der prüft, ob die Datei manipuliert oder unvollständig ist.</li>
+<li><strong>Ziel:</strong> Versuche, eine Zahl aus einer Texteingabe zu lesen.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Nutze die Methode <code>.parse::&lt;u32&gt;()</code> auf einem String. Diese Methode gibt ein <code>Result</code> zurück, da der Text Buchstaben enthalten könnte (z. B. <code>"Fünf"</code> statt <code>"5"</code>).</li>
+<li>Schreibe ein Programm, das versucht, ein Alter zu parsen, und gib bei Erfolg <code>"Alter gesetzt auf X"</code> und bei Fehler <code>"Ungültiges Format!"</code> aus.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Nutze ein <code>match</code>-Konstrukt für das Ergebnis von <code>.parse()</code>.</li>
+</ol>
+<h3 id="aufgabe-2-mittel--die-sichere-datei-ladefunktion"><a class="header" href="#aufgabe-2-mittel--die-sichere-datei-ladefunktion">Aufgabe 2: Mittel – Die sichere Datei-Ladefunktion</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Lese den Inhalt einer Datei aus.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Schreibe eine Funktion <code>lies_konfig(pfad: &amp;str) -&gt; Result&lt;String, std::io::Error&gt;</code>.</li>
+<li>Verwende den <code>?</code>-Operator, um eventuelle Fehler von <code>File::open</code> und <code>read_to_string</code> automatisch an den Aufrufer weiterzuleiten.</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Du musst die Module <code>std::fs::File</code> und <code>std::io::prelude::*</code> importieren.</li>
+</ol>
+<h3 id="aufgabe-3-schwer--der-validierungs-pipeline"><a class="header" href="#aufgabe-3-schwer--der-validierungs-pipeline">Aufgabe 3: Schwer – Der Validierungs-Pipeline</a></h3>
+<ol>
+<li><strong>Ziel:</strong> Validiere eine Benutzereingabe über mehrere Stufen hinweg.</li>
+<li><strong>Details:</strong>
+<ul>
+<li>Erstelle ein eigenes Enum <code>EingabeFehler</code> mit den Varianten <code>Leer</code>, <code>KeineZahl</code> und <code>Negativ</code>.</li>
+<li>Schreibe eine Funktion, die einen Text als Eingabe nimmt und prüft:
+<ol>
+<li>Ist der Text leer? -&gt; <code>Err(EingabeFehler::Leer)</code></li>
+<li>Kann der Text als Zahl parsen? -&gt; Wenn nein: <code>Err(EingabeFehler::KeineZahl)</code></li>
+<li>Ist die Zahl negativ? -&gt; Wenn ja: <code>Err(EingabeFehler::Negativ)</code></li>
+<li>Wenn alles passt: Gib die Zahl in <code>Ok</code> zurück.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>Tipps:</strong> Kombiniere <code>match</code> oder die Methoden auf <code>Result</code> und <code>Option</code>, um die Prüfungen nacheinander auszuführen.</li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-10"><a class="header" href="#-zusammenfassung-10">💡 Zusammenfassung</a></h2>
+<h2 id="-merkzettel-result"><a class="header" href="#-merkzettel-result">📌 Merkzettel: Result</a></h2>
 <ul>
-<li><strong>Keine Exceptions:</strong> Rust nutzt ein explizites Fehlersystem anstelle von unvorhersehbaren Ausnahmen (Exceptions).</li>
-<li><strong>Das Result-Enum:</strong> Mit <code>Result&lt;T, E&gt;</code> werden Erfolg (<code>Ok</code>) und Fehler (<code>Err</code>) direkt im Typsystem abgebildet.</li>
-<li><strong>Sicherheit:</strong> Der Compiler zwingt dich über das Attribut <code>#[must_use]</code>, Fehler aktiv zu behandeln.</li>
-<li><strong>Musterabgleich:</strong> <code>match</code> and <code>if let</code> bieten flexible Wege, um Fehler direkt zu behandeln.</li>
-<li><strong>Weiterleitung:</strong> Mit dem Fragezeichen-Operator <code>?</code> kannst du Fehler extrem elegant und mit minimalem Code an den Aufrufer hochreichen.</li>
-</ul>
-<hr />
-<h2 id="-links-7"><a class="header" href="#-links-7">📚 Links</a></h2>
-<ul>
-<li><a href="https://doc.rust-lang.org/book/ch09-00-error-handling.html">Das Rust-Buch: Kapitel 9 – Fehlerbehandlung (Englisch)</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Rust by Example: Result (Englisch)</a></li>
-<li><a href="https://doc.rust-lang.org/std/result/enum.Result.html">Rust API-Dokumentation: Der Result-Enum (Englisch)</a></li>
+<li><code>Result&lt;T, E&gt;</code> wird für Operationen genutzt, die <strong>fehlschlagen</strong> können.</li>
+<li>Es hat zwei Varianten: <code>Ok(T)</code> (Erfolg) und <code>Err(E)</code> (Fehlermeldung/-ursache).</li>
+<li>Das Compiler-Attribut <code>#[must_use]</code> warnt dich, wenn du Fehler ignorierst.</li>
+<li>Mit dem <strong><code>?</code>-Operator</strong> leitest du Fehler elegant nach oben an den Aufrufer weiter.</li>
+<li>Der <code>?</code>-Operator funktioniert nur in Funktionen, die selbst wieder ein <code>Result</code> (oder <code>Option</code>) zurückgeben.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="phase-3-projektvorschläge-für-einsteiger"><a class="header" href="#phase-3-projektvorschläge-für-einsteiger">Phase 3: Projektvorschläge für Einsteiger</a></h1>
 <p>In dieser Phase vertiefen wir die <strong>Collections</strong> (Datenstrukturen der Standardbibliothek) und die <strong>Systematische Fehlerbehandlung</strong> (Result &amp; Option). Du wirst in jedem Projekt das Gelernte aus den Phasen 1 und 2 wiederholen (wie Structs, Enums und Pattern Matching) und diese um dynamische Speicherstrukturen und robusten Code erweitern.</p>
@@ -26462,7 +26258,7 @@ members = [
 //              In Rust-Code immer Unterstrich.
 <span class="boring">}</span></code></pre></pre>
 <hr />
-<h2 id="-wie-du-diese-phase-am-besten-nutzt-3"><a class="header" href="#-wie-du-diese-phase-am-besten-nutzt-3">🚀 Wie du diese Phase am besten nutzt</a></h2>
+<h2 id="-wie-du-diese-phase-am-besten-nutzt-2"><a class="header" href="#-wie-du-diese-phase-am-besten-nutzt-2">🚀 Wie du diese Phase am besten nutzt</a></h2>
 <p><strong>1. Klein anfangen:</strong> Beginne mit einer einzigen <code>main.rs</code> und erstelle inline Module (<code>mod name { }</code>). Wenn das Modul zu groß wird, lagere es in eine eigene Datei aus. Du musst nicht von Anfang an die perfekte Struktur haben.</p>
 <p><strong>2. API-Design üben:</strong> Wenn du ein Modul schreibst, frage dich: "Was soll ein Nutzer dieses Moduls sehen?" Alles andere als privat markieren. Weniger Oberfläche = besser wartbarer Code.</p>
 <p><strong>3. Pfade mit use vereinfachen:</strong> Wenn du einen Pfad mehr als zweimal tippst, ist es Zeit für ein <code>use</code>. Aber übertreibe nicht mit Glob-Imports (<code>*</code>) – sie machen den Code unlesbar.</p>
@@ -26493,7 +26289,7 @@ Besuche <a href="https://lib.rs">lib.rs</a> statt crates.io für eine bessere Ü
 <p>Um dieses Chaos zu verhindern, unterteilst du das Haus in verschiedene Räume: eine Küche für die Lebensmittel, eine Werkstatt für das Werkzeug und ein Schlafzimmer für die Privatsphäre.</p>
 <p>Genau das macht das <strong>Modulsystem in Rust</strong>. Es hilft dir, deinen Programmcode in logische Einheiten (Module) aufzuteilen, Ordnung zu halten und den Zugriff auf deine Daten und Funktionen sauber zu regeln.</p>
 <hr />
-<h2 id="-theorie-8"><a class="header" href="#-theorie-8">🧠 Theorie</a></h2>
+<h2 id="-theorie-4"><a class="header" href="#-theorie-4">🧠 Theorie</a></h2>
 <h3 id="1-was-ist-ein-modul-in-rust"><a class="header" href="#1-was-ist-ein-modul-in-rust">1. Was ist ein Modul in Rust?</a></h3>
 <p>Ein Modul (<code>module</code>) ist ein Container für Code. In einem Modul kannst du Funktionen, Structs, Enums, Konstanten und sogar andere Module zusammenfassen.</p>
 <p>Es gibt zwei Möglichkeiten, Module in Rust zu definieren:</p>
@@ -26658,7 +26454,7 @@ pub fn hammer_holen() {
 </li>
 </ul>
 <hr />
-<h2 id="-50-projekte-7"><a class="header" href="#-50-projekte-7">🚀 50 Projekte</a></h2>
+<h2 id="-50-projekte-3"><a class="header" href="#-50-projekte-3">🚀 50 Projekte</a></h2>
 <p>Hier sind 50 kleine Projektideen, bei denen du das Aufteilen von Code in Module und das Verbergen von Daten üben kannst:</p>
 <h3 id="alltag--haushalt"><a class="header" href="#alltag--haushalt">Alltag &amp; Haushalt</a></h3>
 <ol>
@@ -26726,7 +26522,7 @@ pub fn hammer_holen() {
 <li><strong>URL-Parser:</strong> Modul <code>url</code> zerlegt Webadressen in Protokoll, Host und Pfad mit privater Validierung.</li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-11"><a class="header" href="#-zusammenfassung-11">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-7"><a class="header" href="#-zusammenfassung-7">💡 Zusammenfassung</a></h2>
 <ul>
 <li><strong>Module (<code>mod</code>)</strong> strukturieren deinen Code in logische Einheiten und verhindern unübersichtliche Riesendateien.</li>
 <li><strong>Kapselung</strong> ist in Rust standardmäßig aktiv: Jedes Element ist ohne Modifier privat und kann von außen nicht gesehen werden.</li>
@@ -26735,7 +26531,7 @@ pub fn hammer_holen() {
 <li><strong>Moderne Struktur:</strong> Deklariere ein Modul mit <code>mod name;</code> und erstelle die dazugehörige Datei <code>name.rs</code>. Für Untermodule deklarierst du diese in <code>name.rs</code> und erstellst sie in <code>name/untermodul.rs</code>.</li>
 </ul>
 <hr />
-<h2 id="-links-8"><a class="header" href="#-links-8">📚 Links</a></h2>
+<h2 id="-links-4"><a class="header" href="#-links-4">📚 Links</a></h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Das offizielle Rust-Buch: Managing Growing Projects with Packages, Crates, and Modules (Englisch)</a></li>
 <li><a href="https://rust-lang-de.github.io/rustbook-de/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Die deutsche Übersetzung des Rust-Buchs: Pakete, Crates und Module (Deutsch)</a></li>
@@ -26747,7 +26543,7 @@ pub fn hammer_holen() {
 <p>In deinen bisherigen Rust-Programmen hast du vielleicht fast alles in eine einzige Datei (<code>main.rs</code>) geschrieben. Wenn dein Programm wächst, wird das jedoch unübersichtlich. Um Ordnung zu halten, unterteilst du deinen Code in <strong>Module</strong> (Zimmer) und <strong>Dateien</strong> (Schränke).</p>
 <p>Damit die verschiedenen Teile deines Codes miteinander sprechen können, müssen sie wissen, wie sie sich gegenseitig finden. Genau hier kommen <strong>Pfade</strong> und <strong>Importe</strong> ins Spiel. Sie sind die Adressen und Wegweiser in deinem Rust-Projekt.</p>
 <hr />
-<h2 id="-theorie-9"><a class="header" href="#-theorie-9">🧠 Theorie</a></h2>
+<h2 id="-theorie-5"><a class="header" href="#-theorie-5">🧠 Theorie</a></h2>
 <h3 id="1-module-und-die-struktur-deines-projekts"><a class="header" href="#1-module-und-die-struktur-deines-projekts">1. Module und die Struktur deines Projekts</a></h3>
 <p>Bevor wir uns Pfade ansehen, halten wir kurz fest, worauf sie verweisen: auf <strong>Module</strong> (deklariert mit dem Schlüsselwort <code>mod</code>). Module strukturieren deinen Code hierarchisch wie Ordner auf deiner Festplatte. Ein Modul kann Funktionen, Structs, Enums und sogar andere Module enthalten.</p>
 <h3 id="2-absolute-vs-relative-pfade"><a class="header" href="#2-absolute-vs-relative-pfade">2. Absolute vs. relative Pfade</a></h3>
@@ -26895,7 +26691,7 @@ pub use crate::intern::geheim::WichtigerTyp;
 <li>Verwende <code>pub use</code>, um die Funktionen <code>addieren</code> und <code>subtrahieren</code> direkt auf der Hauptebene deiner Crate verfügbar zu machen, sodass ein Nutzer sie ohne Pfad-Verschachtelung aufrufen kann.</li>
 </ul>
 <hr />
-<h2 id="-50-projekte-8"><a class="header" href="#-50-projekte-8">🚀 50 Projekte</a></h2>
+<h2 id="-50-projekte-4"><a class="header" href="#-50-projekte-4">🚀 50 Projekte</a></h2>
 <p>Hier sind 50 kleine Projektideen, die du umsetzen kannst, um den Umgang mit Modulen, Pfaden, Importen und Re-Exports in Rust zu üben:</p>
 <h3 id="spiele--welten"><a class="header" href="#spiele--welten">Spiele &amp; Welten</a></h3>
 <ol>
@@ -26963,7 +26759,7 @@ pub use crate::intern::geheim::WichtigerTyp;
 <li><strong>Smart-Home-Steuerung:</strong> Module für <code>licht</code>, <code>heizung</code> und <code>sicherheit</code>.</li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-12"><a class="header" href="#-zusammenfassung-12">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-8"><a class="header" href="#-zusammenfassung-8">💡 Zusammenfassung</a></h2>
 <ul>
 <li><strong>Module (<code>mod</code>)</strong> strukturieren deinen Code hierarchisch.</li>
 <li><strong>Absolute Pfade</strong> beginnen immer an der Crate-Wurzel mit <strong><code>crate::</code></strong>.</li>
@@ -26974,7 +26770,7 @@ pub use crate::intern::geheim::WichtigerTyp;
 <li>Mit <strong><code>pub use</code> (Re-Exporting)</strong> veredelst du deine Modulstruktur. Du verbirgst interne Komplexität und baust eine flache, leicht verständliche Schnittstelle (API) für andere.</li>
 </ul>
 <hr />
-<h2 id="-links-9"><a class="header" href="#-links-9">📚 Links</a></h2>
+<h2 id="-links-5"><a class="header" href="#-links-5">📚 Links</a></h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Das offizielle Rust-Buch: Managing Growing Projects with Packages, Crates, and Modules (Englisch)</a></li>
 <li><a href="https://rust-lang-de.github.io/rustbook-de/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Die deutsche Übersetzung des Rust-Buchs: Organisation von Code (Deutsch)</a></li>
@@ -26985,7 +26781,7 @@ pub use crate::intern::geheim::WichtigerTyp;
 <p>Stell dir vor, du möchtest ein großes, stabiles Haus aus Lego bauen. Du könntest natürlich versuchen, jeden einzelnen Legostein selbst aus flüssigem Kunststoff zu gießen. Aber das wäre unglaublich mühsam, zeitaufwendig und wahrscheinlich würden die Steine am Ende nicht perfekt zusammenpassen. Stattdessen greifst du auf fertige, genormte Bausteine zurück, die perfekt ineinandergreifen, und konzentrierst dich ganz auf die Architektur deines Hauses.</p>
 <p>In der Rust-Welt ist das genau so! Du musst das Rad (oder den Sortieralgorithmus, den Netzwerk-Client und den JSON-Parser) nicht jedes Mal neu erfinden. Rust bietet dir mit <strong>Crates</strong> (den Bausteinen) und <strong>Cargo</strong> (dem genialen Bauleiter und Paketmanager) ein mächtiges Ökosystem, mit dem du fertige Programmteile blitzschnell und sicher in dein Projekt integrieren kannst.</p>
 <hr />
-<h2 id="-theorie-10"><a class="header" href="#-theorie-10">🧠 Theorie</a></h2>
+<h2 id="-theorie-6"><a class="header" href="#-theorie-6">🧠 Theorie</a></h2>
 <h3 id="was-sind-crates"><a class="header" href="#was-sind-crates">Was sind Crates?</a></h3>
 <p>Ein <strong>Crate</strong> (zu Deutsch: Kiste oder Transportkiste) ist die kleinste eigenständige Code-Einheit, die der Rust-Compiler verarbeiten kann. Wenn du ein Rust-Projekt baust, erstellst du immer mindestens ein Crate.</p>
 <p>Es gibt zwei grundlegend verschiedene Arten von Crates:</p>
@@ -27114,7 +26910,7 @@ Oft wird es zusammen mit dem Feature <code>derive</code> genutzt, damit Rust-Str
 </ol>
 <p><em>Wie müsste der Eintrag unter <code>[dependencies]</code> in deiner <code>Cargo.toml</code> aussehen?</em></p>
 <hr />
-<h2 id="-50-projekte-9"><a class="header" href="#-50-projekte-9">🚀 50 Projekte</a></h2>
+<h2 id="-50-projekte-5"><a class="header" href="#-50-projekte-5">🚀 50 Projekte</a></h2>
 <p>Hier sind 50 kleine Projektideen und Übungsszenarien, mit denen du den Umgang mit Cargo und verschiedenen externen Crates praktisch erproben kannst:</p>
 <ol>
 <li><strong>Zufalls-Passwort-Generator:</strong> Generiere sichere Passwörter mit anpassbaren Kriterien (<code>rand</code>).</li>
@@ -27169,7 +26965,7 @@ Oft wird es zusammen mit dem Feature <code>derive</code> genutzt, damit Rust-Str
 <li><strong>Terminal-Musik-Player:</strong> Spiele einfache Soundeffekte oder MP3-Dateien über die Konsole ab (<code>rodio</code>).</li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-13"><a class="header" href="#-zusammenfassung-13">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-9"><a class="header" href="#-zusammenfassung-9">💡 Zusammenfassung</a></h2>
 <ul>
 <li><strong>Crates</strong> sind die Bausteine in Rust. <strong>Binary Crates</strong> sind ausführbare Programme mit einer <code>main()</code>-Funktion; <strong>Library Crates</strong> sind wiederverwendbare Bibliotheken.</li>
 <li>Die <strong><code>Cargo.toml</code></strong> ist die Konfigurationsdatei deines Projekts. Hier definierst du Projektdaten und deine Abhängigkeiten.</li>
@@ -27179,7 +26975,7 @@ Oft wird es zusammen mit dem Feature <code>derive</code> genutzt, damit Rust-Str
 <li>Externe Crates von <a href="https://crates.io">crates.io</a> wie <code>rand</code> und <code>serde</code> lassen sich spielend leicht integrieren und erweitern die Standardbibliothek um mächtige Werkzeuge.</li>
 </ul>
 <hr />
-<h2 id="-links-10"><a class="header" href="#-links-10">📚 Links</a></h2>
+<h2 id="-links-6"><a class="header" href="#-links-6">📚 Links</a></h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html">Das offizielle Rust-Buch: Cargo und Crates.io</a></li>
 <li><a href="https://doc.rust-lang.org/cargo/">Die offizielle Cargo-Dokumentation (englisch)</a></li>
@@ -35730,7 +35526,7 @@ Wichtige Einstellungen:</p>
 Zum Beispiel: <strong>Phase 5 – KI als Werkzeug im Entwicklungsalltag</strong></p>
 <p>Beschreibe, was der Agent in dieser Phase beachten soll.</p>
 <hr />
-<h2 id="-zusammenfassung-14"><a class="header" href="#-zusammenfassung-14">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-10"><a class="header" href="#-zusammenfassung-10">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Bedeutung</th></tr></thead><tbody>
 <tr><td><code>agy</code> CLI</td><td>Terminal-Oberfläche für schnelle Interaktion</td></tr>
 <tr><td>Antigravity 2.0</td><td>Desktop-App für Projektverwaltung &amp; geplante Tasks</td></tr>
@@ -38839,7 +38635,7 @@ Nimm keinen Vorschlag an, den du nicht erklären könntest!</p>
 </li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-15"><a class="header" href="#-zusammenfassung-15">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-11"><a class="header" href="#-zusammenfassung-11">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Bedeutung</th></tr></thead><tbody>
 <tr><td>Inline-Vorschläge</td><td>Copilots Kernfunktion – er tippt mit</td></tr>
 <tr><td>Kommentar als Anweisung</td><td>Präzise Kommentare = bessere Vorschläge</td></tr>
@@ -39283,7 +39079,7 @@ Frage nach jedem Schritt: „Was hast du gemacht und warum?"</p>
 </li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-16"><a class="header" href="#-zusammenfassung-16">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-12"><a class="header" href="#-zusammenfassung-12">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Bedeutung</th></tr></thead><tbody>
 <tr><td>IDE KI-Agent</td><td>Handelt selbstständig – liest, schreibt, führt aus</td></tr>
 <tr><td>Planungsmodus</td><td>Agent erklärt erst, was er tun will</td></tr>
@@ -40892,7 +40688,7 @@ Rust lernt man am besten, indem man selbst tippt. Nutze Codex CLI, um dir die Ko
 </li>
 </ol>
 <hr />
-<h2 id="-zusammenfassung-17"><a class="header" href="#-zusammenfassung-17">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-13"><a class="header" href="#-zusammenfassung-13">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Begriff</th><th style="text-align: left">Erklärung</th></tr></thead><tbody>
 <tr><td style="text-align: left"><strong>Agentic AI</strong></td><td style="text-align: left">Ein KI-System, das eigenständig plant, Tools ausführt und Fehler korrigiert.</td></tr>
 <tr><td style="text-align: left"><strong>Codex CLI</strong></td><td style="text-align: left">OpenAIs Befehlszeilen-Coding-Agent, der auf reasoning-Modellen basiert.</td></tr>
@@ -41986,7 +41782,7 @@ Die Lösungen konzentrieren sich daher voll auf die Bedienung von Zed, die Short
 <li><strong>Lösung:</strong> Erstelle im Projektordner die Datei <code>.zed/settings.json</code>. Alle darin definierten Werte überschreiben die globalen Einstellungen ausschließlich für dieses Projekt.</li>
 </ul>
 <hr />
-<h2 id="-zusammenfassung-18"><a class="header" href="#-zusammenfassung-18">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-14"><a class="header" href="#-zusammenfassung-14">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Begriff</th><th>Erklärung</th></tr></thead><tbody>
 <tr><td><strong>GPUI</strong></td><td>Zeds eigenes, GPU-beschleunigtes UI-Framework für maximale Geschwindigkeit.</td></tr>
 <tr><td><strong>Assistant Panel</strong></td><td>Das KI-Chatfenster auf der rechten Seite (<code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code>).</td></tr>
@@ -42329,7 +42125,7 @@ Die Lösungen beschreiben die exakten Tastenkombinationen und Befehlssequenzen i
 <li><strong>Lösung:</strong> Erstelle und editiere die Datei <code>~/.vimrc</code> (für klassisches Vim) bzw. <code>~/.config/nvim/init.lua</code> (oder <code>init.vim</code> für Neovim) und füge dort Befehle wie <code>set number</code> und <code>syntax on</code> hinzu.</li>
 </ul>
 <hr />
-<h2 id="-zusammenfassung-19"><a class="header" href="#-zusammenfassung-19">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-15"><a class="header" href="#-zusammenfassung-15">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Erklärung</th></tr></thead><tbody>
 <tr><td><strong>Normal Mode</strong></td><td>Der Standard-Navigations- und Befehlsmodus. Aktiviert über <code>Esc</code>.</td></tr>
 <tr><td><strong>Insert Mode</strong></td><td>Texttipp-Modus. Aktiviert über <code>i</code>, <code>o</code>, <code>a</code> etc.</td></tr>
@@ -42661,7 +42457,7 @@ Sage laut, was jede Zeile tut. Wenn du stockst: Frage, höre zu, probiere aus.</
 </tbody></table>
 </div>
 <hr />
-<h2 id="-zusammenfassung-20"><a class="header" href="#-zusammenfassung-20">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-16"><a class="header" href="#-zusammenfassung-16">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Bedeutung</th></tr></thead><tbody>
 <tr><td>Vibe Coding</td><td>KI schreibt Code, Mensch gibt Vision</td></tr>
 <tr><td>Exploratives Vibe Coding</td><td>Konzepte durch Beispiele entdecken</td></tr>
@@ -43106,7 +42902,7 @@ Projekte 46–50:  Vollständige Systeme (Router, Planer, Mini-Antigravity)
 </tbody></table>
 </div>
 <hr />
-<h2 id="-zusammenfassung-21"><a class="header" href="#-zusammenfassung-21">💡 Zusammenfassung</a></h2>
+<h2 id="-zusammenfassung-17"><a class="header" href="#-zusammenfassung-17">💡 Zusammenfassung</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Konzept</th><th>Bedeutung</th></tr></thead><tbody>
 <tr><td>LLM / Sprachmodell</td><td>Das „Gehirn" – aufgerufen via API</td></tr>
 <tr><td>System-Prompt</td><td>Die Persönlichkeit und Regeln des Agenten</td></tr>
@@ -43313,22 +43109,6 @@ erstellt</em></a>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
