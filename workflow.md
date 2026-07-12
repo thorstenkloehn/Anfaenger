@@ -8,5 +8,4 @@ Thema	Was du lernst
 🧠 Ownership & Borrowing	Wer besitzt was? Referenzen nutzen
 📝 String vs. &str	Texte speichern, vergleichen, ausgeben
 Hinweis: Alle Projekte zeigen nur Workflow. einzelne Schritte modular denken erklären, was die KI macht.
-Das Modulare Prinzip: Vom Monster-Prompt zum Präzisions-Input
-
+Das Modulare Prinzip: Vom Monster-Workflow zum Präzisions-Workflow

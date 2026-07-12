@@ -20,6 +20,8 @@
   - [String vs &str](./konzept-string.md)
 - [Projektvorschläge Phase 1](./phase1.md)
 - [100 Projekte](./100-projekte.md)
+- [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts.md)
+- [100 Projekte – Modulare Workflows (Phase 1)](./100-projekte-workflows.md)
 - [📇 Anki-Lernkarten](./anki.md)
 
 
