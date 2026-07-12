@@ -1,7 +1,9 @@
 # Inhaltsverzeichnis
 
 [Einleitung](./einleitung.md)
+- [🤖 Einführung: Modernes Programmieren mit KI](./modernes-programmieren-ki.md)
 - [🛠️ System-Setup](./setup.md)
+
 
 
 # 🗺️ Projektplanung
@@ -40,7 +42,6 @@
 
 # 🤖 Bonus: KI als Lernpartner
 
-- [Einführung: Modernes Programmieren mit KI](./modernes-programmieren-ki.md)
 - [Antigravity – CLI, 2.0 & IDE](./antigravity.md)
 - [Antigravity CLI – Workflows & Steuerung](./agy-cli-workflows.md)
 - [Automatisieren](./agy-cli-automatisieren.md)

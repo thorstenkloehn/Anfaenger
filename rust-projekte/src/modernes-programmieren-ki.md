@@ -224,6 +224,12 @@ Wenn Sie bereits eine Sprache können (oder Grundlagen haben) und ein neues, abs
 **Prompt-Vorlage:**
 > *„Ich versuche das Konzept von [Neues Konzept, z. B. Traits / Interfaces / Asynchrone Programmierung] in Rust zu verstehen. Kannst du mir dieses Konzept anhand einer Analogie aus der echten Welt erklären und kurz zeigen, wie sich das grundlegend von [Bekanntes Konzept, z. B. klassischer Vererbung] unterscheidet?“*
 
+### 10. Syntax- und Grammatik-Erklärer (Code-Struktur entschlüsseln)
+Nutzen Sie diesen Prompt, wenn Sie auf eine Codezeile mit ungewohnten Symbolen, Schlüsselwörtern oder einer unklaren Syntax stoßen und die genaue Grammatik verstehen wollen.
+
+**Prompt-Vorlage:**
+> *„Ich lerne gerade Rust und verstehe die Syntax dieser Codezeile nicht: `[Codezeile, z. B. impl<'a> MyStruct<'a> / let x = match y { ... }]`. Bitte brich die Zeile in ihre einzelnen Bestandteile herunter. Erkläre mir genau, was jedes Symbol (z. B. < >, &, ', _, ::) und jedes Schlüsselwort in dieser Zeile bedeutet und welche grammatikalische Funktion es erfüllt.“*
+
 ---
 
 ## 🤝 Die Symbiose: Klassisches Coden & Vibe Coding kombiniert
