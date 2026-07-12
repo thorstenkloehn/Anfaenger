@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Module &amp; Sichtbarkeit - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">5.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">6.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">7.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">9.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">10.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">10.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">10.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">10.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">11.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">12.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">14.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">15.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">16.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">17.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">17.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">17.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">17.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">17.4.</strong> Result</a></li></ol></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">18.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">19.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">20.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">21.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-module.html" class="active"><strong aria-hidden="true">21.1.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">21.2.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">21.3.</strong> Crates & Cargo</a></li></ol></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">22.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">23.</strong> 100 Projekte - Module, Pfade & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">24.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">25.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">26.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">27.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">28.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">29.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">30.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">31.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">32.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">33.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">34.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">35.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">36.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">37.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">37.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">37.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">38.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">39.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">39.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">39.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">39.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">39.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">39.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">39.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">39.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">39.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">39.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">39.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">39.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">40.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">40.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">40.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">40.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">40.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">40.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">40.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">40.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">40.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">40.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">41.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">42.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">43.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">44.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">45.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">46.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-module-und-sichtbarkeit"><a class="header" href="#-module-und-sichtbarkeit">📦 Module und Sichtbarkeit</a></h1>
+<p>Stell dir vor, du baust ein großes Haus. Am Anfang ist es nur ein einziger Raum, in dem alle Werkzeuge, Baumaterialien und Pläne auf dem Boden liegen. Solange das Haus klein ist, findest du alles schnell wieder. Doch je größer das Haus wird, desto chaotischer wird es. Irgendwann stolperst du über Zementsäcke und suchst stundenlang nach dem passenden Schraubendreher.</p>
+<p>Um dieses Chaos zu verhindern, unterteilst du das Haus in verschiedene Räume: eine Küche für die Lebensmittel, eine Werkstatt für das Werkzeug und ein Schlafzimmer für die Privatsphäre.</p>
+<p>Genau das macht das <strong>Modulsystem in Rust</strong>. Es hilft dir, deinen Programmcode in logische Einheiten (Module) aufzuteilen, Ordnung zu halten und den Zugriff auf deine Daten und Funktionen sauber zu regeln.</p>
+<hr />
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="1-was-ist-ein-modul-in-rust"><a class="header" href="#1-was-ist-ein-modul-in-rust">1. Was ist ein Modul in Rust?</a></h3>
+<p>Ein Modul (<code>module</code>) ist ein Container für Code. In einem Modul kannst du Funktionen, Structs, Enums, Konstanten und sogar andere Module zusammenfassen.</p>
+<p>Es gibt zwei Möglichkeiten, Module in Rust zu definieren:</p>
+<ul>
+<li><strong>Inline-Module:</strong> Das Modul wird direkt in einer Datei (z. B. <code>main.rs</code>) definiert.</li>
+<li><strong>Separate Dateien:</strong> Das Modul wird in eine eigene Datei ausgelagert. Das ist der Standard für wachsende Projekte.</li>
+</ul>
+<h4 id="inline-module-definieren"><a class="header" href="#inline-module-definieren">Inline-Module definieren</a></h4>
+<p>Um ein Modul direkt im Code zu deklarieren, nutzt du das Schlüsselwort <code>mod</code> gefolgt vom Modulnamen und geschweiften Klammern <code>{}</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod gartenschuppen {
+    fn rasenmaeher_starten() {
+        println!("Brumm brumm!");
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="separate-dateien-der-moderne-rust-weg"><a class="header" href="#separate-dateien-der-moderne-rust-weg">Separate Dateien (Der moderne Rust-Weg)</a></h4>
+<p>Wenn dein Projekt größer wird, möchtest du nicht Tausende Zeilen Code in einer einzigen <code>main.rs</code> haben. Du kannst Module in eigene Dateien auslagern.</p>
+<ol>
+<li><strong>Deklaration:</strong> In deiner Hauptdatei (<code>main.rs</code> oder <code>lib.rs</code>) sagst du Rust, dass ein Modul existiert:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod gartenschuppen; // Beachte das Semikolon!
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li><strong>Die Datei erstellen:</strong> Rust sucht nun automatisch im selben Ordner nach einer Datei namens <code>gartenschuppen.rs</code> (oder dem älteren Pfad <code>gartenschuppen/mod.rs</code>). Du erstellst also die Datei <code>src/gartenschuppen.rs</code> und schreibst deinen Code hinein:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Inhalt von src/gartenschuppen.rs
+fn rasenmaeher_starten() {
+    println!("Brumm brumm!");
+}
+<span class="boring">}</span></code></pre></pre>
+<em>Hinweis:</em> In der Datei <code>gartenschuppen.rs</code> schreibst du <strong>nicht</strong> noch einmal <code>mod gartenschuppen { ... }</code>. Die Datei selbst <em>ist</em> das Modul!</li>
+</ol>
+<hr />
+<h3 id="2-das-prinzip-der-kapselung-standardmäßige-privatheit"><a class="header" href="#2-das-prinzip-der-kapselung-standardmäßige-privatheit">2. Das Prinzip der Kapselung: Standardmäßige Privatheit</a></h3>
+<p>In Rust gilt eine ganz fundamentale Sicherheitsregel: <strong>Alles ist standardmäßig privat (private).</strong></p>
+<p>Das bedeutet, dass Funktionen, Structs oder Module nur von Code aufgerufen werden können, der sich im <strong>selben Modul</strong> (oder in dessen Untermodulen) befindet.</p>
+<h4 id="warum-ist-kapselung-so-wichtig"><a class="header" href="#warum-ist-kapselung-so-wichtig">Warum ist Kapselung so wichtig?</a></h4>
+<p>Kapselung (Encapsulation) bedeutet, dass du die inneren Details deines Codes vor der Außenwelt verbirgst. Stell dir eine Mikrowelle vor: Sie hat Knöpfe zum Einstellen der Zeit (öffentliche Schnittstelle). Die Kabel, der Transformator und das Magnetron im Inneren sind jedoch gut verschlossen (private Details). Du musst nicht wissen, wie die Kabel verschaltet sind, um deine Suppe zu erwärmen. Schlimmer noch: Wenn jeder an den inneren Kabeln herumspielen könnte, würde die Mikrowelle schnell kaputtgehen.</p>
+<p>In Rust schützt die standardmäßige Privatheit deinen Code davor, dass andere Programmteile versehentlich interne Details manipulieren oder sich von ihnen abhängig machen.</p>
+<hr />
+<h3 id="3-sichtbarkeits-modifier-das-tor-zur-welt-öffnen"><a class="header" href="#3-sichtbarkeits-modifier-das-tor-zur-welt-öffnen">3. Sichtbarkeits-Modifier: Das Tor zur Welt öffnen</a></h3>
+<p>Damit andere Teile deines Programms auf deine Module, Funktionen und Structs zugreifen können, musst du sie explizit als öffentlich deklarieren. Dafür nutzt du Sichtbarkeits-Modifier.</p>
+<h4 id="der-modifier-pub-public"><a class="header" href="#der-modifier-pub-public">Der Modifier <code>pub</code> (Public)</a></h4>
+<p>Mit dem Schlüsselwort <code>pub</code> machst du ein Element komplett öffentlich. Jedes andere Modul in deinem Projekt (und sogar externe Projekte, die deinen Code als Bibliothek nutzen) kann darauf zugreifen.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// In src/gartenschuppen.rs
+pub fn rasenmaeher_starten() { // Jetzt öffentlich!
+    println!("Brumm brumm!");
+}
+<span class="boring">}</span></code></pre></pre>
+<p>In der <code>main.rs</code> kannst du nun auf diese Funktion zugreifen:</p>
+<pre><pre class="playground"><code class="language-rust">// In src/main.rs
+mod gartenschuppen;
+
+fn main() {
+    gartenschuppen::rasenmaeher_starten(); // Funktioniert!
+}</code></pre></pre>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Öffentliche Structs und ihre Felder</strong>
+Wenn du ein Struct mit <code>pub struct</code> öffentlich machst, sind seine Felder trotzdem noch privat! Du musst jedes einzelne Feld, das von außen gelesen oder verändert werden soll, ebenfalls mit <code>pub</code> markieren:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Gartengeraet {
+    pub name: String,   // Öffentlich
+    seriennummer: u32,  // Privat! Kann nur im selben Modul gelesen werden.
+}
+<span class="boring">}</span></code></pre></pre>
+</blockquote>
+<h4 id="der-modifier-pubcrate"><a class="header" href="#der-modifier-pubcrate">Der Modifier <code>pub(crate)</code></a></h4>
+<p>Manchmal möchtest du, dass bestimmte Funktionen oder Structs zwar von all deinen eigenen Modulen im gesamten Projekt (dem sogenannten "Crate") genutzt werden können, aber <strong>nicht</strong> für externe Benutzer sichtbar sind, die dein Projekt als Bibliothek einbinden.</p>
+<p>Hierfür nutzt du <code>pub(crate)</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub(crate) fn interner_sicherheitscheck() {
+    // Sichtbar im gesamten eigenen Projekt, aber unsichtbar für externe Nutzer.
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="4-untermodule-verschachtelung-von-modulen"><a class="header" href="#4-untermodule-verschachtelung-von-modulen">4. Untermodule (Verschachtelung von Modulen)</a></h3>
+<p>Module können beliebig tief ineinander verschachtelt werden. Auch hier gilt die moderne Ordnerstruktur von Rust:</p>
+<p>Stell dir vor, dein Modul <code>gartenschuppen</code> soll ein Untermodul namens <code>werkzeuge</code> besitzen.</p>
+<ol>
+<li><strong>Deklaration im Eltern-Modul:</strong> In <code>src/gartenschuppen.rs</code> deklarierst du das Untermodul:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub mod werkzeuge; // Untermodul deklarieren und öffentlich machen
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li><strong>Die Datei im Unterordner anlegen:</strong> Rust sucht nun nach einer Datei im Ordner des Eltern-Moduls. Du erstellst also einen Ordner <code>src/gartenschuppen/</code> und darin die Datei <code>werkzeuge.rs</code> (Pfad: <code>src/gartenschuppen/werkzeuge.rs</code>):
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Inhalt von src/gartenschuppen/werkzeuge.rs
+pub fn hammer_holen() {
+    println!("Hammer bereit!");
+}
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li><strong>Aufruf in der <code>main.rs</code>:</strong>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    gartenschuppen::werkzeuge::hammer_holen();
+}</code></pre></pre>
+</li>
+</ol>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Versuche, diese Aufgaben selbstständig zu lösen, um dein Verständnis für Module und Sichtbarkeit zu festigen. Schreibe die Struktur auf und achte darauf, wo du <code>pub</code> benötigst!</p>
+<h3 id="aufgabe-1-das-modulare-smart-home-"><a class="header" href="#aufgabe-1-das-modulare-smart-home-">Aufgabe 1: Das modulare Smart-Home 🏠</a></h3>
+<p>Entwirf die Struktur für ein einfaches Smart-Home-System mit verschiedenen Modulen.</p>
+<ul>
+<li><strong>Struktur:</strong>
+<ul>
+<li>Erstelle ein Hauptprogramm mit einer <code>main.rs</code>.</li>
+<li>Deklariere ein Modul <code>beleuchtung</code> und ein Modul <code>sicherheit</code>.</li>
+<li>Lagere beide Module in separate Dateien aus (<code>src/beleuchtung.rs</code> und <code>src/sicherheit.rs</code>).</li>
+</ul>
+</li>
+<li><strong>Sichtbarkeiten:</strong>
+<ul>
+<li>Im Modul <code>beleuchtung</code> soll es eine öffentliche Funktion zum Einschalten der Lampen geben.</li>
+<li>Im Modul <code>sicherheit</code> soll es eine öffentliche Funktion zum Aktivieren der Alarmanlage geben sowie eine private Hilfsfunktion, die den PIN-Code überprüft.</li>
+<li>Teste in der <code>main.rs</code>, ob du die Alarmanlage aktivieren kannst, und stelle sicher, dass du auf die PIN-Prüfung von außen nicht zugreifen kannst.</li>
+</ul>
+</li>
+</ul>
+<h3 id="aufgabe-2-die-autowerkstatt-mit-geheimem-inventar-"><a class="header" href="#aufgabe-2-die-autowerkstatt-mit-geheimem-inventar-">Aufgabe 2: Die Autowerkstatt mit geheimem Inventar 🚗</a></h3>
+<p>Simuliere ein einfaches Werkstattsystem, bei dem bestimmte Daten geschützt bleiben müssen.</p>
+<ul>
+<li><strong>Struktur:</strong>
+<ul>
+<li>Erstelle ein Modul <code>werkstatt</code> in einer eigenen Datei <code>src/werkstatt.rs</code>.</li>
+</ul>
+</li>
+<li><strong>Datenkapselung:</strong>
+<ul>
+<li>Definiere im Modul <code>werkstatt</code> ein öffentliches Struct <code>Auto</code>.</li>
+<li>Das Auto soll ein öffentliches Feld <code>modell</code> (z. B. "Golf") und ein privates Feld <code>besitzer_name</code> (z. B. "Max") haben.</li>
+<li>Biete eine öffentliche Methode an, mit der man das Auto instanziieren kann (Konstruktor), und eine öffentliche Methode, die das Auto repariert und eine Ausgabe erzeugt.</li>
+<li>Versuche in der <code>main.rs</code>, direkt auf den <code>besitzer_name</code> zuzugreifen. Was sagt der Compiler? Wie kannst du das Problem lösen, ohne das Feld öffentlich zu machen (z. B. über eine Getter-Methode)?</li>
+</ul>
+</li>
+</ul>
+<h3 id="aufgabe-3-das-bibliotheks-crate-für-eine-bank-pubcrate-"><a class="header" href="#aufgabe-3-das-bibliotheks-crate-für-eine-bank-pubcrate-">Aufgabe 3: Das Bibliotheks-Crate für eine Bank (pub(crate)) 🏦</a></h3>
+<p>Simuliere das Grundgerüst einer Bank-Software.</p>
+<ul>
+<li><strong>Struktur:</strong>
+<ul>
+<li>Erstelle zwei Module: <code>konto</code> und <code>interne_pruefung</code>.</li>
+</ul>
+</li>
+<li><strong>Sichtbarkeiten:</strong>
+<ul>
+<li>Das Modul <code>konto</code> soll eine öffentliche Funktion zum Überweisen von Geld anbieten.</li>
+<li>Das Modul <code>interne_pruefung</code> soll eine Funktion <code>risiko_check</code> besitzen. Diese Funktion soll für das gesamte Crate (also auch für das Modul <code>konto</code>) aufrufbar sein, damit vor einer Überweisung das Risiko geprüft werden kann.</li>
+<li>Externe Benutzer der Bank-Bibliothek dürfen die Funktion <code>risiko_check</code> jedoch niemals direkt aufrufen können. Nutze hierfür den passenden Sichtbarkeits-Modifier!</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Hier sind 50 kleine Projektideen, bei denen du das Aufteilen von Code in Module und das Verbergen von Daten üben kannst:</p>
+<h3 id="alltag--haushalt"><a class="header" href="#alltag--haushalt">Alltag &amp; Haushalt</a></h3>
+<ol>
+<li><strong>Rezept-Kiste:</strong> Modul <code>rezepte</code> für Zutaten und Modul <code>kocher</code> für die Zubereitungsschritte.</li>
+<li><strong>Kühlschrank-Inventar:</strong> Modul <code>kuehlung</code> für Gemüse und Milchprodukte; verbirg das Haltbarkeitsdatum vor direkter Manipulation.</li>
+<li><strong>Haushaltsbuch:</strong> Modul <code>einnahmen</code> und Modul <code>ausgaben</code>; berechne das Budget über eine öffentliche Schnittstelle.</li>
+<li><strong>Kaffeemaschine:</strong> Modul <code>brueheinheit</code> (privat) und Modul <code>bedienfeld</code> (öffentlich).</li>
+<li><strong>Garten-Bewässerung:</strong> Modul <code>sensoren</code> misst Feuchtigkeit; Modul <code>ventile</code> steuert Wasserfluss crate-intern.</li>
+<li><strong>Kleiderschrank-Organizer:</strong> Modul <code>faecher</code> mit privaten Kapazitätsgrenzen für Hosen, T-Shirts und Socken.</li>
+<li><strong>Einkaufszettel:</strong> Modul <code>liste</code> verwaltet Einträge; Modul <code>export</code> formatiert die Ausgabe für den Drucker.</li>
+<li><strong>Haustier-Fütterer:</strong> Modul <code>futterautomat</code> mit privater Futtermenge und öffentlicher Zeitschaltuhr.</li>
+<li><strong>Heizungssteuerung:</strong> Modul <code>thermostat</code> regelt die Temperatur; die Kalibrierungswerte bleiben streng privat.</li>
+<li><strong>Schlüsselbrett:</strong> Modul <code>schluessel</code> verwaltet Berechtigungen für verschiedene Türen.</li>
+</ol>
+<h3 id="unterhaltung--spiele"><a class="header" href="#unterhaltung--spiele">Unterhaltung &amp; Spiele</a></h3>
+<ol start="11">
+<li><strong>Würfelspiel:</strong> Modul <code>wuerfel</code> generiert Zufallszahlen; der Zufallsgenerator selbst bleibt privat.</li>
+<li><strong>Text-Adventure:</strong> Modul <code>karte</code> mit Räumen und Modul <code>spieler</code> mit Lebenspunkten.</li>
+<li><strong>Kartenstapel:</strong> Modul <code>stapel</code> mischt Karten; die genaue Reihenfolge der Karten im Stapel ist privat.</li>
+<li><strong>Highscore-Tabelle:</strong> Modul <code>liste</code> mit privaten Einträgen; Einträge können nur über eine Validierungs-Funktion hinzugefügt werden.</li>
+<li><strong>Wort-Ratespiel (Galgenmännchen):</strong> Modul <code>woerter</code> wählt das geheime Wort aus; das Wort ist für das Spielmodul unsichtbar.</li>
+<li><strong>Münzautomat:</strong> Modul <code>kasse</code> zählt Münzen; Modul <code>spiel</code> prüft, ob genug Guthaben vorhanden ist.</li>
+<li><strong>Charakter-Editor:</strong> Modul <code>attribute</code> verwaltet Stärke und Geschicklichkeit; Grenzwerte sind privat gekapselt.</li>
+<li><strong>Schach-Spielfeld:</strong> Modul <code>figuren</code> prüft Zugregeln; Modul <code>brett</code> zeichnet die aktuelle Position.</li>
+<li><strong>Sound-Mixer:</strong> Modul <code>effekte</code> wendet Filter an; Modul <code>lautstaerke</code> regelt Dezibel mit internen Limits.</li>
+<li><strong>Quiz-Master:</strong> Modul <code>fragen</code> lädt Fragen; die richtige Antwort ist privat, bis der Spieler tippt.</li>
+</ol>
+<h3 id="büro--finanzen"><a class="header" href="#büro--finanzen">Büro &amp; Finanzen</a></h3>
+<ol start="21">
+<li><strong>Stundenzettel:</strong> Modul <code>zeiterfassung</code> bucht Stunden; die Überprüfung auf Feiertage geschieht intern.</li>
+<li><strong>Rechnungs-Generator:</strong> Modul <code>posten</code> sammelt Preise; Modul <code>steuer</code> berechnet die Mehrwertsteuer crate-intern.</li>
+<li><strong>Kunden-Datenbank:</strong> Modul <code>kunden</code> speichert sensible Daten privat; nur Name und ID sind öffentlich.</li>
+<li><strong>Projekt-Planer:</strong> Modul <code>aufgaben</code> verwaltet Deadlines; Überschneidungen werden privat geprüft.</li>
+<li><strong>Aktien-Ticker:</strong> Modul <code>datenquelle</code> holt Kurse; Modul <code>portfolio</code> berechnet Gewinne.</li>
+<li><strong>Dokumenten-Archiv:</strong> Modul <code>archiv</code> speichert Pfade; Modul <code>verschluesselung</code> sichert Dateien privat ab.</li>
+<li><strong>Fahrtenbuch:</strong> Modul <code>kilometer</code> addiert Strecken; die GPS-Rohdaten bleiben privat.</li>
+<li><strong>Gehaltsabrechnung:</strong> Modul <code>mitarbeiter</code> und Modul <code>steuern</code>; Berechnungsformeln sind <code>pub(crate)</code>.</li>
+<li><strong>Notiz-Tresor:</strong> Modul <code>tresor</code> verlangt eine PIN, bevor Notizen aus dem privaten Speicher gelesen werden dürfen.</li>
+<li><strong>Terminkalender:</strong> Modul <code>buchung</code> blockiert Termine; Kollisionsprüfung läuft komplett im Hintergrund.</li>
+</ol>
+<h3 id="wissenschaft--mathematik"><a class="header" href="#wissenschaft--mathematik">Wissenschaft &amp; Mathematik</a></h3>
+<ol start="31">
+<li><strong>Einheiten-Umrechner:</strong> Modul <code>metrisch</code> und Modul <code>imperial</code> kommunizieren über eine gemeinsame Schnittstelle.</li>
+<li><strong>Bruch-Rechner:</strong> Modul <code>mathematik</code> kürzt Brüche automatisch im Hintergrund bei der Erstellung.</li>
+<li><strong>Wetterstation:</strong> Modul <code>barometer</code> und Modul <code>hygrometer</code> liefern Daten für das Hauptmodul <code>prognose</code>.</li>
+<li><strong>Geometrie-Tool:</strong> Modul <code>formen</code> berechnet Flächen; die mathematischen Pi-Konstanten sind privat.</li>
+<li><strong>Statistik-Rechner:</strong> Modul <code>analyse</code> berechnet Mittelwert und Median aus einem privaten Datenvektor.</li>
+<li><strong>Periodensystem:</strong> Modul <code>elemente</code> liefert Atomgewichte; die Detail-Elektronenkonfiguration bleibt gekapselt.</li>
+<li><strong>Physik-Simulation:</strong> Modul <code>gravitation</code> berechnet Anziehungskräfte zwischen Himmelskörpern.</li>
+<li><strong>Matrix-Rechner:</strong> Modul <code>algebra</code> führt Multiplikationen durch; Dimensionsprüfungen laufen privat ab.</li>
+<li><strong>Zufalls-Generator:</strong> Modul <code>algorithmus</code> erzeugt Pseudozufall; der Seed-Wert ist privat.</li>
+<li><strong>Zeitzonen-Rechner:</strong> Modul <code>weltzeit</code> berechnet Offsets zur UTC-Zeit.</li>
+</ol>
+<h3 id="system--werkzeuge"><a class="header" href="#system--werkzeuge">System &amp; Werkzeuge</a></h3>
+<ol start="41">
+<li><strong>Log-Schreiber (Logger):</strong> Modul <code>schreiber</code> speichert Logs; Modul <code>formatierung</code> bereitet Texte intern vor.</li>
+<li><strong>Konfigurations-Parser:</strong> Modul <code>datei</code> liest INI-Dateien; Modul <code>parser</code> wandelt sie intern in Structs um.</li>
+<li><strong>Datei-Backup:</strong> Modul <code>quelle</code> scannt Ordner; Modul <code>ziel</code> kopiert geänderte Dateien.</li>
+<li><strong>Netzwerk-Ping:</strong> Modul <code>verbindung</code> prüft Latenz; Sockets werden privat verwaltet und geschlossen.</li>
+<li><strong>Passwort-Manager:</strong> Modul <code>tresor</code> verschlüsselt Passwörter; der Schlüssel verlässt niemals das Modul.</li>
+<li><strong>Markdown-Parser:</strong> Modul <code>lexer</code> zerlegt Text in Tokens; Modul <code>html</code> generiert die Ausgabe.</li>
+<li><strong>Task-Runner:</strong> Modul <code>warteschlange</code> reiht Aufgaben ein; die Ausführungsprioritäten sind privat.</li>
+<li><strong>System-Info:</strong> Modul <code>cpu</code> und Modul <code>ram</code> lesen Systemwerte; Rohdaten werden vor der Ausgabe bereinigt.</li>
+<li><strong>Cache-Speicher:</strong> Modul <code>speicher</code> hält Daten bereit; das automatische Löschen alter Einträge läuft privat ab.</li>
+<li><strong>URL-Parser:</strong> Modul <code>url</code> zerlegt Webadressen in Protokoll, Host und Pfad mit privater Validierung.</li>
+</ol>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Module (<code>mod</code>)</strong> strukturieren deinen Code in logische Einheiten und verhindern unübersichtliche Riesendateien.</li>
+<li><strong>Kapselung</strong> ist in Rust standardmäßig aktiv: Jedes Element ist ohne Modifier privat und kann von außen nicht gesehen werden.</li>
+<li>Mit <strong><code>pub</code></strong> machst du Module, Funktionen oder Struct-Felder für jedermann öffentlich zugänglich.</li>
+<li>Mit <strong><code>pub(crate)</code></strong> machst du Elemente innerhalb deines eigenen Projekts (deines Crates) verfügbar, verbirgst sie aber vor externen Verwendern deiner Bibliothek.</li>
+<li><strong>Moderne Struktur:</strong> Deklariere ein Modul mit <code>mod name;</code> und erstelle die dazugehörige Datei <code>name.rs</code>. Für Untermodule deklarierst du diese in <code>name.rs</code> und erstellst sie in <code>name/untermodul.rs</code>.</li>
+</ul>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Das offizielle Rust-Buch: Managing Growing Projects with Packages, Crates, and Modules (Englisch)</a></li>
+<li><a href="https://rust-lang-de.github.io/rustbook-de/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Die deutsche Übersetzung des Rust-Buchs: Pakete, Crates und Module (Deutsch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/mod.html">Rust by Example: Modules (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/mod/visibility.html">Rust by Example: Visibility (Englisch)</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase4-konzepte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="konzept-pfade.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase4-konzepte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="konzept-pfade.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

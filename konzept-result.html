@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Result - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">5.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">6.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">7.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">9.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">10.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">10.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">10.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">10.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">11.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">12.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">14.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">15.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">16.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">17.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">17.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">17.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">17.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html" class="active"><strong aria-hidden="true">17.4.</strong> Result</a></li></ol></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">18.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">19.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">20.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">21.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">21.1.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">21.2.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">21.3.</strong> Crates & Cargo</a></li></ol></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">22.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">23.</strong> 100 Projekte - Module, Pfade & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">24.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">25.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">26.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">27.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">28.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">29.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">30.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">31.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">32.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">33.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">34.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">35.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">36.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">37.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">37.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">37.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">38.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">39.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">39.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">39.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">39.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">39.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">39.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">39.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">39.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">39.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">39.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">39.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">39.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">40.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">40.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">40.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">40.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">40.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">40.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">40.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">40.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">40.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">40.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">41.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">42.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">43.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">44.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">45.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">46.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-fehlerbehandlung-mit-resultt-e"><a class="header" href="#-fehlerbehandlung-mit-resultt-e">⚠️ Fehlerbehandlung mit Result&lt;T, E&gt;</a></h1>
+<p>Fehler gehören zum Programmieren wie der Kaffee am Morgen. Aber wie wir mit ihnen umgehen, entscheidet darüber, ob unsere Software stabil läuft oder unerwartet abstürzt. In diesem Kapitel lernst du, wie Rust das Thema Fehlerbehandlung anpackt. Du wirst sehen, dass Rust einen ganz anderen Weg geht als viele andere Programmiersprachen – und warum dieser Weg deinen Code sicherer und verständlicher macht.</p>
+<hr />
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="1-warum-nutzt-rust-keine-exceptions"><a class="header" href="#1-warum-nutzt-rust-keine-exceptions">1. Warum nutzt Rust keine Exceptions?</a></h3>
+<p>In vielen modernen Sprachen (wie Java, Python oder C++) werden Fehler über sogenannte <strong>Exceptions (Ausnahmen)</strong> behandelt. Wenn dort etwas schiefgeht, wird eine Exception "geworfen", die den normalen Programmablauf sofort unterbricht und den Stack nach oben wandert, bis sie irgendwo abgefangen wird. Wenn sie niemand abfängt, stürzt das Programm ab.</p>
+<p>Rust verzichtet ganz bewusst auf dieses Konzept. Die Gründe dafür sind:</p>
+<ul>
+<li><strong>Exceptions sind unsichtbar:</strong> Wenn du eine Funktion aufrufst, siehst du ihrer Signatur meistens nicht an, ob sie eine Exception werfen kann und welche das sein könnte. Das führt dazu, dass man leicht vergisst, Fehler abzufangen.</li>
+<li><strong>Unvorhersehbarer Kontrollfluss:</strong> Exceptions erzeugen unsichtbare Sprünge im Code. Das macht es schwer zu verstehen, welcher Code bei einem Fehler eigentlich als Nächstes ausgeführt wird.</li>
+<li><strong>Performance:</strong> Das sogenannte "Stack Unwinding" (das Zurückverfolgen des Aufrufstapels beim Auflegen einer Exception) ist laufzeitintensiv und kostet Performance.</li>
+</ul>
+<p><strong>Rusts Philosophie:</strong> Behebbare Fehler sind keine Ausnahmezustände, sondern völlig normale Ergebnisse einer Operation. Sie werden als ganz normale Daten behandelt und sind fest im Typsystem verankert. Der Compiler zwingt dich dazu, dich mit ihnen zu befassen, bevor dein Programm überhaupt kompiliert werden kann!</p>
+<hr />
+<h3 id="2-wie-ist-der-resultt-e-enum-aufgebaut"><a class="header" href="#2-wie-ist-der-resultt-e-enum-aufgebaut">2. Wie ist der <code>Result&lt;T, E&gt;</code>-Enum aufgebaut?</a></h3>
+<p>Um einen Wert zurückzugeben, der entweder ein Erfolg oder ein Fehler sein kann, nutzt Rust den integrierten Typ <code>Result&lt;T, E&gt;</code>. Dies ist ein einfacher Enum mit zwei Varianten:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><strong><code>T</code></strong> und <strong><code>E</code></strong> sind Platzhalter für Typen (Generics).</li>
+<li><strong><code>Ok(T)</code></strong>: Repräsentiert den Erfolgsfall und enthält den eigentlichen Rückgabewert vom Typ <code>T</code>.</li>
+<li><strong><code>Err(E)</code></strong>: Repräsentiert den Fehlerfall und enthält Details zum Fehler vom Typ <code>E</code>.</li>
+</ul>
+<p>Da <code>Result</code> mit dem Attribut <code>#[must_use]</code> versehen ist, gibt der Rust-Compiler eine Warnung aus, wenn du eine Funktion aufrufst, die ein <code>Result</code> zurückgibt, und dieses einfach ignorierst. Du musst dich aktiv entscheiden, wie du mit dem potenziellen Fehler umgehst.</p>
+<hr />
+<h3 id="3-fehler-behandeln-und-weiterreichen"><a class="header" href="#3-fehler-behandeln-und-weiterreichen">3. Fehler behandeln und weiterreichen</a></h3>
+<p>Es gibt verschiedene Möglichkeiten, mit einem <code>Result</code> zu arbeiten:</p>
+<h4 id="a-explizites-entpacken-mit-match"><a class="header" href="#a-explizites-entpacken-mit-match">A) Explizites Entpacken mit <code>match</code></a></h4>
+<p>Der sicherste und präziseste Weg, ein <code>Result</code> zu verarbeiten, ist das Pattern Matching mit <code>match</code>. Hierbei musst du sowohl den Erfolgsfall (<code>Ok</code>) als auch den Fehlerfall (<code>Err</code>) explizit behandeln.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Beispielhafter Kontrollfluss (Pseudocode)
+match ergebnis {
+    Ok(wert) =&gt; {
+        // Tu etwas mit dem erfolgreichen Wert
+    }
+    Err(fehler) =&gt; {
+        // Reagiere auf den Fehler
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="b-kompaktes-auswerten-mit-if-let"><a class="header" href="#b-kompaktes-auswerten-mit-if-let">B) Kompaktes Auswerten mit <code>if let</code></a></h4>
+<p>Manchmal interessiert dich nur der Erfolgsfall oder du möchtest im Fehlerfall nur eine kurze Aktion ausführen, ohne das komplette <code>match</code>-Gerüst aufbauen zu müssen. Hierfür eignet sich <code>if let</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Beispielhafter Kontrollfluss (Pseudocode)
+if let Err(fehler) = ergebnis {
+    // Reagiere nur, wenn ein Fehler aufgetreten ist
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="c-fehler-elegant-weiterreichen-mit-dem-fragezeichen-operator-"><a class="header" href="#c-fehler-elegant-weiterreichen-mit-dem-fragezeichen-operator-">C) Fehler elegant weiterreichen mit dem Fragezeichen-Operator (<code>?</code>)</a></h4>
+<p>In echten Programmen möchtest du einen Fehler oft nicht direkt an Ort und Stelle behandeln, sondern ihn an die aufrufende Funktion "hochreichen", damit diese entscheidet, was zu tun ist.</p>
+<p>Dafür hat Rust den <strong>Fragezeichen-Operator (<code>?</code>)</strong> eingeführt. Wenn du <code>?</code> an einen Funktionsaufruf anhängst, der ein <code>Result</code> zurückgibt, passiert folgendes:</p>
+<ol>
+<li>Wenn das Ergebnis <code>Ok(wert)</code> is, wird der Wert entpackt und direkt zurückgegeben. Das Programm läuft in der aktuellen Funktion weiter.</li>
+<li>Wenn das Ergebnis <code>Err(fehler)</code> ist, wird die aktuelle Funktion <strong>sofort abgebrochen</strong> (Early Return) und der Fehler wird als Rückgabewert der gesamten Funktion zurückgegeben.</li>
+</ol>
+<p><strong>Wichtigste Regel für <code>?</code>:</strong> Du kannst den <code>?</code>-Operator nur in Funktionen verwenden, die selbst wiederum ein <code>Result</code> (oder einen anderen kompatiblen Typ wie <code>Option</code>) als Rückgabetyp definiert haben! Der Fehlertyp der aufgerufenen Funktion muss außerdem in den Fehlertyp der umgebenden Funktion konvertierbar sein.</p>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Probier die folgenden Aufgaben selbstständig aus, um ein Gefühl für <code>Result</code> zu bekommen. Schreibe den Code von Grund auf selbst und nutze die Fehlermeldungen des Compilers als Hilfestellung!</p>
+<h3 id="1-aufgabe-der-robuste-alter-parser"><a class="header" href="#1-aufgabe-der-robuste-alter-parser">1. Aufgabe: Der Robuste Alter-Parser</a></h3>
+<p>Schreibe ein kleines Programm, das eine Zahl als Text (z.B. <code>"25"</code>) entgegennimmt und versucht, diese in eine Ganzzahl (<code>u32</code>) umzuwandeln.</p>
+<ul>
+<li>Da die Eingabe fehlerhaft sein könnte (z.B. <code>"acht"</code> statt <code>"8"</code>), kann das Parsen fehlschlagen.</li>
+<li>Deine Funktion soll ein <code>Result&lt;u32, String&gt;</code> zurückgeben. Im Erfolgsfall liefert sie die Zahl, im Fehlerfall eine verständliche Fehlermeldung als Text.</li>
+<li>Nutze in der <code>main</code>-Funktion ein <code>match</code>, um das Ergebnis auszuwerten und dem Benutzer eine entsprechende Rückmeldung auf der Konsole auszugeben.</li>
+</ul>
+<h3 id="2-aufgabe-die-sichere-division"><a class="header" href="#2-aufgabe-die-sichere-division">2. Aufgabe: Die sichere Division</a></h3>
+<p>Implementiere eine Funktion zur Division zweier Zahlen.</p>
+<ul>
+<li>Da eine Division durch Null mathematisch nicht definiert ist, soll deine Funktion diesen Fall abfangen.</li>
+<li>Wenn der Divisor ungleich Null ist, gib das Ergebnis verpackt in <code>Ok</code> zurück.</li>
+<li>Wenn der Divisor Null ist, gib einen passenden Fehler verpackt in <code>Err</code> zurück.</li>
+<li>Verwende in deiner <code>main</code>-Funktion <code>if let</code>, um gezielt auf den Fehlerfall zu reagieren und eine Warnung auszugeben.</li>
+</ul>
+<h3 id="3-aufgabe-fehlerverkettung-beim-dateilesen"><a class="header" href="#3-aufgabe-fehlerverkettung-beim-dateilesen">3. Aufgabe: Fehlerverkettung beim Dateilesen</a></h3>
+<p>Erstelle eine Funktion, die den Inhalt einer Datei ausliest und die erste Zeile zurückgibt.</p>
+<ul>
+<li>Hierbei können zwei Dinge schiefgehen: Die Datei kann nicht geöffnet werden, oder das Lesen der Zeile schlägt fehl.</li>
+<li>Verwende den Fragezeichen-Operator (<code>?</code>), um eventuelle Fehler der Standardbibliothek (<code>std::io::Error</code>) direkt an den Aufrufer deiner Funktion weiterzureichen.</li>
+<li>Die Signatur deiner Funktion sollte als Rückgabetyp <code>Result&lt;String, std::io::Error&gt;</code> besitzen.</li>
+</ul>
+<hr />
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Hier sind 50 kurze Projektideen und Übungsszenarien, bei denen du die Fehlerbehandlung mit <code>Result</code> trainieren kannst. Jede Idee konzentriert sich auf typische Fehlerquellen in realen Anwendungen:</p>
+<ol>
+<li><strong>Dateileser mit Pfadprüfung:</strong> Eine Funktion, die prüft, ob ein Dateipfad existiert, bevor sie versucht, ihn zu öffnen.</li>
+<li><strong>JSON-Parser für Profile:</strong> Ein Parser, der Benutzereingaben in ein JSON-Objekt umwandelt und ungültige JSON-Formate abfängt.</li>
+<li><strong>Temperatur-Validierung:</strong> Ein Konverter für Celsius in Kelvin, der Temperaturen unter dem absoluten Nullpunkt (-273,15 °C) abweist.</li>
+<li><strong>Passwort-Stärke-Prüfer:</strong> Ein Passwort-Validator, der Fehler zurückgibt, wenn das Passwort zu kurz ist oder keine Sonderzeichen enthält.</li>
+<li><strong>Alter-Eingabe-Parser:</strong> Ein CLI-Tool, das das Alter abfragt und negative Werte sowie Eingaben über 120 Jahren als Fehler zurückweist.</li>
+<li><strong>HTTP-Status-Interpreter:</strong> Eine Funktion, die numerische HTTP-Statuscodes auswertet und bei unbekannten Codes einen Fehler liefert.</li>
+<li><strong>CSV-Spalten-Extraktor:</strong> Ein Skript, das eine Zeile einer CSV-Datei liest und prüft, ob die erwartete Anzahl an Spalten vorhanden ist.</li>
+<li><strong>IP-Adressen-Parser:</strong> Ein Konverter, der einen String in eine IP-Adresse parsen will und ungültige Formate (z.B. 999.999.999.999) abfängt.</li>
+<li><strong>Datenbank-Simulator:</strong> Eine Mock-Datenbank, die beim Suchen nach einer ID einen Fehler zurückgibt, wenn der Datensatz nicht existiert.</li>
+<li><strong>Taschenrechner mit Null-Schutz:</strong> Ein Divisions-Rechner, der die Division durch Null explizit abfängt.</li>
+<li><strong>Port-Belegungs-Scanner:</strong> Ein Tool, das versucht, einen Netzwerk-Port zu binden, und Fehler ausgibt, falls dieser bereits belegt ist.</li>
+<li><strong>Datei-Backup-Ersteller:</strong> Eine Funktion, die eine Datei kopiert und Fehler meldet, wenn die Quelldatei fehlt oder Schreibrechte fehlen.</li>
+<li><strong>URL-Syntax-Prüfer:</strong> Ein Parser für URLs, der Fehler wirft, falls das Protokoll (http/https) fehlt.</li>
+<li><strong>Kalenderdatum-Validator:</strong> Eine Datumsprüfung, die Fehleingaben wie den 31. April oder den 30. Februar abfängt.</li>
+<li><strong>XML-Tag-Validator:</strong> Ein einfacher XML-Scanner, der prüft, ob alle geöffneten Tags auch wieder korrekt geschlossen werden.</li>
+<li><strong>Umgebungsvariablen-Ausleser:</strong> Eine Funktion, die wichtige Systemvariablen liest und einen Fehler wirft, wenn diese nicht gesetzt sind.</li>
+<li><strong>Integer-Überlauf-Detektor:</strong> Eine Additionsfunktion, die prüft, ob das Ergebnis den maximalen Wert des Typs überschreitet.</li>
+<li><strong>E-Mail-Format-Prüfer:</strong> Ein Validierer, der prüft, ob ein String ein gültiges E-Mail-Format besitzt (z.B. Vorhandensein von <code>@</code> und <code>.</code>).</li>
+<li><strong>Quadratwurzel-Rechner:</strong> Eine mathematische Funktion, die bei negativen Zahlen als Eingabe einen Fehler zurückgibt.</li>
+<li><strong>Text-Chiffrierer:</strong> Ein Verschlüsselungstool, das Fehler ausgibt, wenn der Schlüssel nicht die erforderliche Länge hat.</li>
+<li><strong>INI-Konfigurations-Lader:</strong> Ein Parser, der eine Konfigurationsdatei einliest und Fehler bei fehlerhaften Schlüssel-Wert-Paaren meldet.</li>
+<li><strong>Array-Index-Prüfer:</strong> Eine Funktion für sicheren Array-Zugriff, die einen Fehler zurückgibt, anstatt das Programm abstürzen zu lassen.</li>
+<li><strong>UUID-Längen-Prüfer:</strong> Ein Validierer, der prüft, ob eine übergebene UUID exakt 36 Zeichen lang ist.</li>
+<li><strong>Schimpfwort-Filter:</strong> Ein Text-Scanner, der einen Fehler zurückgibt, wenn der Text blockierte Wörter enthält.</li>
+<li><strong>Dateigrößen-Wächter:</strong> Ein Upload-Simulator, der prüft, ob eine Datei ein vordefiniertes Größenlimit überschreitet.</li>
+<li><strong>Ping-Timeout-Simulator:</strong> Ein Netzwerk-Tool, das eine Verbindung simuliert und bei zu hoher Latenz einen Timeout-Fehler ausgibt.</li>
+<li><strong>Log-Datei-Parser:</strong> Ein Analysetool für Server-Logs, das Zeilennummern ausgibt, in denen das Log-Format fehlerhaft ist.</li>
+<li><strong>Schachzug-Validator:</strong> Ein System, das prüft, ob ein Zug (z.B. E2 nach E5 für einen Bauern) regelkonform ist.</li>
+<li><strong>Wechselkurs-Rechner:</strong> Ein Währungsumrechner, der einen Fehler liefert, wenn für ein Währungspaar kein Kurs existiert.</li>
+<li><strong>DNS-Resolver-Mock:</strong> Eine Namensauflösung, die Fehler zurückgibt, wenn eine Domain nicht im Mock-DNS registriert ist.</li>
+<li><strong>Verzeichnis-Ersteller:</strong> Eine Funktion, die einen neuen Ordner anlegt und Fehler abfängt, wenn dieser bereits existiert.</li>
+<li><strong>Token-Ablauf-Prüfer:</strong> Ein Authentifizierungssystem, das prüft, ob der Timestamp eines Tokens in der Vergangenheit liegt.</li>
+<li><strong>Bild-Header-Parser:</strong> Ein Tool, das versucht, die Dimensionen aus einer Bilddatei zu lesen, und bei korrupten Headern abbricht.</li>
+<li><strong>API-Rate-Limiter:</strong> Ein Simulator, der Anfragen zählt und bei Überschreitung des Limits einen "Too Many Requests"-Fehler zurückgibt.</li>
+<li><strong>Markdown-Header-Parser:</strong> Eine Funktion, die prüft, ob eine Zeile eine gültige Überschrift (beginnend mit <code>#</code>) ist.</li>
+<li><strong>Binär-Konverter:</strong> Ein Übersetzer für Binärstrings in Dezimalzahlen, der Fehler bei Zeichen außer <code>0</code> und <code>1</code> wirft.</li>
+<li><strong>Luhn-Kreditkartenprüfer:</strong> Ein Validierungsalgorithmus für Kreditkartennummern, der fehlerhafte Nummern als Fehler ausgibt.</li>
+<li><strong>Sudoku-Zeilenprüfer:</strong> Eine Funktion, die eine Zeile eines Sudokus auf doppelte Zahlen prüft und bei Verstößen Fehler meldet.</li>
+<li><strong>Archiv-Entpacker:</strong> Ein Entpacker, der CRC-Prüfsummen abgleicht und bei beschädigten Archiven Fehler meldet.</li>
+<li><strong>Geodaten-Validator:</strong> Ein System, das prüft, ob Breitengrade zwischen -90 und 90 und Längengrade zwischen -180 und 180 liegen.</li>
+<li><strong>Hex-Farbcode-Prüfer:</strong> Ein Parser für CSS-Farbcodes, der Fehler bei ungültigen Zeichen oder falscher Länge (z.B. <code>#G12345</code>) wirft.</li>
+<li><strong>Morsecode-Decoder:</strong> Ein Decoder, der bei unleserlichen Signalen (kein Punkt oder Strich) Fehler ausgibt.</li>
+<li><strong>Benutzer-Login-System:</strong> Ein Login-Prozess, der zwischen "Benutzer existiert nicht" und "Passwort falsch" unterscheidet.</li>
+<li><strong>Sensor-Messwert-Filter:</strong> Ein Programm, das Sensorwerte glättet und bei plötzlichen Ausreißern (z.B. 0V statt 5V) Fehler ausgibt.</li>
+<li><strong>CLI-Argumenten-Prüfer:</strong> Ein Parser für Startparameter, der fehlende Pflichtparameter als Fehler zurückgibt.</li>
+<li><strong>Datei-Verschieber:</strong> Ein System, das Dateien verschiebt und Fehler abfängt, wenn das Zielverzeichnis schreibgeschützt ist.</li>
+<li><strong>Base64-Decoder:</strong> Ein Tool, das Base64-Strings dekodiert und bei ungültigen Zeichen (<code>=</code>, <code>+</code>, <code>/</code> an falschen Stellen) abbricht.</li>
+<li><strong>Zeitzonen-Offset-Rechner:</strong> Ein Zeitberechner, der ungültige Zeitzonen-Offsets (z.B. +15 Stunden) abfängt.</li>
+<li><strong>Cäsar-Chiffre-Rotator:</strong> Ein Verschiebungs-Chiffre, der negative oder zu große Rotationswerte (über 25) als Fehler zurückweist.</li>
+<li><strong>Savegame-Parser:</strong> Ein Lader für Spielstände, der prüft, ob die Datei manipuliert oder unvollständig ist.</li>
+</ol>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Keine Exceptions:</strong> Rust nutzt ein explizites Fehlersystem anstelle von unvorhersehbaren Ausnahmen (Exceptions).</li>
+<li><strong>Das Result-Enum:</strong> Mit <code>Result&lt;T, E&gt;</code> werden Erfolg (<code>Ok</code>) und Fehler (<code>Err</code>) direkt im Typsystem abgebildet.</li>
+<li><strong>Sicherheit:</strong> Der Compiler zwingt dich über das Attribut <code>#[must_use]</code>, Fehler aktiv zu behandeln.</li>
+<li><strong>Musterabgleich:</strong> <code>match</code> and <code>if let</code> bieten flexible Wege, um Fehler direkt zu behandeln.</li>
+<li><strong>Weiterleitung:</strong> Mit dem Fragezeichen-Operator <code>?</code> kannst du Fehler extrem elegant und mit minimalem Code an den Aufrufer hochreichen.</li>
+</ul>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch09-00-error-handling.html">Das Rust-Buch: Kapitel 9 – Fehlerbehandlung (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Rust by Example: Result (Englisch)</a></li>
+<li><a href="https://doc.rust-lang.org/std/result/enum.Result.html">Rust API-Dokumentation: Der Result-Enum (Englisch)</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-option.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-option.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

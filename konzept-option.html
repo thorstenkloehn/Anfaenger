@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Option - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">5.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">6.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">7.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">9.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">10.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">10.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">10.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">10.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">11.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">12.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">14.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">15.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">16.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">17.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">17.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">17.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html" class="active"><strong aria-hidden="true">17.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">17.4.</strong> Result</a></li></ol></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">18.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">19.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">20.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">21.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">21.1.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">21.2.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">21.3.</strong> Crates & Cargo</a></li></ol></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">22.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">23.</strong> 100 Projekte - Module, Pfade & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">24.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">25.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">26.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">27.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">28.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">29.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">30.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">31.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">32.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">33.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">34.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">35.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">36.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">37.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">37.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">37.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">38.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">39.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">39.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">39.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">39.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">39.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">39.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">39.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">39.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">39.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">39.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">39.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">39.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">40.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">40.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">40.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">40.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">40.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">40.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">40.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">40.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">40.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">40.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">41.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">42.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">43.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">44.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">45.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">46.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-fehlerbehandlung-mit-option"><a class="header" href="#-fehlerbehandlung-mit-option">🔍 Fehlerbehandlung mit Option<T></a></h1>
+<p>Stell dir vor, du öffnest eine Schublade in deiner Küche, in der du normalerweise deine Lieblingstasse aufbewahrst. Manchmal steht die Tasse genau dort, wo sie sein soll. Manchmal hat sie aber jemand in die Spülmaschine gestellt, und die Schublade ist komplett leer.</p>
+<p>In vielen klassischen Programmiersprachen ist diese Situation brandgefährlich. Wenn du versuchst, aus einer leeren Schublade zu trinken, stürzt dein gesamtes Programm ab. Rust geht hier einen völlig anderen, revolutionären Weg: Es zwingt dich dazu, vor dem Trinken erst nachzusehen, ob die Tasse überhaupt da ist!</p>
+<p>In diesem Kapitel erfährst du, wie Rust das Fehlen von Werten sicher und elegant löst, ohne dass dein Programm jemals unerwartet abstürzt.</p>
+<hr />
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="das-problem-der-null-pointer-der-milliarden-dollar-fehler"><a class="header" href="#das-problem-der-null-pointer-der-milliarden-dollar-fehler">Das Problem der Null-Pointer (Der Milliarden-Dollar-Fehler)</a></h3>
+<p>In fast allen gängigen Programmiersprachen (wie Java, C++, Python oder JavaScript) gibt es das Konzept von <code>null</code>, <code>nil</code> oder <code>None</code>. Es bedeutet einfach: "Hier ist kein Wert".</p>
+<p>Das Problem daran ist, dass diese Sprachen dir erlauben, eine Variable so zu behandeln, als wäre immer ein Wert da. Wenn du zum Beispiel den Namen eines Benutzers ausgeben willst:</p>
+<pre><code class="language-java">// Java-Beispiel
+String name = benutzer.getName();
+System.out.println(name.toUpperCase());
+</code></pre>
+<p>Wenn <code>benutzer.getName()</code> nun <code>null</code> zurückgibt (weil kein Name eingetragen wurde), stürzt dieses Java-Programm sofort mit einer <code>NullPointerException</code> ab.</p>
+<p>Der Erfinder der Null-Referenz, Tony Hoare, nannte diese Erfindung rückblickend seinen <strong>„Billion Dollar Mistake“</strong> (Milliarden-Dollar-Fehler). Sie ist die Ursache für unzählige Abstürze, Sicherheitslücken und frustrierte Entwickler weltweit.</p>
+<h3 id="wie-rust-das-problem-löst-das-optiont-enum"><a class="header" href="#wie-rust-das-problem-löst-das-optiont-enum">Wie Rust das Problem löst: Das <code>Option&lt;T&gt;</code>-Enum</a></h3>
+<p>Rust macht Schluss mit diesem Chaos. In Rust gibt es das klassische <code>null</code> schlichtweg nicht! Jede normale Variable <strong>muss</strong> immer einen gültigen Wert besitzen.</p>
+<p>Was machen wir aber, wenn ein Wert tatsächlich mal fehlen kann? Zum Beispiel bei:</p>
+<ul>
+<li>Einer Suche in einer Datenbank, die kein Ergebnis liefert.</li>
+<li>Einem optionalen Feld im Profil eines Nutzers (z.B. die Website-URL).</li>
+<li>Dem Auslesen einer Datei, die vielleicht gar nicht existiert.</li>
+</ul>
+<p>Für diese Fälle hat Rust den Datentyp <code>Option&lt;T&gt;</code> in seiner Standardbibliothek. Es handelt sich dabei um ein ganz normales Enum, das zwei Zustände annehmen kann:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Option&lt;T&gt; {
+    Some(T), // Ein Wert vom Typ T ist vorhanden
+    None,    // Kein Wert vorhanden
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Das geniale daran: <code>Option&lt;T&gt;</code> is ein komplett anderer Typ als <code>T</code>. Eine Variable vom Typ <code>Option&lt;String&gt;</code> ist kein <code>String</code>. Du kannst sie nicht wie einen String behandeln, keine String-Methoden darauf aufrufen und sie nicht direkt ausgeben. Sie ist wie ein verschlossenes Paket. Erst wenn du das Paket öffnest, kommst du an den eigentlichen Wert heran.</p>
+<h3 id="option-auspacken-der-sichere-weg-mit-match"><a class="header" href="#option-auspacken-der-sichere-weg-mit-match">Option auspacken: Der sichere Weg mit <code>match</code></a></h3>
+<p>Der gründlichste und sicherste Weg, eine <code>Option</code> auszupacken, ist Pattern Matching mit <code>match</code>. Rust verlangt von dir, dass du lückenlos (<code>exhaustive</code>) sowohl den Fall mit Wert (<code>Some</code>) als auch den Fall ohne Wert (<code>None</code>) behandelst:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let benutzername: Option&lt;String&gt; = einige_suchfunktion();
+
+match benutzername {
+    Some(name) =&gt; println!("Willkommen zurück, {}!", name),
+    None =&gt; println!("Willkommen, Gast!"),
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Wenn du einen der beiden Fälle vergisst, wird der Compiler dein Programm nicht übersetzen. Du bist also absolut sicher vor Abstürzen durch vergessene "Null"-Werte.</p>
+<h3 id="die-schnelle-abkürzung-if-let"><a class="header" href="#die-schnelle-abkürzung-if-let">Die schnelle Abkürzung: <code>if let</code></a></h3>
+<p>Manchmal interessiert dich nur, ob ein Wert da ist, und du willst den leeren Fall einfach ignorieren. Statt eines sperrigen <code>match</code> kannst du dafür das kompakte <code>if let</code> nutzen:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let optionales_profilbild: Option&lt;String&gt; = hole_profilbild();
+
+if let Some(bild_url) = optionales_profilbild {
+    println!("Profilbild wird geladen von: {}", bild_url);
+}
+// Der None-Fall wird hier einfach stillschweigend ignoriert.
+<span class="boring">}</span></code></pre></pre>
+<h3 id="der-ungeduldige-holzhammer-unwrap-und-expect"><a class="header" href="#der-ungeduldige-holzhammer-unwrap-und-expect">Der ungeduldige Holzhammer: <code>unwrap</code> und <code>expect</code></a></h3>
+<p>Es gibt Situationen, in denen du absolut sicher bist, dass ein Paket einen Wert enthält. Oder dir ist es recht, wenn das Programm abstürzt, falls kein Wert da ist (z.B. beim Schreiben von schnellen Prototypen oder Tests).</p>
+<p>Dafür gibt es zwei Methoden:</p>
+<ol>
+<li>
+<p><strong><code>unwrap()</code></strong>: Holt den Wert aus <code>Some</code> heraus. Ist die Option jedoch <code>None</code>, stürzt das Programm sofort mit einem lauten Knall (<em>Panic</em>) ab.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let wert = optionale_zahl.unwrap(); // Gefährlich!
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li>
+<p><strong><code>expect("Fehlermeldung")</code></strong>: Funktioniert genau wie <code>unwrap()</code>, lässt dich aber eine eigene Fehlermeldung angeben, die beim Absturz ausgegeben wird. Das macht die Fehlersuche deutlich einfacher.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let konfig = lies_einstellungen().expect("Die Konfigurationsdatei fehlt!");
+<span class="boring">}</span></code></pre></pre>
+</li>
+</ol>
+<blockquote>
+<p>[!WARNING]
+Verwende <code>unwrap()</code> und <code>expect()</code> mit äußerster Vorsicht! In produktivem Code solltest du sie fast nie benutzen. Nutze stattdessen immer <code>match</code>, <code>if let</code> oder Hilfsmethoden wie <code>unwrap_or()</code>, um Standardwerte festzulegen, wenn kein Wert vorhanden ist.</p>
+</blockquote>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Versuche, die folgenden Aufgaben theoretisch zu durchdenken. Entwirfe die Datenstrukturen und den Ablauf im Kopf oder auf einem Blatt Papier. Schreibe keinen fertigen Code!</p>
+<h3 id="aufgabe-1-die-artikelsuche-im-online-shop"><a class="header" href="#aufgabe-1-die-artikelsuche-im-online-shop">Aufgabe 1: Die Artikelsuche im Online-Shop</a></h3>
+<ol>
+<li>Du hast eine Liste von Produkten. Jedes Produkt hat eine ID (Zahl) und einen Namen (Text).</li>
+<li>Entwirfe eine Suchfunktion, die nach einer ID sucht. Überlege, welchen Rückgabetyp diese Funktion haben muss, da die ID existieren kann oder eben nicht.</li>
+<li>Skizziere, wie du das Ergebnis dieser Suche mit <code>match</code> auswertest, um dem Kunden entweder den Namen des Produkts anzuzeigen oder eine freundliche Meldung wie „Artikel nicht gefunden“ auszugeben.</li>
+</ol>
+<h3 id="aufgabe-2-der-optionale-rucksack-im-rollenspiel"><a class="header" href="#aufgabe-2-der-optionale-rucksack-im-rollenspiel">Aufgabe 2: Der optionale Rucksack im Rollenspiel</a></h3>
+<ol>
+<li>Ein Held in einem RPG hat einen Ausrüstungsslot für einen Rucksack. Der Rucksack kann angelegt sein oder nicht.</li>
+<li>Wenn ein Rucksack angelegt ist, hat er ein bestimmtes Eigengewicht (Zahl). Wenn kein Rucksack angelegt ist, gibt es kein zusätzliches Gewicht.</li>
+<li>Überlege dir, wie du den Rucksack-Slot als <code>Option</code> darstellst.</li>
+<li>Skizziere eine Logik, die das Gesamtgewicht des Helden berechnet. Nutze dafür <code>if let</code> oder <code>match</code>, um das Gewicht des Rucksacks nur dann zu addieren, wenn er auch wirklich da ist.</li>
+</ol>
+<h3 id="aufgabe-3-standard-lautstärke-für-einen-audio-player"><a class="header" href="#aufgabe-3-standard-lautstärke-für-einen-audio-player">Aufgabe 3: Standard-Lautstärke für einen Audio-Player</a></h3>
+<ol>
+<li>Ein Benutzer kann in einer Musik-App eine Wunsch-Lautstärke von 0 bis 100 einstellen.</li>
+<li>Diese Einstellung ist optional: Hat der Benutzer nichts eingestellt, soll die App auf den Standardwert <code>80</code> zurückgreifen.</li>
+<li>Wie würdest du diese optionale Einstellung in Rust abbilden?</li>
+<li>Welche Methoden bietet Rust auf <code>Option</code>, um elegant an den eingestellten Wert zu kommen oder – falls dieser fehlt – automatisch den Standardwert <code>80</code> zu wählen, ohne das Programm zum Absturz zu bringen? (Tipp: Schau dir in der Dokumentation die Methode <code>unwrap_or</code> an).</li>
+</ol>
+<hr />
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Hier sind 50 kleine Programmierideen und Übungen, bei denen <code>Option&lt;T&gt;</code> eine zentrale Rolle spielt:</p>
+<h3 id="datensuche--listen"><a class="header" href="#datensuche--listen">Datensuche &amp; Listen</a></h3>
+<ol>
+<li><strong>Ersthelfer</strong>: Finde das erste Element in einer Liste, das eine bestimmte Bedingung erfüllt.</li>
+<li><strong>Letzter Zeuge</strong>: Finde das letzte Element in einer Liste von Benutzereingaben.</li>
+<li><strong>Mittelwert-Finder</strong>: Berechne den Durchschnitt einer Liste (Achtung: Was, wenn die Liste leer ist?).</li>
+<li><strong>Wörtersuche</strong>: Suche in einem Text nach einem bestimmten Wort und gib dessen Position zurück.</li>
+<li><strong>Nächster Nachbar</strong>: Finde in einer Liste von Zahlen den Wert, der einer Zielzahl am nächsten ist.</li>
+<li><strong>Maximalwert-Detektor</strong>: Ermittle die größte Zahl aus einer Liste (Rückgabe ist leer bei leerer Liste).</li>
+<li><strong>Min-Max-Paar</strong>: Finde gleichzeitig das Minimum und Maximum einer Zahlenreihe.</li>
+<li><strong>Index-Finder</strong>: Finde den Index eines Zeichens in einem String.</li>
+<li><strong>Datenbank-Simulator</strong>: Suche einen User-Datensatz anhand einer E-Mail-Adresse.</li>
+<li><strong>Wörterbuch-Abfrage</strong>: Schlage ein deutsches Wort nach und gib die englische Übersetzung zurück.</li>
+</ol>
+<h3 id="spiele--simulationen"><a class="header" href="#spiele--simulationen">Spiele &amp; Simulationen</a></h3>
+<ol start="11">
+<li><strong>Inventar-Slot</strong>: Ein Gegenstandsslot im Spiel, der leer sein kann.</li>
+<li><strong>Highscore-Vergleicher</strong>: Vergleiche den aktuellen Score mit dem bisherigen Highscore (der anfangs noch nicht existiert).</li>
+<li><strong>Spieler-Ziel</strong>: Speichere den aktuellen Gegner, den ein Spieler anvisiert hat.</li>
+<li><strong>Gilden-Anführer</strong>: Bestimme den Anführer einer Gilde (kann vakant sein).</li>
+<li><strong>Schatzkisten-Inhalt</strong>: Eine Kiste, die beim Öffnen entweder ein Item enthält oder leer ist.</li>
+<li><strong>Nächster Spielzug</strong>: Berechne den besten Zug für eine KI (gibt <code>None</code> zurück, wenn kein Zug mehr möglich ist).</li>
+<li><strong>Würfel-Glück</strong>: Ein Würfelwurf, der unter bestimmten Bedingungen ungültig sein kann.</li>
+<li><strong>Lebenspunkte-Regeneration</strong>: Berechne die Heilung basierend auf einem optionalen Heiltrank-Effekt.</li>
+<li><strong>Waffen-Aufsatz</strong>: Ein Visier auf einem Gewehr, das montiert sein kann oder nicht.</li>
+<li><strong>Aktives Quest</strong>: Verwalte das aktuell vom Spieler verfolgte Abenteuer.</li>
+</ol>
+<h3 id="web--netzwerke"><a class="header" href="#web--netzwerke">Web &amp; Netzwerke</a></h3>
+<ol start="21">
+<li><strong>API-Schlüssel-Prüfer</strong>: Lies den API-Key aus den Headern einer Anfrage aus.</li>
+<li><strong>Profilbild-URL</strong>: Lade ein Standardbild, falls der Nutzer keine eigene Profilbild-URL hinterlegt hat.</li>
+<li><strong>Query-Parameter</strong>: Extrahiere einen optionalen Filter-Parameter (z.B. <code>?sort=desc</code>) aus einer URL.</li>
+<li><strong>Port-Finder</strong>: Bestimme den Netzwerk-Port aus einer Konfiguration (nutze Standardwert <code>8080</code>, falls nicht definiert).</li>
+<li><strong>HTTP-Referer</strong>: Ermittle die Website, von der der Besucher weitergeleitet wurde.</li>
+<li><strong>Wlan-Verbindung</strong>: Speichere den Namen des aktuell verbundenen WLANs.</li>
+<li><strong>Session-Token</strong>: Prüfe, ob ein temporäres Login-Token im Browser des Nutzers vorhanden ist.</li>
+<li><strong>Download-Fortschritt</strong>: Berechne die verbleibende Zeit (ist unbestimmt, solange der Download nicht gestartet ist).</li>
+<li><strong>IP-Adresse</strong>: Ermittle die IP-Adresse des Absenders einer Nachricht.</li>
+<li><strong>Webhook-Payload</strong>: Lies optionale Metadaten aus einem eingehenden Webhook aus.</li>
+</ol>
+<h3 id="text---dateiverarbeitung"><a class="header" href="#text---dateiverarbeitung">Text- &amp; Dateiverarbeitung</a></h3>
+<ol start="31">
+<li><strong>Umgebungsvariable</strong>: Lies die Variable <code>PATH</code> aus dem Betriebssystem aus.</li>
+<li><strong>Dateiendungs-Extraktor</strong>: Hole die Endung einer Datei (z.B. <code>txt</code> aus <code>dokument.txt</code> – Achtung bei Dateien ohne Endung!).</li>
+<li><strong>Zahlen-Parser</strong>: Versuche einen Text in eine Zahl umzuwandeln (gibt <code>None</code> zurück, wenn der Text Buchstaben enthält).</li>
+<li><strong>Konfigurations-Lader</strong>: Suche nach einer Konfigurationsdatei an verschiedenen Standard-Orten.</li>
+<li><strong>Erste Zeile</strong>: Lies die allererste Zeile einer Textdatei aus (was, wenn die Datei leer ist?).</li>
+<li><strong>CSV-Spalten-Parser</strong>: Extrahiere den Wert der 5. Spalte einer CSV-Zeile.</li>
+<li><strong>JSON-Wert</strong>: Suche nach einem optionalen Key in einem verschachtelten JSON-Objekt.</li>
+<li><strong>Kommentar-Zeilen</strong>: Finde den ersten Kommentar im Quellcode.</li>
+<li><strong>Pfad-Vereinfacher</strong>: Hole das übergeordnete Verzeichnis eines Pfades (gibt <code>None</code> bei der Root-Ebene zurück).</li>
+<li><strong>Regex-Captures</strong>: Finde die erste Übereinstimmung einer Regex-Suche.</li>
+</ol>
+<h3 id="system--hardware"><a class="header" href="#system--hardware">System &amp; Hardware</a></h3>
+<ol start="41">
+<li><strong>Akku-Ladestand</strong>: Zeige den Ladestand an (ist <code>None</code>, wenn es sich um einen Desktop-PC ohne Akku handelt).</li>
+<li><strong>Temperatursensor</strong>: Lies den Sensor aus (gibt <code>None</code> zurück, falls der Sensor getrennt wurde).</li>
+<li><strong>Zweit-Monitor</strong>: Ermittle die Auflösung des zweiten angeschlossenen Bildschirms.</li>
+<li><strong>GPS-Koordinaten</strong>: Hole die aktuelle GPS-Position (kann im Tunnel oder bei deaktiviertem GPS fehlen).</li>
+<li><strong>USB-Gerät</strong>: Erkenne das zuletzt eingesteckte USB-Gerät.</li>
+<li><strong>System-Uhrzeit</strong>: Synchronisiere die Uhrzeit mit einem NTP-Server (kann fehlschlagen/fehlen).</li>
+<li><strong>Freier Speicherplatz</strong>: Berechne den freien Speicherplatz auf einem optionalen Netzlaufwerk.</li>
+<li><strong>Lüfterdrehzahl</strong>: Überwache die Drehzahl eines Lüfters (einige Lüfter haben keinen Drehzahlmesser).</li>
+<li><strong>Drucker-Auswahl</strong>: Finde den Standarddrucker im System.</li>
+<li><strong>Hardware-Beschleunigung</strong>: Prüfe, ob eine kompatible Grafikkarte für GPU-Berechnungen vorhanden ist.</li>
+</ol>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Kein <code>null</code> in Rust</strong>: Rust eliminiert die Gefahr von Null-Pointer-Abstürzen komplett an der Wurzel.</li>
+<li><strong><code>Option&lt;T&gt;</code></strong>: Ist ein Enum mit zwei Varianten: <code>Some(wert)</code> (Wert vorhanden) und <code>None</code> (kein Wert vorhanden).</li>
+<li><strong>Kapselung</strong>: Eine <code>Option&lt;T&gt;</code> ist nicht direkt benutzbar. Du musst sie erst auspacken.</li>
+<li><strong>Sicheres Entpacken</strong>:
+<ul>
+<li>Mit <strong><code>match</code></strong> behandelst du lückenlos alle Fälle.</li>
+<li>Mit <strong><code>if let</code></strong> greifst du schnell auf <code>Some</code> zu und ignorierst <code>None</code>.</li>
+<li>Hilfsmethoden wie <strong><code>unwrap_or(standard)</code></strong> erlauben es dir, sicher einen Standardwert festzulegen.</li>
+</ul>
+</li>
+<li><strong>Gefährliches Entpacken</strong>: <strong><code>unwrap()</code></strong> und <strong><code>expect()</code></strong> bringen dein Programm bei <code>None</code> zum Absturz. Benutze sie nur im Notfall oder für Tests!</li>
+</ul>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html#the-option-enum-and-its-advantages-over-null-values">Das offizielle Rust-Buch: Das Option-Enum</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/option_unwrap.html">Rust by Example: Option &amp; unwrap</a></li>
+<li><a href="https://doc.rust-lang.org/std/option/enum.Option.html">Rust-Dokumentation: std::option::Option</a></li>
+<li><a href="./konzept-enums.html">Konzept: Enums</a></li>
+<li><a href="./konzept-matching.html">Konzept: Pattern Matching</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-hashmaps.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="konzept-result.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-hashmaps.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="konzept-result.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

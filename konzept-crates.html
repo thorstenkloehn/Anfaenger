@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Crates &amp; Cargo - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">5.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">6.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">7.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">9.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">10.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">10.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">10.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">10.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">11.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">12.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">14.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">15.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">16.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">17.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">17.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">17.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">17.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">17.4.</strong> Result</a></li></ol></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">18.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">19.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">20.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">21.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">21.1.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">21.2.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="konzept-crates.html" class="active"><strong aria-hidden="true">21.3.</strong> Crates & Cargo</a></li></ol></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">22.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">23.</strong> 100 Projekte - Module, Pfade & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">24.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">25.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">26.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">27.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">28.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">29.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">30.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">31.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">32.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">33.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">34.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">35.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">36.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">37.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">37.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">37.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">38.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">39.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">39.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">39.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">39.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">39.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">39.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">39.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">39.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">39.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">39.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">39.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">39.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">40.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">40.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">40.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">40.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">40.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">40.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">40.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">40.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">40.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">40.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">41.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">42.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">43.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">44.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">45.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">46.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-crates-und-cargo--die-bausteine-deines-rust-projekts"><a class="header" href="#-crates-und-cargo--die-bausteine-deines-rust-projekts">📚 Crates und Cargo – Die Bausteine deines Rust-Projekts</a></h1>
+<p>Stell dir vor, du möchtest ein großes, stabiles Haus aus Lego bauen. Du könntest natürlich versuchen, jeden einzelnen Legostein selbst aus flüssigem Kunststoff zu gießen. Aber das wäre unglaublich mühsam, zeitaufwendig und wahrscheinlich würden die Steine am Ende nicht perfekt zusammenpassen. Stattdessen greifst du auf fertige, genormte Bausteine zurück, die perfekt ineinandergreifen, und konzentrierst dich ganz auf die Architektur deines Hauses.</p>
+<p>In der Rust-Welt ist das genau so! Du musst das Rad (oder den Sortieralgorithmus, den Netzwerk-Client und den JSON-Parser) nicht jedes Mal neu erfinden. Rust bietet dir mit <strong>Crates</strong> (den Bausteinen) und <strong>Cargo</strong> (dem genialen Bauleiter und Paketmanager) ein mächtiges Ökosystem, mit dem du fertige Programmteile blitzschnell und sicher in dein Projekt integrieren kannst.</p>
+<hr />
+<h2 id="-theorie"><a class="header" href="#-theorie">🧠 Theorie</a></h2>
+<h3 id="was-sind-crates"><a class="header" href="#was-sind-crates">Was sind Crates?</a></h3>
+<p>Ein <strong>Crate</strong> (zu Deutsch: Kiste oder Transportkiste) ist die kleinste eigenständige Code-Einheit, die der Rust-Compiler verarbeiten kann. Wenn du ein Rust-Projekt baust, erstellst du immer mindestens ein Crate.</p>
+<p>Es gibt zwei grundlegend verschiedene Arten von Crates:</p>
+<h4 id="1-binary-crates-ausführbare-programme"><a class="header" href="#1-binary-crates-ausführbare-programme">1. Binary Crates (Ausführbare Programme)</a></h4>
+<ul>
+<li><strong>Was sie sind:</strong> Ein Programm, das du direkt starten und ausführen kannst (z. B. ein Konsolenwerkzeug, ein Spiel oder ein Webserver).</li>
+<li><strong>Erkennungsmerkmal:</strong> Sie besitzen eine Funktion namens <code>fn main()</code>, die als Einstiegspunkt für das Programm dient. Die Standarddatei dafür ist die <code>src/main.rs</code>.</li>
+<li><strong>Analogie:</strong> Ein fertiges, fahrbereites Auto. Du kannst einsteigen und losfahren.</li>
+</ul>
+<h4 id="2-library-crates-bibliotheken"><a class="header" href="#2-library-crates-bibliotheken">2. Library Crates (Bibliotheken)</a></h4>
+<ul>
+<li><strong>Was sie sind:</strong> Sammlungen von nützlichem Code (Funktionen, Structs, Enums), die von anderen Programmen wiederverwendet werden können. Sie können nicht direkt ausgeführt werden.</li>
+<li><strong>Erkennungsmerkmal:</strong> Sie haben keine <code>main()</code>, sondern stellen Funktionen für andere bereit. Die Standarddatei dafür ist die <code>src/lib.rs</code>.</li>
+<li><strong>Analogie:</strong> Ein fertiger Automotor oder eine Klimaanlage. Du kannst sie nicht direkt "fahren", aber du kannst sie in verschiedene Autos einbauen.</li>
+</ul>
+<hr />
+<h3 id="die-cargotoml-und-semantic-versioning"><a class="header" href="#die-cargotoml-und-semantic-versioning">Die Cargo.toml und Semantic Versioning</a></h3>
+<p>Wenn du Cargo-Projekte erstellst, findest du im Hauptverzeichnis deines Projekts immer eine Datei namens <code>Cargo.toml</code>. Sie wird im <strong>TOML-Format</strong> (<em>Tom's Obvious Minimal Language</em>) geschrieben und ist die Steuerzentrale und Packliste deines Projekts.</p>
+<p>Eine typische <code>Cargo.toml</code> sieht so aus:</p>
+<pre><code class="language-toml">[package]
+name = "mein_projekt"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+</code></pre>
+<ul>
+<li><code>[package]</code>: Hier stehen Metadaten über dein eigenes Projekt wie Name, Version und die genutzte Rust-Edition.</li>
+<li><code>[dependencies]</code>: Das ist deine Einkaufsliste! Hier listest du alle externen Crates auf, die dein Projekt benötigt.</li>
+</ul>
+<h4 id="semantic-versioning-semver"><a class="header" href="#semantic-versioning-semver">Semantic Versioning (SemVer)</a></h4>
+<p>Rust verwendet ein standardisiertes System zur Versionsverwaltung namens <strong>Semantic Versioning</strong>. Eine Versionsnummer besteht immer aus drei Zahlen, die durch Punkte getrennt sind: <code>MAJOR.MINOR.PATCH</code> (z. B. <code>1.4.2</code>).</p>
+<ul>
+<li><strong>MAJOR (Hauptversion):</strong> Wird erhöht, wenn es inkompatible API-Änderungen gibt. Code, der mit Version <code>1.x.y</code> lief, funktioniert mit <code>2.x.y</code> möglicherweise nicht mehr ohne Anpassungen.</li>
+<li><strong>MINOR (Nebenversion):</strong> Wird erhöht, wenn neue Funktionen hinzugefügt werden, die aber vollkommen abwärtskompatibel sind. Dein alter Code läuft weiterhin problemlos.</li>
+<li><strong>PATCH (Fehlerbehebung):</strong> Wird erhöht, wenn kleine Bugs korrigiert wurden. Keine neuen Features, keine Inkompatibilitäten.</li>
+</ul>
+<p>In der <code>Cargo.toml</code> kannst du festlegen, wie flexibel Cargo bei Updates sein darf:</p>
+<ul>
+<li><code>rand = "0.8.5"</code> (oder <code>^0.8.5</code>): Cargo darf Sicherheitsupdates und kleinere Features installieren (alles ab <code>0.8.5</code> bis vor <code>0.9.0</code>). Das ist der Standard.</li>
+<li><code>rand = "~0.8.5"</code>: Cargo darf nur Patch-Updates installieren (alles von <code>0.8.5</code> bis vor <code>0.8.6</code>).</li>
+<li><code>rand = "=0.8.5"</code>: Cargo muss exakt diese Version verwenden.</li>
+</ul>
+<hr />
+<h3 id="moderne-cargo-features"><a class="header" href="#moderne-cargo-features">Moderne Cargo-Features</a></h3>
+<p>Wenn Projekte größer werden, bietet Cargo fortschrittliche Konzepte, um den Code übersichtlich und effizient zu halten.</p>
+<h4 id="cargo-workspaces-monorepos"><a class="header" href="#cargo-workspaces-monorepos">Cargo Workspaces (Monorepos)</a></h4>
+<p>Stell dir vor, du entwickelst ein Onlinespiel. Du hast:</p>
+<ol>
+<li>Den Spiel-Client (eine App für den Spieler)</li>
+<li>Den Spiel-Server (für die Logik im Hintergrund)</li>
+<li>Eine gemeinsame Bibliothek (die mathematische Berechnungen für beide enthält)</li>
+</ol>
+<p>Anstatt drei völlig separate Projekte anzulegen, kannst du einen <strong>Cargo Workspace</strong> erstellen. Ein Workspace gruppiert mehrere Crates in einem einzigen Verzeichnis.</p>
+<ul>
+<li>Sie teilen sich einen gemeinsamen <code>target</code>-Ordner (das spart enorm viel Speicherplatz und beschleunigt das Kompilieren).</li>
+<li>Sie teilen sich eine einzige <code>Cargo.lock</code>-Datei, was sicherstellt, dass alle Crates im Workspace exakt dieselben Versionen der externen Abhängigkeiten nutzen.</li>
+</ul>
+<p>In der Haupt-<code>Cargo.toml</code> eines Workspaces definierst du einfach die Mitglieder:</p>
+<pre><code class="language-toml">[workspace]
+members = [
+    "spiel-client",
+    "spiel-server",
+    "gemeinsame-bibliothek",
+]
+</code></pre>
+<h4 id="cargo-features-optionale-abhängigkeiten"><a class="header" href="#cargo-features-optionale-abhängigkeiten">Cargo Features (Optionale Abhängigkeiten)</a></h4>
+<p>Noterwerbbar ist nicht jeder, der eine Bibliothek nutzt, braucht auch all ihre Funktionen. Cargo bietet dafür ein modulares System namens <strong>Features</strong>. Damit kannst du Teile deines Codes optional machen.</p>
+<p>Ein Entwickler einer großen Bildbearbeitungs-Bibliothek könnte zum Beispiel die Unterstützung für PNG-Bilder standardmäßig aktivieren, die Unterstützung für das veraltete BMP-Format aber als optionales Feature anbieten.
+Wer BMP nicht braucht, muss den Code dafür nicht mitkompilieren. Das hält das fertige Programm klein und spart Kompilierzeit!</p>
+<p>In der <code>Cargo.toml</code> der Bibliothek sieht das so aus:</p>
+<pre><code class="language-toml">[features]
+default = ["png"]
+png = []
+bmp = []
+</code></pre>
+<p>Ein Nutzer deiner Bibliothek kann dann in seiner eigenen <code>Cargo.toml</code> gezielt entscheiden:</p>
+<pre><code class="language-toml">[dependencies]
+bild_bibliothek = { version = "1.0", default-features = false, features = ["bmp"] }
+</code></pre>
+<hr />
+<h3 id="beliebte-externe-crates-einbinden"><a class="header" href="#beliebte-externe-crates-einbinden">Beliebte externe Crates einbinden</a></h3>
+<p>Das offizielle Repository für Rust-Crates ist <a href="https://crates.io">crates.io</a>. Hier findest du zehntausende Bibliotheken für jeden erdenklichen Zweck. Um ein Crate zu benutzen, fügst du es einfach deiner <code>Cargo.toml</code> hinzu (entweder manuell oder über den Terminal-Befehl <code>cargo add &lt;crate_name&gt;</code>).</p>
+<p>Zwei der wichtigsten Crates in der Rust-Community sind:</p>
+<h4 id="1-rand-zufall"><a class="header" href="#1-rand-zufall">1. <code>rand</code> (Zufall)</a></h4>
+<p>Rust bringt von Haus aus keinen Zufallszahlengenerator in der Standardbibliothek mit. Das Crate <code>rand</code> füllt diese Lücke perfekt. Es liefert dir Funktionen, um Zufallszahlen zu generieren, Elemente aus Listen zufällig auszuwählen oder Würfelspiele zu programmieren.</p>
+<h4 id="2-serde-serialisierung--deserialisierung"><a class="header" href="#2-serde-serialisierung--deserialisierung">2. <code>serde</code> (Serialisierung &amp; Deserialisierung)</a></h4>
+<p>Wenn du Daten speichern oder über das Netzwerk senden willst, musst du sie in ein Format wie JSON, XML oder YAML umwandeln (Serialisierung) und wieder zurück in Rust-Strukturen einlesen (Deserialisierung). <code>serde</code> (<em>Serializer/Deserializer</em>) ist das absolute Standard-Werkzeug dafür in Rust. Es arbeitet extrem schnell und sicher.
+Oft wird es zusammen mit dem Feature <code>derive</code> genutzt, damit Rust-Strukturen automatisch die Fähigkeit erhalten, sich selbst in JSON zu verwandeln.</p>
+<hr />
+<h2 id="-praxis-aufgaben-keine-codelösungen"><a class="header" href="#-praxis-aufgaben-keine-codelösungen">🛠️ Praxis-Aufgaben (Keine Codelösungen)</a></h2>
+<p>Versuche, die folgenden Aufgaben theoretisch zu lösen, indem du die Konzepte skizzierst oder die passende Konfiguration planst.</p>
+<h3 id="aufgabe-1-die-perfekte-cargotoml-entwerfen"><a class="header" href="#aufgabe-1-die-perfekte-cargotoml-entwerfen">Aufgabe 1: Die perfekte Cargo.toml entwerfen</a></h3>
+<p>Du planst ein neues CLI-Werkzeug namens "DataWizard". Das Tool soll:</p>
+<ol>
+<li>JSON-Dateien einlesen und verarbeiten.</li>
+<li>Zufällige Passwörter generieren können.</li>
+<li>Die externe Bibliothek <code>serde</code> (mit dem Feature <code>derive</code> zur automatischen Code-Generierung) nutzen.</li>
+<li>Die Bibliothek <code>rand</code> in Version 0.8 oder höher verwenden, solange keine inkompatiblen Änderungen auftreten.</li>
+</ol>
+<p><em>Schreibe die vollständige <code>Cargo.toml</code>-Datei für dieses Projekt auf.</em></p>
+<h3 id="aufgabe-2-der-semver-detektiv"><a class="header" href="#aufgabe-2-der-semver-detektiv">Aufgabe 2: Der SemVer-Detektiv</a></h3>
+<p>Ein Entwickler hat eine Bibliothek zur Berechnung von Steuern veröffentlicht (Version <code>1.4.2</code>). Überlege, welche Versionsnummer (nach Semantic Versioning) die nächste Veröffentlichung haben sollte, wenn:</p>
+<ol>
+<li>Ein kleiner Rechenfehler in einer internen Funktion behoben wurde.</li>
+<li>Eine völlig neue Funktion hinzugefügt wurde, mit der man auch ausländische Steuersätze berechnen kann. Die alte Berechnungsfunktion bleibt unverändert.</li>
+<li>Die alte Berechnungsfunktion komplett entfernt wurde, da sie durch ein moderneres Konzept ersetzt wird. Wer die Bibliothek nutzt, muss seinen Code umschreiben.</li>
+</ol>
+<h3 id="aufgabe-3-cargo-workspace-struktur-planen"><a class="header" href="#aufgabe-3-cargo-workspace-struktur-planen">Aufgabe 3: Cargo Workspace Struktur planen</a></h3>
+<p>Du möchtest eine Web-Plattform für eine Schule bauen. Das System soll aus folgenden Teilen bestehen:</p>
+<ul>
+<li>Einem Admin-Dashboard (Binary Crate <code>school-admin</code>)</li>
+<li>Einer Schüler-App (Binary Crate <code>school-student</code>)</li>
+<li>Einer Kern-Bibliothek für die Notenberechnung und Datenbankanbindung (Library Crate <code>school-core</code>)</li>
+</ul>
+<ol>
+<li><em>Skizziere die Ordnerstruktur deines Projekts.</em></li>
+<li><em>Wie muss die Haupt-<code>Cargo.toml</code> aussehen, die diese Struktur als Workspace definiert?</em></li>
+</ol>
+<h3 id="aufgabe-4-optionale-features-aktivieren"><a class="header" href="#aufgabe-4-optionale-features-aktivieren">Aufgabe 4: Optionale Features aktivieren</a></h3>
+<p>Du bindest eine hypothetische Bibliothek namens <code>cryptography</code> in dein Projekt ein. Diese Bibliothek bietet standardmäßig sehr viele Algorithmen an. Da du auf einem kleinen Mikrocontroller programmierst, möchtest du:</p>
+<ol>
+<li>Alle Standard-Features der Bibliothek deaktivieren.</li>
+<li>Ausschließlich das optionale Feature <code>"sha256"</code> aktivieren.</li>
+</ol>
+<p><em>Wie müsste der Eintrag unter <code>[dependencies]</code> in deiner <code>Cargo.toml</code> aussehen?</em></p>
+<hr />
+<h2 id="-50-projekte"><a class="header" href="#-50-projekte">🚀 50 Projekte</a></h2>
+<p>Hier sind 50 kleine Projektideen und Übungsszenarien, mit denen du den Umgang mit Cargo und verschiedenen externen Crates praktisch erproben kannst:</p>
+<ol>
+<li><strong>Zufalls-Passwort-Generator:</strong> Generiere sichere Passwörter mit anpassbaren Kriterien (<code>rand</code>).</li>
+<li><strong>JSON-Konfigurations-Parser:</strong> Lies Einstellungen für ein Programm aus einer JSON-Datei ein (<code>serde</code>, <code>serde_json</code>).</li>
+<li><strong>Konsolen-Fortschrittsbalken:</strong> Zeige beim Kopieren oder Berechnen einen animierten Ladebalken an (<code>indicatif</code>).</li>
+<li><strong>CSV-Statistik-Rechner:</strong> Lies eine Tabelle mit Verkaufszahlen ein und berechne Durchschnitt und Summen (<code>csv</code>).</li>
+<li><strong>Wort-Zähler (CLI):</strong> Analysiere Textdateien und gib die häufigsten Wörter grafisch in der Konsole aus.</li>
+<li><strong>Einfacher HTTP-Client:</strong> Lade den HTML-Quelltext einer Website herunter (<code>reqwest</code>).</li>
+<li><strong>Wetter-Abfrage-Tool:</strong> Frage das aktuelle Wetter einer Stadt über eine öffentliche API ab (<code>reqwest</code>, <code>serde</code>).</li>
+<li><strong>Terminal-Todo-Liste mit JSON-Speicher:</strong> Speichere und lade Aufgaben dauerhaft auf der Festplatte (<code>serde</code>).</li>
+<li><strong>Zufallszahlen-Ratespiel:</strong> Das klassische "Errate die Zahl" mit einstellbarem Schwierigkeitsgrad (<code>rand</code>).</li>
+<li><strong>ASCII-Art-Generator:</strong> Verwandle ein eingegebenes Wort in große ASCII-Banner (<code>figlet</code> oder ähnliche Crates).</li>
+<li><strong>UUID-Erzeuger:</strong> Generiere eindeutige Identifikationsnummern für Datenbankeinträge (<code>uuid</code>).</li>
+<li><strong>Markdown-zu-HTML-Konverter:</strong> Lies eine Markdown-Datei ein und erstelle eine formatierte Webseite (<code>pulldown-cmark</code>).</li>
+<li><strong>SHA-256-Hasher:</strong> Berechne den digitalen Fingerabdruck einer eingegebenen Textnachricht (<code>sha2</code>).</li>
+<li><strong>Konsolen-Taschenrechner mit Verlauf:</strong> Speichere die letzten Rechnungen in einer Textdatei ab.</li>
+<li><strong>Regex-Textprüfer:</strong> Überprüfe, ob eine E-Mail-Adresse oder Telefonnummer dem richtigen Format entspricht (<code>regex</code>).</li>
+<li><strong>Farbiger Konsolen-Logger:</strong> Erstelle ein Log-System, das Info-, Warnungs- und Fehlermeldungen farblich trennt (<code>colored</code>).</li>
+<li><strong>ZIP-Archivierer:</strong> Komprimiere mehrere Dateien in einen ZIP-Ordner (<code>zip</code>).</li>
+<li><strong>Verlaufsgrafik im Terminal:</strong> Zeichne eine kleine Fieberkurve oder ein Balkendiagramm direkt in die Konsole (<code>textplots</code>).</li>
+<li><strong>Bild-Format-Konverter:</strong> Konvertiere Bilder von PNG in JPEG (<code>image</code>).</li>
+<li><strong>Mini-Datenbank mit SQLite:</strong> Speichere Kontaktdaten in einer lokalen SQL-Datenbankdatei (<code>rusqlite</code>).</li>
+<li><strong>Automatischer E-Mail-Sender:</strong> Verschicke eine E-Mail direkt aus deinem Rust-Programm heraus (<code>lettre</code>).</li>
+<li><strong>System-Info-Monitor:</strong> Lies die aktuelle CPU-Auslastung und den freien RAM deines PCs aus (<code>sysinfo</code>).</li>
+<li><strong>QR-Code-Generator:</strong> Erzeuge aus einem Text-Link ein QR-Code-Bild (<code>qrcode</code>).</li>
+<li><strong>Stoppuhr mit Rundenzeiten:</strong> Eine präzise Terminal-Uhr für sportliche Aktivitäten.</li>
+<li><strong>Zufälliger Namensgenerator:</strong> Erzeuge Fantasy-Namen durch das zufällige Kombinieren von Silben (<code>rand</code>).</li>
+<li><strong>Base64-Kodierer/Dekodierer:</strong> Verschlüssele Texte in das Base64-Format und stelle sie wieder her.</li>
+<li><strong>URL-Parser:</strong> Zerlege eine komplexe Webadresse in protokol, Domain, Pfad und Parameter (<code>url</code>).</li>
+<li><strong>XML-Konfigurations-Lader:</strong> Verarbeite Konfigurationen im XML-Format (<code>quick-xml</code>).</li>
+<li><strong>Verzeichnisschutz-Prüfer:</strong> Berechne Prüfsummen für alle Dateien in einem Ordner, um Änderungen zu bemerken.</li>
+<li><strong>Argument-Parser für CLI:</strong> Erstelle ein Tool, das komplexe Startparameter sauber auswertet (<code>clap</code>).</li>
+<li><strong>Zufälliges Zitat des Tages:</strong> Zeige beim Starten des Terminals ein zufälliges Zitat aus einer Liste an (<code>rand</code>).</li>
+<li><strong>Web-Scraper:</strong> Suche auf einer Nachrichtenseite nach allen Überschriften und speichere sie (<code>scraper</code>).</li>
+<li><strong>TOML-Konfigurations-Writer:</strong> Erstelle und bearbeite TOML-Dateien dynamisch aus deinem Programm heraus.</li>
+<li><strong>Konsolen-Uhr mit Zeitzonen:</strong> Zeige die aktuelle Uhrzeit in New York, Tokio und Berlin an (<code>chrono</code>).</li>
+<li><strong>DNS-Resolver:</strong> Finde die IP-Adresse zu einer eingegebenen Domain heraus (<code>trust-dns-resolver</code>).</li>
+<li><strong>IP-Adressen-Prüfer:</strong> Finde heraus, ob eine IP-Adresse IPv4 oder IPv6 ist und ob sie privat oder öffentlich ist.</li>
+<li><strong>Labyrinth-Generator:</strong> Erzeuge ein zufälliges Labyrinth im Terminal (<code>rand</code>).</li>
+<li><strong>Befehls-Alias-Manager:</strong> Verwalte Abkürzungen für lange Terminal-Befehle in einer Konfigurationsdatei.</li>
+<li><strong>RSS-Feed-Reader:</strong> Abonniere den Newsfeed deines Lieblingsblogs und zeige neue Beiträge an (<code>rss</code>).</li>
+<li><strong>Zufalls-Farbpaletten-Generator:</strong> Erzeuge harmonische RGB-Farbwerte für Webdesigner (<code>rand</code>).</li>
+<li><strong>Dateigrößen-Formatierer:</strong> Wandle Byte-Angaben in lesbare Formate wie KB, MB oder GB um.</li>
+<li><strong>Passwort-Hasher für Logins:</strong> Sichere Passwörter mit modernen kryptografischen Verfahren ab (<code>bcrypt</code>).</li>
+<li><strong>Feiertags-Kalender:</strong> Berechne, ob ein bestimmtes Datum ein gesetzlicher Feiertag ist (<code>chrono</code>).</li>
+<li><strong>Konsolen-Würfelbecher:</strong> Simuliere das Werfen mehrerer Spielwürfel mit detaillierter Statistik.</li>
+<li><strong>Text-Verschlüsselungs-Tool:</strong> Verschlüssele Nachrichten mit einem geheimen Passwort (<code>aes-gcm</code>).</li>
+<li><strong>Markdown-Link-Checker:</strong> Durchsuche eine Markdown-Datei nach Web-Links und prüfe, ob diese noch erreichbar sind.</li>
+<li><strong>Tagebuch-Manager mit Verschlüsselung:</strong> Schreibe tägliche Einträge, die geschützt auf der Festplatte liegen.</li>
+<li><strong>Port-Scanner:</strong> Überprüfe, welche Netzwerk-Ports auf einem Server geöffnet sind.</li>
+<li><strong>Währungsrechner mit Live-Kursen:</strong> Lade aktuelle Wechselkurse herunter und rechne Beträge um.</li>
+<li><strong>Terminal-Musik-Player:</strong> Spiele einfache Soundeffekte oder MP3-Dateien über die Konsole ab (<code>rodio</code>).</li>
+</ol>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">💡 Zusammenfassung</a></h2>
+<ul>
+<li><strong>Crates</strong> sind die Bausteine in Rust. <strong>Binary Crates</strong> sind ausführbare Programme mit einer <code>main()</code>-Funktion; <strong>Library Crates</strong> sind wiederverwendbare Bibliotheken.</li>
+<li>Die <strong><code>Cargo.toml</code></strong> ist die Konfigurationsdatei deines Projekts. Hier definierst du Projektdaten und deine Abhängigkeiten.</li>
+<li>Rust nutzt <strong>Semantic Versioning (SemVer)</strong> (<code>MAJOR.MINOR.PATCH</code>), um Updates sicher und berechenbar zu machen.</li>
+<li><strong>Cargo Workspaces</strong> helfen dir, große Projekte mit mehreren Crates in einem einzigen Ordner (Monorepos) zu verwalten.</li>
+<li><strong>Cargo Features</strong> erlauben es, optionale Funktionalitäten in Bibliotheken anzubieten, um Kompilierzeit und Dateigröße zu sparen.</li>
+<li>Externe Crates von <a href="https://crates.io">crates.io</a> wie <code>rand</code> und <code>serde</code> lassen sich spielend leicht integrieren und erweitern die Standardbibliothek um mächtige Werkzeuge.</li>
+</ul>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html">Das offizielle Rust-Buch: Cargo und Crates.io</a></li>
+<li><a href="https://doc.rust-lang.org/cargo/">Die offizielle Cargo-Dokumentation (englisch)</a></li>
+<li><a href="https://crates.io">crates.io – Das zentrale Rust-Crate-Verzeichnis</a></li>
+<li><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-structs.md">Konzept: Structs (für die Datenstrukturen in Serde)</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-pfade.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-pfade.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
