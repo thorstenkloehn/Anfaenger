@@ -17414,6 +17414,382 @@ Ein Haushaltsbuch zur Erfassung von Geldbewegungen.</p>
 <li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Transaktion&gt;</code> zur Auflistung aller Einträge.</li>
 <li>Schreibe eine <strong>Methode</strong> <code>letzte_transaktion(&amp;self) -&gt; Option&lt;&amp;Transaktion&gt;</code>, die den letzten Eintrag zurückgibt oder <code>None</code>, wenn noch keine Buchung vorgenommen wurde.</li>
 </ul>
+<hr />
+<h2 id="-projekt-11-bibliotheks-katalog"><a class="header" href="#-projekt-11-bibliotheks-katalog">📚 Projekt 11: Bibliotheks-Katalog</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Verwaltung der Ausleihe von Büchern in einer kleinen Bibliothek.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Buch</code> mit Titel und einem Ausleihstatus.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, Buch&gt;</code></strong> (ISBN-Nummer oder Buchtitel zu Buch-Daten).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>buch_ausleihen(&amp;mut self, titel: &amp;str) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Wenn das Buch bereits ausgeliehen ist oder nicht im Katalog existiert, gib ein <code>Err</code> mit einer entsprechenden Fehlermeldung zurück. Andernfalls setze den Status auf ausgeliehen und gib <code>Ok(())</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-12-fitness-tracker-schritte-log"><a class="header" href="#-projekt-12-fitness-tracker-schritte-log">🏃 Projekt 12: Fitness-Tracker (Schritte-Log)</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Tracker zur Aufzeichnung deiner täglichen Schrittzahlen.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;u32&gt;&gt;</code></strong> (Datum im Format "YYYY-MM-DD" zu einer Liste von gegangenen Schritten pro Aktivität an diesem Tag).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>tages_durchschnitt(&amp;self, datum: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne den Durchschnitt aller Aktivitäten an dem Tag. Falls für das Datum kein Eintrag existiert oder die Liste der Schritte leer ist, gib ein <code>Err</code> zurück, um einen Laufzeitfehler (Division durch Null) zu vermeiden.</li>
+</ul>
+<hr />
+<h2 id="-projekt-13-paket-verfolgung-logistik"><a class="header" href="#-projekt-13-paket-verfolgung-logistik">📦 Projekt 13: Paket-Verfolgung (Logistik)</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Verfolgungssystem für Postpakete.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>PaketStatus</code> mit den Zuständen <code>ImLager</code>, <code>InZustellung</code> und <code>Zugestellt</code>.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, PaketStatus&gt;</code></strong> (Sendungsnummer zu Paketstatus).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>status_abfragen(&amp;self, sendungsnummer: &amp;str) -&gt; Option&lt;PaketStatus&gt;</code>.</li>
+<li>Die Methode soll den aktuellen Status des Pakets zurückgeben. Nutze Pattern Matching im Hauptprogramm, um den Status übersichtlich auf Deutsch auszugeben oder eine Meldung anzuzeigen, falls das Paket unbekannt ist.</li>
+</ul>
+<hr />
+<h2 id="-projekt-14-bankkonto-transaktionen"><a class="header" href="#-projekt-14-bankkonto-transaktionen">💳 Projekt 14: Bankkonto-Transaktionen</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die Kontobewegungen eines Bankkontos.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Konto</code> mit Kontoinhaber und einem Vektor von Transaktionen.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;f64&gt;</code> zur Speicherung aller Einzahlungen (positive Werte) und Auszahlungen (negative Werte).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>abheben(&amp;mut self, betrag: f64) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Die Methode darf die Auszahlung nur erlauben, wenn das Konto durch die Auszahlung nicht ins Minus gerät. Falls das Guthaben nicht ausreicht, gib ein <code>Err</code> zurück. Bei Erfolg gib den neuen Kontostand als <code>Ok(f64)</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-15-kinosaal-reservierung"><a class="header" href="#-projekt-15-kinosaal-reservierung">🎬 Projekt 15: Kinosaal-Reservierung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Reservierungssystem für Sitzplätze in einem Kinosaal.</p>
+<ul>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;bool&gt;</code> im Struct <code>Kinosaal</code>, bei dem jeder Index einen Sitzplatz darstellt (wobei <code>true</code> für belegt und <code>false</code> für frei steht).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>platz_reservieren(&amp;mut self, sitz_index: usize) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Falls die Sitzplatznummer (Index) ungültig (außerhalb des Vektors) oder der Platz bereits belegt ist, gib ein <code>Err</code> mit einer genauen Erklärung zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-16-todo-liste-mit-prioritäten"><a class="header" href="#-projekt-16-todo-liste-mit-prioritäten">📋 Projekt 16: Todo-Liste mit Prioritäten</a></h2>
+<p><strong>Beschreibung:</strong>
+Eine To-Do-Liste, die Aufgaben nach Dringlichkeit sortiert.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>Prioritaet</code> mit den Werten <code>Hoch</code>, <code>Mittel</code> und <code>Niedrig</code>.</li>
+<li>Nutze ein <strong>Struct</strong> <code>Aufgabe</code> mit dem Aufgabentext und der Priorität.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Aufgabe&gt;</code> zur Verwaltung aller Aufgaben.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>naechste_wichtige_aufgabe(&amp;self) -&gt; Option&lt;&amp;Aufgabe&gt;</code>, die die erste Aufgabe mit der Priorität <code>Hoch</code> sucht und zurückgibt. Falls keine dringende Aufgabe existiert, soll das Programm <code>None</code> zurückgeben.</li>
+</ul>
+<hr />
+<h2 id="-projekt-17-rezept-datenbank"><a class="header" href="#-projekt-17-rezept-datenbank">🍳 Projekt 17: Rezept-Datenbank</a></h2>
+<p><strong>Beschreibung:</strong>
+Eine Rezeptverwaltung für die Küche.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;String&gt;&gt;</code></strong> (Rezeptname zu einer Liste von Zutaten).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>zutat_hinzufuegen(&amp;mut self, rezept: &amp;str, zutat: String) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Falls das Rezept nicht in der Datenbank existiert, gib ein <code>Err</code> zurück. Andernfalls füge die neue Zutat dem Vektor des Rezepts hinzu und gib <code>Ok(())</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-18-smart-home-temperatur-log"><a class="header" href="#-projekt-18-smart-home-temperatur-log">🌡️ Projekt 18: Smart-Home Temperatur-Log</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Protokollierungssystem für Raumtemperaturen in einem Smart Home.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;f64&gt;&gt;</code></strong> (Raumname zu einer Liste von gemessenen Temperaturen).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>maximale_temperatur(&amp;self, raum: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Finde die höchste gemessene Temperatur im angegebenen Raum. Falls der Raum nicht existiert oder keine Messwerte vorliegen, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-19-highscore-tabelle"><a class="header" href="#-projekt-19-highscore-tabelle">🏆 Projekt 19: Highscore-Tabelle</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die Bestenliste eines Arcade-Spiels.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Spielername zu Punktzahl).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>highscore_eintragen(&amp;mut self, spieler: String, punkte: u32) -&gt; Option&lt;u32&gt;</code>.</li>
+<li>Wenn der Spieler bereits existiert, überschreibe seinen Score nur, wenn die neuen Punkte höher sind als die alten, und gib den vorherigen Highscore in <code>Some</code> zurück. Falls er neu ist, trage ihn ein und gib <code>None</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-20-event-registrierung"><a class="header" href="#-projekt-20-event-registrierung">🎟️ Projekt 20: Event-Registrierung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Anmeldesystem für ein Event mit begrenzter Teilnehmerzahl.</p>
+<ul>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;String&gt;</code> (Liste der angemeldeten Teilnehmernamen) in einem Struct <code>Event</code> mit einer maximalen Kapazitätsgrenze.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>teilnehmer_registrieren(&amp;mut self, name: String) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Falls das Event bereits ausgebucht ist oder der Teilnehmer bereits auf der Liste steht, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-21-auto-flottenmanager"><a class="header" href="#-projekt-21-auto-flottenmanager">🚗 Projekt 21: Auto-Flottenmanager</a></h2>
+<p><strong>Beschreibung:</strong>
+Überwache den Tankfüllstand einer Fahrzeugflotte.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Kennzeichen zu Füllstand in Prozent, 0-100).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>kraftstoff_nachtanken(&amp;mut self, kennzeichen: &amp;str, menge: u32) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Falls das Fahrzeug nicht in der Flotte existiert oder die Tankfüllung nach dem Tanken 100 % überschreiten würde, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-22-musik-playlist"><a class="header" href="#-projekt-22-musik-playlist">🎵 Projekt 22: Musik-Playlist</a></h2>
+<p><strong>Beschreibung:</strong>
+Eine Wiedergabeliste für Songs.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Song</code> mit Titel, Interpret und Dauer in Sekunden.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Song&gt;</code> zur Speicherung der Playlist.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>song_abspielen(&amp;self, index: usize) -&gt; Result&lt;String, String&gt;</code>.</li>
+<li>Gib den Titel und den Interpreten des Songs als formatierten String zurück. Falls der Index außerhalb des gültigen Bereichs liegt, gib ein <code>Err("Song-Index existiert nicht")</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-23-vokabel-trainer"><a class="header" href="#-projekt-23-vokabel-trainer">🧠 Projekt 23: Vokabel-Trainer</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein interaktiver Vokabeltrainer mit einer Fehlerstatistik.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Vokabel</code> mit der Übersetzung und der Anzahl falscher Antworten.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vokabel&gt;</code></strong> (Deutsches Wort zu den Vokabel-Details).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>antwort_pruefen(&amp;mut self, wort: &amp;str, eingabe: &amp;str) -&gt; Result&lt;bool, String&gt;</code>.</li>
+<li>Falls das Wort nicht existiert, gib ein <code>Err</code> zurück. Andernfalls vergleiche die Eingabe. Bei einer falschen Antwort erhöhe den Fehlerzähler der Vokabel im Struct und gib <code>Ok(false)</code> zurück. Bei Erfolg gib <code>Ok(true)</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-24-flughafen-flugplan"><a class="header" href="#-projekt-24-flughafen-flugplan">✈️ Projekt 24: Flughafen-Flugplan</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Abflug- und Ankunftsboard für einen Flughafen.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>FlugStatus</code> mit den Zuständen <code>Planmaessig</code>, <code>Verspaetet</code>, <code>Storniert</code> und <code>Boarding</code>.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, FlugStatus&gt;</code></strong> (Flugnummer zu Status).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>status_aktualisieren(&amp;mut self, flugnummer: &amp;str, neuer_status: FlugStatus) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Falls die Flugnummer nicht im Flugplan eingetragen ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-25-kursanmeldung-für-studierende"><a class="header" href="#-projekt-25-kursanmeldung-für-studierende">🎓 Projekt 25: Kursanmeldung für Studierende</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die Zuweisung von Studierenden zu verschiedenen Universitätskursen.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;u32&gt;&gt;</code></strong> (Kursname zu einer Liste von Matrikelnummern).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>kurs_belegen(&amp;mut self, kurs: &amp;str, matrikelnummer: u32) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Setze ein Limit von maximal 3 Studierenden pro Kurs. Wenn der Kurs voll ist oder die Matrikelnummer bereits im Kurs registriert ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-26-chatroom-moderation"><a class="header" href="#-projekt-26-chatroom-moderation">🛡️ Projekt 26: Chatroom-Moderation</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein automatischer Filter für Nachrichten in einem Chatroom.</p>
+<ul>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;String&gt;</code> für verbotene Wörter (Blacklist) und einen Vektor für gesperrte Benutzernamen.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>nachricht_verarbeiten(&amp;self, benutzer: &amp;str, nachricht: &amp;str) -&gt; Result&lt;String, String&gt;</code>.</li>
+<li>Falls der Benutzer gesperrt ist, gib ein <code>Err</code> zurück. Falls die Nachricht ein verbotenes Wort enthält, gib ein <code>Err("Nachricht blockiert")</code> zurück. Andernfalls gib die Nachricht im <code>Ok</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-27-webserver-router"><a class="header" href="#-projekt-27-webserver-router">🌐 Projekt 27: Webserver-Router</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein vereinfachter Router, der HTTP-Pfaden entsprechende Handler-Namen zuweist.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, String&gt;</code></strong> (URL-Pfad wie z. B. <code>/ueber-uns</code> zu einem Handler-Namen wie <code>ueber_uns_page</code>).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>route_aufloesen(&amp;self, pfad: &amp;str) -&gt; Result&lt;String, String&gt;</code>.</li>
+<li>Falls der Pfad nicht existiert, gib ein <code>Err</code> mit einem simulierten "404 Not Found" Fehler zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-28-café-kassensystem"><a class="header" href="#-projekt-28-café-kassensystem">☕ Projekt 28: Café-Kassensystem</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein einfaches Kassensystem zur Abrechnung von Kaffeespezialitäten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, f64&gt;</code></strong> (Getränkename zu Preis).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>bestellung_abrechnen(&amp;self, bestellungen: &amp;[String]) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne die Summe aller Preise der bestellten Getränke. Falls ein bestelltes Getränk nicht auf der Karte steht, brich ab und gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-29-telefonbuch-suche"><a class="header" href="#-projekt-29-telefonbuch-suche">📞 Projekt 29: Telefonbuch-Suche</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein digitales Telefonbuch zum Suchen und Verwalten von Kontakten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, String&gt;</code></strong> (Name zu Telefonnummer).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>nummer_suchen(&amp;self, name: &amp;str) -&gt; Option&lt;&amp;String&gt;</code>.</li>
+<li>Die Methode soll die Telefonnummer zurückgeben, falls der Name existiert, andernfalls <code>None</code>. Nutze im Hauptprogramm Pattern Matching, um dem Nutzer ein passendes Feedback anzuzeigen.</li>
+</ul>
+<hr />
+<h2 id="-projekt-30-smart-meter-stromverbrauch"><a class="header" href="#-projekt-30-smart-meter-stromverbrauch">⚡ Projekt 30: Smart-Meter Stromverbrauch</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Aufzeichnung und zum Vergleich des monatlichen Stromverbrauchs.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, f64&gt;</code></strong> (Monatsname zu Verbrauch in kWh).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>verbrauch_vergleichen(&amp;self, monat_a: &amp;str, monat_b: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne den Unterschied im Verbrauch zwischen den beiden Monaten. Falls einer der Monate nicht erfasst wurde, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-31-tierheim-verwaltung"><a class="header" href="#-projekt-31-tierheim-verwaltung">🐱 Projekt 31: Tierheim-Verwaltung</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die Aufnahme von Tieren in einem Tierheim.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>Tierart</code> (<code>Hund</code>, <code>Katze</code>, <code>Nager</code>, <code>Vogel</code>).</li>
+<li>Nutze ein <strong>Struct</strong> <code>Tier</code> mit Name, Tierart und Alter in Jahren.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Tier&gt;</code> zur Verwaltung der Tiere.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>aeltestes_tier_suchen(&amp;self) -&gt; Option&lt;&amp;Tier&gt;</code>, die das älteste Tier im Heim zurückgibt. Falls das Tierheim leer ist, gib <code>None</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-32-apotheken-lagerverwaltung"><a class="header" href="#-projekt-32-apotheken-lagerverwaltung">💊 Projekt 32: Apotheken-Lagerverwaltung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Bestandsprüfung rezeptfreier Medikamente.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Medikamentenname zu Lagerbestand).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>medikament_abgeben(&amp;mut self, name: &amp;str, anzahl: u32) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Reduziere den Bestand um die gewünschte Anzahl. Falls das Medikament nicht existiert oder nicht genügend Packungen auf Lager sind, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="🅿-projekt-33-parkschein-rechner"><a class="header" href="#🅿-projekt-33-parkschein-rechner">🅿️ Projekt 33: Parkschein-Rechner</a></h2>
+<p><strong>Beschreibung:</strong>
+Berechne die Parkgebühren für Fahrzeuge in einer Kurzparkzone.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, u32&gt;</code></strong> (Kennzeichen zu Ankunftszeitpunkt in vollen Stunden ab Tagesbeginn, z. B. 8 für 08:00 Uhr).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>gebuehr_berechnen(&amp;self, kennzeichen: &amp;str, abfahrtszeit: u32, stundensatz: f64) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne die Parkdauer (Abfahrtszeit minus Ankunftszeit) und multipliziere sie mit dem Stundensatz. Falls das Kennzeichen nicht registriert ist oder die Abfahrtszeit vor der Ankunftszeit liegt, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-34-auktionsplattform-gebote"><a class="header" href="#-projekt-34-auktionsplattform-gebote">🔨 Projekt 34: Auktionsplattform-Gebote</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Registrierung von Geboten für ein Auktionsgut.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Gebot</code> mit dem Namen des Bieters und der gebotenen Summe.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Gebot&gt;</code> im Struct <code>Auktion</code>, um den Verlauf aller Gebote zu protokollieren.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>gebot_abgeben(&amp;mut self, bieter: String, betrag: f64) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Ein neues Gebot darf nur akzeptiert werden, wenn es höher ist als das aktuell höchste Gebot. Andernfalls gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-35-umfrage-tool"><a class="header" href="#-projekt-35-umfrage-tool">📊 Projekt 35: Umfrage-Tool</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Werkzeug zur Auswertung von Kundenfeedback.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;u32&gt;&gt;</code></strong> (Feedback-Kategorie wie z. B. "Service" zu einer Liste von Bewertungen von 1 bis 5 Sternen).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>kategorie_durchschnitt(&amp;self, kategorie: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne den Notendurchschnitt für die angegebene Kategorie. Falls die Kategorie nicht existiert oder noch keine Bewertungen abgegeben wurden, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-36-server-status-monitor"><a class="header" href="#-projekt-36-server-status-monitor">🖥️ Projekt 36: Server-Status-Monitor</a></h2>
+<p><strong>Beschreibung:</strong>
+Überwache den Betriebszustand mehrerer Netzwerkhosts.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>ServerStatus</code> mit den Werten <code>Online</code>, <code>Wartung</code> und <code>Offline</code>.</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, ServerStatus&gt;</code></strong> (Server-IP-Adresse zu Status).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>wartung_aktivieren(&amp;mut self, ip: &amp;str) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Setze den Serverstatus auf <code>Wartung</code>. Falls die IP-Adresse im System nicht bekannt ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-37-e-mail-posteingang"><a class="header" href="#-projekt-37-e-mail-posteingang">📬 Projekt 37: E-Mail-Posteingang</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Verwaltung eingegangener E-Mails.</p>
+<ul>
+<li>Nutze ein <strong>Struct</strong> <code>Email</code> mit Absender, Betreff und dem Status <code>gelesen</code> (Boolean).</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Email&gt;</code> zur Verwaltung deines Posteingangs.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>als_gelesen_markieren(&amp;mut self, index: usize) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Setze den Status der E-Mail am angegebenen Index auf gelesen. Falls der Index ungültig ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-38-kanban-taskboard"><a class="header" href="#-projekt-38-kanban-taskboard">📋 Projekt 38: Kanban-Taskboard</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein einfaches Kanban-Board zur Verwaltung von Software-Projekten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;String&gt;&gt;</code></strong> (Spaltenname wie "Todo", "In Arbeit", "Erledigt" zu einer Liste von Aufgabentiteln).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>aufgabe_verschieben(&amp;mut self, task: &amp;str, von_spalte: &amp;str, nach_spalte: &amp;str) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Suche die Aufgabe in der Quellspalte, entferne sie und füge sie in die Zielspalte ein. Falls die Quell- oder Zielspalte oder die Aufgabe selbst nicht existiert, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-39-waren-lieferstatus"><a class="header" href="#-projekt-39-waren-lieferstatus">🚚 Projekt 39: Waren-Lieferstatus</a></h2>
+<p><strong>Beschreibung:</strong>
+Bestätige den Erhalt von Lieferungen im Großhandel.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, bool&gt;</code></strong> (Bestellnummer zu einem Boolean, der angibt, ob die Lieferung abgeschlossen ist).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>lieferung_bestaetigen(&amp;mut self, bestellnummer: &amp;str) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Setze den Status auf <code>true</code> (Geliefert). Falls die Bestellnummer nicht existiert oder die Bestellung bereits als geliefert markiert ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-40-passwort-tresor-mock"><a class="header" href="#-projekt-40-passwort-tresor-mock">🔑 Projekt 40: Passwort-Tresor (Mock)</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein sicherer Passwort-Manager zum Nachschlagen von Anmeldedaten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, String&gt;</code></strong> (Dienstname wie z. B. "github.com" zu einem gehashten Passwort-String).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>passwort_abrufen(&amp;self, dienst: &amp;str) -&gt; Option&lt;&amp;String&gt;</code>.</li>
+<li>Gib das Passwort des Dienstes zurück, falls es im Tresor vorhanden ist. Behandle den Fall eines nicht existierenden Eintrags im Hauptprogramm sicher mit einem <code>match</code> oder <code>if let</code>.</li>
+</ul>
+<hr />
+<h2 id="-projekt-41-schachturnier-ergebnisse"><a class="header" href="#-projekt-41-schachturnier-ergebnisse">♟️ Projekt 41: Schachturnier-Ergebnisse</a></h2>
+<p><strong>Beschreibung:</strong>
+Verwalte die erzielten Punkte von Spielern bei einem Schachturnier.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, f64&gt;</code></strong> (Spielername zu Gesamtpunktzahl).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>ergebnis_eintragen(&amp;mut self, spieler: &amp;str, punkte: f64) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Erhöhe die Punktzahl des Spielers um den Wert <code>punkte</code>. Es sind nur Turnierergebnisse von <code>0.0</code> (Niederlage), <code>0.5</code> (Remis) oder <code>1.0</code> (Sieg) erlaubt. Bei anderen Werten gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-42-iot-sensor-netzwerk"><a class="header" href="#-projekt-42-iot-sensor-netzwerk">📡 Projekt 42: IoT-Sensor-Netzwerk</a></h2>
+<p><strong>Beschreibung:</strong>
+Sammle Messwerte von verschiedenen im Haus verteilten IoT-Sensoren.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;u32, Vec&lt;f64&gt;&gt;</code></strong> (Sensor-ID zu einer Liste von gemessenen Sensorwerten).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>letzter_messwert(&amp;self, sensor_id: u32) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Gib den neuesten (letzten) Messwert des angegebenen Sensors zurück. Falls der Sensor nicht existiert oder noch keine Messwerte gesendet hat, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-43-sensor-alarm-system"><a class="header" href="#-projekt-43-sensor-alarm-system">🚨 Projekt 43: Sensor-Alarm-System</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein System zur Schwellenwert-Überwachung von Messgeräten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, f64&gt;</code></strong> (Sensorname zu Grenzwert) und eine <strong><code>HashMap&lt;String, Vec&lt;f64&gt;&gt;</code></strong> (Sensorname zu einer Liste von gemessenen Werten).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>grenzwert_ueberschritten(&amp;self, sensor: &amp;str) -&gt; Result&lt;bool, String&gt;</code>.</li>
+<li>Gib ein <code>Err</code> zurück, falls der Sensor nicht existiert oder noch keine Messdaten erfasst wurden. Gib andernfalls <code>Ok(true)</code> zurück, wenn mindestens einer der Messwerte über dem Grenzwert des Sensors liegt, ansonsten <code>Ok(false)</code>.</li>
+</ul>
+<hr />
+<h2 id="-projekt-44-reisekosten-abrechnung"><a class="header" href="#-projekt-44-reisekosten-abrechnung">🛫 Projekt 44: Reisekosten-Abrechnung</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Tool zur Spesenabrechnung auf Geschäftsreisen.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>SpesenKategorie</code> (<code>Verpflegung</code>, <code>Unterkunft</code>, <code>Fahrtkosten</code>, <code>Sonstiges</code>).</li>
+<li>Nutze ein <strong>Struct</strong> <code>Spesenbeleg</code> mit dem Betrag und der Kategorie.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Spesenbeleg&gt;</code> zur Auflistung aller Belege.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>kategorie_summe(&amp;self, kategorie: SpesenKategorie) -&gt; f64</code>.</li>
+<li>Berechne die Summe aller Beträge, die der angegebenen Kategorie entsprechen, und gib diese zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-45-inventar-wert-rechner"><a class="header" href="#-projekt-45-inventar-wert-rechner">💎 Projekt 45: Inventar-Wert-Rechner</a></h2>
+<p><strong>Beschreibung:</strong>
+Kalkuliere den Gesamtwert aller Artikel in deinem Lager.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, (u32, f64)&gt;</code></strong> (Artikelname zu einem Tupel mit der Stückzahl und dem Einzelpreis).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>gesamtwert_berechnen(&amp;self) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne den Gesamtwert über alle Artikel (Stückzahl multipliziert mit Einzelpreis). Falls bei einem Artikel ein fehlerhafter, negativer Preis hinterlegt ist, brich ab und gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-46-rezept-allergene-filter"><a class="header" href="#-projekt-46-rezept-allergene-filter">🥜 Projekt 46: Rezept-Allergene-Filter</a></h2>
+<p><strong>Beschreibung:</strong>
+Prüfe Rezepte auf bestimmte Unverträglichkeiten.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;String&gt;&gt;</code></strong> (Rezeptname zu einer Liste von enthaltenen Allergenen wie "Nüsse", "Gluten" etc.).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>ist_sicher_fuer(&amp;self, rezept: &amp;str, allergene: &amp;[String]) -&gt; Result&lt;bool, String&gt;</code>.</li>
+<li>Falls das Rezept nicht existiert, gib ein <code>Err</code> zurück. Andernfalls gib <code>Ok(true)</code> zurück, wenn das Rezept keines der vom Benutzer angegebenen Allergene enthält, andernfalls <code>Ok(false)</code>.</li>
+</ul>
+<hr />
+<h2 id="-projekt-47-support-ticket-warteschlange"><a class="header" href="#-projekt-47-support-ticket-warteschlange">🎫 Projekt 47: Support-Ticket-Warteschlange</a></h2>
+<p><strong>Beschreibung:</strong>
+Ein Ticketsystem, das Support-Tickets nach Dringlichkeit und Reihenfolge verarbeitet.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>Dringlichkeit</code> (<code>Normal</code>, <code>Kritisch</code>).</li>
+<li>Nutze ein <strong>Struct</strong> <code>Ticket</code> mit einer ID, der Problembeschreibung und der Dringlichkeit.</li>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;Ticket&gt;</code> zur Abbildung der Warteschlange.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>naechstes_ticket_bearbeiten(&amp;mut self) -&gt; Option&lt;Ticket&gt;</code>.</li>
+<li>Die Methode soll das älteste Ticket (den ersten Eintrag im Vektor) entfernen und zurückgeben. Falls die Warteschlange leer ist, gib <code>None</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-48-ects-notenschnitt-rechner"><a class="header" href="#-projekt-48-ects-notenschnitt-rechner">📈 Projekt 48: ECTS-Notenschnitt-Rechner</a></h2>
+<p><strong>Beschreibung:</strong>
+Berechne den gewichteten Notendurchschnitt für Studierende an einer Hochschule.</p>
+<ul>
+<li>Verwende eine <strong><code>HashMap&lt;String, Vec&lt;(u32, u32)&gt;&gt;</code></strong> (Studentenname zu einer Liste von Tupeln aus <code>(Note, ECTS-Punkte)</code>).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>durchschnitt_berechnen(&amp;self, name: &amp;str) -&gt; Result&lt;f64, String&gt;</code>.</li>
+<li>Berechne den gewichteten Schnitt (Summe aus Note * ECTS geteilt durch die Summe aller ECTS-Points). Falls der Student nicht existiert oder keine ECTS-Punkte vorhanden sind, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-49-smart-home-geräte-status"><a class="header" href="#-projekt-49-smart-home-geräte-status">🔌 Projekt 49: Smart-Home Geräte-Status</a></h2>
+<p><strong>Beschreibung:</strong>
+Überwache den Betriebsmodus von verbundenen Haushaltsgeräten.</p>
+<ul>
+<li>Nutze ein <strong>Enum</strong> <code>GeraeteZustand</code> (<code>An</code>, <code>Aus</code>, <code>Standby</code>).</li>
+<li>Verwende eine <strong><code>HashMap&lt;String, GeraeteZustand&gt;</code></strong> (Gerätename zu Zustand).</li>
+<li>Implementiere eine <strong>Methode</strong> <code>geraet_umschalten(&amp;mut self, name: &amp;str) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li>Schalte das Gerät von <code>An</code> auf <code>Aus</code>, von <code>Aus</code> auf <code>Standby</code> und von <code>Standby</code> auf <code>An</code> um. Falls das Gerät nicht registriert ist, gib ein <code>Err</code> zurück.</li>
+</ul>
+<hr />
+<h2 id="-projekt-50-paket-routen-planer"><a class="header" href="#-projekt-50-paket-routen-planer">🗺️ Projekt 50: Paket-Routen-Planer</a></h2>
+<p><strong>Beschreibung:</strong>
+Bestimme den nächsten Lieferort einer Lieferroute.</p>
+<ul>
+<li>Verwende einen <strong>Vektor</strong> <code>Vec&lt;String&gt;</code> im Struct <code>Route</code> zur Speicherung der einzelnen Lieferstationen in ihrer richtigen Reihenfolge.</li>
+<li>Implementiere eine <strong>Methode</strong> <code>naechste_station(&amp;self, aktuelle_station: &amp;str) -&gt; Option&lt;&amp;String&gt;</code>.</li>
+<li>Die Methode soll die darauffolgende Station in der Liste zurückgeben. Falls die aktuelle Station die letzte Station ist oder sich nicht auf der Route befindet, gib <code>None</code> zurück.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="100-projekte---fehlerbehandlung--collections"><a class="header" href="#100-projekte---fehlerbehandlung--collections">100 Projekte - Fehlerbehandlung &amp; Collections</a></h1>
 <p>In dieser Phase 3 vertiefen wir die <strong>Collections</strong> (Datenstrukturen der Standardbibliothek wie <code>Vec&lt;T&gt;</code> und <code>HashMap&lt;K, V&gt;</code>) und die <strong>Systematische Fehlerbehandlung</strong> (Result &amp; Option).
 Jedes Projekt kombiniert das Gelernte aus den vorherigen Phasen (wie Structs, Enums, Pattern Matching, Ownership und Borrowing) und erweitert dies um robusten, ausfallsicheren Code.</p>
