@@ -45,6 +45,7 @@
   - [HashMaps](./konzept-hashmaps.md)
   - [Option](./konzept-option.md)
   - [Result](./konzept-result.md)
+  - [Unwiederherstellbare Fehler (panic!)](./konzept-panic.md)
 - [Projektvorschläge Phase 3](./phase3.md)
 - [100 Projekte - Fehlerbehandlung & Collections](./100-projekte-phase3.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase3.md)
