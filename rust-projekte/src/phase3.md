@@ -40,7 +40,7 @@ Ein Warenkorb für einen Online-Shop.
 
 ---
 
-## 👥 Benutzer-Datenbank
+## 👥 Projekt 3: Benutzer-Datenbank
 
 **Beschreibung:**
 Eine einfache Benutzerverwaltung für eine Anwendung.
