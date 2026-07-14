@@ -189,6 +189,7 @@ printf("Hallo %s!\n", vorname); // %s liest den Speicher aus, bis es auf '\0' tr
 
 ## 🚀 Wie du diese Phase am besten nutzt
 
-1.  **Konzepte verinnerlichen:** Lies dieses Kapitel aufmerksam durch und versuche die Analogien im Kopf nachzuvollziehen.
-2.  **Mit Fehlern experimentieren:** Schreibe einfache C-Programme und provoziere bewusst Fehler (z. B. das Weglassen des `&` bei `scanf` oder das Vergessen des `const`-Schlüssels). Dadurch verstehst du, warum C-Programme abstürzen und wie du die Fehler behebst.
-3.  **Vorsicht walten lassen:** C verzeiht keine Fehler. Programmiere stets aufmerksam, initialisiere deine Variablen sofort und behalte deine Speicheradressen im Blick!
+1.  **Die Übersetzungsphasen verstehen:** Um zu begreifen, wie C-Code im Detail verarbeitet wird, wirf zuerst einen Blick in das Kapitel [Die Übersetzungsphasen: C, C++ und Rust im Vergleich](./uebersetzung-vergleich.md).
+2.  **Konzepte verinnerlichen:** Lies dieses Kapitel aufmerksam durch und versuche die Analogien im Kopf nachzuvollziehen.
+3.  **Mit Fehlern experimentieren:** Schreibe einfache C-Programme und provoziere bewusst Fehler (z. B. das Weglassen des `&` bei `scanf` oder das Vergessen des `const`-Schlüssels). Dadurch verstehst du, warum C-Programme abstürzen und wie du die Fehler behebst.
+4.  **Vorsicht walten lassen:** C verzeiht keine Fehler. Programmiere stets aufmerksam, initialisiere deine Variablen sofort und behalte deine Speicheradressen im Blick!

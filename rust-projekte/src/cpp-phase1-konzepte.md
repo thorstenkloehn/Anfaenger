@@ -190,6 +190,7 @@ int main() {
 
 ## 🚀 Wie du diese Phase am besten nutzt
 
-1.  **Die STL schätzen lernen:** Verwende von Anfang an `std::string` und `std::vector`. Sie sparen dir eine Menge Debugging-Zeit.
-2.  **Mit Referenzen experimentieren:** Nutze wann immer möglich Referenzen (`&`) anstelle von Pointern (`*`), wenn du Werte in Funktionen ändern willst. Sie machen deinen Code viel lesbarer und robuster.
-3.  **Sauber bleiben:** Vermeide `using namespace std;` in deinen Programmen. Der explizite Umgang mit `std::` schärft dein Verständnis für die Struktur von C++-Projekten.
+1.  **Die Übersetzungsphasen verstehen:** Um zu begreifen, wie C++-Code im Detail verarbeitet wird, wirf zuerst einen Blick in das Kapitel [Die Übersetzungsphasen: C, C++ und Rust im Vergleich](./uebersetzung-vergleich.md).
+2.  **Die STL schätzen lernen:** Verwende von Anfang an `std::string` und `std::vector`. Sie sparen dir eine Menge Debugging-Zeit.
+3.  **Mit Referenzen experimentieren:** Nutze wann immer möglich Referenzen (`&`) anstelle von Pointern (`*`), wenn du Werte in Funktionen ändern willst. Sie machen deinen Code viel lesbarer und robuster.
+4.  **Sauber bleiben:** Vermeide `using namespace std;` in deinen Programmen. Der explizite Umgang mit `std::` schärft dein Verständnis für die Struktur von C++-Projekten.

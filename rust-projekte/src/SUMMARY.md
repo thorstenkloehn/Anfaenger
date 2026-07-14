@@ -12,6 +12,7 @@
 
 # Phase 1: Grundlagen für Einsteiger
 
+- [Die Übersetzungsphasen: C, C++ und Rust im Vergleich](./uebersetzung-vergleich.md)
 - [Konzepte statt Syntax lernen](./phase1-konzepte.md)
   - [Variablen & Datentypen](./konzept-variablen.md)
   - [Kontrollfluss](./konzept-kontrollfluss.md)
@@ -24,18 +25,32 @@
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts.md)
 - [100 Projekte – Modulare Workflows (Phase 1)](./100-projekte-workflows.md)
 - [📇 Anki-Lernkarten](./anki.md)
-
-# 🇨 C-Programmierung für Einsteiger (Phase 1)
-
-- [Konzepte statt Syntax lernen (Phase 1)](./c-phase1-konzepte.md)
-- [🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen](./c-phase1-workshop.md)
-- [Projektvorschläge Phase 1](./c-phase1.md)
-
-# 🚀 C++-Programmierung für Einsteiger (Phase 1)
-
-- [Konzepte statt Syntax lernen (Phase 1)](./cpp-phase1-konzepte.md)
-- [🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen](./cpp-phase1-workshop.md)
-- [Projektvorschläge Phase 1](./cpp-phase1.md)
+- [🇨 C-Programmierung (Grundkurs C) - Phase 1](./c-phase1-konzepte.md)
+  - [🛹 Mitmach-Workshop](./c-phase1-workshop.md)
+  - [Projektvorschläge Phase 1](./c-phase1.md)
+  - [1 Der Einstieg in die Welt von C](./c-kapitel01.md)
+  - [2 Erste Schritte in C](./c-kapitel02.md)
+  - [3 Basisdatentypen in C](./c-kapitel03.md)
+  - [4 Rechnen mit C und Operatoren](./c-kapitel04.md)
+  - [5 Bedingte Anweisungen und Verzweigungen](./c-kapitel05.md)
+  - [6 Schleifen – Programmteile wiederholen](./c-kapitel06.md)
+  - [7 Funktionen erstellen](./c-kapitel07.md)
+  - [8 Präprozessor-Direktiven](./c-kapitel08.md)
+  - [9 Arrays und Zeichenketten (Strings)](./c-kapitel09.md)
+  - [14 Eingabe- und Ausgabefunktionen](./c-kapitel14.md)
+  - [15 Zeitroutinen (time.h)](./c-kapitel15.md)
+- [🚀 C++-Programmierung (Grundkurs C++23) - Phase 1](./cpp-phase1-konzepte.md)
+  - [🛹 Mitmach-Workshop](./cpp-phase1-workshop.md)
+  - [Projektvorschläge Phase 1](./cpp-phase1.md)
+  - [1 Einstieg in die Welt von C++](./cpp-kapitel01.md)
+  - [2 Erste Schritte in C++](./cpp-kapitel02.md)
+  - [3 Die eingebauten C++-Basisdatentypen](./cpp-kapitel03.md)
+  - [4 Arbeiten mit den eingebauten Typen](./cpp-kapitel04.md)
+  - [5 Kontrollstrukturen](./cpp-kapitel05.md)
+  - [6 Arrays und Strings](./cpp-kapitel06.md)
+  - [8 Funktionen](./cpp-kapitel08.md)
+  - [9 Modularisierung und Präprozessor](./cpp-kapitel09.md)
+  - [17 Ein-/Ausgabestreams für Dateien](./cpp-kapitel17.md)
 
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
@@ -51,6 +66,12 @@
 - [🐚 Bash-Skripte – Grundlagen](./bash-grundlagen.md)
 - [🐚 Bash-Theorie: Alle Themen](./bash-theorie-komplett.md)
 - [Bash-Projektvorschläge](./bash-projektvorschlaege.md)
+- [🇨 C-Programmierung - Phase 2](./c-kapitel12.md)
+- [🚀 C++-Programmierung (C++23) - Phase 2](./cpp-kapitel10.md)
+  - [11 Klassen](./cpp-kapitel11.md)
+  - [12 Objekte und Klassenelemente](./cpp-kapitel12.md)
+  - [13 Operatoren überladen](./cpp-kapitel13.md)
+  - [14 Vererbung (Abgeleitete Klassen)](./cpp-kapitel14.md)
 
 # Phase 3: Fehlerbehandlung & Collections
 
@@ -64,6 +85,8 @@
 - [Projektvorschläge Phase 3](./phase3.md)
 - [100 Projekte - Fehlerbehandlung & Collections](./100-projekte-phase3.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase3.md)
+- [🚀 C++-Programmierung (C++23) - Phase 3](./cpp-kapitel16.md)
+  - [18 Die Standardbibliothek und weitere Sprachelemente](./cpp-kapitel18.md)
 
 # Phase 4: Module, Pfade, Packages & Crates
 
@@ -85,6 +108,7 @@
 - [Projektvorschläge Phase 5](./phase5.md)
 - [100 Projekte - Generics, Traits & Lifetimes](./100-projekte-phase5.md)
 - [100-projekte-prompts-phase5.md](./100-projekte-prompts-phase5.md)
+- [🚀 C++-Programmierung (C++23) - Phase 5](./cpp-kapitel15.md)
 
 # Phase 6: Smart Pointer & Speicherverwaltung
 
@@ -96,6 +120,8 @@
 - [Projektvorschläge Phase 6](./phase6.md)
 - [100 Projekte - Smart Pointer & Speicherverwaltung](./100-projekte-phase6.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase6.md)
+- [🇨 C-Programmierung - Phase 6](./c-kapitel11.md)
+  - [13 Dynamische Datenstrukturen](./c-kapitel13.md)
 
 # Phase 7: Fearless Concurrency (Nebenläufigkeit)
 
@@ -128,6 +154,8 @@
 - [Projektvorschläge Phase 9](./phase9.md)
 - [100 Projekte - Unsafe & FFI](./100-projekte-phase9.md)
 - [100 Projekte – Nur Prompts (Modulares Prinzip)](./100-projekte-prompts-phase9.md)
+- [🇨 C-Programmierung - Phase 9](./c-kapitel10.md)
+- [🚀 C++-Programmierung (C++23) - Phase 9](./cpp-kapitel07.md)
 
 # Phase 10: Metaprogrammierung (Makros)
 

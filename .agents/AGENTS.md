@@ -3,10 +3,13 @@
 - Bei 3+ Kapiteln/großen Aufgaben Subagenten & Skill `subagent-steuern` nutzen.
 
 # Tools
-- Gemini: Chat.
-- Antigravity: Coden.
-- Copilot: Vervollständigung.
-- IDE-Agenten: Planung.
+- Gemini: Chat & Konzeption.
+- Antigravity: Coden & Workflows (CLI, 2.0 & IDE).
+- Copilot: Code-Vervollständigung.
+- IDE-Agenten: Planung & Bearbeitung.
 - Claude Code: Terminal-Agent.
-- Codex CLI: Terminal-Assistent.
-- Vibe Coding: Beschreibung.
+- Codex CLI: Terminal-Assistent von OpenAI.
+- Vibe Coding: Beschreibung & Flow.
+- Zed IDE: Performanter Editor mit KI.
+- Vim: Tastaturgesteuerter Editor.
+- Eigene KI-Agenten: Eigens gebaute Rust-Agenten.
