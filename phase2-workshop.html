@@ -1,0 +1,650 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html" class="active"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">29.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">30.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">31.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">32.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">33.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">34.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">35.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">36.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">37.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">38.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">39.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">40.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">41.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">41.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">41.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">42.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">43.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">43.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">43.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">43.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">43.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">43.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">43.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">43.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">43.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">43.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">43.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">43.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">44.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">44.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">44.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">44.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">44.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">44.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">44.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">44.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">44.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">44.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">45.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">46.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">47.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">48.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">49.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">50.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-mitmach-workshop-phase-2-bildhaft-verstehen-das-rpg-helden-abenteuer"><a class="header" href="#-mitmach-workshop-phase-2-bildhaft-verstehen-das-rpg-helden-abenteuer">🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen (Das RPG-Helden-Abenteuer)</a></h1>
+<p>Willkommen im großen RPG-Helden-Abenteuer! ⚔️🛡️</p>
+<p>Wenn wir programmieren lernen, wirken Begriffe wie <strong>Structs</strong>, <strong>Enums</strong>, <strong>Methoden</strong> (<code>impl</code>) und <strong>Pattern Matching</strong> oft sehr abstrakt. Aber eigentlich ist es wie das Entwerfen deines eigenen Rollenspiels! Ein Struct ist nichts anderes als ein Charakterbogen mit festen Feldern, und ein Enum ist die Auswahlliste deiner Ausrüstung.</p>
+<p>In diesem Kapitel bauen wir zusammen ein kleines Abenteuerspiel im Kopf auf und setzen es danach Schritt für Schritt in Rust um. Mach dich bereit, deinen eigenen Helden zu erschaffen!</p>
+<hr />
+<h2 id="-hintergrund-structs-als-feste-strukturpläne-und-enums-als-flexible-wahlmöglichkeiten-im-speicher"><a class="header" href="#-hintergrund-structs-als-feste-strukturpläne-und-enums-als-flexible-wahlmöglichkeiten-im-speicher">🧠 Hintergrund: Structs als feste Strukturpläne und Enums als flexible Wahlmöglichkeiten im Speicher</a></h2>
+<p>Bevor wir Code schreiben, schauen wir uns an, wie Rust unsere Daten im Arbeitsspeicher ablegt:</p>
+<h3 id="1-das-struct-der-feste-bauplan"><a class="header" href="#1-das-struct-der-feste-bauplan">1. Das Struct: Der feste Bauplan</a></h3>
+<p>Stell dir ein Struct wie einen vorgedruckten Charakterbogen aus Papier vor. Auf diesem Bogen gibt es genau definierte Kästchen: <em>Name</em>, <em>Lebenspunkte</em> (LP) und <em>Schaden</em>.</p>
+<ul>
+<li><strong>Feste Struktur:</strong> Jedes Kästchen hat seinen festen Platz und seine feste Größe. Du kannst nicht spontan ein neues Kästchen dazwischenmalen.</li>
+<li><strong>Im Speicher:</strong> Da die Größe aller Kästchen (z. B. eine Zahl für LP oder Schaden) im Voraus bekannt ist, reserviert der Computer genau diese feste Anzahl an Bytes hintereinander auf dem <strong>Stack</strong> (Stapelspeicher). Das ist super schnell und ordentlich!</li>
+</ul>
+<h3 id="2-das-enum-die-flexiblen-wahlmöglichkeiten"><a class="header" href="#2-das-enum-die-flexiblen-wahlmöglichkeiten">2. Das Enum: Die flexiblen Wahlmöglichkeiten</a></h3>
+<p>Ein Enum ist wie ein magischer Ausrüstungsplatz, auf dem immer nur <strong>eine einzige Sache</strong> zur gleichen Zeit liegen kann. Entweder liegt dort ein Heiltrank, eine Waffe oder ein Beutel Gold.</p>
+<ul>
+<li><strong>Daten tragen:</strong> In Rust sind Enums genial, weil sie nicht nur Namen sind, sondern auch Werte Huckepack tragen können! Ein Heiltrank trägt die Heilkraft als Zahl (<code>Heiltrank(u32)</code>), eine Waffe trägt ihren Schaden (<code>Waffe(u32)</code>) und das Gold seinen Wert (<code>Gold(u32)</code>).</li>
+<li><strong>Im Speicher:</strong> Der Computer reserviert auf dem Stack genau so viel Platz, wie die <em>größte</em> Möglichkeit des Enums benötigt, plus ein kleines "Etikett" (Tag), damit er weiß, welcher Gegenstand gerade wirklich da liegt.</li>
+</ul>
+<hr />
+<h2 id="-das-rpg-helden-abenteuer-auf-einen-blick"><a class="header" href="#-das-rpg-helden-abenteuer-auf-einen-blick">🗺️ Das RPG-Helden-Abenteuer auf einen Blick</a></h2>
+<p>Schau dir an, wie unsere Bausteine im Abenteuer zusammenspielen:</p>
+<pre><code class="language-text">┌────────────────────────────────────────────────────────┐
+│                     struct Held                        │
+│  ┌───────────────┬───────────────────┬──────────────┐  │
+│  │ name: String  │  lp: u32 (Leben)  │ schaden: u32 │  │
+│  └───────────────┴───────────────────┴──────────────┘  │
+└────────────────────────────────────────────────────────┘
+                            │
+                            ▼ (benutzt / interagiert mit)
+┌────────────────────────────────────────────────────────┐
+│                    enum Gegenstand                     │
+│  ┌───────────────────┬───────────────────┬──────────┐  │
+│  │ Heiltrank(u32)    │ Waffe(u32)        │ Gold(u32)│  │
+│  └───────────────────┴───────────────────┴──────────┘  │
+└────────────────────────────────────────────────────────┘
+                            │
+                            ▼ (ausgewertet durch)
+┌────────────────────────────────────────────────────────┐
+│                   match gegenstand                     │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │ Heiltrank(wert) ──&gt; Erhöhe lp um wert            │  │
+│  │ Waffe(wert)     ──&gt; Erhöhe schaden um wert       │  │
+│  │ Gold(wert)      ──&gt; Erhöhe gesammeltes Gold      │  │
+│  └──────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="-micro-learning-1-der-charakterbogen-structs--methoden"><a class="header" href="#-micro-learning-1-der-charakterbogen-structs--methoden">📦 Micro-Learning 1: Der Charakterbogen (Structs &amp; Methoden)</a></h2>
+<h3 id="-die-analogie-der-charakterbogen"><a class="header" href="#-die-analogie-der-charakterbogen">🧸 Die Analogie: Der Charakterbogen</a></h3>
+<p>Wenn du ein Spiel startest, hat jeder Held feste Eigenschaften. Dein Krieger "Grom" hat vielleicht 100 Lebenspunkte und macht 15 Schaden. Diese Werte gehören untrennbar zusammen.</p>
+<p>Ein <strong>Struct</strong> fasst diese Daten in einem Paket zusammen. Mit einem <strong><code>impl</code>-Block</strong> (Kurzform für <em>Implementation</em>) können wir dem Helden Aktionen beibringen – also Methoden, die er ausführen kann (wie das Laufen oder Angreifen).</p>
+<h3 id="-anleitung--syntax-spickzettel"><a class="header" href="#-anleitung--syntax-spickzettel">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<ul>
+<li><strong>Ein Struct definieren:</strong>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Held {
+    name: String,
+    leben: u32,
+    schaden: u32,
+}
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li><strong>Methoden hinzufügen (<code>impl</code>):</strong>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl Held {
+    // Ein Konstruktor, um einen Helden zu erschaffen
+    fn neu(name: String) -&gt; Held {
+        Held {
+            name,
+            leben: 100,
+            schaden: 15,
+        }
+    }
+
+    // Eine Methode, die den Helden verändert (&amp;mut self)
+    fn heilen(&amp;mut self, menge: u32) {
+        self.leben += menge;
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Eselsbrücke:</strong> <strong>Struct</strong> = Die <strong>S</strong>ubstanz (Eigenschaften). <strong>impl</strong> = Die <strong>I</strong>mpulse (Aktionen).
+<strong>Merkzettel:</strong> Wenn eine Methode die Werte des Helden verändern soll, musst du <code>&amp;mut self</code> als ersten Parameter nutzen!</p>
+</blockquote>
+<hr />
+<h2 id="-micro-learning-2-die-ausrüstung-enums-mit-daten"><a class="header" href="#-micro-learning-2-die-ausrüstung-enums-mit-daten">🏷️ Micro-Learning 2: Die Ausrüstung (Enums mit Daten)</a></h2>
+<h3 id="-die-analogie-der-flexible-rucksackplatz"><a class="header" href="#-die-analogie-der-flexible-rucksackplatz">🧸 Die Analogie: Der flexible Rucksackplatz</a></h3>
+<p>In deinem Rucksack hast du einen Platz für einen Gegenstand. Das kann ein Trank sein (der dir LP gibt), ein Schwert (das deinen Schaden erhöht) oder ein Goldklumpen (der dein Vermögen vergrößert).</p>
+<p>Ein <strong>Enum</strong> (Aufzählungstyp) listet diese Möglichkeiten auf. In Rust können die Varianten eigene Werte in Klammern tragen – so schleppt jeder Gegenstand direkt seine Stärke mit!</p>
+<h3 id="-anleitung--syntax-spickzettel-1"><a class="header" href="#-anleitung--syntax-spickzettel-1">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<ul>
+<li><strong>Ein Enum mit Daten definieren:</strong>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Gegenstand {
+    Heiltrank(u32), // Trägt die Heilkraft in LP
+    Waffe(u32),     // Trägt den zusätzlichen Schaden
+    Gold(u32),      // Trägt die Anzahl der Münzen
+}
+<span class="boring">}</span></code></pre></pre>
+</li>
+<li><strong>Einen Gegenstand erstellen:</strong>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let trank = Gegenstand::Heiltrank(25);
+let schwert = Gegenstand::Waffe(10);
+<span class="boring">}</span></code></pre></pre>
+</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Eselsbrücke:</strong> <strong>Enum</strong> = <strong>E</strong>ntweder-oder-Zustände.
+<strong>Merkzettel:</strong> Rust-Enums sind mächtiger als in anderen Sprachen! Nutze die Klammern <code>(u32)</code> hinter den Varianten, um ihnen wichtige Daten mitzugeben.</p>
+</blockquote>
+<hr />
+<h2 id="-micro-learning-3-den-gegenstand-benutzen-pattern-matching"><a class="header" href="#-micro-learning-3-den-gegenstand-benutzen-pattern-matching">🔑 Micro-Learning 3: Den Gegenstand benutzen (Pattern Matching)</a></h2>
+<h3 id="-die-analogie-die-reaktion-auf-den-gegenstand"><a class="header" href="#-die-analogie-die-reaktion-auf-den-gegenstand">🧸 Die Analogie: Die Reaktion auf den Gegenstand</a></h3>
+<p>Wenn dein Held einen Gegenstand aus dem Rucksack zieht, muss das Spiel entscheiden: Was passiert jetzt?</p>
+<ul>
+<li>Ist es ein Heiltrank? Trinke ihn und erhöhe die Lebenspunkte.</li>
+<li>Ist es eine Waffe? Rüste sie aus und mache mehr Schaden.</li>
+<li>Ist es Gold? Stecke es in den Geldbeutel.</li>
+</ul>
+<p>Mit dem <strong><code>match</code>-Ausdruck</strong> prüfen wir genau, welche Variante vorliegt, packen den inneren Wert aus und reagieren passend.</p>
+<h3 id="-anleitung--syntax-spickzettel-2"><a class="header" href="#-anleitung--syntax-spickzettel-2">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<ul>
+<li><strong>Werte auspacken mit <code>match</code>:</strong>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn gegenstand_nutzen(held: &amp;mut Held, gegenstand: Gegenstand) {
+    match gegenstand {
+        Gegenstand::Heiltrank(heilung) =&gt; {
+            held.heilen(heilung);
+            println!("{} trinkt einen Trank und heilt {} LP!", held.name, heilung);
+        }
+        Gegenstand::Waffe(bonus) =&gt; {
+            held.schaden += bonus;
+            println!("{} rüstet eine Waffe aus (+{} Schaden)!", held.name, bonus);
+        }
+        Gegenstand::Gold(anzahl) =&gt; {
+            // Gold einsammeln...
+            println!("Geld gefunden!");
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Eselsbrücke:</strong> <strong>match</strong> = Der <strong>M</strong>uster-Wächter. Er prüft, was genau vorliegt und packt es aus.
+<strong>Merkzettel:</strong> Ein <code>match</code> in Rust muss <strong>vollständig</strong> sein! Du musst jede einzelne Variante deines Enums behandeln, sonst schimpft der Compiler.</p>
+</blockquote>
+<hr />
+<h2 id="-mitmach-workshop-programmiere-deinen-helden-kampf-simulator"><a class="header" href="#-mitmach-workshop-programmiere-deinen-helden-kampf-simulator">🛠️ Mitmach-Workshop: Programmiere deinen Helden-Kampf-Simulator!</a></h2>
+<p>Jetzt schlüpfst du in die Rolle des Spielentwicklers! Wir bauen einen kleinen Kampf-Simulator, in dem ein Held gegen Monster antritt und Gegenstände nutzt.</p>
+<p><strong>WICHTIG:</strong> Verwende in diesem Workshop keine Vektoren (<code>Vec</code>) oder HashMaps, da wir diese erst in Phase 3 lernen! Wir arbeiten nur mit festen Variablen, Structs und Enums.</p>
+<hr />
+<h3 id="-dein-notizzettel-das-ziel-des-workshops"><a class="header" href="#-dein-notizzettel-das-ziel-des-workshops">📝 Dein Notizzettel (Das Ziel des Workshops)</a></h3>
+<p>Dein Programm soll:</p>
+<ol>
+<li>Einen Helden und ein Monster als Structs verwalten.</li>
+<li>Ein Enum für Beute-Gegenstände bereitstellen.</li>
+<li>Eine Methode haben, mit der ein Charakter einen anderen angreift.</li>
+<li>Eine Match-Logik besitzen, um Gegenstände sicher anzuwenden und Werte anzupassen.</li>
+</ol>
+<hr />
+<h3 id="-schritt-für-schritt-bauanleitung"><a class="header" href="#-schritt-für-schritt-bauanleitung">🧱 Schritt-für-Schritt-Bauanleitung</a></h3>
+<h4 id="-schritt-1-die-gegenstände-definieren-enum"><a class="header" href="#-schritt-1-die-gegenstände-definieren-enum">🏃 Schritt 1: Die Gegenstände definieren (Enum)</a></h4>
+<p>Erstelle ein Enum <code>Gegenstand</code>. Es soll folgende Varianten mit Werten besitzen:</p>
+<ul>
+<li><code>Heiltrank</code> (mit einer Zahl für die Heilung).</li>
+<li><code>Schwert</code> (mit einer Zahl für den Zusatzschaden).</li>
+<li><code>Schild</code> (mit einer Zahl für zusätzliche Lebenspunkte/Rüstung).</li>
+</ul>
+<h4 id="-schritt-2-den-helden-und-das-monster-bauen-struct"><a class="header" href="#-schritt-2-den-helden-und-das-monster-bauen-struct">🏢 Schritt 2: Den Helden und das Monster bauen (Struct)</a></h4>
+<p>Erstelle ein Struct <code>Charakter</code>. Es soll folgende Felder haben:</p>
+<ul>
+<li><code>name</code> (ein <code>String</code>)</li>
+<li><code>leben</code> (eine Ganzzahl <code>u32</code>)</li>
+<li><code>schaden</code> (eine Ganzzahl <code>u32</code>)</li>
+</ul>
+<h4 id="-schritt-3-die-charakter-methoden-entwerfen-impl-charakter"><a class="header" href="#-schritt-3-die-charakter-methoden-entwerfen-impl-charakter">🔧 Schritt 3: Die Charakter-Methoden entwerfen (<code>impl Charakter</code>)</a></h4>
+<p>Schreibe die Methoden im <code>impl</code>-Block:</p>
+<ol>
+<li><strong><code>neu(name: String, leben: u32, schaden: u32) -&gt; Charakter</code></strong>
+Erstellt einen Charakter mit den angegebenen Werten.</li>
+<li><strong><code>angreifen(&amp;self, ziel: &amp;mut Charakter)</code></strong>
+Zieht dem Ziel Lebenspunkte in Höhe des Schadens des Angreifers ab. Sorge dafür, dass die Lebenspunkte nicht unter <code>0</code> fallen (z. B. mit <code>saturating_sub</code>).</li>
+<li><strong><code>gegenstand_nutzen(&amp;mut self, item: Gegenstand)</code></strong>
+Nutze ein <code>match</code>, um je nach Gegenstand die LP zu erhöhen (<code>Heiltrank</code>), den Schaden zu steigern (<code>Schwert</code>) oder die LP permanent zu erhöhen (<code>Schild</code>).</li>
+</ol>
+<h4 id="-schritt-4-der-testlauf-in-main"><a class="header" href="#-schritt-4-der-testlauf-in-main">🚦 Schritt 4: Der Testlauf in <code>main</code></a></h4>
+<p>Schreibe ein Skelett deiner Anwendung. Verwende <code>todo!()</code> für alle Teile, die du selbst ausfüllen möchtest.</p>
+<p>Hier ist das Code-Gerüst für dein Hauptprogramm:</p>
+<pre><pre class="playground"><code class="language-rust">// TODO: Definiere hier das Enum `Gegenstand` mit seinen Varianten und Werten
+
+// TODO: Definiere hier das Struct `Charakter`
+
+impl Charakter {
+    fn neu(name: String, leben: u32, schaden: u32) -&gt; Charakter {
+        // TODO: Erstelle einen neuen Charakter
+        todo!()
+    }
+
+    fn angreifen(&amp;self, ziel: &amp;mut Charakter) {
+        // Zieht ziel.leben ab, ohne unter 0 zu fallen
+        // TODO: Schadensberechnung implementieren
+        todo!()
+    }
+
+    fn gegenstand_nutzen(&amp;mut self, item: Gegenstand) {
+        // TODO: match-Ausdruck zur Auswertung des Gegenstands
+        todo!()
+    }
+}
+
+fn main() {
+    // 1. Helden und Monster erstellen
+    let mut held = Charakter::neu(String::from("Sir Rust-a-Lot"), 80, 15);
+    let mut monster = Charakter::neu(String::from("Speicherleck-Ork"), 50, 10);
+    
+    println!("Kampf beginnt! {} ({} LP) gegen {} ({} LP)", held.name, held.leben, monster.name, monster.leben);
+
+    // 2. Erster Schlagabtausch
+    held.angreifen(&amp;mut monster);
+    println!("{} schlägt zu! {} hat noch {} LP.", held.name, monster.name, monster.leben);
+
+    // 3. Held findet Beute und benutzt sie
+    let beute = Gegenstand::Heiltrank(30);
+    held.gegenstand_nutzen(beute);
+
+    // 4. Monster schlägt zurück
+    monster.angreifen(&amp;mut held);
+    println!("{} schlägt zurück! {} hat noch {} LP.", monster.name, held.name, held.leben);
+    
+    // TODO: Füge einen weiteren Beutegegenstand hinzu und teste, ob die Werte stimmen!
+}</code></pre></pre>
+<hr />
+<h2 id="-reichlich-Übungen-zum-vertiefen"><a class="header" href="#-reichlich-Übungen-zum-vertiefen">📝 Reichlich Übungen zum Vertiefen</a></h2>
+<p>Jetzt festigen wir dein Wissen mit praktischen Übungsaufgaben! Kopiere den Code in dein Projekt und ersetze die <code>todo!()</code>-Makros so, dass alle Tests in <code>main</code> erfolgreich durchlaufen.</p>
+<h3 id="-Übung-1-leicht-der-charakterklassen-bonus"><a class="header" href="#-Übung-1-leicht-der-charakterklassen-bonus">🟢 Übung 1 (Leicht): Der Charakterklassen-Bonus</a></h3>
+<p><strong>Ziel:</strong> Lerne, wie man ein einfaches Enum ohne Daten in einem <code>match</code>-Ausdruck auswertet.
+<strong>Szenario:</strong> Bei der Charaktererstellung erhält jede Klasse einen unterschiedlichen Bonus auf ihre Lebenspunkte.</p>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug, Clone, Copy, PartialEq)]
+enum Klasse {
+    Krieger,
+    Magier,
+    Dieb,
+}
+
+fn berechne_leben_mit_bonus(basis_leben: u32, klasse: Klasse) -&gt; u32 {
+    // Krieger erhält +30 LP, Magier erhält +5 LP, Dieb erhält +15 LP.
+    // TODO: Werte mit match aus und addiere den Bonus zum basis_leben.
+    todo!()
+}
+
+fn main() {
+    assert_eq!(berechne_leben_mit_bonus(100, Klasse::Krieger), 130);
+    assert_eq!(berechne_leben_mit_bonus(100, Klasse::Magier), 105);
+    assert_eq!(berechne_leben_mit_bonus(100, Klasse::Dieb), 115);
+    
+    println!("🎉 Übung 1 erfolgreich gelöst!");
+}</code></pre></pre>
+<hr />
+<h3 id="-Übung-2-mittel-die-ausrüstungs-tragkraft"><a class="header" href="#-Übung-2-mittel-die-ausrüstungs-tragkraft">🟡 Übung 2 (Mittel): Die Ausrüstungs-Tragkraft</a></h3>
+<p><strong>Ziel:</strong> Lerne, wie man Enums mit Daten verwendet und Werte berechnet, ohne Vektoren zu nutzen.
+<strong>Szenario:</strong> Ein Held hat zwei feste Ausrüstungsplätze (Hände). Wir wollen das zusätzliche Gewicht berechnen, das er trägt.</p>
+<pre><pre class="playground"><code class="language-rust">enum Ausruestung {
+    Schild(u32),     // Schild mit Gewicht in kg
+    Waffe(u32),      // Waffe mit Gewicht in kg
+    ZweihandAxt(u32),// Riesige Axt mit Gewicht in kg
+    Leer,            // Hand ist leer
+}
+
+struct HeldenHaende {
+    linke_hand: Ausruestung,
+    rechte_hand: Ausruestung,
+}
+
+impl HeldenHaende {
+    fn gesamt_gewicht(&amp;self) -&gt; u32 {
+        // TODO: Berechne das Gewicht beider Hände zusammen mithilfe von Pattern Matching.
+        // Tipp: Schreibe eine kleine Hilfsfunktion oder matche beide Hände einzeln.
+        todo!()
+    }
+}
+
+fn main() {
+    let ausruestung = HeldenHaende {
+        linke_hand: Ausruestung::Schild(5),
+        rechte_hand: Ausruestung::Waffe(3),
+    };
+    assert_eq!(ausruestung.gesamt_gewicht(), 8);
+
+    let schwerer_held = HeldenHaende {
+        linke_hand: Ausruestung::ZweihandAxt(12),
+        rechte_hand: Ausruestung::Leer,
+    };
+    assert_eq!(schwerer_held.gesamt_gewicht(), 12);
+
+    println!("🎉 Übung 2 erfolgreich gelöst!");
+}</code></pre></pre>
+<hr />
+<h3 id="-Übung-3-mittel-die-kisten-falle"><a class="header" href="#-Übung-3-mittel-die-kisten-falle">🟡 Übung 3 (Mittel): Die Kisten-Falle</a></h3>
+<p><strong>Ziel:</strong> Enums mit komplexeren Datenstrukturen auswerten und Spielzustände verändern.
+<strong>Szenario:</strong> Der Held öffnet eine Schatztruhe. Sie kann Gold enthalten, eine Falle sein, die Schaden verursacht, oder einfach leer sein.</p>
+<pre><pre class="playground"><code class="language-rust">enum TruhenInhalt {
+    Gold(u32),
+    Falle(u32),
+    Leer,
+}
+
+struct Held {
+    name: String,
+    leben: u32,
+    gold: u32,
+}
+
+fn truhe_oeffnen(held: &amp;mut Held, truhe: TruhenInhalt) {
+    // TODO: Werte den Inhalt der Truhe aus.
+    // Gold erhöht das Gold des Helden.
+    // Falle zieht Leben ab (darf nicht unter 0 fallen! Nutze saturating_sub).
+    // Leer gibt eine Textmeldung aus.
+    todo!()
+}
+
+fn main() {
+    let mut held = Held {
+        name: String::from("Alrik"),
+        leben: 50,
+        gold: 10,
+    };
+
+    truhe_oeffnen(&amp;mut held, TruhenInhalt::Gold(100));
+    assert_eq!(held.gold, 110);
+    assert_eq!(held.leben, 50);
+
+    truhe_oeffnen(&amp;mut held, TruhenInhalt::Falle(20));
+    assert_eq!(held.leben, 30);
+
+    truhe_oeffnen(&amp;mut held, TruhenInhalt::Falle(40));
+    assert_eq!(held.leben, 0); // Leben darf nicht negativ werden!
+
+    println!("🎉 Übung 3 erfolgreich gelöst!");
+}</code></pre></pre>
+<hr />
+<h3 id="-Übung-4-schwer-das-kampf-duell"><a class="header" href="#-Übung-4-schwer-das-kampf-duell">🔴 Übung 4 (Schwer): Das Kampf-Duell</a></h3>
+<p><strong>Ziel:</strong> Schreibe eine komplexe Simulationsfunktion, die zwei Structs per veränderlicher Referenz (<code>&amp;mut</code>) manipuliert und den Gewinner zurückgibt.
+<strong>Szenario:</strong> Zwei Helden duellieren sich in einer Arena. Sie schlagen abwechselnd zu, bis einer von beiden keine Lebenspunkte (0 LP) mehr hat.</p>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug, PartialEq)]
+struct Duellant {
+    name: String,
+    leben: u32,
+    schaden: u32,
+}
+
+// Simuliert ein Duell. held_a schlägt zuerst zu, dann held_b.
+// Das geht so lange, bis einer der beiden 0 LP erreicht.
+// Gibt den Namen des Gewinners als String zurück.
+fn duell(held_a: &amp;mut Duellant, held_b: &amp;mut Duellant) -&gt; String {
+    // TODO: Schreibe eine Schleife.
+    // In jeder Runde greift held_a den held_b an.
+    // Wenn held_b noch lebt, schlägt held_b zurück.
+    // Sobald einer der beiden 0 LP hat, bricht das Duell ab und der Siegername wird zurückgegeben.
+    todo!()
+}
+
+fn main() {
+    let mut krieger = Duellant {
+        name: String::from("Thorin"),
+        leben: 80,
+        schaden: 15,
+    };
+    let mut ork = Duellant {
+        name: String::from("Uruk"),
+        leben: 60,
+        schaden: 20,
+    };
+
+    // Rundenverlauf im Kopf:
+    // Runde 1: Thorin greift Uruk an -&gt; Uruk verliert 15 LP (hat noch 45).
+    //          Uruk schlägt zurück -&gt; Thorin verliert 20 LP (hat noch 60).
+    // Runde 2: Thorin greift an -&gt; Uruk verliert 15 LP (hat noch 30).
+    //          Uruk schlägt zurück -&gt; Thorin verliert 20 LP (hat noch 40).
+    // Runde 3: Thorin greift an -&gt; Uruk verliert 15 LP (hat noch 15).
+    //          Uruk schlägt zurück -&gt; Thorin verliert 20 LP (hat noch 20).
+    // Runde 4: Thorin greift an -&gt; Uruk verliert 15 LP (hat noch 0). Uruk besiegt!
+    // Thorin gewinnt mit 20 LP.
+    
+    let gewinner = duell(&amp;mut krieger, &amp;mut ork);
+    
+    assert_eq!(gewinner, "Thorin");
+    assert_eq!(krieger.leben, 20);
+    assert_eq!(ork.leben, 0);
+
+    println!("🎉 Übung 4 erfolgreich gelöst!");
+}</code></pre></pre>
+<hr />
+<h2 id="-merkzettel-für-den-kühlschrank-zusammenfassung"><a class="header" href="#-merkzettel-für-den-kühlschrank-zusammenfassung">📇 Merkzettel für den Kühlschrank (Zusammenfassung)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Werkzeug</th><th style="text-align: left">Wann benutzen?</th><th style="text-align: left">Analogie</th><th style="text-align: left">Wichtigste Syntax / Schlüsselwörter</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>struct</code></strong></td><td style="text-align: left">Wenn du zusammengehörige Daten als ein Paket speichern willst.</td><td style="text-align: left">Der Charakterbogen</td><td style="text-align: left"><code>struct Held { name: String }</code></td></tr>
+<tr><td style="text-align: left"><strong><code>impl</code></strong></td><td style="text-align: left">Um Aktionen (Methoden) für dein Struct zu definieren.</td><td style="text-align: left">Die Aktionen des Charakters</td><td style="text-align: left"><code>impl Held { fn heilen(&amp;mut self) }</code></td></tr>
+<tr><td style="text-align: left"><strong><code>enum</code></strong></td><td style="text-align: left">Wenn du eine Auswahl aus sich ausschließenden Optionen brauchst.</td><td style="text-align: left">Der flexible Rucksackplatz</td><td style="text-align: left"><code>enum Gegenstand { Trank(u32), Leer }</code></td></tr>
+<tr><td style="text-align: left"><strong><code>match</code></strong></td><td style="text-align: left">Um zu prüfen, welche Enum-Option vorliegt und Daten zu entpacken.</td><td style="text-align: left">Die Reaktion auf Beute</td><td style="text-align: left"><code>match item { Gegenstand::Trank(x) =&gt; {} }</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-mini-quiz-micro-learning"><a class="header" href="#-mini-quiz-micro-learning">🎓 Mini-Quiz (Micro-Learning)</a></h2>
+<p><em>Versuche, diese Fragen im Kopf zu beantworten:</em></p>
+<ol>
+<li>Was unterscheidet ein Rust-Enum von Enums in vielen anderen Programmier-Sprachen (wie Java oder C++)?</li>
+<li>Wann benutzt man <code>&amp;self</code> and wann <code>&amp;mut self</code> in Methoden eines Structs?</li>
+<li>Warum meckert der Rust-Compiler, wenn du im <code>match</code>-Ausdruck eine Enum-Variante vergisst?</li>
+<li>Warum werden Structs mit festen Datentypen standardmäßig auf dem Stack gespeichert und nicht auf dem Heap?</li>
+</ol>
+<p><em>Viel Erfolg beim Gestalten deiner Helden und dem Bestehen des Abenteuers! Wenn du mal feststeckst, frage deinen KI-Lernpartner nach einem Tipp für das nächste Level, aber lass dir nicht den Code vorsagen!</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-matching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-matching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
