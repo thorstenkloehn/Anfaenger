@@ -93,6 +93,18 @@ src/
 * Lerne, wie du externe Traits wie `Serialize` und `Deserialize` auf deine eigenen Structs in `model.rs` anwendest.
 * Das Modul `storage` benötigt Zugriff auf `model::Paket`. Überlege, wie du den Pfad dorthin über `crate::model::Paket` referenzierst.
 
+### 🌟 Zusatz-Herausforderung (Optional): Umbau zum Cargo Workspace
+Wenn du dich herausfordern möchtest, kannst du dieses Projekt als **Cargo Workspace** (Monorepo) strukturieren. 
+
+Teile das Projekt in zwei eigenständige Crates auf:
+1. **`tracker-core` (Library Crate):** Enthält die gesamte Programmlogik und Datenhaltung (`model.rs`, `storage.rs`, `tracker.rs`).
+2. **`tracker-cli` (Binary Crate):** Enthält ausschließlich das interaktive CLI-Menü und den Einstiegspunkt (`main.rs`).
+
+**Deine Aufgaben:**
+* Erstelle eine übergeordnete `Cargo.toml` im Hauptverzeichnis des Workspaces, die beide Unterordner als `members` auflistet.
+* Verknüpfe `tracker-cli` mit `tracker-core`, indem du in der `Cargo.toml` von `tracker-cli` eine lokale Pfad-Abhängigkeit einträgst (`tracker-core = { path = "../tracker-core" }`).
+* Passe die Importe in `main.rs` an: Da die Logik nun in einer externen Library liegt, kannst du nicht mehr per `crate::` darauf zugreifen, sondern musst das Crate über seinen Namen `tracker_core::` importieren.
+
 ---
 
 ## 🌤️ Projekt 4: Wetter-Informations-CLI

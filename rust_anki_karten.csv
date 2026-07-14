@@ -48,3 +48,13 @@ Sind Strings in Rust standardmäßig UTF-8-kodiert?;Ja.
 Wie ermittelt man die Länge eines Strings in Bytes?;Mit der Methode .len()
 Warum ist direkter Index-Zugriff auf Zeichen eines Strings nicht ohne Weiteres erlaubt?;Da Rust-Strings UTF-8-kodiert sind und Zeichen eine unterschiedliche Byte-Breite haben können.
 Wie durchläuft man die einzelnen Zeichen (Unicode-Skalarwerte) eines Strings?;Mit der Methode .chars()
+Welcher Datentyp repräsentiert eine dynamische, veränderbare Liste?;Vec
+Welche Methode fügt ein Element hinten an einen Vektor an?;.push()
+Welche Datenstruktur speichert Schlüssel-Wert-Paare?;HashMap
+Welche Methode fügt ein Schlüssel-Wert-Paar in eine HashMap ein?;.insert()
+Welcher Enum wird verwendet, wenn ein Wert vorhanden sein oder fehlen kann?;Option
+Welche beiden Varianten hat der Option-Enum?;Some und None
+Welcher Enum wird verwendet, wenn eine Operation erfolgreich sein oder fehlschlagen kann?;Result
+Welche beiden Varianten hat der Result-Enum?;Ok und Err
+Welches Zeichen leitet einen Fehler in einer Funktion blitzschnell an den Aufrufer weiter?;Das Fragezeichen (?)
+Welche Methode greift direkt auf den Wert einer Option zu, riskiert aber einen Absturz?;.unwrap()
