@@ -1,0 +1,1927 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte – Nur Prompts (Modulares Prinzip) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html" class="active"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="phase-8---prompts-1-bis-20-closures-fokus"><a class="header" href="#phase-8---prompts-1-bis-20-closures-fokus">Phase 8 - Prompts 1 bis 20: Closures-Fokus</a></h1>
+<h3 id="1-verzögerter-logger-lazy-logger"><a class="header" href="#1-verzögerter-logger-lazy-logger">1. Verzögerter Logger (Lazy Logger)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwirf die Datenstrukturen für ein Logging-System.</li>
+<li><strong>Hinweise</strong>: Definiere ein Enum <code>LogLevel</code> mit Varianten wie <code>Info</code>, <code>Warn</code> und <code>Error</code>. Erstelle eine Struktur <code>Logger</code>, die das minimal auszugebende <code>LogLevel</code> speichert. Überlege, wie du Closures typisierst, die eine Nachricht generieren, ohne sie sofort auszuwerten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Schreibe die Methode zur verzögerten Log-Ausgabe.</li>
+<li><strong>Hinweise</strong>: Implementiere auf <code>Logger</code> eine Methode <code>log</code>. Sie soll ein <code>LogLevel</code> und eine Closure entgegennehmen, die ein <code>String</code> zurückgibt. Nutze die Eigenschaften von Closures, um die Auswertung der Closure nur dann anzustoßen, wenn das übergebene Level die Mindestanforderung erfüllt. Welches Closure-Trait (<code>Fn</code>, <code>FnMut</code> oder <code>FnOnce</code>) ist hier das passendste?</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle das Hauptprogramm und teste die Verzögerung.</li>
+<li><strong>Hinweise</strong>: Schreibe eine <code>main</code>-Funktion. Erstelle einen <code>Logger</code> mit Level <code>Warn</code>. Rufe <code>log</code> einmal mit <code>Info</code> und einmal mit <code>Error</code> auf. Platziere innerhalb der Closures ein <code>println!</code>, um auf der Konsole sichtbar zu machen, dass die Closure bei <code>Info</code> überhaupt nicht ausgeführt wird.</li>
+</ul>
+<hr />
+<h3 id="2-dynamischer-rabatt-kalkulator"><a class="header" href="#2-dynamischer-rabatt-kalkulator">2. Dynamischer Rabatt-Kalkulator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere Datenstrukturen für Produkte und Berechnungen.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Product</code> mit Feldern für den Namen und den Grundpreis. Überlege dir, wie du eine Funktion designst, die ein Produkt und eine Berechnungs-Closure entgegennimmt, um den Endpreis zu ermitteln.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Preisberechnung mit dynamischen Faktoren.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>calculate_price</code>, die ein <code>Product</code> und eine Closure des Typs <code>Fn(f64) -&gt; f64</code> erwartet. Die Closure soll den Preis manipulieren können. Kapsele Variablen aus der Umgebung (wie aktuelle Mehrwertsteuer oder Sonderrabatte) in der Closure, um sie an die Funktion zu übergeben.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bilde den Kassiervorgang ab und teste verschiedene Rabatte.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> mehrere Produkte. Definiere unterschiedliche Closures (z.B. eine für 10% Rabatt, eine andere für Rabatt plus Steuer) und wende sie auf die Produkte an. Gib die berechneten Endpreise aus.</li>
+</ul>
+<hr />
+<h3 id="3-zustandsbehafteter-klick-zähler"><a class="header" href="#3-zustandsbehafteter-klick-zähler">3. Zustandsbehafteter Klick-Zähler</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Zustand für den Zähler vor.</li>
+<li><strong>Hinweise</strong>: Überlege dir, welche Variable du in der Umgebung einer Closure definieren musst, um Klicks zu zählen. Es wird kein separates Struct benötigt, sondern eine geschickt platzierte Variable, die von der Closure veränderlich eingefangen wird.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle die zustandsbehaftete Closure.</li>
+<li><strong>Hinweise</strong>: Definiere eine Closure, die die Zählervariable erhöht und den aktuellen Stand zurückgibt. Da die Closure ihren Zustand (die eingefangene Variable) verändert, musst du dich fragen, welches Trait (<code>Fn</code>, <code>FnMut</code> oder <code>FnOnce</code>) Rust dieser Closure automatisch zuweist und wie du sie deklarieren musst.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere mehrere Klicks und zeige die Funktionsweise.</li>
+<li><strong>Hinweise</strong>: Rufe die Closure in einer Schleife in <code>main</code> mehrmals auf. Gib den zurückgegebenen Zählerstand aus. Demonstriere, dass der Zählerzustand über die Aufrufe hinweg erhalten bleibt.</li>
+</ul>
+<hr />
+<h3 id="4-einmaliger-ressourcen-verbraucher"><a class="header" href="#4-einmaliger-ressourcen-verbraucher">4. Einmaliger Ressourcen-Verbraucher</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere eine nicht-kopierbare Ressource.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Resource</code> mit einem Feld (z.B. ein Name). Verwende keinen <code>Copy</code>-Trait für dieses Struct, damit das Eigentumsrecht (Ownership) eine Rolle spielt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwickle eine Closure, die die Ressource konsumiert.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Closure, die die <code>Resource</code> aus der Umgebung übernimmt und sie verbraucht (z.B. durch eine Methode, die die Ressource droppt oder deren Eigentum übernimmt). Nutze das Schlüsselwort <code>move</code>, um den Transfer der Ownership zu erzwingen. Welcher Closure-Trait (<code>Fn</code>, <code>FnMut</code> oder <code>FnOnce</code>) wird hier erzwungen und warum?</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste den einmaligen Verbrauch der Ressource.</li>
+<li><strong>Hinweise</strong>: Versuche in <code>main</code>, die Closure ein zweites Mal aufzurufen, und beobachte, wie der Compiler dies verhindert. Implementiere ein sauberes Hauptprogramm, das die Closure genau einmal aufruft und das korrekte Verhalten aufzeigt.</li>
+</ul>
+<hr />
+<h3 id="5-generischer-event-callback"><a class="header" href="#5-generischer-event-callback">5. Generischer Event-Callback</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Struktur für einen Event-Handler.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Button</code> oder <code>EventManager</code>. Es soll ein Feld für eine Callback-Closure enthalten. Da der Typ der Closure zur Compilezeit oft nicht exakt bekannt ist, überlege, ob du ein Generikum mit einem Trait-Bound verwendest oder die Closure in ein <code>Box&lt;dyn Fn()&gt;</code> packst.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Ermögliche das Registrieren und Auslösen des Events.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Methode <code>on_click</code> zum Registrieren der Callback-Closure und eine Methode <code>click</code>, die den Callback auslöst. Achte darauf, wie das Struct das Eigentum an der Closure hält.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere die Interaktion mit dem Event-Manager.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Instanz deiner Struktur. Registriere eine Closure, die eine Nachricht ausgibt oder eine Variable in der Umgebung manipuliert (falls <code>FnMut</code> verwendet wird). Löse das Event aus und verifiziere die Ausgabe.</li>
+</ul>
+<hr />
+<h3 id="6-mathematische-funktions-tabelle"><a class="header" href="#6-mathematische-funktions-tabelle">6. Mathematische Funktions-Tabelle</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die mathematische Auswertung vor.</li>
+<li><strong>Hinweise</strong>: Es werden keine komplexen Datenstrukturen benötigt. Du brauchst eine Funktion, die Startwert, Endwert, Schrittweite und die mathematische Funktion selbst als Parameter akzeptiert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Tabellengenerierung.</li>
+<li><strong>Hinweise</strong>: Schreibe die Funktion <code>print_table</code>. Der Parameter für die mathematische Funktion soll ein Trait-Bound wie <code>F: Fn(f64) -&gt; f64</code> sein. Berechne in einer Schleife (oder mit einem Iterator) die Werte von Start bis Ende und rufe für jeden Schritt die Closure auf.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Werte verschiedene mathematische Funktionen aus.</li>
+<li><strong>Hinweise</strong>: Rufe in <code>main</code> die Funktion <code>print_table</code> mit unterschiedlichen Closures auf (z.B. für eine lineare Funktion <code>x * 2.0</code>, eine quadratische <code>x * x</code> oder die Sinus-Funktion). Gib die Werte übersichtlich formatiert auf der Konsole aus.</li>
+</ul>
+<hr />
+<h3 id="7-thread-sicherer-job-wrapper"><a class="header" href="#7-thread-sicherer-job-wrapper">7. Thread-sicherer Job-Wrapper</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle Datenstrukturen für den Job.</li>
+<li><strong>Hinweise</strong>: Definiere eine Struktur <code>Job</code>, die eine Closure kapselt, die an einen Thread übergeben werden kann. Überlege, welche Auto-Traits (<code>Send</code>, <code>'static</code>) die Closure erfüllen muss, um thread-sicher zu sein.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Kapsele den Thread-Start.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Methode <code>run_in_background</code> für <code>Job</code>. Nutze <code>std::thread::spawn</code>. Die Closure muss mit <code>move</code> alle Daten aus ihrer Umgebung übernehmen, da die Lebensdauer des Threads nicht an die des aktuellen Scopes gebunden ist.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Führe einen Job im Hintergrund aus.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> Daten (z.B. einen Vektor), erstelle einen <code>Job</code>, der diese Daten in einer Closure verarbeitet, und starte ihn im Hintergrund. Warte mit <code>.join()</code> auf das Ende des Threads und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="8-memoisation-cache"><a class="header" href="#8-memoisation-cache">8. Memoisation-Cache</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Cache-Struktur.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Cacher&lt;F&gt;</code> mit den Feldern <code>calculation: F</code> (die Closure) und <code>value: Option&lt;u32&gt;</code> (das berechnete Ergebnis). Verwende Generics für den Typ der Closure.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die lazy Auswertung und Zwischenspeicherung.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Methode <code>value</code> auf <code>Cacher</code>. Wenn <code>value</code> bereits <code>Some</code> enthält, gib diesen Wert zurück. Wenn nicht, rufe die Closure in <code>calculation</code> auf, speichere das Ergebnis in <code>value</code> und gib es zurück. Welches Trait-Bound für <code>F</code> ist notwendig?</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste den Cache auf Performance und Korrektheit.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen <code>Cacher</code> mit einer Closure, die eine langsame Berechnung simuliert (z.B. mit <code>sleep</code> oder einer rechenintensiven Operation). Rufe <code>.value()</code> mehrmals auf und zeige, dass der langsame Teil nur beim ersten Mal ausgeführt wird.</li>
+</ul>
+<hr />
+<h3 id="9-benutzerdefinierter-kontrollfluss"><a class="header" href="#9-benutzerdefinierter-kontrollfluss">9. Benutzerdefinierter Kontrollfluss</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Überlege dir das Kontrollfluss-Muster.</li>
+<li><strong>Hinweise</strong>: Du brauchst keine komplexen Structs. Du implementierst eine Funktion <code>unless</code>, die eine Bedingung und zwei Closures für den Wahr- und Falsch-Fall akzeptiert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Schreibe die Verzweigungslogik.</li>
+<li><strong>Hinweise</strong>: Die Funktion <code>unless</code> soll als Signatur <code>unless&lt;T, F1, F2&gt;(condition: bool, on_true: F1, on_false: F2)</code> haben. Wähle die passenden Trait-Bounds für <code>F1</code> und <code>F2</code>. Rufe je nach Wert von <code>condition</code> nur eine der beiden Closures auf.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste deinen Kontrollfluss im Einsatz.</li>
+<li><strong>Hinweise</strong>: Rufe <code>unless</code> in <code>main</code> mit Bedingungen auf, die zur Laufzeit ermittelt werden. Gib in den Closures unterschiedliche Testnachrichten aus, um zu zeigen, dass nur der zutreffende Zweig evaluiert wird.</li>
+</ul>
+<hr />
+<h3 id="10-sortier-kriterium-konfigurator"><a class="header" href="#10-sortier-kriterium-konfigurator">10. Sortier-Kriterium-Konfigurator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle Datenstrukturen für zu sortierende Objekte.</li>
+<li><strong>Hinweise</strong>: Definiere eine Struktur <code>Person</code> mit Feldern wie <code>name</code> (String) und <code>age</code> (u32).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die flexible Sortierfunktion.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion oder verwende eine Methode auf einem Vektor von Personen, die eine Vergleichs-Closure vom Typ <code>Fn(&amp;Person, &amp;Person) -&gt; std::cmp::Ordering</code> akzeptiert. Nutze Rusts integrierte Sortier-Methoden (wie <code>sort_by</code>), die selbst Closures annehmen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Sortiere eine Liste nach verschiedenen Kriterien.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Personen. Sortiere sie einmal nach Alter (aufsteigend) und einmal nach Name (alphabetisch), indem du jeweils eine passende Sortier-Closure übergibst. Gib das Ergebnis jeweils aus.</li>
+</ul>
+<hr />
+<h3 id="11-flexibler-text-formatierer"><a class="header" href="#11-flexibler-text-formatierer">11. Flexibler Text-Formatierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Schnittstelle für die Texttransformation.</li>
+<li><strong>Hinweise</strong>: Du benötigst eine Funktion, die einen Text-Slice und eine Formatierungs-Closure entgegennimmt und einen modifizierten String zurückgibt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Wort-für-Wort-Transformation.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>format_words</code>, die den Text in Wörter zerlegt, jedes Wort an die Closure <code>Fn(&amp;str) -&gt; String</code> übergibt und die Ergebnisse wieder zu einem Satz zusammenfügt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Wende verschiedene Transformationen an.</li>
+<li><strong>Hinweise</strong>: Teste die Funktion in <code>main</code> mit verschiedenen Closures: Eine, die Wörter zensiert (z.B. durch Sternchen ersetzt), eine, die alles in Großbuchstaben umwandelt, und eine, die jedes Wort umdreht.</li>
+</ul>
+<hr />
+<h3 id="12-zustandsautomat-mit-fnmut"><a class="header" href="#12-zustandsautomat-mit-fnmut">12. Zustandsautomat mit FnMut</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Zustände des Spielcharakters.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Player</code> mit Koordinaten <code>x</code> und <code>y</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die zustandsverändernde Bewegungs-Closure.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion oder eine Closure, die einen veränderlichen Verweis auf <code>Player</code> oder die Koordinaten selbst einfängt. Diese Closure soll bei jedem Aufruf die Koordinaten anpassen. Da der Zustand modifiziert wird, muss die Closure den <code>FnMut</code>-Trait erfüllen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere einen Bewegungspfad.</li>
+<li><strong>Hinweise</strong>: Rufe die Closure in <code>main</code> mehrmals auf, um den Spieler in eine bestimmte Richtung zu bewegen (z.B. im Zickzack). Gib die Position des Spielers nach jedem Schritt aus.</li>
+</ul>
+<hr />
+<h3 id="13-konfigurations-fallback"><a class="header" href="#13-konfigurations-fallback">13. Konfigurations-Fallback</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwirf die Konfigurationsdaten.</li>
+<li><strong>Hinweise</strong>: Verwende den Typ <code>Option&lt;String&gt;</code> für Konfigurationswerte, die vorhanden sein können oder nicht.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Nutze lazy Fallback-Berechnung.</li>
+<li><strong>Hinweise</strong>: Verwende die Methode <code>unwrap_or_else</code> auf <code>Option</code>. Übergib eine Closure, die einen Standardwert (z.B. durch Einlesen einer Umgebungsvariablen oder Generieren eines Standardpfads) erzeugt. Erkläre den Unterschied zu <code>unwrap_or</code>, insbesondere bezüglich der Performance (Lazy Evaluation).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige das Verhalten bei vorhandenen und fehlenden Werten.</li>
+<li><strong>Hinweise</strong>: Teste in <code>main</code> beide Fälle: Einmal ist der Konfigurationswert <code>Some</code>, einmal <code>None</code>. Gib aus, in welchem Fall die Fallback-Closure tatsächlich ausgeführt wird (z.B. indem du ein <code>println!</code> in die Closure einbaust).</li>
+</ul>
+<hr />
+<h3 id="14-sicheres-ressourcen-handling-scope-guard"><a class="header" href="#14-sicheres-ressourcen-handling-scope-guard">14. Sicheres Ressourcen-Handling (Scope Guard)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere eine Struktur, die eine Aufräumaktion kapselt.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>ScopeGuard&lt;F&gt;</code> mit einem Feld für eine Closure. Dieses Struct soll beim Verlassen des Scopes eine Aktion ausführen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Nutze das <code>Drop</code>-Trait für die automatische Ausführung.</li>
+<li><strong>Hinweise</strong>: Implementiere das <code>Drop</code>-Trait für <code>ScopeGuard</code>. In der <code>drop</code>-Methode soll die Closure ausgeführt werden. Welches Trait-Bound muss die Closure erfüllen? (Tipp: Typischerweise <code>FnOnce</code> oder <code>FnMut</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste die Absicherung bei normalen und fehlerhaften Durchläufen.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>ScopeGuard</code>, dessen Closure eine Datei schließt oder eine Statusmeldung ausgibt. Zeige, dass die Closure ausgeführt wird, sobald die Variable den Scope verlässt (auch bei einem vorzeitigen <code>return</code>).</li>
+</ul>
+<hr />
+<h3 id="15-verzeichnis-filter-mit-dynamischem-muster"><a class="header" href="#15-verzeichnis-filter-mit-dynamischem-muster">15. Verzeichnis-Filter mit dynamischem Muster</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Dateisuche vor.</li>
+<li><strong>Hinweise</strong>: Du benötigst keine speziellen Structs, sondern arbeitest mit Pfaden (z.B. <code>std::path::Path</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Filterlogik mit einer Closure.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion, die eine Liste von Dateipfaden und eine Filter-Closure entgegennimmt. Die Closure soll einen Pfad prüfen und ein <code>bool</code> zurückgeben. Fange in der Closure ein Muster (z.B. eine Dateiendung) aus der Umgebung ein.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Filter ein fiktives oder echtes Verzeichnis.</li>
+<li><strong>Hinweise</strong>: Definiere in <code>main</code> eine Liste von Dateinamen. Verwende die Filterfunktion mit einer Closure, die nach verschiedenen Kriterien filtert (z.B. nur <code>.txt</code>-Dateien, oder Dateien, die mit <code>log</code> beginnen). Gib die Ergebnisse aus.</li>
+</ul>
+<hr />
+<h3 id="16-fortschritts-callback"><a class="header" href="#16-fortschritts-callback">16. Fortschritts-Callback</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Fortschrittsinformationen.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Progress</code> mit Feldern wie <code>current_bytes</code> und <code>total_bytes</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere den Kopiervorgang mit Callback.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>copy_data</code>, die Daten in Blöcken kopiert. Sie soll eine Closure <code>Fn(&amp;Progress)</code> akzeptieren. Rufe nach jedem kopierten Block die Closure mit den aktuellen Werten auf.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige eine Fortschrittsanzeige auf der Konsole.</li>
+<li><strong>Hinweise</strong>: Simuliere in <code>main</code> das Kopieren einer Datei. Die übergebene Closure soll den aktuellen Fortschritt in Prozent auf der Konsole ausgeben (z.B. mit Wagenrücklauf <code>\r</code>, um die Zeile zu aktualisieren).</li>
+</ul>
+<hr />
+<h3 id="17-validierungs-pipeline"><a class="header" href="#17-validierungs-pipeline">17. Validierungs-Pipeline</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwirf eine Struktur für die Pipeline.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Validator&lt;T&gt;</code>, das eine Liste von Closures (z.B. in einem <code>Vec&lt;Box&lt;dyn Fn(&amp;T) -&gt; bool&gt;&gt;</code>) speichert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Ermögliche das Hinzufügen von Regeln und die Validierung.</li>
+<li><strong>Hinweise</strong>: Schreibe Methoden <code>add_rule</code>, um eine neue Validierungs-Closure hinzuzufügen, und <code>validate</code>, die alle Regeln gegen ein übergebenes Objekt prüft und <code>true</code> zurückgibt, wenn alle Regeln erfüllt sind.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Validierte Benutzereingaben (z.B. ein Passwort oder Alter).</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>Validator</code> für Strings. Füge Regeln hinzu (z.B. Mindestlänge, enthält Zahlen). Teste verschiedene Strings und gib aus, ob sie valide sind.</li>
+</ul>
+<hr />
+<h3 id="18-zufallszahlengenerator-mit-zustand"><a class="header" href="#18-zufallszahlengenerator-mit-zustand">18. Zufallszahlengenerator mit Zustand</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Überlege dir das mathematische Modell.</li>
+<li><strong>Hinweise</strong>: Verwende eine einfache Formel (wie einen Linearen Kongruenzgenerator LCG) zur Erzeugung von Pseudozufallszahlen. Du brauchst einen Startwert (Seed), der von der Closure eingefangen wird.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle die Generator-Closure.</li>
+<li><strong>Hinweise</strong>: Definiere eine <code>FnMut</code>-Closure, die den Seed bei jedem Aufruf nach der LCG-Formel aktualisiert und die generierte Zahl zurückgibt. Achte darauf, wie der veränderliche Zustand im Scope gehalten wird.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere eine Sequenz von Zufallszahlen.</li>
+<li><strong>Hinweise</strong>: Rufe in <code>main</code> die Generator-Closure mehrmals auf. Gib die Zahlen aus und zeige, dass sich bei gleichem Startwert (Seed) immer dieselbe deterministische Sequenz ergibt.</li>
+</ul>
+<hr />
+<h3 id="19-currying-simulation"><a class="header" href="#19-currying-simulation">19. Currying-Simulation</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verstehe das Konzept des Currying.</li>
+<li><strong>Hinweise</strong>: Currying wandelt eine Funktion mit mehreren Argumenten in eine Kette von Funktionen mit je einem Argument um. Überlege dir die Signatur einer Funktion, die einen Wert nimmt und eine Closure zurückgibt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die verschachtelten Closures.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>add</code>, die ein <code>i32</code> nimmt und eine Closure zurückgibt, die wiederum ein <code>i32</code> nimmt und die Summe berechnet. Der Rückgabetyp der äußeren Funktion ist ein impliziter Closure-Typ (z.B. <code>impl Fn(i32) -&gt; i32</code>). Nutze <code>move</code>, um das erste Argument in die innere Closure zu übertragen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Wende die gecurryte Funktion an.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine spezialisierte Funktion <code>add_five</code> durch Aufruf von <code>add(5)</code>. Benutze diese neue Funktion, um verschiedene Zahlen um 5 zu erhöhen, und gib die Ergebnisse aus.</li>
+</ul>
+<hr />
+<h3 id="20-fehler-mapper"><a class="header" href="#20-fehler-mapper">20. Fehler-Mapper</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere verschiedene Fehlertypen.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>AppError</code> mit Varianten wie <code>DatabaseError(String)</code> oder <code>NetworkError</code>. Simuliere einen rohen Systemfehler (z.B. <code>std::io::Error</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Nutze Closures zur Fehlerkonvertierung.</li>
+<li><strong>Hinweise</strong>: Verwende die Methode <code>.map_err()</code> auf einem <code>Result</code>. Übergib eine Closure, die den rohen Fehler nimmt, ihn in einen passenden <code>AppError</code> umwandelt und zusätzlichen Kontext (z.B. aus der Umgebung eingefangene Variablen wie eine IP oder ID) hinzufügt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere einen Dateizugriffsfehler und transformiere ihn.</li>
+<li><strong>Hinweise</strong>: Versuche in <code>main</code> eine nicht existierende Datei zu öffnen. Fange den Fehler ab, verwende <code>.map_err</code> mit einer Closure, um ihn in deinen <code>AppError</code> umzuwandeln, und gib den finalen Fehler aus.</li>
+</ul>
+<h1 id="phase-8---prompts-21-bis-40-eigene-iteratoren"><a class="header" href="#phase-8---prompts-21-bis-40-eigene-iteratoren">Phase 8 - Prompts 21 bis 40: Eigene Iteratoren</a></h1>
+<h3 id="21-fibonacci-iterator"><a class="header" href="#21-fibonacci-iterator">21. Fibonacci-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Zustand des Fibonacci-Generators vor.</li>
+<li><strong>Hinweise</strong>: Definiere eine Struktur <code>Fibonacci</code>. Welche Variablen muss diese Struktur besitzen, um die aktuelle und die nächste Zahl der Folge zu speichern? Denke an den Startzustand (0 und 1).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das <code>Iterator</code>-Trait.</li>
+<li><strong>Hinweise</strong>: Schreibe die <code>impl Iterator for Fibonacci</code>. Welcher Typ ist der <code>Item</code>-Typ? Implementiere <code>next()</code>, sodass die nächste Fibonacci-Zahl berechnet wird. Stelle sicher, dass die internen Variablen der Struktur aktualisiert werden, und gib den aktuellen Wert zurück. Da die Folge unendlich ist, gibt <code>next()</code> niemals <code>None</code> zurück (sondern immer <code>Some(wert)</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib einen Ausschnitt der Fibonacci-Folge aus.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Instanz des Iterators. Verwende Iterator-Adapter wie <code>.take(n)</code> oder <code>.skip(m)</code>, um eine bestimmte Anzahl von Zahlen auszugeben, da eine einfache Schleife ohne Abbruchbedingung unendlich laufen würde.</li>
+</ul>
+<hr />
+<h3 id="22-bereichs-iterator-mit-schrittweite"><a class="header" href="#22-bereichs-iterator-mit-schrittweite">22. Bereichs-Iterator mit Schrittweite</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Grenzen und die Schrittweite des Bereichs.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>StepRange&lt;T&gt;</code>. Es benötigt Felder für den <code>current</code>-Wert, den <code>end</code>-Wert und die <code>step</code>-Größe. Verwende Typen wie <code>f64</code> oder ein generisches <code>T</code>, das mathematische Operationen und Vergleiche unterstützt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das Trait <code>Iterator</code>.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>next()</code> für <code>StepRange</code>. Überprüfe, ob <code>current</code> den <code>end</code>-Wert überschritten hat. Wenn ja, gib <code>None</code> zurück. Wenn nein, addiere <code>step</code> zu <code>current</code>, speichere den neuen Zustand und gib den vorherigen Zustand als <code>Some(wert)</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Durchlaufe einen Bereich mit Fließkommazahlen.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Bereich von <code>0.0</code> bis <code>3.0</code> mit einer Schrittweite von <code>0.5</code>. Gib alle Werte mit einer Schleife oder <code>.for_each()</code> aus und überprüfe die korrekte Einhaltung der Grenzen.</li>
+</ul>
+<hr />
+<h3 id="23-custom-string-splitter"><a class="header" href="#23-custom-string-splitter">23. Custom String-Splitter</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Halte den Zustand für die Textteilung fest.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>CustomSplit&lt;'a&gt;</code>. Es muss die verbleibende Lebensdauer des Textes abbilden. Welche Felder benötigt es? (Tipp: Einen Verweis auf den noch nicht verarbeiteten Teilstring <code>&amp;'a str</code> und das Trennzeichen <code>char</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Logik zur Textaufspaltung in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: Suche in <code>next()</code> nach dem ersten Vorkommen des Trennzeichens im verbleibenden String. Wenn kein Trennzeichen mehr gefunden wird, gib den Rest des Strings zurück und setze den internen Zustand auf leer. Wenn eines gefunden wird, spalte den String an diesem Index, aktualisiere den Zustand auf den hinteren Teil und gib den vorderen Teil zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zerlege einen Satz in Wörter.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Satz (z.B. durch Kommata getrennt). Verwende deinen <code>CustomSplit</code>-Iterator, um die Einzelteile nacheinander auszulesen, und gib sie auf der Konsole aus.</li>
+</ul>
+<hr />
+<h3 id="24-endloser-zufalls-stream"><a class="header" href="#24-endloser-zufalls-stream">24. Endloser Zufalls-Stream</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Grenzen des Zufallsgenerators.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>RandomStream</code>. Es benötigt Felder für den minimalen und maximalen Wert der zu generierenden Zahlen. Zur Zufallsgenerierung kannst du eine einfache mathematische Formel (wie einen LCG) im Zustand mitführen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Zufallsgenerierung im <code>Iterator</code>-Trait.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>next()</code>. Berechne mithilfe des LCG-Zustands die nächste Zahl, passe sie an den gewünschten Bereich (Min bis Max) an und gib sie in <code>Some</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Lies eine Stichprobe von Zufallszahlen aus.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> den <code>RandomStream</code>. Verwende <code>.take(10)</code>, um genau 10 Zufallszahlen zu ziehen und diese auszugeben.</li>
+</ul>
+<hr />
+<h3 id="25-grid-traversierer"><a class="header" href="#25-grid-traversierer">25. Grid-Traversierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Matrix und den Positionszeiger.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>GridTraverser&lt;'a, T&gt;</code>. Es sollte eine Referenz auf ein zweidimensionales Array oder einen Vektor (<code>&amp;'a [Vec&lt;T&gt;]</code>) halten sowie den aktuellen Index für Zeile (<code>row</code>) und Spalte (<code>col</code>). Zudem wird ein Enum benötigt, das die Richtung festlegt (<code>RowMajor</code> oder <code>ColumnMajor</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Traversierungslogik.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>next()</code>. Berechne je nach eingestellter Richtung die nächste Position. Beachte den Zeilenumbruch bzw. Spaltenwechsel. Wenn das Ende des Grids erreicht ist, gib <code>None</code> zurück, andernfalls das Element als <code>Some(&amp;T)</code>.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Traversiere ein Grid auf beide Arten.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> ein 3x3-Grid. Verwende den <code>GridTraverser</code>, um die Werte einmal zeilenweise und einmal spaltenweise auszugeben.</li>
+</ul>
+<hr />
+<h3 id="26-beidseitiger-queue-iterator"><a class="header" href="#26-beidseitiger-queue-iterator">26. Beidseitiger Queue-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite eine eigene Kollektion für beidseitiges Iterieren vor.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur, die eine Liste von Elementen kapselt (z.B. einen Vektor). Der Iterator selbst benötigt zwei Indizes: einen für den Start (<code>head</code>) und einen für das Ende (<code>tail</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere <code>Iterator</code> und <code>DoubleEndedIterator</code>.</li>
+<li><strong>Hinweise</strong>: Implementiere zuerst <code>Iterator::next()</code>, um Elemente von <code>head</code> bis <code>tail</code> vorwärts zu lesen. Implementiere dann <code>DoubleEndedIterator::next_back()</code>, um Elemente von <code>tail</code> aus rückwärts zu lesen. Stelle sicher, dass die Indizes sich nicht überschneiden.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entnehme Elemente von beiden Seiten.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste. Rufe abwechselnd <code>next()</code> und <code>next_back()</code> auf und beobachte, wie sich die Indizes aufeinander zubewegen, bis der Iterator leer ist.</li>
+</ul>
+<hr />
+<h3 id="27-zirkulärer-puffer-iterator"><a class="header" href="#27-zirkulärer-puffer-iterator">27. Zirkulärer Puffer-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Ringpuffer und den Iterator vor.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>RingBuffer&lt;T&gt;</code> mit einem Vektor und einer maximalen Kapazität. Der Iterator <code>RingBufferIterator</code> benötigt eine Referenz auf den Puffer und den aktuellen Index.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das unendliche Iterieren.</li>
+<li><strong>Hinweise</strong>: In <code>next()</code> des Iterators erhöhst du den Index. Nutze den Modulo-Operator (<code>% Kapazität</code>), damit der Index nach dem letzten Element wieder auf 0 zurückfällt. Der Iterator liefert unendlich lange Elemente.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Lese Daten aus dem Ringpuffer aus.</li>
+<li><strong>Hinweise</strong>: Befülle den Puffer in <code>main</code> mit Elementen. Erstelle den Iterator und nutze <code>.take(15)</code>, um zu demonstrieren, wie sich die Elemente wiederholen.</li>
+</ul>
+<hr />
+<h3 id="28-dateizeilen-streaming"><a class="header" href="#28-dateizeilen-streaming">28. Dateizeilen-Streaming</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite das ressourcenschonende Lesen vor.</li>
+<li><strong>Hinweise</strong>: Verwende <code>std::fs::File</code> und <code>std::io::BufReader</code>. Erstelle ein Struct <code>FileLineReader</code>, das den <code>BufReader</code> kapselt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das zeilenweise Lesen im Iterator.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>next()</code>. Nutze die Methode <code>read_line</code> des <code>BufReader</code>, um jeweils eine Zeile in einen internen Puffer zu lesen. Gib diese Zeile als <code>Some(String)</code> zurück. Behandle Fehler oder das Erreichen des Dateiendes (Dateiende liefert <code>None</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Lies eine Testdatei zeilenweise ein.</li>
+<li><strong>Hinweise</strong>: Schreibe in <code>main</code> ein Programm, das eine Textdatei öffnet, sie mit deinem <code>FileLineReader</code> zeilenweise durchläuft und jede Zeile nummeriert ausgibt.</li>
+</ul>
+<hr />
+<h3 id="29-primzahl-iterator-sieb"><a class="header" href="#29-primzahl-iterator-sieb">29. Primzahl-Iterator (Sieb)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Kapsele den Zustand der Primzahlerzeugung.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Primes</code>. Da du prüfen musst, ob eine Zahl prim ist, speichere im Struct eine Liste der bereits gefundenen Primzahlen, um neue Kandidaten effizient teilen zu können.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Primzahllogik in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: Teste in <code>next()</code> beginnend ab der letzten Zahl fortlaufend die ungeraden Zahlen. Prüfe, ob sie durch eine der bereits gefundenen Primzahlen teilbar sind. Sobald eine Primzahl gefunden wurde, füge sie der internen Liste hinzu und gib sie zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere die ersten n Primzahlen.</li>
+<li><strong>Hinweise</strong>: Erzeuge den <code>Primes</code>-Iterator in <code>main</code> und gib mithilfe von <code>.take(20)</code> die ersten 20 Primzahlen aus.</li>
+</ul>
+<hr />
+<h3 id="30-rückwärts-iterator-für-verkettete-listen"><a class="header" href="#30-rückwärts-iterator-für-verkettete-listen">30. Rückwärts-Iterator für verkettete Listen</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwirf eine einfache verkettete Liste.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur <code>Node&lt;T&gt;</code> mit den Feldern <code>value</code> und <code>next: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;</code>. Der Rückwärts-Iterator benötigt eine Struktur, die die Elemente temporär für die Rückwärtstraversierung erfasst (z.B. indem sie in einem Vektor gesammelt werden).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das Rückwärts-Iterieren.</li>
+<li><strong>Hinweise</strong>: Da es sich um eine einfach verkettete Liste handelt, kannst du beim Erzeugen des Iterators die Liste einmal durchlaufen und Referenzen auf die Werte in einem Vektor sammeln. Die <code>next()</code>-Methode des Iterators entnimmt dann die Elemente von hinten (z.B. mit <code>.pop()</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib eine Liste rückwärts aus.</li>
+<li><strong>Hinweise</strong>: Baue in <code>main</code> eine verkettete Liste mit den Werten 1 -&gt; 2 -&gt; 3 auf. Erzeuge den Rückwärts-Iterator und gib die Elemente in der Reihenfolge 3, 2, 1 aus.</li>
+</ul>
+<hr />
+<h3 id="31-custom-chunk-iterator"><a class="header" href="#31-custom-chunk-iterator">31. Custom Chunk-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Datenstruktur für Chunks.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Chunks&lt;'a, T&gt;</code>, das ein Slice <code>&amp;'a [T]</code> und die gewünschte Chunk-Größe <code>usize</code> enthält.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das Aufteilen des Slices in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>next()</code>, ob das Slice leer ist. Wenn ja, gib <code>None</code> zurück. Wenn nein, teile das Slice mit <code>.split_at()</code> an der Position der Chunk-Größe (oder am Ende des Slices, falls es kürzer ist). Aktualisiere das gespeicherte Slice auf den hinteren Teil und gib den vorderen Teil als <code>Some(&amp;[T])</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zerlege ein Array in Pakete.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> ein Array mit 10 Elementen. Erzeuge einen <code>Chunks</code>-Iterator mit einer Größe von 3. Gib die einzelnen Teilstücke aus (die letzten sollten kleiner sein).</li>
+</ul>
+<hr />
+<h3 id="32-dna-basen-transkriptor"><a class="header" href="#32-dna-basen-transkriptor">32. DNA-Basen-Transkriptor</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere Nukleotide und den Transkriptions-Zustand.</li>
+<li><strong>Hinweise</strong>: Erstelle Enums für <code>DnaNucleotide</code> (A, T, C, G) und <code>RnaNucleotide</code> (A, U, C, G). Der Iterator soll einen Iterator über <code>DnaNucleotide</code> als Quelle kapseln.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Transkription in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>Iterator</code> für <code>Transcriptor&lt;I&gt;</code> (wobei <code>I: Iterator&lt;Item = DnaNucleotide&gt;</code>). In <code>next()</code> rufst du <code>next()</code> auf dem inneren Iterator auf. Mappe die DNA-Base auf die entsprechende RNA-Base (A-&gt;U, T-&gt;A, C-&gt;G, G-&gt;C) und gib diese zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Transkribiere eine DNA-Sequenz.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Vektor mit DNA-Basen. Wandle ihn in einen Iterator um, jage ihn durch den <code>Transcriptor</code> und gib die resultierenden RNA-Basen aus.</li>
+</ul>
+<hr />
+<h3 id="33-run-length-decoder"><a class="header" href="#33-run-length-decoder">33. Run-Length-Decoder</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Dekodierung vor.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>RleDecoder&lt;I&gt;</code>, das einen Iterator <code>I</code> über Tupel vom Typ <code>(usize, char)</code> kapselt. Es benötigt zudem Felder, um das aktuelle Zeichen und dessen verbleibende Anzahl zwischenzuspeichern.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Entpackungs-Logik.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>next()</code>, ob die verbleibende Anzahl des aktuellen Zeichens größer als 0 ist. Wenn ja, dekrementiere sie und gib das Zeichen zurück. Wenn nein, hole das nächste Tupel aus dem inneren Iterator. Wenn der innere Iterator <code>None</code> liefert, gib <code>None</code> zurück, andernfalls aktualisiere den Zustand und wiederhole den Schritt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Dekodiere eine komprimierte Sequenz.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Liste von RLE-Daten wie <code>[(3, 'A'), (1, 'B'), (2, 'C')]</code>. Dekodiere sie und gib das Ergebnis <code>AAABCC</code> aus.</li>
+</ul>
+<hr />
+<h3 id="34-historien-fenster-windowed-iterator"><a class="header" href="#34-historien-fenster-windowed-iterator">34. Historien-Fenster (Windowed Iterator)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Fenstergröße und den Puffer.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>WindowedIterator&lt;I, T&gt;</code>, das einen Iterator <code>I</code> kapselt. Du benötigst eine Struktur (z.B. einen <code>VecDeque</code>), um das aktuelle Fenster der Größe <code>N</code> zwischenzuspeichern.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das gleitende Fenster.</li>
+<li><strong>Hinweise</strong>: Befülle beim ersten Aufruf von <code>next()</code> das Fenster mit den ersten <code>N</code> Elementen. Bei jedem weiteren Aufruf schiebst du ein neues Element vom inneren Iterator nach und entfernst das älteste. Gib das aktuelle Fenster (z.B. als Vektor oder Slice) zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Analysiere eine Sequenz in Dreier-Fenstern.</li>
+<li><strong>Hinweise</strong>: Übergib einen Iterator von Zahlen an den <code>WindowedIterator</code> mit Fenstergröße 3. Gib in <code>main</code> jedes Fenster aus und zeige das Gleiten.</li>
+</ul>
+<hr />
+<h3 id="35-kombinations-iterator"><a class="header" href="#35-kombinations-iterator">35. Kombinations-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Paarbildung vor.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Combinations&lt;T&gt;</code>. Es hält einen Vektor von Elementen und zwei Indizes <code>i</code> und <code>j</code>, um die aktuellen Positionen für die Kombinationen zu verfolgen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere alle Paarkombinationen.</li>
+<li><strong>Hinweise</strong>: Erhöhe in <code>next()</code> den Index <code>j</code>. Wenn <code>j</code> das Ende des Vektors erreicht, erhöhe <code>i</code> und setze <code>j</code> auf <code>i + 1</code>. Wenn <code>i</code> das Ende erreicht, gib <code>None</code> zurück. Gib andernfalls das Paar <code>(&amp;T, &amp;T)</code> an den Indizes <code>i</code> und <code>j</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erzeuge alle Paare aus einer Liste.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Liste von Namen. Nutze deinen Iterator, um alle Zweier-Kombinationen auszugeben, ohne dass Paare doppelt (in unterschiedlicher Reihenfolge) vorkommen.</li>
+</ul>
+<hr />
+<h3 id="36-interleaved-iterator"><a class="header" href="#36-interleaved-iterator">36. Interleaved Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Halte zwei Quell-Iteratoren bereit.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Interleave&lt;I1, I2&gt;</code> mit zwei Feldern für die beiden Iteratoren. Ein Boolean-Feld <code>flag</code> bestimmt, welcher Iterator als nächstes an der Reihe ist.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Wechsel das Abrufen ab.</li>
+<li><strong>Hinweise</strong>: Lese in <code>next()</code> je nach Wert von <code>flag</code> ein Element aus <code>I1</code> oder <code>I2</code>. Schalte <code>flag</code> um. Wenn ein Iterator bereits leer ist, lies weiterhin aus dem anderen, bis beide leer sind.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Mische zwei Listen.</li>
+<li><strong>Hinweise</strong>: Erstelle zwei Vektoren in <code>main</code> (z.B. Zahlen und Buchstaben). Mische sie mit <code>Interleave</code> und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="37-csv-parser-iterator"><a class="header" href="#37-csv-parser-iterator">37. CSV-Parser-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die CSV-Zeilenstruktur.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur <code>CsvParser&lt;I&gt;</code> um einen Zeilen-Iterator <code>I</code>. Sie soll Fehler protokollieren, weshalb ein optionales Log-Feld nützlich sein kann.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Parsen der CSV-Felder in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: Hole in <code>next()</code> die nächste Zeile. Splitte sie am Komma. Wenn das Parsen fehlschlägt (z.B. falsche Spaltenanzahl), überspringe die Zeile, protokolliere den Fehler und fahre mit der nächsten Zeile fort (rekursiver Aufruf von <code>next()</code> oder via Schleife).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Lese eine simulierte CSV-Datei aus.</li>
+<li><strong>Hinweise</strong>: Übergib einen Iterator von Strings (Zeilen), der auch fehlerhafte Zeilen enthält. Gib in <code>main</code> nur die erfolgreich geparsten Zeilen als Vektoren aus.</li>
+</ul>
+<hr />
+<h3 id="38-dateisystem-tiefensuche-dfs"><a class="header" href="#38-dateisystem-tiefensuche-dfs">38. Dateisystem-Tiefensuche (DFS)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Zustand der Pfad-Traversierung vor.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>DirectoryDfs</code> mit einem Stack (z.B. einem Vektor von <code>std::path::PathBuf</code>) für die noch zu besuchenden Verzeichnisse.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Tiefensuche.</li>
+<li><strong>Hinweise</strong>: Nimm in <code>next()</code> den obersten Pfad vom Stack. Wenn es sich um eine Datei handelt, gib sie zurück. Wenn es ein Verzeichnis ist, lies dessen Inhalt mit <code>std::fs::read_dir</code> und lege alle gefundenen Pfade auf den Stack. Wiederhole dies, bis eine Datei gefunden wird oder der Stack leer ist.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Liste alle Dateien unter einem Startverzeichnis auf.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>DirectoryDfs</code> für einen Testordner und gib alle darin gefundenen Dateipfade aus.</li>
+</ul>
+<hr />
+<h3 id="39-fortschritts-iterator-exactsize"><a class="header" href="#39-fortschritts-iterator-exactsize">39. Fortschritts-Iterator (ExactSize)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Struktur für die Fortschrittsüberwachung.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>ProgressIterator&lt;I&gt;</code> mit dem inneren Iterator <code>I</code> und der Gesamtlänge.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere <code>Iterator</code> und <code>ExactSizeIterator</code>.</li>
+<li><strong>Hinweise</strong>: Leite den <code>next()</code>-Aufruf an den inneren Iterator weiter und dekrementiere die verbleibende Länge. Implementiere das <code>ExactSizeIterator</code>-Trait, indem du die Methode <code>len(&amp;self) -&gt; usize</code> bereitstellst, die die verbleibende Anzahl an Elementen zurückgibt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Visualisiere verbleibende Schritte.</li>
+<li><strong>Hinweise</strong>: Nutze den Iterator in <code>main</code> und zeige in jedem Schleifendurchlauf an, wie viele Elemente noch verarbeitet werden müssen, indem du <code>.len()</code> abfragst.</li>
+</ul>
+<hr />
+<h3 id="40-zyklischer-wochentags-iterator"><a class="header" href="#40-zyklischer-wochentags-iterator">40. Zyklischer Wochentags-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Wochentage.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>Weekday</code> mit allen sieben Wochentagen. Der Iterator <code>WeekdayIterator</code> benötigt ein Feld für den aktuellen Wochentag (oder einen Index 0-6).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die zyklische Rotation.</li>
+<li><strong>Hinweise</strong>: Ermittle in <code>next()</code> den aktuellen Tag, bestimme den nächsten Wochentag (Montag folgt auf Sonntag) und speichere ihn ab. Gib den ermittelten Tag in <code>Some</code> zurück. Der Iterator endet nie.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere einen zweiwöchigen Kalender.</li>
+<li><strong>Hinweise</strong>: Erzeuge den <code>WeekdayIterator</code> in <code>main</code> und lasse ihn über einen Adapter <code>.take(14)</code> laufen, um zwei komplette Wochen auszugeben.</li>
+</ul>
+<h1 id="phase-8---prompts-41-bis-60-iterator-ketten--adapter"><a class="header" href="#phase-8---prompts-41-bis-60-iterator-ketten--adapter">Phase 8 - Prompts 41 bis 60: Iterator-Ketten &amp; Adapter</a></h1>
+<h3 id="41-zahlen-filter--quadrierer"><a class="header" href="#41-zahlen-filter--quadrierer">41. Zahlen-Filter &amp; Quadrierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Zahlenliste vor.</li>
+<li><strong>Hinweise</strong>: Definiere einen Vektor mit ganzen Zahlen (<code>Vec&lt;i32&gt;</code>), die sowohl positive als auch negative Werte sowie gerade und ungerade Zahlen enthalten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Baue die Transformations-Kette auf.</li>
+<li><strong>Hinweise</strong>: Wandle den Vektor in einen Iterator um. Verwende <code>.filter()</code>, um nur ungerade Zahlen übrig zu lassen (nutze den Modulo-Operator). Schließe einen <code>.map()</code>-Adapter an, der die verbleibenden Zahlen quadriert. Sammele das Ergebnis mit <code>.collect()</code> in einem neuen Vektor.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Werte und vergleiche die Eingabe und Ausgabe.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> die Ausgangsliste und die resultierende Liste aus, um zu verifizieren, dass alle Kriterien korrekt verarbeitet wurden.</li>
+</ul>
+<hr />
+<h3 id="42-gesamtwortlängen-rechner"><a class="header" href="#42-gesamtwortlängen-rechner">42. Gesamtwortlängen-Rechner</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Eingabetext vor.</li>
+<li><strong>Hinweise</strong>: Verwende eine Zeichenkette (<code>&amp;str</code>), die einen Satz mit Wörtern unterschiedlicher Länge und eventuell Satzzeichen enthält.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verwende eine funktionale Kette zur Längenermittlung.</li>
+<li><strong>Hinweise</strong>: Splitte den Satz in Wörter auf (z.B. mit <code>.split_whitespace()</code>). Verwende <code>.map()</code>, um jedes Wort durch seine Länge zu ersetzen. Verwende am Ende <code>.sum()</code> oder <code>.fold()</code>, um alle Längen zu addieren.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne und präsentiere das Ergebnis.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> den ursprünglichen Satz sowie die berechnete Gesamtlänge aller Wörter aus.</li>
+</ul>
+<hr />
+<h3 id="43-e-mail-domänen-filter"><a class="header" href="#43-e-mail-domänen-filter">43. E-Mail-Domänen-Filter</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die E-Mail-Datenquelle.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor von Strings mit E-Mail-Adressen, wobei einige Domänen mehrfach vorkommen sollten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Extrahiere die eindeutigen Domänen.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator aus den E-Mails. Verwende <code>.filter_map()</code>, um ungültige Adressen (die kein <code>@</code> enthalten) auszufiltern und gleichzeitig die Domäne (den Teil nach dem <code>@</code>) zu extrahieren. Verwende <code>.collect()</code>, um die Domänen direkt in ein <code>HashSet</code> einzulesen, welches Duplikate automatisch entfernt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib die Domänenliste aus.</li>
+<li><strong>Hinweise</strong>: Drucke in <code>main</code> die gesammelten Domänen aus und verifiziere, dass keine Domäne doppelt aufgeführt ist.</li>
+</ul>
+<hr />
+<h3 id="44-gleitender-durchschnitt-mit-scan"><a class="header" href="#44-gleitender-durchschnitt-mit-scan">44. Gleitender Durchschnitt mit Scan</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Messdaten vor.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Liste von Sensor-Messwerten (z.B. ein Vektor von <code>f64</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne den gleitenden Durchschnitt über einen Zustand mit <code>scan</code>.</li>
+<li><strong>Hinweise</strong>: Nutze <code>.scan()</code>. Dieser Adapter erlaubt es dir, einen Zustand (z.B. ein Tupel aus der aktuellen Summe und der Anzahl der bisherigen Elemente) über die Iteration hinweg mitzuführen. Berechne in jedem Schritt den neuen Durchschnitt und gib ihn aus.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Stelle den Verlauf der Durchschnittswerte dar.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Messreihe mit Ausreißern. Wende die Kette an und gib die Liste der gleitenden Durchschnitte aus.</li>
+</ul>
+<hr />
+<h3 id="45-wörter-partitionierung"><a class="header" href="#45-wörter-partitionierung">45. Wörter-Partitionierung</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Wortliste vor.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor von Wörtern (Strings), die teils mit Vokalen (A, E, I, O, U) und teils mit Konsonanten beginnen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teile die Liste mit <code>partition</code> auf.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator über die Wörter. Rufe die Methode <code>.partition()</code> auf. Diese Methode nimmt eine Closure entgegen, die <code>true</code> oder <code>false</code> zurückgibt, und teilt den Iterator in zwei Vektoren auf. Implementiere die Closure so, dass sie prüft, ob der Anfangsbuchstabe ein Vokal ist.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige beide Teil-Listen.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> beide durch die Partitionierung entstandenen Listen getrennt aus.</li>
+</ul>
+<hr />
+<h3 id="46-indexbasierte-suche"><a class="header" href="#46-indexbasierte-suche">46. Indexbasierte Suche</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Suchdaten vor.</li>
+<li><strong>Hinweise</strong>: Definiere einen Vektor mit Elementen (z.B. Strings) und lege ein Kriterium fest (z.B. das erste Wort, das mit 'Z' beginnt).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Finde das Element und seinen Index.</li>
+<li><strong>Hinweise</strong>: Wandle den Vektor in einen Iterator um. Rufe <code>.enumerate()</code> auf, um Tupel aus Index und Element zu erhalten. Verwende danach <code>.find()</code>, um das erste Element zu finden, das die Bedingung erfüllt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Werte das Suchergebnis aus.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> aus, an welchem Index das gesuchte Element gefunden wurde. Behandle auch den Fall, dass kein Element die Bedingung erfüllt (<code>Option</code> sauber behandeln).</li>
+</ul>
+<hr />
+<h3 id="47-verschachteltes-json-flattening"><a class="header" href="#47-verschachteltes-json-flattening">47. Verschachteltes JSON-Flattening</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere verschachtelte JSON-Arrays.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>JsonValue</code>, das Varianten wie <code>Null</code>, <code>Number(i32)</code> und <code>Array(Vec&lt;JsonValue&gt;)</code> besitzen kann.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Flache verschachtelte Arrays ab.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Kette, die ein <code>JsonValue::Array</code> nimmt und mit <code>.flat_map()</code> bzw. <code>.filter_map()</code> arbeitet. Wenn ein Element ein verschachteltes Array ist, sollen dessen innere Werte geliefert werden. Wenn es ein einzelner Wert (z.B. eine Zahl) ist, soll dieser direkt übergeben werden.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste die Strukturierung auf einer Testeingabe.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine verschachtelte Struktur wie <code>[1, [2, 3], null, [4]]</code>. Jage sie durch deine Kette und sammle alle gefundenen Zahlen in einem flachen Vektor.</li>
+</ul>
+<hr />
+<h3 id="48-debugging-pipeline-mit-inspect"><a class="header" href="#48-debugging-pipeline-mit-inspect">48. Debugging-Pipeline mit Inspect</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Testdaten vor.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Liste von Zahlen, die transformiert werden soll.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Schleuse <code>inspect</code> in die Kette ein.</li>
+<li><strong>Hinweise</strong>: Baue eine Kette aus mehreren Adaptern (z.B. <code>filter</code>, <code>map</code>, <code>take</code>). Füge zwischen den Schritten <code>.inspect(|x| println!("Debug: {}", x))</code> ein. Das erlaubt es dir, den aktuellen Zustand der Daten zu betrachten, ohne das Element zu verändern oder die Kette zu unterbrechen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Beobachte den Datenfluss.</li>
+<li><strong>Hinweise</strong>: Führe die Kette in <code>main</code> aus. Achte in der Konsolenausgabe darauf, wie die Elemente Schritt für Schritt die Kette durchlaufen und an welchen Stellen sie ausgefiltert werden.</li>
+</ul>
+<hr />
+<h3 id="49-wort-häufigkeits-zähler"><a class="header" href="#49-wort-häufigkeits-zähler">49. Wort-Häufigkeits-Zähler</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Analysetext vor.</li>
+<li><strong>Hinweise</strong>: Verwende einen längeren String, in dem bestimmte Wörter mehrfach vorkommen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zähle die Wörter mithilfe von <code>fold</code>.</li>
+<li><strong>Hinweise</strong>: Zerlege den Text in Wörter. Verwende <code>.fold()</code>, um eine <code>HashMap&lt;String, usize&gt;</code> aufzubauen. Der Akkumulator in <code>fold</code> startet mit einer leeren Map. Erhöhe für jedes Wort dessen Zähler in der Map.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib die Häufigkeitstabelle aus.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> die resultierende Map formatiert aus, sodass man die Häufigkeit jedes Wortes ablesen kann.</li>
+</ul>
+<hr />
+<h3 id="50-id-namens-verknüpfung-zip"><a class="header" href="#50-id-namens-verknüpfung-zip">50. ID-Namens-Verknüpfung (Zip)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die beiden Datenquellen.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Liste von IDs (<code>Vec&lt;u32&gt;</code>) und eine Liste von Namen (<code>Vec&lt;String&gt;</code>). Die Listen können unterschiedlich lang sein.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verknüpfe beide Sequenzen.</li>
+<li><strong>Hinweise</strong>: Wandle beide Listen in Iteratoren um. Rufe <code>.zip()</code> auf dem ersten Iterator auf und übergib den zweiten. Mappe die resultierenden Tupel <code>(id, name)</code> in eine Struktur <code>User</code>.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige die verknüpften Benutzer.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> die Liste der erzeugten <code>User</code>-Strukturen aus. Achte darauf, was passiert, wenn eine der beiden Listen kürzer war.</li>
+</ul>
+<hr />
+<h3 id="51-paginierte-dateiliste"><a class="header" href="#51-paginierte-dateiliste">51. Paginierte Dateiliste</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere Verzeichnisinhalte.</li>
+<li><strong>Hinweise</strong>: Erstelle zwei Vektoren von Strings, die Dateinamen aus unterschiedlichen Verzeichnissen repräsentieren.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verkette und limitiere die Liste.</li>
+<li><strong>Hinweise</strong>: Verwende <code>.chain()</code>, um die Iteratoren der beiden Vektoren nahtlos aneinanderzuhängen. Nutze <code>.skip(page * page_size)</code> und <code>.take(page_size)</code>, um nur einen bestimmten Ausschnitt (eine Seite) der kombinierten Dateiliste zu erhalten.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere das Blättern.</li>
+<li><strong>Hinweise</strong>: Implementiere in <code>main</code> eine Schleife oder manuelle Abfragen für Seite 0 und Seite 1 mit einer festen Seitengröße und gib die Ergebnisse aus.</li>
+</ul>
+<hr />
+<h3 id="52-messdaten-abbruchbedingung"><a class="header" href="#52-messdaten-abbruchbedingung">52. Messdaten-Abbruchbedingung</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Datenreihe.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor mit Zahlen, die Sensorwerte darstellen, bei dem ab einem gewissen Punkt kritische Werte (z.B. &gt; 100) auftreten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Brich die Iteration ab.</li>
+<li><strong>Hinweise</strong>: Wandle die Daten in einen Iterator um. Verwende <code>.take_while()</code>, um die Werte so lange zu verarbeiten, wie sie sich im normalen Bereich befinden. Sobald ein Wert das Kriterium verletzt, bricht der Iterator ab.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Überprüfe das Abbruchverhalten.</li>
+<li><strong>Hinweise</strong>: Jage die Liste in <code>main</code> durch den Iterator und gib die extrahierten Werte aus. Stelle sicher, dass nach dem ersten ungültigen Wert keine weiteren (auch wenn sie wieder gültig wären) verarbeitet werden.</li>
+</ul>
+<hr />
+<h3 id="53-status-check-allany"><a class="header" href="#53-status-check-allany">53. Status-Check (All/Any)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Status-Objekte.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur <code>Connection</code> mit einem Boolean-Feld <code>is_active</code> und einem optionalen Fehlercode.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Überprüfe den Zustand aller Verbindungen.</li>
+<li><strong>Hinweise</strong>: Wandle eine Liste von Verbindungen in einen Iterator um. Verwende <code>.all()</code>, um zu prüfen, ob alle Verbindungen aktiv sind. Verwende <code>.any()</code>, um zu prüfen, ob mindestens eine Verbindung einen kritischen Fehlercode aufweist.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Werte die Verbindungen aus.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> verschiedene Test-Szenarien (alle aktiv, eine inaktiv, eine mit Fehler) und gib die jeweiligen Testergebnisse aus.</li>
+</ul>
+<hr />
+<h3 id="54-komplexer-maximum-finder"><a class="header" href="#54-komplexer-maximum-finder">54. Komplexer Maximum-Finder</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere eine Struktur für Produkte.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Item</code> mit den Feldern <code>name</code>, <code>price</code> (f64) und <code>weight</code> (f64).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Finde das Element mit dem besten Preis-Leistungs-Verhältnis.</li>
+<li><strong>Hinweise</strong>: Nutze die Methode <code>.max_by()</code> oder <code>.max_by_key()</code>. Du übergibst eine Closure, die für jedes Item ein Verhältnis (z.B. Preis geteilt durch Gewicht) berechnet und diese miteinander vergleicht. Da Fließkommazahlen <code>f64</code> das Trait <code>Ord</code> nicht implementieren, musst du <code>.partial_cmp()</code> in der Closure verwenden.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige das Gewinner-Item.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Einkaufsliste. Finde das beste Item und gib es aus.</li>
+</ul>
+<hr />
+<h3 id="55-vektor-flattener"><a class="header" href="#55-vektor-flattener">55. Vektor-Flattener</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erzeuge eine geschachtelte Struktur.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor von Vektoren (<code>Vec&lt;Vec&lt;i32&gt;&gt;</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Flache die Ebenen ab.</li>
+<li><strong>Hinweise</strong>: Wandle den geschachtelten Vektor in einen Iterator um. Rufe <code>.flatten()</code> auf, um die inneren Vektoren aufzulösen, und sammle alle Zahlen in einem einfachen Vektor.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Vergleiche vor und nach dem Flatten.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> beide Strukturen aus und demonstriere, wie aus dem verschachtelten Konstrukt eine flache Liste geworden ist.</li>
+</ul>
+<hr />
+<h3 id="56-bedingtes-fold-reduce"><a class="header" href="#56-bedingtes-fold-reduce">56. Bedingtes Fold (Reduce)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Berechnungsdaten vor.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor von Zahlen, der auch leer sein kann.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne das Produkt mit <code>reduce</code>.</li>
+<li><strong>Hinweise</strong>: Nutze <code>.reduce()</code>. Im Gegensatz zu <code>fold</code> benötigt <code>reduce</code> keinen expliziten Startwert, sondern nimmt das erste Element als Startwert. Es gibt ein <code>Option</code> zurück. Falls der Iterator leer ist, wird <code>None</code> geliefert.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Behandle beide Fälle.</li>
+<li><strong>Hinweise</strong>: Teste in <code>main</code> das Reduzieren mit einem vollen und einem leeren Vektor. Fange das <code>Option</code>-Ergebnis sauber ab.</li>
+</ul>
+<hr />
+<h3 id="57-string-konkatenation-ohne-alloc"><a class="header" href="#57-string-konkatenation-ohne-alloc">57. String-Konkatenation ohne Alloc</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite eine Wortliste vor.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Array oder einen Vektor von <code>&amp;str</code>-Wörtern.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Baue den Zielstring effizient auf.</li>
+<li><strong>Hinweise</strong>: Nutze <code>.fold()</code>, um die Wörter mit einem Trennzeichen zu verbinden. Der Akkumulator sollte ein bereits allozierter <code>String</code> sein, an den du in jedem Schritt die Wörter und Trennzeichen anhängst. Vermeide es, in jedem Schritt neue Intermediär-Strings zu erzeugen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib den zusammengefügten String aus.</li>
+<li><strong>Hinweise</strong>: Setze in <code>main</code> eine Liste von Begriffen zu einem Satz zusammen und gib diesen aus.</li>
+</ul>
+<hr />
+<h3 id="58-gleitende-fenster-windows"><a class="header" href="#58-gleitende-fenster-windows">58. Gleitende Fenster (Windows)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Kurswerte vor.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Liste von Preisen (z.B. ein Vektor von <code>f64</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Vergleiche benachbarte Werte.</li>
+<li><strong>Hinweise</strong>: Rufe <code>.windows(2)</code> auf dem Vektor auf. Dies erzeugt einen Iterator über alle Paare aufeinanderfolgender Elemente. Verwende eine Kette (z.B. mit <code>.map()</code> oder <code>.filter()</code>), um zu ermitteln, ob der Kurs gestiegen oder gefallen ist.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib den Trend aus.</li>
+<li><strong>Hinweise</strong>: Analysiere eine Kursreihe in <code>main</code> und gib für jeden Schritt aus, ob sich der Kurs positiv oder negativ entwickelt hat.</li>
+</ul>
+<hr />
+<h3 id="59-batch-verarbeiter-chunks"><a class="header" href="#59-batch-verarbeiter-chunks">59. Batch-Verarbeiter (Chunks)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Datensätze.</li>
+<li><strong>Hinweise</strong>: Erstelle eine größere Liste von Elementen (z.B. einen Vektor mit IDs).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gruppiere die Datensätze.</li>
+<li><strong>Hinweise</strong>: Rufe <code>.chunks(size)</code> auf dem Vektor auf. Verarbeite die Gruppen in einer Kette (z.B. indem du jedes Chunk in ein anderes Format konvertierst oder eine simulierte Abfrage startest).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere die paketweise Verarbeitung.</li>
+<li><strong>Hinweise</strong>: Durchlaufe in <code>main</code> die Chunks (z.B. in 5er-Paketen) und gib jeweils aus, welche IDs gerade verarbeitet werden.</li>
+</ul>
+<hr />
+<h3 id="60-ergebnis-filterung-ok-werte-extrahieren"><a class="header" href="#60-ergebnis-filterung-ok-werte-extrahieren">60. Ergebnis-Filterung (Ok-Werte extrahieren)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erzeuge eine Liste von Resultaten.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor vom Typ <code>Vec&lt;Result&lt;i32, ParseIntError&gt;&gt;</code>, bei dem einige Werte <code>Ok</code> und andere <code>Err</code> sind (z.B. durch Parsen von Benutzereingaben).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Extrahiere nur die Erfolge.</li>
+<li><strong>Hinweise</strong>: Wandle den Vektor in einen Iterator um. Verwende <code>.filter_map(|res| res.ok())</code>. Die Methode <code>.ok()</code> wandelt ein <code>Result&lt;T, E&gt;</code> in ein <code>Option&lt;T&gt;</code> um, was <code>.filter_map</code> perfekt nutzen kann, um die Fehler zu verwerfen und die Erfolge zu extrahieren.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib die bereinigte Liste aus.</li>
+<li><strong>Hinweise</strong>: Führe das Filtern in <code>main</code> durch und gib die Liste der erfolgreich extrahierten Zahlen aus.</li>
+</ul>
+<h1 id="phase-8---prompts-61-bis-80-kombinations-projekte"><a class="header" href="#phase-8---prompts-61-bis-80-kombinations-projekte">Phase 8 - Prompts 61 bis 80: Kombinations-Projekte</a></h1>
+<h3 id="61-text-balkendiagramm"><a class="header" href="#61-text-balkendiagramm">61. Text-Balkendiagramm</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Eingabewerte vor.</li>
+<li><strong>Hinweise</strong>: Definiere eine Struktur <code>ChartValue</code> mit einem Namen (String) und einer Intensität (usize). Erstelle einen Vektor aus diesen Strukturen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Transformiere Werte in Sternchenreihen.</li>
+<li><strong>Hinweise</strong>: Wandle den Vektor in einen Iterator um. Mappe jedes Element mit <code>.map()</code> in eine formatierte Zeile. Nutze den Iterator-Adapter <code>std::iter::repeat('*').take(wert).collect::&lt;String&gt;()</code>, um das Sternchen-Balkendiagramm dynamisch zu generieren.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib das Balkendiagramm aus.</li>
+<li><strong>Hinweise</strong>: Gib die erzeugten Zeilen in <code>main</code> aus, sodass auf der Konsole ein sauberes Balkendiagramm entsteht.</li>
+</ul>
+<hr />
+<h3 id="62-umgebungsdaten-parser-env"><a class="header" href="#62-umgebungsdaten-parser-env">62. Umgebungsdaten-Parser (.env)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Inhalt der .env-Datei vor.</li>
+<li><strong>Hinweise</strong>: Verwende eine mehrzeilige Zeichenkette (<code>&amp;str</code>), die Schlüssel-Wert-Paare (z.B. <code>PORT=8080</code>), Leerzeilen und Kommentare (beginnend mit <code>#</code>) enthält.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Parsen und Filtern der Zeilen.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator über die Zeilen. Filtere Leerzeilen und Kommentare mit <code>.filter()</code> aus. Verwende <code>.filter_map()</code>, um die verbleibenden Zeilen am <code>=</code> zu splitten und in ein Schlüssel-Wert-Tupel zu parsen. Sammele das Ergebnis in einer <code>HashMap</code>.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Lies die Konfiguration aus.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> die finale <code>HashMap</code> aus und greife gezielt auf einen Schlüssel zu.</li>
+</ul>
+<hr />
+<h3 id="63-markdown-toc-builder"><a class="header" href="#63-markdown-toc-builder">63. Markdown-TOC-Builder</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite das Markdown-Dokument vor.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Zeichenkette mit einem fiktiven Markdown-Text, der mehrere Überschriften (Zeilen, die mit <code>#</code>, <code>##</code> oder <code>###</code> beginnen) enthält.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Extrahiere die Überschriften und formatiere sie.</li>
+<li><strong>Hinweise</strong>: Iteriere über die Zeilen. Filtere Zeilen heraus, die mit <code>#</code> starten. Zähle die Anzahl der <code>#</code>, um die Einrückungstiefe zu bestimmen. Reinige den Text der Überschrift von den <code>#</code>-Zeichen und führenden Leerzeichen. Mappe dies in eine eingerückte Listen-Zeile (z.B. <code>- [Titel](#titel)</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere das Inhaltsverzeichnis.</li>
+<li><strong>Hinweise</strong>: Sammele die formatierten Zeilen in <code>main</code> und gib sie als Inhaltsverzeichnis (TOC) aus.</li>
+</ul>
+<hr />
+<h3 id="64-zeilenumbruch-formatierer"><a class="header" href="#64-zeilenumbruch-formatierer">64. Zeilenumbruch-Formatierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Eingabedaten.</li>
+<li><strong>Hinweise</strong>: Du benötigst einen Text und eine maximale Zeilenbreite (z.B. 40 Zeichen).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gruppiere Token mit <code>fold</code>.</li>
+<li><strong>Hinweise</strong>: Splitte den Text in Wörter. Verwende <code>.fold()</code>, um die Wörter zu Zeilen zusammenzufügen. Der Akkumulator speichert den bisherigen Text und die Länge der aktuellen Zeile. Füge ein Wort der aktuellen Zeile hinzu, wenn es passt, andernfalls füge einen Zeilenumbruch ein und beginne eine neue Zeile.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib den neu umgebrochenen Text aus.</li>
+<li><strong>Hinweise</strong>: Teste den Formatierer in <code>main</code> mit verschiedenen Zeilenbreiten und verifiziere, dass keine Zeile die Grenze überschreitet.</li>
+</ul>
+<hr />
+<h3 id="65-csv-spalten-extraktor"><a class="header" href="#65-csv-spalten-extraktor">65. CSV-Spalten-Extraktor</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die CSV-Daten.</li>
+<li><strong>Hinweise</strong>: Verwende eine Zeichenkette mit mehreren CSV-Zeilen (z.B. Name, Alter, Stadt). Definiere die Indizes der Spalten, die du extrahieren möchtest (z.B. nur Spalte 0 und 2).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Extrahiere die gewünschten Spalten.</li>
+<li><strong>Hinweise</strong>: Iteriere über die Zeilen. Splitte jede Zeile am Komma. Verwende einen Iterator über die Felder, filtere nach den gewünschten Indizes (z.B. mit <code>.enumerate()</code> und <code>.filter()</code>), und füge die extrahierten Spalten wieder mit einem Komma zusammen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib die gefilterte CSV aus.</li>
+<li><strong>Hinweise</strong>: Jage die CSV-Zeilen durch deinen Extraktor und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="66-caesar-verschlüsselung"><a class="header" href="#66-caesar-verschlüsselung">66. Caesar-Verschlüsselung</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Text und den Schlüssel vor.</li>
+<li><strong>Hinweise</strong>: Du brauchst einen String (den Klartext) und eine Verschiebezahl (Schlüssel).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verschiebe die Buchstaben funktional.</li>
+<li><strong>Hinweise</strong>: Wandle den String in einen Iterator über seine Zeichen (<code>chars()</code>) um. Verwende <code>.map()</code>. In der Closure fängst du den Schlüssel ein. Prüfe, ob es sich um einen Buchstaben handelt, verschiebe ihn im Alphabet (unter Beachtung des Überlaufs von Z nach A) und sammle alle modifizierten Zeichen wieder in einem <code>String</code>.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verschlüssele und entschlüssele einen Text.</li>
+<li><strong>Hinweise</strong>: Verschlüssele in <code>main</code> eine Nachricht. Entschlüssele sie wieder, indem du die Verschiebung umkehrst, und gib beide Zwischenschritte aus.</li>
+</ul>
+<hr />
+<h3 id="67-log-analysator"><a class="header" href="#67-log-analysator">67. Log-Analysator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Log-Einträge.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>LogEntry</code> mit Feldern wie <code>level</code> (Enum), <code>timestamp</code> (u64) und <code>response_time</code> (u32).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Filtere und berechne Durchschnittswerte.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator aus einer Liste von Log-Einträgen. Filtere mit <code>.filter()</code> nach Einträgen mit Level <code>Error</code>. Extrahiere mit <code>.map()</code> die Antwortzeiten. Verwende <code>.fold()</code> oder <code>.sum()</code>, um die Gesamtlaufzeit und die Anzahl der Fehler-Einträge zu berechnen, und teile sie für den Durchschnitt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib die Analyse aus.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Logs. Berechne die durchschnittliche Antwortzeit bei Fehlern und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="68-passwort-validator"><a class="header" href="#68-passwort-validator">68. Passwort-Validator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Kriterien.</li>
+<li><strong>Hinweise</strong>: Das Passwort ist ein String. Die Regeln umfassen: Mindestlänge, enthält Großbuchstaben, Kleinbuchstaben, Ziffern und Sonderzeichen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Validiere alle Kriterien funktional.</li>
+<li><strong>Hinweise</strong>: Nutze Iterator-Methoden auf den Zeichen des Passworts. Prüfe z.B. mit <code>chars().any(|c| c.is_ascii_uppercase())</code>, ob Großbuchstaben vorhanden sind. Kombiniere diese Prüfungen (z.B. in einem Vektor von Validierungs-Closures), um das Passwort auf alle Kriterien zu prüfen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste verschiedene Passwörter.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>main</code> schwache und starke Passwörter und gib eine detaillierte Liste der verletzten Regeln aus.</li>
+</ul>
+<hr />
+<h3 id="69-matrix-transposition"><a class="header" href="#69-matrix-transposition">69. Matrix-Transposition</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Matrix vor.</li>
+<li><strong>Hinweise</strong>: Definiere eine Matrix als zweidimensionalen Vektor (<code>Vec&lt;Vec&lt;i32&gt;&gt;</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Vertausche Zeilen und Spalten funktional.</li>
+<li><strong>Hinweise</strong>: Ermittle die Spaltenanzahl. Erstelle einen Bereichs-Iterator von 0 bis Spaltenanzahl. Verwende <code>.map()</code>. Für jeden Spaltenindex iterierst du über die Zeilen der Matrix und sammelst die Elemente an diesem Spaltenindex in einen neuen Vektor. Sammele alle Spalten-Vektoren in einen Gesamtvektor.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige die transponierte Matrix.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> die ursprüngliche und die transponierte Matrix Zeile für Zeile aus.</li>
+</ul>
+<hr />
+<h3 id="70-spielkartendeck-ersteller"><a class="header" href="#70-spielkartendeck-ersteller">70. Spielkartendeck-Ersteller</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Eigenschaften einer Spielkarte.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>Suit</code> (Kreuz, Pik, Herz, Karo) und ein Enum <code>Value</code> (7, 8, 9, 10, Bube, Dame, König, Ass). Erstelle eine Struktur <code>Card</code> mit beiden Enums.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere alle Kombinationen.</li>
+<li><strong>Hinweise</strong>: Erstelle Arrays oder Iteratoren über alle Farb-Varianten und alle Wert-Varianten. Verwende <code>.flat_map()</code>, um jedes Element der einen Liste mit jedem Element der anderen Liste zu kreuzen und neue <code>Card</code>-Objekte zu erzeugen. Sammele das Ergebnis in einem Vektor.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib das Kartendeck aus.</li>
+<li><strong>Hinweise</strong>: Zeige in <code>main</code>, dass exakt 52 (oder 32) einzigartige Karten generiert wurden, und gib das gesamte Deck aus.</li>
+</ul>
+<hr />
+<h3 id="71-run-length-encoder-rle"><a class="header" href="#71-run-length-encoder-rle">71. Run-Length-Encoder (RLE)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Eingabestring vor.</li>
+<li><strong>Hinweise</strong>: Verwende eine Zeichenkette, die sich wiederholende Zeichen enthält (z.B. <code>AAABCCDDDD</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Komprimiere die Zeichenkette mit <code>fold</code>.</li>
+<li><strong>Hinweise</strong>: Iteriere über die Zeichen. Nutze <code>.fold()</code>, um eine Liste von Tupeln <code>Vec&lt;(usize, char)&gt;</code> aufzubauen. Prüfe im Akkumulator, ob das aktuelle Zeichen dem des letzten Tupels entspricht. Wenn ja, inkrementiere die Anzahl. Wenn nein, füge ein neues Tupel <code>(1, zeichen)</code> hinzu.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige das Kompressionsergebnis.</li>
+<li><strong>Hinweise</strong>: Wandle das Ergebnis in einen lesbaren String um (z.B. <code>3A1B2C4D</code>) und gib das Ergebnis sowie die Ersparnis in Prozent aus.</li>
+</ul>
+<hr />
+<h3 id="72-subnetz-ip-generator"><a class="header" href="#72-subnetz-ip-generator">72. Subnetz-IP-Generator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die CIDR-Notation.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>IpSubnet</code> mit der Basis-IP (z.B. <code>192.168.1.0</code>) und der Subnetzmaske (z.B. <code>24</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere einen Iterator über alle IPs im Subnetz.</li>
+<li><strong>Hinweise</strong>: Konvertiere die Basis-IP in eine 32-Bit-Zahl (<code>u32</code>). Berechne die Anzahl der verfügbaren IP-Adressen anhand der Subnetzmaske (z.B. <code>2^(32 - mask)</code>). Implementiere einen Iterator, der ausgehend von der Basis-IP hochzählt und die Zahlen wieder in das IP-Format (<code>x.x.x.x</code>) umwandelt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere IPs aus einem Subnetz.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> ein Subnetz und gib die ersten 10 verfügbaren IP-Adressen sowie die Gesamtzahl aus.</li>
+</ul>
+<hr />
+<h3 id="73-pfad-normalisierer"><a class="header" href="#73-pfad-normalisierer">73. Pfad-Normalisierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite die Pfadsegmente vor.</li>
+<li><strong>Hinweise</strong>: Verwende einen String, der einen relativen Pfad mit Segmenten wie <code>.</code> und <code>..</code> enthält (z.B. <code>a/b/../c/./d</code>).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereinige den Pfad funktional.</li>
+<li><strong>Hinweise</strong>: Splitte den Pfad am <code>/</code>-Zeichen. Verwende <code>.fold()</code>, um einen neuen Vektor von Segmenten aufzubauen. Wenn ein Segment <code>.</code> ist, ignoriere es. Wenn es <code>..</code> ist, entferne das letzte Element aus dem Akkumulator. Bei normalen Namen hänge sie an.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib den normalisierten Pfad aus.</li>
+<li><strong>Hinweise</strong>: Führe die Normalisierung in <code>main</code> aus und verknüpfe die verbleibenden Segmente wieder zu einem sauberen Pfad-String.</li>
+</ul>
+<hr />
+<h3 id="74-anagramm-prüfer"><a class="header" href="#74-anagramm-prüfer">74. Anagramm-Prüfer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Vergleich vor.</li>
+<li><strong>Hinweise</strong>: Verwende zwei Strings, die auf die Anagramm-Eigenschaft geprüft werden sollen.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Sortiere die Zeichen.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Hilfsfunktion, die einen String in einen Iterator seiner Zeichen umwandelt, diese in Kleinbuchstaben konvertiert, in einen Vektor sammelt, sortiert und wieder als String zusammenfügt. Vergleiche die bereinigten Strings der beiden Wörter auf Gleichheit.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste positive und negative Beispiele.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>main</code> Wortpaare wie "Ampel" und "Palme" (Anagramm) sowie "Test" und "Toast" (kein Anagramm) und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="75-sql-select-builder"><a class="header" href="#75-sql-select-builder">75. SQL-Select-Builder</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Query-Bausteine.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur <code>SelectQuery</code> mit Feldern wie <code>columns</code> (Vec), <code>table</code> (String) und <code>conditions</code> (Vec).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Baue das Statement funktional zusammen.</li>
+<li><strong>Hinweise</strong>: Verwende Iteratoren, um die Spalten mit Kommata zu verbinden. Verwende ebenfalls einen Iterator, um die Bedingungen mit <code>AND</code> zu verknüpfen. Baue das finale SQL-Statement über String-Verkettungen zusammen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erzeuge eine SQL-Abfrage.</li>
+<li><strong>Hinweise</strong>: Definiere in <code>main</code> eine Abfrage, generiere das SQL-Statement und gib es aus.</li>
+</ul>
+<hr />
+<h3 id="76-messwert-glättung"><a class="header" href="#76-messwert-glättung">76. Messwert-Glättung</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Datenreihe.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Vektor mit verrauschten Zahlenwerten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne das gleitende Mittel.</li>
+<li><strong>Hinweise</strong>: Verwende <code>.windows(3)</code>, um jeweils ein Element und seine beiden Nachbarn zu betrachten. Berechne in einem <code>.map()</code> den Durchschnitt dieser drei Werte, um das Rauschen zu reduzieren.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Vergleiche Rohdaten und geglättete Daten.</li>
+<li><strong>Hinweise</strong>: Gib in <code>main</code> beide Datenreihen aus und vergleiche die Kurvenverläufe.</li>
+</ul>
+<hr />
+<h3 id="77-html-tag-entferner"><a class="header" href="#77-html-tag-entferner">77. HTML-Tag-Entferner</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den HTML-String vor.</li>
+<li><strong>Hinweise</strong>: Verwende einen String, der Text und HTML-Tags (z.B. <code>&lt;p&gt;</code>, <code>&lt;/p&gt;</code>) enthält.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Filtere den Text über einen Zustand mit <code>scan</code>.</li>
+<li><strong>Hinweise</strong>: Iteriere über die Zeichen. Verwende <code>.scan()</code>, um den Zustand <code>in_tag</code> (bool) mitzuführen. Schalte <code>in_tag</code> auf <code>true</code>, wenn ein <code>&lt;</code> auftaucht, und auf <code>false</code> nach einem <code>&gt;</code>. Filtere alle Zeichen aus, die sich innerhalb eines Tags befinden, und sammle den Rest.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zeige den bereinigten Text.</li>
+<li><strong>Hinweise</strong>: Jage einen HTML-Text in <code>main</code> durch deinen Entferner und gib den reinen Text aus.</li>
+</ul>
+<hr />
+<h3 id="78-template-engine"><a class="header" href="#78-template-engine">78. Template-Engine</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Vorlagentext und die Ersetzungen.</li>
+<li><strong>Hinweise</strong>: Verwende einen String mit Platzhaltern (z.B. <code>Hallo {{name}}</code>) und eine <code>HashMap</code>, die den Platzhaltern Werte zuordnet.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Ersetze Platzhalter funktional.</li>
+<li><strong>Hinweise</strong>: Splitte den Text so auf, dass Platzhalter isoliert werden (oder nutze einfache String-Ersetzungen). Versuche, den Text in Segmente zu zerlegen, diese mit einem Iterator zu durchlaufen und gefundene Platzhalter über die <code>HashMap</code> zu übersetzen, bevor du sie wieder zusammensetzt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere eine E-Mail oder Nachricht.</li>
+<li><strong>Hinweise</strong>: Befülle in <code>main</code> ein Template mit dynamischen Daten aus der Map und gib das Ergebnis aus.</li>
+</ul>
+<hr />
+<h3 id="79-rechnungs-kalkulator"><a class="header" href="#79-rechnungs-kalkulator">79. Rechnungs-Kalkulator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Rechnungsposten.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>InvoiceItem</code> mit den Feldern <code>name</code>, <code>price</code>, <code>quantity</code> und <code>tax_rate</code> (z.B. 0.19 für 19%).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne den Endpreis funktional.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator über die Posten. Berechne für jeden Posten den Zwischenpreis (Preis * Menge), addiere die Steuer und ziehe eventuelle Rabatte ab. Summiere die Endpreise aller Posten mit <code>.sum()</code>.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Gib eine detaillierte Rechnungssumme aus.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Artikeln, berechne die Gesamtsumme und gib sie aus.</li>
+</ul>
+<hr />
+<h3 id="80-bibliotheks-katalog-suche"><a class="header" href="#80-bibliotheks-katalog-suche">80. Bibliotheks-Katalog-Suche</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere das Buch.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Book</code> mit Feldern wie <code>title</code>, <code>author</code> und <code>tags</code> (Vec).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Suche mit mehreren Begriffen.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Suchfunktion, die eine Liste von Büchern und eine Liste von Suchbegriffen entgegennimmt. Ein Buch erfüllt die Suche, wenn alle Suchbegriffe mit <code>.all()</code> im Titel, Autor oder in den Tags gefunden werden.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Führe eine komplexe Suche aus.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen kleinen Bibliothekskatalog. Suche nach Büchern mit bestimmten Schlagworten und gib die Treffer aus.</li>
+</ul>
+<h1 id="phase-8---prompts-81-bis-100-fortgeschrittene-algorithmen--fp-muster"><a class="header" href="#phase-8---prompts-81-bis-100-fortgeschrittene-algorithmen--fp-muster">Phase 8 - Prompts 81 bis 100: Fortgeschrittene Algorithmen &amp; FP-Muster</a></h1>
+<h3 id="81-unendlicher-primzahlgenerator"><a class="header" href="#81-unendlicher-primzahlgenerator">81. Unendlicher Primzahlgenerator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Entwirf die Datenstrukturen für eine verzögerte Primzahlerzeugung.</li>
+<li><strong>Hinweise</strong>: Definiere eine Struktur <code>InfinitePrimes</code>. Überlege, welche Daten (z.B. die zuletzt gefundene Primzahl oder ein Vektor aller bisherigen Primzahlen) du im Zustand halten musst, um die Generierung fortsetzen zu können.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die träge Primzahlberechnung im <code>next()</code>-Aufruf.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>Iterator</code> für <code>InfinitePrimes</code>. Berechne in <code>next()</code> die jeweils nächste Primzahl erst in dem Moment, in dem die Methode aufgerufen wird. Nutze eine effiziente Primzahlprüfung (z.B. Testen durch Teilen mit den bereits gefundenen Primzahlen). Da Primzahlen unendlich sind, gibt die Methode immer <code>Some(u64)</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Generiere Primzahlen nach Bedarf.</li>
+<li><strong>Hinweise</strong>: Erzeuge den Generator in <code>main</code>. Nutze <code>.take(15)</code> oder filtere Primzahlen in einem bestimmten Zahlenbereich heraus, um zu zeigen, dass Berechnungen nur für die tatsächlich abgerufenen Zahlen stattfinden.</li>
+</ul>
+<hr />
+<h3 id="82-fehler-verkettung-mit-monaden-mustern"><a class="header" href="#82-fehler-verkettung-mit-monaden-mustern">82. Fehler-Verkettung mit Monaden-Mustern</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Datenmodelle der verschachtelten API-Antworten.</li>
+<li><strong>Hinweise</strong>: Erstelle Strukturen wie <code>User</code>, <code>Profile</code> und <code>Settings</code>. Verwende <code>Option</code> und <code>Result</code> für Felder, die fehlen oder Fehler enthalten können.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verkette die Abfragen monadisch.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Kette, die ausgehend von einer Benutzer-ID die Einstellungen abfragt. Verwende Methoden wie <code>.and_then()</code>, um verschachtelte <code>Option</code>-Werte aufzulösen (z.B. erst User laden, dann dessen Profil laden, dann dessen Einstellungen extrahieren). Nutze <code>.map_or()</code> oder <code>.or_else()</code>, um Standardwerte oder alternative Fehlerbehandlungen bereitzustellen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste die Verkettung mit verschiedenen Datenkonstellationen.</li>
+<li><strong>Hinweise</strong>: Simuliere in <code>main</code> unvollständige Daten und stelle sicher, dass die Pipeline nicht abstürzt, sondern elegant mit <code>None</code> oder Fehlern umgeht.</li>
+</ul>
+<hr />
+<h3 id="83-einfacher-parser-kombinator"><a class="header" href="#83-einfacher-parser-kombinator">83. Einfacher Parser-Kombinator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Typ des Parsers.</li>
+<li><strong>Hinweise</strong>: Definiere einen Parser als Closure oder Alias-Typ: <code>Parser&lt;T&gt; = Box&lt;dyn Fn(&amp;str) -&gt; Option&lt;(T, &amp;str)&gt;&gt;</code>. Ein Parser nimmt einen String-Slice und gibt bei Erfolg den geparsten Wert und den verbleibenden String-Slice zurück.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere Kombinatoren.</li>
+<li><strong>Hinweise</strong>: Schreibe Funktionen, die Parser miteinander verbinden. Beispielsweise einen <code>and_then</code>-Kombinator, der zwei Parser nacheinander ausführt, oder einen <code>or_else</code>-Kombinator, der den zweiten Parser probiert, falls der erste fehlschlägt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Parser für eine einfache Grammatik.</li>
+<li><strong>Hinweise</strong>: Baue in <code>main</code> einen Parser für eine Zahl gefolgt von einem Buchstaben auf und teste ihn mit verschiedenen Eingabestrings.</li>
+</ul>
+<hr />
+<h3 id="84-echtzeit-stream-aggregator"><a class="header" href="#84-echtzeit-stream-aggregator">84. Echtzeit-Stream-Aggregator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Aggregator-Zustand.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>TopKStream&lt;I&gt;</code> um einen unendlichen Datenstrom-Iterator <code>I</code>. Du benötigst eine geeignete Datenstruktur (z.B. einen <code>std::collections::BinaryHeap</code> als Min-Heap), um die Top-K-Elemente effizient zu verwalten.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Aggriere Elemente bei jedem Iterationsschritt.</li>
+<li><strong>Hinweise</strong>: In <code>next()</code> des Aggregators holst du das nächste Element aus dem Stream. Füge es in den Heap ein und entferne das kleinste Element, falls der Heap die Größe K überschreitet. Gib das aktuelle Top-K-Ergebnis als Vektor zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Analysiere einen Live-Datenstrom.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen unendlichen Strom von Zahlen. Lass den Aggregator laufen und gib in regelmäßigen Abständen die aktuellen Top-5-Werte aus.</li>
+</ul>
+<hr />
+<h3 id="85-lazy-json-pfad-evaluator"><a class="header" href="#85-lazy-json-pfad-evaluator">85. Lazy JSON-Pfad-Evaluator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die JSON-Baumstruktur.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>JsonNode</code> mit Varianten wie <code>Value(String)</code>, <code>Map(HashMap&lt;String, JsonNode&gt;)</code> und <code>Array(Vec&lt;JsonNode&gt;)</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die träge Pfadevaluierung.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Struktur <code>PathEvaluator</code>, die eine Referenz auf einen <code>JsonNode</code> und eine Liste von Suchsegmenten hält. Der Iterator über den <code>PathEvaluator</code> soll den Baum erst bei Aufruf von <code>next()</code> durchsuchen. Der Pfad wird somit nur so weit evaluiert, wie Werte angefordert werden.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Suche in einem komplexen Dokument.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine tiefe Baumstruktur und frage Pfade ab. Zeige das lazy Verhalten, indem du den Zugriff protokollierst.</li>
+</ul>
+<hr />
+<h3 id="86-n-damen-problem-als-iterator"><a class="header" href="#86-n-damen-problem-als-iterator">86. N-Damen-Problem als Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere das Schachbrett.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>QueensSolver</code>, das die aktuelle Damen-Konfiguration (z.B. als <code>Vec&lt;usize&gt;</code>, wobei der Index die Zeile und der Wert die Spalte darstellt) und die Brettgröße <code>N</code> speichert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere Backtracking im Iterator-Trait.</li>
+<li><strong>Hinweise</strong>: Jedes Mal, wenn <code>next()</code> aufgerufen wird, soll das Backtracking fortgesetzt werden, um die nächste gültige Positionierung aller N Damen zu finden, bei der sich keine zwei Damen gegenseitig schlagen. Wenn eine gültige Konfiguration gefunden wurde, gib sie als <code>Some</code> zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Finde alle Lösungen für ein 8x8-Brett.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> den Solver für N=8. Iteriere über alle Lösungen und gib die Gesamtanzahl sowie einige Bretter als Textdiagramm aus.</li>
+</ul>
+<hr />
+<h3 id="87-state-monaden-simulator"><a class="header" href="#87-state-monaden-simulator">87. State-Monaden-Simulator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere das State-Monaden-Konzept.</li>
+<li><strong>Hinweise</strong>: Ein Zustandstransformator kann als Struktur <code>State&lt;'a, S, A&gt;</code> definiert werden, die eine Box mit einer Closure <code>Fn(S) -&gt; (A, S)</code> enthält. <code>S</code> ist der Zustand, <code>A</code> der berechnete Wert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere Transformationen.</li>
+<li><strong>Hinweise</strong>: Implementiere Methoden wie <code>map</code> und <code>and_then</code> auf <code>State</code>. <code>and_then</code> nimmt eine Closure entgegen, die aus dem Ergebnis <code>A</code> einen neuen <code>State</code> erzeugt. Dadurch lassen sich Zustandsänderungen sequenziell aneinanderhängen, ohne den Zustand explizit in jedem Schritt übergeben zu müssen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere einen Spielzustand.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Kette von Zustandsübergängen (z.B. Lebenspunkte abziehen, Gold hinzufügen) und führe sie mit einem Startzustand aus.</li>
+</ul>
+<hr />
+<h3 id="88-custom-zip-with-adapter"><a class="header" href="#88-custom-zip-with-adapter">88. Custom Zip-With-Adapter</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Adapter-Typ.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>ZipWith&lt;I1, I2, F&gt;</code> mit Feldern für zwei Iteratoren <code>I1</code> und <code>I2</code> sowie eine Kombinations-Closure <code>F</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere das Trait <code>Iterator</code>.</li>
+<li><strong>Hinweise</strong>: Implementiere <code>next()</code> für <code>ZipWith</code>. Hole das nächste Element aus <code>I1</code> und <code>I2</code>. Wenn eines der beiden <code>None</code> liefert, gib <code>None</code> zurück. Andernfalls wende die Closure <code>F</code> auf beide Elemente an und gib das Ergebnis zurück.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Kombiniere Zahlenreihen.</li>
+<li><strong>Hinweise</strong>: Erstelle zwei Vektoren in <code>main</code> und nutze <code>zip_with</code> mit einer Additions- oder Multiplikations-Closure, um die Elemente paarweise zu verrechnen.</li>
+</ul>
+<hr />
+<h3 id="89-binärbaum-traversierer"><a class="header" href="#89-binärbaum-traversierer">89. Binärbaum-Traversierer</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Binärbaum.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>TreeNode&lt;T&gt;</code> mit <code>value</code> und optionalen linken und rechten Kindern <code>Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere Traversierung ohne vollständige Vektorkopie.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator <code>TreeIterator</code> mit einem Stack von Referenzen auf die Knoten. Je nachdem, ob Pre-Order, In-Order oder Post-Order gewählt ist, lege die Knoten in der richtigen Reihenfolge auf den Stack und entnimm sie in <code>next()</code> Stück für Stück (lazy).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Traversiere einen Testbaum.</li>
+<li><strong>Hinweise</strong>: Baue in <code>main</code> einen kleinen Binärbaum auf und gib seine Elemente über die Iterator-Traversierung aus.</li>
+</ul>
+<hr />
+<h3 id="90-collatz-folgen-iterator"><a class="header" href="#90-collatz-folgen-iterator">90. Collatz-Folgen-Iterator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Collatz-Struktur.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>Collatz</code> mit einem Feld für den aktuellen Wert.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Berechne die Collatz-Folge in <code>next()</code>.</li>
+<li><strong>Hinweise</strong>: In <code>next()</code> wird der aktuelle Wert nach den Collatz-Regeln angepasst: Wenn er gerade ist, teile ihn durch 2, wenn er ungerade ist, multipliziere ihn mit 3 und addiere 1. Wenn der Wert 1 erreicht und bereits ausgegeben wurde, endet der Iterator (<code>None</code>).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Analysiere Collatz-Folgen.</li>
+<li><strong>Hinweise</strong>: Nutze den Iterator in <code>main</code> für alle Zahlen bis 1000. Finde über Iterator-Ketten heraus, welche Startzahl die längste Collatz-Folge generiert.</li>
+</ul>
+<hr />
+<h3 id="91-curried-logger"><a class="header" href="#91-curried-logger">91. Curried Logger</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite das funktionale Logging vor.</li>
+<li><strong>Hinweise</strong>: Es sind keine komplexen Datenstrukturen erforderlich. Du erstellst geschachtelte Closures zur Konfiguration des Loggers.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Currying-Hierarchie.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>curried_log</code>. Sie nimmt ein <code>LogLevel</code> und gibt eine Closure zurück. Diese Closure nimmt ein Modul (<code>&amp;str</code>) und gibt eine weitere Closure zurück. Diese letzte Closure nimmt die eigentliche Nachricht (<code>&amp;str</code>) entgegen und führt das Logging aus. Nutze <code>move</code>, um die Werte in die inneren Closures zu übertragen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erstelle spezialisierte Logger.</li>
+<li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen <code>info_logger</code> und daraus einen <code>database_info_logger</code>. Protokolliere Nachrichten und zeige die Flexibilität auf.</li>
+</ul>
+<hr />
+<h3 id="92-funktionale-funktionskomposition"><a class="header" href="#92-funktionale-funktionskomposition">92. Funktionale Funktionskomposition</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verstehe die Komposition.</li>
+<li><strong>Hinweise</strong>: Du benötigst eine generische Funktion, die zwei Closures (Funktionen) entgegennimmt und eine neue Closure zurückgibt, die beide nacheinander ausführt.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Kompositionsfunktion.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion <code>compose&lt;A, B, C, F, G&gt;(f: F, g: G) -&gt; impl Fn(A) -&gt; C</code>, wobei <code>F: Fn(A) -&gt; B</code> und <code>G: Fn(B) -&gt; C</code> sind. Die zurückgegebene Closure soll <code>g(f(x))</code> berechnen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Kombiniere mathematische und Text-Transformationen.</li>
+<li><strong>Hinweise</strong>: Komponiere in <code>main</code> eine Funktion, die eine Zahl verdoppelt und das Ergebnis in einen String umwandelt. Wende sie an.</li>
+</ul>
+<hr />
+<h3 id="93-lazy-matrix-transposition-zero-copy"><a class="header" href="#93-lazy-matrix-transposition-zero-copy">93. Lazy Matrix-Transposition (Zero-Copy)</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Matrix-Struktur.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>LazyMatrix&lt;T&gt;</code> mit einem eindimensionalen Vektor <code>data</code> und den Dimensionen <code>rows</code> und <code>cols</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Implementiere die Transposition ohne Kopiervorgang.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Methode <code>transpose(&amp;self)</code> die eine Struktur <code>TransposedMatrix&lt;'a, T&gt;</code> zurückgibt. Der Iterator über diese transponierte Struktur greift über angepasste Index-Berechnungen (<code>(col * rows) + row</code> statt <code>(row * cols) + col</code>) auf die Originaldaten zu, ohne die Matrix im Speicher zu drehen.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Traversiere die transponierte Matrix.</li>
+<li><strong>Hinweise</strong>: Erstelle eine 3x4-Matrix in <code>main</code>, transponiere sie virtuell und gib die transponierten Werte aus.</li>
+</ul>
+<hr />
+<h3 id="94-ressourceneffizienter-stream-join"><a class="header" href="#94-ressourceneffizienter-stream-join">94. Ressourceneffizienter Stream-Join</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Merge-Iterator.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>SortedMerge&lt;I1, I2&gt;</code> mit zwei sortierten Iteratoren <code>I1</code> und <code>I2</code>. Du benötigst zwei Puffer (<code>Option&lt;I1::Item&gt;</code> und <code>Option&lt;I2::Item&gt;</code>), um das jeweils aktuelle Element der Ströme zwischenzuspeichern (Peeking).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Führe die Ströme in O(N) zusammen.</li>
+<li><strong>Hinweise</strong>: Vergleiche in <code>next()</code> die aktuellen Elemente der beiden Puffer. Gib das kleinere Element zurück und lade aus dem entsprechenden Iterator nach. Wenn ein Iterator leer ist, leere den anderen. Dadurch werden die Ströme in einem einzigen Durchlauf sortiert zusammengeführt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Führe zwei sortierte Listen zusammen.</li>
+<li><strong>Hinweise</strong>: Erstelle in <code>main</code> zwei sortierte Vektoren und merge sie mit deinem <code>SortedMerge</code>-Iterator zu einem einzigen sortierten Datenstrom.</li>
+</ul>
+<hr />
+<h3 id="95-partielle-applikation"><a class="header" href="#95-partielle-applikation">95. Partielle Applikation</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verstehe die partielle Applikation.</li>
+<li><strong>Hinweise</strong>: Partielle Applikation fixiert eine Reihe von Argumenten einer Funktion und gibt eine neue Funktion mit den restlichen Argumenten zurück.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Fixiere Argumente mit Closures.</li>
+<li><strong>Hinweise</strong>: Schreibe eine Funktion, die eine Funktion mit drei Argumenten (z.B. <code>f(x, y, z)</code>) und einen Wert für <code>x</code> entgegennimmt und eine Closure zurückgibt, die nur noch <code>y</code> und <code>z</code> erwartet. Wähle die passenden Trait-Bounds.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Erzeuge spezialisierte mathematische Funktionen.</li>
+<li><strong>Hinweise</strong>: Fixiere in <code>main</code> den Zinssatz einer Zinseszinsberechnung und berechne Zinsen für unterschiedliche Laufzeiten und Anlagebeträge.</li>
+</ul>
+<hr />
+<h3 id="96-lazy-stream-chiffre"><a class="header" href="#96-lazy-stream-chiffre">96. Lazy Stream-Chiffre</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Bereite den Schlüsselstrom vor.</li>
+<li><strong>Hinweise</strong>: Du benötigst einen Iterator für die zu verschlüsselnden Bytes (z.B. aus einer Datei) und einen Iterator für den Schlüsselstrom (Keystream, z.B. ein deterministischer Zufallszahlengenerator).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Verschlüssele Byte für Byte im Durchfluss.</li>
+<li><strong>Hinweise</strong>: Erstelle einen Iterator <code>CipherStream&lt;I, K&gt;</code> um den Datenstrom <code>I</code> und den Keystream <code>K</code>. Verknüpfe beide in <code>next()</code>, indem du das Datenbyte und das Schlüsselbyte mittels XOR (<code>^</code>) verknüpfst. Die Verschlüsselung findet lazy während der Iteration statt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Ver- und entschlüssele eine Nachricht.</li>
+<li><strong>Hinweise</strong>: Verschlüssele in <code>main</code> einen String in ein Byte-Array und entschlüssele dieses wieder mit demselben Keystream.</li>
+</ul>
+<hr />
+<h3 id="97-funktionale-runden-simulation"><a class="header" href="#97-funktionale-runden-simulation">97. Funktionale Runden-Simulation</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Spielzustand.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Struct <code>GameState</code> mit Feldern wie <code>round</code> (u32), <code>player_health</code> (i32) und <code>enemy_health</code> (i32).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Schreibe den Rundenübergang als Transformation.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Funktion <code>next_round</code>, die einen <code>GameState</code> nimmt und den Zustand für die nächste Runde berechnet (z.B. Schaden abziehen). Implementiere einen Iterator <code>GameSimulation</code>, der unendlich fortlaufende <code>GameState</code> liefert, indem er die Transformation in jedem <code>next()</code>-Aufruf auf den vorherigen Zustand anwendet.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere ein Spiel bis zum Ende.</li>
+<li><strong>Hinweise</strong>: Nutze die Iterator-Kette in <code>main</code> und breche die Simulation mit <code>.take_while()</code> ab, sobald einer der Spieler keine Lebenspunkte mehr hat. Gib den Verlauf aus.</li>
+</ul>
+<hr />
+<h3 id="98-fehlertoleranter-flatten-adapter"><a class="header" href="#98-fehlertoleranter-flatten-adapter">98. Fehlertoleranter Flatten-Adapter</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere den Fehlerfall.</li>
+<li><strong>Hinweise</strong>: Du arbeitest mit verschachtelten Collections, bei denen der äußere oder die inneren Iteratoren Fehler (<code>Result</code>) liefern können.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Flatten mit sofortigem Abbruch bei Fehlern.</li>
+<li><strong>Hinweise</strong>: Schreibe einen Iterator-Adapter <code>TryFlatten&lt;I&gt;</code>. Wenn in <code>next()</code> ein <code>Err</code> im äußeren Iterator oder in einem der inneren Elemente auftritt, soll der Iterator sofort abbrechen und fortan nur noch <code>None</code> (oder den Fehler als letzten Wert) liefern.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste das Abbruchverhalten.</li>
+<li><strong>Hinweise</strong>: Übergib in <code>main</code> eine Liste von Listen, in der ein Fehler versteckt ist. Verifiziere, dass nach dem Auftreten des Fehlers keine weiteren Elemente mehr verarbeitet werden.</li>
+</ul>
+<hr />
+<h3 id="99-lazy-regex-matcher"><a class="header" href="#99-lazy-regex-matcher">99. Lazy-Regex-Matcher</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere einfache Regex-Token.</li>
+<li><strong>Hinweise</strong>: Erstelle ein Enum <code>RegexToken</code> mit Varianten wie <code>Char(char)</code>, <code>Wildcard</code> (Punkt) und <code>Optional(char)</code>.</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Validiere Muster lazy.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Struktur <code>RegexMatcher</code> mit einer Liste von Tokens. Der Iterator über diese Struktur soll einen String-Slice Zeichen für Zeichen prüfen. Der Abgleich soll Schritt für Schritt über verknüpfte Iterator-Adapter erfolgen und sofort abbrechen, sobald ein Token nicht passt.</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Teste das Pattern-Matching.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>main</code> verschiedene Wörter gegen einfache Muster (z.B. <code>a.b</code> oder <code>a?bc</code>) und gib aus, ob sie matchen.</li>
+</ul>
+<hr />
+<h3 id="100-map-reduce-simulator"><a class="header" href="#100-map-reduce-simulator">100. Map-Reduce-Simulator</a></h3>
+<p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Definiere die Daten und Partitionen.</li>
+<li><strong>Hinweise</strong>: Erstelle eine Liste von Rohdaten (z.B. Texte).</li>
+</ul>
+<p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Simuliere Map und Reduce über Iteratoren.</li>
+<li><strong>Hinweise</strong>: Wandle die Rohdaten in einen Iterator um. Verwende <code>.map()</code>, um eine Transformations-Closure anzuwenden, die beispielsweise Wörter zählt oder filtert (Map-Phase). Verwende anschließend <code>.fold()</code> oder <code>.reduce()</code>, um die transformierten Daten zu einem Endergebnis zu aggregieren (Reduce-Phase).</li>
+</ul>
+<p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
+<ul>
+<li><strong>Ziel</strong>: Zähle Wörter über mehrere Zeilen.</li>
+<li><strong>Hinweise</strong>: Verarbeite in <code>main</code> eine Liste von Sätzen. Verwende den Map-Reduce-Simulator, um die Häufigkeit bestimmter Wörter über alle Sätze hinweg zu zählen und auszugeben.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="100-projekte-phase8.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase9-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="100-projekte-phase8.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase9-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

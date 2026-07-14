@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte - Iteratoren &amp; Closures - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html" class="active"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projekte---iteratoren--closures"><a class="header" href="#100-projekte---iteratoren--closures">100 Projekte - Iteratoren &amp; Closures</a></h1>
+<p>Willkommen in Phase 8! In dieser Phase tauchen wir tief in das funktionale Herz von Rust ein. Closures (anonyme Funktionen) und Iteratoren sind fundamentale Werkzeuge, um deinen Code ausdrucksstark, sicher und extrem effizient zu machen. Durch das Beherrschen dieser Konzepte verabschiedest du dich von klassischen, fehleranfälligen Index-Schleifen und schreibst stattdessen eleganten, deklarativen Code.</p>
+<p>Um dein Verständnis zu vertiefen, findest du hier eine Sammlung von 100 kleinen Projektideen und Übungsszenarien. Sie sind so konzipiert, dass sie ohne fortgeschrittene externe Bibliotheken gelöst werden können, und fordern dich heraus, Closures, das <code>Iterator</code>-Trait und die mächtigen Iterator-Adapter kreativ einzusetzen.</p>
+<p>Wichtig: Es gibt hier <strong>keine fertigen Codelösungen</strong>! Der Sinn dieser Übungen ist es, dass du selbst ausprobiert, Fehler machst, Compiler-Meldungen entschlüsselst und eigene Lösungen entwickelst.</p>
+<hr />
+<h2 id="1-closures-fokus"><a class="header" href="#1-closures-fokus">1. Closures-Fokus</a></h2>
+<p>Hier dreht sich alles um anonyme Funktionen. Du lernst, wie Closures Variablen aus ihrer Umgebung einfangen (by reference, mutable reference oder by value mit <code>move</code>), was die Unterschiede zwischen den Traits <code>Fn</code>, <code>FnMut</code> und <code>FnOnce</code> sind und wie du sie als Argumente oder Rückgabewerte nutzt.</p>
+<ol>
+<li><strong>Verzögerter Logger (Lazy Logger)</strong>: Schreibe ein Logging-System, bei dem die Formatierung des Textes in einer Closure gekapselt ist. Die Closure wird nur ausgeführt, wenn das Log-Level aktiv ist, um CPU-Zeit zu sparen.</li>
+<li><strong>Dynamischer Rabatt-Kalkulator</strong>: Erstelle eine Funktion, die eine <code>Fn</code>-Closure entgegennimmt, um Preise basierend auf dynamischen Faktoren (wie Steuern oder Rabatte aus der Umgebung) zu berechnen.</li>
+<li><strong>Zustandsbehafteter Klick-Zähler</strong>: Implementiere eine <code>FnMut</code>-Closure, die eine veränderbare Variable aus ihrer Umgebung einfängt und bei jedem Aufruf inkrementiert.</li>
+<li><strong>Einmaliger Ressourcen-Verbraucher</strong>: Zeige den Einsatz von <code>FnOnce</code>, indem du eine Closure schreibst, die eine nicht-kopierbare Ressource (wie ein Dateihandle) mittels <code>move</code> übernimmt und beim Aufruf schließt oder verbraucht.</li>
+<li><strong>Generischer Event-Callback</strong>: Baue einen Event-Manager, bei dem Benutzer Closures für bestimmte Ereignisse (z.B. Mausklicks) registrieren können, die später aufgerufen werden.</li>
+<li><strong>Mathematische Funktions-Tabelle</strong>: Übergib eine mathematische Gleichung als Closure an eine Auswertungsfunktion, die für einen bestimmten x-Bereich eine Wertetabelle ausgibt.</li>
+<li><strong>Thread-sicherer Job-Wrapper</strong>: Kapsle eine Aufgabe in eine <code>move</code>-Closure, die alle benötigten Daten besitzt, damit sie sicher an einen Hintergrund-Thread übergeben werden kann.</li>
+<li><strong>Memoisation-Cache</strong>: Erstelle eine Struktur, die eine rechenintensive Closure und deren Ergebnis speichert. Bei erneutem Aufruf wird das Ergebnis direkt aus dem Cache geliefert.</li>
+<li><strong>Benutzerdefinierter Kontrollfluss</strong>: Schreibe eine Kontrollfluss-Funktion, die eine Bedingung prüft und je nach Ausgang eine <code>true_branch</code>- oder eine <code>false_branch</code>-Closure ausführt.</li>
+<li><strong>Sortier-Kriterium-Konfigurator</strong>: Verwende eine Closure als Vergleichsfunktion in einer Sortierfunktion, um eine Liste von Objekten nach dynamisch auswählbaren Feldern zu ordnen.</li>
+<li><strong>Flexibler Text-Formatierer</strong>: Implementiere eine Funktion, die Text verarbeitet und für jedes Wort eine übergebene Formatierungs-Closure aufruft (z.B. für Zensur oder Großschreibung).</li>
+<li><strong>Zustandsautomat mit FnMut</strong>: Simuliere einen Spielcharakter, dessen Bewegung durch eine <code>FnMut</code>-Closure gesteuert wird, die seine internen Koordinaten bei jedem Aufruf anpasst.</li>
+<li><strong>Konfigurations-Fallback</strong>: Nutze eine Closure, die nur dann aufgerufen wird, wenn ein Konfigurationswert in einer <code>Option</code> fehlt, um den Standardwert erst bei Bedarf (lazy) zu berechnen.</li>
+<li><strong>Sicheres Ressourcen-Handling (Scope Guard)</strong>: Baue eine Funktion, die eine Datei öffnet, eine Closure darauf ausführt und garantiert, dass die Datei danach geschlossen wird, selbst wenn ein Fehler auftritt.</li>
+<li><strong>Verzeichnis-Filter mit dynamischem Muster</strong>: Entwickle einen Dateifilter, der eine Closure nutzt, um Pfade anhand von Mustern zu überprüfen, die erst zur Laufzeit eingegeben werden.</li>
+<li><strong>Fortschritts-Callback</strong>: Implementiere einen Kopierdienst, der in regelmäßigen Abständen eine benutzerdefinierte Closure aufruft, um den aktuellen Fortschritt an die UI zu melden.</li>
+<li><strong>Validierungs-Pipeline</strong>: Erstelle ein System, das Eingaben durch eine Reihe von Validierungs-Closures schleust, um sicherzustellen, dass alle Regeln eingehalten werden.</li>
+<li><strong>Zufallszahlengenerator mit Zustand</strong>: Kapsle den Zustand eines mathematischen Zufallsgenerators in einer <code>FnMut</code>-Closure, die bei jedem Aufruf den Zustand aktualisiert und die neue Zahl liefert.</li>
+<li><strong>Currying-Simulation</strong>: Schreibe eine Funktion, die ein Argument nimmt und eine Closure zurückgibt, welche wiederum das zweite Argument erwartet und die eigentliche Berechnung durchführt.</li>
+<li><strong>Fehler-Mapper</strong>: Nutze eine Closure in der Methode <code>.map_err()</code>, um rohe Systemfehler in ein anwendungsfreundliches Fehlerformat zu übersetzen und mit Kontext zu versehen.</li>
+</ol>
+<hr />
+<h2 id="2-eigene-iteratoren"><a class="header" href="#2-eigene-iteratoren">2. Eigene Iteratoren</a></h2>
+<p>Hier programmierst du deine eigenen Datentypen, die das <code>Iterator</code>-Trait implementieren. Du lernst, wie du <code>next()</code> definierst, den internen Zustand deines Iterators verwaltest und optionale Hilfs-Traits wie <code>DoubleEndedIterator</code> oder <code>ExactSizeIterator</code> umsetzt.</p>
+<ol start="21">
+<li><strong>Fibonacci-Iterator</strong>: Implementiere einen Iterator für eine Struktur, die fortlaufend die nächste Zahl der Fibonacci-Folge berechnet, ohne jemals zu stoppen.</li>
+<li><strong>Bereichs-Iterator mit Schrittweite</strong>: Baue einen Iterator, der einen Zahlenbereich von Start bis Ende mit einer frei wählbaren Schrittweite (z.B. in 0.5er-Schritten) durchläuft.</li>
+<li><strong>Custom String-Splitter</strong>: Erstelle einen eigenen Iterator, der eine Zeichenkette anhand eines bestimmten Trennzeichens in Teil-Strings zerlegt, ohne Standard-Methoden zu nutzen.</li>
+<li><strong>Endloser Zufalls-Stream</strong>: Implementiere einen unendlichen Iterator, der bei jedem Aufruf von <code>next()</code> eine neue Zufallszahl innerhalb eines definierten Bereichs generiert.</li>
+<li><strong>Grid-Traversierer</strong>: Entwickle einen Iterator für eine zweidimensionale Matrix, der die Elemente wahlweise zeilenweise oder spaltenweise durchläuft.</li>
+<li><strong>Beidseitiger Queue-Iterator</strong>: Implementiere <code>DoubleEndedIterator</code> für eine eigene Liste, sodass Elemente sowohl vom Anfang als auch vom Ende her entnommen werden können.</li>
+<li><strong>Zirkulärer Puffer-Iterator</strong>: Baue einen Iterator für einen Ringpuffer, der nach Erreichen des letzten Elements wieder von vorne beginnt und unendlich weiterläuft.</li>
+<li><strong>Dateizeilen-Streaming</strong>: Schreibe einen Iterator, der eine Textdatei zeilenweise liest. Er lädt immer nur die aktuelle Zeile in den Speicher, um Ressourcen zu sparen.</li>
+<li><strong>Primzahl-Iterator (Sieb)</strong>: Implementiere einen Iterator, der nach dem Prinzip des Sieb des Eratosthenes arbeitet und nacheinander alle Primzahlen liefert.</li>
+<li><strong>Rückwärts-Iterator für verkettete Listen</strong>: Entwickle einen Iterator, der sich von hinten nach vorne durch eine einfach verkettete Liste arbeitet.</li>
+<li><strong>Custom Chunk-Iterator</strong>: Schreibe einen Iterator, der eine Kollektion in feste Stücke (Chunks) einer bestimmten Größe aufteilt und diese als Slices zurückgibt.</li>
+<li><strong>DNA-Basen-Transkriptor</strong>: Implementiere einen Iterator, der einen Strom von DNA-Nukleotiden (A, T, C, G) liest und sie direkt beim Iterieren in RNA-Gegenstücke übersetzt.</li>
+<li><strong>Run-Length-Decoder</strong>: Erstelle einen Iterator, der Lauflängencodierte Sequenzen (z.B. <code>(4, 'B')</code>) wieder in eine Folge einzelner Zeichen (<code>'B', 'B', 'B', 'B'</code>) entpackt.</li>
+<li><strong>Historien-Fenster (Windowed Iterator)</strong>: Baue einen Iterator, der bei jedem Schritt ein gleitendes Fenster der letzten n Elemente einer Sequenz liefert.</li>
+<li><strong>Kombinations-Iterator</strong>: Implementiere einen Iterator, der aus einer Liste von Elementen alle möglichen Paarkombinationen erzeugt.</li>
+<li><strong>Interleaved Iterator</strong>: Mische zwei unterschiedliche Iteratoren abwechselnd zusammen (z.B. liefert er abwechselnd ein Element aus Iterator A und eines aus Iterator B).</li>
+<li><strong>CSV-Parser-Iterator</strong>: Entwickle einen Iterator, der rohe Textzeilen einliest, sie als CSV parst und bei Fehlern in einer Zeile diese überspringt, aber intern protokolliert.</li>
+<li><strong>Dateisystem-Tiefensuche (DFS)</strong>: Implementiere einen Iterator, der ausgehend von einem Startverzeichnis alle Unterverzeichnisse und Dateien tiefenorientiert durchläuft.</li>
+<li><strong>Fortschritts-Iterator (ExactSize)</strong>: Baue einen Iterator, der <code>ExactSizeIterator</code> implementiert, damit eine äußere Schleife vorab weiß, wie viele Schritte verbleiben, und eine Fortschrittsanzeige rendern kann.</li>
+<li><strong>Zyklischer Wochentags-Iterator</strong>: Erstelle einen Iterator, der die Wochentage von Montag bis Sonntag unendlich oft wiederholt.</li>
+</ol>
+<hr />
+<h2 id="3-iterator-ketten--adapter"><a class="header" href="#3-iterator-ketten--adapter">3. Iterator-Ketten &amp; Adapter</a></h2>
+<p>Hier lernst du die mächtige funktionale Pipeline von Rust kennen. Du kombinierst Standard-Methoden wie <code>map</code>, <code>filter</code>, <code>fold</code>, <code>scan</code>, <code>zip</code>, <code>flatten</code> und <code>collect</code>, um komplexe Datenumwandlungen kurz, lesbar und hocheffizient in einer einzigen Kette zu formulieren.</p>
+<ol start="41">
+<li><strong>Zahlen-Filter &amp; Quadrierer</strong>: Nimm eine Liste von Zahlen, filtere alle geraden Werte heraus und quadriere die verbleibenden ungeraden Zahlen in einer Kette.</li>
+<li><strong>Gesamtwortlängen-Rechner</strong>: Berechne die Summe der Längen aller Wörter in einem gegebenen Satz, indem du Wörter splittest, deren Längen ermittelst und sie aufsummierst.</li>
+<li><strong>E-Mail-Domänen-Filter</strong>: Filtere eine Liste von E-Mail-Adressen, extrahiere die Domänennamen und sammle nur die eindeutigen Werte in einem <code>HashSet</code>.</li>
+<li><strong>Gleitender Durchschnitt mit Scan</strong>: Berechne den gleitenden Durchschnitt einer Sensor-Messreihe, indem du mit <code>.scan()</code> den Zustand der letzten Messungen mitführst.</li>
+<li><strong>Wörter-Partitionierung</strong>: Teile eine Liste von Begriffen mit <code>.partition()</code> in zwei getrennte Vektoren auf: einen für Wörter, die mit einem Vokal beginnen, und einen für den Rest.</li>
+<li><strong>Indexbasierte Suche</strong>: Durchsuche eine Liste von Elementen, finde das erste Element, das ein Kriterium erfüllt, und gib dessen Index mithilfe von <code>.enumerate()</code> und <code>.find()</code> zurück.</li>
+<li><strong>Verschachteltes JSON-Flattening</strong>: Nutze <code>.flat_map()</code>, um verschachtelte Arrays in einer Datenstruktur zu einer flachen Liste zu reduzieren und ungültige Einträge direkt auszufiltern.</li>
+<li><strong>Debugging-Pipeline mit Inspect</strong>: Füge an verschiedenen Stellen einer komplexen Iterator-Kette <code>.inspect()</code> ein, um Zwischenschritte auf der Konsole auszugeben, ohne den Datenfluss zu stören.</li>
+<li><strong>Wort-Häufigkeits-Zähler</strong>: Analysiere ein Textdokument, indem du es in Wörter zerlegst und diese mit <code>.fold()</code> in eine Häufigkeits-Tabelle (<code>HashMap</code>) einträgst.</li>
+<li><strong>ID-Namens-Verknüpfung (Zip)</strong>: Verbinde eine Sequenz von numerischen IDs und eine Sequenz von Namen mit <code>.zip()</code> zu einer Liste von Tupeln.</li>
+<li><strong>Paginierte Dateiliste</strong>: Verkette mehrere Verzeichnislisten mit <code>.chain()</code>, überspringe die ersten n Einträge mit <code>.skip()</code> und nimm die nächsten m Einträge mit <code>.take()</code>.</li>
+<li><strong>Messdaten-Abbruchbedingung</strong>: Lies Datenpunkte ein, solange sie sich im normalen Bereich befinden, indem du <code>.take_while()</code> nutzt, um die Verarbeitung beim ersten Ausreißer zu stoppen.</li>
+<li><strong>Status-Check (All/Any)</strong>: Prüfe mit <code>.all()</code>, ob alle Verbindungen aktiv sind, und mit <code>.any()</code>, ob mindestens eine Verbindung einen kritischen Fehlerzustand aufweist.</li>
+<li><strong>Komplexer Maximum-Finder</strong>: Finde in einer Liste von Strukturen das Element mit dem höchsten berechneten Wert, indem du eine Vergleichs-Closure an <code>.max_by()</code> übergibst.</li>
+<li><strong>Vektor-Flattener</strong>: Konvertiere einen zweifach verschachtelten Vektor (<code>Vec&lt;Vec&lt;T&gt;&gt;</code>) mit <code>.flatten()</code> in einen einfachen flachen Vektor (<code>Vec&lt;T&gt;</code>).</li>
+<li><strong>Bedingtes Fold (Reduce)</strong>: Berechne das Produkt aller Zahlen in einem Vektor mit <code>.reduce()</code> und fange den Fall ab, dass die Liste leer ist.</li>
+<li><strong>String-Konkatenation ohne Alloc</strong>: Verbinde eine Liste von Wörtern mit einem Trennzeichen, indem du <code>.fold()</code> verwendest, um den Zielstring direkt zu befüllen und unnötige Zwischen-Vektoren zu vermeiden.</li>
+<li><strong>Gleitende Fenster (Windows)</strong>: Analysiere Kursschwankungen einer Aktie, indem du mit <code>.windows(2)</code> aufeinanderfolgende Wertepaare vergleichst.</li>
+<li><strong>Batch-Verarbeiter (Chunks)</strong>: Verarbeite eine große Liste von Datensätzen in festen Paketen (z. B. immer 10 Stück) mit <code>.chunks()</code>, um sie paketweise an eine Datenbank zu senden.</li>
+<li><strong>Ergebnis-Filterung (Ok-Werte extrahieren)</strong>: Filtere aus einer Liste von <code>Result</code>-Werten alle Fehler heraus und sammle nur die erfolgreichen Werte mithilfe von <code>.filter_map()</code>.</li>
+</ol>
+<hr />
+<h2 id="4-kombinations-projekte"><a class="header" href="#4-kombinations-projekte">4. Kombinations-Projekte</a></h2>
+<p>In diesen Projekten verbindest du die gelernten Konzepte. Du nutzt Closures, um das Verhalten von Iterator-Ketten dynamisch zu steuern, und baust kleine, in sich geschlossene Werkzeuge, die Daten einlesen, transformieren und formatiert ausgeben.</p>
+<ol start="61">
+<li><strong>Text-Balkendiagramm</strong>: Generiere ein einfaches Balkendiagramm auf der Konsole, indem du Eingabewerte über einen Iterator in Zeilen aus Sternchen (<code>*</code>) transformierst.</li>
+<li><strong>Umgebungsdaten-Parser (.env)</strong>: Lese eine Konfigurationsdatei ein, filtere Leerzeilen und Kommentare heraus und sammle die Schlüssel-Wert-Paare über Iteratoren in einer Map.</li>
+<li><strong>Markdown-TOC-Builder</strong>: Durchsuche eine Markdown-Datei nach Überschriften (Zeilen, die mit <code>#</code> starten) und erstelle daraus ein strukturiertes Inhaltsverzeichnis.</li>
+<li><strong>Zeilenumbruch-Formatierer</strong>: Implementiere einen Algorithmus, der Text-Token über einen Iterator einliest und sie so gruppiert, dass keine Zeile eine maximale Zeichenanzahl überschreitet.</li>
+<li><strong>CSV-Spalten-Extraktor</strong>: Lese eine CSV-Datei und filtere bestimmte Spalten heraus, indem du Zeilen iterativ splittest, die gewünschten Indizes auswählst und neu zusammensetzt.</li>
+<li><strong>Caesar-Verschlüsselung</strong>: Verschlüssele eine Zeichenkette, indem du ihre Zeichen als Iterator durchläufst, sie mit einer Verschiebe-Closure manipulierst und wieder als String sammelst.</li>
+<li><strong>Log-Analysator</strong>: Filtere Server-Logs nach Fehlerklassen und Zeiträumen und berechne die durchschnittliche Antwortzeit fehlerhafter Anfragen mittels Iterator-Ketten.</li>
+<li><strong>Passwort-Validator</strong>: Schreibe ein Validierungsprogramm, das prüft, ob ein Passwort alle Sicherheitsregeln erfüllt, indem es verschiedene Zeichen-Iteratoren und Such-Prüfungen kombiniert.</li>
+<li><strong>Matrix-Transposition</strong>: Transponiere eine zweidimensionale Matrix, indem du Iteratoren über Zeilen und Spalten verwickelst und die Werte in einer neuen Struktur sammelst.</li>
+<li><strong>Spielkartendeck-Ersteller</strong>: Generiere ein komplettes Set aus 52 Spielkarten, indem du Kartenfarben und Kartenwerte über <code>.flat_map()</code> miteinander kreuzt.</li>
+<li><strong>Run-Length-Encoder (RLE)</strong>: Komprimiere eine Zeichenkette, indem du aufeinanderfolgende, gleiche Zeichen zählst und diese als Sequenz von Häufigkeits-Tupeln ausgibst.</li>
+<li><strong>Subnetz-IP-Generator</strong>: Generiere alle gültigen IP-Adressen innerhalb einer CIDR-Block-Notierung (z.B. <code>/24</code>) unter Verwendung eines eigens dafür gebauten Iterators.</li>
+<li><strong>Pfad-Normalisierer</strong>: Zerlege einen Dateipfad in seine Segmente und verarbeite sie mit <code>.fold()</code>, um relative Pfade (mit <code>.</code> und <code>..</code>) zu bereinigen.</li>
+<li><strong>Anagramm-Prüfer</strong>: Finde heraus, ob zwei Wörter Anagramme sind, indem du ihre Zeichen-Iteratoren sortierst und die Ergebnisse direkt auf Gleichheit prüfst.</li>
+<li><strong>SQL-Select-Builder</strong>: Erstelle ein Programm, das aus einer Liste von Spalten, einer Tabelle und Bedingungen über Iterator-Verkettungen eine korrekte SQL-Abfrage generiert.</li>
+<li><strong>Messwert-Glättung</strong>: Reduziere Rauschen in einer Messreihe, indem du über gleitende Fenster iterierst und das arithmetische Mittel der Nachbarwerte berechnest.</li>
+<li><strong>HTML-Tag-Entferner</strong>: Befreie einen Text von HTML-Tags, indem du den Zeichenstrom filterst und den Zustand (ob man sich innerhalb eines Tags befindet) in einer scan-artigen Closure mitführst.</li>
+<li><strong>Template-Engine</strong>: Ersetze Platzhalter (wie <code>{{user}}</code>) in einem Vorlagentext durch Werte aus einer Map, indem du den Text zerlegst, mappst und wieder zusammensetzt.</li>
+<li><strong>Rechnungs-Kalkulator</strong>: Berechne den Gesamtwert eines Einkaufs, filtere ungültige Artikel aus, wende Steuersätze und prozentuale Rabatte an und summiere das Endergebnis.</li>
+<li><strong>Bibliotheks-Katalog-Suche</strong>: Implementiere eine Suche, die Bücher filtert, indem sie eine Liste von Suchbegriffen mit <code>.all()</code> gegen Titel und Autor abgleicht.</li>
+</ol>
+<hr />
+<h2 id="5-fortgeschrittene-algorithmen--fp-muster"><a class="header" href="#5-fortgeschrittene-algorithmen--fp-muster">5. Fortgeschrittene Algorithmen &amp; FP-Muster</a></h2>
+<p>Hier betrittst du die Welt der funktionalen Entwurfsmuster. Du lernst, wie du verzögerte Auswertung (Lazy Evaluation) nutzt, Parser-Kombinatoren schreibst, unendliche Datenströme verarbeitest und fortgeschrittene funktionale Konzepte wie partielle Applikation oder zustandsbehaftete Pipelines in Rust nachbildest.</p>
+<ol start="81">
+<li><strong>Unendlicher Primzahlgenerator</strong>: Schreibe einen Iterator, der endlos Primzahlen generiert, wobei die nächste Zahl erst dann berechnet wird, wenn die Schleife danach verlangt.</li>
+<li><strong>Fehler-Verkettung mit Monaden-Mustern</strong>: Verarbeite verästelte, optionale API-Antworten mit <code>.and_then()</code>, <code>.map_or()</code> und <code>.or_else()</code>, um Kontrollstrukturen flach und lesbar zu halten.</li>
+<li><strong>Einfacher Parser-Kombinator</strong>: Definiere Parser als Closures, die Text analysieren und sich mit anderen Parser-Closures (z.B. für "und dann" oder "oder") flexibel verbinden lassen.</li>
+<li><strong>Echtzeit-Stream-Aggregator</strong>: Berechne aus einem unendlichen Datenstrom kontinuierlich die Top-10-Elemente, indem du einen Iterator schreibst, der den Zustand in einem Min-Heap verwaltet.</li>
+<li><strong>Lazy JSON-Pfad-Evaluator</strong>: Navigiere durch eine Baumstruktur. Die Pfadsegmente werden erst evaluiert und gesucht, wenn der Endbenutzer den Wert tatsächlich anfordert.</li>
+<li><strong>N-Damen-Problem als Iterator</strong>: Löse das N-Damen-Schachproblem, indem du den Suchbaum als Iterator modellierst, der bei jedem <code>next()</code>-Aufruf die nächste gültige Brettkonstellation liefert.</li>
+<li><strong>State-Monaden-Simulator</strong>: Schreibe Funktionen, die einen Zustand annehmen und eine Closure zurückgeben, welche den neuen Zustand und einen Ausgabewert berechnet.</li>
+<li><strong>Custom Zip-With-Adapter</strong>: Implementiere einen Iterator-Adapter <code>zip_with(self, other, closure)</code>, der zwei Iteratoren verbindet und ihre Elemente sofort mit der übergebenen Closure transformiert.</li>
+<li><strong>Binärbaum-Traversierer</strong>: Implementiere die Pre-Order-, In-Order- und Post-Order-Traversierung eines Baums als Lazy Iteratoren, ohne die Knoten vorab in einen Vektor zu kopieren.</li>
+<li><strong>Collatz-Folgen-Iterator</strong>: Generiere die mathematische Collatz-Folge für eine Zahl als Iterator und finde über Ketten heraus, welche Zahl im Bereich bis 1000 die längste Kette erzeugt.</li>
+<li><strong>Curried Logger</strong>: Baue ein Protokollierungssystem, das durch den schrittweisen Aufruf von Closures konfiguriert wird (z. B. <code>log(Level)(Module)(Message)</code>).</li>
+<li><strong>Funktionale Funktionskomposition</strong>: Schreibe eine Utility-Funktion, die zwei Closures <code>f(x)</code> und <code>g(x)</code> entgegennimmt und eine neue Closure erzeugt, die <code>g(f(x))</code> berechnet.</li>
+<li><strong>Lazy Matrix-Transposition (Zero-Copy)</strong>: Erstelle eine Matrix-Struktur, bei der die Transposition keine Daten kopiert, sondern nur die Index-Berechnung im Iterator anpasst.</li>
+<li><strong>Ressourceneffizienter Stream-Join</strong>: Führe zwei sortierte Iteratoren in einem einzigen Durchlauf (O(N) Zeitkomplexität) zu einem einzigen, sortierten Iterator zusammen.</li>
+<li><strong>Partielle Applikation</strong>: Simuliere die teilweise Übergabe von Funktionsargumenten, indem du eine Funktion schreibst, die eine Closure mit vordefinierten Parametern zurückgibt.</li>
+<li><strong>Lazy Stream-Chiffre</strong>: Verschlüssele Dateien Byte für Byte im Lesefluss, indem du den Dateistream-Iterator mit einem pseudozufälligen Schlüssel-Iterator verknüpfst.</li>
+<li><strong>Funktionale Runden-Simulation</strong>: Modelliere den Ablauf eines rundenbasierten Spiels als unendliche Iterator-Kette, bei der jeder Schritt den Spielzustand transformiert.</li>
+<li><strong>Fehlertoleranter Flatten-Adapter</strong>: Schreibe einen Iterator-Adapter, der verschachtelte Collections flachklopft, aber bei Auftreten des ersten Fehlers (z. B. ein <code>Err</code>) sofort abbricht.</li>
+<li><strong>Lazy-Regex-Matcher</strong>: Implementiere einen einfachen Zeichenmuster-Prüfer, der den Abgleich Schritt für Schritt über verknüpfte Iterator-Adapter vornimmt.</li>
+<li><strong>Map-Reduce-Simulator</strong>: Baue ein System, das Eingabedaten über Iteratoren aufgeteilt, durch Transformations-Closures leitet (Map) und sie anschließend funktional zusammenfasst (Reduce).</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase8.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-prompts-phase8.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase8.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-prompts-phase8.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

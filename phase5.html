@@ -1,0 +1,507 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Projektvorschläge Phase 5 - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html" class="active"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="phase-5-projektvorschläge-zu-generics-traits--lifetimes"><a class="header" href="#phase-5-projektvorschläge-zu-generics-traits--lifetimes">Phase 5: Projektvorschläge zu Generics, Traits &amp; Lifetimes</a></h1>
+<p>In dieser Phase führst du die drei mächtigsten Konzepte von Rust zusammen: <strong>Generics</strong> (generische Typen), <strong>Traits</strong> (Schnittstellen) und <strong>Lifetimes</strong> (Lebensdauern). Diese Werkzeuge ermöglichen es dir, extrem flexiblen, wiederverwendbaren und gleichzeitig sicheren Code zu schreiben, ohne Laufzeit-Einbußen (Zero-Cost Abstractions) in Kauf nehmen zu müssen.</p>
+<p>Die folgenden 10 didaktisch aufbereiteten Projektvorschläge fordern dich heraus, diese Konzepte in Kombination anzuwenden. Sie sind bewusst so gestaltet, dass du die Architektur selbst entwirfst. Es werden keine fertigen Codelösungen vorgegeben – stattdessen erhältst du klare Strukturierungs- und Denkansätze.</p>
+<hr />
+<h2 id="-projekt-1-der-in-memory-zero-copy-cache"><a class="header" href="#-projekt-1-der-in-memory-zero-copy-cache">🗃️ Projekt 1: Der In-Memory "Zero-Copy" Cache</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise"><a class="header" href="#1-beschreibung-der-funktionsweise">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Zwischenspeicher (Cache), der Daten vorübergehend im Hauptspeicher vorhält, um wiederholte langsame Zugriffe zu vermeiden. Um Speicherplatz und CPU-Zyklen für das Kopieren zu sparen, soll dieser Cache "Zero-Copy" arbeiten. Das bedeutet, dass er keine Kopien der Schlüssel und Werte speichert, sondern direkt mit Referenzen auf bereits existierende Daten arbeitet. Der Cache soll abgelaufene Einträge anhand eines Kriteriums (z. B. eines Zeitstempels oder einer Gültigkeitsdauer) identifizieren und entfernen können.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Cache&lt;'a, K, V&gt;</code>: Das zentrale Cache-Struct. Die Lifetime <code>'a</code> stellt sicher, dass die im Cache gespeicherten Referenzen nicht länger leben als die Daten im umgebenden Scope. <code>K</code> (Schlüssel) und <code>V</code> (Wert) sind generische Parameter.</li>
+<li><code>Trait Cacheable</code>: Definiert das Verhalten für Werte, die im Cache abgelegt werden dürfen. Es verlangt z. B. eine Methode <code>is_expired(&amp;self) -&gt; bool</code> oder <code>size_bytes(&amp;self) -&gt; usize</code>.</li>
+<li><strong>Trait-Bounds</strong>: Die HashMap im Inneren des Caches erfordert Trait-Bounds auf den Schlüssel-Typen: <code>K: Eq + std::hash::Hash</code>. Zudem muss der Wert-Typ die Bedingung <code>V: Cacheable</code> erfüllen.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>cache.rs</code>: Enthält die definition und die Methoden des <code>Cache</code>-Structs.</li>
+<li><code>traits.rs</code>: Definiert den <code>Cacheable</code>-Trait.</li>
+<li><code>main.rs</code>: Demonstriert die Nutzung des Caches mit verschiedenen Typen und zeigt, wie der Compiler ungültige Speicherzugriffe verhindert.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates"><a class="header" href="#3-zu-verwendende-crates">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig. Die Standardbibliothek (<code>std::collections::HashMap</code>, <code>std::time::Instant</code>) reicht vollständig aus.</li>
+</ul>
+<h3 id="4-didaktische-hinweise"><a class="header" href="#4-didaktische-hinweise">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Der Borrow Checker wird hier streng aufpassen. Wenn du eine Referenz in den Cache legst, gehört der referenzierte Wert nicht dem Cache. Du musst mit der Lifetime <code>'a</code> garantieren, dass das ursprüngliche Objekt existiert, solange der Cache darauf zugreifen möchte.</li>
+<li><strong>Achtung</strong>: Überlege dir gut, ob der Schlüssel (<code>K</code>) im Cache als Kopie, als eigener Typ oder ebenfalls als Referenz vorliegen soll (z. B. <code>HashMap&lt;&amp;'a K, &amp;'a V&gt;</code>). Das verändert die Flexibilität deines Caches enorm.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung"><a class="header" href="#5-optionale-zusatz-herausforderung">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere eine automatische Bereinigungsstrategie (Eviction Policy) wie LRU (Least Recently Used). Definiere dafür ein generisches Trait <code>EvictionPolicy&lt;'a, K, V&gt;</code> und baue den Cache so um, dass er bei Erreichen einer Kapazitätsgrenze das älteste Element verwirft.</p>
+<hr />
+<h2 id="-projekt-2-der-flexible-log-pipeline-prozessor"><a class="header" href="#-projekt-2-der-flexible-log-pipeline-prozessor">📑 Projekt 2: Der flexible Log-Pipeline-Prozessor</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-1"><a class="header" href="#1-beschreibung-der-funktionsweise-1">1. Beschreibung der Funktionsweise</a></h3>
+<p>Dieses Tool dient der Verarbeitung von Log-Einträgen aus unterschiedlichen Quellen (z. B. Log-Dateien auf der Festplatte, direkte Konsoleneingaben oder Speicher-Arrays). Die Pipeline liest Logs ein, filtert sie nach bestimmten Kriterien, extrahiert relevante Daten (wie Zeitstempel, Log-Level und Nachricht) und gibt sie formatiert aus. Um maximale Performance zu erzielen, verweisen alle extrahierten Textteile direkt auf die Originalquelle, ohne neuen Speicher für Strings zu reservieren.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-1"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-1">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct LogEntry&lt;'a&gt;</code>: Repräsentiert die strukturierten Daten einer Log-Zeile. Die Felder für Log-Level und Nachricht sind String-Slices (<code>&amp;'a str</code>), die direkt auf die ursprüngliche Log-Zeile verweisen.</li>
+<li><code>Trait LogReader&lt;'a&gt;</code>: Schnittstelle für beliebige Datenquellen. Es definiert eine Methode, die das nächste Log als String-Slice liefert. Die Lifetime <code>'a</code> stellt sicher, dass der gelesene Slice an das Quellobjekt gebunden ist.</li>
+<li><code>Struct LogPipeline&lt;'a, R&gt;</code>: Die generische Pipeline, die eine Quelle vom Typ <code>R</code> liest. Trait-Bound: <code>R: LogReader&lt;'a&gt;</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>reader.rs</code>: Implementiert den <code>LogReader</code> für verschiedene Quellen (z. B. Datei-Reader oder Speicher-Slice-Reader).</li>
+<li><code>parser.rs</code>: Beinhaltet die Logik zur Zerlegung des Log-Strings in ein <code>LogEntry</code>.</li>
+<li><code>pipeline.rs</code>: Steuert den Fluss der Daten von der Quelle bis zur Ausgabe.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-1"><a class="header" href="#3-zu-verwendende-crates-1">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates zwingend notwendig.</li>
+<li><em>Optional</em>: <code>regex</code> (falls du reguläre Ausdrücke zur Analyse der Log-Muster nutzen willst).</li>
+</ul>
+<h3 id="4-didaktische-hinweise-1"><a class="header" href="#4-didaktische-hinweise-1">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Die Lifetime <code>'a</code> zieht sich von der Quelle über den <code>LogReader</code> bis in die Struktur <code>LogEntry</code>. Wenn die Quelle (z. B. eine lokale Variable in einer Funktion) zerstört wird, darf auch kein <code>LogEntry</code> mehr existieren.</li>
+<li><strong>Achtung</strong>: Du wirst hier lernen, warum du Log-Zeilen nicht in einer temporären Schleifenvariable zwischenspeichern und gleichzeitig als Referenz herausgeben kannst. Die Daten müssen eine ausreichend lange Lebensdauer besitzen.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-1"><a class="header" href="#5-optionale-zusatz-herausforderung-1">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere ein Trait <code>LogFilter</code> mit einer generischen Methode <code>filter&lt;'a&gt;(&amp;self, entry: &amp;LogEntry&lt;'a&gt;) -&gt; bool</code>. Schreibe Filter, die sich per Generic oder Dynamic Dispatch kombinieren lassen (z. B. ein Filter, der nur Fehler-Logs zulässt, die ein bestimmtes Wort enthalten).</p>
+<hr />
+<h2 id="-projekt-3-rundenbasiertes-arena-kampfsystem"><a class="header" href="#-projekt-3-rundenbasiertes-arena-kampfsystem">⚔️ Projekt 3: Rundenbasiertes Arena-Kampfsystem</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-2"><a class="header" href="#1-beschreibung-der-funktionsweise-2">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Simulator für rundenbasierte Kämpfe in einem Rollenspiel. Unterschiedliche Charaktere (Helden, Monster, Bosse) treten in einer Arena gegeneinander an. Das System verwaltet Attribute (Lebenspunkte, Stärke, Initiative) und berechnet Angriffe sowie Statuseffekte (z. B. Verbrennung, Gift), die über mehrere Runden aktiv sind. Statuseffekte können sich auf die Eigenschaften des Verursachers beziehen und nutzen daher Referenzen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-2"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-2">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Combatant</code>: Schnittstelle, die alle Kämpfer implementieren müssen. Sie enthält Methoden wie <code>attack(&amp;self) -&gt; u32</code>, <code>take_damage(&amp;mut self, amount: u32)</code> und <code>tick_status_effects(&amp;mut self)</code>.</li>
+<li><code>Struct StatusEffect&lt;'a&gt;</code>: Repräsentiert einen aktiven Effekt. Er hält eine Referenz mit der Lifetime <code>'a</code> auf den Charakter, der den Effekt verursacht hat, um z. B. Schadensboni dynamisch zu berechnen.</li>
+<li><code>Struct Arena&lt;'a, T, U&gt;</code>: Die Kampf-Arena, die generisch zwei Kämpfer-Typen <code>T</code> und <code>U</code> aufnimmt. Trait-Bounds: <code>T: Combatant</code>, <code>U: Combatant</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>combatant.rs</code>: Definiert den Trait <code>Combatant</code> und Basis-Strukturen.</li>
+<li><code>effects.rs</code>: Enthält die Logik für Statuseffeffekte und deren Lebensdauern.</li>
+<li><code>arena.rs</code>: Implementiert die Kampfschleife (Rundenablauf, Schadensberechnung, Siegbedingungen).</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-2"><a class="header" href="#3-zu-verwendende-crates-2">3. Zu verwendende Crates</a></h3>
+<ul>
+<li><code>rand</code> (zur Simulation von kritischen Treffern, Ausweichchancen und variablen Schadenswerten).</li>
+</ul>
+<h3 id="4-didaktische-hinweise-2"><a class="header" href="#4-didaktische-hinweise-2">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Du wirst den Unterschied zwischen statischer Bindung (Generics: <code>Arena&lt;T, U&gt;</code>) und dynamischer Bindung (Dynamic Dispatch mit Traits: <code>Box&lt;dyn Combatant&gt;</code>) kennenlernen.</li>
+<li><strong>Achtung</strong>: Da Statuseffekte eine Referenz auf ihren Verursacher halten können, darf der Verursacher nicht aus der Arena gelöscht werden, während der Effekt noch auf einem anderen Charakter aktiv ist. Der Borrow Checker wird dich zwingen, diese Beziehungen sauber über Lifetimes abzubilden.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-2"><a class="header" href="#5-optionale-zusatz-herausforderung-2">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Führe "Associated Types" (assoziierte Typen) im <code>Combatant</code>-Trait ein. Definiere einen Typ <code>type Resource</code>, der angibt, welche Energiequelle der Kämpfer nutzt (z. B. Magier nutzen <code>Mana</code>, Krieger nutzen <code>Wut</code>).</p>
+<hr />
+<h2 id="-projekt-4-generischer-formular-validator"><a class="header" href="#-projekt-4-generischer-formular-validator">🛡️ Projekt 4: Generischer Formular-Validator</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-3"><a class="header" href="#1-beschreibung-der-funktionsweise-3">1. Beschreibung der Funktionsweise</a></h3>
+<p>Eine erweiterbare Bibliothek zur Validierung von Benutzereingaben in Formularen. Das System prüft, ob Eingaben (z. B. Strings, Zahlen, E-Mail-Adressen) bestimmten Regeln entsprechen. Tritt ein Validierungsfehler auf, soll die Fehlermeldung direkt auf das fehlerhafte Eingabefeld verweisen. So wird vermieden, dass Fehlermeldungen für jedes Feld als neue Strings auf dem Heap alloziiert werden müssen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-3"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-3">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Validator&lt;T&gt;</code>: Definiert eine Schnittstelle mit der Methode <code>validate(&amp;self, input: &amp;T) -&gt; Result&lt;(), ValidationError&gt;</code>.</li>
+<li><code>Struct ValidationError&lt;'a&gt;</code>: Verwaltet die Fehlermeldung. Das Feld für das betroffene Eingabefeld ist eine Referenz <code>&amp;'a str</code>.</li>
+<li><strong>Generische Validatoren</strong>: Typen wie <code>MinLengthValidator</code>, <code>RangeValidator&lt;T&gt;</code> (wobei <code>T</code> das Trait-Bound <code>PartialOrd</code> erfüllen muss) und logische Verknüpfungen wie <code>AndValidator&lt;V1, V2, T&gt;</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>validation.rs</code>: Enthält den zentralen Trait <code>Validator</code> und das Fehler-Struct.</li>
+<li><code>rules.rs</code>: Implementiert konkrete Validierungsregeln für diverse Datentypen.</li>
+<li><code>main.rs</code>: Zeigt, wie ein komplexes Benutzer-Registrierungsformular validiert wird.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-3"><a class="header" href="#3-zu-verwendende-crates-3">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-3"><a class="header" href="#4-didaktische-hinweise-3">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Das Verschachteln von generischen Validatoren (z. B. ein Validator, der zwei andere kombinierte Validatoren ausführt) erfordert ein gutes Verständnis von Trait-Bounds auf generischen Strukturen.</li>
+<li><strong>Achtung</strong>: Der Lebenszeit-Parameter <code>'a</code> in <code>ValidationError&lt;'a&gt;</code> gibt an, wie lange die Eingabedaten im Speicher liegen müssen. Du darfst das Formular nicht verändern oder löschen, solange du die Fehlerberichte liest.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-3"><a class="header" href="#5-optionale-zusatz-herausforderung-3">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere die Möglichkeit, Validatoren dynamisch in einer Liste (<code>Vec&lt;Box&lt;dyn Validator&lt;T&gt;&gt;&gt;</code>) zu sammeln, um Validierungsketten erst zur Laufzeit dynamisch zusammenzusetzen.</p>
+<hr />
+<h2 id="-projekt-5-typsicherer-in-memory-query-builder"><a class="header" href="#-projekt-5-typsicherer-in-memory-query-builder">🔍 Projekt 5: Typsicherer In-Memory Query Builder</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-4"><a class="header" href="#1-beschreibung-der-funktionsweise-4">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Werkzeug, mit dem du typsichere Abfragen auf Listen von Datenstrukturen (z. B. einer Liste von Benutzern oder Produkten) formulieren kannst – ähnlich wie SQL oder LINQ in C#. Das Tool erlaubt das Filtern, Sortieren und Transformieren (Projizieren) von Daten. Alle Operationen sollen "Zero-Copy" ablaufen: Sie filtern und referenzieren die Originaldaten, ohne neue Instanzen der zugrundeliegenden Strukturen zu kopieren.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-4"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-4">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct Query&lt;'a, T&gt;</code>: Hält eine Referenz auf ein Slice von Daten (<code>&amp;'a [T]</code>) und verwaltet den aktuellen Zustand der Abfrage.</li>
+<li><code>Trait Filter&lt;'a, T&gt;</code>: Beschreibt ein Filterkriterium für ein Element vom Typ <code>T</code>. Es definiert eine Methode <code>matches(&amp;self, item: &amp;'a T) -&gt; bool</code>.</li>
+<li><strong>Methoden auf <code>Query</code></strong>: Generische Funktionen wie <code>where_clause&lt;F&gt;(self, filter: F) -&gt; Query&lt;'a, T&gt;</code> mit dem Bound <code>F: Filter&lt;'a, T&gt;</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>query.rs</code>: Die Implementierung des Query-Builders und seiner Fluent-API.</li>
+<li><code>filter.rs</code>: Vordefinierte Filterbedingungen (z. B. Vergleiche, logisches UND/ODER).</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-4"><a class="header" href="#3-zu-verwendende-crates-4">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-4"><a class="header" href="#4-didaktische-hinweise-4">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Da der Query-Builder nur Referenzen auf die Datenquelle hält, is er stark an deren Lebensdauer gebunden. Ein häufiger Anfängerfehler ist es, die gefilterten Referenzen aus einer Funktion zurückzugeben, in der die Datenquelle nur lokal existierte.</li>
+<li><strong>Achtung</strong>: Achte darauf, wie sich die Lebensdauer der ursprünglichen Liste im Rückgabetyp der Abfragemethoden widerspiegeln muss, damit der Compiler die Sicherheit garantieren kann.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-4"><a class="header" href="#5-optionale-zusatz-herausforderung-4">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Füge dem Query-Builder eine Projektionsmethode <code>project&lt;U, P&gt;(self, projector: P) -&gt; Vec&lt;U&gt;</code> hinzu. Diese soll die gefilterten Referenzen mithilfe des Projektors <code>P</code> (einem Trait oder einer Closure) in einen neuen, generischen Typ <code>U</code> transformieren.</p>
+<hr />
+<h2 id="-projekt-6-das-generische-event-broker-system"><a class="header" href="#-projekt-6-das-generische-event-broker-system">📡 Projekt 6: Das generische Event-Broker-System</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-5"><a class="header" href="#1-beschreibung-der-funktionsweise-5">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein zentraler Nachrichtenverteiler (Event Broker), der dem Publish-Subscribe-Muster folgt. Komponenten können sich als Empfänger (Listener) für bestimmte Event-Typen registrieren. Wenn eine andere Komponente ein Event an den Broker sendet, verteilt dieser es an alle registrierten Listener. Um Allokationen zu minimieren, registrieren sich die Listener mit Referenzen, und Events werden als Referenzen übergeben.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-5"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-5">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Event</code>: Ein leeres Markierungs-Trait, das Typen als gültige Events kennzeichnet.</li>
+<li><code>Trait Listener&lt;'a, E&gt;</code>: Definiert das Verhalten eines Empfängers. Die Methode <code>on_event(&amp;self, event: &amp;'a E)</code> wird aufgerufen, wenn das Event <code>E</code> eintritt.</li>
+<li><code>Struct EventBroker&lt;'a, E&gt;</code>: Der Broker, der eine Liste von Listener-Referenzen (<code>&amp;'a dyn Listener&lt;'a, E&gt;</code>) verwaltet und das Verteilen übernimmt.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>event.rs</code>: Enthält die Definitionen der Traits <code>Event</code> und <code>Listener</code>.</li>
+<li><code>broker.rs</code>: Implementiert den <code>EventBroker</code> und das Registrierungs-Management.</li>
+<li><code>main.rs</code>: Zeigt das Zusammenspiel mit verschiedenen Event-Typen.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-5"><a class="header" href="#3-zu-verwendende-crates-5">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-5"><a class="header" href="#4-didaktische-hinweise-5">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Das Speichern von Referenzen in einer Collection (wie einem <code>Vec</code>) innerhalb einer Struktur ist eine der anspruchsvollsten Aufgaben in Rust. Alle registrierten Listener müssen nachweislich mindestens so lange leben wie der Broker selbst.</li>
+<li><strong>Achtung</strong>: Du wirst hier lernen, warum du die Lebensdauer der Listener mit der Lifetime des Brokers koppeln musst, um das "Dangling Pointer"-Problem zur Compilezeit auszuschließen.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-5"><a class="header" href="#5-optionale-zusatz-herausforderung-5">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Erweitere das System so, dass der Broker thread-sicher wird und Events über Thread-Grenzen hinweg verteilen kann. Nutze dafür die Trait-Bounds <code>Send + Sync + 'static</code> für Events und Listener.</p>
+<hr />
+<h2 id="-projekt-7-generischer-daten-exporter-csv-json--markdown"><a class="header" href="#-projekt-7-generischer-daten-exporter-csv-json--markdown">📊 Projekt 7: Generischer Daten-Exporter (CSV, JSON &amp; Markdown)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-6"><a class="header" href="#1-beschreibung-der-funktionsweise-6">1. Beschreibung der Funktionsweise</a></h3>
+<p>Eine Bibliothek, die beliebige Datenstrukturen einliest und in verschiedene strukturierte Textformate konvertiert (z. B. CSV-Dateien, JSON-Arrays oder Markdown-Tabellen). Das System soll über ein Trait-basiertes Design so flexibel sein, dass neue Ausgabeformate leicht hinzugefügt werden können, ohne den bestehenden Code anzupassen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-6"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-6">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Exportable</code>: Muss von allen Datenstrukturen implementiert werden, die exportiert werden sollen. Es gibt z. B. Spaltennamen und Feldwerte als Liste von Strings bzw. String-Slices zurück.</li>
+<li><code>Trait Formatter</code>: Definiert das Zielformat. Es beschreibt, wie Tabellenköpfe, Zeilen und Trennzeichen generiert werden (z. B. <code>format_row(fields: &amp;[&amp;str]) -&gt; String</code>).</li>
+<li><code>Struct Exporter&lt;F&gt;</code>: Die generische Engine, die mit einem bestimmten Formatter <code>F</code> arbeitet. Trait-Bound: <code>F: Formatter</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>traits.rs</code>: Definiert <code>Exportable</code> und <code>Formatter</code>.</li>
+<li><code>formatters.rs</code>: Implementiert den <code>Formatter</code> für CSV, JSON und Markdown.</li>
+<li><code>engine.rs</code>: Führt die Export-Logik aus.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-6"><a class="header" href="#3-zu-verwendende-crates-6">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-6"><a class="header" href="#4-didaktische-hinweise-6">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Um unnötige Kopien zu vermeiden, sollten die Formatierungsfunktionen mit Referenzen arbeiten. Dies erfordert, dass die Lebensdauer der zu exportierenden Daten eng mit der Lebensdauer der temporären Formatierungs-Puffer abgestimmt wird.</li>
+<li><strong>Achtung</strong>: Überlege, wie du mit unterschiedlichen Datentypen umgehst. Nicht jede Struktur besteht nur aus Strings – wie bindest du Zahlen oder Wahrheitswerte generisch ein?</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-6"><a class="header" href="#5-optionale-zusatz-herausforderung-6">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Passe den <code>Exportable</code>-Trait so an, dass er statt fertiger Strings einen generischen Typ <code>T: std::fmt::Display</code> zurückgibt. So wird die Umwandlung in Text (die Formatierung) so spät wie möglich durchgeführt.</p>
+<hr />
+<h2 id="-projekt-8-command-pattern-mit-undoredo"><a class="header" href="#-projekt-8-command-pattern-mit-undoredo">🔄 Projekt 8: Command-Pattern mit Undo/Redo</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-7"><a class="header" href="#1-beschreibung-der-funktionsweise-7">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein System zur Verwaltung und Ausführung von Aktionen (Commands) auf einem veränderlichen Zustand (z. B. einem Textdokument oder einer Einkaufsliste). Jede Aktionen muss in der Lage sein, sich selbst auszuführen und sich wieder rückgängig zu machen. Ein Verlauf (History-Manager) speichert die ausgeführten Befehle und erlaubt es dem Nutzer, beliebig viele Schritte vor- und zurückzugehen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-7"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-7">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Command&lt;'a, Target&gt;</code>: Definiert das Verhalten eines Befehls. Es enthält die Methoden <code>execute(&amp;mut self, target: &amp;'a mut Target)</code> und <code>undo(&amp;mut self, target: &amp;'a mut Target)</code>.</li>
+<li><code>Struct History&lt;'a, Target&gt;</code>: Verwaltet zwei Stapel (Undo- und Redo-Stack) von Commands. Die Lifetime <code>'a</code> stellt sicher, dass kein Command länger existiert als das Zielobjekt (<code>Target</code>), das modifiziert wird.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>command.rs</code>: Definiert den <code>Command</code>-Trait.</li>
+<li><code>history.rs</code>: Implementiert den Verlauf und die Undo/Redo-Logik.</li>
+<li><code>actions.rs</code>: Enthält konkrete Implementierungen von Befehlen (z. B. <code>InsertText</code>, <code>DeleteText</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-7"><a class="header" href="#3-zu-verwendende-crates-7">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-7"><a class="header" href="#4-didaktische-hinweise-7">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Commands müssen oft einen Teil des vorherigen Zustands speichern, um diesen beim <code>undo</code> wiederherzustellen. Da dies über Referenzen auf das Dokument geschehen kann, ist das Verwalten von exklusiven Referenzen (<code>&amp;mut</code>) in Kombination mit Stacks eine exzellente Übung für den Borrow Checker.</li>
+<li><strong>Achtung</strong>: Achte darauf, dass die Lifetime des Zielobjekts <code>Target</code> die Lebensdauer der Stacks einschränkt. Du kannst kein Undo ausführen, wenn das Dokument, auf das sich die Commands beziehen, bereits gelöscht wurde.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-7"><a class="header" href="#5-optionale-zusatz-herausforderung-7">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere das System unter Verwendung des <em>Memento-Patterns</em>. Commands speichern dabei nicht die Änderungsschritte, sondern einen generischen Zustand (das Memento). Nutze dafür ein Trait <code>Memento</code> und generische Zustandsbackups.</p>
+<hr />
+<h2 id="-projekt-9-zero-copy-netzwerk-protokoll-parser"><a class="header" href="#-projekt-9-zero-copy-netzwerk-protokoll-parser">🖧 Projekt 9: Zero-Copy Netzwerk-Protokoll-Parser</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-8"><a class="header" href="#1-beschreibung-der-funktionsweise-8">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein extrem schneller Parser für ein vereinfachtes Netzwerkprotokoll (z. B. ein Textprotokoll ähnlich wie Redis RESP oder HTTP-Header). Der Parser liest Daten aus einem Byte-Buffer. Anstatt für Felder wie "Befehl", "Schlüssel" oder "Payload" neue Strings auf dem Heap zu erzeugen, verweisen die Felder der geparsten Struktur direkt als Slices auf den Eingabebuffer.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-8"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-8">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct Packet&lt;'a&gt;</code>: Die Struktur des geparsten Netzwerkpakets. Felder wie <code>command: &amp;'a str</code> und <code>payload: &amp;'a [u8]</code> verweisen direkt in den Buffer.</li>
+<li><code>Trait ProtocolParser&lt;'a&gt;</code>: Schnittstelle für den Parser. Sie definiert eine Methode <code>parse(&amp;self, buffer: &amp;'a [u8]) -&gt; Result&lt;Packet&lt;'a&gt;, ParseError&gt;</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>packet.rs</code>: Definiert das <code>Packet</code> und seine Lebensdauern.</li>
+<li><code>parser.rs</code>: Implementiert die Parser-Schnittstelle und die Parsing-Zustandsmaschine.</li>
+<li><code>errors.rs</code>: Enthält die Fehlertypen des Parsers.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-8"><a class="header" href="#3-zu-verwendende-crates-8">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-8"><a class="header" href="#4-didaktische-hinweise-8">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Dies ist das klassische Anwendungsbeispiel für Lifetimes! Der Byte-Buffer darf im Speicher nicht verschoben oder gelöscht werden, solange du das geparste <code>Packet</code> verwendest.</li>
+<li><strong>Achtung</strong>: Du wirst lernen, wie du Compilerfehler behebst, die auftreten, wenn du versuchst, Daten aus einem flüchtigen Netzwerk-Stream direkt in eine langlebige Datenstruktur zu parsen.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-8"><a class="header" href="#5-optionale-zusatz-herausforderung-8">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Verwende <code>std::borrow::Cow</code> (Clone-on-Write) für die Textfelder im Paket. Dadurch kann der Parser standardmäßig Referenzen auf den Buffer nutzen, aber dynamisch eigene Strings allozieren, wenn das Protokoll Escaping-Zeichen (z. B. <code>\n</code> oder <code>\t</code>) enthält, die transformiert werden müssen.</p>
+<hr />
+<h2 id="-projekt-10-zustandsmaschine-state-machine-mit-context-lifetimes"><a class="header" href="#-projekt-10-zustandsmaschine-state-machine-mit-context-lifetimes">⚙️ Projekt 10: Zustandsmaschine (State Machine) mit Context-Lifetimes</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-9"><a class="header" href="#1-beschreibung-der-funktionsweise-9">1. Beschreibung der Funktionsweise</a></h3>
+<p>Eine generische Zustandsmaschine, die Übergänge zwischen verschiedenen Zuständen (z. B. der Lebenszyklus einer Bestellung: <code>Bestellt</code> -&gt; <code>Bezahlt</code> -&gt; <code>Versendet</code>) steuert. Die einzelnen Zustände greifen dabei auf einen gemeinsamen Kontext (z. B. eine Datenbankverbindung, Konfigurationsdaten oder System-Ressourcen) zu, ohne diesen zu besitzen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-9"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-9">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait State&lt;'a, Ctx&gt;</code>: Schnittstelle für alle Zustände. Sie definiert Methoden wie <code>on_enter(&amp;self, ctx: &amp;'a Ctx)</code> und <code>transition(&amp;self, ctx: &amp;'a Ctx) -&gt; Option&lt;Box&lt;dyn State&lt;'a, Ctx&gt;&gt;&gt;</code>.</li>
+<li><code>Struct StateMachine&lt;'a, Ctx&gt;</code>: Verwaltet den aktuellen Zustand (als Dynamic Dispatch <code>Box&lt;dyn State...&gt;</code>) und eine Referenz auf den Kontext vom Typ <code>Ctx</code>.</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>state.rs</code>: Definiert das <code>State</code>-Trait.</li>
+<li><code>machine.rs</code>: Implementiert den Zustands-Manager (<code>StateMachine</code>).</li>
+<li><code>states.rs</code>: Enthält die konkreten Zustände und deren Übergangsregeln.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-9"><a class="header" href="#3-zu-verwendende-crates-9">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-9"><a class="header" href="#4-didaktische-hinweise-9">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Die Lifetime <code>'a</code> sorgt dafür, dass die Zustandsmaschine und alle aktiven Zustände nicht länger leben können als der geteilte Kontext <code>Ctx</code>.</li>
+<li><strong>Achtung</strong>: Achte darauf, dass Zustandsübergänge den Kontext nicht exklusiv ausleihen (<code>&amp;mut Ctx</code>), wenn andere Zustände oder Komponenten zeitgleich lesend darauf zugreifen müssen.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-9"><a class="header" href="#5-optionale-zusatz-herausforderung-9">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Baue die Zustandsmaschine so um, dass die Zustandsübergänge komplett typsicher zur Compilezeit (Type-State Pattern) erzwungen werden. Verwende dafür generische Strukturen für jeden Zustand (z. B. <code>Order&lt;Pending&gt;</code>, <code>Order&lt;Paid&gt;</code>), sodass ungültige Zustandsübergänge bereits beim Kompilieren zu einem Fehler führen.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase5-workshop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-phase5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase5-workshop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-phase5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

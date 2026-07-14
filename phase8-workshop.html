@@ -1,0 +1,619 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>📦 Mitmach-Workshop: Phase 8 bildhaft verstehen - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html" class="active"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-mitmach-workshop-phase-8-bildhaft-verstehen"><a class="header" href="#-mitmach-workshop-phase-8-bildhaft-verstehen">📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></h1>
+<p>Herzlich willkommen zum praktischen Workshop von Phase 8! In diesem Kapitel bringen wir die drei Säulen der funktionalen Programmierung in Rust – <strong>Closures</strong>, <strong>eigene Iteratoren</strong> und <strong>Iterator-Ketten</strong> – zusammen.</p>
+<p>Damit du die Konzepte nicht nur auswendig lernst, sondern wirklich verinnerlichst, starten wir mit einer alltagsnahen Analogie. Danach werfen wir einen Blick auf kompakte Spickzettel (Micro-Learnings), bevor du selbst im Programmier-Workshop und in vier Übungen aktiv wirst.</p>
+<hr />
+<h2 id="-1-die-analogie-die-automatische-saftpresse-sortieranlage"><a class="header" href="#-1-die-analogie-die-automatische-saftpresse-sortieranlage">🍎 1. Die Analogie: Die automatische Saftpresse-Sortieranlage</a></h2>
+<p>Stell dir eine moderne, vollautomatische Saftpresse-Sortieranlage in einer Obstplantage vor. Wie hängen unsere Rust-Konzepte damit zusammen?</p>
+<pre><code class="language-mermaid">graph TD
+    A[Apfel-Kiste] --&gt;|1. Zuführ-Laufband &lt;br&gt; Eigener Iterator| B[Sortierstation]
+    B --&gt;|2. Sortier-Rezept &lt;br&gt; filter mit Closure| C[Schälstation]
+    C --&gt;|3. Schäl-Rezept &lt;br&gt; map mit Closure| D[Abfüllstation]
+    D --&gt;|4. Abfüllflasche &lt;br&gt; collect| E[Fertiger Saft]
+</code></pre>
+<h3 id="die-Äpfel--der-datenstrom"><a class="header" href="#die-Äpfel--der-datenstrom">Die Äpfel = Der Datenstrom</a></h3>
+<p>Die einzelnen Äpfel (oder Birnen), die verarbeitet werden sollen, sind unsere <strong>Daten</strong>. Sie liegen anfangs ungeordnet in einer Kiste. In Rust entspricht das einer Datenstruktur wie einem <code>Vec</code> oder einem Array.</p>
+<h3 id="das-zuführ-laufband--der-eigene-iterator"><a class="header" href="#das-zuführ-laufband--der-eigene-iterator">Das Zuführ-Laufband = Der eigene Iterator</a></h3>
+<p>Bevor wir die Äpfel verarbeiten können, müssen sie einzeln nacheinander auf das Band gelegt werden. Das <strong>Zuführ-Laufband</strong> ist unser <strong>eigener Iterator</strong>. Es steuert, <em>wie</em> die Äpfel in die Anlage gelangen:</p>
+<ul>
+<li>Bringt es jede Sekunde einen Apfel?</li>
+<li>Sortiert es bereits beim Auflegen faule Früchte aus?</li>
+<li>Wann stoppt das Band? (Wenn keine Äpfel mehr in der Kiste sind = <code>None</code>).</li>
+</ul>
+<h3 id="die-rezepte-für-die-geräte--die-closures"><a class="header" href="#die-rezepte-für-die-geräte--die-closures">Die Rezepte für die Geräte = Die Closures</a></h3>
+<p>Die Maschinen an den Stationen sind flexibel. Sie wissen nicht von selbst, was sie tun sollen. Sie brauchen eine genaue Arbeitsanweisung. Diese Anweisungen sind die <strong>Closures</strong> (anonyme Funktionen).</p>
+<ul>
+<li>Die Sortierstation erhält das Rezept: <code>|apfel| apfel.ist_reif &amp;&amp; apfel.gewicht &gt; 100</code>.</li>
+<li>Die Schälmaschine erhält das Rezept: <code>|apfel| apfel.schaelen()</code>.
+Die Closures fangen zudem die Umgebung ein – zum Beispiel könnte das Rezept auf eine Waage zugreifen, die neben der Maschine steht (Capture-Eigenschaften von Closures!).</li>
+</ul>
+<h3 id="die-sortier--schäl--und-entkernschritte--die-iterator-ketten-method-chaining"><a class="header" href="#die-sortier--schäl--und-entkernschritte--die-iterator-ketten-method-chaining">Die Sortier-, Schäl- und Entkernschritte = Die Iterator-Ketten (Method Chaining)</a></h3>
+<p>Die Anlage besteht aus hintereinandergeschalteten Stationen. Die Früchte wandern von einer Station zur nächsten:</p>
+<ul>
+<li><strong><code>filter</code></strong>: Die Sortierstation lässt nur Früchte durch, die das Rezept (die Closure) erlauben. Alle anderen fliegen aus der Bahn.</li>
+<li><strong><code>map</code></strong>: Die Schäl- und Entkernstation wandelt das Objekt um. Aus einem rohen Apfel wird ein geschälter Apfel (oder direkt Saft).</li>
+</ul>
+<h3 id="die-abfüllflasche--collect"><a class="header" href="#die-abfüllflasche--collect">Die Abfüllflasche = <code>collect()</code></a></h3>
+<p><strong>Wichtig:</strong> Solange am Ende des Fließbandes keine Flasche steht, die den Saft auffängt, steht die gesamte Anlage still! In Rust sind Iteratoren <em>lazy</em> (faul). Sie tun absolut nichts, bis ein sogenannter <em>Consumer</em> (ein Verbraucher) wie <code>.collect()</code> oder ein <code>for</code>-Loop die Daten aktiv anfordert. Erst das Aufdrehen der Abfüllflasche (<code>collect</code>) setzt das Laufband und alle Stationen in Bewegung.</p>
+<hr />
+<h2 id="-2-micro-learnings-spickzettel"><a class="header" href="#-2-micro-learnings-spickzettel">🧠 2. Micro-Learnings (Spickzettel)</a></h2>
+<h3 id="-spickzettel-1-closures-und-ihre-fn-traits"><a class="header" href="#-spickzettel-1-closures-und-ihre-fn-traits">📋 Spickzettel 1: Closures und ihre Fn-Traits</a></h3>
+<p>Closures fangen Variablen aus ihrer Umgebung ein. Je nachdem, was sie mit diesen Variablen tun, implementieren sie automatisch eines oder mehrere dieser drei Traits:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Trait</th><th style="text-align: left">Zugriffstyp</th><th style="text-align: left">Erklärung</th><th style="text-align: left">Wie oft aufrufbar?</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>Fn</code></strong></td><td style="text-align: left"><code>&amp;T</code> (unveränderlich)</td><td style="text-align: left">Liest Werte nur. Keine Veränderung der Umgebung.</td><td style="text-align: left">Beliebig oft</td></tr>
+<tr><td style="text-align: left"><strong><code>FnMut</code></strong></td><td style="text-align: left"><code>&amp;mut T</code> (veränderlich)</td><td style="text-align: left">Darf Werte in der eingefangenen Umgebung verändern.</td><td style="text-align: left">Beliebig oft</td></tr>
+<tr><td style="text-align: left"><strong><code>FnOnce</code></strong></td><td style="text-align: left"><code>T</code> (Ownership)</td><td style="text-align: left">Konsumiert Werte. Übernimmt die Ownership einer Variable.</td><td style="text-align: left"><strong>Nur einmal</strong></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>[!TIP]
+Rust wählt immer den restriktivsten Trait, der gerade noch möglich ist, um maximale Flexibilität zu gewährleisten. Wenn eine Closure als <code>Fn</code> arbeiten kann, implementiert sie automatisch auch <code>FnMut</code> und <code>FnOnce</code>.</p>
+</blockquote>
+<hr />
+<h3 id="-spickzettel-2-eigene-iteratoren-das-counter-skelett"><a class="header" href="#-spickzettel-2-eigene-iteratoren-das-counter-skelett">📋 Spickzettel 2: Eigene Iteratoren (Das Counter-Skelett)</a></h3>
+<p>Um eine eigene Datenquelle zum Iterator zu machen, musst du das <code>Iterator</code>-Trait implementieren. Das erfordert nur eine einzige Methode: <code>next</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct EinfacherCounter {
+    wert: u32,
+    max: u32,
+}
+
+impl Iterator for EinfacherCounter {
+    // Welchen Typ liefert der Iterator zurück?
+    type Item = u32;
+
+    // Liefert das nächste Element oder None, wenn das Ende erreicht ist
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        if self.wert &lt; self.max {
+            let aktueller_wert = self.wert;
+            self.wert += 1;
+            Some(aktueller_wert)
+        } else {
+            None // Das Band stoppt
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="-spickzettel-3-wichtige-iterator-adapter"><a class="header" href="#-spickzettel-3-wichtige-iterator-adapter">📋 Spickzettel 3: Wichtige Iterator-Adapter</a></h3>
+<ul>
+<li><strong><code>map</code></strong>: Transformiert jedes Element.
+<ul>
+<li><em>Analogie</em>: Apfel schälen.</li>
+<li><em>Signatur</em>: <code>fn map&lt;B, F&gt;(self, f: F) -&gt; Map&lt;Self, F&gt; where F: FnMut(Self::Item) -&gt; B</code></li>
+</ul>
+</li>
+<li><strong><code>filter</code></strong>: Behält nur Elemente, für die eine Bedingung zutrifft.
+<ul>
+<li><em>Analogie</em>: Faule Äpfel aussortieren.</li>
+<li><em>Signatur</em>: <code>fn filter&lt;P&gt;(self, predicate: P) -&gt; Filter&lt;Self, P&gt; where P: FnMut(&amp;Self::Item) -&gt; bool</code></li>
+</ul>
+</li>
+<li><strong><code>fold</code></strong>: Reduziert alle Elemente auf einen einzigen Endwert (Akkumulator).
+<ul>
+<li><em>Analogie</em>: Alle Äpfel in einen Topf werfen und zu einem gemeinsamen Mus zerkochen.</li>
+<li><em>Signatur</em>: <code>fn fold&lt;B, F&gt;(self, init: B, f: F) -&gt; B where F: FnMut(B, Self::Item) -&gt; B</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-3-programmier-workshop-die-obst-saftpresse"><a class="header" href="#-3-programmier-workshop-die-obst-saftpresse">🛠️ 3. Programmier-Workshop: Die Obst-Saftpresse</a></h2>
+<p>In diesem Workshop baust du die Steuerung für eine Obst-Saftpresse.
+Kopiere das folgende Skelett in deine lokale Entwicklungsumgebung (z. B. in die Datei <code>src/main.rs</code> eines neuen Projekts) und ersetze die <code>todo!()</code>-Markierungen so, dass das Programm erfolgreich kompiliert und die Tests bestanden werden.</p>
+<blockquote>
+<p>[!IMPORTANT]
+Versuche, die Aufgaben ohne fremde Hilfe zu lösen. Nutze die Compiler-Fehlermeldungen als Leitfaden!</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug, PartialEq, Clone)]
+enum ObstSorte {
+    Apfel,
+    Birne,
+    Banane,
+}
+
+#[derive(Debug, PartialEq, Clone)]
+struct Frucht {
+    sorte: ObstSorte,
+    gewicht: u32, // in Gramm
+    ist_reif: bool,
+}
+
+#[derive(Debug, PartialEq)]
+struct Saft {
+    sorte: ObstSorte,
+    menge: u32, // in Millilitern (ml)
+}
+
+// Unser eigenes Zuführ-Laufband (Iterator)
+struct ObstLaufband {
+    fruechte: Vec&lt;Frucht&gt;,
+}
+
+impl ObstLaufband {
+    fn new(fruechte: Vec&lt;Frucht&gt;) -&gt; Self {
+        ObstLaufband { fruechte }
+    }
+}
+
+// Wir implementieren den Iterator für unser Laufband.
+// Das Laufband soll die Früchte in *umgekehrter* Reihenfolge ausgeben (von hinten nach vorne).
+impl Iterator for ObstLaufband {
+    type Item = Frucht;
+
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        // HINWEIS: Nutze eine Methode von Vec, die das letzte Element entfernt und zurückgibt.
+        todo!("Implementiere die Entnahme der Früchte vom Laufband (Tipp: pop)")
+    }
+}
+
+// Die eigentliche Verarbeitungsfunktion der Saftpresse
+fn presse_saft(laufband: ObstLaufband) -&gt; Vec&lt;Saft&gt; {
+    laufband
+        // 1. Sortiere unreife Früchte aus
+        .filter(|frucht| {
+            todo!("Behalte nur reife Früchte")
+        })
+        // 2. Sortiere zu kleine Früchte aus (Gewicht muss mindestens 100g sein)
+        .filter(|frucht| {
+            todo!("Behalte nur Früchte mit einem Gewicht &gt;= 100 Gramm")
+        })
+        // 3. Verarbeite die Frucht zu Saft.
+        //    Regel: Ein Apfel ergibt 150ml Saft, eine Birne 120ml und eine Banane 80ml.
+        .map(|frucht| {
+            let menge = match frucht.sorte {
+                ObstSorte::Apfel =&gt; todo!("Apfelsaft-Menge"),
+                ObstSorte::Birne =&gt; todo!("Birnensaft-Menge"),
+                ObstSorte::Banane =&gt; todo!("Bananensaft-Menge"),
+            };
+            Saft {
+                sorte: frucht.sorte,
+                menge,
+            }
+        })
+        // 4. Fülle das Ergebnis ab
+        .collect()
+}
+
+fn main() {
+    let fruechte = vec![
+        Frucht { sorte: ObstSorte::Apfel, gewicht: 120, ist_reif: true },   // Sollte gepresst werden
+        Frucht { sorte: ObstSorte::Birne, gewicht: 90, ist_reif: true },    // Zu leicht!
+        Frucht { sorte: ObstSorte::Banane, gewicht: 150, ist_reif: false }, // Unreif!
+        Frucht { sorte: ObstSorte::Birne, gewicht: 130, ist_reif: true },   // Sollte gepresst werden
+    ];
+
+    let laufband = ObstLaufband::new(fruechte);
+    let saft_flaschen = presse_saft(laufband);
+
+    println!("Gepresste Säfte: {:?}", saft_flaschen);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_saftpresse() {
+        let fruechte = vec![
+            Frucht { sorte: ObstSorte::Apfel, gewicht: 120, ist_reif: true },
+            Frucht { sorte: ObstSorte::Birne, gewicht: 80, ist_reif: true }, // Zu leicht
+            Frucht { sorte: ObstSorte::Birne, gewicht: 110, ist_reif: true },
+            Frucht { sorte: ObstSorte::Banane, gewicht: 130, ist_reif: false }, // Unreif
+        ];
+
+        let laufband = ObstLaufband::new(fruechte);
+        let ergebnis = presse_saft(laufband);
+
+        // Wegen der umgekehrten Reihenfolge des Laufbands (pop) 
+        // kommt die Birne (Index 2) vor dem Apfel (Index 0) an!
+        assert_eq!(ergebnis.len(), 2);
+        assert_eq!(ergebnis[0], Saft { sorte: ObstSorte::Birne, menge: 120 });
+        assert_eq!(ergebnis[1], Saft { sorte: ObstSorte::Apfel, menge: 150 });
+    }
+}</code></pre></pre>
+<hr />
+<h2 id="-4-Übungen-zum-vertiefen"><a class="header" href="#-4-Übungen-zum-vertiefen">🏋️ 4. Übungen zum Vertiefen</a></h2>
+<p>Erstelle eine neue Rust-Datei oder ein Testmodul und versuche, die folgenden vier Übungen zu lösen. Schreibe die Tests und fülle die <code>todo!()</code>-Lücken aus.</p>
+<h3 id="Übung-1-leicht-der-blaubeer-filter"><a class="header" href="#Übung-1-leicht-der-blaubeer-filter">Übung 1 (Leicht): Der Blaubeer-Filter</a></h3>
+<p>Schreibe eine Funktion, die eine Liste von Blaubeeren filtert. Es sollen nur Blaubeeren übrig bleiben, die einen bestimmten Mindest-Süßegrad (auf einer Skala von 1 bis 10) überschreiten.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug, PartialEq)]
+struct Blaubeere {
+    suesse_grad: u32,
+}
+
+fn filtere_suesse_blaubeeren(blaubeeren: Vec&lt;Blaubeere&gt;, mindest_suesse: u32) -&gt; Vec&lt;Blaubeere&gt; {
+    blaubeeren
+        .into_iter()
+        .filter(|beere| {
+            todo!("Prüfe, ob der Süßegrad der Beere größer oder gleich dem Mindest-Süßegrad ist")
+        })
+        .collect()
+}
+
+#[test]
+fn test_blaubeer_filter() {
+    let beeren = vec![
+        Blaubeere { suesse_grad: 3 },
+        Blaubeere { suesse_grad: 7 },
+        Blaubeere { suesse_grad: 9 },
+        Blaubeere { suesse_grad: 5 },
+    ];
+    let ergebnis = filtere_suesse_blaubeeren(beeren, 6);
+    assert_eq!(ergebnis.len(), 2);
+    assert_eq!(ergebnis[0].suesse_grad, 7);
+    assert_eq!(ergebnis[1].suesse_grad, 9);
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="Übung-2-mittel-die-zählende-saftpresse-fnmut"><a class="header" href="#Übung-2-mittel-die-zählende-saftpresse-fnmut">Übung 2 (Mittel): Die zählende Saftpresse (FnMut)</a></h3>
+<p>Nutze eine veränderliche Closure (<code>FnMut</code>), um beim Filtern einer Liste von Früchten mitzuzählen, wie viele Früchte aussortiert wurden.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn zaehle_aussortierte(fruechte: Vec&lt;Frucht&gt;) -&gt; (Vec&lt;Frucht&gt;, u32) {
+    let mut aussortiert_counter = 0;
+    
+    // Die filter-Funktion erwartet eine Closure.
+    // Verwende den Counter innerhalb der Closure, um jedes Mal hochzuzählen,
+    // wenn eine Frucht NICHT reif ist.
+    let reife_fruechte: Vec&lt;Frucht&gt; = fruechte
+        .into_iter()
+        .filter(|f| {
+            if f.ist_reif {
+                true
+            } else {
+                todo!("Erhöhe den Counter und gib false zurück")
+            }
+        })
+        .collect();
+
+    (reife_fruechte, aussortiert_counter)
+}
+
+#[test]
+fn test_zaehlende_saftpresse() {
+    let fruechte = vec![
+        Frucht { sorte: ObstSorte::Apfel, gewicht: 120, ist_reif: true },
+        Frucht { sorte: ObstSorte::Birne, gewicht: 100, ist_reif: false },
+        Frucht { sorte: ObstSorte::Banane, gewicht: 80, ist_reif: true },
+        Frucht { sorte: ObstSorte::Apfel, gewicht: 150, ist_reif: false },
+    ];
+    let (reife, count) = zaehle_aussortierte(fruechte);
+    assert_eq!(reife.len(), 2);
+    assert_eq!(count, 2);
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="Übung-3-mittel-der-selektive-fruchtkorb-iterator"><a class="header" href="#Übung-3-mittel-der-selektive-fruchtkorb-iterator">Übung 3 (Mittel): Der selektive FruchtKorb-Iterator</a></h3>
+<p>Implementiere einen Iterator für einen <code>FruchtKorb</code>, der bei jedem Aufruf von <code>next</code> nur jede zweite Frucht (also Element 0, 2, 4 usw.) zurückgibt und die dazwischen liegenden überspringt.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct FruchtKorb {
+    fruechte: Vec&lt;Frucht&gt;,
+    aktueller_index: usize,
+}
+
+impl FruchtKorb {
+    fn new(fruechte: Vec&lt;Frucht&gt;) -&gt; Self {
+        FruchtKorb {
+            fruechte,
+            aktueller_index: 0,
+        }
+    }
+}
+
+impl Iterator for FruchtKorb {
+    type Item = Frucht;
+
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        if self.aktueller_index &lt; self.fruechte.len() {
+            let index = self.aktueller_index;
+            // Erhöhe den Index so, dass beim nächsten Aufruf ein Element übersprungen wird
+            todo!("Aktualisiere den Index passend");
+            Some(self.fruechte[index].clone())
+        } else {
+            None
+        }
+    }
+}
+
+#[test]
+fn test_fruchtkorb_iterator() {
+    let fruechte = vec![
+        Frucht { sorte: ObstSorte::Apfel, gewicht: 100, ist_reif: true }, // Index 0 (wird geliefert)
+        Frucht { sorte: ObstSorte::Birne, gewicht: 110, ist_reif: true }, // Index 1 (wird übersprungen)
+        Frucht { sorte: ObstSorte::Banane, gewicht: 120, ist_reif: true }, // Index 2 (wird geliefert)
+    ];
+    
+    let mut korb = FruchtKorb::new(fruechte);
+    assert_eq!(korb.next().unwrap().sorte, ObstSorte::Apfel);
+    assert_eq!(korb.next().unwrap().sorte, ObstSorte::Banane);
+    assert_eq!(korb.next(), None);
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="Übung-4-schwer-das-mischen-der-säfte-fold"><a class="header" href="#Übung-4-schwer-das-mischen-der-säfte-fold">Übung 4 (Schwer): Das Mischen der Säfte (<code>fold</code>)</a></h3>
+<p>Verwende die Methode <code>fold</code>, um eine Liste von Säften zu einer einzigen Saftmischung zu vereinen. Berechne das Gesamtvolumen des gemischten Saftes.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn mische_saefte(saefte: Vec&lt;Saft&gt;) -&gt; u32 {
+    saefte
+        .into_iter()
+        // fold nimmt einen Startwert (0 ml) und eine Closure entgegen.
+        // Die Closure addiert die menge des aktuellen Safts zum bisherigen Akkumulator.
+        .fold(0, |akkumulator, saft| {
+            todo!("Addiere die Saftmenge zum Akkumulator")
+        })
+}
+
+#[test]
+fn test_saft_mischung() {
+    let saefte = vec![
+        Saft { sorte: ObstSorte::Apfel, menge: 150 },
+        Saft { sorte: ObstSorte::Birne, menge: 120 },
+        Saft { sorte: ObstSorte::Banane, menge: 80 },
+    ];
+    
+    let gesamt_menge = mische_saefte(saefte);
+    assert_eq!(gesamt_menge, 350);
+}
+
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h2 id="-5-quiz-teste-dein-wissen"><a class="header" href="#-5-quiz-teste-dein-wissen">❓ 5. Quiz: Teste dein Wissen!</a></h2>
+<p>Überprüfe, ob du die Kernkonzepte verstanden hast. (Die Antworten findest du ganz unten im Kapitel versteckt).</p>
+<h3 id="frage-1-was-bedeutet-es-dass-iteratoren-in-rust-lazy-faul-sind"><a class="header" href="#frage-1-was-bedeutet-es-dass-iteratoren-in-rust-lazy-faul-sind">Frage 1: Was bedeutet es, dass Iteratoren in Rust "lazy" (faul) sind?</a></h3>
+<ul>
+<li><strong>A)</strong> Sie verbrauchen beim Erstellen extrem viel Arbeitsspeicher.</li>
+<li><strong>B)</strong> Sie führen keine Berechnungen durch, bis sie von einer Methode (wie <code>collect</code> oder einem Loop) aktiv abgefragt werden.</li>
+<li><strong>C)</strong> Sie können nur in Threads ausgeführt werden, die eine niedrige Priorität haben.</li>
+</ul>
+<h3 id="frage-2-welches-closure-trait-wird-benötigt-wenn-die-closure-eine-variable-aus-der-umgebung-mittels-ownership-move-konsumieren-muss"><a class="header" href="#frage-2-welches-closure-trait-wird-benötigt-wenn-die-closure-eine-variable-aus-der-umgebung-mittels-ownership-move-konsumieren-muss">Frage 2: Welches Closure-Trait wird benötigt, wenn die Closure eine Variable aus der Umgebung mittels Ownership (<code>move</code>) konsumieren muss?</a></h3>
+<ul>
+<li><strong>A)</strong> <code>Fn</code></li>
+<li><strong>B)</strong> <code>FnMut</code></li>
+<li><strong>C)</strong> <code>FnOnce</code></li>
+</ul>
+<h3 id="frage-3-was-passiert-wenn-du-bei-einer-iterator-kette-das-abschließende-collect-vergisst"><a class="header" href="#frage-3-was-passiert-wenn-du-bei-einer-iterator-kette-das-abschließende-collect-vergisst">Frage 3: Was passiert, wenn du bei einer Iterator-Kette das abschließende <code>.collect()</code> vergisst?</a></h3>
+<ul>
+<li><strong>A)</strong> Das Programm kompiliert nicht, weil der Rückgabetyp nicht übereinstimmt (oder eine Warnung wegen eines ungenutzten Typs ausgegeben wird), und es wird kein einziges Element verarbeitet.</li>
+<li><strong>B)</strong> Rust führt die Kette im Hintergrund asynchron aus.</li>
+<li><strong>C)</strong> Es kommt zu einem Laufzeitfehler (Panic).</li>
+</ul>
+<hr />
+<details>
+<summary><b>💡 Auflösung des Quiz (Klicke zum Aufklappen)</b></summary>
+<ul>
+<li><strong>Antwort zu Frage 1:</strong> <strong>B</strong>. Iteratoren tun nichts, solange kein Verbraucher sie antreibt. Das spart Ressourcen!</li>
+<li><strong>Antwort zu Frage 2:</strong> <strong>C</strong>. Wenn Ownership übernommen wird, kann die Closure nur einmal aufgerufen werden (<code>FnOnce</code>), da das eingefangene Objekt danach nicht mehr existiert.</li>
+<li><strong>Antwort zu Frage 3:</strong> <strong>A</strong>. Die Kette ist ein reiner Bauplan. Ohne <code>.collect()</code> (oder einen anderen Consumer) läuft kein Element durch das Band. Rust warnt dich meistens mit: <code>warning: unused iterators must be zipped, folded or collected</code>.</li>
+</ul>
+</details>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="konzept-ketten.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase8.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="konzept-ketten.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase8.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

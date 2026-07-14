@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte - Unsafe &amp; FFI - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html" class="active"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projekte---unsafe--ffi"><a class="header" href="#100-projekte---unsafe--ffi">100 Projekte - Unsafe &amp; FFI</a></h1>
+<p>Hier ist eine Sammlung von Projektideen, die speziell darauf ausgelegt sind, dein Verständnis von Unsafe Rust und C-Kompatibilität zu schärfen. Diese Szenarien helfen dir dabei, die Brücke zwischen Rusts Sicherheitsgarantien und der hardwarenahen Systemprogrammierung zu schlagen.</p>
+<blockquote>
+<p>[!IMPORTANT]
+Arbeite diese Projekte Schritt für Schritt durch. Versuche stets zu verstehen, warum ein <code>unsafe</code>-Block an der jeweiligen Stelle notwendig istd und wie du die Schnittstellen so gestaltest, dass der nach außen sichtbare Code sicher bleibt.</p>
+</blockquote>
+<hr />
+<h2 id="teil-1-rohe-zeiger--speicher-tricks"><a class="header" href="#teil-1-rohe-zeiger--speicher-tricks">Teil 1: Rohe Zeiger &amp; Speicher-Tricks</a></h2>
+<p>In diesem Abschnitt beschäftigst du dich mit der direkten Adressierung von Speicherbereichen und umgehst die strengen Aliasing-Regeln des Borrow Checkers.</p>
+<ol>
+<li><strong>Speicheradresse anzeigen</strong>: Nimm eine normale Ganzzahl-Variable und gib ihre adresse über einen unveränderlichen rohen Zeiger (<code>*const T</code>) aus. Das zeigt dir, wie du den Speicherort von Variablen im RAM ermittelst.</li>
+<li><strong>Wert über Zeiger verändern</strong>: Erstelle einen veränderlichen rohen Zeiger (<code>*mut T</code>) auf eine Variable und überschreibe deren Wert in einem <code>unsafe</code>-Block. Hierbei übst du das manuelle Dereferenzieren von Speicheradressen.</li>
+<li><strong>Zeiger-Arithmetik mit Arrays</strong>: Navigiere durch ein Array von Ganzzahlen, indem du den Startzeiger nimmst und mit den Methoden <code>offset</code> oder <code>add</code> weiterrechnest. Du verstehst damit, wie Rust Daten fortlaufend im Speicher anordnet.</li>
+<li><strong>Nullzeiger-Prüfung</strong>: Initialisiere einen rohen Zeiger mit <code>std::ptr::null()</code> und schreibe eine Prüfung, ob dieser sicher dereferenziert werden kann. Das schützt dich vor Speicherzugriffsfehlern (Segmentation Faults).</li>
+<li><strong>Transmutieren von primitiven Typen</strong>: Nutze <code>std::mem::transmute</code>, um ein Array von vier <code>u8</code>-Werten direkt in eine einzelne <code>u32</code>-Zahl umzuinterpretieren. Du lernst, wie Daten auf Bitebene ohne Typkonvertierung neu interpretiert werden.</li>
+<li><strong>Manuelle Speicherallokation</strong>: Verwende <code>std::alloc::alloc</code> und <code>std::alloc::Layout</code>, um Speicher für eine Ganzzahl auf dem Heap manuell anzufordern und wieder freizugeben. So erfährst du genau, was unter der Haube von <code>Box</code> passiert.</li>
+<li><strong>Auslesen nicht ausgerichteter Daten</strong>: Lies mit <code>std::ptr::read_unaligned</code> einen wert aus einem Bytestrom, der nicht an den natürlichen Speichergrenzen ausgerichtet ist. Das ist besonders nützlich für die Arbeit mit Binärprotokollen.</li>
+<li><strong>Schreiben nicht ausgerichteter Daten</strong>: Verwende <code>std::ptr::write_unaligned</code>, um Werte in ein Byte-Array an beliebigen Positionen zu schreiben, ohne Ausrichtungsfehler (Alignment-Fehler) zu riskieren. Das hilft beim Serialisieren komplexer Protokollstrukturen.</li>
+<li><strong>Zeiger-Vergleiche</strong>: Erstelle zwei unterschiedliche Zeiger auf dasselbe Objekt und vergleiche ihre Adressen direkt miteinander. Du verstehst dadurch, dass Zeigervergleiche auf Adressenebene und nicht auf Wertebene stattfinden.</li>
+<li><strong>Größe und Ausrichtung ermitteln</strong>: Nutze <code>std::mem::size_of</code> und <code>std::mem::align_of</code> für verschiedene selbstdefinierte Strukturen. Dies verdeutlicht, wie viel Platz Typen im Speicher belegen und wie das Compiler-Padding (Füllbytes) funktioniert.</li>
+<li><strong>Dangling-Zeiger-Szenario</strong>: Erstelle einen Zeiger auf eine lokale Variable, die am Ende eines inneren Scopes zerstört wird, und gib danach seine Adresse aus. Du lernst, warum die Lebensdauer von rohen Zeigern vom Compiler nicht überwacht wird.</li>
+<li><strong>Speicher kopieren mit <code>copy_nonoverlapping</code></strong>: Kopiere den Inhalt eines Speicherbereichs direkt in einen anderen mit <code>std::ptr::copy_nonoverlapping</code>. Dies zeigt dir, wie Rohdaten ohne Kopiervorgänge über sichere Schnittstellen verschoben werden.</li>
+<li><strong>Speicher kopieren mit Überlappung</strong>: Verwende <code>std::ptr::copy</code> für zwei sich überschneidende Bereiche eines Arrays. Du verstehst den Unterschied zwischen überlappenden und nicht-überlappenden Kopiervorgängen im RAM.</li>
+<li><strong>Zeiger aus einer Referenz casten</strong>: Nutze <code>as *const _</code> und <code>as *mut _</code>, um sicher zwischen unveränderlichen und veränderlichen Zeigern zu casten. Das zeigt dir die syntaktischen Wege für Zeigerkonvertierungen auf.</li>
+<li><strong>Initialisierung mit <code>MaybeUninit</code></strong>: Lege ein Array mithilfe von <code>std::mem::MaybeUninit</code> an und initialisiere es Stück für Stück, bevor du es als initialisiert markierst. Du lernst, wie man teure Standard-Initialisierungen einspart.</li>
+<li><strong>Speicherbereich mit Nullen füllen</strong>: Verwende <code>std::ptr::write_bytes</code>, um ein Struct oder Array komplett mit Nullen oder einem anderen Byte-Wert zu überschreiben. Das entspricht dem klassischen Speicherlöschen (<code>memset</code>).</li>
+<li><strong>Zeiger in Integer umwandeln</strong>: Caste einen rohen Zeiger in einen <code>usize</code>-Wert und gib diesen als Hexadezimalzahl aus. Das hilft dir zu verstehen, dass Zeiger letztlich nur Zahlen sind, die Speicheradressen darstellen.</li>
+<li><strong>Integer in Zeiger umwandeln</strong>: Wandle eine konkrete Speicheradresse (als <code>usize</code>) zurück in einen rohen Zeiger um. Du erkennst dabei die großen Gefahren von willkürlichen Adresszugriffen.</li>
+<li><strong>Zeiger auf Funktionen</strong>: Deklariere einen Funktionszeiger auf eine einfache mathematische Funktion und rufe sie über diesen Zeiger auf. Das vermittelt dir die Grundlagen für dynamische Aufrufsysteme auf Systemebene.</li>
+<li><strong>Manuelles Drop mit <code>std::ptr::drop_in_place</code></strong>: Zerstöre den Wert an einer Speicheradresse manuell mit <code>drop_in_place</code>, ohne den Speicher selbst freizugeben. Du lernst, wie du Destruktoren von Typen auf rohen Speicherbereichen manuell ausführst.</li>
+</ol>
+<hr />
+<h2 id="teil-2-unsafe-datenstrukturen"><a class="header" href="#teil-2-unsafe-datenstrukturen">Teil 2: Unsafe Datenstrukturen</a></h2>
+<p>Hier baust du deine eigenen Versionen bekannter Datenstrukturen und lernst, wie du mit Unsafe Rust maximale Performance herausholst.</p>
+<ol start="21">
+<li><strong>Einfache verkettete Liste (Singly Linked List)</strong>: Implementiere eine verkettete Liste mit rohen Zeigern, bei der du das Einfügen und Löschen manuell steuerst. Dies zeigt dir, wie du ohne den Borrow Checker dynamische Ketten baust.</li>
+<li><strong>Doppelt verkettete Liste (Doubly Linked List)</strong>: Erweitere deine verkettete Liste um Rückwärtszeiger, die du bei jeder Operation sauber synchronisieren musst. Hier lernst du den Umgang mit komplexen Zeiger-Beziehungen.</li>
+<li><strong>Eigener <code>Box</code>-Klon</strong>: Baue ein eigenes Smart-Pointer-Struct, das Speicher auf dem Heap alloziiert und beim Verlassen des Gültigkeitsbereichs über das <code>Drop</code>-Trait wieder freigibt. Das vertieft dein Verständnis für RAII in Rust.</li>
+<li><strong>Eigener <code>Vec</code>-Klon (Minimal)</strong>: Implementiere eine dynamisch wachsende Liste mit Kapazität, Länge und einem Zeiger auf das Heap-Array. Du erfährst, wie Speicherreallokationen manuell verwaltet werden.</li>
+<li><strong>Unsafe Ringpuffer</strong>: Erstelle einen zirkulären Puffer mit festem Speicherbereich, der Lese- und Schreibzeiger direkt manipuliert. Du lernst, wie man Hochleistungsdatenstrukturen ohne Index-Prüfungen (Bounds-Checks) optimiert.</li>
+<li><strong>Lock-freie Queue (Einfach)</strong>: Baue eine einfache Warteschlange für Threads unter Verwendung von atomaren Zeiger-Operationen aus <code>std::sync::atomic</code>. Du verstehst dadurch die Grundlagen von threadsicheren, unsafe Datenstrukturen.</li>
+<li><strong>Eigene <code>Cell</code>-Implementierung</strong>: Simuliere die interne Veränderlichkeit durch das Aushebeln von Aliasing-Regeln mit <code>UnsafeCell</code>. Das zeigt dir, wie Rusts sichere Abstraktionen im Kern aufgebaut sind.</li>
+<li><strong>Eigener <code>Rc</code>-Klon (Reference Counting)</strong>: Implementiere einen Smart Pointer, der die Anzahl der Referenzen auf dem Heap zählt und das Objekt erst löscht, wenn der Zähler auf Null fällt. Du übst das Teilen von Werten über rohe Zeiger.</li>
+<li><strong>Trie-Datenstruktur mit Rohzeigern</strong>: Erstelle einen Präfixbaum zur Suche nach Wörtern, dessen Knoten direkt über rohe Zeiger verknüpft sind. Das optimiert die Performance und spart den Overhead von sicheren Wrappern.</li>
+<li><strong>Binary Heap ohne sichere Indizes</strong>: Programmiere einen binären Heap auf Basis eines Rohzeiger-Arrays, bei dem die Eltern-Kind-Beziehungen über Zeiger-Arithmetik berechnet werden. Das trainiert die schnelle Navigation in flachen Speicherstrukturen.</li>
+<li><strong>Eigener Arena-Allokator</strong>: Baue einen Allokator, der einen großen Speicherblock reserviert und kleinere Teile davon auf Anfrage über rohe Zeiger herausgibt. Das lehrt dich, wie man Allokations-Overhead minimiert.</li>
+<li><strong>Unsafe Stack (Stapel)</strong>: Entwickle einen einfachen Stack, der direkt auf einem festen Speicherbereich arbeitet und Push- sowie Pop-Operationen über Zeiger-Offsets abwickelt.</li>
+<li><strong>Selbst-referenzierendes Struct</strong>: Erzeuge eine Struktur, die ein Feld und gleichzeitig einen Zeiger auf dieses Feld enthält. Du erfährst, warum das in sicherem Rust extrem schwer ist und welche Gefahren beim Verschieben von Objekten lauern.</li>
+<li><strong>Eigener <code>Arc</code>-Klon (Atomarer Rc)</strong>: Erweitere das Reference Counting um atomare Operationen, damit der Smart Pointer sicher zwischen Threads geteilt werden kann. Du lernst das Zusammenspiel aus Unsafe und Thread-Sicherheit.</li>
+<li><strong>Graph mit Adjazenzliste über Zeiger</strong>: Erstelle einen gerichteten Graphen, in dem Knoten direkt auf ihre Nachbarn zeigen. Das verhindert Zyklen-Probleme, die bei sicheren Smart Pointern wie <code>Rc</code> auftreten würden.</li>
+<li><strong>Dynamisches Array mit variabler Elementgröße</strong>: Implementiere eine Struktur, die Bytes speichert, aber Elemente unterschiedlicher Typen und Größen hintereinander ablegt. Das ist nützlich für Serialisierungs-Engines.</li>
+<li><strong>LIFO-Queue mit atomarem Austausch</strong>: Verwende atomare Zeiger-Operationen wie <code>compare_exchange</code>, um eine einfache LIFO-Warteschlange ohne Mutex zu bauen. Du lernst die Grundlagen von Concurrent Programming kennen.</li>
+<li><strong>Speichereffizientes Bit-Set</strong>: Erstelle eine Datenstruktur, die einzelne Bits in einem rohen Speicherbereich direkt per Bit-Masken setzt und ausliest. Das zeigt, wie hardwarenah Daten verdichtet werden können.</li>
+<li><strong>Eigener <code>String</code>-Typ</strong>: Baue ein Struct, das ein UTF-8-validiertes Byte-Array auf dem Heap verwaltet, inklusive dynamischer Vergrößerung. Du lernst, wie Zeichenketten intern organisiert sind.</li>
+<li><strong>B-Baum-Knoten mit Unsafe-Links</strong>: Implementiere einen B-Baum-Knoten, der Schlüssel und Kindzeiger in zusammenhängendem Speicher verwaltet. Dies steigert die Cache-Lokalität durch manuelle Speicherlayouts.</li>
+</ol>
+<hr />
+<h2 id="teil-3-c-bibliotheken-anbinden-ffi"><a class="header" href="#teil-3-c-bibliotheken-anbinden-ffi">Teil 3: C-Bibliotheken anbinden (FFI)</a></h2>
+<p>Lerne, wie du mit ausländischen Funktionen (Foreign Function Interface) interagierst und bestehende C-Bibliotheken in dein Rust-Projekt integrierst.</p>
+<ol start="41">
+<li><strong>Mathematische C-Funktionen</strong>: Binde Standard-C-Funktionen wie <code>sin</code> oder <code>cos</code> direkt über eine <code>extern "C"</code>-Deklaration ein. Du lernst die absolute Basis des Foreign Function Interfaces (FFI) kennen.</li>
+<li><strong>String-Länge mit <code>strlen</code></strong>: Konvertiere einen Rust-String in ein C-kompatibles Format und bestimme die Länge mit der C-Funktion <code>strlen</code>. Du übst den Einsatz von <code>CString</code> und <code>CStr</code>.</li>
+<li><strong>C-Datenstruktur spiegeln</strong>: Definiere in Rust ein Struct mit <code>#[repr(C)]</code>, das exakt dem Layout einer C-Struktur entspricht, und übergebe es an eine C-Funktion. Du verstehst, wie Datenkompatibilität garantiert wird.</li>
+<li><strong>C-Speicherallokation mit <code>malloc</code></strong>: Reserviere Speicher mithilfe der C-Funktion <code>malloc</code> und gib ihn mit <code>free</code> wieder frei. Das verdeutlicht dir, wie man plattformübergreifend mit dem C-Heap interagiert.</li>
+<li><strong>Umgebungsvariablen über <code>getenv</code></strong>: Rufe die C-Funktion <code>getenv</code> auf, um den Wert einer Umgebungsvariable direkt abzufragen. Du lernst das Handling von Rückgabe-Zeigern, die Null sein können.</li>
+<li><strong>Zeitmessung mit <code>clock</code></strong>: Verwende den C-Systemaufruf <code>clock</code>, um einfache CPU-Zeitmessungen durchzuführen. Das zeigt dir den Umgang mit plattformabhängigen C-Typen wie <code>clock_t</code>.</li>
+<li><strong>Dynamisches Laden von Bibliotheken</strong>: Lade eine <code>.so</code>- oder <code>.dll</code>-Datei zur Laufzeit und rufe eine Funktion daraus auf, ohne sie fest einzulinken. Du verstehst das Prinzip von Plugins und Dynamic Linking.</li>
+<li><strong>Dateizugriff mit <code>fopen</code> und <code>fread</code></strong>: Öffne und lies eine Datei unter direkter Verwendung der C-Standard-I/O-Bibliothek. Du lernst den Umgang mit C-Dateizeigern (<code>*mut FILE</code>).</li>
+<li><strong>C-Callbacks registrieren</strong>: Übergib eine Rust-Funktion als Callback-Zeiger an eine C-Bibliothek, die diese Funktion später aufruft. Du lernst, wie Closures und Funktionszeiger die FFI-Grenze überwinden.</li>
+<li><strong>Fehlerbehandlung mit <code>errno</code></strong>: Lies nach dem Fehlschlagen einer C-Funktion die globale C-Variable <code>errno</code> aus, um den genauen Fehlergrund zu ermitteln. Du verstehst den globalen Zustand von C-Programmen.</li>
+<li><strong>Sortieren mit <code>qsort</code></strong>: Nutze die C-Standardfunktion <code>qsort</code> und übergib ihr ein Rust-Array sowie eine Vergleichsfunktion. Du übst das Zusammenspiel von Arrays und Callbacks über FFI.</li>
+<li><strong>C-Union in Rust abbilden</strong>: Erstelle eine Rust-Struktur unter Verwendung des Schlüsselworts <code>union</code> und greife auf deren Felder zu. Du lernst, wie verschiedene Typen denselben Speicherplatz teilen.</li>
+<li><strong>Zufallszahlen mit <code>rand</code></strong>: Rufe die C-Funktionen <code>srand</code> und <code>rand</code> auf, um Pseudozufallszahlen zu generieren. Du lernst, wie zustandsbehaftete C-Bibliotheken initialisiert werden müssen.</li>
+<li><strong>Speicherbereiche vergleichen mit <code>memcmp</code></strong>: Vergleiche zwei Speicherbereiche direkt auf Byte-Ebene mithilfe der C-Funktion <code>memcmp</code>. Das zeigt dir eine schnelle Methode zur Prüfung von Rohdaten.</li>
+<li><strong>System-Hostname ermitteln</strong>: Rufe die POSIX-Funktion <code>gethostname</code> auf und konvertiere den erhaltenen Puffer in einen Rust-String. Du lernst das Befüllen von vorbereiteten Puffern über FFI.</li>
+<li><strong>Formatierte Ausgabe mit <code>printf</code></strong>: Deklariere und nutze die variadische C-Funktion <code>printf</code> (Funktionen mit variabler Argumentanzahl). Du lernst die Grenzen und Risiken variadischer FFI-Aufrufe kennen.</li>
+<li><strong>Komprimierung mit <code>zlib</code></strong>: Binde die populäre <code>zlib</code>-Bibliothek ein, um Daten direkt im Speicher zu komprimieren. Du übst die Integration echter Dritthersteller-Bibliotheken.</li>
+<li><strong>SQLite-Datenbank abfragen</strong>: Binde die C-API von SQLite ein, öffne eine Datenbank im Speicher und führe eine Abfrage aus. Das zeigt dir den Umgang mit komplexen C-Handles und Zeiger-Lebensdauern.</li>
+<li><strong>Netzwerk-Sockets auf Systemebene</strong>: Erstelle einen Socket über die C-Funktion <code>socket</code> und verbinde dich mit einem Server. Du verstehst die hardwarenahe Netzwerkprogrammierung abseits der Standardbibliothek.</li>
+<li><strong>C-Makros emulieren</strong>: Viele C-Header nutzen komplexe Makros. Implementiere ein solches Makro als Rust-Funktion oder -Konstante nach, um die Funktionalität für Rust-Nutzer verfügbar zu machen.</li>
+</ol>
+<hr />
+<h2 id="teil-4-rust-bibliotheken-für-c-exportieren"><a class="header" href="#teil-4-rust-bibliotheken-für-c-exportieren">Teil 4: Rust-Bibliotheken für C exportieren</a></h2>
+<p>Hier machst du deine Rust-Bibliothek für die C-Welt (und andere Sprachen, die C-APIs verstehen) nutzbar.</p>
+<ol start="61">
+<li><strong>Einfache Additionsfunktion exportieren</strong>: Schreibe eine Rust-Funktion mit <code>#[no_mangle]</code> und <code>pub extern "C"</code>, die zwei Zahlen addiert und von C aufgerufen werden kann. Das ist der Einstieg in den Rust-Export.</li>
+<li><strong>Rust-String an C übergeben</strong>: Erstelle eine Rust-Funktion, die einen von Rust alloziierten String als C-kompatiblen Zeiger (<code>*const c_char</code>) zurückgibt. Du lernst, wie du Datenbesitz über Grenzen hinweg verwaltest.</li>
+<li><strong>C-String in Rust freigeben</strong>: Da C-Code den Rust-Speicher nicht direkt freigeben darf, schreibe eine Funktion <code>free_rust_string</code>, die den Zeiger wieder in Empfang nimmt und den Speicher korrekt zerstört.</li>
+<li><strong>Rust-Struct für C bereitstellen</strong>: Exportiere Funktionen zum Erzeugen und Manipulieren eines in Rust definierten Structs. Du lernst das Konzept von "Opaque Pointers" kennen, bei denen C die Strukturdetails nicht sieht.</li>
+<li><strong>Fehlercodes an C zurückgeben</strong>: Designe eine API, die bei Fehlern in Rust strukturierte Ganzzahl-Fehlercodes an das aufrufende C-Programm zurückliefert.</li>
+<li><strong>Rust-Logger für C</strong>: Schreibe ein Rust-Modul, das Log-Nachrichten aus C empfängt und über Rusts Standard-Logging-Infrastruktur ausgibt. Du übst den bidirektionalen Informationsfluss.</li>
+<li><strong>Callback aus C empfangen und ausführen</strong>: Definiere eine Rust-Funktion, die einen C-Funktionszeiger als Argument akzeptiert und diesen mit in Rust generierten Daten aufruft.</li>
+<li><strong>Rust-Array an C übergeben</strong>: Exportiere ein Rust-Array mitsamt seiner Länge an C, sodass C das Array wie ein normales C-Array auslesen kann.</li>
+<li><strong>C-Array in Rust verarbeiten</strong>: Nimm einen Zeiger auf ein C-Array und dessen Länge entgegen, wandle es mit <code>slice::from_raw_parts</code> in einen sicheren Rust-Slice um und verarbeite es.</li>
+<li><strong>Panic-Sicherheit an FFI-Grenzen</strong>: Stelle sicher, dass eine in Rust auftretende Panic nicht über die FFI-Grenze nach C entweicht (was zu undefiniertem Verhalten führt), indem du <code>std::panic::catch_unwind</code> nutzt.</li>
+<li><strong>Rust-Iterator für C</strong>: Exportiere einen Iterator als opaken Zeiger, den C über eine <code>next</code>-Funktion schrittweise auslesen kann, bis ein Nullzeiger das Ende signalisiert.</li>
+<li><strong>Konfigurationen als Struct</strong>: Definiere ein flaches Konfigurations-Struct mit <code>#[repr(C)]</code>, das direkt von C befüllt und an Rust zur Initialisierung übergeben wird.</li>
+<li><strong>Asynchrone Tasks triggern</strong>: Schreibe eine Export-Funktion, die einen asynchronen Task startet und den Fortschritt über einen von C übergebenen Callback meldet.</li>
+<li><strong>Speicherstatistik exportieren</strong>: Biete eine Funktion an, die den aktuellen Speicherverbrauch deiner Rust-Bibliothek ermittelt und als C-Struktur zur Verfügung stellt.</li>
+<li><strong>Globale Zustände verwalten</strong>: Nutze ein globales Element in Rust, das über FFI-Funktionen aus C heraus manipuliert und abgefragt werden kann.</li>
+<li><strong>Generieren von C-Headern</strong>: Verwende das Tool <code>cbindgen</code>, um automatisch die passenden C-Headerdateien (<code>.h</code>) für deine exportierten Rust-Funktionen zu erzeugen. Du lernst den Build-Prozess zu automatisieren.</li>
+<li><strong>Rust-Vektor an C übertragen</strong>: Exportiere eine Funktion, die einen Rust-Vektor in seine Einzelteile (Zeiger, Länge, Kapazität) zerlegt und an C übergibt (<code>Vec::into_raw_parts</code>).</li>
+<li><strong>Rust-Vektor aus C wiederherstellen</strong>: Nimm die von C gehaltenen Vektor-Einzelteile wieder an und baue daraus mithilfe von <code>Vec::from_raw_parts</code> den ursprünglichen Vektor zur korrekten Freigabe wieder auf.</li>
+<li><strong>Thread-Erzeugung in Rust für C</strong>: Erstelle eine exportierte Funktion, die einen neuen OS-Thread in Rust startet und dort eine übergebene C-Funktion parallel ausführt.</li>
+<li><strong>Benutzerdefinierte Allocatoren</strong>: Exportiere Schnittstellen, mit denen der aufrufende C-Code steuern kann, welchen Speicherallokator Rust intern verwenden soll.</li>
+</ol>
+<hr />
+<h2 id="teil-5-betriebssystem---hardware-zugriffe"><a class="header" href="#teil-5-betriebssystem---hardware-zugriffe">Teil 5: Betriebssystem- &amp; Hardware-Zugriffe</a></h2>
+<p>Arbeite direkt mit den Schnittstellen deines Betriebssystems und führe hardwarenahe Operationen aus.</p>
+<ol start="81">
+<li><strong>Direkter syscall unter Linux</strong>: Nutze die Funktion <code>syscall</code> aus der libc, um einen Systemaufruf (z. B. <code>gettid</code> für die Thread-ID) direkt ohne Wrapper auszuführen. Du lernst die Schnittstelle zum OS-Kernel kennen.</li>
+<li><strong>Windows-MessageBox</strong>: Rufe die Win32-API-Funktion <code>MessageBoxW</code> auf, um ein natives Windows-Dialogfenster anzuzeigen. Du lernst das Handling von UTF-16-Strings.</li>
+<li><strong>Memory-Mapped Files (mmap)</strong>: Verwende den <code>mmap</code>-Systemaufruf, um eine Datei direkt in den virtuellen Adressraum deines Prozesses zu laden und als Byte-Slice zu lesen. Das demonstriert extrem schnellen Datei-I/O.</li>
+<li><strong>Prozess-ID (PID) ermitteln</strong>: Rufe das POSIX <code>getpid</code> oder die entsprechende Windows-API auf, um die eigene Prozess-ID direkt vom Betriebssystem abzufragen.</li>
+<li><strong>Terminal-Größe abfragen</strong>: Nutze den Systemaufruf <code>ioctl</code> mit der Konstante <code>TIOCGWINSZ</code>, um die aktuelle Breite und Höhe deines Terminalfensters in Byte-Strukturen auszulesen.</li>
+<li><strong>CPU-Features abfragen</strong>: Verwende Inline-Assembly (<code>asm!</code>) oder CPUID-Befehle über Unsafe, um spezifische Prozessor-Features (wie AVX oder SSE) direkt abzufragen.</li>
+<li><strong>Virtuellen Speicher schützen</strong>: Nutze die Systemfunktion <code>mprotect</code> (POSIX) oder <code>VirtualProtect</code> (Windows), um einen Speicherbereich zur Laufzeit als schreibgeschützt zu markieren.</li>
+<li><strong>Direktes Auslesen von Hardware-Registern</strong>: Simuliere den Zugriff auf ein Memory-Mapped I/O (MMIO) Register, indem du einen Zeiger auf eine feste Speicheradresse castest und mit <code>volatile</code> liest.</li>
+<li><strong>Volatile-Schreibzugriffe</strong>: Verwende <code>std::ptr::write_volatile</code>, um Werte an eine Adresse zu schreiben, bei denen der Compiler die Schreiboperation nicht wegoptimieren darf (wichtig für Treiberentwicklung).</li>
+<li><strong>Signale abfangen (Signal-Handler)</strong>: Registriere über die libc einen Signal-Handler für <code>SIGINT</code> (Strg+C) und reagiere im unsafe Kontext darauf. Du erfährst, wie asynchrone OS-Interrupts funktionieren.</li>
+<li><strong>Hardware-Timer nutzen</strong>: Greife auf hochauflösende Hardware-Timer des Prozessors zu, um präzise Taktzyklen zu zählen (z. B. über den Assemblerbefehl <code>RDTSC</code>).</li>
+<li><strong>Roh-Zugriff auf die serielle Schnittstelle</strong>: Öffne und konfiguriere eine serielle Schnittstelle (COM-Port oder <code>/dev/tty</code>) über direkte Systemaufrufe und <code>ioctl</code>.</li>
+<li><strong>Shared Memory zwischen Prozessen</strong>: Erstelle einen gemeinsamen Speicherbereich über <code>shm_open</code> and <code>mmap</code>, um Daten ohne Sockets oder Pipes direkt mit einem anderen Prozess zu teilen.</li>
+<li><strong>Dateirechte auf Systemebene ändern</strong>: Rufe die POSIX-Funktion <code>chmod</code> direkt auf, um die Berechtigungen einer Datei über Oktalmasken zu manipulieren.</li>
+<li><strong>Systemzeit direkt auslesen</strong>: Nutze <code>clock_gettime</code> aus der POSIX-Bibliothek, um die aktuelle Systemzeit mit Nanosekunden-Präzision abzufragen.</li>
+<li><strong>Daemon-Prozess erstellen</strong>: Nutze den Systemaufruf <code>fork</code>, um den aktuellen Prozess zu duplizieren und im Hintergrund als Daemon weiterlaufen zu lassen.</li>
+<li><strong>Windows-Registry manipulieren</strong>: Greife über Win32-APIs wie <code>RegOpenKeyExW</code> auf die Windows-Registrierungsdatenbank zu, um Werte auszulesen oder zu schreiben.</li>
+<li><strong>Page-Size des Betriebssystems ermitteln</strong>: Rufe die Systemkonfiguration <code>sysconf</code> mit <code>_SC_PAGESIZE</code> auf, um die native Seitengröße des virtuellen Speichers abzufragen.</li>
+<li><strong>Prozess-Priorität ändern</strong>: Verwende die Funktion <code>setpriority</code>, um die Scheduling-Priorität (Nice-Wert) deines aktuellen Prozesses direkt zu manipulieren.</li>
+<li><strong>Inline-Assembler für mathematische Tricks</strong>: Schreibe eine Funktion, die mithilfe des <code>asm!</code>-Makros direkt Assembler-Befehle (z. B. Bit-Manipulationen) ausführt, um eine Berechnung extrem zu beschleunigen.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase9.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-prompts-phase9.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase9.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-prompts-phase9.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte - Generics, Traits &amp; Lifetimes - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html" class="active"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projekte---generics-traits--lifetimes"><a class="header" href="#100-projekte---generics-traits--lifetimes">100 Projekte - Generics, Traits &amp; Lifetimes</a></h1>
+<p>Willkommen in Phase 5! Hier findest du eine Sammlung von 100 kleinen Projektideen und Übungsszenarien. Sie sind speziell darauf ausgelegt, dein Verständnis für die mächtigen Werkzeuge des Rust-Typsystems zu vertiefen: Generics, Traits und Lifetimes.</p>
+<p>Die Übungen sind in fünf Kategorien unterteilt, damit du dich gezielt auf einzelne Aspekte konzentrieren oder dich an komplexe Kombinationen wagen kannst. Nutze diese Ideen, um eigene Programme zu schreiben – ganz ohne fertige Lösungen, sondern als kreativen Leitfaden für deinen Lernweg.</p>
+<hr />
+<h2 id="1-generics-fokus"><a class="header" href="#1-generics-fokus">1. Generics-Fokus</a></h2>
+<p>In dieser Kategorie lernst du, wie du deine Datenstrukturen und Funktionen flexibel gestaltest, sodass sie mit beliebigen Datentypen arbeiten können.</p>
+<ol>
+<li><strong>Generischer Stapelspeicher (Stack)</strong>: Implementiere eine Struktur, die Elemente eines beliebigen Typs <code>T</code> nach dem LIFO-Prinzip (Last-In-First-Out) speichert. Du lernst hierbei, wie du Generics in Structs und <code>impl</code>-Blöcken definierst.</li>
+<li><strong>Generische Warteschlange (Queue)</strong>: Erstelle eine FIFO-Warteschlange (First-In-First-Out) für beliebige Typen. Das zeigt dir, wie du generische Datenstrukturen in internen Vektoren oder Listen verwaltest.</li>
+<li><strong>Generisches Werte-Paar</strong>: Definiere ein Struct, das zwei Werte unterschiedlicher generischer Typen <code>T</code> und <code>U</code> zusammenhält. So verstehst du die Verwendung mehrerer Typparameter in einer einzigen Datenstruktur.</li>
+<li><strong>Einfacher Cache</strong>: Entwickle einen Cache, der einen Wert vom Typ <code>T</code> und einen Schlüssel vom Typ <code>K</code> speichert. Dies trainiert den Umgang mit generischen Feldern und deren Initialisierung.</li>
+<li><strong>Generische Matrix</strong>: Erstelle eine zweidimensionale Matrix, die Werte eines generischen Typs <code>T</code> hält. Du übst dabei den Zugriff und die Speicherung generischer Daten in einem flachen oder verschachtellten Vektor.</li>
+<li><strong>Typisierte ID</strong>: Entwirf eine ID-Struktur <code>Id&lt;T&gt;</code>, die an einen bestimmten Typ gebunden ist, um Verwechslungen von IDs verschiedener Entitäten zur Compilezeit zu verhindern. Nutze dafür <code>std::marker::PhantomData</code>.</li>
+<li><strong>Generischer Zustandsautomat</strong>: Implementiere ein System, bei dem die Zustände als generische Parameter dargestellt werden. Dies zeigt dir, wie du Zustandsübergänge zur Kompilierzeit durch geschickte Typisierung absicherst.</li>
+<li><strong>Generischer Event-Dispatcher</strong>: Schreibe einen Dispatcher, der Events vom Typ <code>E</code> an registrierte Listener verteilt. Hier lernst du generische Parameter in Methoden und Funktionssignaturen kennen.</li>
+<li><strong>Generischer JSON-Parser-Stumpf</strong>: Entwickle ein Gerüst für einen Parser, der einen String liest und ein Objekt des generischen Typs <code>T</code> zurückgeben möchte. Du übst das Formulieren von Signaturen für Deserialisierung.</li>
+<li><strong>Generischer Binärbaum (Tree)</strong>: Baue einen binären Suchbaum, dessen Knoten Werte vom Typ <code>T</code> enthalten. Du lernst, generische Typen rekursiv unter Verwendung von <code>Box</code> oder <code>Option</code> zu verschachteln.</li>
+<li><strong>Generische Konfigurations-Struktur</strong>: Erstelle ein Struct, das Konfigurationseinstellungen für verschiedene Server-Umgebungen über einen generischen Parameter verwaltet.</li>
+<li><strong>Typ-sicherer Wrapper</strong>: Schreibe einen Wrapper um primitive Typen, um Maßeinheiten wie Meter oder Sekunden generisch voneinander abzugrenzen und Fehlberechnungen zu verhindern.</li>
+<li><strong>Generische mathematische Vektoren</strong>: Definiere einen 3D-Vektor, der sowohl Fließkommazahlen als auch Ganzzahlen aufnehmen kann. So lernst du, wie sich generische mathematische Strukturen deklarieren lassen.</li>
+<li><strong>Generischer Logger</strong>: Implementiere eine Protokollierungsfunktion, die Nachrichten von jedem Typ <code>T</code> akzeptiert. Hierbei probierst du aus, wie man beliebige Typen formatiert oder verarbeitet.</li>
+<li><strong>Generische Liste mit Prioritäten</strong>: Programmiere eine Prioritätswarteschlange, in der die Priorität und der eigentliche Wert jeweils generische Typen sind.</li>
+<li><strong>Generischer Iterator-Adapter</strong>: Schreibe einen eigenen Iterator, der ein anderes Iterator-Objekt über einen generischen Typparameter kapselt. Das trainiert das Weiterreichen von generischen Elementen.</li>
+<li><strong>Generisches Koordinatensystem</strong>: Definiere Punkte im zweidimensionalen Raum mit generischen Koordinatentypen, um sowohl Ganzzahl- als auch Fließkomma-Koordinaten flexibel abzubilden.</li>
+<li><strong>Generische API-Antwort</strong>: Entwirf eine Struktur <code>ApiResponse&lt;T&gt;</code>, die entweder Daten vom Typ <code>T</code> oder eine Fehlermeldung enthält. So verstehst du, wie du API-Schnittstellen typisiert modellierst.</li>
+<li><strong>Generischer Ringpuffer</strong>: Implementiere einen zirkulären Puffer fester Größe, der Elemente eines beliebigen Typs <code>T</code> überschreibt, sobald er voll ist.</li>
+<li><strong>Generischer Messwert-Container</strong>: Erstelle einen Container, der Zeitreihendaten für beliebige Sensortypen speichert und statistische Werte berechnet.</li>
+<li><strong>Generische Suchfunktion</strong>: Schreibe eine Funktion, die ein Element in einem Slice sucht und dessen Position zurückgibt, unabhängig vom Typ der Elemente im Slice.</li>
+<li><strong>Generischer E-Mail-Builder</strong>: Entwickle einen Builder-Pattern, bei dem der Zustand des Empfängers und des Betreffs generisch überprüft wird, um das Senden unvollständiger E-Mails zu verhindern.</li>
+<li><strong>Generischer Undo-Redo-Manager</strong>: Baue einen Manager, der Aktionen vom Typ <code>T</code> in zwei Stacks speichert, um eine Historie für beliebige Benutzerinteraktionen zu verwalten.</li>
+<li><strong>Generische SQL-Abfrage-Abstraktion</strong>: Entwirf eine Struktur, die SQL-Queries repräsentiert und die zurückgegebenen Spalten und Zeilen generisch typisiert.</li>
+<li><strong>Generischer Dateisystem-Cache</strong>: Implementiere einen Speicher-Cache, der Dateiinhalte liest und in einem generischen Format vorhält, um Lesezugriffe zu beschleunigen.</li>
+</ol>
+<hr />
+<h2 id="2-traits-fokus"><a class="header" href="#2-traits-fokus">2. Traits-Fokus</a></h2>
+<p>Traits definieren das Verhalten von Typen. In dieser Kategorie erfährst du, wie du eigene Schnittstellen deklarierst und die reichhaltige Palette an Rust-Standard-Traits verwendest.</p>
+<ol start="26">
+<li><strong>Trait 'Printable'</strong>: Definiere ein eigenes Trait für Objekte, die in einem speziellen Format auf der Konsole ausgegeben werden können, und implementiere es für verschiedene Structs.</li>
+<li><strong>Trait 'Serializable'</strong>: Erstelle ein Trait zur Serialisierung von Daten in Textform (z. B. XML oder JSON) und implementiere es für deine eigenen Datentypen.</li>
+<li><strong>Trait 'Deserializable'</strong>: Das Gegenstück zum Serialisieren – implementiere ein Trait, um deine Strukturen aus einfachen Zeilenketten wiederherzustellen.</li>
+<li><strong>Trait 'Volume'</strong>: Definiere ein Trait, das das Volumen von geometrischen 3D-Körpern (wie Würfel oder Kugel) berechnet, und nutze es in Berechnungsfunktionen.</li>
+<li><strong>Trait-Bounds für Berechnungen</strong>: Schreibe eine generische Funktion, die nur Typen addieren kann, die das Standard-Trait <code>std::ops::Add</code> implementieren. So lernst du Einschränkungen (Bounds) kennen.</li>
+<li><strong>Eigener Vergleichs-Trait</strong>: Erstelle ein Trait für "Ähnlichkeit" statt exakter Gleichheit und implementiere es für textbasierte Dokumente, um Abweichungen in Prozent zu messen.</li>
+<li><strong>Trait 'Flyable'</strong>: Definiere Verhaltensweisen für flugfähige Objekte und implementiere sie für Vögel und Flugzeuge, um Polymorphie und gemeinsames Verhalten zu üben.</li>
+<li><strong>Standard-Trait 'Clone' &amp; 'Copy'</strong>: Implementiere manuell das <code>Clone</code>-Trait für ein Struct und verstehe, warum manche Typen das <code>Copy</code>-Trait nicht einfach ableiten können.</li>
+<li><strong>Standard-Trait 'Display'</strong>: Implementiere <code>std::fmt::Display</code> für eine komplexe Struktur, um die benutzerfreundliche Ausgabe mit <code>{}</code> im Makro <code>println!</code> anzupassen.</li>
+<li><strong>Standard-Trait 'Default'</strong>: Nutze das <code>Default</code>-Trait, um sinnvolle Standardwerte für eine komplexe Einstellungs-Struktur deines Programms bereitzustellen.</li>
+<li><strong>Standard-Trait 'Drop'</strong>: Implementiere <code>Drop</code>, um eine Nachricht auszugeben oder Ressourcen freizugeben, wenn eine Struktur den aktuellen Scope verlässt.</li>
+<li><strong>Standard-Trait 'From' und 'Into'</strong>: Schreibe eine saubere Konvertierungslogik zwischen zwei unterschiedlichen Datenstrukturen mithilfe dieser beiden Standard-Traits.</li>
+<li><strong>Standard-Trait 'Iterator'</strong>: Erstelle einen eigenen Iterator für eine mathematische Sequenz (z. B. Fibonacci) durch Implementierung der erforderlichen <code>next</code>-Methode.</li>
+<li><strong>Standard-Trait 'AsRef' &amp; 'AsMut'</strong>: Verwende diese Traits, um Funktionen zu schreiben, die flexibel Referenzen auf Daten (wie Strings oder Pfade) entgegennehmen können.</li>
+<li><strong>Trait-Objekte (dyn Trait)</strong>: Verwalte eine Liste von unterschiedlichen Objekten, die alle dasselbe Trait implementieren, in einem Vektor unter Verwendung von <code>Box&lt;dyn Trait&gt;</code>.</li>
+<li><strong>Assoziierte Typen</strong>: Erstelle ein Trait <code>Graph</code>, das assoziierte Typen für Knoten (<code>Node</code>) und Kanten (<code>Edge</code>) verwendet, um flexibel verschiedene Graph-Arten abzubilden.</li>
+<li><strong>Super-Traits</strong>: Definiere ein Trait <code>SmartDevice</code>, das voraussetzt, dass ein Typ bereits die Traits <code>Device</code> und <code>Display</code> implementiert.</li>
+<li><strong>Trait für Verschlüsselung</strong>: Entwirf ein Trait <code>Encryptable</code> mit einer Methode zur Verschlüsselung und wende es auf String-Wrapper und Byte-Vektoren an.</li>
+<li><strong>Trait für Datenbank-Verbindungen</strong>: Erstelle ein Trait, das die grundlegenden CRUD-Operationen (Create, Read, Update, Delete) vorgibt, um Mock- und echte Datenbanken austauschbar zu machen.</li>
+<li><strong>Standard-Trait 'PartialOrd' und 'Ord'</strong>: Implementiere Sortierlogik für eine Spieler-Struktur basierend auf Punkten und Namen, um sie in Vektoren sortieren zu können.</li>
+<li><strong>Trait-Bounds mit Where-Klauseln</strong>: Schreibe komplexe generische Funktionen und strukturiere die Trait-Bounds übersichtlich mit einer <code>where</code>-Klausel am Ende der Signatur.</li>
+<li><strong>Standard-Trait 'Index' &amp; 'IndexMut'</strong>: Ermögliche es, auf deine eigene Container-Struktur über die eckigen Klammern <code>container[index]</code> zuzugreifen und Werte zu modifizieren.</li>
+<li><strong>Marker-Traits</strong>: Definiere ein leeres Trait als Marker (wie <code>SafeToPublish</code>) und nutze es in Compilezeit-Prüfungen für sensible Daten.</li>
+<li><strong>Trait 'Drawable'</strong>: Erstelle ein Trait für grafische Elemente, die auf einer virtuellen Leinwand gezeichnet werden können, und implementiere es für Kreise und Quadrate.</li>
+<li><strong>Trait 'Validator'</strong>: Definiere ein Trait zur Validierung von Benutzereingaben und implementiere es für E-Mail- und Passwort-Strukturen, um Eingaben auf Korrektheit zu prüfen.</li>
+</ol>
+<hr />
+<h2 id="3-lifetimes-fokus"><a class="header" href="#3-lifetimes-fokus">3. Lifetimes-Fokus</a></h2>
+<p>Lifetimes (Lebensdauern) garantieren Speicher-Sicherheit, indem sie verhindern, dass Referenzen länger existieren als die Daten, auf die sie verweisen. Diese Übungen machen dich mit dem Lifetime-Borrow-Checker vertraut.</p>
+<ol start="51">
+<li><strong>Referenz-Wrapper</strong>: Erstelle ein Struct, das eine Referenz auf eine Zahl hält. Deklariere die dafür notwendige Lifetime-Annotation <code>'a</code> an der Struktur.</li>
+<li><strong>Text-Parser</strong>: Schreibe ein Struct, das einen geladenen Text parst und Referenzen auf einzelne Wörter innerhalb dieses Textes speichert, um unnötige Kopien zu vermeiden.</li>
+<li><strong>Zwei Referenzen, gleiche Lifetime</strong>: Entwickle eine Funktion, die zwei Referenzen entgegennimmt, sie vergleicht und die längere zurückgibt. Deklariere dafür eine geteilte Lifetime.</li>
+<li><strong>Zwei Referenzen, verschiedene Lifetimes</strong>: Schreibe eine Funktion, die zwei Referenzen mit unterschiedlichen Lifetimes akzeptiert, und lerne, wie sich diese auf die Rückgabewerte auswirken.</li>
+<li><strong>Die statische Lifetime (<code>'static</code>)</strong>: Verwende <code>'static</code> für globale Konstanten oder feste String-Literale und lerne, wie man Daten definiert, die das gesamte Programm über leben.</li>
+<li><strong>Struktur mit String-Referenz</strong>: Erstelle eine Struktur <code>User&lt;'a&gt;</code>, die den Benutzernamen als Referenz hält, und teste im Code, wie der Compiler Lebensdauern überwacht.</li>
+<li><strong>Lifetime Elision Rules</strong>: Schreibe Funktionen, bei denen der Rust-Compiler die Lifetimes automatisch herleitet, und dokumentiere, warum dies ohne explizite Annotationen funktioniert.</li>
+<li><strong>Iterator mit Lifetime</strong>: Entwirf einen Iterator, der Referenzen auf die Elemente einer benutzerdefinierten Sammlung liefert, und annotiere die Lifetimes der Rückgabewerte korrekt.</li>
+<li><strong>Referenzen in Enums</strong>: Erstelle ein Enum, dessen Varianten Referenzen enthalten (z. B. <code>Token&lt;'a&gt;</code>), und deklariere die Lifetime am Enum selbst.</li>
+<li><strong>Nested Lifetimes (Lebensdauer-Hierarchien)</strong>: Schreibe eine Struktur, die eine Referenz auf ein Objekt (z. B. <code>Manager&lt;'a, 'b&gt;</code>) hält, welches wiederum eine Referenz besitzt, um Hierarchien abzubilden.</li>
+<li><strong>Rückgabe einer Referenz aus einer Methode</strong>: Implementiere ein Struct mit einer Methode, die eine Referenz auf ein internes Feld zurückgibt, und annotiere die Lifetimes im <code>impl</code>-Block.</li>
+<li><strong>Konfigurations-Reader mit Lifetime</strong>: Entwickle einen Reader, der aus einer Konfigurationsdatei liest und Referenzen auf die Abschnitte im Speicher hält, statt sie neu zu allozieren.</li>
+<li><strong>Log-Filter</strong>: Schreibe eine Struktur, die Log-Einträge filtert und Referenzen auf die relevanten Zeilen in einem großen, im Speicher liegenden Log-String speichert.</li>
+<li><strong>Tokenisierer für Compiler</strong>: Entwirf einen Tokenizer, der einen Quellcode-String scannt und Token-Objekte zurückgibt, die direkt auf Teilstücke des Quellcodes verweisen.</li>
+<li><strong>Subtyping bei Lifetimes (<code>'a: 'b</code>)</strong>: Zeige an einem praktischen Beispiel, wie du definierst, dass die Lifetime <code>'a</code> mindestens so lange leben muss wie die Lifetime <code>'b</code>.</li>
+<li><strong>Generischer Typ mit Lifetime-Bound (<code>T: 'a</code>)</strong>: Schreibe eine Struktur, die einen generischen Typ <code>T</code> speichert, welcher wiederum Referenzen mit der Lifetime <code>'a</code> enthalten darf.</li>
+<li><strong>Lifetime im Trait-Objekt</strong>: Erstelle ein Trait-Objekt mit einer Lifetime-Einschränkung wie <code>Box&lt;dyn MyTrait + 'a&gt;</code>, um temporäre Objekte dynamisch und sicher zu verwalten.</li>
+<li><strong>Einfacher Cache mit Referenzen</strong>: Implementiere einen Cache, der Referenzen auf teure Berechnungsergebnisse speichert, statt die Ergebnisse bei jedem Zugriff zu kopieren.</li>
+<li><strong>URL-Parser</strong>: Schreibe einen Parser, der eine URL in Protokoll, Domain und Pfad zerlegt und diese Teile als Referenzen auf die Original-URL zurückgibt.</li>
+<li><strong>AST-Knoten (Abstract Syntax Tree)</strong>: Baue eine Baumstruktur für einen Parser, bei der jeder Knoten Referenzen auf den eingelesenen Quellcode-Text enthält.</li>
+<li><strong>Referenzierte JSON-Keys</strong>: Erstelle einen JSON-Parser-Stumpf, der Schlüssel und Werte als Referenzen auf den eingelesenen JSON-String speichert, um Heap-Allokationen zu minimieren.</li>
+<li><strong>Zeilen-Gruppierer</strong>: Schreibe eine Funktion, die Zeilen eines Dokuments gruppiert und Referenzen auf diese Zeilen in einer Map ablegt, ohne die Strings neu zu erstellen.</li>
+<li><strong>Zirkuläre Referenzen vermeiden</strong>: Versuche, zwei Strukturen zu bauen, die sich gegenseitig referenzieren, und lerne, warum der Compiler dies verhindert und wie man Referenzzyklen vermeidet.</li>
+<li><strong>Text-Highlighter</strong>: Programmiere ein Tool, das Suchbegriffe in einem Text findet und Referenzen auf die Fundstellen für die spätere Formatierung speichert.</li>
+<li><strong>Befehlszeilen-Argument-Parser</strong>: Entwickle einen Parser für Kommandozeilenargumente, der direkt Referenzen aus dem ursprünglichen Argument-Array nutzt.</li>
+</ol>
+<hr />
+<h2 id="4-kombinations-projekte"><a class="header" href="#4-kombinations-projekte">4. Kombinations-Projekte</a></h2>
+<p>Hier verbindest du alle drei Konzepte. Du entwirfst generische Strukturen, schränkst sie durch Traits ein und verwaltest die Speicher-Sicherheit über Lifetimes.</p>
+<ol start="76">
+<li><strong>Generisches Repository mit Lifetime</strong>: Erstelle ein Daten-Repository, das ein Trait implementiert und Referenzen auf eine temporäre Datenbankverbindung hält.</li>
+<li><strong>Eigener generischer Iterator mit Lebensdauer</strong>: Programmiere einen Iterator, der über eine generische Datenstruktur iteriert und Referenzen mit expliziten Lifetimes liefert.</li>
+<li><strong>Generischer Event-Listener mit Lifetimes</strong>: Implementiere ein Event-System, bei dem die Listener generische Typen sind und als Referenzen mit Lebensdauer registriert werden.</li>
+<li><strong>Generischer AST-Parser</strong>: Baue einen Parser für mathematische Ausdrücke, der generische Operatoren unterstützt und Referenzen auf den Quelltext speichert.</li>
+<li><strong>Typ-sicheres Transaktions-System</strong>: Entwirf ein System, das Transaktionen für verschiedene Kontotypen (generisch) abwickelt und das Trait <code>Executable</code> nutzt.</li>
+<li><strong>Generischer Graph-Algorithmus</strong>: Implementiere einen Suchalgorithmus (z. B. Breitensuche), der auf jedem Graphentyp arbeitet, der ein bestimmtes <code>Graph</code>-Trait erfüllt.</li>
+<li><strong>Generischer Serialisierer mit Lebensdauer</strong>: Schreibe ein Serialisierungs-Framework, das Datenstrukturen in Byte-Slices umwandelt, ohne sie im Speicher zu kopieren.</li>
+<li><strong>Generische Cache-Struktur mit Validierungs-Trait</strong>: Entwirf einen Cache, der ein Trait zur Gültigkeitsprüfung (<code>Validator</code>) und Lifetimes für die temporären Einträge nutzt.</li>
+<li><strong>Dependency-Injection-Container</strong>: Programmiere einen einfachen DI-Container, der Services über Generics registriert und über Trait-Objekte zurückgibt.</li>
+<li><strong>Generischer Query-Builder mit Lifetime</strong>: Schreibe einen SQL-Query-Builder, der Parameter als Referenzen speichert, um SQL-Injections zur Laufzeit zu verhindern.</li>
+<li><strong>Generische Pipeline</strong>: Entwickle ein Pipeline-System, bei dem Stufen über Traits definiert sind und Daten (generisch) per Referenz durchgereicht werden.</li>
+<li><strong>Generischer State-Pattern-Automat</strong>: Implementiere ein State-Pattern für ein Spielobjekt, bei dem die Zustände Traits implementieren und Zustandsdaten generisch sind.</li>
+<li><strong>Plugin-System</strong>: Programmiere ein einfaches System, das Plugins (Traits) dynamisch lädt und ihnen generische Kontextdaten als Referenz übergibt.</li>
+<li><strong>Generische Suchmaschine</strong>: Erstelle ein Suchindex-Modul, das beliebige Dokumententypen indiziert und Suchergebnisse als Referenzen zurückgibt.</li>
+<li><strong>Generisches Daten-Diff-Tool</strong>: Entwickle ein Tool, das Unterschiede zwischen zwei Kollektionen berechnet und die Unterschiede als Referenzen darstellt.</li>
+</ol>
+<hr />
+<h2 id="5-fortgeschrittene-szenarien"><a class="header" href="#5-fortgeschrittene-szenarien">5. Fortgeschrittene Szenarien</a></h2>
+<p>Bereit für die Profi-Liga? Diese Herausforderungen decken spezielle Typ-System-Features, fortgeschrittenes Dispatching und fortgeschrittene Lifetime-Mechaniken ab.</p>
+<ol start="91">
+<li><strong>Dyn Traits vs. Impl Traits</strong>: Schreibe ein Programm, das den Unterschied zwischen statischem Dispatch (<code>impl Trait</code>) und dynamischem Dispatch (<code>dyn Trait</code>) verdeutlicht.</li>
+<li><strong>Thread-Safety mit Send &amp; Sync</strong>: Erstelle ein Szenario, in dem du eigene Typen definierst und prüfst, wie der Compiler <code>Send</code> und <code>Sync</code> automatisch ableitet oder blockiert.</li>
+<li><strong>Smart Pointer &amp; Lifetimes (Rc/Arc)</strong>: Kombiniere Lifetimes mit <code>Rc</code> und <code>RefCell</code>, um geteilten, veränderlichen Zugriff auf Daten zu ermöglichen.</li>
+<li><strong>Assoziierte Typen vs. Generics im Trait</strong>: Schreibe zwei Versionen eines Traits (einmal mit assoziiertem Typ, einmal mit Generic) und vergleiche die Ergonomie bei der Benutzung.</li>
+<li><strong>Blanket Implementations</strong>: Implementiere ein Trait automatisch für alle Typen, die bereits ein anderes bestimmtes Trait implementieren.</li>
+<li><strong>GATs (Generic Associated Types)</strong>: Experimentiere mit assoziierten Typen, die selbst generisch sind (z. B. ein Iterator, der Referenzen mit der Lifetime der Iteration liefert).</li>
+<li><strong>Covariance &amp; Contravariance</strong>: Untersuche an Beispielen mit Lifetimes, wie Rusts Subtypisierung funktioniert (z. B. warum <code>'static</code> für <code>'a</code> eingesetzt werden kann).</li>
+<li><strong>Trait-Bounds mit HRTBs (Higher-Rank Trait Bounds)</strong>: Verwende die <code>for&lt;'a&gt;</code> Syntax, um eine Funktion zu schreiben, die Closures mit beliebigen Lifetimes akzeptiert.</li>
+<li><strong>PhantomData im Detail</strong>: Entwirf eine Struktur, die vorgibt, eine Referenz oder einen Typ zu besitzen, um logische Fehler zur Compilezeit zu verhindern.</li>
+<li><strong>Eigener Smart Pointer</strong>: Implementiere das <code>Deref</code>- und <code>Drop</code>-Trait für eine eigene Struktur, um deinen eigenen Smart Pointer zu erstellen.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-prompts-phase5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-prompts-phase5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

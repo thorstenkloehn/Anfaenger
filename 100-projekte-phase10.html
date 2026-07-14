@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100 Projekte - Makros &amp; Metaprogrammierung - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html" class="active"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projekte---makros--metaprogrammierung"><a class="header" href="#100-projekte---makros--metaprogrammierung">100 Projekte - Makros &amp; Metaprogrammierung</a></h1>
+<p>Hier ist eine Sammlung von Projektideen, die speziell darauf ausgelegt sind, dein Verständnis von Codegenerierung und AST-Manipulation in Rust zu schärfen. Diese Szenarien helfen dir dabei, die Funktionsweise von deklarativen und prozeduralen Makros zu durchdringen.</p>
+<blockquote>
+<p>[!IMPORTANT]
+Arbeite diese Projekte Schritt für Schritt durch. Versuche stets zu verstehen, warum ein Makro an der jeweiligen Stelle sinnvoll ist, wie es den Code vereinfacht und wo die Grenzen der Metaprogrammierung liegen. Bedenke, dass guter Rust-Code oft auch ohne Makros auskommt, sie aber bei richtiger Anwendung extrem mächtig sind.</p>
+</blockquote>
+<hr />
+<h2 id="teil-1-deklarative-makros-mustervergleich"><a class="header" href="#teil-1-deklarative-makros-mustervergleich">Teil 1: Deklarative Makros (Mustervergleich)</a></h2>
+<p>In diesem Abschnitt lernst du die Grundlagen von <code>macro_rules!</code>. Du übst den Mustervergleich mit verschiedenen Fragment-Spezifikationen (Designatoren) wie <code>expr</code>, <code>ident</code>, <code>ty</code> oder <code>path</code>.</p>
+<ol>
+<li><strong>Einfaches Logging-Makro</strong>: Übergib dem Makro einen Wert. Es soll den Typ, den Dateinamen und die Zeilennummer ausgeben und den Wert unverändert zurückliefern, um das Debuggen zu erleichtern.</li>
+<li><strong>Mathematische Quadrierung</strong>: Erstelle ein Makro, das einen mathematischen Ausdruck nimmt und ihn quadriert. Achte darauf, dass der Ausdruck im AST nur einmal ausgewertet wird, um Seiteneffekte zu vermeiden.</li>
+<li><strong>Typ-Alias-Generator</strong>: Definiere ein Makro, das einen Namen und einen bestehenden Typ entgegennimmt und einen neuen Typ-Alias anlegt, um lesbareren Code zu schreiben.</li>
+<li><strong>Conditional-Compilation-Helper</strong>: Schreibe ein Makro, das abhängig von einem Debug-Flag bestimmte Codeblöcke ein- oder ausschließt. So kannst du Testcode elegant vom Produktionscode trennen.</li>
+<li><strong>Standardwert-Zuweiser</strong>: Baue ein Makro, das eine <code>Option</code> auf <code>Some</code> prüft und bei <code>None</code> einen benutzerdefinierten Ausweichwert zurückgibt. Dies simuliert ein kompaktes Pattern Matching ohne <code>unwrap_or</code>.</li>
+<li><strong>Einfache JSON-Struktur</strong>: Erstelle ein Makro, das syntaktisch wie ein JSON-Objekt aufgebaut ist. Es soll diese Struktur in eine einfache Schlüssel-Wert-Map konvertieren.</li>
+<li><strong>HTML-Tag-Wrapper</strong>: Entwickle ein Makro, das einen HTML-Tag-Namen und einen Textinhalt als Bezeichner nimmt. Es generiert daraus einen korrekt formatierten HTML-String.</li>
+<li><strong>Automatischer Getter</strong>: Schreibe ein Makro, das für ein Struct und ein Feld eine Getter-Methode generiert. Der Feldname wird dabei als Bezeichner übergeben, um Boilerplate-Code zu reduzieren.</li>
+<li><strong>Infix-zu-Postfix-Rechner</strong>: Entwirf ein Makro, das mathematische Ausdrücke in Infix-Notation (z. B. <code>3 + 4</code>) liest und sie in eine Postfix-Reihenfolge bringt. Das hilft dir, die Funktionsweise des Compilers beim Parsen zu verstehen.</li>
+<li><strong>Typ-Überprüfer</strong>: Implementiere ein Makro, das zur Compilezeit prüft, ob zwei Typen exakt übereinstimmen. Wenn nicht, soll die Kompilierung mit einer Fehlermeldung abgebrochen werden.</li>
+<li><strong>Einfacher Singleton-Generator</strong>: Erstelle ein Makro, das eine statische Variable sicher und träge initialisiert. Es kapselt den unsicheren Zugriff ab und stellt eine sichere Schnittstelle bereit.</li>
+<li><strong>Zustands-Prüfer</strong>: Schreibe ein Makro, das ein Enum und eine Variante entgegennimmt und prüft, ob die Instanz dieser Variante entspricht. Es liefert einen booleschen Wert zurück und ähnelt der Funktionsweise von <code>matches!</code>.</li>
+<li><strong>Konstanten-Definierer</strong>: Baue ein Makro, dem du eine Liste von Bezeichnern und Werten übergibst. Es deklariert diese automatisch als öffentliche Konstanten vom Typ <code>usize</code>.</li>
+<li><strong>Sicheres Array-Lookup</strong>: Entwirf ein Makro, das ein Array und einen Index entgegennimmt. Es gibt ein <code>Option</code> zurück, um Laufzeit-Panics durch ungültige Indizes zu verhindern.</li>
+<li><strong>SQL-Query-String-Validierung</strong>: Schreibe ein Makro, das prüft, ob ein übergebener String mit dem Wort <code>SELECT</code> oder <code>INSERT</code> beginnt. Es validiert die SQL-Grundstruktur bereits zur Compilezeit.</li>
+<li><strong>Struktur-Kopierer</strong>: Erstelle ein Makro, das Felder mit identischen Namen aus einer Quellstruktur in eine Zielstruktur kopiert. Das spart manuelle Zuweisungen bei DTO-Konvertierungen.</li>
+<li><strong>Codeblock-Zeitmessung</strong>: Entwickle ein Makro, das einen beliebigen Rust-Codeblock umschließt. Es misst die Ausführungszeit des Blocks und gibt sie formatiert aus.</li>
+<li><strong>Assert mit Zusatznachricht</strong>: Schreibe ein eigenes <code>assert</code>-Makro, das im Fehlerfall nicht nur fehlschlägt, sondern auch den genauen Code-Ausdruck und einen benutzerdefinierten Kontext ausgibt.</li>
+<li><strong>Schnelle Enum-Erstellung</strong>: Baue ein Makro, dem du einen Enum-Namen und eine Reihe von Varianten übergibst. Es generiert daraus die vollständige Enum-Definition im Code.</li>
+<li><strong>Umgebungsvariablen-Checker</strong>: Erstelle ein Makro, das prüft, ob eine bestimmte Umgebungsvariable während des Kompilierens existiert. Ist dies nicht der Fall, bricht der Compiler mit einer klaren Meldung ab.</li>
+</ol>
+<hr />
+<h2 id="teil-2-deklarative-makros-wiederholungen--listen"><a class="header" href="#teil-2-deklarative-makros-wiederholungen--listen">Teil 2: Deklarative Makros (Wiederholungen &amp; Listen)</a></h2>
+<p>Hier lernst du die Wiederholungs-Operatoren <code>*</code>, <code>+</code> und <code>?</code> in <code>macro_rules!</code> kennen. Du übst das Verarbeiten von beliebig langen Listen, rekursiven Strukturen und komplexeren Token-Abfolgen.</p>
+<ol start="21">
+<li><strong>Vektor-Builder mit Multiplikator</strong>: Entwickle ein Makro, das ähnlich wie <code>vec!</code> arbeitet, aber eine Syntax wie <code>[wert; anzahl]</code> nutzt, um Elemente mehrfach in eine dynamische Liste einzufügen.</li>
+<li><strong>Map-Literal-Generator</strong>: Schreibe ein Makro, das eine Liste von <code>Key =&gt; Value</code> Paaren entgegennimmt. Es erzeugt daraus eine fertig befüllte <code>HashMap</code> mit den entsprechenden Einträgen.</li>
+<li><strong>Verschachtelter HTML-Builder</strong>: Erstelle ein Makro, das eine verschachtelte Struktur aus XML-Tags parst. Es wandelt diese in einen zusammenhängenden, korrekt eingerückten HTML-String um.</li>
+<li><strong>Mehrfach-Implementierung von Traits</strong>: Implementiere ein Makro, das ein bestimmtes Trait für eine Liste von primitiven Datentypen (z. B. <code>i32</code>, <code>i64</code>, <code>f32</code>) auf einmal implementiert. Das spart redundanten Code für numerische Typen.</li>
+<li><strong>Batch-Funktionsaufrufer</strong>: Baue ein Makro, das eine Liste von Funktionen und ein einzelnes Argument entgegennimmt. Es ruft alle diese Funktionen nacheinander mit dem übergebenen Argument auf.</li>
+<li><strong>Automatischer Builder-Pattern-Generator</strong>: Entwirf ein Makro, dem du eine Liste von Feldern übergibst. Es generiert daraus eine Builder-Struktur mit den passenden Setter-Methoden für dein Struct.</li>
+<li><strong>Zahlen-Reihenfolge-Generator</strong>: Schreibe ein Makro, das eine beliebige Anzahl von Zahlen entgegennimmt und daraus zur Compilezeit ein sortiertes statisches Array generiert.</li>
+<li><strong>String-Verkettungs-Makro</strong>: Erstelle ein Makro, das eine variable Anzahl von Argumenten unterschiedlicher Typen entgegennimmt. Es formatiert und verkettet diese effizient zu einem einzigen <code>String</code>.</li>
+<li><strong>Mehrfach-Zuweisung</strong>: Entwickle ein Makro, mit dem du mehreren Variablen gleichzeitig denselben Wert zuweisen kannst, wie zum Beispiel <code>a, b, c = 10</code>.</li>
+<li><strong>Rekursiver Listen-Parser</strong>: Baue ein Makro, das eine Liste von Ausdrücken rekursiv verarbeitet, um beispielsweise eine geschachtelte mathematische Baumstruktur aufzubauen.</li>
+<li><strong>CSV-Zeilen-Parser</strong>: Schreibe ein Makro, das eine Liste von kommaseparierten Werten parst und diese direkt in die Felder einer Datenstruktur überführt.</li>
+<li><strong>Trait-Delegation</strong>: Erstelle ein Makro, das alle Methoden eines Traits für ein Struct implementiert, indem es die Aufrufe an ein definiertes inneres Feld weiterleitet.</li>
+<li><strong>Batch-Test-Generator</strong>: Entwickle ein Makro, das aus einer Liste von Testnamen und Testdaten automatisch eigenständige Testfunktionen für dein Test-Framework generiert.</li>
+<li><strong>Konfigurations-Parser</strong>: Baue ein Makro, das eine Liste von Konfigurationsschlüsseln und Standardwerten einliest und ein statisches Konfigurationsobjekt erzeugt.</li>
+<li><strong>Kompaktes Error-Handling</strong>: Schreibe ein Makro, das aus einer Liste von Fehlernamen und Beschreibungen automatisch ein Enum und die zugehörige <code>Display</code>-Implementierung generiert.</li>
+<li><strong>Batch-Veränderung</strong>: Erstelle ein Makro, dem du eine Liste von Variablen übergibst, um auf alle dieselbe mathematische Operation (z. B. Inkrementieren) anzuwenden.</li>
+<li><strong>Strukturierte Tabellen-Ausgabe</strong>: Entwickle ein Makro, das Spaltenüberschriften und Datenzeilen entgegennimmt und diese als sauber ausgerichtete Texttabelle auf der Konsole ausgibt.</li>
+<li><strong>Bit-Flag-Generator</strong>: Schreibe ein Makro, das eine Liste von Flag-Namen nimmt und daraus ein Struct mit bitweisen Konstanten (1, 2, 4, 8, ...) generiert.</li>
+<li><strong>Typen-Konvertierer</strong>: Baue ein Makro, das eine Liste von Variablen unterschiedlicher Typen nimmt und diese alle in einen Zieltyp wie <code>f64</code> castet.</li>
+<li><strong>Rekursives Muster-Matching</strong>: Entwirf ein Makro, das tiefe und verschachtelte Mustervergleiche für Baumstrukturen vereinfacht, indem es die Pfade flach klopft.</li>
+</ol>
+<hr />
+<h2 id="teil-3-custom-derive-prozedurale-makros"><a class="header" href="#teil-3-custom-derive-prozedurale-makros">Teil 3: Custom Derive Prozedurale Makros</a></h2>
+<p>Prozedurale Makros manipulieren den Token-Stream direkt. Hier erstellst du eigene <code>#[derive(...)]</code>-Makros, liest Struct- und Enum-Strukturen mit Bibliotheken wie <code>syn</code> ein und generierst Code mit <code>quote</code>.</p>
+<ol start="41">
+<li><strong>Derive Describe</strong>: Implementiere ein prozedurales Makro, das für ein Struct ein <code>Describe</code>-Trait implementiert. Dieses gibt den Namen des Structs sowie die Namen und Typen aller Felder aus.</li>
+<li><strong>Derive JsonSerializable</strong>: Schreibe ein Makro, das automatisch eine Methode zum Konvertieren eines Structs in ein valides JSON-Format generiert.</li>
+<li><strong>Derive Validate</strong>: Baue ein Makro, das Struct-Felder anhand von Attributen wie <code>#[validate(min = 10)]</code> analysiert und eine Methode zur Validierung der Daten generiert.</li>
+<li><strong>Derive DatabaseTable</strong>: Erstelle ein Makro, das den Struct-Namen als Tabellennamen und die Felder als Spalten interpretiert, um automatisch SQL-Insert-Statements zu erzeugen.</li>
+<li><strong>Derive DefaultZero</strong>: Entwickle ein Makro, das das <code>Default</code>-Trait so implementiert, dass numerische Felder mit Null und Strings mit einem leeren Wert initialisiert werden.</li>
+<li><strong>Derive CloneFields</strong>: Schreibe ein Makro, das eine Klon-Methode generiert, welche nur bestimmte mit <code>#[clone]</code> markierte Felder kopiert und andere auf Standardwerte setzt.</li>
+<li><strong>Derive Mockable</strong>: Baue ein Makro, das für ein Struct oder ein Trait automatisch eine Mock-Struktur generiert, um Unit-Tests zu vereinfachen.</li>
+<li><strong>Derive FromRow</strong>: Erstelle ein Makro, das es ermöglicht, ein Struct direkt aus einer Zeile einer SQL-Datenbankabfrage oder einer Key-Value-Map zu instanziieren.</li>
+<li><strong>Derive Invert</strong>: Entwickle ein Makro für Enums mit zwei Zuständen, das eine Methode generiert, um den aktuellen Zustand in sein Gegenteil umzukehren.</li>
+<li><strong>Derive DeepSizeOf</strong>: Schreibe ein Makro, das den exakten Speicherbedarf eines Structs berechnet, indem es auch dynamisch allozierte Heap-Daten rekursiv erfasst.</li>
+<li><strong>Derive Configuration</strong>: Baue ein Makro, das ein Struct mit einer Methode ausstattet, um seine Felder automatisch aus Umgebungsvariablen zu befüllen.</li>
+<li><strong>Derive Diff</strong>: Erstelle ein Makro, das zwei Instanzen desselben Structs vergleicht und ein Objekt mit allen Feldänderungen zurückgibt.</li>
+<li><strong>Derive AutoForm</strong>: Entwickle ein Makro, das aus den Felatern eines Structs Metadaten für Benutzeroberflächen generiert, um Eingabeformulare automatisch zu erstellen.</li>
+<li><strong>Derive ToMap</strong>: Schreibe ein Makro, das ein Struct in eine <code>HashMap&lt;String, String&gt;</code> konvertiert, wobei Feldnamen zu Schlüsseln und Werte zu Strings werden.</li>
+<li><strong>Derive CommandLineArgs</strong>: Baue ein Makro, das Struct-Felder in Kommandozeilen-Argumente übersetzt und eine Parser-Funktion bereitstellt.</li>
+<li><strong>Derive Encryptable</strong>: Erstelle ein Makro, das Felder mit dem Attribut <code>#[encrypt]</code> vor dem Serialisieren oder Speichern automatisch verschlüsselt.</li>
+<li><strong>Derive Randomizable</strong>: Entwickle ein Makro, das eine Methode zur Generierung einer Instanz mit zufälligen Testdaten für alle Felder bereitstellt.</li>
+<li><strong>Derive GraphQLObject</strong>: Schreibe ein Makro, das die notwendigen Schema- und Resolver-Typen generiert, um ein Struct in einer GraphQL-API zu registrieren.</li>
+<li><strong>Derive CSVRecord</strong>: Baue ein Makro, das ein Struct für das Lesen und Schreiben in CSV-Dateien vorbereitet, indem es die Zeilen-Konvertierung automatisiert.</li>
+<li><strong>Derive StateMachine</strong>: Erstelle ein Makro für Enums, das Zustandsübergänge validiert und Methoden zur sicheren Zustandsänderung generiert.</li>
+</ol>
+<hr />
+<h2 id="teil-4-attribut---funktions-makros"><a class="header" href="#teil-4-attribut---funktions-makros">Teil 4: Attribut- &amp; Funktions-Makros</a></h2>
+<p>In diesem Abschnitt erstellst du Makros, die als Attribute (<code>#[attr]</code>) direkt auf Funktionen, Strukturen oder Module gesetzt werden, sowie freie Funktions-Makros, die wie Funktionsaufrufe aufgerufen werden.</p>
+<ol start="61">
+<li><strong>Memoize-Attribut</strong>: Schreibe ein Attribut-Makro <code>#[memoize]</code>, das die Ergebnisse einer Funktion cached, um wiederholte Berechnungen mit gleichen Argumenten zu beschleunigen.</li>
+<li><strong>Deprecated-Warning-Attribut</strong>: Entwickle ein Makro, das beim Kompilieren eine benutzerdefinierte Warnung ausgibt, wenn eine bestimmte Funktion im Code aufgerufen wird.</li>
+<li><strong>Route-Attribut</strong>: Baue ein Makro wie <code>#[route(GET, "/users")]</code>, das Web-Endpunkte registriert und die Funktion in ein HTTP-Routing-System einbindet.</li>
+<li><strong>Timeout-Attribut</strong>: Erstelle ein Makro <code>#[timeout(5)]</code>, das eine Funktion so umschreibt, dass sie abgebrochen wird, wenn die Ausführung länger als die angegebene Zeit dauert.</li>
+<li><strong>MeasurePerformance-Attribut</strong>: Entwickle ein Makro, das die Laufzeit einer Funktion misst und die Ergebnisse automatisch an ein Monitoring- oder Logging-System sendet.</li>
+<li><strong>Trace-Calls-Attribut</strong>: Schreibe ein Makro, das beim Betreten und Verlassen einer Funktion Log-Nachrichten mit den Argumenten und dem Rückgabewert schreibt.</li>
+<li><strong>Retry-Attribut</strong>: Baue ein Makro <code>#[retry(3)]</code>, das eine Funktion, die ein <code>Result</code> zurückgibt, im Fehlerfall automatisch bis zu dreimal neu ausführt.</li>
+<li><strong>ThreadSafe-Attribut</strong>: Erstelle ein Makro, das eine Funktion so umschreibt, dass sie intern einen Mutex sperrt, um Thread-Sicherheit bei jedem Aufruf zu garantieren.</li>
+<li><strong>Singleton-Attribut</strong>: Entwickle ein Attribut für Structs, das sicherstellt, dass zur Laufzeit nur eine einzige globale Instanz dieses Typs existieren kann.</li>
+<li><strong>FormatCheck-Funktionsmakro</strong>: Schreibe ein Makro, das zur Compilezeit die Syntax eines speziellen String-Formats (wie E-Mail oder IP-Adresse) validiert.</li>
+<li><strong>Inject-Attribut</strong>: Baue ein Makro, das Abhängigkeiten in die Argumente einer Funktion injiziert, indem es diese aus einem globalen Container auflöst.</li>
+<li><strong>Transactional-Attribut</strong>: Erstelle ein Makro, das eine Datenbank-Transaktion vor Ausführung der Funktion startet und bei Fehlern einen Rollback durchführt.</li>
+<li><strong>HideImplementation-Attribut</strong>: Entwickle ein Makro, das den tatsächlichen Funktionscode im generierten Dokumentations-Output von Rustdoc versteckt.</li>
+<li><strong>InlineAssembly-Helper</strong>: Schreibe ein Funktions-Makro, das plattformspezifischen Assembler-Code parst und in das Binärdokument einbettet.</li>
+<li><strong>CompileTimeMath-Funktionsmakro</strong>: Baue ein Makro, das mathematische Ausdrücke parst und das Ergebnis direkt als Konstante in den Code schreibt.</li>
+<li><strong>Permission-Attribut</strong>: Erstelle ein Makro <code>#[requires_role("Admin")]</code>, das vor dem Ausführen der Funktion prüft, ob der aktuelle Benutzer die nötigen Rechte hat.</li>
+<li><strong>MockFunction-Attribut</strong>: Entwickle ein Makro, das es erlaubt, den Funktionskörper im Testmodus durch eine vordefinierte Mock-Antwort zu ersetzen.</li>
+<li><strong>GenerateBindings-Attribut</strong>: Schreibe ein Makro, das für eine Rust-Funktion automatisch C-kompatible Header-Dateien (.h) erzeugt.</li>
+<li><strong>Benchmark-Attribut</strong>: Baue ein Makro, das eine Funktion mehrfach ausführt, um statistische Daten über deren Performance zu sammeln.</li>
+<li><strong>DebugPrint-Attribut</strong>: Erstelle ein Makro, das den AST (Abstract Syntax Tree) der dekorierten Funktion während des Kompilierens im Terminal ausgibt.</li>
+</ol>
+<hr />
+<h2 id="teil-5-fortgeschrittene-dsls--parser-makros"><a class="header" href="#teil-5-fortgeschrittene-dsls--parser-makros">Teil 5: Fortgeschrittene DSLs &amp; Parser-Makros</a></h2>
+<p>Hier kombinierst du prozedurale Makros mit echten Parsing-Konzepten. Du baust eigene domänenspezifische Sprachen (DSLs), die zur Compilezeit in Rust-Code übersetzt werden.</p>
+<ol start="81">
+<li><strong>HTML-Template-Engine</strong>: Entwickle ein Makro, das eine HTML-ähnliche Syntax parst und in effizienten Rust-Code umwandelt, der Variablen dynamisch einsetzt.</li>
+<li><strong>CSS-in-Rust-Parser</strong>: Schreibe ein Makro, das CSS-Regeln parst, auf Gültigkeit prüft und ein typsicheres Stylesheet-Objekt erzeugt.</li>
+<li><strong>Zustandsautomat-DSL</strong>: Baue ein Makro, mit dem man Zustände und Übergänge in einer klaren Text-Syntax definiert (z. B. <code>A -&gt; B via Event</code>).</li>
+<li><strong>SQL-Query-Builder-DSL</strong>: Erstelle ein Makro, mit dem man SQL-Abfragen typsicher direkt in Rust schreiben kann, wobei Tabellen- und Spaltennamen zur Compilezeit geprüft werden.</li>
+<li><strong>Regex-Parser zur Compilezeit</strong>: Entwickle ein Makro, das einen regulären Ausdruck parst und einen optimierten Zustandsautomaten zur Compilezeit generiert.</li>
+<li><strong>JSON-Parser-DSL</strong>: Schreibe ein Makro, das beliebige JSON-Datenstrukturen parst und zur Compilezeit typsichere Rust-Objekte daraus baut.</li>
+<li><strong>Mathematische Formelsprache</strong>: Baue ein Makro, das mathematische Formeln in Infix-Notation parst und einen optimierten Berechnungsbaum generiert.</li>
+<li><strong>Routing-Tabelle für Webserver</strong>: Erstelle ein Makro, das eine Liste von Routen in einer benutzerdefinierten DSL parst und einen schnellen Routing-Baum aufbaut.</li>
+<li><strong>Grafik-Pipeline-DSL</strong>: Entwickle ein Makro, das Shader-Definitionen und Render-Schritte parst und die notwendigen WebGPU- oder Vulkan-Aufrufe generiert.</li>
+<li><strong>Protokoll-Parser (Binary DSL)</strong>: Schreibe ein Makro, das die Struktur eines Binärprotokolls beschreibt und hocheffiziente Encoder/Decoder-Funktionen generiert.</li>
+<li><strong>Markdown-to-Slides-Parser</strong>: Baue ein Makro, das Markdown-Inhalte parst und daraus zur Compilezeit Datenstrukturen für eine Präsentations-App baut.</li>
+<li><strong>Dependency-Graph-DSL</strong>: Erstelle ein Makro, das Abhängigkeiten zwischen Tasks beschreibt und einen kreisfreien Graphen zur parallelen Ausführung generiert.</li>
+<li><strong>Eigene Lisp-in-Rust-DSL</strong>: Entwickle ein Makro, das Lisp-ähnliche Ausdrücke parst und diese direkt in Rust-Code übersetzt und ausführt.</li>
+<li><strong>Cron-Job-Zeitplaner-DSL</strong>: Schreibe ein Makro, das Cron-Ausdrücke (z. B. <code>* * * * *</code>) parst und zur Compilezeit auf syntaktische Korrektheit prüft.</li>
+<li><strong>Game-Design-Dialog-DSL</strong>: Baue ein Makro, das Dialogbäume für ein Textadventure parst und die Story-Logik generiert.</li>
+<li><strong>Schaltplan-Simulator-DSL</strong>: Erstelle ein Makro, das logische Gatter und deren Verbindungen parst und eine simulationsfunktion erzeugt.</li>
+<li><strong>Musik-Notations-DSL</strong>: Entwickle ein Makro, das eine vereinfachte Notenschrift parst und daraus Audio-Samples oder MIDI-Daten generiert.</li>
+<li><strong>Feature-Flag-Matrix</strong>: Schreibe ein Makro, das eine Tabelle von Features und Plattformen parst und die entsprechenden <code>#[cfg]</code>-Attribute generiert.</li>
+<li><strong>Neuronales-Netzwerk-DSL</strong>: Baue ein Makro, das die Layer-Architektur eines neuronalen Netzes parst und den Feedforward-Code generiert.</li>
+<li><strong>Rust-in-Rust-Interpreter-DSL</strong>: Erstelle ein Makro, das eine stark vereinfachte Teilmenge von Rust parst und einen Interpreter dafür im generierten Code bereitstellt.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-prompts-phase10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-prompts-phase10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Projektvorschläge Phase 6 - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html" class="active"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="phase-6-projektvorschläge-zu-smart-pointer--speicherverwaltung"><a class="header" href="#phase-6-projektvorschläge-zu-smart-pointer--speicherverwaltung">Phase 6: Projektvorschläge zu Smart Pointer &amp; Speicherverwaltung</a></h1>
+<p>In dieser Phase tauchst du tief in die fortgeschrittene Speicherverwaltung von Rust ein. Du verlässt die Pfade der klassischen Ownership-Modelle und nutzt die Werkzeuge für geteilten Besitz und dynamische Veränderlichkeit zur Laufzeit: <strong><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-box.md">Box<T></a></strong>, <strong><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-rc-arc.md">Rc<T> und Arc<T></a></strong> sowie <strong><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-refcell.md">RefCell<T></a></strong>.</p>
+<p>Diese Smart Pointer ermöglichen es dir, hochflexible Architekturen zu entwerfen, wie sie in Benutzeroberflächen, Graphenstrukturen, Event-Systemen und parallelen Programmen benötigt werden.</p>
+<p>Die folgenden 10 didaktisch aufbereiteten Projektvorschläge fordern dich heraus, diese Konzepte in Kombination anzuwenden. Auch in dieser Phase gilt: Es werden keine fertigen Codelösungen vorgegeben, damit du die Architektur komplett eigenständig erarbeiten und aus Fehlern lernen kannst. Du erhältst stattdessen detaillierte Architekturvorschläge und didaktische Leitplanken.</p>
+<hr />
+<h2 id="-projekt-1-die-bidirektionale-graph-datenstruktur-soziales-netzwerk"><a class="header" href="#-projekt-1-die-bidirektionale-graph-datenstruktur-soziales-netzwerk">🌐 Projekt 1: Die bidirektionale Graph-Datenstruktur (Soziales Netzwerk)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise"><a class="header" href="#1-beschreibung-der-funktionsweise">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein einfaches soziales Netzwerk, in dem Benutzerprofile (<code>UserNode</code>) miteinander verknüpft sind. Die Beziehungen zwischen Benutzern sollen bidirektional sein (wenn Benutzer A mit Benutzer B befreundet ist, ist B auch mit A befreundet). Du kannst Benutzer hinzufügen, Freundschaften schließen und den Graphen traversieren, um beispielsweise Vorschläge für neue Freunde zu berechnen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct UserNode</code>: Speichert den Benutzernamen und eine Liste von Freunden. Da ein Benutzer von mehreren anderen Profilen referenziert wird und sich Freundschaften zur Laufzeit ändern können, müssen die Beziehungen flexibel sein.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Um mehrere Besitzer für einen Knoten zu erlauben, wird jeder Knoten in ein <code>Rc&lt;RefCell&lt;UserNode&gt;&gt;</code> verpackt.</li>
+<li>Die Liste der Freunde in <code>UserNode</code> speichert <code>Weak&lt;RefCell&lt;UserNode&gt;&gt;</code> für die Rückbeziehungen, um zyklische Referenzen (Reference Cycles) zu verhindern. Sonst würde der Speicher der Knoten niemals freigegeben werden.</li>
+</ul>
+</li>
+<li><code>Struct SocialGraph</code>: Verwaltet eine Liste aller Profile (z.B. als <code>Vec&lt;Rc&lt;RefCell&lt;UserNode&gt;&gt;&gt;</code> oder <code>HashMap&lt;String, Rc&lt;RefCell&lt;UserNode&gt;&gt;&gt;</code>).</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>node.rs</code>: Definiert <code>UserNode</code> und die Logik zum Hinzufügen/Entfernen von Beziehungen.</li>
+<li><code>graph.rs</code>: Implementiert den übergeordneten Graphen und Suchalgorithmen.</li>
+<li><code>main.rs</code>: Demonstriert das Erstellen von Benutzern und zeigt, dass beim Löschen eines Nutzers der Speicher korrekt freigegeben wird.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates"><a class="header" href="#3-zu-verwendende-crates">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates erforderlich. Die Standardbibliothek (<code>std::rc::{Rc, Weak}</code> und <code>std::cell::RefCell</code>) reicht aus.</li>
+</ul>
+<h3 id="4-didaktische-hinweise"><a class="header" href="#4-didaktische-hinweise">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Speicherlecks durch zirkuläre Referenzen. Wenn zwei <code>Rc</code>-Zeiger im Kreis aufeinander verweisen, sinkt der Referenzzähler niemals auf null. Du musst verstehen, wann du <code>Rc::downgrade</code> nutzt, um einen <code>Weak</code>-Zeiger zu erstellen, und wie du diesen mit <code>Weak::upgrade</code> wieder in einen nutzbaren <code>Rc</code> umwandelst.</li>
+<li><strong>Achtung</strong>: Das Ausleihen mit <code>borrow()</code> und <code>borrow_mut()</code> auf <code>RefCell</code> findet erst zur Laufzeit statt. Wenn du beim Durchlaufen des Graphen einen Knoten veränderst und gleichzeitig an einer anderen Stelle desselben Pfads denselben Knoten liest, stürzt dein Programm mit einem <code>Panic</code> ab.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung"><a class="header" href="#5-optionale-zusatz-herausforderung">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Baue die Datenstruktur so um, dass sie thread-sicher ist. Ersetze hierfür <code>Rc</code> durch <code>Arc</code> und <code>RefCell</code> durch <code>Mutex</code> oder <code>RwLock</code>. Simuliere mehrere Threads, die gleichzeitig Freundschaften anfragen oder Profile abrufen.</p>
+<hr />
+<h2 id="-projekt-2-der-erweiterbare-plugin-manager-mit-geteilter-zustandsverwaltung-shared-state"><a class="header" href="#-projekt-2-der-erweiterbare-plugin-manager-mit-geteilter-zustandsverwaltung-shared-state">🔌 Projekt 2: Der erweiterbare Plugin-Manager mit geteilter Zustandsverwaltung (Shared State)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-1"><a class="header" href="#1-beschreibung-der-funktionsweise-1">1. Beschreibung der Funktionsweise</a></h3>
+<p>Eine Anwendung, die verschiedene Erweiterungen (Plugins) laden und ausführen kann. Jedes Plugin soll in der Lage sein, auf einen zentralen Anwendungszustand (<code>AppState</code>) zuzugreifen, diesen zu lesen und zu modifizieren. Beispielsweise könnte ein Plugin Log-Einträge schreiben, während ein anderes Plugin Zählerstände im Zustand inkrementiert.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-1"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-1">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Plugin</code>: Definiert die Schnittstelle für alle Plugins. Es verlangt eine Methode wie <code>execute(&amp;self, state: Rc&lt;RefCell&lt;AppState&gt;&gt;)</code> oder <code>name(&amp;self) -&gt; &amp;str</code>.</li>
+<li><code>Struct AppState</code>: Hält die geteilten Anwendungsdaten, wie Konfigurationseinstellungen oder ein einfaches Key-Value-Repository.</li>
+<li><code>Struct PluginManager</code>: Verwaltet eine Liste geladener Plugins. Da die Plugins unterschiedliche Strukturen haben können, werden sie als Dynamic Dispatch in einer Collection gespeichert.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li><code>Box&lt;dyn Plugin&gt;</code>: Da die konkreten Typen der Plugins zur Compilezeit unbekannt sind, lagert der Manager sie auf dem Heap aus.</li>
+<li><code>Rc&lt;RefCell&lt;AppState&gt;&gt;</code>: Ermöglicht es, dass der Manager und jedes einzelne Plugin gleichzeitig Zugriff auf denselben Zustand haben und diesen zur Laufzeit verändern können.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>plugin.rs</code>: Beinhaltet den <code>Plugin</code>-Trait und konkrete Beispiel-Implementierungen.</li>
+<li><code>state.rs</code>: Definiert den Zustand <code>AppState</code>.</li>
+<li><code>manager.rs</code>: Verwaltet und triggert die Ausführung der Plugins.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-1"><a class="header" href="#3-zu-verwendende-crates-1">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-1"><a class="header" href="#4-didaktische-hinweise-1">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Der Unterschied zwischen statischer und dynamischer Polymorphie. Du lernst hier, warum du <code>Box&lt;dyn Plugin&gt;</code> verwenden musst, um eine heterogene Liste von Plugins zu verwalten.</li>
+<li><strong>Achtung</strong>: Vermeide "Double Borrows". Wenn ein Plugin <code>state.borrow_mut()</code> aufruft, darf kein anderes Element (oder das Plugin selbst an einer anderen Stelle der Funktion) ein aktives <code>borrow()</code> oder <code>borrow_mut()</code> halten.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-1"><a class="header" href="#5-optionale-zusatz-herausforderung-1">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Führe eine Lebenszeitbegrenzung für Plugins ein. Ermögliche es dem <code>PluginManager</code>, Plugins zur Laufzeit dynamisch zu entladen. Der geteilte Zustand soll thread-sicher über <code>Arc&lt;Mutex&lt;AppState&gt;&gt;</code> und die Plugins über <code>Box&lt;dyn Plugin + Send + Sync&gt;</code> verwalten werden.</p>
+<hr />
+<h2 id="-projekt-3-der-hierarchische-ui-widget-baum-dom-struktur"><a class="header" href="#-projekt-3-der-hierarchische-ui-widget-baum-dom-struktur">🧱 Projekt 3: Der hierarchische UI-Widget-Baum (DOM-Struktur)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-2"><a class="header" href="#1-beschreibung-der-funktionsweise-2">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein System zur Repräsentation einer grafischen Benutzeroberfläche. UI-Elemente (Widgets wie Panels, Buttons und Labels) sind in einem hierarchischen Baum organisiert. Ein Container-Widget kann mehrere Kinder besitzen. Jedes Kind-Widget muss wiederum auf sein übergeordnetes Eltern-Widget verweisen können, um beispielsweise Layout-Größen abzufragen oder Events nach oben zu delegieren (Event Bubbling).</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-2"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-2">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Widget</code>: Definiert grundlegende UI-Verhaltensweisen wie <code>draw(&amp;self)</code> und <code>layout(&amp;mut self)</code>.</li>
+<li><code>Struct Panel</code>: Ein Container-Widget, das andere Widgets enthalten kann.</li>
+<li><code>Struct Button</code>: Ein einfaches End-Widget ohne Kinder.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Der Eltern-Knoten besitzt seine Kinder und teilt sie über <code>Rc&lt;RefCell&lt;dyn Widget&gt;&gt;</code>.</li>
+<li>Die Kinder halten einen schwachen Verweis <code>Weak&lt;RefCell&lt;dyn Widget&gt;&gt;</code> zurück auf ihr Elternteil. Dadurch werden zirkuläre Referenzen vermieden.</li>
+<li>Die dynamischen Widgets werden über Dynamic Dispatch (<code>dyn Widget</code>) auf dem Heap verwaltet.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>widget.rs</code>: Der grundlegende Trait.</li>
+<li><code>components.rs</code>: Die konkreten Widgets (<code>Panel</code>, <code>Button</code>, <code>Label</code>).</li>
+<li><code>main.rs</code>: Baut einen komplexen Widget-Baum auf und simuliert ein Zeichnen der UI.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-2"><a class="header" href="#3-zu-verwendende-crates-2">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-2"><a class="header" href="#4-didaktische-hinweise-2">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Die Typumwandlung und das Upcasting von <code>dyn Widget</code> zu konkreten Typen (falls nötig). Rusts Typsystem ist hier sehr streng. Überlege genau, welche Methoden im Trait definiert werden müssen, um Downcasting zu vermeiden.</li>
+<li><strong>Achtung</strong>: Wenn du das Layout des Baumes rekursiv berechnest, musst du aufpassen, dass du nicht gleichzeitig ein Kind-Widget veränderst, während das Eltern-Widget seine Kinder-Liste durchläuft und ausleiht.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-2"><a class="header" href="#5-optionale-zusatz-herausforderung-2">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere ein einfaches Event-System. Wenn ein Benutzer einen Klick auf ein tief verschachteltes Widget simuliert, soll dieses Event über die <code>Weak</code>-Referenzen nach oben gereicht werden (Bubbling), bis ein Widget das Event abfängt und verarbeitet.</p>
+<hr />
+<h2 id="-projekt-4-der-undo-redo-history-manager-grafik-editor"><a class="header" href="#-projekt-4-der-undo-redo-history-manager-grafik-editor">⏱️ Projekt 4: Der Undo-Redo-History-Manager (Grafik-Editor)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-3"><a class="header" href="#1-beschreibung-der-funktionsweise-3">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Verlaufssystem für einen Vektor-Grafik-Editor. Auf einer Zeichenfläche befinden sich verschiedene geometrische Formen (<code>Shapes</code> wie Kreise oder Rechtecke). Der Benutzer kann Formen hinzufügen, verschieben oder einfärben. Das System speichert jeden Bearbeitungsschritt auf einem Stack ab. Der Benutzer kann Aktionen beliebig oft rückgängig machen (Undo) oder wiederholen (Redo), ohne dass die Shapes bei jedem Schritt komplett dupliziert werden müssen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-3"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-3">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct Shape</code>: Repräsentiert ein grafisches Objekt (z. B. Position, Farbe, Größe).</li>
+<li><code>Struct Canvas</code>: Die Zeichenfläche, die die aktuell angezeigten Shapes verwaltet.</li>
+<li><code>Struct HistoryManager</code>: Hält einen Stapel (Stack) von Befehlen für Undo und Redo.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Shapes werden als <code>Rc&lt;RefCell&lt;Shape&gt;&gt;</code> auf dem Heap abgelegt.</li>
+<li>Sowohl die <code>Canvas</code> als auch die Befehle im <code>HistoryManager</code> halten <code>Rc</code>-Zeiger auf dieselben Shapes. Wenn ein Befehl eine Form verändert, greift er über <code>RefCell::borrow_mut</code> darauf zu. Dadurch wird die Änderung sofort auf der Leinwand sichtbar.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>shape.rs</code>: Definiert die geometrischen Formen.</li>
+<li><code>canvas.rs</code>: Verwaltet die aktive Zeichenfläche.</li>
+<li><code>history.rs</code>: Implementiert das Command-Pattern und verwaltet den Verlauf.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-3"><a class="header" href="#3-zu-verwendende-crates-3">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-3"><a class="header" href="#4-didaktische-hinweise-3">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Das saubere Design des Command-Patterns. Ein Command-Objekt muss den Zustand vor der Änderung speichern, um ihn beim Rückgängigmachen wiederherstellen zu können.</li>
+<li><strong>Achtung</strong>: Klonen eines <code>Rc</code>-Pointers dupliziert nur den Zeiger und erhöht den Referenzzähler, nicht aber die Daten selbst. Genau das ermöglicht die speichereffiziente Verwaltung der Historie.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-3"><a class="header" href="#5-optionale-zusatz-herausforderung-3">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Erweitere die Shapes um ein Gruppierungs-Feature. Gruppen von Shapes können wiederum in Gruppen verschachtelt werden (Composite-Pattern). Nutze <code>Rc</code> und <code>RefCell</code>, um diese Baumstruktur innerhalb der Historie flexibel zu modifizieren.</p>
+<hr />
+<h2 id="-projekt-5-reaktives-data-binding-system-signals--observable-pattern"><a class="header" href="#-projekt-5-reaktives-data-binding-system-signals--observable-pattern">📡 Projekt 5: Reaktives Data-Binding-System (Signals / Observable-Pattern)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-4"><a class="header" href="#1-beschreibung-der-funktionsweise-4">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein System zur automatischen Synchronisierung von Daten. Ein <code>Signal&lt;T&gt;</code> kapselt einen veränderlichen Wert. Andere Komponenten können diesen Wert abonnieren (beobachten). Sobald sich der Wert des Signals ändert, werden alle registrierten Abonnenten (Observer) automatisch benachrichtigt und führen eine definierte Aktion aus (z. B. die Aktualisierung einer UI oder das Schreiben in eine Log-Datei).</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-4"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-4">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct Signal&lt;T&gt;</code>: Hält den eigentlichen Wert und eine Liste von Listenern.</li>
+<li><code>Trait Observer&lt;T&gt;</code>: Schnittstelle für Komponenten, die auf Wertänderungen reagieren wollen.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Der Wert im Signal wird in ein <code>Rc&lt;RefCell&lt;T&gt;&gt;</code> gepackt, damit er von mehreren Observern gelesen und vom Signal selbst modifiziert werden kann.</li>
+<li>Die Liste der Observer im <code>Signal</code> verwaltet Closures oder Traits, die auf dem Heap als <code>Box&lt;dyn Fn(&amp;T)&gt;</code> oder <code>Rc&lt;RefCell&lt;dyn Observer&lt;T&gt;&gt;&gt;</code> gespeichert werden.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>signal.rs</code>: Beinhaltet das <code>Signal</code>-Struct und die Registrierungs-Logik.</li>
+<li><code>observer.rs</code>: Definiert den <code>Observer</code>-Trait und konkrete Implementierungen.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-4"><a class="header" href="#3-zu-verwendende-crates-4">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-4"><a class="header" href="#4-didaktische-hinweise-4">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Lebensdauern von Callbacks. Wenn sich ein Observer registriert, darf er nicht gelöscht werden, während das Signal noch versucht, ihn zu benachrichtigen. Die Verwendung von <code>Rc</code> hilft hier, die Lebensdauern zu entkoppeln.</li>
+<li><strong>Achtung</strong>: Zirkuläre Benachrichtigungen (Endlosschleifen). Wenn Observer A das Signal B ändert und Observer B wiederum das Signal A ändert, stürzt das System absturzgefährdet ab oder läuft in einen Stack Overflow. Überlege, wie du solche Zyklen erkennst oder verhinderst.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-4"><a class="header" href="#5-optionale-zusatz-herausforderung-4">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere berechnete Signale (Computed Signals). Diese hängen von anderen Signalen ab (z. B. <code>Signal C = Signal A + Signal B</code>). Ändert sich A oder B, muss sich C automatisch neu berechnen.</p>
+<hr />
+<h2 id="-projekt-6-der-audiosignal-routing-graph-synthesizerdsp"><a class="header" href="#-projekt-6-der-audiosignal-routing-graph-synthesizerdsp">🎛️ Projekt 6: Der Audiosignal-Routing-Graph (Synthesizer/DSP)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-5"><a class="header" href="#1-beschreibung-der-funktionsweise-5">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein modularer Audiosignal-Prozessor. Einzelne Audio-Module (Oszillatoren, Filter, Effekte, Ausgabegeräte) werden wie bei einem echten Synthesizer flexibel miteinander verkabelt. Ein Audiosignal fließt durch diesen Graphen. Da ein Signal-Ausgang in mehrere Effekte gleichzeitig fließen kann (z. B. parallel in ein Reverb und ein Delay), müssen Knoten geteilt besessen werden.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-5"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-5">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait AudioNode</code>: Definiert die Schnittstelle für alle Audiomodule mit einer Methode <code>process(&amp;mut self, buffer: &amp;mut [f32])</code>.</li>
+<li><code>Struct Oscillator</code>: Generiert eine Sinuswelle.</li>
+<li><code>Struct GainNode</code>: Verstärkt oder dämpft das eingehende Signal.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Die Module werden als <code>Rc&lt;RefCell&lt;dyn AudioNode&gt;&gt;</code> verwaltet. Dies ermöglicht es, dass ein Knoten der Vorgänger für mehrere nachfolgende Knoten ist.</li>
+<li>Der Audio-Routing-Graph verwaltet die Verbindungen und steuert die Berechnungsreihenfolge.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>node.rs</code>: Definiert den Trait <code>AudioNode</code>.</li>
+<li><code>modules.rs</code>: Enthält die konkreten Implementierungen der Module.</li>
+<li><code>graph.rs</code>: Verwaltet das Routing und die Signalverarbeitungskette.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-5"><a class="header" href="#3-zu-verwendende-crates-5">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates zwingend notwendig.</li>
+<li><em>Optional</em>: <code>rodio</code> oder <code>cpal</code> (um die erzeugten Audiodaten tatsächlich über die Soundkarte auszugeben).</li>
+</ul>
+<h3 id="4-didaktische-hinweise-5"><a class="header" href="#4-didaktische-hinweise-5">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Geteilter, veränderlicher Zustand in einer Verarbeitungsschleife. Da Audio-Frames in sehr kurzen Zeitabständen verarbeitet werden müssen, is Performance entscheidend. Du wirst lernen, warum <code>RefCell</code> zur Laufzeit Kosten verursacht und wie man den Graph so optimiert, dass Ausleihen minimiert werden.</li>
+<li><strong>Achtung</strong>: Ein Audio-Graph darf keine Zyklen (Rückkopplungsschleifen) ohne eine Verzögerung (Delay-Node) enthalten, da sonst die rekursive Auswertung in einer Endlosschleife endet.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-5"><a class="header" href="#5-optionale-zusatz-herausforderung-5">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Überführe das Audiosystem in ein Multithreading-Modell. Die Audioberechnung soll in einem separaten Echtzeit-Thread laufen. Nutze <code>Arc</code> und <code>Mutex</code> / <code>RwLock</code> zur Steuerung der Nodes aus dem Haupt-Thread (z. B. zum Ändern der Frequenz während des Abspielens).</p>
+<hr />
+<h2 id="-projekt-7-graphbasiertes-text-adventure-raum-navigator"><a class="header" href="#-projekt-7-graphbasiertes-text-adventure-raum-navigator">🗺️ Projekt 7: Graphbasiertes Text-Adventure (Raum-Navigator)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-6"><a class="header" href="#1-beschreibung-der-funktionsweise-6">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Text-Adventure, in dem sich der Spieler durch eine Welt aus miteinander verbundenen Räumen bewegt. Die Räume bilden einen komplexen Graphen. Jeder Raum hat Ausgänge in verschiedene Himmelsrichtungen. Räume können dynamisch verändert werden (z. B. kann eine verschlossene Tür durch ein Event geöffnet werden). Der Spieler und eventuelle Nicht-Spieler-Charaktere (NPCs) bewegen sich unabhängig durch diesen Graphen.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-6"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-6">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct Room</code>: Speichert die Raumbeschreibung und Verweise auf die Nachbarräume.</li>
+<li><code>Struct World</code>: Verwaltet alle Räume der Spielwelt.</li>
+<li><code>Struct Player</code>: Hält eine Referenz auf den aktuellen Raum des Spielers.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Räume müssen über <code>Rc&lt;RefCell&lt;Room&gt;&gt;</code> geteilt besessen werden, da sie sich gegenseitig referenzieren (Raum A hat Ausgang nach Norden zu Raum B; Raum B hat Ausgang nach Süden zu Raum A).</li>
+<li>Um Speicherlecks zu vermeiden, werden die Rückverweise (z. B. von Raum B zu Raum A) als <code>Weak&lt;RefCell&lt;Room&gt;&gt;</code> gespeichert.</li>
+<li>Der Spieler hält ebenfalls ein <code>Rc&lt;RefCell&lt;Room&gt;&gt;</code> auf seinen aktuellen Aufenthaltsort.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>room.rs</code>: Definiert den Raum und die Himmelsrichtungs-Verknüpfungen.</li>
+<li><code>player.rs</code>: Implementiert den Spieler und dessen Bewegungsaktionen.</li>
+<li><code>world.rs</code>: Generiert die Karte und verwaltet den globalen Spielablauf.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-6"><a class="header" href="#3-zu-verwendende-crates-6">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-6"><a class="header" href="#4-didaktische-hinweise-6">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Das Aufbrechen von Zyklen. Du musst eine klare Regel etablieren, welche Richtungen als "starke" (<code>Rc</code>) und welche als "schwache" (<code>Weak</code>) Referenzen gelten, oder alle Verbindungen standardmäßig als <code>Weak</code> deklarieren und die starken Referenzen zentral in der <code>World</code> verwalten.</li>
+<li><strong>Achtung</strong>: Wenn ein NPC und der Spieler gleichzeitig im selben Raum agieren und den Raumzustand verändern, musst du sicherstellen, dass die Ausleihen (<code>borrow_mut()</code>) sauber geschachtelt und sofort wieder freigegeben werden.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-6"><a class="header" href="#5-optionale-zusatz-herausforderung-6">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere autonome NPCs. Nutze einen Game-Loop, in dem sich NPCs jede Runde zufällig in einen Nachbarraum bewegen. Da NPCs und der Spieler gleichzeitig auf Räume zugreifen, müssen Kollisionen und Rauminteraktionen dynamisch aufgelöst werden.</p>
+<hr />
+<h2 id="-projekt-8-in-memory-cache-mit-automatischer-referenz-bereinigung"><a class="header" href="#-projekt-8-in-memory-cache-mit-automatischer-referenz-bereinigung">🗄️ Projekt 8: In-Memory-Cache mit automatischer Referenz-Bereinigung</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-7"><a class="header" href="#1-beschreibung-der-funktionsweise-7">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein speichereffizienter Zwischenspeicher (Cache) für ressourcenintensive Objekte (z. B. geladene Bilder oder Datenbankeinträge). Der Cache soll ein Objekt so lange im Speicher behalten, wie mindestens ein anderer Teil der Anwendung es aktiv nutzt. Sobald kein externer Programmteil mehr das Objekt benötigt, soll der Cache dies erkennen und die Ressource automatisch aus dem Speicher freigeben (Garbage Collection über Referenzzähler).</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-7"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-7">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct AutoCache&lt;K, V&gt;</code>: Das Cache-System, das Schlüssel auf Werte abbildet.</li>
+<li><code>Struct SharedResource&lt;V&gt;</code>: Ein Wrapper, den der Benutzer vom Cache erhält.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Der Cache speichert die Werte intern als <code>Weak&lt;RefCell&lt;V&gt;&gt;</code>. Dies erhöht den starken Referenzzähler des Objekts nicht.</li>
+<li>Fordert ein Programmteil einen Wert an, wandelt der Cache das <code>Weak</code> in ein <code>Rc&lt;RefCell&lt;V&gt;&gt;</code> um und gibt es zurück.</li>
+<li>Der Cache bietet eine Methode <code>cleanup()</code>, die in der internen Map alle Einträge sucht, deren <code>Weak::strong_count()</code> auf 0 gesunken ist, und löscht diese aus der Map.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>cache.rs</code>: Die Implementierung des Caches und der Bereinigungslogik.</li>
+<li><code>resource.rs</code>: Der benutzerseitige Zugriffs-Wrapper.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-7"><a class="header" href="#3-zu-verwendende-crates-7">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-7"><a class="header" href="#4-didaktische-hinweise-7">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Das Verständnis des Zusammenspiels von strong und weak counts. Du lernst hier, wie du die Speicherverwaltung von Rust als eine Art automatischen Müllsammler für deine eigene Datenstrukturen einsetzt.</li>
+<li><strong>Achtung</strong>: Die Bereinigung darf nicht während einer aktiven Ausleihe des Caches blockiert werden. Überlege, wie und wann die <code>cleanup</code>-Methode am besten aufgerufen wird (z. B. bei jedem Einfügen oder zeitgesteuert).</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-7"><a class="header" href="#5-optionale-zusatz-herausforderung-7">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Mache den Cache thread-sicher, indem du <code>Arc</code> und <code>Weak</code> nutzt. Implementiere die <code>cleanup</code>-Funktion so, dass sie in einem eigenen Hintergrund-Thread läuft und in periodischen Abständen verwaiste Einträge entfernt.</p>
+<hr />
+<h2 id="-projekt-9-der-thread-sichere-transaktionale-key-value-store"><a class="header" href="#-projekt-9-der-thread-sichere-transaktionale-key-value-store">🔐 Projekt 9: Der thread-sichere, transaktionale Key-Value Store</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-8"><a class="header" href="#1-beschreibung-der-funktionsweise-8">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein Datenspeicher, der Schlüssel auf Werte abbildet und von mehreren Threads gleichzeitig genutzt werden kann. Der Store unterstützt Transaktionen (ACID-Prinzip): Ein Thread kann eine Transaktion starten, mehrere Werte ändern oder hinzufügen, und diese Änderungen werden erst dann für alle anderen Threads sichtbar, wenn der Thread die Transaktion erfolgreich abschließt (Commit). Bei einem Fehler können die Änderungen verworfen werden (Rollback).</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-8"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-8">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Struct DbStore</code>: Der globale Datenspeicher.</li>
+<li><code>Struct Transaction</code>: Repräsentiert eine aktive Transaktion, die an einen Thread gebunden ist.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Der Hauptspeicher in <code>DbStore</code> wird über <code>Arc&lt;RwLock&lt;HashMap&lt;String, String&gt;&gt;&gt;</code> verwaltet, um parallele Lesezugriffe und exklusive Schreibzugriffe aus mehreren Threads zu ermöglichen.</li>
+<li>Die <code>Transaction</code> hält eine lokale Kopie der geänderten Daten (z. B. in einem <code>RefCell&lt;HashMap&lt;String, String&gt;&gt;</code>) und eine Referenz auf den Haupt-Store. Erst beim Commit werden die Daten in den Haupt-Store geschrieben.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>store.rs</code>: Enthält die Definition des globalen Speichers.</li>
+<li><code>transaction.rs</code>: Implementiert die Transaktionslogik mit Commit und Rollback.</li>
+<li><code>main.rs</code>: Zeigt parallele Zugriffe und isolierte Transaktionen aus verschiedenen Threads.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-8"><a class="header" href="#3-zu-verwendende-crates-8">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-8"><a class="header" href="#4-didaktische-hinweise-8">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Vermeidung von Deadlocks. Wenn mehrere Transaktionen gleichzeitig versuchen, den Haupt-Store zu beschreiben, kann es zu Verklemmungen kommen. Du musst lernen, wie man Sperren (<code>RwLockWriteGuard</code>) so kurz wie möglich hält.</li>
+<li><strong>Achtung</strong>: Verstehe den Unterschied zwischen der Thread-Sicherheit von <code>Arc</code>/<code>RwLock</code> und der lokalen Flexibilität von <code>RefCell</code> innerhalb eines einzelnen Threads.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-8"><a class="header" href="#5-optionale-zusatz-herausforderung-8">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere ein einfaches Write-Ahead-Logging (WAL). Jede Transaktion schreibt ihre Änderungen vor dem Commit in eine Log-Datei auf die Festplatte. Bei einem Absturz des Programms kann der Zustand der Datenbank beim nächsten Start anhand der Log-Datei wiederhergestellt werden.</p>
+<hr />
+<h2 id="-projekt-10-das-actor-modell-für-nebenläufigkeit-mini-actor-system"><a class="header" href="#-projekt-10-das-actor-modell-für-nebenläufigkeit-mini-actor-system">🎭 Projekt 10: Das Actor-Modell für Nebenläufigkeit (Mini-Actor-System)</a></h2>
+<h3 id="1-beschreibung-der-funktionsweise-9"><a class="header" href="#1-beschreibung-der-funktionsweise-9">1. Beschreibung der Funktionsweise</a></h3>
+<p>Ein System zur parallelen Verarbeitung, inspiriert vom Actor-Modell (bekannt aus Erlang oder Akka). Unabhängige Einheiten (Actoren) teilen keinen gemeinsamen Zustand, sondern kommunizieren ausschließlich über das Senden von Nachrichten. Jeder Actor hat ein eigenes Postfach (Mailbox). Wenn ein Actor eine Nachricht erhält, verarbeitet er diese sequenziell und kann daraufhin seinen eigenen Zustand ändern oder Nachrichten an andere Actoren senden.</p>
+<h3 id="2-strukturierte-modul--oder-komponenten-aufteilung-9"><a class="header" href="#2-strukturierte-modul--oder-komponenten-aufteilung-9">2. Strukturierte Modul- oder Komponenten-Aufteilung</a></h3>
+<ul>
+<li><code>Trait Actor</code>: Definiert das Verhalten eines Actors mit einer Methode <code>receive(&amp;mut self, msg: Message, ctx: &amp;ActorContext)</code>.</li>
+<li><code>Struct ActorRef</code>: Eine sichere Referenz auf einen Actor, über die andere Actoren Nachrichten an ihn senden können.</li>
+<li><code>Struct ActorSystem</code>: Verwaltet die Registrierung, Erstellung und das Routing der Nachrichten zwischen den Actoren.</li>
+<li><strong>Pointer-Zusammenspiel</strong>:
+<ul>
+<li>Die Actoren selbst werden vom System auf dem Heap in <code>Box&lt;dyn Actor&gt;</code> verwaltet, da sie unterschiedliche konkrete Typen haben.</li>
+<li>Das Postfach eines Actors wird über einen thread-sicheren Kanal (z. B. <code>std::sync::mpsc</code>) realisiert. Die <code>ActorRef</code> hält ein <code>Arc&lt;Mutex&lt;Sender&lt;Message&gt;&gt;&gt;</code> (oder direkt den geklonten Sender), um Nachrichten an das Postfach zu schicken.</li>
+</ul>
+</li>
+<li><strong>Modulstruktur</strong>:
+<ul>
+<li><code>actor.rs</code>: Definiert den <code>Actor</code>-Trait und Nachrichtenstrukturen.</li>
+<li><code>system.rs</code>: Implementiert das <code>ActorSystem</code> und den Nachrichtentransport.</li>
+<li><code>main.rs</code>: Zeigt ein Beispiel, bei dem mehrere Actoren (z. B. ein Ping- und ein Pong-Actor) Nachrichten austauschen.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-zu-verwendende-crates-9"><a class="header" href="#3-zu-verwendende-crates-9">3. Zu verwendende Crates</a></h3>
+<ul>
+<li>Keine externen Crates notwendig. Die Standardkanäle <code>std::sync::mpsc</code> reichen aus.</li>
+</ul>
+<h3 id="4-didaktische-hinweise-9"><a class="header" href="#4-didaktische-hinweise-9">4. Didaktische Hinweise</a></h3>
+<ul>
+<li><strong>Hürde</strong>: Kapselung des Zustands. Die große Stärke des Actor-Modells ist, dass kein Actor den Zustand eines anderen direkt manipulieren kann. Du musst sicherstellen, dass über die Kanäle nur Daten gesendet werden, die das Ownership-Modell von Rust respektieren (<code>Send + 'static</code>).</li>
+<li><strong>Achtung</strong>: Wenn Actoren zyklisch aufeinander warten, kann das System blockieren. Überlege, wie Nachrichten asynchron verarbeitet werden können, ohne dass der sendende Thread blockiert.</li>
+</ul>
+<h3 id="5-optionale-zusatz-herausforderung-9"><a class="header" href="#5-optionale-zusatz-herausforderung-9">5. Optionale Zusatz-Herausforderung</a></h3>
+<p>Implementiere ein einfaches Fehlerbehandlungssystem (Supervision). Wenn ein Actor bei der Verarbeitung einer Nachricht abstürzt (z. B. durch ein <code>panic!</code>), soll ein übergeordneter Supervisor-Actor dies abfangen und entscheiden, ob der Actor neu gestartet, gestoppt oder der Fehler ignoriert werden soll.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="phase6-workshop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="100-projekte-phase6.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="phase6-workshop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="100-projekte-phase6.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

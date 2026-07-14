@@ -1,0 +1,845 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>100-projekte-prompts-phase5.md - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">4.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">4.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">4.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">4.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">4.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">4.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">5.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">6.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">7.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">8.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">10.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">11.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">11.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">11.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">11.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">12.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">13.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">14.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">15.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">16.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">17.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">18.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">19.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">19.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">19.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">19.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">19.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">19.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">20.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">21.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">22.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">23.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">24.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">24.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">24.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">25.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">29.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">29.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">29.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">29.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">30.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">31.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">32.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html" class="active"><strong aria-hidden="true">33.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">34.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">34.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">34.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">39.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">39.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">39.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">44.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">44.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">44.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">44.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">45.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">46.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">47.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">48.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">49.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">49.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">49.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">50.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">51.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">52.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">53.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">54.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">54.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">54.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">55.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">56.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">57.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">58.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">59.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">60.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">61.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">62.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">63.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">64.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">65.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">66.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">67.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">68.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">69.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">70.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">71.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">71.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">71.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">72.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">73.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">73.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">73.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">73.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">73.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">73.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">73.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">73.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">73.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">73.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">73.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">73.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">74.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">74.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">74.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">74.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">74.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">74.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">74.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">74.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">74.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">74.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">75.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">76.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">77.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">78.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">79.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">80.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="100-projektdetails-und-prompts---phase-5"><a class="header" href="#100-projektdetails-und-prompts---phase-5">100 Projektdetails und Prompts - Phase 5</a></h1>
+<p>Dieses Kapitel enthält detaillierte, modular aufgebaute Übungs-Prompts für alle 100 Projektideen aus Phase 5. Sie sind didaktisch so konzipiert, dass du die Umsetzung Schritt für Schritt selbst erarbeitest. Jedes Projekt ist in drei aufeinander aufbauende Module unterteilt:</p>
+<ul>
+<li><strong>Modul 1: Basis-Datenstrukturen</strong> (Generics, Structs, Enums und Sichtbarkeiten entwerfen)</li>
+<li><strong>Modul 2: Implementierung &amp; Methoden</strong> (Methoden, Trait-Implementierungen, Lifetimes und Berechnungslogik)</li>
+<li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong> (main.rs, Konsolenmenü, Fehlerbehandlung und Integration)</li>
+</ul>
+<p>Viel Erfolg beim Programmieren und Lernen!</p>
+<hr />
+<h2 id="1-generics-fokus"><a class="header" href="#1-generics-fokus">1. Generics-Fokus</a></h2>
+<h3 id="1-generischer-stapelspeicher-stack"><a class="header" href="#1-generischer-stapelspeicher-stack">1. Generischer Stapelspeicher (Stack)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein generisches Struct <code>Stack&lt;T&gt;</code>. Überlege dir, wie du den internen Speicher aufbaust (z.B. mit einem <code>Vec&lt;T&gt;</code>). Achte auf die Sichtbarkeit (<code>pub</code>) der Struktur und ihrer Felder.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden für deinen <code>Stack&lt;T&gt;</code>: <code>new</code> zum Erstellen, <code>push</code> zum Hinzufügen, <code>pop</code> zum Entfernen (Rückgabetyp beachten!), sowie Hilfsmethoden wie <code>is_empty</code> oder <code>peek</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm in <code>main.rs</code>, das einen <code>Stack</code> für verschiedene Datentypen (z.B. <code>i32</code> und <code>String</code>) instanziiert, Operationen ausführt und das Ergebnis auf der Konsole ausgibt. Integriere eine benutzerfreundliche Fehlerbehandlung (z.B. für den Fall, dass <code>pop</code> auf einem leeren Stack aufgerufen wird).</li>
+</ul>
+<h3 id="2-generische-warteschlange-queue"><a class="header" href="#2-generische-warteschlange-queue">2. Generische Warteschlange (Queue)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein generisches Struct <code>Queue&lt;T&gt;</code>. Überlege dir, welche Datenstruktur sich im Inneren eignet, um Elemente nach dem FIFO-Prinzip (First-In-First-Out) effizient zu verwalten.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die notwendigen Methoden: <code>new</code> für eine leere Warteschlange, <code>enqueue</code> zum Hinzufügen eines Elements und <code>dequeue</code> zum Entfernen. Überlege dir, welchen Rückgabetyp <code>dequeue</code> haben sollte, wenn die Warteschlange leer ist.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe eine <code>main.rs</code>, die eine <code>Queue</code> mit verschiedenen Elementen befüllt, diese nacheinander ausgibt und leert. Fange Fehler ab, wenn versucht wird, aus einer leeren Warteschlange zu lesen.</li>
+</ul>
+<h3 id="3-generisches-werte-paar"><a class="header" href="#3-generisches-werte-paar">3. Generisches Werte-Paar</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Pair&lt;T, U&gt;</code>, das zwei Werte unterschiedlicher generischer Typen zusammenhält. Beachte dabei, dass die beiden Typen auch gleich sein können, aber nicht müssen.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere einen Konstruktor <code>new</code> sowie Getter-Methoden für beide Felder. Implementiere zusätzlich eine Methode <code>swap</code>, falls beide Typen identisch sind (überlege dir, wie du das mit Trait-Bounds oder impl-Blöcken einschränken kannst).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erstelle in der <code>main.rs</code> Paare von unterschiedlichen Typen (z.B. <code>Pair&lt;i32, String&gt;</code>) und gib deren Werte auf der Konsole aus. Verwende eine saubere Strukturierung.</li>
+</ul>
+<h3 id="4-einfacher-cache"><a class="header" href="#4-einfacher-cache">4. Einfacher Cache</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>SimpleCache&lt;K, V&gt;</code>, das einen Schlüssel vom Typ <code>K</code> und einen Wert vom Typ <code>V</code> hält. Denke über die Datentypen nach, die als Schlüssel verwendet werden können.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Einfügen und Abrufen von Werten. Überlege dir, wie du mit Trait-Bounds sicherstellst, dass Schlüssel verglichen werden können (z.B. <code>Eq</code> und <code>Hash</code>).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das einen Cache für Benutzer-IDs und deren Namen instanziiert. Demonstriere das Speichern und erfolgreiche Abrufen sowie den Fall eines Cache-Misses.</li>
+</ul>
+<h3 id="5-generische-matrix"><a class="header" href="#5-generische-matrix">5. Generische Matrix</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Matrix&lt;T&gt;</code>, das eine zweidimensionale Matrix darstellt. Überlege dir, wie du die Dimensionen (Zeilen und Spalten) sowie die eigentlichen Daten in einem flachen Vektor (<code>Vec&lt;T&gt;</code>) speicherst.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zur Instanziierung (z.B. mit Standardwerten), zum Setzen und zum Abrufen eines Elements an einer bestimmten Zeilen- und Spaltenposition.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Baue ein Konsolenprogramm auf, das eine Matrix mit Zahlen befüllt und diese formatiert auf dem Bildschirm ausgibt. Implementiere eine Fehlerbehandlung für ungültige Index-Zugriffe.</li>
+</ul>
+<h3 id="6-typisierte-id"><a class="header" href="#6-typisierte-id">6. Typisierte ID</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Id&lt;T&gt;</code>, das intern einen primitiven Typen (wie <code>u64</code>) kapselt. Nutze <code>std::marker::PhantomData&lt;T&gt;</code>, um die ID an einen bestimmten Typ <code>T</code> (z.B. <code>User</code> oder <code>Product</code>) zu binden, ohne dass <code>T</code> im Struct selbst gespeichert werden muss.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Erstellen der ID und zum Auslesen des inneren Wertes. Implementiere grundlegende Traits wie <code>Clone</code>, <code>Copy</code> und <code>PartialEq</code> für deine Struktur.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, dass der Compiler verhindert, dass eine <code>Id&lt;User&gt;</code> mit einer <code>Id&lt;Product&gt;</code> verwechselt oder verglichen wird, obwohl beide intern eine Zahl nutzen.</li>
+</ul>
+<h3 id="7-generischer-zustandsautomat"><a class="header" href="#7-generischer-zustandsautomat">7. Generischer Zustandsautomat</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf Strukturen, die verschiedene Zustände repräsentieren (z.B. <code>Draft</code>, <code>Review</code>, <code>Published</code>). Definiere eine Struktur <code>Document&lt;S&gt;</code>, bei der der Typparameter <code>S</code> den aktuellen Zustand darstellt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden, die nur für bestimmte Zustände definiert sind (z.B. eine Methode <code>approve</code>, die nur auf <code>Document&lt;Review&gt;</code> existiert und ein <code>Document&lt;Published&gt;</code> zurückgibt).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere im Hauptprogramm den Lebenszyklus eines Dokuments. Zeige, dass unerlaubte Zustandsübergänge (z.B. direkt von <code>Draft</code> zu <code>Published</code>) bereits vom Compiler blockiert werden.</li>
+</ul>
+<h3 id="8-generischer-event-dispatcher"><a class="header" href="#8-generischer-event-dispatcher">8. Generischer Event-Dispatcher</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>EventDispatcher&lt;E&gt;</code>, das eine Liste von Event-Handlern (Funktionszeigern oder Closures) für ein bestimmtes Event <code>E</code> verwaltet.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>register_listener</code>, um neue Handler hinzuzufügen, und eine Methode <code>dispatch</code>, um ein Event an alle registrierten Handler zu senden.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erstelle verschiedene Event-Typen und zeige in <code>main.rs</code>, wie der Dispatcher Ereignisse an die entsprechenden Callback-Funktionen verteilt.</li>
+</ul>
+<h3 id="9-generischer-json-parser-stumpf"><a class="header" href="#9-generischer-json-parser-stumpf">9. Generischer JSON-Parser-Stumpf</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Parser&lt;T&gt;</code>, das für die Deserialisierung eines Strings in ein Objekt des Typs <code>T</code> zuständig ist.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Definiere eine Methode <code>parse</code>, die einen String-Slice entgegennimmt und ein <code>Result&lt;T, ParseError&gt;</code> zurückgibt. Nutze hierbei Trait-Bounds, um sicherzustellen, dass <code>T</code> aus einem String erstellt werden kann.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Implementiere das Hauptprogramm mit einer Test-Datenstruktur und simuliere das Parsen von korrekten sowie fehlerhaften Eingabestrings inklusive Fehleranzeige.</li>
+</ul>
+<h3 id="10-generischer-binärbaum-tree"><a class="header" href="#10-generischer-binärbaum-tree">10. Generischer Binärbaum (Tree)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Enum <code>TreeNode&lt;T&gt;</code> für die Knoten eines Binärbaums. Jedes Element kann entweder ein Blatt (<code>Empty</code>) oder ein Knoten (<code>Node</code>) mit einem Wert und zwei optionalen Kindknoten sein. Verwende <code>Box</code>, um rekursive Typen zu ermöglichen.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden wie <code>insert</code> zum Hinzufügen von Werten und <code>contains</code> zum Suchen nach einem Element im Baum. Setze Trait-Bounds wie <code>Ord</code> voraus, um die Ordnung im Baum zu wahren.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das einen Binärbaum mit Zahlen oder Wörtern aufbaut, Werte darin sucht und den Baum in In-Order-Reihenfolge auf der Konsole ausgibt.</li>
+</ul>
+<h3 id="11-generische-konfigurations-struktur"><a class="header" href="#11-generische-konfigurations-struktur">11. Generische Konfigurations-Struktur</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>Config&lt;Env&gt;</code>, die Konfigurationseinstellungen kapselt. Der Typ <code>Env</code> stellt die Umgebung dar (z.B. <code>Development</code> oder <code>Production</code>).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe Implementierungen, die je nach Umgebung unterschiedliche Standardwerte setzen oder Validierungen durchführen (z.B. unterschiedliche Port-Nummern oder Sicherheitsstufen).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, wie Konfigurationen für verschiedene Umgebungen erzeugt werden und wie sich deren Verhalten unterscheidet.</li>
+</ul>
+<h3 id="12-typ-sicherer-wrapper"><a class="header" href="#12-typ-sicherer-wrapper">12. Typ-sicherer Wrapper</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Erstelle ein generisches Struct <code>Measure&lt;Unit, Val&gt;</code>, um Werte mit einer physikalischen Einheit zu versehen.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Addieren und Subtrahieren von Maßen. Nutze Trait-Bounds, um sicherzustellen, dass nur Maße derselben Einheit miteinander verrechnet werden können.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erstelle Einheiten-Typen für Meter und Sekunden und demonstriere im Hauptprogramm, dass der Compiler fehlerhafte Berechnungen (z.B. Meter + Sekunden) unterbindet.</li>
+</ul>
+<h3 id="13-generische-mathematische-vektoren"><a class="header" href="#13-generische-mathematische-vektoren">13. Generische mathematische Vektoren</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Vector3D&lt;T&gt;</code> mit den Feldern <code>x</code>, <code>y</code> und <code>z</code> vom Typ <code>T</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere grundlegende mathematische Operationen wie die Vektoraddition. Nutze dafür die passenden mathematischen Traits (wie <code>std::ops::Add</code>) als Bounds für <code>T</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Berechne im Hauptprogramm die Summe von mathematischen Vektoren sowohl mit <code>f64</code> als auch mit <code>i32</code> und gib die Ergebnisse aus.</li>
+</ul>
+<h3 id="14-generischer-logger"><a class="header" href="#14-generischer-logger">14. Generischer Logger</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Logger&lt;T&gt;</code>, das Nachrichten eines beliebigen Typs <code>T</code> verarbeitet und protokolliert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>log</code>, die eine Nachricht entgegennimmt. Verwende Trait-Bounds wie <code>std::fmt::Debug</code> oder <code>std::fmt::Display</code>, um die Nachricht formatieren zu können.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere in <code>main.rs</code>, wie der Logger sowohl einfache Strings als auch komplexe Custom-Structs protokolliert.</li>
+</ul>
+<h3 id="15-generische-liste-mit-prioritäten"><a class="header" href="#15-generische-liste-mit-prioritäten">15. Generische Liste mit Prioritäten</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>PriorityQueue&lt;T, P&gt;</code>, bei dem <code>T</code> das gespeicherte Element und <code>P</code> die Priorität repräsentiert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Einfügen (<code>push</code>) und Entfernen des Elements mit der höchsten Priorität (<code>pop</code>). Setze Trait-Bounds wie <code>Ord</code> für <code>P</code> voraus.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das Aufgaben mit unterschiedlichen Prioritäten einfügt und diese in der korrekten Reihenfolge abarbeitet und ausgibt.</li>
+</ul>
+<h3 id="16-generischer-iterator-adapter"><a class="header" href="#16-generischer-iterator-adapter">16. Generischer Iterator-Adapter</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>SkipEverySecond&lt;I&gt;</code>, das einen anderen Iterator <code>I</code> kapselt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Iterator</code>-Trait für dein Struct. Die <code>next</code>-Methode soll jedes zweite Element des inneren Iterators überspringen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Verwende den Adapter in <code>main.rs</code> auf einem Bereich von Zahlen oder einer Liste von Wörtern und gib das Ergebnis aus.</li>
+</ul>
+<h3 id="17-generisches-koordinatensystem"><a class="header" href="#17-generisches-koordinatensystem">17. Generisches Koordinatensystem</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Point&lt;T&gt;</code> zur Darstellung eines Punkts im zweidimensionalen Raum mit Koordinaten <code>x</code> und <code>y</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zur Berechnung des Abstands zum Ursprung. Nutze Trait-Bounds, um sicherzustellen, dass der Typ <code>T</code> mathematische Operationen und das Ziehen einer Quadratwurzel unterstützt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere die Verwendung des Punktes mit Ganzzahlen und Fließkommazahlen im Hauptprogramm.</li>
+</ul>
+<h3 id="18-generische-api-antwort"><a class="header" href="#18-generische-api-antwort">18. Generische API-Antwort</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Enum <code>ApiResponse&lt;T&gt;</code>, das entweder den Zustand <code>Success(T)</code> mit Daten vom Typ <code>T</code> oder den Zustand <code>Error(String)</code> repräsentiert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Hilfsmethoden wie <code>is_success</code>, <code>unwrap_or</code> und <code>map</code>, um komfortabel auf die Daten zugreifen oder diese transformieren zu können.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere im Hauptprogramm API-Abrufe, verarbeite die Antworten und gib entsprechende Statusmeldungen aus.</li>
+</ul>
+<h3 id="19-generischer-ringpuffer"><a class="header" href="#19-generischer-ringpuffer">19. Generischer Ringpuffer</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>CircularBuffer&lt;T&gt;</code> mit einer festen Kapazität. Überlege dir, wie du den Lese- und Schreib-Index verwaltest.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Schreiben (<code>push</code>) und Lesen (<code>pop</code>). Beim Schreiben in einen vollen Puffer soll das älteste Element überschrieben werden.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste den Puffer in <code>main.rs</code> durch kontinuierliches Schreiben und Lesen. Zeige, dass die Kapazitätsgrenze eingehalten wird.</li>
+</ul>
+<h3 id="20-generischer-messwert-container"><a class="header" href="#20-generischer-messwert-container">20. Generischer Messwert-Container</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>SensorData&lt;T&gt;</code>, das eine Liste von Messwerten des Typs <code>T</code> zusammen mit einem Zeitstempel speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Hinzufügen von Werten und zur Berechnung des Durchschnitts. Nutze Trait-Bounds für mathematische Grundoperationen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Nutze den Container in <code>main.rs</code> für verschiedene Sensortypen (z.B. Temperatur- und Feuchtigkeitssensoren) und gib die Statistiken aus.</li>
+</ul>
+<h3 id="21-generische-suchfunktion"><a class="header" href="#21-generische-suchfunktion">21. Generische Suchfunktion</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere eine generische Funktion <code>find_element&lt;T&gt;</code>, die als Argumente eine Referenz auf ein Element vom Typ <code>T</code> und einen Slice von Elementen des Typs <code>T</code> entgegennimmt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Suchlogik. Überlege dir, welche Trait-Bounds auf den Typ <code>T</code> angewendet werden müssen, um Elemente miteinander vergleichen zu können (z.B. <code>PartialEq</code>).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige in der <code>main.rs</code>, wie du die Funktion mit unterschiedlichen Datentypen (z.B. Ganzzahlen, Strings und benutzerdefinierten Strukturen) aufrufst und die gefundenen Indizes oder Fehler ausgibst.</li>
+</ul>
+<h3 id="22-generischer-e-mail-builder"><a class="header" href="#22-generischer-e-mail-builder">22. Generischer E-Mail-Builder</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>EmailBuilder&lt;RecipientState, SubjectState&gt;</code>, die den Zustand des Empfängers und des Betreffs über generische Zustandstypen (z.B. <code>NoRecipient</code>, <code>HasRecipient</code>, <code>NoSubject</code>, <code>HasSubject</code>) darstellt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Hinzufügen des Empfängers und des Betreffs. Diese Methoden sollen ein neues Builder-Objekt zurückgeben, bei dem der entsprechende Zustandstyp aktualisiert ist. Die Methode <code>build</code> darf nur für <code>EmailBuilder&lt;HasRecipient, HasSubject&gt;</code> implementiert sein.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere in der <code>main.rs</code>, dass unvollständige E-Mails (z.B. ohne Empfänger) nicht gebaut werden können, da der Compiler dies verhindert.</li>
+</ul>
+<h3 id="23-generischer-undo-redo-manager"><a class="header" href="#23-generischer-undo-redo-manager">23. Generischer Undo-Redo-Manager</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>UndoRedo&lt;T&gt;</code>, das zwei Stacks (Vektoren) verwaltet: einen für Undo-Aktionen und einen für Redo-Aktionen, beide vom generischen Typ <code>T</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Methoden <code>execute</code> (neue Aktion ausführen und Redo-Stack leeren), <code>undo</code> (letzte Aktion rückgängig machen und auf den Redo-Stack schieben) und <code>redo</code> (letzte rückgängig gemachte Aktion wiederherstellen).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere im Hauptprogramm einen Texteditor, bei dem Aktionen (z.B. Text hinzufügen, Text löschen) rückgängig gemacht und wiederholt werden können.</li>
+</ul>
+<h3 id="24-generische-sql-abfrage-abstraktion"><a class="header" href="#24-generische-sql-abfrage-abstraktion">24. Generische SQL-Abfrage-Abstraktion</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>SqlQuery&lt;RowType&gt;</code>, die eine SQL-Abfrage repräsentiert, wobei <code>RowType</code> den generischen Typ einer Datenzeile darstellt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden, um die SQL-Abfrage mit Parametern zu versehen und ein <code>Result&lt;Vec&lt;RowType&gt;, QueryError&gt;</code> zurückzugeben. Nutze Trait-Bounds, um festzulegen, dass <code>RowType</code> aus einer Datenbankzeile konvertiert werden kann.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Testprogramm, das Mock-Zeilen aus einer Abfrage liest und die typisierten Ergebnisse auf der Konsole ausgibt.</li>
+</ul>
+<h3 id="25-generischer-dateisystem-cache"><a class="header" href="#25-generischer-dateisystem-cache">25. Generischer Dateisystem-Cache</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>FileCache&lt;T&gt;</code>, das Dateipfade als Schlüssel und Dateiinhalte im generischen Format <code>T</code> speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Abrufen einer Datei. Ist sie im Cache, wird der Wert zurückgegeben; andernfalls wird sie gelesen, geparst und im Cache abgelegt. Verwende Trait-Bounds, um sicherzustellen, dass <code>T</code> aus Bytes oder einem String geparst werden kann.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere im Hauptprogramm den Geschwindigkeitsvorteil durch wiederholtes Abrufen einer Datei und gib entsprechende Protokollzeilen aus.</li>
+</ul>
+<hr />
+<h2 id="2-traits-fokus"><a class="header" href="#2-traits-fokus">2. Traits-Fokus</a></h2>
+<h3 id="26-trait-printable"><a class="header" href="#26-trait-printable">26. Trait 'Printable'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein eigenes Trait <code>Printable</code> mit einer Methode <code>print_formatted(&amp;self)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere dieses Trait für verschiedene eigene Datenstrukturen (z.B. ein Struct <code>Book</code> und ein Struct <code>Car</code>). Jede Struktur soll ihre Daten auf eine spezifische Art formatieren.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das eine generische Funktion aufruft, die nur Typen akzeptiert, die <code>Printable</code> implementieren, und diese formatiert ausgibt.</li>
+</ul>
+<h3 id="27-trait-serializable"><a class="header" href="#27-trait-serializable">27. Trait 'Serializable'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Serializable</code> mit einer Methode <code>serialize(&amp;self) -&gt; String</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>User</code> (Serialisierung als JSON-Stumpf) und ein Struct <code>Product</code> (Serialisierung als CSV-Zeile).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erzeuge im Hauptprogramm Instanzen dieser Strukturen, serialisiere sie und gib die resultierenden Textrepräsentationen auf der Konsole aus.</li>
+</ul>
+<h3 id="28-trait-deserializable"><a class="header" href="#28-trait-deserializable">28. Trait 'Deserializable'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Deserializable</code> mit einer statischen Methode (oder assoziierten Funktion) <code>deserialize(data: &amp;str) -&gt; Result&lt;Self, String&gt;</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>User</code> und ein Struct <code>Product</code>, sodass sie aus ihren jeweiligen Textrepräsentationen (aus Projekt 27) wiederhergestellt werden können.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste das Deserialisieren von korrekten und fehlerhaften Texten im Hauptprogramm und gib die Fehlermeldungen verständlich aus.</li>
+</ul>
+<h3 id="29-trait-volume"><a class="header" href="#29-trait-volume">29. Trait 'Volume'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Volume</code> mit einer Methode <code>calculate_volume(&amp;self) -&gt; f64</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für geometrische Körper wie <code>Cube</code> (Würfel), <code>Sphere</code> (Kugel) und <code>Cylinder</code> (Zylinder).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe eine Funktion, die das Gesamtvolumen einer Liste von Objekten berechnet, die alle das Trait <code>Volume</code> implementieren, und teste sie in <code>main.rs</code>.</li>
+</ul>
+<h3 id="30-trait-bounds-für-berechnungen"><a class="header" href="#30-trait-bounds-für-berechnungen">30. Trait-Bounds für Berechnungen</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere eine generische Funktion <code>add_three&lt;T&gt;</code>, die drei Werte des Typs <code>T</code> entgegennimmt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schränke den Typ <code>T</code> mithilfe von Trait-Bounds so ein, dass die mathematische Addition (<code>std::ops::Add</code>) darauf ausgeführt werden kann und die Rückgabetypen korrekt zusammenpassen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste die Funktion in <code>main.rs</code> mit Ganzzahlen, Fließkommazahlen und erkläre im Code, was passiert, wenn man einen Typ übergibt, der keine Addition unterstützt.</li>
+</ul>
+<h3 id="31-eigener-vergleichs-trait"><a class="header" href="#31-eigener-vergleichs-trait">31. Eigener Vergleichs-Trait</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>FuzzyEq</code> mit einer Methode <code>fuzzy_eq(&amp;self, other: &amp;Self, tolerance: f64) -&gt; bool</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>Document</code> (Vergleich der Wortanzahl oder Textlänge) und ein Struct <code>Measurement</code> (Vergleich von Fließkommawerten mit Toleranz).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Vergleiche im Hauptprogramm verschiedene Dokumente und Messwerte mit unterschiedlichen Toleranzen und gib das Ergebnis aus.</li>
+</ul>
+<h3 id="32-trait-flyable"><a class="header" href="#32-trait-flyable">32. Trait 'Flyable'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Flyable</code> mit den Methoden <code>take_off</code>, <code>land</code> und <code>current_altitude</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere <code>Flyable</code> für ein Struct <code>Bird</code> und ein Struct <code>Airplane</code>. Jedes soll eine eigene interne Zustandsverwaltung für die aktuelle Höhe haben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Konsolenmenü, über das du einen Vogel oder ein Flugzeug auswählen und deren Flugverhalten simulieren kannst.</li>
+</ul>
+<h3 id="33-standard-trait-clone--copy"><a class="header" href="#33-standard-trait-clone--copy">33. Standard-Trait 'Clone' &amp; 'Copy'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>UniqueToken</code>, das ein dynamisch alloziiertes Feld (wie ein <code>String</code> oder <code>Vec</code>) besitzt, wodurch es nicht einfach kopiert (<code>Copy</code>) werden kann.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Clone</code>-Trait manuell für dieses Struct und füge ein <code>println!</code> in die Methode ein, um zu demonstrieren, wann eine tiefe Kopie erstellt wird.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm den Unterschied zwischen Zuweisung (Besitzübergabe/Move) und explizitem Klonen und beobachte die Konsolenausgaben.</li>
+</ul>
+<h3 id="34-standard-trait-display"><a class="header" href="#34-standard-trait-display">34. Standard-Trait 'Display'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>PlayingCard</code> mit einer Farbe (Enum) und einem Wert (Enum).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait <code>std::fmt::Display</code> für <code>PlayingCard</code>, sodass Karten ansprechend formatiert ausgegeben werden (z.B. "Herz Ass" statt der Debug-Ausgabe).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Gib ein ganzes Kartendeck oder eine Handvoll gezogener Karten im Hauptprogramm mithilfe des <code>{}</code>-Formatierers aus.</li>
+</ul>
+<h3 id="35-standard-trait-default"><a class="header" href="#35-standard-trait-default">35. Standard-Trait 'Default'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>GameSettings</code> mit vielen Einstellungsfeldern (z.B. Lautstärke, Schwierigkeit, Vollbildmodus).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Default</code>-Trait für <code>GameSettings</code>, um sinnvolle Standardwerte festzulegen (z.B. Lautstärke = 80, Schwierigkeit = Normal).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige in der <code>main.rs</code>, wie du eine Instanz erstellst, bei der du nur einzelne Felder änderst und den Rest mit <code>..Default::default()</code> übernimmst.</li>
+</ul>
+<h3 id="36-standard-trait-drop"><a class="header" href="#36-standard-trait-drop">36. Standard-Trait 'Drop'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>DatabaseConnection</code>, das eine simulierte Verbindung zu einer Datenbank repräsentiert (z.B. durch eine Verbindungs-ID).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Drop</code>-Trait für <code>DatabaseConnection</code>, sodass beim Verlassen des Gültigkeitsbereichs automatisch eine Meldung wie "Verbindung ID geschlossen" ausgegeben wird.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erzeuge in <code>main.rs</code> Verbindungen in verschachtelten Scopes <code>{ ... }</code> und zeige, wann die Verbindungen automatisch abgebaut werden.</li>
+</ul>
+<h3 id="37-standard-trait-from-und-into"><a class="header" href="#37-standard-trait-from-und-into">37. Standard-Trait 'From' und 'Into'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf zwei Strukturen: <code>ExternalUser</code> (mit getrennten Feldern für Vor- und Nachname) und <code>InternalUser</code> (mit einem einzigen Feld für den vollen Namen).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>From&lt;ExternalUser&gt;</code>-Trait für <code>InternalUser</code>. Nutze die automatische Bereitstellung von <code>Into</code> durch Rust.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm die nahtlose Konvertierung unter Verwendung von <code>.into()</code> und verarbeite die konvertierten Daten.</li>
+</ul>
+<h3 id="38-standard-trait-iterator"><a class="header" href="#38-standard-trait-iterator">38. Standard-Trait 'Iterator'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Fibonacci</code>, das den aktuellen Zustand für die Berechnung der Fibonacci-Zahlen speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Iterator</code>-Trait für <code>Fibonacci</code>, indem du die <code>next</code>-Methode schreibst. Überlege dir, wie du einen Überlauf verhinderst (z.B. durch Rückgabe von <code>None</code>).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Gib im Hauptprogramm die ersten 20 Fibonacci-Zahlen mithilfe einer einfachen <code>for</code>-Schleife oder Iterator-Methoden (wie <code>take</code>) aus.</li>
+</ul>
+<h3 id="39-standard-trait-asref--asmut"><a class="header" href="#39-standard-trait-asref--asmut">39. Standard-Trait 'AsRef' &amp; 'AsMut'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>EncryptedString</code>, die intern einen privaten Byte-Vektor kapselt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere <code>AsRef&lt;[u8]&gt;</code> für <code>EncryptedString</code>, um einen einfachen Lesezugriff auf die internen Bytes zu ermöglichen, ohne das Struct zu konsumieren.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe eine Funktion, die beliebige Typen akzeptiert, die <code>AsRef&lt;[u8]&gt;</code> implementieren, und teste sie mit Standard-Strings und deinem <code>EncryptedString</code>.</li>
+</ul>
+<h3 id="40-trait-objekte-dyn-trait"><a class="header" href="#40-trait-objekte-dyn-trait">40. Trait-Objekte (dyn Trait)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Widget</code> mit einer Methode <code>draw(&amp;self)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für die Strukturen <code>Button</code>, <code>TextBox</code> und <code>Image</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erstelle einen Vektor <code>Vec&lt;Box&lt;dyn Widget&gt;&gt;</code> in <code>main.rs</code>, füge verschiedene Widgets hinzu und zeichne alle in einer Schleife, um dynamischen Dispatch zu demonstrieren.</li>
+</ul>
+<h3 id="41-assoziierte-typen"><a class="header" href="#41-assoziierte-typen">41. Assoziierte Typen</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Graph</code>, das die assoziierten Typen <code>Node</code> und <code>Edge</code> besitzt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>SimpleGraph</code>. Definiere Methoden im Trait wie <code>add_node</code> und <code>add_edge</code>, die diese assoziierten Typen nutzen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, wie du einen konkreten Graphen erstellst, Knoten sowie Kanten hinzufügst und den Graphen auf der Konsole ausgibst.</li>
+</ul>
+<h3 id="42-super-traits"><a class="header" href="#42-super-traits">42. Super-Traits</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere zwei Basis-Traits: <code>Device</code> (mit einer Methode <code>turn_on</code>) und <code>Display</code> (mit einer Methode <code>show</code>). Definiere anschließend ein Super-Trait <code>SmartDevice</code>, das voraussetzt, dass ein Typ bereits beide Basis-Traits implementiert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere alle benötigten Traits für eine Struktur <code>SmartPhone</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe eine Funktion, die ein <code>SmartDevice</code>-Objekt als Parameter erwartet, und teste sie in <code>main.rs</code> mit deiner Smartphone-Struktur.</li>
+</ul>
+<h3 id="43-trait-für-verschlüsselung"><a class="header" href="#43-trait-für-verschlüsselung">43. Trait für Verschlüsselung</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Encryptable</code> mit den Methoden <code>encrypt</code> und <code>decrypt</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>StringWrapper</code> (z.B. mit ROT13) und für einen Byte-Vektor <code>Vec&lt;u8&gt;</code> (z.B. mit XOR).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere im Hauptprogramm das Ver- und Entschlüsseln von Texten und Binärdaten und gib die Ergebnisse aus.</li>
+</ul>
+<h3 id="44-trait-für-datenbank-verbindungen"><a class="header" href="#44-trait-für-datenbank-verbindungen">44. Trait für Datenbank-Verbindungen</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Trait <code>Database</code> mit CRUD-Methoden (<code>create</code>, <code>read</code>, <code>update</code>, <code>delete</code>).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait einmal für eine <code>MockDatabase</code> (die Daten im RAM speichert) und einmal für eine <code>SqliteDatabase</code> (die den Zugriff simuliert).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das über eine Konfigurationsvariable entscheidet, welche Datenbank-Implementierung verwendet wird, und führe dieselben Operationen auf beiden aus.</li>
+</ul>
+<h3 id="45-standard-trait-partialord-und-ord"><a class="header" href="#45-standard-trait-partialord-und-ord">45. Standard-Trait 'PartialOrd' und 'Ord'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Player</code> mit den Feldern <code>name</code> (String) und <code>score</code> (u32).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere <code>PartialEq</code>, <code>Eq</code>, <code>PartialOrd</code> und <code>Ord</code> für <code>Player</code>, sodass Spieler primär nach ihrer Punktzahl (absteigend) und sekundär nach ihrem Namen (alphabetisch aufsteigend) sortiert werden.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erzeuge in <code>main.rs</code> eine Liste von Spielern, sortiere sie mit <code>.sort()</code> und gib die Bestenliste aus.</li>
+</ul>
+<h3 id="46-trait-bounds-mit-where-klauseln"><a class="header" href="#46-trait-bounds-mit-where-klauseln">46. Trait-Bounds mit Where-Klauseln</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine generische Funktion <code>process_data&lt;T, U&gt;</code>, die Daten verarbeitet.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Formuliere komplexe Trait-Bounds für <code>T</code> und <code>U</code> (z.B. <code>T</code> muss <code>Display</code> und <code>Clone</code> sein, <code>U</code> muss <code>Debug</code> und <code>Default</code> sein) übersichtlich mit einer <code>where</code>-Klausel am Ende der Signatur.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste die Funktion im Hauptprogramm mit passenden Typen und demonstriere die Übersichtlichkeit.</li>
+</ul>
+<h3 id="47-standard-trait-index--indexmut"><a class="header" href="#47-standard-trait-index--indexmut">47. Standard-Trait 'Index' &amp; 'IndexMut'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>CustomList&lt;T&gt;</code>, die intern ein Array oder einen Vektor von Elementen hält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Traits <code>std::ops::Index</code> und <code>std::ops::IndexMut</code> für <code>CustomList&lt;T&gt;</code>, sodass auf Elemente über <code>list[index]</code> lesend und schreibend zugegriffen werden kann.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige in <code>main.rs</code> die Verwendung der eckigen Klammern zur Manipulation der Liste und fange ungültige Indizes ab.</li>
+</ul>
+<h3 id="48-marker-traits"><a class="header" href="#48-marker-traits">48. Marker-Traits</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein leeres Trait <code>SafeToPublish</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere dieses Marker-Trait für ein Struct <code>PublicArticle</code>, aber nicht für ein Struct <code>DraftArticle</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe eine Funktion <code>publish&lt;T: SafeToPublish&gt;(article: T)</code> und zeige im Hauptprogramm, dass der Compiler den Aufruf für Entwürfe verweigert.</li>
+</ul>
+<h3 id="49-trait-drawable"><a class="header" href="#49-trait-drawable">49. Trait 'Drawable'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Drawable</code> mit der Methode <code>draw(&amp;self)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere dieses Trait für ein Struct <code>Circle</code> und ein Struct <code>Square</code>, die jeweils ihre Eigenschaften (z.B. Radius, Seitenlänge) auf einer simulierten Text-Leinwand ausgeben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeichne im Hauptprogramm eine Liste verschiedener geometrischer Formen auf der Konsole.</li>
+</ul>
+<h3 id="50-trait-validator"><a class="header" href="#50-trait-validator">50. Trait 'Validator'</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Validator</code> mit einer Methode <code>validate(&amp;self) -&gt; Result&lt;(), String&gt;</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>Email</code> (Überprüfung auf das '@'-Zeichen) und ein Struct <code>Password</code> (Überprüfung auf eine Mindestlänge).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Registrierungsformular in <code>main.rs</code>, das die Eingaben mithilfe des Traits validiert und Fehlermeldungen ausgibt.</li>
+</ul>
+<hr />
+<h2 id="3-lifetimes-fokus"><a class="header" href="#3-lifetimes-fokus">3. Lifetimes-Fokus</a></h2>
+<h3 id="51-referenz-wrapper"><a class="header" href="#51-referenz-wrapper">51. Referenz-Wrapper</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>BorrowedNumber&lt;'a&gt;</code>, das eine Referenz auf eine Zahl vom Typ <code>i32</code> hält. Annotiere die Struktur korrekt mit der Lifetime <code>'a</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>get_value</code> und einen <code>impl</code>-Block, der ebenfalls die Lifetime <code>'a</code> verwendet.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste im Hauptprogramm, dass der Wrapper nicht länger existieren kann als die Variable, auf die er verweist.</li>
+</ul>
+<h3 id="52-text-parser"><a class="header" href="#52-text-parser">52. Text-Parser</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>WordSplitter&lt;'a&gt;</code>, die eine Referenz auf einen langen Text hält und eine Liste von Referenzen (<code>&amp;'a str</code>) auf einzelne Wörter speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Methode <code>split</code>, die den Text analysiert und die Wort-Referenzen ohne Kopieren in der Struktur ablegt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Gib im Hauptprogramm die extrahierten Wörter aus und demonstriere, dass der Originaltext während der gesamten Lebensdauer des Splitters im Speicher bleibt.</li>
+</ul>
+<h3 id="53-zwei-referenzen-gleiche-lifetime"><a class="header" href="#53-zwei-referenzen-gleiche-lifetime">53. Zwei Referenzen, gleiche Lifetime</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Schreibe die Signatur einer Funktion <code>longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Funktion so, dass sie die Länge der beiden Strings vergleicht und den längeren String-Slice zurückgibt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Rufe die Funktion mit Variablen unterschiedlicher Gültigkeitsbereiche auf und analysiere, wie der Compiler die Lebensdauer des Rückgabewerts bestimmt.</li>
+</ul>
+<h3 id="54-zwei-referenzen-verschiedene-lifetimes"><a class="header" href="#54-zwei-referenzen-verschiedene-lifetimes">54. Zwei Referenzen, verschiedene Lifetimes</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Schreibe die Signatur einer Funktion <code>select_first&lt;'a, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;'a str</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Funktion so, dass sie immer die erste Referenz zurückgibt. Überlege dir, warum die Lebensdauer des zweiten Arguments (<code>'b</code>) unabhängig sein darf.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere in <code>main.rs</code>, dass der Rückgabewert auch dann noch gültig ist, wenn die Variable für das zweite Argument bereits ungültig geworden ist.</li>
+</ul>
+<h3 id="55-die-statische-lifetime-static"><a class="header" href="#55-die-statische-lifetime-static">55. Die statische Lifetime (<code>'static</code>)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>ConfigManager</code>, die eine Referenz mit der Lifetime <code>'static</code> hält (z.B. einen globalen Info-Text).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Auslesen dieser statischen Daten.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, wie du String-Literale (die standardmäßig <code>'static</code> sind) an den Manager übergibst und warum diese das gesamte Programm über leben.</li>
+</ul>
+<h3 id="56-struktur-mit-string-referenz"><a class="header" href="#56-struktur-mit-string-referenz">56. Struktur mit String-Referenz</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>User&lt;'a&gt;</code> mit einem Feld <code>username: &amp;'a str</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>greet(&amp;self)</code> zur Ausgabe einer Begrüßung.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Erzeuge einen User im Hauptprogramm, dessen Name aus einer Benutzereingabe stammt, und demonstriere die Lebensdauerbindung.</li>
+</ul>
+<h3 id="57-lifetime-elision-rules"><a class="header" href="#57-lifetime-elision-rules">57. Lifetime Elision Rules</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Schreibe drei verschiedene Funktionen mit Referenzen in den Signaturen (z.B. <code>first_word(s: &amp;str) -&gt; &amp;str</code>), ohne Lebensdauern explizit anzugeben.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere diese Funktionen und füge Kommentare hinzu, die erklären, welche Lifetime-Regeln der Compiler hier automatisch anwendet.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Rufe diese Funktionen im Hauptprogramm auf und veranschauliche das fehlerfreie Kompilieren.</li>
+</ul>
+<h3 id="58-iterator-mit-lifetime"><a class="header" href="#58-iterator-mit-lifetime">58. Iterator mit Lifetime</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf einen eigenen Iterator <code>ReferenceIterator&lt;'a, T&gt;</code>, der Referenzen auf Elemente einer Liste liefert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Iterator</code>-Trait mit dem Typ <code>Item = &amp;'a T</code> für dieses Struct.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Nutze den Iterator in einer Schleife in <code>main.rs</code> und zeige, dass die ausgeliehenen Elemente nicht verändert werden können, solange der Iterator aktiv ist.</li>
+</ul>
+<h3 id="59-referenzen-in-enums"><a class="header" href="#59-referenzen-in-enums">59. Referenzen in Enums</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Enum <code>Token&lt;'a&gt;</code> mit Varianten wie <code>Identifier(&amp;'a str)</code>, <code>Number(i32)</code> und <code>Operator(&amp;'a str)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe eine Hilfsmethode, um den Inhalt des Tokens als String-Repräsentation zurückzugeben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zerlege im Hauptprogramm einen mathematischen Ausdruck in eine Liste von solchen Tokens und gib diese aus.</li>
+</ul>
+<h3 id="60-nested-lifetimes-lebensdauer-hierarchien"><a class="header" href="#60-nested-lifetimes-lebensdauer-hierarchien">60. Nested Lifetimes (Lebensdauer-Hierarchien)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Manager&lt;'a, 'b&gt;</code> (mit <code>'a: 'b</code>), das eine Referenz auf ein Objekt hält, welches wiederum eine Referenz der Lebensdauer <code>'b</code> besitzt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zur Datenabfrage über diese Hierarchie hinweg.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Baue ein Szenario auf, bei dem Daten über zwei unterschiedliche Scopes hinweg referenziert werden, und zeige die Einhaltung der Lebensdauerregeln.</li>
+</ul>
+<h3 id="61-rückgabe-einer-referenz-aus-einer-methode"><a class="header" href="#61-rückgabe-einer-referenz-aus-einer-methode">61. Rückgabe einer Referenz aus einer Methode</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>DataHolder</code> mit einem privaten Feld für einen String.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>get_ref&lt;'a&gt;(&amp;'a self) -&gt; &amp;'a str</code> im <code>impl</code>-Block. Überlege dir, wie Rusts automatische Zuweisung (Elision) hier wirkt und wie du sie explizit deklarierst.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, wie du die Referenz liest und dass sie nicht mehr verwendet werden kann, sobald das <code>DataHolder</code>-Objekt gelöscht wird.</li>
+</ul>
+<h3 id="62-konfigurations-reader-mit-lifetime"><a class="header" href="#62-konfigurations-reader-mit-lifetime">62. Konfigurations-Reader mit Lifetime</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>ConfigReader&lt;'a&gt;</code> mit einem Feld für die Rohdaten des Konfigurations-Strings.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden, die bestimmte Schlüssel (z.B. "port=") im Rohdaten-String suchen und den Wert als Referenz (<code>&amp;'a str</code>) zurückgeben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere im Hauptprogramm das effiziente Parsen einer Einstellungsdatei ohne zusätzliche Speicherallokationen für die Werte.</li>
+</ul>
+<h3 id="63-log-filter"><a class="header" href="#63-log-filter">63. Log-Filter</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>LogFilter&lt;'a&gt;</code> zur Filterung großer Log-Dateien.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe eine Methode <code>filter</code>, die Zeilen mit bestimmten Schlüsselwörtern (wie "ERROR") heraussucht und Referenzen auf diese Zeilen in einem Vektor speichert.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Gib die gefilterten Fehlerzeilen im Hauptprogramm aus und zeige, dass der ursprüngliche Log-String im Speicher bleiben muss.</li>
+</ul>
+<h3 id="64-tokenisierer-für-compiler"><a class="header" href="#64-tokenisierer-für-compiler">64. Tokenisierer für Compiler</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Tokenizer&lt;'a&gt;</code>, das den Quellcode-Text als Referenz speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>next_token</code>, die die nächste Sinneinheit (z.B. ein Schlüsselwort oder eine Zahl) als Enum-Variante mit Lifetime-Referenz zurückgibt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Tokenisiere eine kleine Beispiel-Codezeile in <code>main.rs</code> und gib die generierten Tokens aus.</li>
+</ul>
+<h3 id="65-subtyping-bei-lifetimes-a-b"><a class="header" href="#65-subtyping-bei-lifetimes-a-b">65. Subtyping bei Lifetimes (<code>'a: 'b</code>)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>Wrapper&lt;'a&gt;</code> und eine Funktion <code>assign&lt;'a, 'b&gt;(x: &amp;mut Wrapper&lt;'a&gt;, y: Wrapper&lt;'b&gt;)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Nutze das Lifetime-Subtyping <code>'b: 'a</code> (Lebensdauer <code>'b</code> muss mindestens so lang wie <code>'a</code> sein), um die Zuweisung kompilierbar zu machen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe ein Hauptprogramm, das dieses Verhalten verdeutlicht und demonstriere, was passiert, wenn die Lebensdauer-Einschränkung nicht erfüllt ist.</li>
+</ul>
+<h3 id="66-generischer-typ-mit-lifetime-bound-t-a"><a class="header" href="#66-generischer-typ-mit-lifetime-bound-t-a">66. Generischer Typ mit Lifetime-Bound (<code>T: 'a</code>)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>RefHolder&lt;'a, T&gt;</code>, das einen generischen Typ <code>T</code> speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schränke den generischen Typen mit <code>T: 'a</code> ein, damit <code>T</code> Referenzen enthalten darf, die mindestens so lange wie <code>'a</code> leben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere in <code>main.rs</code> das sichere Speichern von generischen Typen mit internen Referenzen im <code>RefHolder</code>.</li>
+</ul>
+<h3 id="67-lifetime-im-trait-objekt"><a class="header" href="#67-lifetime-im-trait-objekt">67. Lifetime im Trait-Objekt</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>TextProcessor</code> mit einer Methode <code>process(&amp;self)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für ein Struct <code>WordPrinter&lt;'a&gt;</code>, das eine String-Referenz speichert. Verwende für die dynamische Übergabe den Typ <code>Box&lt;dyn TextProcessor + 'a&gt;</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Verwalte eine Liste solcher Trait-Objekte im Hauptprogramm und führe sie aus.</li>
+</ul>
+<h3 id="68-einfacher-cache-mit-referenzen"><a class="header" href="#68-einfacher-cache-mit-referenzen">68. Einfacher Cache mit Referenzen</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>ReferenceCache&lt;'a, K, V&gt;</code>, das Referenzen auf berechnete Werte speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Hinzufügen und Abrufen von Einträgen. Stelle sicher, dass die Lebensdauer der Werte korrekt deklariert ist.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste den Cache im Hauptprogramm mit temporären Objekten und zeige die Einhaltung der Gültigkeitsbereiche.</li>
+</ul>
+<h3 id="69-url-parser"><a class="header" href="#69-url-parser">69. URL-Parser</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>ParsedUrl&lt;'a&gt;</code> mit Feldern wie <code>protocol</code>, <code>domain</code> und <code>path</code>, die alle als <code>&amp;'a str</code> auf eine Original-URL verweisen.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>parse</code>, die eine URL analysiert und die Referenzen extrahiert.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zerlege im Hauptprogramm mehrere URLs und gib die extrahierten Abschnitte aus.</li>
+</ul>
+<h3 id="70-ast-knoten-abstract-syntax-tree"><a class="header" href="#70-ast-knoten-abstract-syntax-tree">70. AST-Knoten (Abstract Syntax Tree)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Enum <code>AstNode&lt;'a&gt;</code> für einen Syntaxbaum, bei dem jeder Knoten (z.B. Variablenname, Funktionsname) Referenzen auf den Originalquellcode enthält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zur rekursiven Auswertung des Baumes.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Baue in <code>main.rs</code> einen kleinen Baum manuell auf und evaluiere ihn.</li>
+</ul>
+<h3 id="71-referenzierte-json-keys"><a class="header" href="#71-referenzierte-json-keys">71. Referenzierte JSON-Keys</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>JsonKeyValue&lt;'a&gt;</code> zur Speicherung von JSON-Schlüssel-Wert-Paaren als Referenzen auf einen String.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere einen einfachen Such- und Extraktions-Algorithmus für JSON-Strukturen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere im Hauptprogramm die Extraktion von Schlüsseln und Werten aus einem Test-JSON-String ohne Speicherallokationen.</li>
+</ul>
+<h3 id="72-zeilen-gruppierer"><a class="header" href="#72-zeilen-gruppierer">72. Zeilen-Gruppierer</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf eine Struktur <code>LineGroup&lt;'a&gt;</code> zur Gruppierung von Zeilen.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe eine Methode, die Textzeilen analysiert und in einer <code>HashMap&lt;String, Vec&lt;&amp;'a str&gt;&gt;</code> nach bestimmten Kriterien (z.B. Zeilenlänge oder Anfangsbuchstabe) gruppiert.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Gruppiere einen mehrzeiligen Text im Hauptprogramm und gib die Gruppen übersichtlich aus.</li>
+</ul>
+<h3 id="73-zirkuläre-referenzen-vermeiden"><a class="header" href="#73-zirkuläre-referenzen-vermeiden">73. Zirkuläre Referenzen vermeiden</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf zwei Strukturen <code>NodeA</code> und <code>NodeB</code>, die versuchen, sich gegenseitig direkt zu referenzieren.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Dokumentiere im Code ausführlich, warum der Compiler dies verhindert und wie man das Problem mithilfe von <code>Weak</code>-Referenzen oder Indizes in einem gemeinsamen Vektor umgeht.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm die funktionierende Alternative (z.B. über Vektor-Indizes) ohne zirkuläre Referenzfehler.</li>
+</ul>
+<h3 id="74-text-highlighter"><a class="header" href="#74-text-highlighter">74. Text-Highlighter</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Highlight&lt;'a&gt;</code> mit der Position und einer Referenz auf den gefundenen Suchbegriff.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe eine Suchfunktion, die alle Vorkommen eines Suchbegriffs in einem Text analysiert und eine Liste von <code>Highlight</code>-Objekten zurückgibt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Formatiere den Text im Hauptprogramm basierend auf den gefundenen Highlights (z.B. durch Einfügen von Sternchen um die Wörter) und gib ihn aus.</li>
+</ul>
+<h3 id="75-befehlszeilen-argument-parser"><a class="header" href="#75-befehlszeilen-argument-parser">75. Befehlszeilen-Argument-Parser</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>ArgParser&lt;'a&gt;</code> mit einer Liste von erwarteten Optionen und den übergebenen Argumenten als Referenzen auf die originalen Systemargumente.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine Methode <code>parse</code>, die die Argumente analysiert und die gefundenen Parameter zuordnet.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Initialisiere den Parser in <code>main.rs</code> mit Argumenten und zeige das korrekte Auslesen von Flags.</li>
+</ul>
+<hr />
+<h2 id="4-kombinations-projekte"><a class="header" href="#4-kombinations-projekte">4. Kombinations-Projekte</a></h2>
+<h3 id="76-generisches-repository-mit-lifetime"><a class="header" href="#76-generisches-repository-mit-lifetime">76. Generisches Repository mit Lifetime</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Repository&lt;T&gt;</code> und ein Struct <code>DbRepository&lt;'a, T&gt;</code>, das eine Referenz auf eine temporäre Datenbankverbindung hält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das Trait für dein Struct unter Einhaltung der Lebensdauer-Annotationen für die Verbindung und die generischen Typen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere Datenbankabfragen für unterschiedliche Datenmodelle in <code>main.rs</code>.</li>
+</ul>
+<h3 id="77-eigener-generischer-iterator-mit-lebensdauer"><a class="header" href="#77-eigener-generischer-iterator-mit-lebensdauer">77. Eigener generischer Iterator mit Lebensdauer</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein generisches Struct <code>CustomIter&lt;'a, T&gt;</code>, das über ein Array von Elementen iteriert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere das <code>Iterator</code>-Trait, sodass es Referenzen der Form <code>&amp;'a T</code> zurückgibt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Nutze den Iterator im Hauptprogramm mit verschiedenen Datentypen und führe Filter- und Map-Operationen aus.</li>
+</ul>
+<h3 id="78-generischer-event-listener-mit-lifetimes"><a class="header" href="#78-generischer-event-listener-mit-lifetimes">78. Generischer Event-Listener mit Lifetimes</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>EventManager&lt;'a, E&gt;</code>, das Event-Listener (Traits) als Referenzen mit der Lebensdauer <code>'a</code> speichert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Registrierung und den Dispatch von Events an alle Listener.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, dass Listener vor dem Event-Manager existieren müssen und Events korrekt empfangen.</li>
+</ul>
+<h3 id="79-generischer-ast-parser"><a class="header" href="#79-generischer-ast-parser">79. Generischer AST-Parser</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>AstParser&lt;'a, Op&gt;</code> für mathematische Ausdrücke, das generische Operatortypen <code>Op</code> und Referenzen auf den Quelltext hält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe die Parsing-Logik, die den Eingabetext in einen AST überführt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Parse im Hauptprogramm Ausdrücke und gib den aufgebauten Baum strukturiert aus.</li>
+</ul>
+<h3 id="80-typ-sicheres-transaktions-system"><a class="header" href="#80-typ-sicheres-transaktions-system">80. Typ-sicheres Transaktions-System</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Executable</code> und ein generisches Struct <code>Transaction&lt;'a, T&gt;</code>, das eine Referenz auf das zu belastende Konto enthält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Ausführungslogik für verschiedene Kontotypen (z.B. Sparkonto, Girokonto).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere im Hauptprogramm Transaktionen und behandle Fehler wie unzureichende Deckung.</li>
+</ul>
+<h3 id="81-generischer-graph-algorithmus"><a class="header" href="#81-generischer-graph-algorithmus">81. Generischer Graph-Algorithmus</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Graph</code> mit Methoden zur Abfrage von Nachbarn eines Knotens.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine generische Funktion <code>breadth_first_search&lt;G: Graph&gt;(graph: &amp;G, start: G::Node)</code> zur Durchführung einer Breitensuche.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige die Funktionsweise der Breitensuche in <code>main.rs</code> an zwei verschiedenen Graphenstrukturen.</li>
+</ul>
+<h3 id="82-generischer-serialisierer-mit-lebensdauer"><a class="header" href="#82-generischer-serialisierer-mit-lebensdauer">82. Generischer Serialisierer mit Lebensdauer</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Serializer&lt;'a&gt;</code> mit einer Methode <code>serialize_to_slice(&amp;self) -&gt; &amp;'a [u8]</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere dieses Trait für verschiedene Datenstrukturen, sodass sie direkt Referenzen auf ihre internen Puffer zurückgeben, anstatt neue Vektoren zu allozieren.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Teste im Hauptprogramm das Serialisieren mehrerer Objekte und gib die resultierenden Byte-Slices formatiert aus.</li>
+</ul>
+<h3 id="83-generische-cache-struktur-mit-validierungs-trait"><a class="header" href="#83-generische-cache-struktur-mit-validierungs-trait">83. Generische Cache-Struktur mit Validierungs-Trait</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Validator&lt;T&gt;</code> mit einer Gültigkeitsprüfung und ein Struct <code>ValidatedCache&lt;'a, T: 'a, V&gt;</code>, das Einträge mit einer bestimmten Lebensdauer und einem Validator <code>V</code> hält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Schreiben und Lesen, bei denen ungültige Einträge automatisch verworfen werden.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere in <code>main.rs</code> das Verhalten des Caches, wenn Werte ablaufen oder ungültig werden.</li>
+</ul>
+<h3 id="84-dependency-injection-container"><a class="header" href="#84-dependency-injection-container">84. Dependency-Injection-Container</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Container</code> zur Registrierung von Abhängigkeiten.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere generische Methoden <code>register&lt;T&gt;</code> und <code>resolve&lt;T&gt;() -&gt; Option&lt;Box&lt;T&gt;&gt;</code> (oder unter Verwendung von Trait-Objekten).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere ein einfaches Web-Framework im Hauptprogramm, bei dem Services (wie ein <code>DatabaseService</code>) über den Container aufgelöst und bereitgestellt werden.</li>
+</ul>
+<h3 id="85-generischer-query-builder-mit-lifetime"><a class="header" href="#85-generischer-query-builder-mit-lifetime">85. Generischer Query-Builder mit Lifetime</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>QueryBuilder&lt;'a&gt;</code> mit einer SQL-Vorlage und einer Liste von Parametern als Referenzen <code>&amp;'a str</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Methoden zum Hinzufügen von Parametern und zum Generieren der finalen Abfrage unter sicherer Kapselung der Lebensdauern.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Baue in <code>main.rs</code> eine SQL-Abfrage dynamisch zusammen und gib sie aus.</li>
+</ul>
+<h3 id="86-generische-pipeline"><a class="header" href="#86-generische-pipeline">86. Generische Pipeline</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>PipelineStep&lt;Input, Output&gt;</code> mit einer Methode <code>process</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere ein Struct <code>Pipeline&lt;'a, T&gt;</code>, das mehrere Schritte verkettet und Daten als Referenzen durchreicht.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Baue eine Datenverarbeitungspipeline (z.B. Text filtern, in Großbuchstaben umwandeln, Wörter zählen) in <code>main.rs</code> auf und teste sie.</li>
+</ul>
+<h3 id="87-generischer-state-pattern-automat"><a class="header" href="#87-generischer-state-pattern-automat">87. Generischer State-Pattern-Automat</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>State&lt;T&gt;</code> für die Zustände eines Spielobjekts vom Typ <code>T</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Übergangslogik im Zustand und im Spielobjekt. Die Zustände können generische Daten halten.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Simuliere im Hauptprogramm einen Spielercharakter mit den Zuständen <code>Stehend</code>, <code>Laufend</code> und <code>Springend</code> und steuere diesen über Benutzereingaben.</li>
+</ul>
+<h3 id="88-plugin-system"><a class="header" href="#88-plugin-system">88. Plugin-System</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Plugin&lt;'a&gt;</code> mit einer Methode <code>run(&amp;self, context: &amp;'a Context)</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere ein Struct <code>PluginManager&lt;'a&gt;</code>, das Plugins speichert und ausführt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Schreibe zwei verschiedene Plugins (z.B. für Logging und Analyse) und führe sie im Hauptprogramm über den Manager aus.</li>
+</ul>
+<h3 id="89-generische-suchmaschine"><a class="header" href="#89-generische-suchmaschine">89. Generische Suchmaschine</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Indexable</code> und ein Struct <code>SearchIndex&lt;'a, T&gt;</code>, das Dokumente indiziert.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Indizierungs- und Suchmethoden. Die Suchergebnisse sollen als Referenzen auf die Originaldokumente zurückgegeben werden.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Indiziere im Hauptprogramm verschiedene Dokumententypen (z.B. Artikel und E-Mails) und zeige Suchergebnisse an.</li>
+</ul>
+<h3 id="90-generisches-daten-diff-tool"><a class="header" href="#90-generisches-daten-diff-tool">90. Generisches Daten-Diff-Tool</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>Diff&lt;'a, T&gt;</code>, das die Unterschiede zwischen zwei Kollektionen als Referenzen auf die geänderten Elemente darstellt.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere eine generische Funktion <code>compare&lt;'a, T: PartialEq&gt;(old: &amp;'a [T], new: &amp;'a [T]) -&gt; Vec&lt;Diff&lt;'a, T&gt;&gt;</code>.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Berechne im Hauptprogramm die Unterschiede zwischen zwei Wortlisten und gib sie übersichtlich aus.</li>
+</ul>
+<hr />
+<h2 id="5-fortgeschrittene-szenarien"><a class="header" href="#5-fortgeschrittene-szenarien">5. Fortgeschrittene Szenarien</a></h2>
+<h3 id="91-dyn-traits-vs-impl-traits"><a class="header" href="#91-dyn-traits-vs-impl-traits">91. Dyn Traits vs. Impl Traits</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>Formatter</code> mit einer Formatierungsmethode.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe zwei Funktionen zur Ausgabe: eine mit statischem Dispatch (<code>impl Formatter</code>) und eine mit dynamischem Dispatch (<code>Box&lt;dyn Formatter&gt;</code>). Erkläre den Unterschied im Code.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Miss im Hauptprogramm die Ausführungszeit der beiden Varianten oder zeige ihre unterschiedliche Handhabung bei der Zuweisung.</li>
+</ul>
+<h3 id="92-thread-safety-mit-send--sync"><a class="header" href="#92-thread-safety-mit-send--sync">92. Thread-Safety mit Send &amp; Sync</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>UnsafeData</code>, das interne Zeiger verwendet und daher standardmäßig nicht <code>Send</code> oder <code>Sync</code> ist.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Zeige im Code, wie der Compiler Fehler ausgibt, wenn versucht wird, dieses Struct an einen anderen Thread zu übergeben. Implementiere anschließend die Traits manuell (unter Einhaltung der Sicherheitsrichtlinien).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Übergebe das modifizierte Struct an einen Thread in <code>main.rs</code> und starte eine parallele Berechnung.</li>
+</ul>
+<h3 id="93-smart-pointer--lifetimes-rcarc"><a class="header" href="#93-smart-pointer--lifetimes-rcarc">93. Smart Pointer &amp; Lifetimes (Rc/Arc)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>SharedNode</code>, das über <code>Rc&lt;RefCell&lt;...&gt;&gt;</code> (für Single-Threaded) oder <code>Arc&lt;Mutex&lt;...&gt;&gt;</code> (für Multi-Threaded) geteilten Zugriff ermöglicht.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere veränderliche Zugriffsoperationen auf die geteilten Daten.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Demonstriere im Hauptprogramm den sicheren Zugriff aus mehreren Programmteilen oder Threads heraus.</li>
+</ul>
+<h3 id="94-assoziierte-typen-vs-generics-im-trait"><a class="header" href="#94-assoziierte-typen-vs-generics-im-trait">94. Assoziierte Typen vs. Generics im Trait</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere zwei alternative Versionen eines Traits <code>Converter</code>: einmal mit einem assoziierten Typen (<code>type Output</code>) und einmal mit einem generischen Typparameter (<code>Converter&lt;Output&gt;</code>).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere beide Versionen für ein Struct und vergleiche die Handhabung bei der Implementierung mehrerer Konvertierungen.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, wie sich die Syntax beim Aufruf der beiden Implementierungen unterscheidet, und dokumentiere die Vor- und Nachteile.</li>
+</ul>
+<h3 id="95-blanket-implementations"><a class="header" href="#95-blanket-implementations">95. Blanket Implementations</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere zwei Traits: <code>Logger</code> und <code>ExtendedLogger</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Schreibe eine Blanket-Implementation, die <code>ExtendedLogger</code> automatisch für jeden Typen implementiert, der bereits <code>Logger</code> implementiert.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Implementiere nur <code>Logger</code> für ein Struct <code>SimpleLog</code> und zeige im Hauptprogramm, dass dieses sofort alle Methoden von <code>ExtendedLogger</code> nutzen kann.</li>
+</ul>
+<h3 id="96-gats-generic-associated-types"><a class="header" href="#96-gats-generic-associated-types">96. GATs (Generic Associated Types)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Definiere ein Trait <code>StreamingIterator</code>, das einen assoziierten Typen besitzt, welcher selbst einen Lifetime-Parameter akzeptiert (<code>type Item&lt;'a&gt; where Self: 'a</code>).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere diesen Streaming-Iterator für einen Puffer, sodass <code>next</code> Referenzen mit der Lebensdauer der aktuellen Iteration zurückgeben kann.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Verwende den Streaming-Iterator im Hauptprogramm in einer Schleife und veranschauliche den Unterschied zu einem Standard-Iterator.</li>
+</ul>
+<h3 id="97-covariance--contravariance"><a class="header" href="#97-covariance--contravariance">97. Covariance &amp; Contravariance</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Schreibe Code-Beispiele mit unterschiedlichen Lebensdauern (z.B. <code>'static</code> und eine kürzere Lifetime <code>'a</code>).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Erkläre im Code, warum man eine Referenz mit <code>'static</code> an eine Funktion übergeben darf, die nur <code>'a</code> erwartet (Kovarianz), und warum dies bei veränderlichen Referenzen (<code>&amp;mut T</code>) nicht immer möglich ist (Invarianz).</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige Compiler-Fehlermeldungen im Hauptprogramm, die durch Invarianz bei veränderlichen Referenzen entstehen, und erkläre die Fehlerdidaktik.</li>
+</ul>
+<h3 id="98-trait-bounds-mit-hrtbs-higher-rank-trait-bounds"><a class="header" href="#98-trait-bounds-mit-hrtbs-higher-rank-trait-bounds">98. Trait-Bounds mit HRTBs (Higher-Rank Trait Bounds)</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Schreibe die Signatur einer Funktion, die eine Closure akzeptiert. Verwende die Syntax <code>for&lt;'a&gt; Fn(&amp;'a str) -&gt; &amp;'a str</code>.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Funktion so, dass sie die übergebene Closure mit temporären Strings aufruft, deren Lebensdauer erst innerhalb der Funktion beginnt.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Rufe die Funktion im Hauptprogramm mit einer passenden Closure auf und zeige das Zusammenspiel der Lifetimes.</li>
+</ul>
+<h3 id="99-phantomdata-im-detail"><a class="header" href="#99-phantomdata-im-detail">99. PhantomData im Detail</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>TokenStore&lt;T&gt;</code> mit <code>PhantomData&lt;T&gt;</code>, das vorgibt, einen Typen <code>T</code> zu verwalten, ohne diesen tatsächlich zu speichern (z.B. zur Berechtigungsprüfung).</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere Zugriffsmethoden, die je nach Typ <code>T</code> (z.B. <code>Admin</code> oder <code>User</code>) unterschiedliche Rechte vergeben.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Zeige im Hauptprogramm, dass der Compiler den Zugriff verweigert, wenn ein nicht autorisierter Typ verwendet wird.</li>
+</ul>
+<h3 id="100-eigener-smart-pointer"><a class="header" href="#100-eigener-smart-pointer">100. Eigener Smart Pointer</a></h3>
+<ul>
+<li><strong>Modul 1 (Basis-Datenstrukturen):</strong> Entwirf ein Struct <code>MyBox&lt;T&gt;</code>, das intern einen Zeiger auf einen auf dem Heap alloziierten Wert hält.</li>
+<li><strong>Modul 2 (Implementierung &amp; Methoden):</strong> Implementiere die Traits <code>std::ops::Deref</code> und <code>std::ops::DerefMut</code> für den transparenten Zugriff auf die inneren Daten sowie das <code>Drop</code>-Trait zur Speicherbereinigung.</li>
+<li><strong>Modul 3 (Vollendung &amp; Hauptprogramm):</strong> Verwende deinen Smart Pointer in <code>main.rs</code> wie einen Standard-Box-Zeiger und zeige, dass der Heap-Speicher beim Verlassen des Scopes automatisch freigegeben wird.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="100-projekte-phase5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase6-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="100-projekte-phase5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase6-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
