@@ -25,6 +25,18 @@
 - [100 Projekte – Modulare Workflows (Phase 1)](./100-projekte-workflows.md)
 - [📇 Anki-Lernkarten](./anki.md)
 
+# 🇨 C-Programmierung für Einsteiger (Phase 1)
+
+- [Konzepte statt Syntax lernen (Phase 1)](./c-phase1-konzepte.md)
+- [🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen](./c-phase1-workshop.md)
+- [Projektvorschläge Phase 1](./c-phase1.md)
+
+# 🚀 C++-Programmierung für Einsteiger (Phase 1)
+
+- [Konzepte statt Syntax lernen (Phase 1)](./cpp-phase1-konzepte.md)
+- [🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen](./cpp-phase1-workshop.md)
+- [Projektvorschläge Phase 1](./cpp-phase1.md)
+
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
 
