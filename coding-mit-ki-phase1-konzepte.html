@@ -173,64 +173,944 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-konzepte-statt-syntax-lernen-coding-mit-ki---phase-1"><a class="header" href="#-konzepte-statt-syntax-lernen-coding-mit-ki---phase-1">🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></h1>
-<p>In der ersten Phase deiner Programmierausbildung geht es vor allem darum, ein grundlegendes Verständnis dafür zu entwickeln, wie du künstliche Intelligenz als mächtiges Werkzeug und didaktischen Partner einsetzt. Programmieren mit KI bedeutet nicht, Code blind zu kopieren – es bedeutet, die Konzepte dahinter zu verstehen und die KI gezielt zu steuern.</p>
+                        <h1 id="-konzepte-statt-syntax-lernen-coding-mit-ki--phase-1"><a class="header" href="#-konzepte-statt-syntax-lernen-coding-mit-ki--phase-1">🤖 Konzepte statt Syntax lernen (Coding mit KI – Phase 1)</a></h1>
+<h2 id="willkommen-in-der-zukunft-der-softwareentwicklung"><a class="header" href="#willkommen-in-der-zukunft-der-softwareentwicklung">Willkommen in der Zukunft der Softwareentwicklung!</a></h2>
+<p>Herzlichen Glückwunsch! Du machst deine ersten Schritte in der Programmierung zu einer Zeit, in der sich die Softwareentwicklung so rasant verändert wie noch nie zuvor. Früher mussten Programmierer Monate damit verbringen, kryptische Syntax auswendig zu lernen, Semikolons zu suchen und dicke Handbücher zu wälzen, um überhaupt ein einfaches Programm zum Laufen zu bringen. Heute stehen dir künstliche Intelligenzen (KIs) als persönliche Tutoren, Code-Generatoren und Sparringspartner zur Seite.</p>
+<p>Doch diese neue Macht bringt eine große Gefahr mit sich: Wer sich blind auf die Vorschläge einer KI verlässt, ohne die grundlegenden Konzepte dahinter zu verstehen, wird niemals ein eigenständiger Entwickler. Du wirst zu einem reinen „Copy-Paste-Coder“, der nicht in der Lage ist, Fehler zu beheben, Sicherheitsrisiken zu erkennen oder eigene, kreative Systemarchitekturen zu entwerfen.</p>
+<p>In diesem Kapitel lernst du, wie du das Steuer selbst in der Hand behältst. Wir betrachten die Funktionsweise von KI-Systemen, verstehen den gewaltigen Paradigmenwechsel in unserem Berufsbild und lernen handfeste Techniken, um KI als didaktisches Werkzeug einzusetzen, das dein Lernen beschleunigt, statt dein Denken zu ersetzen.</p>
 <hr />
-<h2 id="-1-der-paradigmenwechsel-vom-coder-zum-orchestrator"><a class="header" href="#-1-der-paradigmenwechsel-vom-coder-zum-orchestrator">📌 1. Der Paradigmenwechsel: Vom Coder zum Orchestrator</a></h2>
-<p>Früher war Programmieren wie das Schreiben eines Kochbuchs: Jede einzelne Anweisung, jede Zutat und jeder Schritt mussten präzise manuell aufgeschrieben werden. Mit dem Einzug von KI-Systemen verändert sich deine Rolle grundlegend.</p>
+<h2 id="-lernziele-für-dieses-kapitel"><a class="header" href="#-lernziele-für-dieses-kapitel">📌 Lernziele für dieses Kapitel</a></h2>
+<p>Am Ende dieses Kapitels wirst du in der Lage sein:</p>
+<ol>
+<li><strong>Die Evolution der Softwareentwicklung</strong> zu beschreiben – vom direkten Bit-Schubsen auf Lochkarten bis hin zur deklarativen Programmierung mit generativer KI.</li>
+<li><strong>Den Unterschied</strong> zwischen einer klassischen, regelbasierten Autovervollständigung (wie IntelliSense) und einer probabilistischen KI-Code-Generierung (wie GitHub Copilot) präzise zu erklären.</li>
+<li><strong>Das Token-Management</strong> und das <strong>Kontextfenster</strong> von Large Language Models (LLMs) zu verstehen und dieses Wissen zur Optimierung deiner Anfragen (Prompts) zu nutzen.</li>
+<li><strong>Das Abstraktionsproblem</strong> und die Grenzen probabilistischer Engines zu erkennen, um Fehler (Halluzinationen) in KI-generiertem Code systematisch aufzuspüren.</li>
+<li><strong>Das Konzept des Vibe Engineerings</strong> zu definieren und ein gesundes mentales Modell für die Zusammenarbeit mit KI-Systemen aufzubauen.</li>
+<li><strong>Die FAAFO-Philosophie</strong> in deinen Lernalltag zu integrieren, um schnell, ambitioniert und mit Spaß Prototypen zu entwickeln.</li>
+<li><strong>Deine Rolle als System-Orchestrator</strong> (vom „Linienkoch“ zum „Küchenchef“) zu verinnerlichen und das kritische „70%-Problem“ zu meistern.</li>
+<li><strong>Fortgeschrittene Prompt-Techniken</strong> wie <em>Zero-Shot</em>, <em>Few-Shot</em> und <em>Chain-of-Thought</em> zielgerichtet beim Programmieren und Lernen einzusetzen.</li>
+<li><strong>Die Anatomie eines Prompts</strong> zu zerlegen und effektive Anfragen zu formulieren, die dir strukturierte Code-Gerüste statt fertiger Lösungen liefern.</li>
+<li><strong>Ein modernes Tool-Setup</strong> einzurichten (GitHub Copilot, Tabnine, Cody, Warp Terminal) und die Web-Plattform <code>Bolt.new</code> für schnelles Prototyping zu nutzen.</li>
+<li><strong>Geführtes Pair Programming</strong> mit der KI durchzuführen und mithilfe des Rust-Makros <code>todo!()</code> komplexe Probleme (wie IBAN-Validierung oder ein Text-Quiz) schrittweise selbst zu lösen.</li>
+<li><strong>Professionelle Inline-Dokumentation</strong> (Docstrings) generieren zu lassen und zu interpretieren, um den eigenen und fremden Code besser zu verstehen.</li>
+</ol>
+<hr />
+<h2 id="1-evolution--ki-grundlagen"><a class="header" href="#1-evolution--ki-grundlagen">1. Evolution &amp; KI-Grundlagen</a></h2>
+<h3 id="11-evolution-der-softwareentwicklung-vom-compiler-zur-generativen-ki"><a class="header" href="#11-evolution-der-softwareentwicklung-vom-compiler-zur-generativen-ki">1.1 Evolution der Softwareentwicklung: Vom Compiler zur generativen KI</a></h3>
+<p><em>Referenz: Taulli, Kap. 1</em></p>
+<p>Um zu verstehen, warum das Programmieren mit KI ein so revolutionärer Schritt ist, müssen wir einen Blick in die Vergangenheit werfen. Die Geschichte der Softwareentwicklung ist eine Geschichte der kontinuierlichen Abstraktion. Abstraktion bedeutet in diesem Zusammenhang: Wir entfernen uns immer weiter von der physischen Hardware des Computers und nähern uns der menschlichen Sprache an.</p>
+<h4 id="die-fünf-epochen-der-programmierung"><a class="header" href="#die-fünf-epochen-der-programmierung">Die fünf Epochen der Programmierung</a></h4>
+<pre><code class="language-mermaid">graph TD
+    A["Epoche 1: Lochkarten &amp; Maschinencode (1940er - 1950er)"] --&gt; B["Epoche 2: Assembler &amp; Mnemonics (1950er)"]
+    B --&gt; C["Epoche 3: Compiler &amp; Hochsprachen (1950er - 1970er)"]
+    C --&gt; D["Epoche 4: IDEs, OOP &amp; IntelliSense (1980er - 2010er)"]
+    D --&gt; E["Epoche 5: Generative KI &amp; Natural Language Coding (heute)"]
+</code></pre>
+<h5 id="epoche-1-lochkarten-und-maschinencode"><a class="header" href="#epoche-1-lochkarten-und-maschinencode">Epoche 1: Lochkarten und Maschinencode</a></h5>
+<p>In den Anfängen der Informatik gab es keine Bildschirme, keine Tastaturen und keine Programmiersprachen. Computer wurden über physische Kabelverbindungen oder Lochkarten programmiert. Programmierer mussten in reinem Binärcode (Nullen und Einsen) denken. Ein winziger Fehler – ein falsch gestanztes Loch – bedeutete, dass ein tagelang vorbereiteter Stapel Lochkarten unbrauchbar war. Die Fehlerquote war enorm, und das Schreiben von Software war eine rein mathematisch-physikalische Tortur.</p>
+<h5 id="epoche-2-assemblersprachen"><a class="header" href="#epoche-2-assemblersprachen">Epoche 2: Assemblersprachen</a></h5>
+<p>Um das Binärchaos zu lichten, wurden Assemblersprachen entwickelt. Statt <code>01101011</code> schrieben Programmierer nun sogenannte <em>Mnemonics</em> wie <code>MOV</code> (Verschiebe Daten), <code>ADD</code> (Addiere) oder <code>PUSH</code> (Schiebe auf den Stapel). Ein Programm namens Assembler übersetzte diese Befehle in den Maschinencode. Dies war der erste echte Abstraktionsschritt, allerdings war der Code immer noch extrem hardwarenah und musste für jeden Prozessortyp völlig neu geschrieben werden.</p>
+<h5 id="epoche-3-die-Ära-der-compiler-und-hochsprachen"><a class="header" href="#epoche-3-die-Ära-der-compiler-und-hochsprachen">Epoche 3: Die Ära der Compiler und Hochsprachen</a></h5>
+<p>Ende der 1950er Jahre erfand Grace Hopper den ersten Compiler. Damit war der Weg frei für die ersten Hochsprachen wie Fortran, LISP und COBOL, später folgten C und C++. Programmierer konnten nun mathematische Formeln und logische Strukturen schreiben, die der menschlichen Denkweise ähnelten (z. B. <code>if x &gt; 5 { y = 10; }</code>). Der Compiler übernahm die komplexe Übersetzung in den Maschinencode des jeweiligen Prozessors. Software wurde portabel und für wesentlich mehr Menschen zugänglich.</p>
+<h5 id="epoche-4-integrierte-entwicklungsumgebungen-ides-und-autovervollständigung"><a class="header" href="#epoche-4-integrierte-entwicklungsumgebungen-ides-und-autovervollständigung">Epoche 4: Integrierte Entwicklungsumgebungen (IDEs) und Autovervollständigung</a></h5>
+<p>Mit dem Aufkommen von IDEs in den 1980er und 1990er Jahren änderte sich der Workflow erneut. Editoren wurden intelligenter. Sie hoben Syntaxfehler farbig hervor (Syntax-Highlighting), boten Debugger zur Fehlersuche und führten die Autovervollständigung (wie Microsofts <em>IntelliSense</em>) ein. Programmierer mussten nicht mehr jede Bibliotheksfunktion auswendig wissen; ein Druck auf die Tastenkombination genügte, um die verfügbaren Methoden anzuzeigen. Dennoch musste jede einzelne Zeile Logik manuell eingetippt werden.</p>
+<h5 id="epoche-5-generative-ki-und-natürlicher-sprachcode"><a class="header" href="#epoche-5-generative-ki-und-natürlicher-sprachcode">Epoche 5: Generative KI und natürlicher Sprachcode</a></h5>
+<p>Heute befinden wir uns in der fünften Epoche. Die generative KI ermöglicht es uns, die Programmiersprache selbst als eine Art "Zwischen-Compiler" zu betrachten. Wir beschreiben das gewünschte Verhalten der Software in natürlicher Sprache (Deutsch, Englisch etc.), und ein Large Language Model generiert den passenden Quellcode in Rust, Python oder JavaScript. Wir programmieren nicht mehr auf der Ebene der Syntax, sondern auf der Ebene der Konzepte und Anforderungen.</p>
+<hr />
+<h3 id="12-funktionsweise-von-ki-coding-codevorschläge-vs-klassische-code-vervollständigung"><a class="header" href="#12-funktionsweise-von-ki-coding-codevorschläge-vs-klassische-code-vervollständigung">1.2 Funktionsweise von KI-Coding: Codevorschläge vs. klassische Code-Vervollständigung</a></h3>
+<p><em>Referenz: Taulli, Kap. 2</em></p>
+<p>Viele Einsteiger verwechseln moderne KI-Assistenten mit der klassischen Autovervollständigung, die sie aus ihren Editoren kennen. Es ist jedoch essenziell, die grundlegenden Unterschiede in ihrer Funktionsweise zu verstehen, um die jeweiligen Stärken und Schwächen einschätzen zu können.</p>
+<h4 id="der-direkte-vergleich"><a class="header" href="#der-direkte-vergleich">Der direkte Vergleich</a></h4>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Merkmal</th><th style="text-align: left">Klassische Autovervollständigung (z. B. IntelliSense)</th><th style="text-align: left">KI-gestützte Codevorschläge (z. B. GitHub Copilot)</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>Technologie</strong></td><td style="text-align: left">Deterministische Algorithmen, Compiler-APIs, AST (Abstract Syntax Trees)</td><td style="text-align: left">Probabilistische neuronale Netze (Transformer-Architektur)</td></tr>
+<tr><td style="text-align: left"><strong>Funktionsweise</strong></td><td style="text-align: left">Liest die exakten Regeln der Sprache und analysiert den bestehenden Code-Zustand.</td><td style="text-align: left">Berechnet die statistisch wahrscheinlichste Fortsetzung deines Textes.</td></tr>
+<tr><td style="text-align: left"><strong>Zuverlässigkeit</strong></td><td style="text-align: left"><strong>100% korrekt</strong> im Rahmen der Syntax. Schlägt nur Dinge vor, die tatsächlich existieren.</td><td style="text-align: left"><strong>Variabel.</strong> Kann fantastischen Code schreiben, aber auch Fehler erfinden (Halluzinationen).</td></tr>
+<tr><td style="text-align: left"><strong>Kontext-Verständnis</strong></td><td style="text-align: left">Lokal beschränkt (aktuelle Klasse, importierte Module, Typdefinitionen).</td><td style="text-align: left">Global und semantisch (Kommentare, offene Tabs, Muster im gesamten Projekt).</td></tr>
+<tr><td style="text-align: left"><strong>Generierungstiefe</strong></td><td style="text-align: left">Einzelne Wörter, Methodennamen, Variablen, kurze Snippets.</td><td style="text-align: left">Ganze Funktionen, Klassen, Test-Suiten, SQL-Abfragen, Dokumentationen.</td></tr>
+</tbody></table>
+</div>
+<h4 id="wie-klassische-systeme-arbeiten"><a class="header" href="#wie-klassische-systeme-arbeiten">Wie klassische Systeme arbeiten</a></h4>
+<p>Wenn du in deiner IDE eine Variable namens <code>benutzer_name</code> vom Typ <code>String</code> eingibst und einen Punkt <code>.</code> dahintersetzt, fragt die IDE den Sprachserver (z. B. den Rust Analyzer) ab. Dieser kennt die Definition des Typs <code>String</code> in der Standardbibliothek ganz genau. Er liefert dir eine Liste aller Methoden wie <code>.len()</code>, <code>.trim()</code> oder <code>.push_str()</code>. Die IDE zeigt dir ausschließlich Methoden an, die syntaktisch an dieser Stelle erlaubt sind und tatsächlich existieren. Es gibt keinen Raum für Spekulationen oder Fehler.</p>
+<h4 id="wie-ki-systeme-arbeiten"><a class="header" href="#wie-ki-systeme-arbeiten">Wie KI-Systeme arbeiten</a></h4>
+<p>Wenn du ein KI-Tool nutzt, schickst du im Hintergrund kontinuierlich Teile deines Codes an ein neuronales Netz. Die KI analysiert den Text und berechnet: <em>„Welche Zeichenkette folgt am wahrscheinlichsten auf diesen Code-Kontext?“</em>
+Wenn du beispielsweise folgenden Kommentar schreibst:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Funktion, die prüft, ob eine Zahl eine Primzahl ist
+<span class="boring">}</span></code></pre></pre>
+<p>erkennt das Modell das Muster. In seinen gigantischen Trainingsdaten (bestehend aus Milliarden Zeilen Code von GitHub) folgte auf einen solchen Kommentar sehr häufig eine Funktion wie <code>fn ist_primzahl(n: u32) -&gt; bool { ... }</code>. Die KI schlägt dir diesen Block vor. Sie tut dies nicht, weil sie die mathematischen Regeln von Primzahlen „versteht“, sondern weil dieses Textmuster in ihrer Datenbank statistisch extrem dominant ist.</p>
+<hr />
+<h3 id="13-grundlagen-von-large-language-models-llms-token-management-und-kontextfenster"><a class="header" href="#13-grundlagen-von-large-language-models-llms-token-management-und-kontextfenster">1.3 Grundlagen von Large Language Models (LLMs): Token-Management und Kontextfenster</a></h3>
+<p><em>Referenz: Kofler, Kap. 1</em></p>
+<p>Um KI-Tools effizient zu nutzen und die gefürchteten Leistungseinbrüche oder Logikfehler zu vermeiden, musst du zwei technische Kernkonzepte von LLMs verstehen: <strong>Tokens</strong> und das <strong>Kontextfenster</strong>.</p>
+<h4 id="token-management-die-währung-der-ki"><a class="header" href="#token-management-die-währung-der-ki">Token-Management: Die Währung der KI</a></h4>
+<p>Ein LLM liest und schreibt keinen Text in Form von Buchstaben oder ganzen Wörtern. Stattdessen zerlegt ein sogenannter <em>Tokenizer</em> den Text vor der Verarbeitung in kleinere Einheiten, die <strong>Tokens</strong>.</p>
 <ul>
-<li><strong>Vom Linienkoch zum Küchenchef:</strong> Die KI übernimmt die Handarbeit (das Schneiden der Zwiebeln bzw. das Schreiben von Standard-Code-Zeilen), während du die Vision, die Systemarchitektur, das Rezept und die finale Qualitätskontrolle übernimmst.</li>
-<li><strong>Die FAAFO-Philosophie (nach Gene Kim &amp; Steve Yegge):</strong> <em>Fast, Ambitious, Autonomous, Fun, Optionality</em>. KI-Tools ermöglichen dir ein extrem schnelles und spielerisches Prototyping (oft als <em>Vibe Coding</em> bezeichnet). Du kannst Ideen in Minuten ausprobieren und verwerfen.</li>
-<li><strong>Das 70%-Problem (nach Addy Osmani):</strong> KI-Tools können dir ca. 70 % der Arbeit abnehmen (Boilerplate-Code, Standard-Funktionen). Die verbleibenden 30 % – die kritische Architektur, Fehlerbehandlung, Sicherheit, Optimierung und die korrekte Logik – erfordern jedoch zwingend deine menschliche Expertise. Verlässt du dich blind auf die 70 %, baust du fehlerhafte und unsichere Software.</li>
+<li>Ein Token entspricht im Englischen grob 4 Zeichen oder 0,75 Wörtern.</li>
+<li>Häufige Wörter wie <code>let</code> oder <code>fn</code> in Rust sind meist ein einzelnes Token.</li>
+<li>Seltene Wörter, deutsche Umlaute (<code>ä</code>, <code>ö</code>, <code>ü</code>) oder komplexe Code-Syntax mit vielen Sonderzeichen (<code>#[derive(Debug, Serialize, Deserialize)]</code>) werden oft in mehrere, sehr kleine Tokens zerlegt.</li>
+</ul>
+<h5 id="warum-ist-das-wichtig-für-dich"><a class="header" href="#warum-ist-das-wichtig-für-dich">Warum ist das wichtig für dich?</a></h5>
+<ol>
+<li><strong>Effizienz:</strong> Je mehr Sonderzeichen und verschachtelte Strukturen du verwendest, desto schneller füllt sich das Token-Kontingent der KI.</li>
+<li><strong>Kosten und Limits:</strong> API-Anbieter rechnen nach Tokens ab. Ein ineffizient geschriebener Prompt mit viel „Rauschen“ kostet mehr und stößt schneller an die Limits.</li>
+</ol>
+<h4 id="das-kontextfenster-das-kurzzeitgedächtnis"><a class="header" href="#das-kontextfenster-das-kurzzeitgedächtnis">Das Kontextfenster: Das Kurzzeitgedächtnis</a></h4>
+<p>Das Kontextfenster (Context Window) definiert die maximale Anzahl an Tokens, die ein LLM bei einer einzelnen Anfrage gleichzeitig verarbeiten kann. Dieses Fenster umfasst:</p>
+<ol>
+<li>Den System-Prompt (die Grundregeln der KI).</li>
+<li>Deinen aktuellen Prompt (deine Frage).</li>
+<li>Den Chat-Verlauf (alle vorherigen Fragen und Antworten).</li>
+<li>Den Code-Kontext (geöffnete Dateien in deiner IDE, die das Plugin automatisch mitsendet).</li>
+</ol>
+<pre><code>+-------------------------------------------------------------+
+|                      KONTEXTFENSTER                         |
+|                                                             |
+|  [ System-Prompt ]  --&gt; Definiert das Verhalten (Tutor)     |
+|  [ Chat-Verlauf ]   --&gt; Ältere Nachrichten                  |
+|  [ Code-Kontext ]   --&gt; Offene Tabs, Projektstruktur         |
+|  [ Aktueller Prompt]--&gt; Deine konkrete Frage                |
+|                                                             |
+|  ==================== MAXIMALE TOKEN-GRENZE ==============  |
++-------------------------------------------------------------+
+</code></pre>
+<h5 id="was-passiert-wenn-das-kontextfenster-voll-ist"><a class="header" href="#was-passiert-wenn-das-kontextfenster-voll-ist">Was passiert, wenn das Kontextfenster voll ist?</a></h5>
+<p>Wenn die Summe der Tokens aus deinem Chatverlauf und dem Code-Kontext die Grenze des Modells überschreitet, tritt das sogenannte <em>FIFO-Prinzip</em> (First In, First Out) in Kraft. Die ältesten Informationen fliegen aus dem Gedächtnis des Modells.</p>
+<ul>
+<li>Die KI vergisst plötzlich, welche Variablen du in der ersten Nachricht definiert hast.</li>
+<li>Sie ignoriert zuvor vereinbarte Regeln (z. B. „Schreibe keinen fertigen Code“).</li>
+<li>Die Antworten werden ungenauer, widersprüchlicher oder enthalten plötzlich Syntaxfehler.</li>
+</ul>
+<h5 id="best-practices-zur-schonung-des-kontextfensters"><a class="header" href="#best-practices-zur-schonung-des-kontextfensters">Best Practices zur Schonung des Kontextfensters:</a></h5>
+<ul>
+<li><strong>Halte Chatverläufe kurz:</strong> Starte für ein neues Thema oder ein neues Modul einen frischen Chat.</li>
+<li><strong>Schließe ungenutzte Tabs:</strong> Viele IDE-Plugins senden den Inhalt aller geöffneten Tabs als Kontext mit. Schließe Dateien, die für deine aktuelle Aufgabe irrelevant sind.</li>
+<li><strong>Präzise Code-Auswahl:</strong> Markiere nur den spezifischen Codeblock, über den du sprechen möchtest, statt der KI die gesamte Datei zu senden.</li>
 </ul>
 <hr />
-<h2 id="-2-wie-ki-coding-technologie-funktioniert"><a class="header" href="#-2-wie-ki-coding-technologie-funktioniert">🔀 2. Wie KI-Coding-Technologie funktioniert</a></h2>
-<p>Um ein Werkzeug effektiv zu nutzen, musst du verstehen, wie es funktioniert.</p>
+<h3 id="14-die-probabilistische-engine-grundlagen-und-das-abstraktionsproblem"><a class="header" href="#14-die-probabilistische-engine-grundlagen-und-das-abstraktionsproblem">1.4 Die probabilistische Engine: Grundlagen und das Abstraktionsproblem</a></h3>
+<p><em>Referenz: Pawar, Teil 1</em></p>
+<p>Wie wir bereits gelernt haben, ist eine generative KI eine <strong>probabilistische Engine</strong>. Das bedeutet, dass jede Antwort das Produkt einer Wahrscheinlichkeitsrechnung ist. Daraus ergibt sich eine der größten Herausforderungen für angehende Entwickler: das <strong>Abstraktionsproblem</strong>.</p>
+<h4 id="next-token-prediction-anschaulich-erklärt"><a class="header" href="#next-token-prediction-anschaulich-erklärt">Next-Token-Prediction anschaulich erklärt</a></h4>
+<p>Stell dir vor, du spielst das Spiel „Satz vervollständigen“.
+Wenn ich sage: <em>„Der Hund bellt den...“</em>, welches Wort folgt als nächstes?</p>
 <ul>
-<li><strong>Die probabilistische Engine (nach Durgesh Rajubhai Pawar):</strong> Ein Large Language Model (LLM) ist im Grunde eine hochentwickelte Wahrscheinlichkeitsmaschine. Wenn du Code eingibst, berechnet das Modell, welche Zeichen und Wörter als Nächstes didaktisch und syntaktisch am wahrscheinlichsten folgen sollten.</li>
-<li><strong>Codevorschläge vs. Smart Completion:</strong>
+<li><em>„Postboten“</em> (Wahrscheinlichkeit: 70%)</li>
+<li><em>„Baum“</em> (Wahrscheinlichkeit: 20%)</li>
+<li><em>„Kühlschrank“</em> (Wahrscheinlichkeit: 1%)</li>
+<li><em>„Apfelkuchen“</em> (Wahrscheinlichkeit: 0.001%)</li>
+</ul>
+<p>Die probabilistische Engine der KI funktioniert exakt genauso, nur auf einem astronomisch höheren mathematischen Niveau. Sie bewertet Billionen von Parametern, um das nächste Wort (oder Token) zu bestimmen.</p>
+<h4 id="das-abstraktionsproblem-der-schein-trügt"><a class="header" href="#das-abstraktionsproblem-der-schein-trügt">Das Abstraktionsproblem: Der Schein trügt</a></h4>
+<p>Weil die KI so gut darin ist, syntaktisch passenden Text aneinanderzureihen, erzeugt sie eine <strong>Illusion von Verständnis</strong>. Wenn sie eine fehlerfreie Rust-Funktion generiert, glauben wir instinktiv, die KI habe die Logik dahinter verstanden. Das ist ein Trugschluss.</p>
+<p>Die KI manipuliert Symbole (Buchstaben und Zahlen) basierend auf statistischen Mustern. Sie hat:</p>
 <ul>
-<li><em>Klassische Autovervollständigung (IntelliSense):</em> Liest die strikten Syntaxregeln der Programmiersprache aus und schlägt existierende Variablen oder Funktionen vor.</li>
-<li><em>KI-gestützte Programmierassistenten (GitHub Copilot, Cursor etc.):</em> Analysieren deinen geschriebenen Code, deine Kommentare und offene Dateien, um den logischen Kontext zu erfassen und ganze Codeblöcke vorherzusagen.</li>
+<li>Kein physikalisches Weltverständnis.</li>
+<li>Keine logische Kontrollinstanz (sie führt den Code nicht im Kopf aus).</li>
+<li>Keine Vorstellung von der Absicht des Programmierers.</li>
+</ul>
+<h5 id="die-folgen-des-abstraktionsproblems"><a class="header" href="#die-folgen-des-abstraktionsproblems">Die Folgen des Abstraktionsproblems:</a></h5>
+<ol>
+<li><strong>Syntaktisch korrekt, semantisch katastrophal:</strong> Die KI schreibt Code, der fehlerfrei kompiliert, aber mathematisch völliger Unsinn ist. Beispielsweise könnte eine Funktion zur Zinsberechnung Zinsen addieren statt multiplizieren.</li>
+<li><strong>Bibliotheken-Halluzination:</strong> Wenn die KI vor einem schwierigen Problem steht, erfindet sie manchmal einfach eine Rust-Bibliothek (ein Crate), die perfekt für dieses Problem geeignet wäre, aber in der Realität gar nicht existiert (z. B. <code>extern crate super_simple_iban_validator;</code>).</li>
+<li><strong>Sicherheitslücken:</strong> Die KI neigt dazu, den einfachsten Code zu generieren. Dieser vernachlässigt jedoch oft Sicherheitsprüfungen, Validierungen von Benutzereingaben oder Fehlerbehandlungen, da diese in den Trainingsdaten seltener oder komplexer zu finden sind.</li>
+</ol>
+<blockquote>
+<p>[!WARNING]
+<strong>Die goldene Regel des KI-gestützten Codens:</strong>
+Vertraue niemals einem Codevorschlag, den du nicht selbst logisch nachvollziehen und durch Tests verifizieren kannst. Du bist die Qualitätskontrolle!</p>
+</blockquote>
+<hr />
+<h3 id="15-das-mentale-modell-für-vibe-engineering"><a class="header" href="#15-das-mentale-modell-für-vibe-engineering">1.5 Das mentale Modell für Vibe Engineering</a></h3>
+<p><em>Referenz: Lelek &amp; Skowroński</em></p>
+<p>Der Begriff <strong>Vibe Engineering</strong> (oder auch <em>Vibe Coding</em>) beschreibt einen Programmierstil, der durch generative KI populär geworden ist. Man schreibt kaum noch selbst Code, sondern beschreibt der KI die Anforderungen, lässt sie den Code generieren, testet das Ergebnis und gibt bei Fehlern neue Prompts ein („Der Vibe stimmt noch nicht, korrigiere das“).</p>
+<p>Ohne das richtige mentale Modell führt Vibe Engineering jedoch schnell zu massivem Frust, unwartbarem Code und unauffindbaren Bugs.</p>
+<h4 id="das-falsche-mentale-modell-der-wunschbrunnen"><a class="header" href="#das-falsche-mentale-modell-der-wunschbrunnen">Das falsche mentale Modell: Der Wunschbrunnen</a></h4>
+<p>Viele Anfänger betrachten die KI als einen magischen Wunschbrunnen. Sie werfen einen ungenauen Prompt hinein (<em>„Bau mir ein Spiel wie Super Mario“</em>) und erwarten, dass die KI auf magische Weise ein fertiges, perfektes Produkt ausgibt. Tritt ein Fehler auf, wird der Prompt variiert (<em>„Nein, das geht nicht, mach es anders“</em>), ohne dass der Entwickler versteht, was der generierte Code eigentlich tut. Dies führt in eine Sackgasse aus sich gegenseitig blockierenden Fehlern.</p>
+<h4 id="das-richtige-mentale-modell-der-unkonzentrierte-praktikant"><a class="header" href="#das-richtige-mentale-modell-der-unkonzentrierte-praktikant">Das richtige mentale Modell: Der unkonzentrierte Praktikant</a></h4>
+<p>Betrachte die KI als einen <strong>extrem schnellen, hochmotivierten, aber sehr unkonzentrierten Praktikanten</strong>.</p>
+<ul>
+<li>Der Praktikant hat das gesamte theoretische Wissen der Welt im Kopf.</li>
+<li>Er arbeitet in Lichtgeschwindigkeit.</li>
+<li>Aber: Er neigt zu Leichtsinnsfehlern, übersieht Grenzfälle, liest die Arbeitsanweisung nicht richtig durch und versucht gerne, dich mit selbstbewusst vorgetragenen Halbwahrheiten zu beeindrucken.</li>
+</ul>
+<h5 id="wie-führst-du-diesen-praktikanten-erfolgreich"><a class="header" href="#wie-führst-du-diesen-praktikanten-erfolgreich">Wie führst du diesen Praktikanten erfolgreich?</a></h5>
+<ol>
+<li><strong>Präzise Aufgabenstellung:</strong> Gib ihm klare, unmissverständliche Anweisungen. Zerlege die große Aufgabe in kleine Teilschritte.</li>
+<li><strong>Kontinuierliche Kontrolle:</strong> Lies jede Zeile Code, die er dir vorlegt. Lass ihn den Code erklären.</li>
+<li><strong>Definiere Schnittstellen (Contracts):</strong> Sage ihm genau, wie die Eingaben und Ausgaben einer Funktion auszusehen haben, bevor er mit der Arbeit beginnt.</li>
+<li><strong>Schreibe Tests:</strong> Der beste Weg, um zu prüfen, ob der Praktikant sauber gearbeitet hat, sind automatisierte Tests. Lass ihn die Tests schreiben und überprüfe sie selbst.</li>
+</ol>
+<hr />
+<h2 id="2-der-paradigmenwechsel"><a class="header" href="#2-der-paradigmenwechsel">2. Der Paradigmenwechsel</a></h2>
+<h3 id="21-die-faafo-philosophie-fast-ambitious-autonomous-fun-optionality"><a class="header" href="#21-die-faafo-philosophie-fast-ambitious-autonomous-fun-optionality">2.1 Die FAAFO-Philosophie (Fast, Ambitious, Autonomous, Fun, Optionality)</a></h3>
+<p><em>Referenz: Kim &amp; Yegge, Teil 1</em></p>
+<p>Die Softwareentwicklung befindet sich in einem tiefgreifenden Wandel. Die traditionelle Herangehensweise weicht einer dynamischen, experimentierfreudigen Philosophie, die durch KI-Werkzeuge überhaupt erst möglich wird. Gene Kim und Steve Yegge beschreiben diesen neuen Ansatz mit dem Akronym <strong>FAAFO</strong>.</p>
+<pre><code>+-------------------------------------------------------------+
+|                      DIE FAAFO-PHILOSOPHIE                  |
+|                                                             |
+|  [ F ] AST        --&gt; Sofortiges Feedback, keine Wartezeiten  |
+|  [ A ] MBITIOUS   --&gt; Große Ideen ohne Syntax-Angst angehen |
+|  [ A ] UTONOMOUS  --&gt; Unabhängig lernen und Probleme lösen  |
+|  [ F ] UN         --&gt; Kreatives Schaffen statt Frust         |
+|  [ O ] PTIONALITY --&gt; Viele Lösungswege parallel evaluieren |
++-------------------------------------------------------------+
+</code></pre>
+<h4 id="fast-schnell"><a class="header" href="#fast-schnell">Fast (Schnell)</a></h4>
+<p>Früher war der Zyklus zwischen einer Idee und dem ersten lauffähigen Prototyp lang. Man musste Bibliotheken konfigurieren, Build-Systeme einrichten und seitenweise Boilerplate-Code schreiben. Mit KI verkürzt sich dieser Zyklus auf Sekunden. Du kannst eine Idee beschreiben, die KI generiert das Grundgerüst, und du siehst sofort, ob das Konzept funktioniert. Das Feedback ist unmittelbar.</p>
+<h4 id="ambitious-ambitioniert"><a class="header" href="#ambitious-ambitioniert">Ambitious (Ambitioniert)</a></h4>
+<p>Als Anfänger bist du oft durch deine mangelnden Kenntnisse der komplexen Syntax eingeschränkt. Du traust dir vielleicht nicht zu, eine Netzwerk-Applikation oder ein komplexes Datenverarbeitungsprogramm zu schreiben. Die KI nimmt dir diese "Syntax-Angst". Du kannst ehrgeizige Projekte planen, da du weißt, dass die KI dir bei der Umsetzung der komplizierten Sprachkonstrukte hilft.</p>
+<h4 id="autonomous-autonom"><a class="header" href="#autonomous-autonom">Autonomous (Autonom)</a></h4>
+<p>Wenn du früher beim Programmieren auf einen Fehler gestoßen bist, den du nicht verstanden hast, musstest du in Foren wie Stack Overflow suchen oder auf die Hilfe eines erfahrenen Kollegen warten. Heute macht dich die KI autonom. Sie kann dir Compiler-Fehler verständlich auf Deutsch erklären, dir alternative Lösungswege aufzeigen und dich Schritt für Schritt durch das Problem führen.</p>
+<h4 id="fun-spaß"><a class="header" href="#fun-spaß">Fun (Spaß)</a></h4>
+<p>Der Spaßfaktor beim Programmieren steigt enorm, wenn man sich auf die kreative Problemlösung konzentrieren kann, anstatt Stunden mit der Suche nach einem vergessenen Semikolon oder einer falsch gesetzten geschweiften Klammer zu verschwenden. Du erlebst schneller Erfolgserlebnisse, was deine Motivation aufrechterhält.</p>
+<h4 id="optionality-optionen"><a class="header" href="#optionality-optionen">Optionality (Optionen)</a></h4>
+<p>Da das Erstellen von Code kaum noch Zeit kostet, musst du dich nicht sofort auf den ersten Lösungsansatz festlegen. Du kannst die KI bitten: <em>„Zeige mir drei verschiedene Wege, um dieses Problem in Rust zu lösen: einmal mit einer Schleife, einmal funktional mit Iteratoren und einmal rekursiv. Erkläre mir die Vor- und Nachteile von jedem Ansatz.“</em> So lernst du verschiedene Programmierparadigmen parallel kennen.</p>
+<hr />
+<h3 id="22-vom-linienkoch-zum-küchenchef-der-wandel-vom-manuellen-code-schreiber-zum-system-orchestrator"><a class="header" href="#22-vom-linienkoch-zum-küchenchef-der-wandel-vom-manuellen-code-schreiber-zum-system-orchestrator">2.2 Vom Linienkoch zum Küchenchef: Der Wandel vom manuellen Code-Schreiber zum System-Orchestrator</a></h3>
+<p><em>Referenz: Kim &amp; Yegge, Teil 2; Osmani</em></p>
+<p>Dieses Bild ist eines der wichtigsten mentalen Modelle für deine zukünftige Karriere als Softwareentwickler. Es beschreibt die Transformation deiner Rolle.</p>
+<h4 id="der-linienkoch-der-klassische-coder"><a class="header" href="#der-linienkoch-der-klassische-coder">Der Linienkoch (Der klassische Coder)</a></h4>
+<p>Der Linienkoch arbeitet in der Küche nach festen Anweisungen. Seine Aufgabe ist es, Zwiebeln zu schneiden, Fleisch anzubraten und die Teller nach Vorgabe anzurichten. Er verbringt den Großteil seiner Zeit mit repetitiven, handwerklichen Tätigkeiten.
+In der Softwareentwicklung entspricht dies dem manuellen Schreiben von Standard-Code:</p>
+<ul>
+<li>Schreiben von Getter- und Setter-Methoden.</li>
+<li>Erstellen von Datenbank-Tabellendefinitionen (Schemas).</li>
+<li>Schreiben von einfachen Unittests.</li>
+<li>Konvertieren von Datenformaten (z. B. JSON in XML).
+Dies ist genau die Arbeit, die KI-Systeme heute fehlerfrei und in Millisekunden erledigen können. Wenn du dich nur als Linienkoch verstehst, wirst du durch die KI obsolet.</li>
+</ul>
+<h4 id="der-küchenchef-der-system-orchestrator"><a class="header" href="#der-küchenchef-der-system-orchestrator">Der Küchenchef (Der System-Orchestrator)</a></h4>
+<p>Der Küchenchef kocht selten selbst jede einzelne Zutat. Seine Aufgaben sind strategischer und gestalterischer Natur:</p>
+<ul>
+<li><strong>Menü-Design:</strong> Welche Gerichte passen zusammen? (Software-Architektur und Systemdesign).</li>
+<li><strong>Zutaten-Auswahl:</strong> Welche Rohstoffe kaufen wir ein? (Auswahl der richtigen Bibliotheken, Datenstrukturen und Programmierkonzepte).</li>
+<li><strong>Delegation:</strong> Wer übernimmt welchen Arbeitsschritt? (Effektives Prompting und Steuerung der KI).</li>
+<li><strong>Qualitätskontrolle (Abschmecken):</strong> Entspricht das Gericht den Qualitätsansprüchen? Schmeckt es dem Gast? (Code-Reviews, Integrationstests, Sicherheitsprüfungen, Performance-Optimierung).</li>
+</ul>
+<p>Als System-Orchestrator programmierst du auf einer höheren Abstraktionsebene. Du führst die KI, triffst die architektonischen Entscheidungen und validierst das Endergebnis.</p>
+<h4 id="das-70-problem-nach-addy-osmani"><a class="header" href="#das-70-problem-nach-addy-osmani">Das 70%-Problem (nach Addy Osmani)</a></h4>
+<p>Addy Osmani, Engineering Leader bei Google, warnt vor dem Phänomen des <strong>70%-Problems</strong>.</p>
+<pre><code>+---------------------------------------------------+
+|               DAS 70%-PROBLEM                     |
+|                                                   |
+| [======================= KI-Arbeit (70%) =======] |
+| Schnell generierter Boilerplate-Code, Standard-   |
+| logik, einfache Funktionen. Leicht zu erstellen.  |
+|                                                   |
+| [======= MENSCHLICHE EXPERTISE (30%) =======]     |
+| Edge Cases, Fehlerbehandlung, Sicherheit,         |
+| Performance, Architektur-Design. Kritisch!        |
++---------------------------------------------------+
+</code></pre>
+<p>KI-Tools machen es extrem einfach, die ersten 70% eines Projekts in Rekordzeit zu erstellen. Der Code sieht super aus, läuft auf den ersten Blick und die App startet.
+Die restlichen 30% sind jedoch die schwierigsten und kritischsten:</p>
+<ul>
+<li>Was passiert bei unerwarteten Benutzereingaben (Edge Cases)?</li>
+<li>Ist das System sicher gegen Angriffe (SQL-Injection, Buffer Overflow)?</li>
+<li>Skaliert der Code, wenn 10.000 Benutzer gleichzeitig darauf zugreifen (Performance)?</li>
+<li>Ist der Code so strukturiert, dass man ihn in zwei Jahren noch erweitern kann (Wartbarkeit)?</li>
+</ul>
+<p>Die KI scheitert oft an diesen 30%. Wenn du als Entwickler nicht die Kompetenz besitzt, diese 30% selbstständig zu analysieren, zu programmieren und zu überwachen, wird dein Projekt scheitern. Die 30% erfordern dein tiefes Verständnis der fundamentalen Konzepte.</p>
+<hr />
+<h2 id="3-prompt-engineering--tool-setup"><a class="header" href="#3-prompt-engineering--tool-setup">3. Prompt Engineering &amp; Tool-Setup</a></h2>
+<h3 id="31-grundlagen-des-promptings-zero-shot-few-shot-und-chain-of-thought"><a class="header" href="#31-grundlagen-des-promptings-zero-shot-few-shot-und-chain-of-thought">3.1 Grundlagen des Promptings: Zero-Shot, Few-Shot und Chain-of-Thought</a></h3>
+<p><em>Referenz: Kofler, Kap. 1</em></p>
+<p>Prompt Engineering ist die Kunst und Wissenschaft, Anfragen an ein LLM so zu formulieren, dass man das präziseste und nützlichste Ergebnis erhält. Für Entwickler gibt es drei fundamentale Prompting-Techniken, die du beherrschen musst.</p>
+<h4 id="1-zero-shot-prompting"><a class="header" href="#1-zero-shot-prompting">1. Zero-Shot-Prompting</a></h4>
+<p>Du stellst der KI eine direkte Aufgabe, ohne ihr Beispiele zu geben, wie die Lösung aussehen soll. Du verlässt dich vollkommen auf das bereits trainierte Wissen des Modells.</p>
+<h5 id="beispiel-zero-shot"><a class="header" href="#beispiel-zero-shot">Beispiel (Zero-Shot):</a></h5>
+<blockquote>
+<p><strong>Prompt:</strong>
+„Schreibe eine Funktion in Rust, die überprüft, ob eine übergebene Zahl eine gerade Zahl ist.“</p>
+<p><strong>Erwartete Antwort:</strong>
+Die KI generiert direkt die einfache Funktion unter Verwendung des Modulo-Operators (<code>n % 2 == 0</code>).</p>
+</blockquote>
+<h5 id="wann-nutzen"><a class="header" href="#wann-nutzen">Wann nutzen?</a></h5>
+<p>Für einfache, standardisierte Aufgaben, die keine spezielle Formatierung oder ungewöhnliche Logik erfordern.</p>
+<hr />
+<h4 id="2-few-shot-prompting"><a class="header" href="#2-few-shot-prompting">2. Few-Shot-Prompting</a></h4>
+<p>Du gibst dem Modell vor der eigentlichen Aufgabe ein oder mehrere Beispiele (Demonstrationen) für Eingabe und die gewünschte Ausgabe. Dies hilft der KI, das gewünschte Antwortformat, den Programmierstil oder spezifische Design-Muster exakt zu übernehmen.</p>
+<h5 id="beispiel-few-shot"><a class="header" href="#beispiel-few-shot">Beispiel (Few-Shot):</a></h5>
+<blockquote>
+<p><strong>Prompt:</strong>
+„Ich möchte logische Bedingungen in textuelle Beschreibungen übersetzen. Hier sind Beispiele:</p>
+<p><strong>Eingabe:</strong> <code>x &gt; 10 &amp;&amp; x &lt; 20</code>
+<strong>Ausgabe:</strong> „Die Variable x muss strikt zwischen 10 und 20 liegen.“</p>
+<p><strong>Eingabe:</strong> <code>y == 0 || y == 100</code>
+<strong>Ausgabe:</strong> „Die Variable y muss entweder genau 0 oder genau 100 sein.“</p>
+<p>Übersetze nun folgende Bedingung im gleichen Stil:
+<strong>Eingabe:</strong> <code>alter &gt;= 18 &amp;&amp; hat_fuehrerschein == true</code>“</p>
+<p><strong>Erwartete Antwort:</strong>
+<strong>Ausgabe:</strong> „Das Alter muss mindestens 18 sein und die Person muss im Besitz eines Führerscheins sein.“</p>
+</blockquote>
+<h5 id="wann-nutzen-1"><a class="header" href="#wann-nutzen-1">Wann nutzen?</a></h5>
+<p>Wenn du Code in einem ganz bestimmten Stil generieren lassen willst (z. B. nach den Stilrichtlinien deines Unternehmens), wenn du Testfälle in einer bestimmten Syntax brauchst oder komplexe Daten transformieren musst.</p>
+<hr />
+<h4 id="3-chain-of-thought-prompting-cot"><a class="header" href="#3-chain-of-thought-prompting-cot">3. Chain-of-Thought-Prompting (CoT)</a></h4>
+<p>Du weist die KI explizit an, das Problem Schritt für Schritt logisch zu analysieren und ihren Denkprozess aufzuschreiben, <em>bevor</em> sie den finalen Code generiert. Dies zwingt das Modell, Zwischenschritte in seinem Kontextfenster abzuspeichern, was die Fehlerquote bei komplexen mathematischen oder logischen Aufgaben drastisch senkt.</p>
+<h5 id="beispiel-chain-of-thought"><a class="header" href="#beispiel-chain-of-thought">Beispiel (Chain-of-Thought):</a></h5>
+<blockquote>
+<p><strong>Prompt:</strong>
+„Ich möchte eine Funktion in Rust schreiben, die prüft, ob ein Jahr ein Schaltjahr ist.
+Denke zuerst Schritt für Schritt laut über die Regeln nach: Welche Bedingungen müssen für ein Schaltjahr erfüllt sein? Schreibe diese Schritte als Kommentar auf. Generiere erst danach das Code-Gerüst mit todo!().“</p>
+<p><strong>Erwartete Antwort:</strong>
+„<strong>Schritt-für-Schritt-Analyse:</strong></p>
+<ol>
+<li>Ein Jahr ist grundsätzlich ein Schaltjahr, wenn es restlos durch 4 teilbar ist.</li>
+<li>Ausnahme: Ist das Jahr durch 100 teilbar, ist es kein Schaltjahr...</li>
+<li>Ausnahme von der Ausnahme: Ist das Jahr jedoch auch durch 400 teilbar, ist es dennoch ein Schaltjahr.</li>
+</ol>
+<p>Hier ist das Code-Gerüst basierend auf dieser Logik:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn ist_schaltjahr(jahr: u32) -&gt; bool {
+    // 1. Teilbarkeit durch 4, 100 und 400 prüfen
+    todo!("Logik für Schaltjahr-Prüfung implementieren")
+}
+```“
+<span class="boring">}</span></code></pre></pre>
+</blockquote>
+<h5 id="wann-nutzen-2"><a class="header" href="#wann-nutzen-2">Wann nutzen?</a></h5>
+<p>Bei allen komplexen logischen Problemen, Algorithmen, mathematischen Berechnungen oder bei der Fehlersuche (Debugging).</p>
+<hr />
+<h3 id="32-anatomie-eines-prompts-anweisungen-kontext-eingabedaten-und-ausgabeformate"><a class="header" href="#32-anatomie-eines-prompts-anweisungen-kontext-eingabedaten-und-ausgabeformate">3.2 Anatomie eines Prompts: Anweisungen, Kontext, Eingabedaten und Ausgabeformate</a></h3>
+<p><em>Referenz: Taulli, Kap. 3</em></p>
+<p>Ein schlecht geschriebener Prompt führt zu schlechtem Code. Wenn du der KI nur hinwirfst: <em>„Mach IBAN Prüfung Rust“</em>, wirst du einen Codeblock erhalten, der dich didaktisch nicht weiterbringt, eventuell veraltet ist oder Bibliotheken nutzt, die du gar nicht verwenden willst.</p>
+<p>Ein professioneller Prompt im Software-Engineering ist wie ein strukturierter Arbeitsauftrag aufgebaut und besteht aus vier Kernkomponenten:</p>
+<pre><code>+-------------------------------------------------------------+
+|                     ANATOMIE EINES PROMPTS                  |
+|                                                             |
+| 1. [ ROLLE / KONTEXT ]   --&gt; "Du bist ein didaktischer..."  |
+| 2. [ ANWEISUNG ]         --&gt; "Schreibe ein Code-Gerüst..."  |
+| 3. [ EINGABEDATEN ]      --&gt; "Hier ist der Code: ..."       |
+| 4. [ AUSGABE-FORMAT ]    --&gt; "Gib nur das Gerüst aus..."    |
++-------------------------------------------------------------+
+</code></pre>
+<h4 id="die-vier-komponenten-im-detail"><a class="header" href="#die-vier-komponenten-im-detail">Die vier Komponenten im Detail</a></h4>
+<ol>
+<li><strong>Rolle und Kontext (Role/Context):</strong> Wer ist die KI und in welcher Situation befindest du dich?
+<ul>
+<li><em>Schlecht:</em> (Keine Angabe)</li>
+<li><em>Gut:</em> „Du bist ein erfahrener Rust-Entwickler und didaktischer Mentor. Ich bin ein Programmier-Anfänger und lerne gerade die Grundlagen von Kontrollstrukturen.“</li>
 </ul>
 </li>
-<li><strong>Das Abstraktionsproblem:</strong> Da die KI auf Mustern aus Trainingsdaten basiert, „versteht“ sie logische Zusammenhänge nicht im menschlichen Sinne. Sie kann syntaktisch perfekten Code generieren, der jedoch logisch völlig fehlerhaft ist (semantische Fehler). Deine Aufgabe ist es, diesen Code stets kritisch zu hinterfragen.</li>
+<li><strong>Präzise Anweisung (Instructions):</strong> Was genau soll die KI tun? Welche Regeln muss sie befolgen?
+<ul>
+<li><em>Schlecht:</em> „Schreib Code für ein Quiz.“</li>
+<li><em>Gut:</em> „Erstelle ein Code-Gerüst für ein einfaches Text-Quiz in der Konsole. Verwende keine externen Crates (Bibliotheken), sondern nur die Rust-Standardbibliothek.“</li>
 </ul>
-<hr />
-<h2 id="-3-die-kunst-des-promptings-prompt-engineering"><a class="header" href="#-3-die-kunst-des-promptings-prompt-engineering">⌨️ 3. Die Kunst des Promptings (Prompt Engineering)</a></h2>
-<p>Ein Prompt ist die Anweisung, die du der KI gibst. Im professionellen Kontext ist Prompting kein bloßes Ausprobieren, sondern eine strukturierte Methode.</p>
-<h3 id="die-anatomie-eines-guten-prompts-nach-tom-taulli"><a class="header" href="#die-anatomie-eines-guten-prompts-nach-tom-taulli">Die Anatomie eines guten Prompts <em>(nach Tom Taulli)</em></a></h3>
-<ol>
-<li><strong>Rolle/Kontext:</strong> Sag der KI, wer sie ist (z. B. <em>„Du bist ein didaktischer Rust-Mentor für Anfänger.“</em>).</li>
-<li><strong>Aufgabe/Anweisung:</strong> Definiere präzise, was getan werden soll (z. B. <em>„Erkläre mir das Konzept von Variablen im Vergleich zu Kisten.“</em>).</li>
-<li><strong>Eingabedaten:</strong> Gib relevanten Code oder Fehlermeldungen als Kontext mit.</li>
-<li><strong>Format/Einschränkungen:</strong> Bestimme das Ausgabeformat (z. B. <em>„Gib mir keine fertigen Codelösungen. Verwende stattdessen Code-Gerüste mit <code>todo!()</code> und führe mich mit Hinweisen zur Lösung.“</em>).</li>
+</li>
+<li><strong>Eingabedaten (Input Data):</strong> Welcher Code, welche API-Spezifikation oder welche Fehlermeldung dient als Basis?
+<ul>
+<li><em>Gut:</em> „Hier ist die Datenstruktur, die ich verwenden möchte: <code>struct Frage { text: String, optionen: Vec&lt;String&gt; }</code>.“</li>
+</ul>
+</li>
+<li><strong>Ausgabeformat (Output Indicator):</strong> Wie soll die Antwort strukturiert sein? Was soll vermieden werden?
+<ul>
+<li><em>Schlecht:</em> (Keine Angabe, die KI gibt 3 Seiten Fließtext und fertigen Code aus)</li>
+<li><em>Gut:</em> „Gib mir keine fertige Codelösung! Erstelle nur die Funktionssignaturen mit dem <code>todo!()</code>-Makro im Funktionskörper. Füge über jeder Funktion einen kurzen didaktischen Kommentar hinzu, der erklärt, welche Schritte ich zur Lösung implementieren muss.“</li>
+</ul>
+</li>
 </ol>
-<h3 id="fortgeschrittene-prompt-techniken-für-einsteiger"><a class="header" href="#fortgeschrittene-prompt-techniken-für-einsteiger">Fortgeschrittene Prompt-Techniken für Einsteiger</a></h3>
-<ul>
-<li><strong>Explain-Then-Implement (Erst erklären, dann umsetzen):</strong> Lass dir von der KI erst das theoretische Konzept erklären und die Schritte strukturieren, bevor du sie Code generieren lässt.</li>
-<li><strong>Contract-First (Schnittstellen zuerst):</strong> Definiere mit der KI zuerst die Signaturen (Eingabe- und Ausgabewerte einer Funktion), bevor du die eigentliche Logik ausarbeiten lässt.</li>
-<li><strong>Adversarial Review (Kritische Prüfung):</strong> Bitte die KI nach einer Generierung: <em>„Welche Edge-Cases (Grenzfälle) oder potenziellen Fehlerquellen siehst du in diesem Entwurf?“</em></li>
-</ul>
-<hr />
-<h2 id="-4-pair-programming-als-lernwerkzeug-nutzen"><a class="header" href="#-4-pair-programming-als-lernwerkzeug-nutzen">🧠 4. Pair Programming als Lernwerkzeug nutzen</a></h2>
-<p>Wenn du Programmieren lernst, besteht die größte Gefahr darin, dass die KI deine Denkarbeit übernimmt. Verwende sie stattdessen als persönlichen Tutor:</p>
-<ul>
-<li><strong>Fordere didaktische Unterstützung ein:</strong> Nutze Prompts wie: <em>„Ich möchte lernen, wie man Benutzereingaben in Rust verarbeitet. Gib mir eine kleine Aufgabe, aber verrate mir nicht den Code. Gib mir stattdessen Tipps, wie ich anfangen kann.“</em></li>
-<li><strong>Umgang mit Fehlern:</strong> Wenn der Compiler einen Fehler wirft, kopiere nicht einfach stumm die Korrektur der KI. Frage sie: <em>„Warum ist dieser Fehler aufgetreten und was lerne ich daraus über das Typsystem von Rust?“</em></li>
-<li><strong>Gefahr von Package-Halluzinationen:</strong> KI-Modelle neigen manchmal dazu, Crates (Bibliotheken) oder Funktionen zu erfinden, die es gar nicht gibt. Überprüfe die Vorschläge der KI daher immer in der offiziellen Dokumentation (z. B. auf docs.rs).</li>
-</ul>
-<hr />
-<h2 id="-didaktischer-leitfaden-für-phase-1"><a class="header" href="#-didaktischer-leitfaden-für-phase-1">📌 Didaktischer Leitfaden für Phase 1</a></h2>
+<h4 id="vorlage-der-ultimative-didaktik-prompt-für-einsteiger"><a class="header" href="#vorlage-der-ultimative-didaktik-prompt-für-einsteiger">Vorlage: Der ultimative Didaktik-Prompt für Einsteiger</a></h4>
+<p>Kopiere diesen Prompt und nutze ihn als System-Prompt oder als Einstieg in deine Chats, wenn du ein neues Konzept lernen willst:</p>
 <blockquote>
-<p>[!IMPORTANT]
-<strong>Deine goldenen Regeln im Umgang mit KI in Phase 1:</strong></p>
+<p><strong>System-Prompt:</strong>
+„Du bist mein persönlicher, didaktischer Rust-Mentor. Dein Ziel ist es, mir zu helfen, die Konzepte hinter dem Code tiefgreifend zu verstehen.
+Bitte befolge bei all deinen Antworten diese Regeln:</p>
 <ol>
-<li><strong>Lies jeden generierten Codezeile aufmerksam durch.</strong> Wenn du eine Zeile nicht verstehst, frage die KI nach einer Erklärung, bevor du weitermachst.</li>
-<li><strong>Nutze Code-Gerüste:</strong> Lass dir von der KI Funktionen mit <code>todo!()</code> generieren und versuche, die eigentliche Logik selbst auszufüllen.</li>
-<li><strong>Hinterfrage Vorschläge:</strong> Führe keine Befehle im Terminal aus und binde keine Crates ein, deren Funktionsweise du nicht grob verstehst.</li>
+<li>Verrate mir niemals fertige Codelösungen.</li>
+<li>Wenn ich dich nach der Implementierung einer Aufgabe frage, antworte mir mit einem strukturierten Code-Gerüst, das leere Funktionen mit dem <code>todo!()</code>-Makro enthält.</li>
+<li>Schreibe didaktische Kommentare in den Code, die mir Hinweise auf die zu verwendenden Methoden oder Kontrollstrukturen geben.</li>
+<li>Stelle mir am Ende deiner Antwort eine Verständnisfrage zum Thema, um mein Wissen zu prüfen.“</li>
 </ol>
 </blockquote>
+<hr />
+<h3 id="33-einrichtung-von-github-copilot-und-alternativen"><a class="header" href="#33-einrichtung-von-github-copilot-und-alternativen">3.3 Einrichtung von GitHub Copilot und Alternativen</a></h3>
+<p><em>Referenz: Taulli, Kap. 4 &amp; 5</em></p>
+<p>Um produktiv mit KI zu arbeiten, musst du sie in deine tägliche Arbeitsumgebung (deine IDE) integrieren. Hier ist ein Überblick über die wichtigsten Werkzeuge und wie du sie einrichtest.</p>
+<h4 id="1-github-copilot-der-branchenstandard"><a class="header" href="#1-github-copilot-der-branchenstandard">1. GitHub Copilot: Der Branchenstandard</a></h4>
+<p>GitHub Copilot (entwickelt von GitHub und OpenAI) ist das am weitesten verbreitete Tool. Es läuft als Erweiterung direkt in VS Code, JetBrains IDEs, Visual Studio und Neovim.</p>
+<h5 id="einrichtungsschritte-vs-code"><a class="header" href="#einrichtungsschritte-vs-code">Einrichtungsschritte (VS Code):</a></h5>
+<ol>
+<li><strong>Account erstellen:</strong> Registriere dich auf github.com und aktiviere Copilot (für Studenten oft kostenlos, sonst im Abonnement).</li>
+<li><strong>Erweiterung installieren:</strong> Öffne VS Code, gehe zum Extension Marketplace (Symbol mit den vier Quadraten) und suche nach <em>„GitHub Copilot“</em> und <em>„GitHub Copilot Chat“</em>. Installiere beide.</li>
+<li><strong>Anmelden:</strong> Klicke unten links in VS Code auf das Account-Symbol und melde dich mit deinem GitHub-Konto an.</li>
+<li><strong>Nutzung:</strong>
+<ul>
+<li><strong>Inline-Vorschläge:</strong> Tippe einfach Code oder einen Kommentar. Copilot schlägt dir grau hinterlegten Text vor. Drücke <code>Tab</code>, um den Vorschlag anzunehmen, oder ignoriere ihn, um einfach weiterzutippen.</li>
+<li><strong>Copilot Chat:</strong> Drücke <code>Ctrl + Shift + I</code> (Windows/Linux) oder <code>Cmd + Shift + I</code> (macOS), um ein Chatfenster an der Seite zu öffnen. Hier kannst du Fragen stellen, Code erklären lassen oder Prompts eingeben.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="2-tabnine-die-datenschutzfreundliche-alternative"><a class="header" href="#2-tabnine-die-datenschutzfreundliche-alternative">2. Tabnine: Die datenschutzfreundliche Alternative</a></h4>
+<p>Tabnine zeichnet sich dadurch aus, dass es lokal auf deinem Rechner ausgeführt werden kann, ohne dass dein Code an externe Server gesendet wird.</p>
+<h5 id="stärken"><a class="header" href="#stärken">Stärken:</a></h5>
+<ul>
+<li><strong>Datenschutz:</strong> Perfekt für Unternehmen mit strengen Compliance-Richtlinien.</li>
+<li><strong>Ressourcenschonend:</strong> Bietet schnelle, lokale Autovervollständigung basierend auf kleineren, spezialisierten Modellen.</li>
+</ul>
+<hr />
+<h4 id="3-cody-sourcegraph-der-codebase-spezialist"><a class="header" href="#3-cody-sourcegraph-der-codebase-spezialist">3. Cody (Sourcegraph): Der Codebase-Spezialist</a></h4>
+<p>Cody ist ein Open-Source-KI-Assistent, der sich besonders durch seine Fähigkeit auszeichnet, deine <strong>gesamte Codebase</strong> zu analysieren.</p>
+<h5 id="stärken-1"><a class="header" href="#stärken-1">Stärken:</a></h5>
+<ul>
+<li>Während Copilot oft nur die aktuell geöffneten Dateien im Blick hat, durchsucht Cody dein gesamtes Projektverzeichnis. Du kannst Fragen stellen wie: <em>„Wo im Projekt wird die Benutzer-Authentifizierung durchgeführt und wie kann ich dort eine neue Rolle hinzufügen?“</em></li>
+</ul>
+<hr />
+<h4 id="4-warp-das-ki-terminal"><a class="header" href="#4-warp-das-ki-terminal">4. Warp: Das KI-Terminal</a></h4>
+<p>Warp ist ein modernes, auf Rust basierendes Terminal für macOS und Linux. Es integriert KI direkt in die Befehlszeile.</p>
+<h5 id="stärken-2"><a class="header" href="#stärken-2">Stärken:</a></h5>
+<ul>
+<li>Du musst keine kryptischen Terminalbefehle mehr auswendig lernen. Drücke <code>#</code> und tippe auf Deutsch ein, was du tun willst (z. B. <em>„Finde alle Dateien im Ordner src, die das Wort iban enthalten“</em>). Warp übersetzt dies in den passenden Bash-Befehl.</li>
+</ul>
+<hr />
+<h3 id="34-schnelles-prototyping-im-browser-mit-stackblitz-boltnew"><a class="header" href="#34-schnelles-prototyping-im-browser-mit-stackblitz-boltnew">3.4 Schnelles Prototyping im Browser mit stackblitz Bolt.new</a></h3>
+<p><em>Referenz: Osmani: Vibe Coding mit Bolt</em></p>
+<p>Ein großes Hindernis für Programmier-Anfänger ist das lokale Setup: Node.js installieren, den Compiler konfigurieren, Umgebungsvariablen setzen, Datenbanken einrichten. Hier kommt <strong>Bolt.new</strong> ins Spiel.</p>
+<h4 id="was-ist-boltnew"><a class="header" href="#was-ist-boltnew">Was ist Bolt.new?</a></h4>
+<p>Bolt.new ist eine webbasierte Entwicklungsplattform, die auf der <em>WebContainer-Technologie</em> von Stackblitz basiert. Sie ermöglicht es, vollständige Fullstack-Webanwendungen (Frontend und Backend) komplett im Browser auszuführen, zu bearbeiten und zu deployen – gesteuert durch rein natürliche Sprache (Prompts).</p>
+<h4 id="wie-funktioniert-es"><a class="header" href="#wie-funktioniert-es">Wie funktioniert es?</a></h4>
+<ol>
+<li>Du besuchst die Website <code>bolt.new</code>.</li>
+<li>Du gibst einen Prompt ein wie: <em>„Erstelle mir ein Dashboard für eine Arztpraxis mit einem Kalender zur Terminbuchung und einer Patientenliste.“</em></li>
+<li>Bolt.new fängt an zu arbeiten:
+<ul>
+<li>Es entscheidet, welche Technologien am besten passen (z. B. Vite, React, TailwindCSS).</li>
+<li>Es generiert die gesamte Ordnerstruktur und alle Codedateien.</li>
+<li>Es startet im Hintergrund einen virtuellen Server (Node.js) direkt im Webbrowser.</li>
+<li>Es zeigt dir auf der rechten Seite eine Live-Vorschau der App an.</li>
+</ul>
+</li>
+<li>Du kannst nun per Chat Anpassungen vornehmen (<em>„Füge ein dunkles Design hinzu“</em> oder <em>„Wenn man auf einen Termin klickt, soll ein modales Fenster mit Details aufgehen“</em>).</li>
+</ol>
+<h4 id="vor--und-nachteile-von-boltnew-für-lernende"><a class="header" href="#vor--und-nachteile-von-boltnew-für-lernende">Vor- und Nachteile von Bolt.new für Lernende</a></h4>
+<h5 id="vorteile"><a class="header" href="#vorteile">Vorteile:</a></h5>
+<ul>
+<li><strong>Null Setup:</strong> Du kannst sofort und ohne Installationen mit dem Prototyping beginnen.</li>
+<li><strong>Visuelles Feedback:</strong> Perfekt, um Benutzeroberflächen und Design-Ideen auszuprobieren.</li>
+<li><strong>Lerneffekt durch Code-Inspektion:</strong> Du kannst jederzeit das generierte Projektverzeichnis öffnen und den Code analysieren, den Bolt.new geschrieben hat.</li>
+</ul>
+<h5 id="nachteile"><a class="header" href="#nachteile">Nachteile:</a></h5>
+<ul>
+<li><strong>Eingeschränkte Rust-Unterstützung:</strong> Da Bolt.new primär auf Web-Technologien (JavaScript/TypeScript/Node.js) optimiert ist, lassen sich komplexe Systemprogrammiersprachen wie Rust dort nur schwer lokal kompilieren und ausführen.</li>
+<li><strong>Kontrollverlust:</strong> Die KI trifft alle architektonischen Entscheidungen für dich. Als Anfänger verstehst du oft nicht, warum ein bestimmtes Framework oder eine bestimmte Struktur gewählt wurde.</li>
+</ul>
+<hr />
+<h2 id="4-pair-programming-zum-lernen"><a class="header" href="#4-pair-programming-zum-lernen">4. Pair Programming zum Lernen</a></h2>
+<h3 id="41-den-passenden-ki-lernpartner-auswählen-und-didaktisch-nutzen"><a class="header" href="#41-den-passenden-ki-lernpartner-auswählen-und-didaktisch-nutzen">4.1 Den passenden KI-Lernpartner auswählen und didaktisch nutzen</a></h3>
+<p><em>Referenz: Kofler, Kap. 2</em></p>
+<p>Wie verhinderst du, dass die KI dein Gehirn „abschaltet“? Die Antwort liegt in deiner didaktischen Strategie. Es gibt zwei Wege, wie du eine KI nutzen kannst: den passiven Weg und den aktiven Weg.</p>
+<h4 id="der-passive-weg-die-sackgasse"><a class="header" href="#der-passive-weg-die-sackgasse">Der passive Weg (Die Sackgasse)</a></h4>
+<pre><code class="language-mermaid">graph TD
+    A["Aufgabe erhalten"] --&gt; B["Prompt: 'Schreibe den Code für...'"]
+    B --&gt; C["KI generiert fertigen Code"]
+    C --&gt; D["Copy-Paste in den Editor"]
+    D --&gt; E["Compiler wirft Fehler"]
+    E --&gt; F["Prompt: 'Code reparieren'"]
+    F --&gt; C
+</code></pre>
+<p><em>Lerneffekt bei diesem Prozess: <strong>Nahezu Null.</strong></em> Du trainierst lediglich deine Muskeln beim Drücken von <code>Ctrl+C</code> und <code>Ctrl+V</code>. Sobald du in einer Prüfung oder in einem echten Job ohne Internetverbindung Code schreiben musst, wirst du scheitern.</p>
+<hr />
+<h4 id="der-aktive-weg-der-lern-turbo"><a class="header" href="#der-aktive-weg-der-lern-turbo">Der aktive Weg (Der Lern-Turbo)</a></h4>
+<pre><code class="language-mermaid">graph TD
+    A["Aufgabe erhalten"] --&gt; B["Prompt: 'Erkläre mir das Konzept hinter...'"]
+    B --&gt; C["KI erklärt Logik mit Analogien"]
+    C --&gt; D["Prompt: 'Gib mir ein Code-Gerüst mit todo!()'"]
+    D --&gt; E["KI liefert Funktionssignaturen &amp; Kommentare"]
+    E --&gt; F["Du implementierst den Code selbst"]
+    F --&gt; G["Compiler wirft Fehler"]
+    G --&gt; H["Prompt: 'Erkläre mir diesen Compiler-Fehler'"]
+    H --&gt; I["Du korrigierst den Code basierend auf den Hinweisen"]
+    I --&gt; J["Code läuft &amp; Konzept verstanden!"]
+</code></pre>
+<p><em>Lerneffekt bei diesem Prozess: <strong>Maximal.</strong></em> Du nutzt die KI als geduldigen Mentor, der dir die Richtung weist, das eigentliche Laufen (das Denken und Tippen der Logik) aber dir überlässt.</p>
+<hr />
+<h3 id="42-code-gerüste-erstellen-und-in-einfache-funktionen-strukturieren"><a class="header" href="#42-code-gerüste-erstellen-und-in-einfache-funktionen-strukturieren">4.2 Code-Gerüste erstellen und in einfache Funktionen strukturieren</a></h3>
+<p><em>Referenz: Kofler, Kap. 2</em></p>
+<p>Gute Softwarearchitektur zeichnet sich durch Modularität aus. Das bedeutet: Wir schreiben nicht eine gigantische Funktion, die alles auf einmal erledigt, sondern wir zerlegen das Problem in kleine, spezialisierte Hilfsfunktionen. Jede Funktion sollte genau eine Aufgabe haben (Single Responsibility Principle).</p>
+<p>In Rust gibt es ein mächtiges Werkzeug dafür: das Makro <code>todo!()</code>.</p>
+<h4 id="was-ist-das-todo-makro"><a class="header" href="#was-ist-das-todo-makro">Was ist das <code>todo!()</code>-Makro?</a></h4>
+<p>Wenn du eine Funktion deklarierst, erwartet der Rust-Compiler, dass du den Funktionskörper mit gültigem Code füllst, der den versprochenen Rückgabetyp liefert. Wenn du den Code noch nicht schreiben willst, kannst du nicht einfach den Körper leer lassen – der Compiler würde mit einem Fehler abbrechen.</p>
+<p>Indem du <code>todo!()</code> in den Funktionskörper schreibst, sagst du dem Compiler: <em>„Ich weiß, dass hier Code hin muss. Bitte ignoriere den fehlenden Rückgabetyp beim Kompilieren. Ich werde das später implementieren.“</em></p>
+<p>Das Programm kompiliert fehlerfrei! Erst wenn das Programm ausgeführt wird und die Ausführung den Pfad mit dem <code>todo!()</code> erreicht, bricht es mit einer kontrollierten Fehlermeldung (<em>„not yet implemented“</em>) ab.</p>
+<h5 id="beispiel-für-den-strukturierten-entwurf-eines-programms"><a class="header" href="#beispiel-für-den-strukturierten-entwurf-eines-programms">Beispiel für den strukturierten Entwurf eines Programms:</a></h5>
+<p>Stell dir vor, wir wollen ein Programm schreiben, das eine Zahl vom Benutzer einliest, prüft, ob sie eine Primzahl ist, und das Ergebnis ausgibt.</p>
+<p>Wir fordern von der KI ein <strong>Code-Gerüst</strong> an:</p>
+<pre><pre class="playground"><code class="language-rust">// ==========================================
+// CODE-GERÜST: Primzahlprüfer
+// ==========================================
+
+/// Liest eine Zeile von der Standardeingabe (Konsole) ein und 
+/// versucht, diese in eine vorzeichenlose Ganzzahl (u32) umzuwandeln.
+fn lies_zahl_von_konsole() -&gt; Result&lt;u32, String&gt; {
+    // 1. Erstelle einen leeren String mit String::new()
+    // 2. Nutze std::io::stdin().read_line(), um die Eingabe zu lesen
+    // 3. Entferne Newlines mit .trim()
+    // 4. Wandle den String mit .parse::&lt;u32&gt;() um
+    todo!("Implementiere das Einlesen und Parsen der Zahl");
+}
+
+/// Prüft, ob die übergebene Zahl eine Primzahl ist.
+/// Gibt true zurück, wenn es eine Primzahl ist, andernfalls false.
+fn ist_primzahl(zahl: u32) -&gt; bool {
+    // Tipp zur Logik:
+    // - Zahlen kleiner als 2 sind keine Primzahlen.
+    // - Eine Zahl ist eine Primzahl, wenn sie durch keine Zahl 
+    //   zwischen 2 und der Quadratwurzel der Zahl selbst teilbar ist.
+    // - Nutze eine Schleife (for oder while) und den Modulo-Operator (%).
+    todo!("Implementiere die mathematische Primzahlprüfung");
+}
+
+fn main() {
+    println!("Bitte gib eine positive Ganzzahl ein:");
+    
+    match lies_zahl_von_konsole() {
+        Ok(zahl) =&gt; {
+            if ist_primzahl(zahl) {
+                println!("Ja, {} ist eine Primzahl!", zahl);
+            } else {
+                println!("Nein, {} ist keine Primzahl.", zahl);
+            }
+        }
+        Err(fehler) =&gt; {
+            println!("Fehler bei der Eingabe: {}", fehler);
+        }
+    }
+}</code></pre></pre>
+<p>Mit diesem Gerüst hast du eine klare Roadmap. Du musst nicht darüber nachdenken, wie die gesamte Applikation aufgebaut ist, sondern kannst dich vollkommen auf das Lösen einer einzelnen, kleinen Teilaufgabe (z. B. der mathematischen Logik in <code>ist_primzahl</code>) konzentrieren.</p>
+<hr />
+<h3 id="43-praxisbeispiel-iban-validierung-schrittweise-umsetzen"><a class="header" href="#43-praxisbeispiel-iban-validierung-schrittweise-umsetzen">4.3 Praxisbeispiel: IBAN-Validierung schrittweise umsetzen</a></h3>
+<p><em>Referenz: Kofler, Kap. 2</em></p>
+<p>Die Validierung einer IBAN (International Bank Account Number) ist ein hervorragendes Praxisprojekt, um den Umgang mit Strings, Zeichenketten-Manipulationen, Schleifen und Datentyp-Konvertierungen in Rust zu lernen.</p>
+<h4 id="der-mathematische-hintergrund-nach-iso-13616"><a class="header" href="#der-mathematische-hintergrund-nach-iso-13616">Der mathematische Hintergrund (nach ISO 13616)</a></h4>
+<p>Eine IBAN hat je nach Land eine feste Länge (z. B. Deutschland: 22 Zeichen, Österreich: 20 Zeichen, Schweiz: 21 Zeichen). Sie beginnt immer mit einem zweistelligen Ländercode (z. B. <code>DE</code>), gefolgt von einer zweistelligen Prüfziffer (z. B. <code>89</code>) und der länderspezifischen Kontonummer (BBAN).</p>
+<p>Um eine IBAN mathematisch zu prüfen, wird folgendes Verfahren angewendet:</p>
+<ol>
+<li><strong>Formatbereinigung:</strong> Entferne alle Leerzeichen und wandle Kleinbuchstaben in Großbuchstaben um.</li>
+<li><strong>Länder- und Längenprüfung:</strong> Prüfe, ob die IBAN mit einem gültigen Ländercode startet und die für dieses Land exakt vorgeschriebene Länge hat.</li>
+<li><strong>Umstellung:</strong> Verschiebe die ersten vier Zeichen (die beiden Länderbuchstaben und die zweistellige Prüfziffer) an das Ende der IBAN.
+<ul>
+<li><em>Beispiel:</em> Aus <code>DE89 3704 0044 0532 0130 00</code> wird <code>370400440532013000DE89</code>.</li>
+</ul>
+</li>
+<li><strong>Konvertierung in Zahlen:</strong> Ersetze jeden Buchstaben durch eine zweistellige Zahl, wobei <code>A = 10</code>, <code>B = 11</code>, ..., <code>Z = 35</code> entspricht.
+<ul>
+<li><em>Aus unserem Beispiel:</em> <code>D</code> wird <code>13</code>, <code>E</code> wird <code>14</code>. Die Zeichenkette wird zu einer riesigen Zahl: <code>370400440532013000131489</code>.</li>
+</ul>
+</li>
+<li><strong>Modulo 97:</strong> Berechne den Rest dieser riesigen Zahl bei der Division durch 97.
+<ul>
+<li>Wenn das Ergebnis exakt <strong>1</strong> ist, ist die IBAN mathematisch gültig.</li>
+<li>Da die Zahl viel zu groß für Standard-Datentypen wie <code>u64</code> oder <code>u128</code> ist, müssen wir die Modulo-Operation schrittweise (iterativ) durchführen.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="dein-didaktisches-code-gerüst-zum-ausfüllen"><a class="header" href="#dein-didaktisches-code-gerüst-zum-ausfüllen">Dein didaktisches Code-Gerüst zum Ausfüllen:</a></h4>
+<p>Kopiere diesen Code in deine <code>src/main.rs</code> Datei. Deine Aufgabe ist es, die mit <code>todo!()</code> markierten Bereiche selbstständig zu implementieren. Die Kommentare geben dir wertvolle Hinweise auf die benötigten Rust-Methoden.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// ==========================================
+// PRAXISPROJEKT: IBAN-Validator in Rust
+// ==========================================
+
+/// Bereinigt die IBAN von Leerzeichen und konvertiert sie in Großbuchstaben.
+fn bereinige_iban(iban: &amp;str) -&gt; String {
+    // 1. Nutze iban.replace(" ", "") um Leerzeichen zu entfernen.
+    // 2. Nutze .to_uppercase() um alles in Großbuchstaben umzuwandeln.
+    todo!("Bereinigung implementieren")
+}
+
+/// Prüft, ob das Länderkürzel bekannt ist und die Länge der IBAN korrekt ist.
+fn validiere_laenge_und_land(iban: &amp;str) -&gt; bool {
+    if iban.len() &lt; 5 {
+        return false;
+    }
+    
+    let laendercode = &amp;iban[0..2];
+    
+    // Für dieses einfache Beispiel validieren wir nur drei Länder:
+    // Deutschland (DE) -&gt; 22 Zeichen
+    // Österreich (AT) -&gt; 20 Zeichen
+    // Schweiz (CH) -&gt; 21 Zeichen
+    match laendercode {
+        "DE" =&gt; iban.len() == 22,
+        "AT" =&gt; iban.len() == 20,
+        "CH" =&gt; iban.len() == 21,
+        _ =&gt; false, // Unbekanntes Land
+    }
+}
+
+/// Verschiebt die ersten vier Zeichen ans Ende der IBAN.
+/// Beispiel: "DE8912345" -&gt; "12345DE89"
+fn verschiebe_anfang_nach_ende(iban: &amp;str) -&gt; String {
+    // Tipp: Nutze String-Slices. 
+    // &amp;iban[0..4] liefert die ersten vier Zeichen.
+    // &amp;iban[4..] liefert den Rest ab dem fünften Zeichen.
+    // Verbinde beide Teile mit Formatierungs-Makros oder String-Konkatenation.
+    todo!("Verschiebung implementieren")
+}
+
+/// Konvertiert alle Buchstaben (A-Z) in der Zeichenkette in ihre entsprechenden 
+/// numerischen Werte (A -&gt; 10, B -&gt; 11, ... Z -&gt; 35).
+/// Gibt eine reine Ziffernkette zurück.
+fn konvertiere_buchstaben_in_zahlen(iban: &amp;str) -&gt; String {
+    let mut ergebnis = String::new();
+    
+    for c in iban.chars() {
+        if c.is_ascii_alphabetic() {
+            // Konvertiere den ASCII-Wert des Zeichens.
+            // In ASCII ist 'A' der Wert 65. Wenn wir 55 abziehen, erhalten wir 10.
+            let wert = (c as u32) - 55;
+            ergebnis.push_str(&amp;wert.to_string());
+        } else if c.is_ascii_digit() {
+            ergebnis.push(c);
+        }
+    }
+    
+    ergebnis
+}
+
+/// Berechnet den Modulo-97-Wert einer sehr langen Ziffernkette.
+/// Da die Zahl zu groß für u128 ist, verarbeiten wir sie blockweise von links nach rechts.
+fn berechne_modulo_97(ziffern: &amp;str) -&gt; u32 {
+    let mut rest: u32 = 0;
+    
+    for c in ziffern.chars() {
+        // Wandle das aktuelle Zeichen in eine Zahl um (z. B. '3' -&gt; 3)
+        let ziffer = c.to_digit(10).expect("Nur Ziffern erlaubt");
+        
+        // Multipliziere den bisherigen Rest mit 10, addiere die neue Ziffer 
+        // und berechne den neuen Rest modulo 97.
+        rest = (rest * 10 + ziffer) % 97;
+    }
+    
+    rest
+}
+
+/// Die Hauptfunktion zur Validierung.
+pub fn ist_gültige_iban(raw_iban: &amp;str) -&gt; bool {
+    let iban = bereinige_iban(raw_iban);
+    
+    if !validiere_laenge_und_land(&amp;iban) {
+        return false;
+    }
+    
+    let umgestellt = verschiebe_anfang_nach_ende(&amp;iban);
+    let numerisch = konvertiere_buchstaben_in_zahlen(&amp;umgestellt);
+    
+    let rest = berene_modulo_97_korrigiert_im_kopf_oder_code(&amp;numerisch); // Achtung, hier ist ein Tippfehler im Funktionsaufruf! Finde ihn.
+    
+    rest == 1
+}
+
+// Hilfsfunktion zur Behebung des Aufruffehlers oben
+fn berene_modulo_97_korrigiert_im_kopf_oder_code(ziffern: &amp;str) -&gt; u32 {
+    berechne_modulo_97(ziffern)
+}
+
+// ==========================================
+// AUTOMATISIERTE TESTS
+// ==========================================
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_bereinigung() {
+        assert_eq!(bereinige_iban(" de 89 ch "), "DE89CH");
+    }
+
+    #[test]
+    fn test_laengen_prüfung() {
+        // Deutsche IBAN muss 22 Zeichen lang sein
+        assert!(validiere_laenge_und_land("DE89370400440532013000"));
+        assert!(!validiere_laenge_und_land("DE8937040044"));
+    }
+
+    #[test]
+    fn test_verschiebung() {
+        assert_eq!(verschiebe_anfang_nach_ende("DE89123456"), "123456DE89");
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="44-praxisbeispiel-ein-einfaches-text-quiz-entwickeln"><a class="header" href="#44-praxisbeispiel-ein-einfaches-text-quiz-entwickeln">4.4 Praxisbeispiel: Ein einfaches Text-Quiz entwickeln</a></h3>
+<p><em>Referenz: Kofler, Kap. 2</em></p>
+<p>Ein interaktives Text-Quiz auf der Kommandozeile ist die perfekte Übung, um Datenstrukturen (<code>struct</code>), Vektoren (<code>Vec</code>), Schleifen (<code>for</code>/<code>loop</code>), Bedingungen (<code>if</code>/<code>else</code>) und interaktive Benutzereingaben (<code>std::io</code>) miteinander zu verknüpfen.</p>
+<h4 id="das-anforderungsprofil"><a class="header" href="#das-anforderungsprofil">Das Anforderungsprofil:</a></h4>
+<ol>
+<li><strong>Die Datenstruktur:</strong> Wir definieren eine Struktur <code>QuizFrage</code>, die den Fragetext, eine Liste von Antwortmöglichkeiten (Optionen) und den Index der korrekten Antwort enthält.</li>
+<li><strong>Die Programmlogik:</strong>
+<ul>
+<li>Wir erstellen eine Liste (<code>Vec</code>) mit mehreren Quizfragen.</li>
+<li>Wir laufen mit einer Schleife durch alle Fragen.</li>
+<li>Für jede Frage geben wir den Text und die nummerierten Antwortoptionen auf der Konsole aus.</li>
+<li>Wir warten auf die Eingabe des Benutzers (eine Zahl zwischen 1 und der Anzahl der Optionen).</li>
+<li>Wir prüfen, ob die Eingabe korrekt ist, geben Feedback und zählen die Punkte des Benutzers.</li>
+<li>Am Ende geben wir die Gesamtpunktzahl aus.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="dein-didaktisches-code-gerüst-zum-ausfüllen-1"><a class="header" href="#dein-didaktisches-code-gerüst-zum-ausfüllen-1">Dein didaktisches Code-Gerüst zum Ausfüllen:</a></h4>
+<p>Kopiere dieses Gerüst. Konzentriere dich darauf, die Logik für das Anzeigen der Frage und das Einlesen der Antwort selbstständig auszuarbeiten.</p>
+<pre><pre class="playground"><code class="language-rust">// ==========================================
+// PRAXISPROJEKT: Konsolen-Quiz in Rust
+// ==========================================
+
+use std::io::{self, Write};
+
+struct QuizFrage {
+    frage: String,
+    optionen: Vec&lt;String&gt;,
+    korrekte_antwort: usize, // 1-basierter Index der richtigen Antwort
+}
+
+/// Zeigt die Frage und die Antwortmöglichkeiten formatiert auf der Konsole an.
+fn zeige_frage(quiz_frage: &amp;QuizFrage) {
+    // 1. Gib den Fragetext aus (z. B. "Frage: ...")
+    // 2. Laufe mit einer for-Schleife durch die optionen.
+    //    Tipp: Nutze .iter().enumerate(), um sowohl den Index 
+    //    als auch den Text der Option zu erhalten.
+    // 3. Gib die Optionen nummeriert aus (z. B. "1) Option A", "2) Option B")
+    todo!("Anzeige der Frage implementieren")
+}
+
+/// Liest eine Eingabe von der Konsole ein, wandelt sie in eine Zahl (usize) 
+/// um und gibt diese zurück. Fängt Fehleingaben ab.
+fn lies_benutzer_auswahl() -&gt; usize {
+    loop {
+        print!("Deine Antwort (Bitte Zahl eingeben): ");
+        // Zwingt Rust, den Text sofort auf der Konsole anzuzeigen
+        io::stdout().flush().unwrap();
+
+        let mut eingabe = String::new();
+        
+        // Lies die Zeile von stdin
+        if io::stdin().read_line(&amp;mut eingabe).is_err() {
+            println!("Fehler beim Lesen der Eingabe. Bitte erneut versuchen.");
+            continue;
+        }
+
+        // Bereinige die Eingabe (Entferne Leerzeichen und Newlines)
+        let eingabe_bereinigt = eingabe.trim();
+
+        // Versuche, den String in eine Zahl umzuwandeln
+        match eingabe_bereinigt.parse::&lt;usize&gt;() {
+            Ok(zahl) =&gt; return zahl,
+            Err(_) =&gt; {
+                println!("Ungültige Eingabe! Bitte gib eine gültige Zahl ein.");
+                continue;
+            }
+        }
+    }
+}
+
+fn main() {
+    println!("=== WILLKOMMEN BEIM RUST-EINSTEIGER-QUIZ ===\n");
+
+    // Initialisierung der Fragen
+    let fragen = vec![
+        QuizFrage {
+            frage: String::from("Wer erfand die Programmiersprache Rust?"),
+            optionen: vec![
+                String::from("Bjarne Stroustrup"),
+                String::from("Graydon Hoare"),
+                String::from("Guido van Rossum"),
+                String::from("James Gosling"),
+            ],
+            korrekte_antwort: 2, // Graydon Hoare (Mozilla)
+        },
+        QuizFrage {
+            frage: String::from("Welches Makro wird in Rust genutzt, um Platzhalter für unfertigen Code zu deklarieren?"),
+            optionen: vec![
+                String::from("panic!()"),
+                String::from("unimplemented!()"),
+                String::from("todo!()"),
+                String::from("assert!()"),
+            ],
+            korrekte_antwort: 3,
+        },
+        QuizFrage {
+            frage: String::from("Wie heißt das Speicherverwaltungsmodell von Rust, das ohne Garbage Collector auskommt?"),
+            optionen: vec![
+                String::from("Ownership &amp; Borrowing"),
+                String::from("Automatic Reference Counting (ARC)"),
+                String::from("Manual Memory Management (malloc/free)"),
+                String::from("Mark and Sweep"),
+            ],
+            korrekte_antwort: 1,
+        }
+    ];
+
+    let mut punktestand = 0;
+
+    for (index, frage) in fragen.iter().enumerate() {
+        println!("\nFrage {} von {}:", index + 1, fragen.len());
+        zeige_frage(frage);
+        
+        let antwort = lies_benutzer_auswahl();
+        
+        // Validierung der Antwort
+        if antwort == frage.korrekte_antwort {
+            println!("🎉 Richtig! Gut gemacht.");
+            punktestand += 1;
+        } else {
+            println!(
+                "❌ Leider falsch. Die richtige Antwort war Option {}: {}",
+                frage.korrekte_antwort,
+                frage.optionen[frage.korrekte_antwort - 1]
+            );
+        }
+    }
+
+    println!("\n=== QUIZ BEENDET ===");
+    println!("Du hast {} von {} Punkten erreicht.", punktestand, fragen.len());
+}</code></pre></pre>
+<hr />
+<h3 id="45-inline-dokumentation-und-verständliche-docstrings-generieren-lassen"><a class="header" href="#45-inline-dokumentation-und-verständliche-docstrings-generieren-lassen">4.5 Inline-Dokumentation und verständliche Docstrings generieren lassen</a></h3>
+<p><em>Referenz: Kofler, Kap. 2</em></p>
+<p>Ein oft unterschätzter Bereich beim Programmierenlernen ist das Schreiben von Dokumentation. Es gilt die Regel: <strong>Wer seinen Code nicht dokumentieren kann, hat ihn meist selbst nicht ganz verstanden.</strong></p>
+<p>Rust verfügt über ein extrem mächtiges, standardisiertes Dokumentationssystem namens <code>rustdoc</code>. Es ermöglicht dir, direkt im Quellcode Dokumentationskommentare zu schreiben, die dann von Cargo automatisch in eine ansprechende, interaktive HTML-Website umgewandelt werden.</p>
+<h4 id="der-unterschied-zwischen-normalen-kommentaren-und-dokumentationskommentaren"><a class="header" href="#der-unterschied-zwischen-normalen-kommentaren-und-dokumentationskommentaren">Der Unterschied zwischen normalen Kommentaren und Dokumentationskommentaren</a></h4>
+<h5 id="normale-kommentare"><a class="header" href="#normale-kommentare">Normale Kommentare:</a></h5>
+<p>Werden mit <code>//</code> eingeleitet. Sie sind für Entwickler gedacht, die den Quellcode direkt vor sich haben. Sie erklären das <em>Wie</em> und <em>Warum</em> von internen Codezeilen.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Dieser Zähler wird erhöht, da wir den aktuellen Index überspringen müssen
+index += 1;
+<span class="boring">}</span></code></pre></pre>
+<h5 id="dokumentationskommentare-docstrings"><a class="header" href="#dokumentationskommentare-docstrings">Dokumentationskommentare (Docstrings):</a></h5>
+<p>Werden mit <code>///</code> (drei Schrägstrichen) eingeleitet. Sie stehen immer direkt <strong>über</strong> der Funktionsdefinition, Struktur oder dem Modul. Sie beschreiben das <em>Was</em> – also was die Funktion tut, welche Parameter sie erwartet, welche Fehler auftreten können und wie man sie benutzt. Sie unterstützen vollwertiges Markdown.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Berechnet das Quadrat einer übergebenen Zahl.
+///
+/// # Parameter
+/// * `n`: Die Zahl, deren Quadrat berechnet werden soll.
+///
+/// # Rückgabewert
+/// Gibt das mathematische Quadrat (`n * n`) zurück.
+fn quadrat(n: u32) -&gt; u32 {
+    n * n
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="wie-du-die-ki-didaktisch-zur-dokumentation-nutzt"><a class="header" href="#wie-du-die-ki-didaktisch-zur-dokumentation-nutzt">Wie du die KI didaktisch zur Dokumentation nutzt</a></h4>
+<p>Wenn du ein Stück Code geschrieben hast, das zwar funktioniert, bei dem du dir aber über die genauen Abläufe noch unsicher bist, nutze folgenden Trick:
+Bitte die KI, für deinen Code <strong>vollständige, didaktische Docstrings nach dem Rust-Standard</strong> zu generieren.</p>
+<h5 id="beispiel-prompt"><a class="header" href="#beispiel-prompt">Beispiel-Prompt:</a></h5>
+<blockquote>
+<p>„Hier ist meine Funktion zur Überprüfung von Altersgrenzen in Rust. Bitte erstelle mir dafür einen ausführlichen Dokumentationskommentar mit drei Schrägstrichen (///). Erkläre die Parameter, den Rückgabetyp und füge ein Markdown-Beispiel (Examples) hinzu, wie man die Funktion aufruft.“</p>
+</blockquote>
+<h5 id="die-ki-liefert-dir-daraufhin"><a class="header" href="#die-ki-liefert-dir-daraufhin">Die KI liefert dir daraufhin:</a></h5>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Überprüft, ob ein Benutzer basierend auf seinem Geburtsjahr das Mindestalter erreicht hat.
+///
+/// Die Berechnung basiert auf dem aktuellen Jahr, das als Parameter übergeben werden muss.
+///
+/// # Parameter
+///
+/// * `geburtsjahr`: Das Jahr, in dem der Benutzer geboren wurde (z. B. 2005).
+/// * `aktuelles_jahr`: Das aktuelle Kalenderjahr (z. B. 2026).
+/// * `mindestalter`: Das geforderte Alter für den Zutritt/die Aktion (z. B. 18).
+///
+/// # Rückgabewert
+///
+/// Gibt `true` zurück, wenn der Benutzer das Mindestalter erreicht oder überschritten hat.
+/// Gibt `false` zurück, wenn der Benutzer zu jung ist oder das Geburtsjahr in der Zukunft liegt.
+///
+/// # Examples
+///
+/// ```
+/// let zutritt_erlaubt = pruefe_mindestalter(2008, 2026, 18);
+/// assert_eq!(zutritt_erlaubt, true); // Benutzer ist 18 Jahre alt
+/// ```
+fn pruefe_mindestalter(geburtsjahr: u32, aktuelles_jahr: u32, mindestalter: u32) -&gt; bool {
+    if geburtsjahr &gt; aktuelles_jahr {
+        return false;
+    }
+    let alter = aktuelles_jahr - geburtsjahr;
+    alter &gt;= mindestalter
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Durch das Lesen dieses Docstrings wird dir die Funktionsweise deines eigenen Codes noch einmal kristallklar vor Augen geführt. Zudem lernst du, wie man APIs sauber designt und für andere Entwickler verständlich macht.</p>
+<hr />
+<h2 id="-praxis-Übungen-für-dich-ohne-codelösung"><a class="header" href="#-praxis-Übungen-für-dich-ohne-codelösung">🛠️ Praxis-Übungen für dich (Ohne Codelösung!)</a></h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Didaktische Regel:</strong> Die folgenden Aufgaben enthalten keine fertigen Lösungen. Versuche, sie unter Zuhilfenahme der gelernten Prompting-Techniken und mit Unterstützung deiner didaktisch konfigurierten KI selbstständig zu lösen.</p>
+</blockquote>
+<h3 id="Übung-1-der-temperatur-konverter-schwierigkeit-leicht"><a class="header" href="#Übung-1-der-temperatur-konverter-schwierigkeit-leicht">Übung 1: Der Temperatur-Konverter (Schwierigkeit: Leicht)</a></h3>
+<p>Schreibe ein Rust-Programm, das Temperaturen zwischen Celsius und Fahrenheit konvertiert.</p>
+<ul>
+<li><strong>Anforderung:</strong>
+<ul>
+<li>Der Benutzer soll über die Konsole auswählen können, in welche Richtung konvertiert werden soll (1: Celsius zu Fahrenheit, 2: Fahrenheit zu Celsius).</li>
+<li>Anschließend soll die Temperatur eingegeben werden.</li>
+<li>Das Programm berechnet das Ergebnis und gibt es aus.</li>
+</ul>
+</li>
+<li><strong>Code-Gerüst mit todo!() zum Starten:</strong></li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn celsius_zu_fahrenheit(celsius: f64) -&gt; f64 {
+    todo!("Formel für Umrechnung implementieren")
+}
+
+fn fahrenheit_zu_celsius(fahrenheit: f64) -&gt; f64 {
+    todo!("Formel für Umrechnung implementieren")
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="Übung-2-der-einfache-passwort-generator-schwierigkeit-mittel"><a class="header" href="#Übung-2-der-einfache-passwort-generator-schwierigkeit-mittel">Übung 2: Der einfache Passwort-Generator (Schwierigkeit: Mittel)</a></h3>
+<p>Erstelle eine Funktion, die ein zufälliges Passwort mit einer vom Benutzer vorgegebenen Länge generiert.</p>
+<ul>
+<li><strong>Anforderung:</strong>
+<ul>
+<li>Das Passwort muss mindestens Großbuchstaben, Kleinbuchstaben und Ziffern enthalten.</li>
+<li>Optional können Sonderzeichen hinzugeschaltet werden.</li>
+<li>Da du in Phase 1 noch keine externen Zufallsgeneratoren (wie das <code>rand</code>-Crate) verwenden sollst, überlege dir mit der KI eine didaktische Alternative (z. B. einen deterministischen Pseudo-Zufallszahlengenerator basierend auf einer mathematischen Formel (LCG - Linear Congruential Generator) oder nutze die aktuelle Systemzeit modulo der Zeichenkettenlänge).</li>
+</ul>
+</li>
+<li><strong>Code-Gerüst mit todo!():</strong></li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn generiere_passwort(laenge: usize, sonderzeichen: bool) -&gt; String {
+    todo!("Passwort-Generierung implementieren")
+}
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="Übung-3-der-einfache-römische-zahlen-Übersetzer-schwierigkeit-schwer"><a class="header" href="#Übung-3-der-einfache-römische-zahlen-Übersetzer-schwierigkeit-schwer">Übung 3: Der einfache Römische-Zahlen-Übersetzer (Schwierigkeit: Schwer)</a></h3>
+<p>Schreibe ein Programm, das römische Zahlen (z. B. <code>XIV</code>) in arabische Zahlen (z. B. <code>14</code>) übersetzt.</p>
+<ul>
+<li><strong>Anforderung:</strong>
+<ul>
+<li>Valdiere die Eingabe (nur gültige römische Zeichen: I, V, X, L, C, D, M).</li>
+<li>Beachte die Subtraktionsregel (z. B. <code>IV</code> = 4, nicht 6; <code>IX</code> = 9).</li>
+<li>Nutze zur Strukturierung ein Code-Gerüst, das du dir von der KI erstellen lässt, und implementiere die Logik Schritt für Schritt.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-didaktischer-leitfaden-für-dein-tägliches-lernen-in-phase-1"><a class="header" href="#-didaktischer-leitfaden-für-dein-tägliches-lernen-in-phase-1">📌 Didaktischer Leitfaden für dein tägliches Lernen in Phase 1</a></h2>
+<p>Damit du deine Programmierfähigkeiten in Rekordzeit ausbaust, solltest du dich an diese drei eisernen Regeln halten:</p>
+<ol>
+<li><strong>Die 15-Minuten-Regel:</strong>
+Wenn du auf einen Fehler stößt, versuche zuerst 15 Minuten lang, ihn selbstständig durch das Lesen der Compilermeldung, die Analyse deines Codes und das Hinzufügen von Debugging-Ausgaben (<code>println!</code>) zu lösen. Erst wenn du nach 15 Minuten keine Idee hast, frage die KI. So verhinderst du, dass du sofort bei jedem kleinen Hindernis deine Autonomie aufgibst.</li>
+<li><strong>Der Erklär-Test (Feynman-Methode):</strong>
+Sobald die KI dir geholfen hat, einen Fehler zu beheben, schließe das Chatfenster. Versuche nun, in eigenen Worten laut zu erklären, <em>warum</em> der Fehler aufgetreten ist und <em>wie</em> die Lösung ihn behoben hat. Wenn du ins Stocken gerätst, hast du das Konzept noch nicht vollständig verstanden.</li>
+<li><strong>Keine Magie erlauben:</strong>
+Verwende niemals, absolut niemals, ein Sprachkonstrukt, ein Crate oder ein Entwurfsmuster in deinem Code, das du nicht in eigenen Worten einem anderen Anfänger erklären könntest. Frage die KI bei jedem unbekannten Symbol: <em>„Was macht dieses Symbol genau und warum ist es an dieser Stelle notwendig?“</em></li>
+</ol>
+<p>Du bist jetzt bestens gerüstet, um das Steuer in die Hand zu nehmen. Nutze die KI als deinen Co-Piloten, aber vergiss niemals: <strong>Du bist der Kapitän!</strong> Viel Erfolg beim Coden!</p>
 
                     </main>
 
