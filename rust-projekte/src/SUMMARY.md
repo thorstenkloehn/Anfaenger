@@ -20,6 +20,7 @@
   - [Ownership & Borrowing](./konzept-ownership.md)
   - [String vs &str](./konzept-string.md)
 - [🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)](./coding-mit-ki-phase1-konzepte.md)
+  - [🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen](./coding-mit-ki-phase1-workshop.md)
 - [🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen](./phase1-workshop.md)
 - [Projektvorschläge Phase 1](./phase1.md)
 - [100 Projekte](./100-projekte.md)
