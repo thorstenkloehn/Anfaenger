@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>13 Operatoren überladen - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html" class="active"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="13-operatoren-überladen"><a class="header" href="#13-operatoren-überladen">13 Operatoren überladen</a></h1>
+<p>In C++ kannst du die eingebaute Syntax der Sprache nutzen, um mit deinen eigenen Klassen so natürlich zu arbeiten wie mit grundlegenden Datentypen (z. B. <code>int</code> oder <code>double</code>). Stell dir vor, du erstellst eine Klasse für mathematische Vektoren, komplexe Zahlen oder Brüche. Ohne Operatorenüberladung müsstest du für jede Addition eine Methode wie <code>addiere()</code> aufrufen: <code>ergebnis = v1.addiere(v2);</code>.</p>
+<p>Mit die Operatorenüberladung kannst du stattdessen einfach schreiben: <code>ergebnis = v1 + v2;</code>. Das macht deinen Code nicht nur kürzer, sondern auch erheblich lesbarer. Man spricht hierbei von <strong>syntaktischem Zucker</strong> – die Funktionalität bleibt gleich, aber die Schreibweise wird für uns Menschen viel angenehmer.</p>
+<p>In diesem Kapitel lernst du, wie du die verschiedenen Operatoren in C++ sicher und nach modernen Standards (C++23) für deine eigenen Typen definierst.</p>
+<hr />
+<h2 id="131-das-schlüsselwort-operator"><a class="header" href="#131-das-schlüsselwort-operator">13.1 Das Schlüsselwort <code>operator</code></a></h2>
+<p>Um einem Operator eine neue Bedeutung für deine Klasse zu geben, definierst du eine spezielle Funktion. Der Name dieser Funktion besteht immer aus dem Schlüsselwort <code>operator</code> und dem jeweiligen Symbol (z. B. <code>+</code>, <code>*</code>, <code>&lt;&lt;</code>, <code>==</code>).</p>
+<p>Ein schematischer Bauplan für eine solche Deklaration sieht so aus:</p>
+<pre><code class="language-cpp">Rückgabetyp operatorSymbol(Parameterliste);
+</code></pre>
+<p>Obwohl das Überladen von Operatoren dir große gestalterische Freiheit gibt, existieren im C++-Standard strikte Spielregeln, um das Verhalten der Sprache vorhersehbar zu halten:</p>
+<ol>
+<li><strong>Keine neuen Symbole erfinden:</strong> Du kannst nur Operatoren überladen, die es in C++ bereits gibt. Es ist nicht möglich, eigene Operatoren wie <code>@</code> oder einen Potenzoperator <code>**</code> zu erschaffen.</li>
+<li><strong>Mindestens ein benutzerdefinierter Typ:</strong> Mindestens einer der Operanden muss ein von dir erstellter Typ sein (z. B. eine Klasse, eine Struktur oder ein Enum). Du kannst das Verhalten von eingebauten Typen untereinander (wie <code>int + int</code>) nicht verändern.</li>
+<li><strong>Priorität und Assoziativität bleiben gleich:</strong> Die Rangfolge der Operatoren (z. B. Punkt- vor Strichrechnung) und die Richtung, in der sie ausgewertet werden (von links nach rechts oder umgekehrt), können nicht verändert werden. Ein <code>*</code> wird immer vor einem <code>+</code> ausgewertet.</li>
+<li><strong>Nicht alle Operatoren sind überladbar:</strong> Einige wenige Operatoren dürfen nicht überladen werden. Dazu gehören:
+<ul>
+<li>Der Punkt-Operator für den Memberzugriff (<code>.</code>)</li>
+<li>Der Scope-Auflösungsoperator (<code>::</code>)</li>
+<li>Der Bedingungsoperator (<code>?:</code>)</li>
+<li>Der <code>sizeof</code>-Operator</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!WARNING]
+Nutze die Operatorenüberladung nur dort, wo sie intuitiv und logisch sinnvoll ist. Wenn du den Operator <code>+</code> für eine Klasse <code>Dokument</code> so überlädst, dass er das Dokument löscht statt etwas hinzuzufügen, stiftest du bei jedem, der deinen Code liest, extreme Verwirrung. Bleibe nah an der mathematischen oder allgemein erwarteten Intuition.</p>
+</blockquote>
+<hr />
+<h2 id="132-zweistellige-arithmetische-operatoren-überladen"><a class="header" href="#132-zweistellige-arithmetische-operatoren-überladen">13.2 Zweistellige arithmetische Operatoren überladen</a></h2>
+<p>Zweistellige (binäre) Operatoren verknüpfen zwei Werte miteinander. Beispiele hierfür sind <code>+</code>, <code>-</code>, <code>*</code> und <code>/</code>. Wenn du einen solchen Operator für deine Klasse definieren möchtest, hast du zwei grundlegende Möglichkeiten:</p>
+<h3 id="1-die-umsetzung-als-klassenmethode-member-funktion"><a class="header" href="#1-die-umsetzung-als-klassenmethode-member-funktion">1. Die Umsetzung als Klassenmethode (Member-Funktion)</a></h3>
+<p>Wenn du den Operator direkt in deiner Klasse definierst, übernimmt das aktuelle Objekt (<code>this</code>) implizit die Rolle des linken Operanden. Der rechte Operand wird als Argument an die Funktion übergeben.</p>
+<p>Ein Struktur-Template für eine solche Methode sieht so aus:</p>
+<pre><code class="language-cpp">// Innerhalb der Klassendefinition:
+MeinTyp operator+(const MeinTyp&amp; rhs) const;
+</code></pre>
+<p>Hierbei steht <code>rhs</code> für <em>Right-Hand Side</em> (die rechte Seite des Operators). Da die Addition das Originalobjekt nicht verändern soll, deklarieren wir die Methode als <code>const</code> und geben ein neues Objekt per Wert zurück.</p>
+<h3 id="2-die-umsetzung-als-globale-hilfsfunktion-non-member-funktion"><a class="header" href="#2-die-umsetzung-als-globale-hilfsfunktion-non-member-funktion">2. Die Umsetzung als globale Hilfsfunktion (Non-Member-Funktion)</a></h3>
+<p>Alternativ kannst du den Operator als eigenständige, globale Funktion außerhalb der Klasse definieren. In diesem Fall müssen beide Operanden explizit als Parameter übergeben werden:</p>
+<pre><code class="language-cpp">// Außerhalb der Klassendefinition:
+MeinTyp operator+(const MeinTyp&amp; lhs, const MeinTyp&amp; rhs);
+</code></pre>
+<p>Hierbei steht <code>lhs</code> für <em>Left-Hand Side</em> (die linke Seite). Wenn diese globale Funktion Zugriff auf private Attribute deiner Klasse benötigt, kannst du sie innerhalb deiner Klasse mit dem Schlüsselwort <code>friend</code> bekannt machen.</p>
+<h3 id="der-entscheidende-unterschied-symmetrie-bei-konvertierungen"><a class="header" href="#der-entscheidende-unterschied-symmetrie-bei-konvertierungen">Der entscheidende Unterschied: Symmetrie bei Konvertierungen</a></h3>
+<p>Warum gibt es diese zwei Wege und welcher ist besser? Stell dir vor, du hast eine Klasse für Brüche geschrieben, die einen Konstruktor besitzt, der eine ganze Zahl (<code>int</code>) automatisch in einen Bruch umwandeln kann (implizite Konvertierung).</p>
+<ul>
+<li><strong>Mit einer Klassenmethode:</strong>
+Schreibst du <code>meinBruch + 5</code>, funktioniert das. Der Compiler sieht, dass links ein Objekt deiner Klasse steht, und wandelt die <code>5</code> auf der rechten Seite in einen Bruch um.
+Schreibst du jedoch <code>5 + meinBruch</code>, meldet der Compiler einen Fehler! Da die linke Seite eine eingebaute Zahl (<code>int</code>) ist, sucht der Compiler in der Klasse <code>int</code> nach einem passenden Operator. Da du diese nicht verändern kannst, scheitert der Versuch.</li>
+<li><strong>Mit einer globalen Hilfsfunktion:</strong>
+Da beide Parameter gleichwertig als Argumente an eine Funktion übergeben werden, kann der Compiler in beiden Fällen (<code>meinBruch + 5</code> und <code>5 + meinBruch</code>) die implizite Konvertierung anwenden.</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+Bevorzuge für zweistellige arithmetische Operatoren in der Regel <strong>globale Hilfsfunktionen</strong> (oft als <code>friend</code> in der Klasse deklariert). Dies garantiert eine symmetrische Behandlung beider Operanden und verhindert überraschende Compilerfehler bei Konvertierungen.</p>
+</blockquote>
+<hr />
+<h2 id="133-einstellige-operatoren-überladen"><a class="header" href="#133-einstellige-operatoren-überladen">13.3 Einstellige Operatoren überladen</a></h2>
+<p>Einstellige (unäre) Operatoren wirken auf ein einziges Objekt. Typische Vertreter sind das unäre Vorzeichen-Minus (<code>-x</code>), das Vorzeichen-Plus (<code>+x</code>) sowie die Inkrement- (<code>++</code>) und Dekrement-Operatoren (<code>--</code>).</p>
+<h3 id="vorzeichen-operatoren"><a class="header" href="#vorzeichen-operatoren">Vorzeichen-Operatoren</a></h3>
+<p>Diese Operatoren verändern das Objekt meist nicht selbst, sondern liefern eine modifizierte Kopie zurück. Sie benötigen als Member-Funktion keine Parameter:</p>
+<pre><code class="language-cpp">MeinTyp operator-() const;
+</code></pre>
+<h3 id="inkrement-und-dekrement-präfix-vs-postfix"><a class="header" href="#inkrement-und-dekrement-präfix-vs-postfix">Inkrement und Dekrement: Präfix vs. Postfix</a></h3>
+<p>Die größte Besonderheit im C++-Design liegt beim Unterschied zwischen dem Vorher-Ändern (Präfix, z. B. <code>++x</code>) und dem Nachher-Ändern (Postfix, z. B. <code>x++</code>). Beide nutzen dasselbe Symbol, müssen aber unterschiedlich deklariert werden.</p>
+<h4 id="die-präfix-variante-x"><a class="header" href="#die-präfix-variante-x">Die Präfix-Variante (<code>++x</code>)</a></h4>
+<p>Der Präfix-Operator erhöht den Wert des Objekts und gibt das geänderte Objekt selbst als Referenz zurück.</p>
+<pre><code class="language-cpp">MeinTyp&amp; operator++(); // Präfix
+</code></pre>
+<p>Da das Objekt direkt verändert und zurückgegeben wird, ist dies sehr effizient.</p>
+<h4 id="die-postfix-variante-x"><a class="header" href="#die-postfix-variante-x">Die Postfix-Variante (<code>x++</code>)</a></h4>
+<p>Der Postfix-Operator soll den Wert des Objekts erhöhen, aber den <em>alten</em> Zustand vor der Erhöhung zurückgeben. Um diese Methode syntaktisch von der Präfix-Variante zu unterscheiden, verlangt C++ einen ungenutzten Dummy-Parameter vom Typ <code>int</code>:</p>
+<pre><code class="language-cpp">MeinTyp operator++(int); // Postfix (das int ist ein reines Unterscheidungsmerkmal)
+</code></pre>
+<p>Da die Postfix-Variante den alten Zustand zurückliefern muss, läuft sie intern meist so ab:</p>
+<ol>
+<li>Erstelle eine temporäre Kopie des aktuellen Zustands.</li>
+<li>Erhöhe den Zustand des aktuellen Objekts (hierzu kann intern oft der Präfix-Operator aufgerufen werden).</li>
+<li>Gib die zuvor erstellte Kopie per Wert zurück.</li>
+</ol>
+<blockquote>
+<p>[!NOTE]
+Da die Postfix-Variante zwingend eine temporäre Kopie anlegen muss, ist sie laufzeitintensiver als die Präfix-Variante. Verwende im Alltag daher bevorzugt den Präfix-Operator (<code>++i</code> statt <code>i++</code>), sofern du den alten Wert nicht explizit im selben Ausdruck benötigst.</p>
+</blockquote>
+<hr />
+<h2 id="134-den-zuweisungsoperator-überladen"><a class="header" href="#134-den-zuweisungsoperator-überladen">13.4 Den Zuweisungsoperator überladen</a></h2>
+<p>Der Zuweisungsoperator (<code>operator=</code>) wird aufgerufen, wenn ein bereits initialisiertes Objekt einen neuen Wert von einem anderen Objekt zugewiesen bekommt:</p>
+<pre><code class="language-cpp">MeinTyp a;
+MeinTyp b;
+a = b; // Ruft den Zuweisungsoperator auf
+</code></pre>
+<p>Wenn du diesen Operator nicht selbst definierst, generiert der Compiler automatisch eine Standardvariante, die alle Attribute einzeln kopiert. Verwaltest du in deiner Klasse jedoch Ressourcen wie dynamischen Speicher (Heap) oder geöffnete Dateien, führt dieses flache Kopieren zu schweren Fehlern (z. B. doppelter Speicherfreigabe).</p>
+<p>In modernem C++ unterscheidet man zwei Arten der Zuweisung:</p>
+<h3 id="1-kopierzuweisung-copy-assignment"><a class="header" href="#1-kopierzuweisung-copy-assignment">1. Kopierzuweisung (Copy Assignment)</a></h3>
+<p>Bei der Kopierzuweisung wird der Zustand eines bestehenden Objekts in ein anderes kopiert. Das Quellobjekt bleibt dabei unverändert.</p>
+<pre><code class="language-cpp">MeinTyp&amp; operator=(const MeinTyp&amp; other);
+</code></pre>
+<p>Ein typischer Ablauf für die Implementierung einer Kopierzuweisung folgt diesen Schritten:</p>
+<ul>
+<li><strong>Selbstzuweisungsschutz:</strong> Überprüfe, ob das übergebene Objekt mit dem eigenen Objekt identisch ist (<code>this == &amp;other</code>). Wenn ja, tu nichts und gib direkt <code>*this</code> zurück. Andernfalls würdest du im nächsten Schritt eventuell deine eigenen Daten löschen, bevor du sie kopierst.</li>
+<li><strong>Ressourcen freigeben:</strong> Lösche den bisherigen dynamischen Speicher des Zielobjekts.</li>
+<li><strong>Daten kopieren:</strong> Reserviere neuen Speicher und kopiere die Daten des Quellobjekts.</li>
+<li><strong>Rückgabe:</strong> Gib eine Referenz auf das eigene Objekt (<code>*this</code>) zurück, um Zuweisungsketten wie <code>a = b = c;</code> zu ermöglichen.</li>
+</ul>
+<h3 id="2-verschiebezuweisung-move-assignment"><a class="header" href="#2-verschiebezuweisung-move-assignment">2. Verschiebezuweisung (Move Assignment)</a></h3>
+<p>Die Verschiebezuweisung (eingeführt mit Rvalue-Referenzen <code>&amp;&amp;</code>) kopiert keine Daten, sondern "stiehlt" die Ressourcen eines temporären Objekts, das ohnehin kurz danach zerstört wird. Das spart teure Speicherallokationen.</p>
+<pre><code class="language-cpp">MeinTyp&amp; operator=(MeinTyp&amp;&amp; other) noexcept;
+</code></pre>
+<p>Der Ablauf ist ähnlich wie bei der Kopierzuweisung, jedoch mit einem entscheidenden Unterschied:</p>
+<ul>
+<li>Prüfe auch hier auf Selbstzuweisung.</li>
+<li>Gib die eigenen Ressourcen frei.</li>
+<li>Übernehme die Zeiger/Ressourcen direkt von <code>other</code> (einfaches Umbiegen der Zeiger).</li>
+<li>Setze die Zeiger von <code>other</code> auf <code>nullptr</code> oder einen sicheren Standardzustand, damit der Destruktor von <code>other</code> die soeben "gestohlenen" Daten nicht wieder freigibt.</li>
+<li>Gib <code>*this</code> zurück.</li>
+</ul>
+<h3 id="zuweisung-unterbinden"><a class="header" href="#zuweisung-unterbinden">Zuweisung unterbinden</a></h3>
+<p>Manche Klassen dürfen weder kopiert noch verschoben werden (z. B. Klassen, die eine exklusive Hardware- oder Netzwerkverbindung steuern). Du kannst diese Operationen gezielt verbieten, indem du sie mit <code>= delete</code> deklarierst:</p>
+<pre><code class="language-cpp">MeinTyp&amp; operator=(const MeinTyp&amp; other) = delete; // Kopieren verboten!
+</code></pre>
+<blockquote>
+<p>[!IMPORTANT]
+Denke an die <strong>Rule of Five</strong> (Regel der Fünf): Wenn du einen der folgenden mitgelieferten Mechanismen selbst implementieren musst, solltest du dir überlegen, ob du nicht alle fünf explizit definieren (oder verbieten) musst:</p>
+<ol>
+<li>Destruktor</li>
+<li>Kopierkonstruktor</li>
+<li>Kopierzuweisungsoperator</li>
+<li>Verschiebekonstruktor</li>
+<li>Verschiebezuweisungsoperator</li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="135-ausgabe--und-eingabeoperatoren-überladen"><a class="header" href="#135-ausgabe--und-eingabeoperatoren-überladen">13.5 Ausgabe- und Eingabeoperatoren überladen</a></h2>
+<p>Möchtest du Objekte deiner Klasse direkt über Datenströme ausgeben (z. B. <code>std::cout &lt;&lt; meinObjekt;</code>) oder einlesen (z. B. <code>std::cin &gt;&gt; meinObjekt;</code>), musst du die Stream-Operatoren überladen.</p>
+<p>Da der linke Operand hierbei ein Stream-Objekt aus der Standardbibliothek ist (<code>std::ostream</code> bzw. <code>std::istream</code>), kannst du diese Operatoren <strong>nicht als Member-Funktionen</strong> deiner Klasse definieren. Sie müssen als globale Hilfsfunktionen implementiert werden.</p>
+<h3 id="der-ausgabeoperator-operator"><a class="header" href="#der-ausgabeoperator-operator">Der Ausgabeoperator (<code>operator&lt;&lt;</code>)</a></h3>
+<p>Um ein Objekt auf der Konsole oder in einer Datei auszugeben, deklarierst du folgende globale Funktion:</p>
+<pre><code class="language-cpp">// Typischerweise als friend deklariert in der Klasse:
+friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const MeinTyp&amp; obj);
+</code></pre>
+<ul>
+<li>Der erste Parameter ist eine veränderbare Referenz auf den Stream <code>os</code> (da Schreiben den Zustand des Streams verändert).</li>
+<li>Der zweite Parameter ist eine konstante Referenz auf das auszugebende Objekt.</li>
+<li>Die Funktion muss die Referenz auf den Stream <code>os</code> wieder zurückgeben, damit Ausdrücke verkettet werden können (<code>std::cout &lt;&lt; a &lt;&lt; b;</code>).</li>
+</ul>
+<h3 id="der-eingabeoperator-operator"><a class="header" href="#der-eingabeoperator-operator">Der Eingabeoperator (<code>operator&gt;&gt;</code>)</a></h3>
+<p>Das Einlesen funktioniert analog, allerdings darf das einzulesende Objekt nicht konstant sein:</p>
+<pre><code class="language-cpp">friend std::istream&amp; operator&gt;&gt;(std::istream&amp; is, MeinTyp&amp; obj);
+</code></pre>
+<ul>
+<li>Innerhalb der Funktion liest du die Werte in die Attribute von <code>obj</code> ein.</li>
+<li>Wichtig: Validierung! Falls die Eingabe fehlerhaft ist (z. B. Buchstaben eingegeben wurden, obwohl Zahlen erwartet wurden), solltest du den Fehlerzustand des Streams über <code>is.setstate(std::ios::failbit)</code> signalisieren.</li>
+</ul>
+<hr />
+<h3 id="der-moderne-c23-weg-spezialisierung-von-stdformatter"><a class="header" href="#der-moderne-c23-weg-spezialisierung-von-stdformatter">Der moderne C++23-Weg: Spezialisierung von <code>std::formatter</code></a></h3>
+<p>In modernem C++ (eingeführt mit C++23 samt <code>import std;</code> und <code>std::println</code>) weicht die Verwendung von I/O-Streams immer mehr den moderneren, schnelleren und sichereren Funktionen <code>std::print</code> und <code>std::println</code>.</p>
+<p>Diese Funktionen nutzen unter der Haube <code>std::format</code>. Um ein eigenes Objekt mit <code>std::print</code> ausgeben zu können, überlädt man nicht <code>operator&lt;&lt;</code>, sondern spezialisiert das Template <code>std::formatter</code> für den eigenen Typ.</p>
+<p>Ein Struktur-Template für eine solche Spezialisierung sieht so aus:</p>
+<pre><code class="language-cpp">// Spezialisierung im Namensraum std
+template &lt;&gt;
+struct std::formatter&lt;MeinTyp&gt; {
+    // Parst optionale Formatierungsoptionen (z. B. {:d} oder {:f})
+    constexpr auto parse(std::format_parse_context&amp; ctx) {
+        return ctx.begin(); // Einfachste Variante: Optionen überspringen
+    }
+
+    // Formatiert das Objekt und schreibt es in den Ausgabe-Buffer
+    auto format(const MeinTyp&amp; obj, std::format_context&amp; ctx) const {
+        // Hier nutzt du std::format_to, um die einzelnen Member strukturiert auszugeben
+        return std::format_to(ctx.out(), "Format-String", /* Attribute von obj */);
+    }
+};
+</code></pre>
+<blockquote>
+<p>[!TIP]
+Wenn du modernen C++23-Code schreibst, solltest du für die Textausgabe die Spezialisierung von <code>std::formatter</code> bevorzugen. Sie arbeitet nahtlos mit <code>std::print</code> zusammen, ist typsicherer und oft performanter als die alte Stream-Ausgabe mit <code>std::ostream</code>.</p>
+</blockquote>
+<hr />
+<h2 id="136-vergleichsoperatoren"><a class="header" href="#136-vergleichsoperatoren">13.6 Vergleichsoperatoren</a></h2>
+<p>Vor C++20 war das Implementieren von Vergleichen eine monotone Aufgabe: Du musstest sechs verschiedene Operatoren (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) einzeln schreiben, obwohl sie logisch alle voneinander abhängen.</p>
+<h3 id="der-drei-wege-vergleichsoperator-"><a class="header" href="#der-drei-wege-vergleichsoperator-">Der Drei-Wege-Vergleichsoperator (<code>&lt;=&gt;</code>)</a></h3>
+<p>Seit C++20 (und verfeinert in C++23) gibt es den sogenannten <strong>Spaceship-Operator</strong> <code>&lt;=&gt;</code>. Dieser Operator vergleicht zwei Werte und gibt ein spezielles Ordnungsobjekt zurück, das beschreibt, ob der linke Wert kleiner, gleich oder größer als der rechte ist.</p>
+<p>Sobald du <code>&lt;=&gt;</code> für deine Klasse definierst, generiert der Compiler die vier relationalen Vergleiche (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>) automatisch für dich!</p>
+<p>Das Geniale: Oft musst du die Logik gar nicht selbst schreiben. Du kannst den Compiler anweisen, den Standardvergleich zu generieren:</p>
+<pre><code class="language-cpp">// Innerhalb der Klasse:
+auto operator&lt;=&gt;(const MeinTyp&amp; rhs) const = default;
+</code></pre>
+<p>Mit <code>= default</code> vergleicht der Compiler alle Attribute deiner Klasse in der Reihenfolge, in der sie deklariert wurden (lexikographischer Vergleich).</p>
+<h3 id="gleichheit-separat-betrachten"><a class="header" href="#gleichheit-separat-betrachten">Gleichheit separat betrachten</a></h3>
+<p>Obwohl der Spaceship-Operator theoretisch auch Gleichheit prüfen kann, generiert der Compiler Vergleiche auf Gleichheit (<code>==</code> und <code>!=</code>) nur dann automatisch mit, wenn du auch <code>operator==</code> als <code>= default</code> deklarierst:</p>
+<pre><code class="language-cpp">bool operator==(const MeinTyp&amp; rhs) const = default;
+</code></pre>
+<blockquote>
+<p>[!NOTE]
+Die Trennung von <code>operator&lt;=&gt;</code> und <code>operator==</code> hat Performance-Gründe. Um festzustellen, ob zwei lange Strings oder Vektoren gleich sind, reicht ein schneller Vergleich auf ungleiche Längen oder Element-für-Element-Gleichheit. Ein echter Ordnungsvergleich (wer ist "größer") ist oft aufwendiger.</p>
+</blockquote>
+<h3 id="die-drei-ordnungskategorien"><a class="header" href="#die-drei-ordnungskategorien">Die drei Ordnungskategorien</a></h3>
+<p>Je nachdem, welche Eigenschaften deine Daten haben, gibt der Spaceship-Operator unterschiedliche Typen zurück:</p>
+<ol>
+<li><strong><code>std::strong_ordering</code>:</strong> Eine strikte, totale Ordnung. Zwei Objekte sind entweder kleiner, größer oder absolut identisch (z. B. ganze Zahlen).</li>
+<li><strong><code>std::weak_ordering</code>:</strong> Eine schwächere Ordnung. Zwei Objekte können wertmäßig als "äquivalent" gelten, ohne in all ihren Details identisch zu sein (z. B. ein case-insensitiver String-Vergleich: "Hallo" und "hallo" sind äquivalent, aber nicht identisch).</li>
+<li><strong><code>std::partial_ordering</code>:</strong> Eine Ordnung, bei der manche Werte nicht miteinander vergleichbar sind (z. B. Gleitkommazahlen wegen <code>NaN</code> - Not a Number).</li>
+</ol>
+<hr />
+<h2 id="137-konvertierungsoperatoren"><a class="header" href="#137-konvertierungsoperatoren">13.7 Konvertierungsoperatoren</a></h2>
+<p>Manchmal ist es praktisch, wenn sich ein Anwenderobjekt deiner Klasse verhält wie ein einfacher Datentyp. Beispielsweise soll eine Klasse <code>Gewicht</code> in einen einfachen <code>double</code>-Wert umgewandelt werden können, wenn eine mathematische Berechnung ansteht.</p>
+<p>Dafür nutzt man Konvertierungsoperatoren. Ihre Syntax ist speziell, da sie <strong>keinen expliziten Rückgabetyp</strong> angeben (der Typ ergibt sich aus dem Operatornamen):</p>
+<pre><code class="language-cpp">operator Zieltyp() const;
+</code></pre>
+<h3 id="die-gefahr-impliziter-konvertierungen"><a class="header" href="#die-gefahr-impliziter-konvertierungen">Die Gefahr impliziter Konvertierungen</a></h3>
+<p>Schreibst du einen einfachen Konvertierungsoperator wie <code>operator double() const;</code>, erlaubt das dem Compiler, deine Klasse vollautomatisch und ungefragt in eine Gleitkommazahl umzuwandeln, wann immer er es für nötig hält.</p>
+<p>Das kann zu absurden Fehlern führen: Ein unbeabsichtigter mathematischer Ausdruck mit einem deiner Objekte kompiliert fehlerfrei, führt aber zu völlig falschen Berechnungen.</p>
+<h3 id="die-rettung-explicit"><a class="header" href="#die-rettung-explicit">Die Rettung: <code>explicit</code></a></h3>
+<p>Um unkontrollierte automatische Umwandlungen zu verhindern, solltest du Konvertierungsoperatoren fast immer als <code>explicit</code> deklarieren:</p>
+<pre><code class="language-cpp">explicit operator Zieltyp() const;
+</code></pre>
+<p>Dadurch darf der Compiler die Konvertierung nur noch dann durchführen, wenn du sie ausdrücklich anforderst:</p>
+<ul>
+<li>Durch einen direkten Cast: <code>static_cast&lt;Zieltyp&gt;(meinObjekt)</code></li>
+<li>Bei der direkten Initialisierung: <code>Zieltyp wert(meinObjekt)</code></li>
+</ul>
+<blockquote>
+<p>[!TIP]
+Eine wichtige Ausnahme gibt es für <code>explicit operator bool() const;</code>. Wenn du ein Objekt in einer Kontrollstruktur (wie <code>if (meinObjekt)</code>) prüfst, wertet der Compiler diesen Konvertierungsoperator trotz des Schlüsselworts <code>explicit</code> implizit aus. Das ist extrem nützlich, um beispielsweise die Gültigkeit von Objekten (wie Dateien oder Netzwerkverbindungen) direkt in Bedingungen abzufragen.</p>
+</blockquote>
+<hr />
+<h2 id="138-kontrollfragen-und-aufgaben"><a class="header" href="#138-kontrollfragen-und-aufgaben">13.8 Kontrollfragen und Aufgaben</a></h2>
+<h3 id="kontrollfragen"><a class="header" href="#kontrollfragen">Kontrollfragen</a></h3>
+<ol>
+<li>Warum ist es unmöglich, einen neuen Operator wie <code>operator**</code> zu definieren?</li>
+<li>Worin unterscheidet sich die Implementierung eines binären Operators als Klassenmethode von der als globale Hilfsfunktion? Welcher Parameter fällt bei der Klassenmethode weg?</li>
+<li>Warum benötigt der Postfix-Inkrement-Operator (<code>x++</code>) einen <code>int</code>-Parameter, obwohl dieser im Funktionskörper meist gar nicht verwendet wird?</li>
+<li>Warum ist die Präfix-Variante (<code>++x</code>) in der Regel performanter als die Postfix-Variante?</li>
+<li>Was ist das Problem bei einer Selbstzuweisung (<code>a = a;</code>) und wie schützt man sich in der Implementierung von <code>operator=</code> dagegen?</li>
+<li>Warum müssen Stream-Operatoren wie <code>operator&lt;&lt;</code> zwingend globale Funktionen sein?</li>
+<li>Welchen Vorteil bietet die Spezialisierung von <code>std::formatter</code> in C++23 gegenüber dem klassischen Überladen von <code>operator&lt;&lt;</code>?</li>
+<li>Warum generiert der Compiler durch das Deklarieren von <code>operator&lt;=&gt; = default</code> automatisch auch die Operatoren <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> und <code>&gt;=</code>?</li>
+<li>Welche Gefahr bergen implizite Konvertierungsoperatoren und wie entschärft man diese?</li>
+</ol>
+<hr />
+<h3 id="aufgaben"><a class="header" href="#aufgaben">Aufgaben</a></h3>
+<h4 id="aufgabe-1-die-zweidimensionale-vektorklasse-didaktische-Übung"><a class="header" href="#aufgabe-1-die-zweidimensionale-vektorklasse-didaktische-Übung">Aufgabe 1: Die zweidimensionale Vektorklasse (Didaktische Übung)</a></h4>
+<p>Konstruiere im Geiste oder in einem Testprojekt eine Klasse für 2D-Vektoren (mit den Koordinaten <code>x</code> und <code>y</code>).</p>
+<ul>
+<li>Implementiere die Addition und Subtraktion zweier Vektoren. Nutze dafür globale Hilfsfunktionen, um Symmetrie zu wahren.</li>
+<li>Überlade die Operatoren so, dass du auch einen Vektor mit einem einfachen Skalar (<code>double</code>) addieren kannst (sowohl <code>Vektor + Skalar</code> als auch <code>Skalar + Vektor</code>).</li>
+<li>Überlege, wie du den Multiplikationsoperator <code>*</code> für das Skalarprodukt zweier Vektoren umsetzen würdest.</li>
+</ul>
+<h4 id="aufgabe-2-der-sichere-wrapper-für-ids-didaktische-Übung"><a class="header" href="#aufgabe-2-der-sichere-wrapper-für-ids-didaktische-Übung">Aufgabe 2: Der sichere Wrapper für IDs (Didaktische Übung)</a></h4>
+<p>Entwirf eine Klasse, die eine numerische Datenbank-ID (z. B. einen <code>unsigned long</code>) kapselt.</p>
+<ul>
+<li>Die Klasse soll nicht für arithmetische Berechnungen missbraucht werden können (keine Addition, keine Multiplikation).</li>
+<li>Sie soll jedoch auf Gleichheit und Ordnung prüfbar sein. Verwende den C++20-Spaceship-Operator und lasse den Compiler die Arbeit tun.</li>
+<li>Implementiere einen Konvertierungsoperator zu <code>unsigned long</code>, der jedoch ausschließlich explizit aufgerufen werden darf.</li>
+<li>Mache die Klasse mithilfe von <code>std::formatter</code> für <code>std::print</code> ausgebbar.</li>
+</ul>
+<h4 id="aufgabe-3-der-exklusive-ressourcen-manager-didaktische-Übung"><a class="header" href="#aufgabe-3-der-exklusive-ressourcen-manager-didaktische-Übung">Aufgabe 3: Der exklusive Ressourcen-Manager (Didaktische Übung)</a></h4>
+<p>Stell dir vor, du schreibst eine Klasse, die ein Handle auf eine Systemressource (z. B. eine Datei oder einen Grafikspeicher-Puffer) hält.</p>
+<ul>
+<li>Da die Ressource exklusiv verwaltet werden soll, darf das Objekt nicht kopiert werden. Verbiete den Kopierkonstruktor und die Kopierzuweisung.</li>
+<li>Erlaube jedoch das Verschieben der Ressource (Move-Semantik). Implementiere die Verschiebezuweisung. Achte penibel darauf, die Ressource des Zielobjekts vor der Übernahme freizugeben und die Ressource des Quellobjekts zu leeren, um einen Double-Free-Fehler beim Zerstören zu verhindern.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="cpp-kapitel12.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="cpp-kapitel14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="cpp-kapitel12.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="cpp-kapitel14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🛹 Mitmach-Workshop - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html" class="active"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-mitmach-workshop-phase-1-bildhaft-verstehen-die-poststation"><a class="header" href="#-mitmach-workshop-phase-1-bildhaft-verstehen-die-poststation">🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen (Die Poststation)</a></h1>
+<p>Willkommen in der manuellen Poststation! 📯✨</p>
+<p>Wenn man zum ersten Mal von <strong>Zeigern (Pointern)</strong>, <strong>Speicheradressen</strong>, <strong>scanf</strong> und <strong>char-Arrays</strong> hört, kann sich das anfangs sehr abstrakt anfühlen. Aber keine Sorge: C arbeitet im Grunde genau wie ein traditionelles Postamt, bei dem alle Vorgänge manuell mit Zetteln und Adressen organisiert werden müssen!</p>
+<p>In diesem Kapitel bauen wir zusammen ein Postamt im Kopf auf und setzen es danach Schritt für Schritt in C um. Mach dich bereit für deine ersten praktischen Schritte in C!</p>
+<hr />
+<h2 id="-hintergrund-wie-arbeitet-der-speicher-in-c-stack-vs-heap"><a class="header" href="#-hintergrund-wie-arbeitet-der-speicher-in-c-stack-vs-heap">🧠 Hintergrund: Wie arbeitet der Speicher in C? (Stack vs. Heap)</a></h2>
+<p>Bevor wir Briefe sortieren, müssen wir verstehen, wo C die Daten im Arbeitsspeicher ablegt. Stell dir vor, unsere Poststation hat zwei Bereiche:</p>
+<h3 id="1-der-sortiertisch-stack"><a class="header" href="#1-der-sortiertisch-stack">1. Der Sortiertisch (Stack)</a></h3>
+<p>Hier arbeitet der Postbeamte direkt. Auf dem Tisch liegen Briefe und Pakete, die sofort griffbereit sein müssen.</p>
+<ul>
+<li><strong>Vorteil:</strong> Blitzschnell erreichbar.</li>
+<li><strong>Nachteil:</strong> Der Platz auf dem Tisch ist klein und fest begrenzt. Und das Wichtigste: Jedes Paket hier muss eine <strong>feste, unveränderliche Größe</strong> haben (z. B. eine kleine Hausnummer wie <code>int</code> oder ein einzelner Buchstabe wie <code>char</code>).</li>
+<li>Hier liegen auch unsere Adresszettel (Pointer), die uns sagen, wo größere Pakete gelagert sind.</li>
+</ul>
+<h3 id="2-das-hauptlager-heap"><a class="header" href="#2-das-hauptlager-heap">2. Das Hauptlager (Heap)</a></h3>
+<p>Wenn wir sehr große Pakete empfangen, deren Größe wir vorher noch gar nicht genau kennen, passen sie nicht auf den Sortiertisch. Wir lagern sie im Hauptlager ein.</p>
+<ul>
+<li><strong>Vorteil:</strong> Fast unbegrenzter Platz. Pakete können dynamisch wachsen oder schrumpfen.</li>
+<li><strong>Wie funktioniert das?</strong> Das Paket liegt im Regal im Hauptlager. Auf dem Sortiertisch (Stack) liegt nur ein kleiner Zettel mit der genauen Regalnummer (die <strong>Speicheradresse</strong> oder der <strong>Pointer</strong>).</li>
+<li>In C müssen wir dieses Lager manuell verwalten: Wir müssen Speicherplatz im Lager anfordern (<code>malloc</code>) und ihn, wenn wir ihn nicht mehr brauchen, zwingend wieder freigeben (<code>free</code>), sonst läuft das Lager irgendwann über (Speicherleck).</li>
+</ul>
+<hr />
+<h2 id="-micro-learning-1-die-postfächer-variablen--datentypen"><a class="header" href="#-micro-learning-1-die-postfächer-variablen--datentypen">📦 Micro-Learning 1: Die Postfächer (Variablen &amp; Datentypen)</a></h2>
+<h3 id="-die-analogie-nummerierte-postfächer-und-die-schlösser"><a class="header" href="#-die-analogie-nummerierte-postfächer-und-die-schlösser">🧸 Die Analogie: Nummerierte Postfächer und die Schlösser</a></h3>
+<p>Stell dir eine Wand mit Postfächern vor. Jedes Fach hat eine feste Nummer (<strong>Speicheradresse</strong>), einen Namen (<strong>Variablenname</strong>) und eine bestimmte Größe (<strong>Datentyp</strong>).</p>
+<ul>
+<li><strong>Standardmäßig offen (veränderbar / mutable):</strong> In C haben die Postfächer standardmäßig kein Schloss. Jeder, der die Adresse kennt, kann den Inhalt herausnehmen und durch etwas Neues ersetzen.</li>
+<li><strong>Das Vorhängeschloss (<code>const</code>):</strong> Wenn wir ein Postfach als <code>const</code> deklarieren, hängen wir ein Schloss davor. Der Inhalt kann ab jetzt nur noch gelesen, aber nie wieder verändert werden.</li>
+</ul>
+<h3 id="-anleitung--syntax-spickzettel"><a class="header" href="#-anleitung--syntax-spickzettel">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<ul>
+<li><strong>Ein normales Postfach erstellen (veränderbar):</strong>
+<pre><code class="language-c">// Ein Fach für ganze Zahlen. Standardmäßig veränderbar!
+int briefe_anzahl = 5;
+briefe_anzahl = 10; // ✅ Erlaubt!
+</code></pre>
+</li>
+<li><strong>Ein Postfach verschließen (<code>const</code>):</strong>
+<pre><code class="language-c">// Dieses Fach kann nicht mehr überschrieben werden
+const int postleitzahl = 12345;
+// postleitzahl = 54321; // ❌ Fehler! Der Compiler verbietet das.
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>[!WARNING]
+<strong>Staub im Postfach (Garbage Values):</strong>
+Wenn du ein neues Fach reservierst, aber nichts hineinlegst (<code>int gewicht;</code>), liegt dort nicht "Nichts". Es liegt dort der Müll (zufällige Daten) vom Vorgänger, der das Fach vor dir benutzt hat! Initialisiere deine Variablen in C daher <strong>immer</strong> sofort mit einem Startwert (z. B. <code>int gewicht = 0;</code>).</p>
+</blockquote>
+<hr />
+<h2 id="-micro-learning-2-der-postsortierer-kontrollfluss"><a class="header" href="#-micro-learning-2-der-postsortierer-kontrollfluss">🏷️ Micro-Learning 2: Der Postsortierer (Kontrollfluss)</a></h2>
+<h3 id="-die-analogie-die-sortierweiche"><a class="header" href="#-die-analogie-die-sortierweiche">🧸 Die Analogie: Die Sortierweiche</a></h3>
+<p>Der Kontrollfluss entscheidet, welchen Weg ein Brief nimmt. Ein Postsortierer schaut sich die Postleitzahl an: "Liegt die Postleitzahl im Norden?" Wenn ja, kommt der Brief in die linke Kiste, sonst in die rechte.</p>
+<p>In C nutzen wir dafür <code>if</code> und <code>else</code>. Anders als in Rust ist eine <code>if</code>-Bedingung in C eine reine <strong>Anweisung</strong> und kein Ausdruck – sie kann also nicht direkt einen Wert zurückgeben. Außerdem müssen Bedingungen in C immer in runden Klammern <code>()</code> stehen!</p>
+<h3 id="-anleitung--syntax-spickzettel-1"><a class="header" href="#-anleitung--syntax-spickzettel-1">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<ul>
+<li><strong>Der Postleitzahlen-Check (<code>if-else</code>):</strong>
+<pre><code class="language-c">int plz = 20457;
+
+// Runden Klammern um die Bedingung sind Pflicht!
+if (plz &lt; 30000) {
+    printf("Brief geht in den Norden.\n");
+} else {
+    printf("Brief geht in den Süden.\n");
+}
+</code></pre>
+</li>
+<li><strong>Die endlose Stempelmaschine (<code>while</code>-Schleife):</strong>
+Solange noch Briefe im Korb sind, stempeln wir weiter.
+<pre><code class="language-c">int briefstapel = 3;
+
+while (briefstapel &gt; 0) {
+    printf("Brief gestempelt!\n");
+    briefstapel--; // Einen Brief vom Stapel abziehen
+}
+</code></pre>
+</li>
+</ul>
+<hr />
+<h2 id="-micro-learning-3-der-zustelldienst-benutzereingabe-mit-scanf"><a class="header" href="#-micro-learning-3-der-zustelldienst-benutzereingabe-mit-scanf">🍯 Micro-Learning 3: Der Zustelldienst (Benutzereingabe mit <code>scanf</code>)</a></h2>
+<h3 id="-die-analogie-der-zustellschein-und-der-hausbriefkasten"><a class="header" href="#-die-analogie-der-zustellschein-und-der-hausbriefkasten">🧸 Die Analogie: Der Zustellschein und der Hausbriefkasten</a></h3>
+<p>Wenn ein Zusteller ein Paket abgibt, benötigt er zwei Dinge:</p>
+<ol>
+<li><strong>Eine Schablone (Format-Platzhalter):</strong> Er muss wissen, was geliefert wird. Ist es ein Brief (Text) oder eine Kiste (Zahl)? In C nutzen wir dafür Symbole wie <code>%d</code> (für Ganzzahlen) oder <code>%f</code> (für Kommazahlen).</li>
+<li><strong>Die genaue Speicheradresse (<code>&amp;</code>):</strong> Er kann das Paket nicht einfach in die Luft werfen. Er muss wissen, zu welcher Postfachnummer (Speicheradresse) er gehen soll. Das <code>&amp;</code>-Zeichen liefert ihm diese genaue Adresse.</li>
+</ol>
+<h3 id="-anleitung--syntax-spickzettel-2"><a class="header" href="#-anleitung--syntax-spickzettel-2">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int hausnummer = 0;
+    printf("Bitte gib deine Hausnummer ein: ");
+
+    // %d = "Erwarte eine Ganzzahl"
+    // &amp;hausnummer = "Gehe direkt zur Adresse der Variable und lege die Zahl dort ab"
+    scanf("%d", &amp;hausnummer);
+
+    printf("Geliefert an Hausnummer %d!\n", hausnummer);
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>[!CAUTION]
+<strong>Das vergessene <code>&amp;</code>:</strong>
+Wenn du das <code>&amp;</code> vergisst (<code>scanf("%d", hausnummer);</code>), versucht der Bote, das Paket an die Postfachnummer <code>0</code> (den Standardwert) oder eine andere willkürliche Zahl zuzustellen. Das Betriebssystem stoppt diesen illegalen Speicherzugriff sofort und beendet dein Programm mit einem Absturz (<code>Segmentation fault</code>).</p>
+</blockquote>
+<hr />
+<h2 id="-micro-learning-4-die-adresszettel-pointer"><a class="header" href="#-micro-learning-4-die-adresszettel-pointer">🪙 Micro-Learning 4: Die Adresszettel (Pointer)</a></h2>
+<h3 id="-die-analogie-adresszettel-statt-schwerer-pakete"><a class="header" href="#-die-analogie-adresszettel-statt-schwerer-pakete">🧸 Die Analogie: Adresszettel statt schwerer Pakete</a></h3>
+<p>Wenn du einem Kollegen sagen willst, wo ein riesiges Paket liegt, schleppst du nicht das Paket zu ihm. Du schreibst die Regalnummer auf einen kleinen Zettel und gibst ihm diesen. Dieser Zettel ist ein <strong>Pointer (Zeiger)</strong>.</p>
+<ul>
+<li><strong><code>&amp;</code> (Adresse holen):</strong> Du schaust auf die Kiste und schreibst ihre Adresse auf den Zettel.</li>
+<li><strong><code>*</code> (Dereferenzieren):</strong> Dein Kollege nimmt den Zettel, geht zu der darauf geschriebenen Adresse und schaut in die Kiste hinein oder ändert ihren Inhalt.</li>
+</ul>
+<p>Da C keinen "Wächter" (Borrow Checker) hat, kannst du beliebig viele Adresszettel kopieren und verteilen. Aber Vorsicht: Wenn das Paket weggeworfen wird und du trotzdem versuchst, der Adresse auf dem Zettel zu folgen, greifst du ins Leere (<strong>Dangling Pointer</strong>).</p>
+<h3 id="-anleitung--syntax-spickzettel-3"><a class="header" href="#-anleitung--syntax-spickzettel-3">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<pre><code class="language-c">int briefkasten = 42;
+int *adresszettel = &amp;briefkasten; // Der Zeiger speichert die Adresse von "briefkasten"
+
+// Ausgabe der Adresse und des Inhalts
+printf("Die Adresse lautet: %p\n", (void*)adresszettel);
+printf("Der Inhalt an der Adresse ist: %d\n", *adresszettel); // Ausgabe: 42
+
+// Inhalt über den Adresszettel ändern
+*adresszettel = 100; // Gehe zur Adresse und schreibe dort 100 rein
+printf("Neuer Wert im Briefkasten: %d\n", briefkasten); // Ausgabe: 100
+</code></pre>
+<hr />
+<h2 id="-micro-learning-5-die-perlenkette-strings"><a class="header" href="#-micro-learning-5-die-perlenkette-strings">📖 Micro-Learning 5: Die Perlenkette (Strings)</a></h2>
+<h3 id="-die-analogie-die-perlenkette-mit-dem-stoppschild"><a class="header" href="#-die-analogie-die-perlenkette-mit-dem-stoppschild">🧸 Die Analogie: Die Perlenkette mit dem Stoppschild</a></h3>
+<p>In C gibt es keinen fertigen Datentyp für Wörter oder Sätze. Ein Text ist wie eine Kette aus einzelnen Buchstaben-Perlen (<code>char</code>), die nebeneinander in Postfächern liegen.</p>
+<p>Damit der Postbote weiß, wo der Text aufhört, muss am Ende der Kette zwingend eine spezielle Stopp-Perle hängen: das Null-Byte-Zeichen <code>'\0'</code>. Liest das Programm den Text aus, läuft es so lange von Fach zu Fach, bis es auf das Stoppschild trifft.</p>
+<h3 id="-anleitung--syntax-spickzettel-4"><a class="header" href="#-anleitung--syntax-spickzettel-4">🛠️ Anleitung &amp; Syntax-Spickzettel</a></h3>
+<pre><code class="language-c">// Ein Text-Array mit Platz für 5 Zeichen + 1 Null-Byte
+char status[6] = "Offen";
+
+// Im Speicher sieht das so aus:
+// Fach-Index:  [0]  [1]  [2]  [3]  [4]  [5]
+// Inhalt:      'O'  'f'  'f'  'e'  'n'  '\0'
+
+printf("Status: %s\n", status); // %s liest alle Fächer bis zum '\0'
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+<strong>Das fehlende Stoppschild:</strong>
+Wenn du das <code>'\0'</code>-Zeichen entfernst oder vergisst, liest C einfach über das Ende deines Textes hinaus im Speicher weiter. Es gibt dann zufälligen Zeichensalat aus anderen Variablen aus oder stürzt ab!</p>
+</blockquote>
+<hr />
+<h2 id="-mitmach-workshop-programmiere-deine-poststation"><a class="header" href="#-mitmach-workshop-programmiere-deine-poststation">🛠️ Mitmach-Workshop: Programmiere deine Poststation!</a></h2>
+<p>Jetzt bist du an der Reihe! Wir schreiben ein kleines, interaktives C-Programm, um das Gelernte anzuwenden.</p>
+<h3 id="-dein-notizzettel-das-ziel-des-workshops"><a class="header" href="#-dein-notizzettel-das-ziel-des-workshops">📝 Dein Notizzettel (Das Ziel des Workshops)</a></h3>
+<p>Dein Programm soll:</p>
+<ol>
+<li>Ein Postfach für ein Paketgewicht (<code>int</code>) anlegen.</li>
+<li>Einen Adresszettel (Pointer) auf dieses Fach erstellen.</li>
+<li>Eine Funktion nutzen, die das Paketgewicht über diesen Adresszettel ändert (Call-by-Reference).</li>
+<li>Einen Kundennamen als Text einlesen und ausgeben.</li>
+</ol>
+<hr />
+<h3 id="-schritt-für-schritt-bauanleitung"><a class="header" href="#-schritt-für-schritt-bauanleitung">🧱 Schritt-für-Schritt-Bauanleitung</a></h3>
+<h4 id="-schritt-1-das-paketgewicht-anlegen"><a class="header" href="#-schritt-1-das-paketgewicht-anlegen">🏢 Schritt 1: Das Paketgewicht anlegen</a></h4>
+<p>Erstelle in deiner <code>main</code>-Funktion ein Paketgewicht als Ganzzahl mit dem Startwert <code>10</code>.</p>
+<h4 id="-schritt-2-den-adresszettel-nutzen"><a class="header" href="#-schritt-2-den-adresszettel-nutzen">✉️ Schritt 2: Den Adresszettel nutzen</a></h4>
+<p>Schreibe eine Funktion <code>paket_wiegen</code>. Sie soll das Gewicht verändern. Da C-Funktionen normalerweise nur Kopien von Werten erhalten, müssen wir der Funktion die Adresse der Variable übergeben (also einen Pointer <code>int *gewicht_ptr</code>).</p>
+<h4 id="-schritt-3-den-kundennamen-einlesen"><a class="header" href="#-schritt-3-den-kundennamen-einlesen">📯 Schritt 3: Den Kundennamen einlesen</a></h4>
+<p>Erstelle ein <code>char</code>-Array für den Kundennamen. Lies den Namen mit <code>scanf</code> ein. Denk daran, dass ein String-Array in C bereits eine Adresse ist – du brauchst hier also kein <code>&amp;</code> bei <code>scanf</code>!</p>
+<hr />
+<h3 id="-das-code-skelett-bitte-ausfüllen"><a class="header" href="#-das-code-skelett-bitte-ausfüllen">💻 Das Code-Skelett (Bitte ausfüllen!)</a></h3>
+<p>Kopiere diesen Code in deine Entwicklungsumgebung und ersetze die <code>/* TODO */</code>-Kommentare durch deine eigene Logik.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+// Schritt 2: Diese Funktion erhält die ADRESSE des Gewichts und ändert den Wert vor Ort.
+// Welcher Typ muss "gewicht_ptr" sein? (Tipp: Ein Zeiger auf ein int)
+void paket_wiegen(/* TODO: Typ für Zeiger */ gewicht_ptr) {
+    // TODO: Setze das Gewicht an der Adresse auf einen neuen Wert (z. B. 25)
+    // Tipp: Nutze den Dereferenzierungs-Operator *
+}
+
+int main() {
+    // 1. Paketgewicht erstellen und initialisieren
+    int paket_gewicht = 10;
+    
+    printf("Gewicht vor dem Wiegen: %d kg\n", paket_gewicht);
+
+    // 2. Funktion aufrufen. Wir müssen die ADRESSE von "paket_gewicht" übergeben!
+    // Tipp: Nutze den Adress-Operator &amp;
+    paket_wiegen(/* TODO: Adresse übergeben */);
+
+    printf("Gewicht nach dem Wiegen: %d kg\n", paket_gewicht); // Sollte 25 sein!
+
+    // 3. String-Array für den Kundennamen vorbereiten (z. B. maximal 19 Zeichen + '\0')
+    char kunden_name[20] = "";
+
+    printf("Bitte gib deinen Vornamen ein: ");
+    
+    // Lies den Namen über die Konsole ein.
+    // Tipp: Der Format-Platzhalter für Text ist %s.
+    // Achtung: kunden_name ist bereits ein Array (also eine Adresse), kein &amp; nötig!
+    scanf(/* TODO: Format und Variable */);
+
+    printf("Paket erfolgreich zugestellt an: %s\n", kunden_name);
+
+    return 0;
+}
+</code></pre>
+<hr />
+<h2 id="-reichlich-Übungen-zum-vertiefen"><a class="header" href="#-reichlich-Übungen-zum-vertiefen">📝 Reichlich Übungen zum Vertiefen</a></h2>
+<p>Vervollständige die folgenden Code-Gerüste, um die Konzepte abzusichern.</p>
+<h3 id="-Übung-1-leicht-das-const-schloss-knacken"><a class="header" href="#-Übung-1-leicht-das-const-schloss-knacken">🟢 Übung 1 (Leicht): Das const-Schloss knacken?</a></h3>
+<p><strong>Ziel:</strong> Verstehe die Auswirkung von <code>const</code>.
+<strong>Szenario:</strong> Versuche, den Wert einer geschützten Variable zu ändern. Stelle fest, was der Compiler dazu sagt.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    const int max_paket_groesse = 100;
+    
+    // TODO: Versuche hier, "max_paket_groesse" den Wert 200 zuzuweisen.
+    // Welcher Fehler wird beim Kompilieren angezeigt?
+    
+    printf("Maximale Größe: %d\n", max_paket_groesse);
+    return 0;
+}
+</code></pre>
+<hr />
+<h3 id="-Übung-2-mittel-der-porto-rechner-kontrollfluss-und-zeiger"><a class="header" href="#-Übung-2-mittel-der-porto-rechner-kontrollfluss-und-zeiger">🟡 Übung 2 (Mittel): Der Porto-Rechner (Kontrollfluss und Zeiger)</a></h3>
+<p><strong>Ziel:</strong> Nutze Kontrollstrukturen und bearbeite Werte über Zeiger.
+<strong>Szenario:</strong> Eine Funktion soll das Porto berechnen und das Ergebnis direkt in eine Variable in <code>main</code> schreiben.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+// Berechnet das Porto basierend auf dem Gewicht und schreibt es in *porto_ptr
+void berechne_porto(int gewicht, float *porto_ptr) {
+    // TODO: 
+    // Wenn das Gewicht kleiner oder gleich 5 kg ist, soll das Porto 4.99 betragen.
+    // Wenn es schwerer ist, soll das Porto 9.99 betragen.
+    // Schreibe das Ergebnis direkt über den Zeiger in die Variable!
+}
+
+int main() {
+    int gewicht = 8;
+    float porto = 0.0f;
+
+    // TODO: Rufe berechne_porto auf
+    
+    printf("Das Porto für %d kg beträgt: %.2f Euro\n", gewicht, porto);
+    // Erwartete Ausgabe: 9.99 Euro
+    
+    return 0;
+}
+</code></pre>
+<hr />
+<h3 id="-Übung-3-schwer-das-kaputte-stoppschild-reparieren-strings"><a class="header" href="#-Übung-3-schwer-das-kaputte-stoppschild-reparieren-strings">🔴 Übung 3 (Schwer): Das kaputte Stoppschild reparieren (Strings)</a></h3>
+<p><strong>Ziel:</strong> Verstehe die Funktionsweise des Null-Byte-Zeichens <code>'\0'</code>.
+<strong>Szenario:</strong> Ein Text-Array wurde beschädigt und das Stoppschild ging verloren. Repariere das Array, indem du das Stoppschild manuell an die richtige Stelle setzt.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    // Ein Array, das Buchstaben enthält. Es fehlt jedoch das '\0' am Ende!
+    char beschädigter_text[5] = {'R', 'u', 's', 't', '?'}; 
+    
+    // TODO: Erstelle ein neues, passendes Array namens "reparierter_text" der Größe 5.
+    // Kopiere die ersten 4 Zeichen ('R', 'u', 's', 't') und setze an Index [4] das Zeichen '\0'.
+    
+    // TODO: Gib den reparierten Text mit printf aus.
+    
+    return 0;
+}
+</code></pre>
+<hr />
+<h2 id="-merkzettel-für-die-hosentasche-zusammenfassung"><a class="header" href="#-merkzettel-für-die-hosentasche-zusammenfassung">📇 Merkzettel für die Hosentasche (Zusammenfassung)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">C-Werkzeug</th><th style="text-align: left">Was macht es?</th><th style="text-align: left">Post-Analogie</th><th style="text-align: left">Syntax-Beispiel</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>int x = 5;</code></strong></td><td style="text-align: left">Erstellt eine veränderbare Ganzzahl-Variable.</td><td style="text-align: left">Offenes Postfach</td><td style="text-align: left"><code>int briefe = 5;</code></td></tr>
+<tr><td style="text-align: left"><strong><code>const</code></strong></td><td style="text-align: left">Macht eine Variable unveränderbar.</td><td style="text-align: left">Postfach mit Vorhängeschloss</td><td style="text-align: left"><code>const int plz = 12345;</code></td></tr>
+<tr><td style="text-align: left"><strong><code>&amp;</code></strong></td><td style="text-align: left">Liefert die Speicheradresse einer Variable.</td><td style="text-align: left">Adresse auf Kiste ablesen</td><td style="text-align: left"><code>&amp;briefe</code></td></tr>
+<tr><td style="text-align: left"><strong><code>*</code></strong> (Typ)</td><td style="text-align: left">Deklariert einen Zeiger (Pointer).</td><td style="text-align: left">Leeren Adresszettel vorbereiten</td><td style="text-align: left"><code>int *adress_zettel;</code></td></tr>
+<tr><td style="text-align: left"><strong><code>*</code></strong> (Code)</td><td style="text-align: left">Greift auf den Wert an einer Adresse zu.</td><td style="text-align: left">Zur Kiste gehen und Inhalt ändern</td><td style="text-align: left"><code>*adress_zettel = 10;</code></td></tr>
+<tr><td style="text-align: left"><strong><code>char s[10]</code></strong></td><td style="text-align: left">Erstellt ein Array für Text (String).</td><td style="text-align: left">Eine Kette von Zeichen-Fächern</td><td style="text-align: left"><code>char name[10] = "Tim";</code></td></tr>
+<tr><td style="text-align: left"><strong><code>'\0'</code></strong></td><td style="text-align: left">Markiert das Ende eines Strings.</td><td style="text-align: left">Das Stoppschild am Ende der Kette</td><td style="text-align: left"><em>(Vom Compiler automatisch angehängt)</em></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-mini-quiz-micro-learning"><a class="header" href="#-mini-quiz-micro-learning">🎓 Mini-Quiz (Micro-Learning)</a></h2>
+<p><em>Versuche, diese Fragen im Kopf zu beantworten:</em></p>
+<ol>
+<li>Was passiert, wenn du bei <code>scanf</code> den Adress-Operator <code>&amp;</code> vergisst?</li>
+<li>Warum belegt der String <code>"Hallo"</code> im Speicher von C eigentlich 6 Bytes, obwohl er nur 5 Buchstaben hat?</li>
+<li>Was ist der Unterschied zwischen der Deklaration <code>int *p;</code> und der Zuweisung <code>*p = 10;</code>?</li>
+<li>Warum stürzt ein C-Programm ab, wenn ein Zeiger auf eine ungültige Speicheradresse zeigt und man versucht, darauf zuzugreifen?</li>
+</ol>
+<p><em>Viel Erfolg beim Programmieren deiner Poststation und beim Meistern der Übungen! Wenn du eine Frage hast oder nicht weiterkommst, frage deinen KI-Lernpartner nach einem didaktischen Tipp – aber lass dir keine fertigen Code-Lösungen geben!</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c-phase1-konzepte.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="c-phase1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c-phase1-konzepte.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="c-phase1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

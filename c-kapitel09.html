@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>9 Arrays und Zeichenketten (Strings) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html" class="active"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="9-arrays-und-zeichenketten-strings"><a class="header" href="#9-arrays-und-zeichenketten-strings">9 Arrays und Zeichenketten (Strings)</a></h1>
+<p>Stell dir vor, du möchtest die täglichen Temperaturen einer ganzen Woche speichern. Bisher müsstest du dafür sieben einzelne Variablen anlegen (<code>temp1</code>, <code>temp2</code> etc.). Das wird schnell unübersichtlich, besonders wenn du den Durchschnitt berechnen oder die Werte sortieren möchtest.</p>
+<p>Hier kommen <strong>Arrays</strong> (auch <em>Felder</em> genannt) ins Spiel. Sie erlauben es dir, eine feste Anzahl von Elementen desselben Datentyps unter einem einzigen Namen abzuspeichern. Später erweitern wir dieses Konzept auf <strong>Strings</strong>, die in C nichts anderes als Arrays aus Zeichen sind.</p>
+<hr />
+<h2 id="91-eindimensionale-arrays"><a class="header" href="#91-eindimensionale-arrays">9.1 Eindimensionale Arrays</a></h2>
+<p>Ein eindimensionales Array kannst du dir wie eine Reihe von nummerierten Briefkästen oder eine Kommode mit mehreren Schubladen vorstellen. Jede Schublade enthält genau ein Element desselben Typs.</p>
+<h3 id="definieren-und-zugriff"><a class="header" href="#definieren-und-zugriff">Definieren und Zugriff</a></h3>
+<p>Bei der Definition eines Arrays musst du C mitteilen, welchen Datentyp die Elemente haben sollen, wie das Array heißt und wie viele Elemente es fassen kann.</p>
+<p>Das grundlegende Syntax-Template sieht so aus:</p>
+<pre><code class="language-c">datentyp arrayName[ANZAHL_ELEMENTE];
+</code></pre>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Die Indexierung beginnt immer bei 0!</strong>
+Wenn dein Array 5 Elemente hat, sind die gültigen Indizes <code>0, 1, 2, 3</code> und <code>4</code>. Der Zugriff auf den Index <code>5</code> ist ein ungültiger Speicherzugriff (Out-of-Bounds) und führt zu unvorhersehbarem Verhalten oder Programmabstürzen. C prüft diese Grenzen nicht automatisch für dich!</p>
+</blockquote>
+<p>Um auf ein bestimmtes Element zuzugreifen (sei es zum Auslesen oder zum Beschreiben), verwendest du eckige Klammern:</p>
+<pre><code class="language-c">// Wert auslesen oder zuweisen
+arrayName[index] = wert;
+</code></pre>
+<h3 id="die-initialisierungsliste"><a class="header" href="#die-initialisierungsliste">Die Initialisierungsliste</a></h3>
+<p>Du kannst ein Array direkt bei der Deklaration mit Werten befüllen. Dazu nutzt du geschweifte Klammern:</p>
+<ul>
+<li><strong>Vollständige Initialisierung:</strong> Du gibst für jedes Element einen Wert an.</li>
+<li><strong>Teilweise Initialisierung:</strong> Gibst du weniger Werte an, als das Array groß ist, werden die restlichen Plätze automatisch mit <code>0</code> (oder dem Äquivalent für den Datentyp) aufgefüllt.</li>
+<li><strong>Automatische Größenbestimmung:</strong> Wenn du die eckigen Klammern leer lässt, bestimmt C die Größe anhand der Anzahl der Werte in der Liste.</li>
+</ul>
+<pre><code class="language-c">int messwerte[5] = {12, 15, 8, 19, 22}; // Genau 5 Elemente
+int speicher[10] = {1, 2};              // Restliche 8 Elemente werden 0
+double preise[]  = {1.99, 2.49, 9.99};  // C reserviert automatisch Platz für 3 Elemente
+</code></pre>
+<h3 id="schreibschutz-mit-const"><a class="header" href="#schreibschutz-mit-const">Schreibschutz mit <code>const</code></a></h3>
+<p>Manchmal möchtest du verhindern, dass die Werte eines Arrays im Laufe des Programms versehentlich verändert werden. In diesem Fall kannst du das Schlüsselwort <code>const</code> voranstellen. Jeder Versuch, ein Element dieses Arrays neu zu beschreiben, führt dann zu einem Compilerfehler.</p>
+<pre><code class="language-c">const int primzahlen[] = {2, 3, 5, 7, 11};
+</code></pre>
+<h3 id="variable-length-arrays-vlas"><a class="header" href="#variable-length-arrays-vlas">Variable Length Arrays (VLAs)</a></h3>
+<p>Seit dem C99-Standard gibt es sogenannte <em>Variable Length Arrays</em>. Das bedeutet, dass die Größe des Arrays erst zur Laufzeit bestimmt wird, beispielsweise durch eine Benutzereingabe.</p>
+<pre><code class="language-c">int groesse;
+// ... (groesse wird zur Laufzeit eingelesen)
+int dynamisches_array[groesse]; // VLA
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+<strong>Vermeide VLAs, wenn es möglich ist!</strong>
+VLAs werden auf dem Stack (dem lokalen Speicher der Funktion) angelegt. Ist die vom Benutzer eingegebene Größe zu riesig, stürzt dein Programm sofort mit einem sogenannten <em>Stack Overflow</em> ab. Im C11-Standard wurde die Unterstützung von VLAs daher für Compiler-Hersteller optional gemacht. Nutze für dynamische Größen lieber die dynamische Speicherverwaltung (die du in einem späteren Kapitel kennenlernst).</p>
+</blockquote>
+<h3 id="einlesen-mit-scanf"><a class="header" href="#einlesen-mit-scanf">Einlesen mit <code>scanf</code></a></h3>
+<p>Möchtest du einen Wert direkt in ein bestimmtes Array-Element einlesen, musst du <code>scanf</code> die Adresse dieses Elements mitteilen. Da ein einzelnes Array-Element (z. B. <code>zahlen[2]</code>) wie eine normale Variable behandelt wird, verwendest du hier den Adressoperator <code>&amp;</code>.</p>
+<pre><code class="language-c">scanf("%d", &amp;zahlen[index]);
+</code></pre>
+<h3 id="arrays-an-funktionen-übergeben"><a class="header" href="#arrays-an-funktionen-übergeben">Arrays an Funktionen übergeben</a></h3>
+<p>Wenn du ein Array an eine Funktion übergibst, wird <strong>keine Kopie</strong> des gesamten Arrays erstellt. Stattdessen wird lediglich ein Zeiger auf das allererste Element des Arrays übergeben (<em>Call by Reference</em>-ähnliches Verhalten).</p>
+<p>Das hat zwei wichtige Konsequenzen:</p>
+<ol>
+<li><strong>Größenverlust:</strong> Die Funktion weiß nicht, wie viele Elemente das Array hat. Du musst die Größe des Arrays als zusätzlichen Parameter an die Funktion übergeben.</li>
+<li><strong>Veränderbarkeit:</strong> Änderungen, die die Funktion an den Array-Elementen vornimmt, betreffen direkt das Original-Array. Wenn du das verhindern willst, deklariere den Parameter mit <code>const</code>.</li>
+</ol>
+<p>Syntax-Template für den Funktionskopf:</p>
+<pre><code class="language-c">void verarbeiteArray(const int daten[], int groesse) {
+    // const verhindert, dass die Elemente in 'daten' verändert werden können
+}
+</code></pre>
+<hr />
+<h2 id="92-mehrdimensionale-arrays"><a class="header" href="#92-mehrdimensionale-arrays">9.2 Mehrdimensionale Arrays</a></h2>
+<p>Manchmal reicht eine einfache Liste nicht aus. Stell dir ein Schachbrett vor (8x8 Felder) oder ein Pixelraster eines Bildes. Hierfür eignen sich mehrdimensionale Arrays.</p>
+<h3 id="zweidimensionale-arrays"><a class="header" href="#zweidimensionale-arrays">Zweidimensionale Arrays</a></h3>
+<p>Ein zweidimensionales Array kannst du dir wie eine Tabelle mit Zeilen und Spalten vorstellen.</p>
+<p>Definition eines 2D-Arrays:</p>
+<pre><code class="language-c">// datentyp name[ZEILEN][SPALTEN];
+int matrix[3][4]; // Eine Tabelle mit 3 Zeilen und jeweils 4 Spalten (insgesamt 12 Elemente)
+</code></pre>
+<p>Der Zugriff erfolgt ebenfalls über zwei Paare eckiger Klammern, wobei das erste Paar die Zeile und das zweite die Spalte bestimmt (jeweils ab 0 gezählt).</p>
+<p>Bei der Initialisierung helfen geschachtelte geschweifte Klammern, um die Struktur lesbar zu machen:</p>
+<pre><code class="language-c">int tabelle[2][3] = {
+    {1, 2, 3}, // Zeile 0
+    {4, 5, 6}  // Zeile 1
+};
+</code></pre>
+<h3 id="Übergabe-an-funktionen"><a class="header" href="#Übergabe-an-funktionen">Übergabe an Funktionen</a></h3>
+<p>Wenn du ein mehrdimensionales Array an eine Funktion übergibst, musst du dem Compiler mindestens die Größe aller Dimensionen ab der zweiten mitteilen. Der Compiler muss nämlich wissen, wie viele Elemente eine Zeile hat, um die Speicheradresse der nächsten Zeile berechnen zu können.</p>
+<p>Syntax-Template für den Funktionskopf:</p>
+<pre><code class="language-c">void zeigeMatrix(int matrix[][4], int zeilenAnzahl) {
+    // Die Spaltenanzahl (hier 4) MUSS fest angegeben werden!
+}
+</code></pre>
+<h3 id="mehr-als-zwei-dimensionen"><a class="header" href="#mehr-als-zwei-dimensionen">Mehr als zwei Dimensionen</a></h3>
+<p>Es spricht nichts dagegen, drei- oder noch höherdimensionale Arrays zu definieren (z. B. <code>int koordinaten[10][10][10]</code>). Du kannst dir ein 3D-Array wie einen Stapel von Tabellen (ein Buch mit mehreren Seiten) vorstellen. In der Praxis werden Dimensionen höher als drei jedoch selten verwendet, da sie extrem viel Speicher verbrauchen und die logische Nachvollziehbarkeit erschweren.</p>
+<hr />
+<h2 id="93-strings-zeichenketten"><a class="header" href="#93-strings-zeichenketten">9.3 Strings (Zeichenketten)</a></h2>
+<p>In C gibt es keinen eigenständigen Datentyp für Texte oder Wörter. Ein String (eine Zeichenkette) ist stattdessen ein <strong>Array vom Typ <code>char</code></strong>, das mit einem speziellen Zeichen endet: dem Null-Byte <code>\0</code> (auch Null-Terminator genannt).</p>
+<h3 id="initialisieren-und-das-null-byte"><a class="header" href="#initialisieren-und-das-null-byte">Initialisieren und das Null-Byte</a></h3>
+<p>Das Null-Byte signalisiert allen String-Funktionen, wo der Text zu Ende ist. Ohne dieses Zeichen würden Funktionen wie <code>printf</code> einfach so lange weiter im Speicher lesen (und Müll ausgeben), bis sie zufällig auf eine Null stoßen.</p>
+<p>Wenn du einen String mit doppelten Anführungszeichen initialisierst, fügt C den Null-Terminator automatisch am Ende hinzu:</p>
+<pre><code class="language-c">char name[] = "Anna"; // Reserviert automatisch 5 Bytes im Speicher: 'A', 'n', 'n', 'a', '\0'
+</code></pre>
+<blockquote>
+<p>[!NOTE]
+Achte immer darauf, dass dein <code>char</code>-Array groß genug sein muss, um den Text <strong>und</strong> das zusätzliche <code>\0</code>-Zeichen aufzunehmen! Ein Wort mit 10 Buchstaben benötigt also ein Array der Mindestgröße 11.</p>
+</blockquote>
+<h3 id="strings-einlesen"><a class="header" href="#strings-einlesen">Strings einlesen</a></h3>
+<p>Beim Einlesen von Strings mit <code>scanf</code> gibt es eine Besonderheit: Der Name eines Arrays steht im Code bereits für die Adresse seines ersten Elements. Deshalb brauchst du bei Strings <strong>keinen</strong> Adressoperator <code>&amp;</code>.</p>
+<pre><code class="language-c">char puffer[20];
+scanf("%19s", puffer); // Liest ein Wort ein. Begrenzung auf 19 Zeichen (+ 1 für '\0') schützt vor Pufferüberlauf!
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+Verwende niemals <code>scanf("%s", puffer)</code> ohne Breitenbegrenzung! Gibt der Benutzer ein Wort ein, das länger ist als der reservierte Puffer, kommt es zu einem <strong>Buffer Overflow</strong> (Pufferüberlauf) – ein kritisches Sicherheitsrisiko!</p>
+<p>Eine sicherere Standard-Alternative zum Einlesen ganzer Zeilen (inklusive Leerzeichen) ist die Funktion <code>fgets</code>:
+<code>fgets(puffer, sizeof(puffer), stdin);</code></p>
+</blockquote>
+<h3 id="unicode-umlaute-und-sonderzeichen"><a class="header" href="#unicode-umlaute-und-sonderzeichen">Unicode, Umlaute und Sonderzeichen</a></h3>
+<p>Ein standardmäßiges <code>char</code> in C belegt genau 1 Byte (8 Bit). Das reicht für das klassische ASCII-Zeichensatz-System (englische Buchstaben, Zahlen, einfache Satzzeichen).
+Moderne Betriebssysteme verwenden jedoch meist UTF-8 zur Codierung von Unicode-Zeichen. In UTF-8 können Umlaute (ä, ö, ü) oder Sonderzeichen (wie das Euro-Symbol €) 2 bis 4 Bytes belegen.</p>
+<ul>
+<li><strong>Das Problem:</strong> Ein Zeichen wie <code>ä</code> belegt in UTF-8 zwei Plätze in deinem <code>char</code>-Array. Das bedeutet, dass Funktionen zur Längenmessung das Zeichen als zwei separate Zeichen zählen.</li>
+<li>Für echte Unicode-Unterstützung bietet C spezielle Datentypen (wie <code>wchar_t</code> in <code>&lt;wchar.h&gt;</code>), auf die in diesem Einsteigerbuch jedoch nicht tiefer eingegangen wird. Sei dir nur bewusst, dass deutsche Umlaute die Längenberechnung in einfachen <code>char</code>-Arrays beeinflussen können.</li>
+</ul>
+<h3 id="die-bibliothek-stringh"><a class="header" href="#die-bibliothek-stringh">Die Bibliothek <code>&lt;string.h&gt;</code></a></h3>
+<p>Um komfortabel mit Zeichenketten zu arbeiten, stellt C in der Standardbibliothek <code>&lt;string.h&gt;</code> nützliche Funktionen bereit. Hier sind die wichtigsten Vertreter:</p>
+<ol>
+<li>
+<p><strong><code>strlen</code> (String Length):</strong>
+Gibt die tatsächliche Länge der Zeichenkette zurück (ohne das Null-Byte <code>\0</code> mitzuzählen).
+<em>Prototyp:</em> <code>size_t strlen(const char *str);</code></p>
+</li>
+<li>
+<p><strong><code>strcpy</code> (String Copy):</strong>
+Kopiert den Inhalt eines Strings in einen anderen.
+<em>Prototyp:</em> <code>char *strcpy(char *dest, const char *src);</code></p>
+<blockquote>
+<p>[!CAUTION]
+<code>strcpy</code> ist unsicher, da es nicht prüft, ob das Ziel-Array <code>dest</code> groß genug ist! Verwende stattdessen die sicherere Variante <code>strncpy</code>, bei der du die maximale Anzahl der zu kopierenden Zeichen angibst (z. B. <code>strncpy(dest, src, sizeof(dest) - 1); dest[sizeof(dest) - 1] = '\0';</code>).</p>
+</blockquote>
+</li>
+<li>
+<p><strong><code>strcmp</code> (String Compare):</strong>
+Vergleicht zwei Zeichenketten lexikografisch (alphabetisch).
+<em>Prototyp:</em> <code>int strcmp(const char *str1, const char *str2);</code></p>
+<ul>
+<li><strong>Rückgabewert <code>0</code>:</strong> Beide Strings sind identisch.</li>
+<li><strong>Rückgabewert <code>&lt; 0</code>:</strong> <code>str1</code> kommt im Alphabet vor <code>str2</code>.</li>
+<li><strong>Rückgabewert <code>&gt; 0</code>:</strong> <code>str1</code> kommt im Alphabet nach <code>str2</code>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="umwandlung-zwischen-zahl-und-string"><a class="header" href="#umwandlung-zwischen-zahl-und-string">Umwandlung zwischen Zahl und String</a></h3>
+<p>Häufig musst du eine Zahl, die als Text vorliegt (z. B. aus einer Benutzereingabe <code>"42"</code>), in eine echte Ganzzahl (<code>int</code>) umwandeln – oder umgekehrt.</p>
+<ul>
+<li>
+<p><strong>String zu Zahl (klassisch):</strong> Die Funktionen <code>atoi</code> (Ascii to Integer) und <code>atof</code> (Ascii to Float) aus der Bibliothek <code>&lt;stdlib.h&gt;</code>.</p>
+<blockquote>
+<p>[!TIP]
+Die Funktion <code>atoi</code> hat keine Fehlerbehandlung. Schlägt die Umwandlung fehl (weil z. B. <code>"abc"</code> eingegeben wurde), gibt sie einfach <code>0</code> zurück. Sicherer sind die Funktionen <code>strtol</code> (String to Long) oder <code>strtod</code> (String to Double), da sie dir signalisieren können, ob die Konvertierung erfolgreich war.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Zahl/Daten zu String:</strong> Um eine Zahl formatiert in einen String zu schreiben, gibt es das Gegenstück zu <code>printf</code>: <code>sprintf</code> bzw. die sicherere Variante <code>snprintf</code> aus <code>&lt;stdio.h&gt;</code>.</p>
+<pre><code class="language-c">// snprintf(ziel_array, groesse, "Formatierungs-String", werte...);
+</code></pre>
+</li>
+</ul>
+<hr />
+<h2 id="94-kontrollfragen-und-aufgaben"><a class="header" href="#94-kontrollfragen-und-aufgaben">9.4 Kontrollfragen und Aufgaben</a></h2>
+<h3 id="kontrollfragen"><a class="header" href="#kontrollfragen">Kontrollfragen</a></h3>
+<ol>
+<li>Warum führt der Zugriff auf das Element <code>liste[10]</code> bei einem Array mit 10 Elementen zu einem Fehler?</li>
+<li>Was passiert mit den nicht explizit initialisierten Elementen eines Arrays, wenn du eine Initialisierungsliste verwendest, die kürzer ist als die Array-Größe?</li>
+<li>Warum ist die Verwendung von Variable Length Arrays (VLAs) in professioneller C-Software oft verpönt?</li>
+<li>Weshalb muss bei der Übergabe eines zweidimensionalen Arrays an eine Funktion die Spaltenanzahl zwingend angegeben werden?</li>
+<li>Welches unscheinbare Zeichen markiert das Ende eines Strings in C und warum ist es so wichtig?</li>
+<li>Warum ist die Standardfunktion <code>strcpy</code> ein potenzielles Sicherheitsrisiko und welche Alternative gibt es?</li>
+</ol>
+<hr />
+<h3 id="praktische-aufgaben"><a class="header" href="#praktische-aufgaben">Praktische Aufgaben</a></h3>
+<h4 id="aufgabe-1-das-temperatur-archiv-eindimensionales-array"><a class="header" href="#aufgabe-1-das-temperatur-archiv-eindimensionales-array">Aufgabe 1: Das Temperatur-Archiv (Eindimensionales Array)</a></h4>
+<p>Schreibe ein Programm, das die Tagestemperaturen einer Woche (7 Tage) vom Benutzer abfragt und in einem Array speichert.</p>
+<ul>
+<li>Berechne anschließend die Durchschnittstemperatur der Woche.</li>
+<li>Finde und gib die höchste sowie die niedrigste gemessene Temperatur aus.</li>
+<li><em>Didaktischer Hinweis:</em> Nutze eine Schleife für das Einlesen und eine weitere Schleife, um die Werte zu analysieren. Nutze Hilvsvariablen für das Minimum und das Maximum, die du vor der Schleife mit dem ersten Array-Element initialisierst.</li>
+</ul>
+<h4 id="aufgabe-2-die-kinosaal-reservierung-zweidimensionales-array"><a class="header" href="#aufgabe-2-die-kinosaal-reservierung-zweidimensionales-array">Aufgabe 2: Die Kinosaal-Reservierung (Zweidimensionales Array)</a></h4>
+<p>Simuliere ein einfaches Reservierungssystem für einen kleinen Kinosaal mit 5 Reihen und je 6 Sitzen.</p>
+<ul>
+<li>Initialisiere den Saal so, dass alle Sitze frei sind (z. B. mit dem Wert <code>0</code>).</li>
+<li>Ermögliche es dem Benutzer, eine Reihe und einen Sitzplatz (1-basiert für den Komfort des Benutzers) einzugeben.</li>
+<li>Prüfe, ob der Platz frei ist. Wenn ja, reserviere ihn (z. B. Wert auf <code>1</code> setzen) und gib eine Bestätigung aus. Wenn nein, gib eine Fehlermeldung aus, dass der Platz besetzt ist.</li>
+<li><em>Didaktischer Hinweis:</em> Denke an die Umrechnung der benutzerfreundlichen Indizes (1 bis 5) in die C-Indizes (0 bis 4). Vergiss nicht, die Benutzereingaben auf Gültigkeit zu prüfen, damit kein Zugriff außerhalb des Arrays stattfindet!</li>
+</ul>
+<h4 id="aufgabe-3-der-passwort-prüfer-strings"><a class="header" href="#aufgabe-3-der-passwort-prüfer-strings">Aufgabe 3: Der Passwort-Prüfer (Strings)</a></h4>
+<p>Entwickle ein Programm, das den Benutzer zur Eingabe eines Passworts auffordert.</p>
+<ul>
+<li>Das Programm soll prüfen, ob das Passwort eine Mindestlänge von 8 Zeichen hat (nutze dazu eine Funktion aus <code>&lt;string.h&gt;</code>).</li>
+<li>Vergleiche das eingegebene Passwort mit einem im Programm fest hinterlegten "Master-Passwort" und gib aus, ob der Zugriff gewährt oder verweigert wird.</li>
+<li><em>Didaktischer Hinweis:</em> Achte beim Einlesen des Passworts darauf, dass kein Pufferüberlauf möglich ist. Lies dich ein, wie du <code>strcmp</code> korrekt auswertest – ein Rückgabewert von <code>0</code> bedeutet Gleichheit, nicht Ungleichheit!</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c-kapitel08.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="c-kapitel14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c-kapitel08.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="c-kapitel14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

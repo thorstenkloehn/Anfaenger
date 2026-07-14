@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🚀 C++-Programmierung (C++23) - Phase 3 - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html" class="active"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="16-ausnahmebehandlung-fehlerbehandlung"><a class="header" href="#16-ausnahmebehandlung-fehlerbehandlung">16 Ausnahmebehandlung (Fehlerbehandlung)</a></h1>
+<p>Fehler sind in der Softwareentwicklung unvermeidlich. Ob ein Benutzer eine ungültige Eingabe tätigt, eine benötigte Datei gelöscht wurde oder die Netzwerkverbindung mitten in einer Übertragung abbricht – dein Programm muss auf solche Situationen robust reagieren können, ohne unkontrolliert abstürzen.</p>
+<p>In diesem Kapitel lernst du, wie C++ mit unerwarteten Situationen umgeht. Wir betrachten die klassische Ausnahmebehandlung (Exceptions), lernen das fundamentale Prinzip von RAII im Fehlerfall kennen und werfen einen Blick auf moderne Alternativen wie <code>std::expected</code>, das in C++23 eingeführt wurde.</p>
+<hr />
+<h2 id="161-grundlagen-der-fehlerbehandlung-in-c-try-catch-throw"><a class="header" href="#161-grundlagen-der-fehlerbehandlung-in-c-try-catch-throw">16.1 Grundlagen der Fehlerbehandlung in C++ (try, catch, throw)</a></h2>
+<p>Wenn in einer Funktion ein Fehler auftritt, den sie selbst nicht sinnvoll lösen kann, kann sie diesen Fehler signalisieren. In C++ gesieht dies traditionell über das <strong>Auslösen einer Ausnahme</strong> (engl. <em>throwing an exception</em>).</p>
+<p>Das Zusammenspiel der Ausnahmebehandlung basiert auf drei Säulen:</p>
+<ul>
+<li><strong><code>throw</code></strong>: Mit dieser Anweisung wird eine Ausnahme signalisiert und ein Ausnahmeobjekt "geworfen". Der normale Kontrollfluss wird sofort unterbrochen.</li>
+<li><strong><code>try</code></strong>: Du umschließt einen Codeblock, in dem Fehler auftreten könnten, mit einem <code>try</code>-Block. Dies signalisiert dem Programm: "Beobachte diesen Abschnitt auf Ausnahmen".</li>
+<li><strong><code>catch</code></strong>: Direkt nach dem <code>try</code>-Block folgen einer oder mehrere <code>catch</code>-Blöcke (auch Exception-Handler genannt). Sie fangen die geworfene Ausnahme ab, falls deren Typ mit dem im <code>catch</code>-Block angegebenen Typ übereinstimmt.</li>
+</ul>
+<h3 id="analogie-aus-dem-alltag"><a class="header" href="#analogie-aus-dem-alltag">Analogie aus dem Alltag</a></h3>
+<p>Stell dir vor, du beauftragst einen Postboten (eine Funktion), ein Paket zuzustellen.</p>
+<ul>
+<li><strong>Normaler Pfad</strong>: Der Postbote klingelt, übergibt das Paket und du quittierst den Empfang.</li>
+<li><strong>Ausnahmefall</strong>: Der Empfänger ist unbekannt verzogen. Der Postbote kann die Aufgabe nicht abschließen. Er wirft das Paket nicht einfach in den Müll (Programmabsturz), sondern bringt es mit einem Benachrichtigungszettel (Ausnahmeobjekt) zurück zur Postfiliale (Aufrufer), wo der Fall bearbeitet (abgefangen) wird.</li>
+</ul>
+<h3 id="syntaktische-struktur-prinzipskizze"><a class="header" href="#syntaktische-struktur-prinzipskizze">Syntaktische Struktur (Prinzipskizze)</a></h3>
+<p>Um das Prinzip zu verdenlichen, betrachten wir die grundlegende Struktur. Beachte, dass wir im modernen C++ die Standardbibliothek über Module mit <code>import std;</code> einbinden:</p>
+<pre><code class="language-cpp">import std;
+
+// Struktur eines Try-Catch-Blocks
+try {
+    // Hier steht Code, der eine Ausnahme auslösen könnte
+    if (/* Bedingung für einen Fehler */) {
+        throw FehlerTyp{/* Details zum Fehler */}; 
+    }
+} 
+catch (const FehlerTyp&amp; ex) {
+    // Hier reagierst du auf den spezifischen Fehler
+}
+</code></pre>
+<blockquote>
+<p>[!NOTE]
+Wenn eine Ausnahme geworfen wird, sucht die C++-Laufzeitumgebung im aktuellen <code>try</code>-Block nach einem passenden <code>catch</code>-Block. Wird dort keiner gefunden, wird die aktuelle Funktion verlassen und die Suche in der aufrufenden Funktion fortgesetzt. Dieser Prozess setzt sich fort, bis ein passender Handler gefunden wird oder das Programm mit einem Fehler abbricht.</p>
+</blockquote>
+<hr />
+<h2 id="162-ausnahme-auslösen-auffangen-und-behandeln"><a class="header" href="#162-ausnahme-auslösen-auffangen-und-behandeln">16.2 Ausnahme auslösen, auffangen und behandeln</a></h2>
+<p>Ausnahmen können beliebige Typen haben – du kannst theoretisch ein <code>int</code>, eine Zeichenkette oder ein benutzerdefiniertes Objekt werfen. In der Praxis wirft man jedoch fast ausschließlich Objekte, die von der Standardklasse <code>std::exception</code> abgeleitet sind.</p>
+<h3 id="ausnahmen-der-standardbibliothek-auffangen"><a class="header" href="#ausnahmen-der-standardbibliothek-auffangen">Ausnahmen der Standardbibliothek auffangen</a></h3>
+<p>Da alle Standardausnahmen von <code>std::exception</code> erben, kannst du sie polymorph abfangen. Es ist Best Practice, Ausnahmen als <strong>Referenz auf ein konstantes Objekt</strong> abzufangen (<code>const std::exception&amp;</code>).</p>
+<p>Es designt zwei entscheidende Vorteile:</p>
+<ol>
+<li><strong>Vermeidung von Kopien</strong>: Das Ausnahmeobjekt muss nicht kopiert werden.</li>
+<li><strong>Vermeidung von Object Slicing</strong>: Wenn du eine abgeleitete Ausnahme (z. B. <code>std::out_of_range</code>) als Kopie der Basisklasse (<code>std::exception</code>) fängst, gehen die spezifischen Informationen der abgeleiteten Klasse verloren. Durch die Referenz bleibt die Identität des tatsächlichen Typs erhalten.</li>
+</ol>
+<p>Über die virtuelle Methode <code>.what()</code> kannst du eine Fehlermeldung als C-Style-String (<code>const char*</code>) abfragen.</p>
+<h3 id="der-universal-catch-block-catch-"><a class="header" href="#der-universal-catch-block-catch-">Der Universal-Catch-Block: <code>catch (...)</code></a></h3>
+<p>Manchmal möchtest du absolut sicherstellen, dass keine Ausnahme dein Programm ungeregelt beendet, selbst wenn du den genauen Typ der Ausnahme nicht kennst. Hierfür gibt es den "Catch-All"-Handler:</p>
+<pre><code class="language-cpp">catch (...) {
+    // Fängt JEDE Ausnahme ab, unabhängig von ihrem Typ
+}
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+Verwende <code>catch (...)</code> mit Bedacht! Da du in diesem Block keinen Zugriff auf das Ausnahmeobjekt hast, weißt du nicht, was genau schiefgelaufen ist. Er eignet sich vor allem an den äußersten Grenzen deines Programms (z. B. in der <code>main</code>-Funktion oder an Thread-Grenzen), um letzte Aufräumarbeiten durchzuführen oder einen Absturzbericht zu schreiben.</p>
+</blockquote>
+<h3 id="ausnahmen-weiterwerfen-rethrowing"><a class="header" href="#ausnahmen-weiterwerfen-rethrowing">Ausnahmen weiterwerfen (Rethrowing)</a></h3>
+<p>Manchmal kann eine Funktion eine Ausnahme zwar registrieren (z. B. um einen Logeintrag zu schreiben), kann oder will den Fehler aber nicht endgültig beheben. In diesem Fall kann die Ausnahme an den übergeordneten Aufrufer weitergegeben werden.</p>
+<p>Dies geschieht durch die Anweisung <code>throw;</code> ohne Angabe eines Objekts innerhalb des <code>catch</code>-Blocks:</p>
+<pre><code class="language-cpp">catch (const EinigeException&amp; ex) {
+    // 1. Protokolliere den Fehler lokal
+    // 2. Wirf die exakt gleiche Ausnahme weiter
+    throw; 
+}
+</code></pre>
+<blockquote>
+<p>[!IMPORTANT]
+Nutze für das Weiterwerfen immer das nackte <code>throw;</code>. Wenn du stattdessen <code>throw ex;</code> schreiben würdest, würde das Ausnahmeobjekt kopiert und eventuell auf den Typ der Catch-Variable zurechtgeschnitten (Slicing), wodurch wertvolle Detailinformationen verloren gehen können.</p>
+</blockquote>
+<hr />
+<h2 id="163-das-schlüsselwort-noexcept-und-stack-abwicklung"><a class="header" href="#163-das-schlüsselwort-noexcept-und-stack-abwicklung">16.3 Das Schlüsselwort <code>noexcept</code> und Stack-Abwicklung</a></h2>
+<p>Um die Ausnahmebehandlung im Detail zu verstehen, müssen wir einen Blick hinter die Kulissen werfen.</p>
+<h3 id="stack-abwicklung-stack-unwinding"><a class="header" href="#stack-abwicklung-stack-unwinding">Stack-Abwicklung (Stack Unwinding)</a></h3>
+<p>Wenn eine Ausnahme geworfen wird, verlässt das Programm den aktuellen Ausführungspfad. Dabei wird der Aufrufstapel (Stack) schrittweise rückwärts abgebaut (abgewickelt), bis ein passender <code>catch</code>-Block gefunden wird.</p>
+<p>Das Besondere an C++: <strong>Für alle lokalen Objekte, die auf dem Stack liegen und deren Gültigkeitsbereich durch das Verlassen der Funktionen beendet wird, wird automatisch der Destruktor aufgerufen.</strong></p>
+<h3 id="das-raii-prinzip-bei-ausnahmen"><a class="header" href="#das-raii-prinzip-bei-ausnahmen">Das RAII-Prinzip bei Ausnahmen</a></h3>
+<p>Dieses automatische Zerstören von lokalen Objekten beim Stack Unwinding ist die Basis für das wichtigste Entwurfsmuster in C++: <strong>RAII</strong> (Resource Acquisition Is Initialization).</p>
+<p>Verwaltest du Ressourcen (Speicher, Dateien, Mutexe) über RAII-Objekte (wie <code>std::unique_ptr</code>, <code>std::shared_ptr</code>, <code>std::fstream</code> oder <code>std::lock_guard</code>), garantierst du, dass diese Ressourcen auch im Fehlerfall freigegeben werden. Manuelles Aufräumen (z. B. ein <code>delete</code> oder <code>file.close()</code>) nach einem kritischen Schritt wird beim Auslösen einer Ausnahme übersprungen, was zu Ressourcenlecks führt. RAII-Objekte räumen sich im Destruktor selbst auf, sobald der Stack abgebaut wird.</p>
+<h3 id="das-schlüsselwort-noexcept"><a class="header" href="#das-schlüsselwort-noexcept">Das Schlüsselwort <code>noexcept</code></a></h3>
+<p>Mit dem Bezeichner <code>noexcept</code> kannst du eine Funktion dekorieren, um dem Compiler (und anderen Entwicklern) zu garantieren, dass diese Funktion niemals eine Ausnahme nach außen dringen lässt.</p>
+<pre><code class="language-cpp">void meineSichereFunktion() noexcept;
+</code></pre>
+<p>Warum ist das wichtig?</p>
+<ol>
+<li><strong>Optimierung</strong>: Der Compiler muss für <code>noexcept</code>-Funktionen keinen Code für die Stack-Abwicklung generieren, was den Code kleiner und schneller machen kann.</li>
+<li><strong>Sicherheit in Containern</strong>: Viele Standardbibliotheks-Container (wie <code>std::vector</code>) verschieben Elemente bei einer Größenänderung nur dann effizient per Move-Semantik, wenn der Move-Konstruktor des Typs als <code>noexcept</code> deklariert ist. Andernfalls fallen sie auf langsame Kopien zurück, um die starke Ausnahmegarantie zu wahren.</li>
+</ol>
+<blockquote>
+<p>[!CAUTION]
+Wenn eine als <code>noexcept</code> deklarierte Funktion dennoch eine Ausnahme wirft, die nicht innerhalb der Funktion abgefangen wird, bricht das Programm sofort durch den Aufruf von <code>std::terminate()</code> ab. Es findet in diesem Fall keine vollständige Stack-Abwicklung mehr statt!</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]
+Destruktoren sind in C++ standardmäßig implizit <code>noexcept</code>. Du solltest niemals zulassen, dass eine Ausnahme aus einem Destruktor entweicht. Wenn während einer laufenden Stack-Abwicklung (wegen einer ersten Ausnahme) ein Destruktor eine zweite Ausnahme wirft, stürzt das Programm sofort abstürzt.</p>
+</blockquote>
+<hr />
+<h2 id="164-standardausnahmen"><a class="header" href="#164-standardausnahmen">16.4 Standardausnahmen</a></h2>
+<p>C++ stellt in der Header-Datei <code>&lt;stdexcept&gt;</code> (bzw. im Modul <code>std</code>) eine Hierarchie von vordefinierten Ausnahme-Klassen zur Verfügung. Alle erben von <code>std::exception</code>. Es wird zwischen zwei Hauptkategorien unterschieden:</p>
+<h3 id="1-logische-fehler-stdlogic_error"><a class="header" href="#1-logische-fehler-stdlogic_error">1. Logische Fehler (<code>std::logic_error</code>)</a></h3>
+<p>Diese Fehler resultieren aus Fehlern in der Programmlogik und könnten theoretisch durch eine bessere Überprüfung des Codes vermieden werden.</p>
+<ul>
+<li><strong><code>std::invalid_argument</code></strong>: Wird geworfen, wenn einer Funktion ein ungültiges Argument übergeben wird (z. B. ein mathematischer Wert außerhalb des Definitionsbereichs).</li>
+<li><strong><code>std::out_of_range</code></strong>: Wird geworfen, wenn versucht wird, auf ein Element außerhalb der erlaubten Grenzen zuzugreifen (z. B. bei der Methode <code>.at()</code> von <code>std::vector</code> oder <code>std::string</code>).</li>
+<li><strong><code>std::length_error</code></strong>: Tritt auf, wenn versucht wird, ein Objekt über seine maximale Kapazitätsgrenze hinaus zu vergrößern.</li>
+</ul>
+<h3 id="2-laufzeitfehler-stdruntime_error"><a class="header" href="#2-laufzeitfehler-stdruntime_error">2. Laufzeitfehler (<code>std::runtime_error</code>)</a></h3>
+<p>Diese Fehler hängen von externen Faktoren ab, die sich der direkten Kontrolle des Programms entziehen und erst zur Laufzeit auftreten.</p>
+<ul>
+<li><strong><code>std::range_error</code></strong>: Für mathematische Berechnungen, deren Ergebnis nicht im darstellbaren Bereich liegt.</li>
+<li><strong><code>std::overflow_error</code> / <code>std::underflow_error</code></strong>: Bei arithmetischem Über- oder Unterlauf.</li>
+<li><strong><code>std::system_error</code></strong>: Wird von Betriebssystemfunktionen ausgelöst (z. B. Dateisystem- oder Netzwerfehler).</li>
+</ul>
+<hr />
+<h2 id="165-moderne-alternativen-zur-ausnahmebehandlung-stdexpected"><a class="header" href="#165-moderne-alternativen-zur-ausnahmebehandlung-stdexpected">16.5 Moderne Alternativen zur Ausnahmebehandlung: <code>std::expected</code></a></h2>
+<p>Ausnahmen sind ein mächtiges Werkzeug, aber sie haben ihren Preis:</p>
+<ul>
+<li>Sie unterbrechen den Kontrollfluss drastisch.</li>
+<li>Die Stack-Abwicklung ist zur Laufzeit teuer (Performance-Overhead im Fehlerfall).</li>
+<li>Sie sind für <em>außergewöhnliche</em> Fehler gedacht (z. B. Speicher voll), nicht für alltägliche, erwartbare Fehlschläge (z. B. eine ungültige Zahleneingabe im Formular).</li>
+</ul>
+<p>Seit C++23 gibt es mit <strong><code>std::expected</code></strong> eine moderne, elegante Alternative für den Umgang mit vorhersehbaren Fehlern.</p>
+<h3 id="was-ist-stdexpected"><a class="header" href="#was-ist-stdexpected">Was ist <code>std::expected</code>?</a></h3>
+<p><code>std::expected&lt;T, E&gt;</code> ist ein Container-Typ, der entweder:</p>
+<ul>
+<li>den erwarteten Wert vom Typ <code>T</code> enthält (Erfolgsfall) <strong>oder</strong></li>
+<li>einen Fehlerwert vom Typ <code>E</code> enthält (Fehlerfall).</li>
+</ul>
+<p>Damit wird der Fehler direkt über den Rückgabetyp der Funktion transportiert. Der Compiler zwingt dich nicht zum Fangen, aber das Ignorieren wird deutlich erschwert.</p>
+<h3 id="syntax-skelett"><a class="header" href="#syntax-skelett">Syntax-Skelett</a></h3>
+<p>Eine Funktion, die <code>std::expected</code> nutzt, sieht konzeptionell so aus:</p>
+<pre><code class="language-cpp">import std;
+
+// Rückgabetyp ist entweder ein double (Erfolg) oder ein std::string (Fehler)
+std::expected&lt;double, std::string&gt; dividiere(double zaehler, double nenner) {
+    if (nenner == 0.0) {
+        // Wir geben den Fehler explizit zurück
+        return std::unexpected{"Division durch Null!"s};
+    }
+    // Wir geben den regulären Wert zurück
+    return zaehler / nenner;
+}
+</code></pre>
+<h3 id="abfrage-des-ergebnisses"><a class="header" href="#abfrage-des-ergebnisses">Abfrage des Ergebnisses</a></h3>
+<p>Um mit dem Rückgabewert zu arbeiten, bietet <code>std::expected</code> verschiedene Methoden:</p>
+<ul>
+<li><strong><code>has_value()</code></strong>: Liefert <code>true</code>, wenn die Operation erfolgreich war. (Alternativ kann das Objekt im <code>if</code>-Kontext direkt als <code>bool</code> ausgewertet werden).</li>
+<li><strong><code>value()</code></strong>: Liefert den Wert, wirft jedoch eine Ausnahme (<code>std::bad_expected_access</code>), falls ein Fehler vorliegt.</li>
+<li><strong><code>operator*</code> und <code>operator-&gt;</code></strong>: Ermöglichen den direkten Zugriff auf den Wert ohne Prüfung (Achtung: Undefined Behavior, wenn kein Wert vorhanden ist!).</li>
+<li><strong><code>error()</code></strong>: Liefert den Fehlerwert.</li>
+<li><strong><code>value_or(Standardwert)</code></strong>: Liefert den Wert oder einen Standardwert, falls ein Fehler vorliegt.</li>
+</ul>
+<h3 id="monadische-operationen-c23"><a class="header" href="#monadische-operationen-c23">Monadische Operationen (C++23)</a></h3>
+<p>Ein großer Vorteil von <code>std::expected</code> ist die Möglichkeit, Operationen elegant zu verketten, ohne verschachtelte <code>if</code>-Abfragen schreiben zu müssen. Dies geschieht über monadische Funktionen:</p>
+<ul>
+<li><strong><code>.and_then()</code></strong>: Führt die nächste Funktion aus, wenn der vorherige Schritt erfolgreich war.</li>
+<li><strong><code>.or_else()</code></strong>: Ermöglicht eine Fehlerbehandlung oder einen Fallback, wenn ein Fehler aufgetreten ist.</li>
+<li><strong><code>.transform()</code></strong>: Transformiert den Erfolgswert in einen anderen Wert, falls vorhanden.</li>
+</ul>
+<p>Durch diese Methoden kannst du fehleranfällige Pipelines schreiben, die sich wie ein fließender Text lesen.</p>
+<hr />
+<h2 id="166-vermeidung-von-fehlern-mit-nodiscard-attribut"><a class="header" href="#166-vermeidung-von-fehlern-mit-nodiscard-attribut">16.6 Vermeidung von Fehlern mit <code>[[nodiscard]]</code> Attribut</a></h2>
+<p>Ein häufiges Problem bei Funktionen, die Fehlercodes oder <code>std::expected</code> zurückgeben, ist, dass der Aufrufer den Rückgabetyp einfach ignoriert. Das Programm läuft dann mit ungültigen Annahmen weiter.</p>
+<p>Um dies zu verhindern, stellt C++ das standardisierte Attribut <strong><code>[[nodiscard]]</code></strong> zur Verfügung.</p>
+<p>Wird eine Funktion oder ein Typ mit <code>[[nodiscard]]</code> deklariert, erzeugt der Compiler eine Warnung (oder bei entsprechenden Einstellungen einen Fehler), wenn der Rückgabewert beim Aufruf ignoriert wird.</p>
+<pre><code class="language-cpp">// Der Aufrufer MUSS diesen Rückgabewert auswerten
+[[nodiscard]] std::expected&lt;int, ErrorCode&gt; berechneKritischenWert();
+</code></pre>
+<p>Du kannst das Attribut auch mit einer Begründung versehen:</p>
+<pre><code class="language-cpp">[[nodiscard]("Das Ignorieren des Ergebnisses führt zu unentdeckten Fehlern!")]
+std::expected&lt;void, std::string&gt; speichereDaten();
+</code></pre>
+<blockquote>
+<p>[!TIP]
+Du kannst <code>[[nodiscard]]</code> nicht nur an Funktionen schreiben, sondern auch direkt an Klassen- oder Struktur-Definitionen (z. B. an deine eigene Fehlerklasse). Jede Funktion, die diesen Typ dann zurückgibt, verhält sich automatisch so, als wäre sie mit <code>[[nodiscard]]</code> deklariert worden.</p>
+</blockquote>
+<hr />
+<h2 id="167-fehlerdiagnose-mit-stdsource_location"><a class="header" href="#167-fehlerdiagnose-mit-stdsource_location">16.7 Fehlerdiagnose mit <code>std::source_location</code></a></h2>
+<p>Wenn ein Fehler auftritt, ist es für die Fehlersuche extrem hilfreich zu wissen, <em>wo</em> im Quellcode der Fehler passiert ist (Dateiname, Funktionsname, Zeilennummer).</p>
+<p>Früher musste man hierfür auf unschöne Präprozessor-Makros wie <code>__FILE__</code> und <code>__LINE__</code> zurückgreifen. Seit C++20 (mit Erweiterungen in C++23) gibt es dafür die saubere, typsichere und namensraumfreundliche Klasse <strong><code>std::source_location</code></strong>.</p>
+<h3 id="wie-funktioniert-es"><a class="header" href="#wie-funktioniert-es">Wie funktioniert es?</a></h3>
+<p>Die statische Methode <code>std::source_location::current()</code> erzeugt ein Objekt, das die Metadaten des aktuellen Quelltext-Standorts enthält.</p>
+<p>Wenn du diese Methode als Standardargument in einer Funktion verwendest, wird der Standort der <em>Aufruferzeile</em> ermittelt, nicht der Standort der Funktionsdefinition!</p>
+<pre><code class="language-cpp">import std;
+
+// Standardargument sorgt dafür, dass die Position des Aufrufers erfasst wird
+void loggeFehler(std::string_view nachricht, 
+                 std::source_location loc = std::source_location::current()) {
+    // Hier kannst du auf folgende Methoden zugreifen:
+    // loc.file_name()     -&gt; Name der Datei
+    // loc.function_name() -&gt; Name der Funktion
+    // loc.line()          -&gt; Zeilennummer
+    // loc.column()        -&gt; Spaltennummer
+}
+</code></pre>
+<p>Auf diese Weise kannst du sehr präzise Diagnosewerkzeuge schreiben, die dir im Fehlerfall genau sagen, welche Codezeile den Fehler ausgelöst hat.</p>
+<hr />
+<h2 id="168-kontrollfragen-und-aufgaben"><a class="header" href="#168-kontrollfragen-und-aufgaben">16.8 Kontrollfragen und Aufgaben</a></h2>
+<h3 id="kontrollfragen"><a class="header" href="#kontrollfragen">Kontrollfragen</a></h3>
+<ol>
+<li>Was ist der Unterschied zwischen einem logischen Fehler (<code>std::logic_error</code>) und einem Laufzeitfehler (<code>std::runtime_error</code>)?</li>
+<li>Warum sollten Ausnahmen immer als konstante Referenz (<code>const std::exception&amp;</code>) aufgefangen werden?</li>
+<li>Erkläre den Begriff <em>Stack Unwinding</em>. Was passiert dabei mit lokalen Variablen?</li>
+<li>Warum ist es gefährlich, wenn ein Destruktor eine Ausnahme wirft?</li>
+<li>Welchen Vorteil bietet <code>std::expected</code> gegenüber klassischen Ausnahmen bei der Fehlerbehandlung?</li>
+<li>Was bewirkt das Attribut <code>[[nodiscard]]</code> und wie hilft es bei der Vermeidung von Softwarefehlern?</li>
+</ol>
+<h3 id="aufgaben"><a class="header" href="#aufgaben">Aufgaben</a></h3>
+<blockquote>
+<p>[!IMPORTANT]
+Löse die Aufgaben selbstständig, ohne vorgefertigte Lösungen zu kopieren. Nutze moderne I/O-Funktionen wie <code>std::println</code>.</p>
+</blockquote>
+<h4 id="aufgabe-1-der-sichere-e-mail-parser-ausnahmen"><a class="header" href="#aufgabe-1-der-sichere-e-mail-parser-ausnahmen">Aufgabe 1: Der sichere E-Mail-Parser (Ausnahmen)</a></h4>
+<p>Schreibe ein Programm, das eine E-Mail-Adresse einliest und validiert.</p>
+<ul>
+<li>Erstelle eine Funktion zur Validierung der Adresse.</li>
+<li>Wenn die Adresse kein <code>@</code>-Zeichen enthält, wirf eine <code>std::invalid_argument</code>-Ausnahme mit einer passenden Fehlermeldung.</li>
+<li>Fange die Ausnahme in deiner <code>main</code>-Funktion auf und gib die Fehlermeldung aus.</li>
+</ul>
+<h4 id="aufgabe-2-robuste-dateigrößen-ermittlung-stdexpected"><a class="header" href="#aufgabe-2-robuste-dateigrößen-ermittlung-stdexpected">Aufgabe 2: Robuste Dateigrößen-Ermittlung (<code>std::expected</code>)</a></h4>
+<p>Entwirf eine Funktion, die den Speicherbedarf einer hypothetischen Datei ermittelt.</p>
+<ul>
+<li>Da eine Datei fehlen könnte, soll die Funktion keinen Standardwert (wie <code>-1</code>) zurückgeben, sondern ein <code>std::expected&lt;uintmax_t, std::string&gt;</code>.</li>
+<li>Simuliere im Fehlerfall den Rückgabetyp mit einem passenden Fehlertext über <code>std::unexpected</code>.</li>
+<li>Nutze das Attribut <code>[[nodiscard]]</code>, um sicherzustellen, dass der Rückgabewert in <code>main</code> ausgewertet werden muss.</li>
+<li>Prüfe in <code>main</code> das Ergebnis mit <code>.has_value()</code> und gib entweder die Größe oder die Fehlermeldung aus.</li>
+</ul>
+<h4 id="aufgabe-3-intelligentes-logging-stdsource_location"><a class="header" href="#aufgabe-3-intelligentes-logging-stdsource_location">Aufgabe 3: Intelligentes Logging (<code>std::source_location</code>)</a></h4>
+<p>Schreibe eine eigene, kleine Log-Funktion.</p>
+<ul>
+<li>Die Funktion soll eine Fehlermeldung entgegennehmen und auf der Konsole ausgeben.</li>
+<li>Nutze <code>std::source_location</code> as optionalen Standardparameter.</li>
+<li>Formatiere die Ausgabe so, dass sie wie folgt aussieht: <code>[FEHLER] in main (main.cpp:42): Datei nicht gefunden</code>.</li>
+<li>Rufe die Funktion an verschiedenen Stellen deines Programms auf, um zu überprüfen, ob die Zeilennummern korrekt mitwandern.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="100-projekte-prompts-phase3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="cpp-kapitel18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="100-projekte-prompts-phase3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="cpp-kapitel18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>18 Die Standardbibliothek und weitere Sprachelemente - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html" class="active"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="18-die-standardbibliothek-und-weitere-sprachelemente"><a class="header" href="#18-die-standardbibliothek-und-weitere-sprachelemente">18 Die Standardbibliothek und weitere Sprachelemente</a></h1>
+<p>Willkommen in einem der mächtigsten Kapitel dieses Buches! Bisher hast du die grundlegenden Bausteine von C++ kennengelernt: Variablen, Schleifen, Funktionen und Klassen. Doch C++ wäre nicht die Sprache, die sie heute ist, wenn sie nicht eine gigantische Werkzeugkiste mitliefern würde: die <strong>C++ Standard Library</strong> (Standardbibliothek).</p>
+<p>In diesem Kapitel tauchen wir tief in diese Werkzeugkiste ein. Wir lernen, wie wir Daten elegant verwalten, wie wir Algorithmen auf ihnen ausführen, wie wir modernen Speicher sichern und wie wir die Zeit messen. Zudem werfen wir einen Blick auf moderne Sprachfeatures, die C++23 so ausdrucksstark und sicher machen.</p>
+<blockquote>
+<p>[!IMPORTANT]
+C++ entwickelt sich stetig weiter. In diesem Kapitel nutzen wir den modernen Standard <strong>C++23</strong>. Das bedeutet unter anderem, dass wir die modularisierte Standardbibliothek (<code>import std;</code>) verwenden und moderne Formatierungs- und Ausgabemethoden wie <code>std::println</code> nutzen.</p>
+</blockquote>
+<hr />
+<h2 id="181-container-der-standardbibliothek"><a class="header" href="#181-container-der-standardbibliothek">18.1 Container der Standardbibliothek</a></h2>
+<p>Wenn du Daten im Speicher ablegen möchtest, reicht ein einfaches Array oft nicht aus. Vielleicht wächst deine Datenmenge dynamisch, vielleicht möchtest du Elemente mittendrin einfügen oder suchst nach einer schnellen Möglichkeit, Werte über einen Schlüssel (wie in einem Wörterbuch) wiederzufinden. Hier kommen <strong>Container</strong> ins Spiel.</p>
+<p>Die Standardbibliothek unterscheidet im Wesentlichen zwei Arten von Containern: <strong>Sequence Container</strong> (Sequenzielle Container) und <strong>Associative Container</strong> (Assoziative Container).</p>
+<h3 id="sequence-container"><a class="header" href="#sequence-container">Sequence Container</a></h3>
+<p>Diese Container speichern Elemente in einer streng linearen Reihenfolge. Du kannst dir das wie eine Perlenkette oder eine Warteschlange vorstellen.</p>
+<ul>
+<li><strong><code>std::vector</code></strong>: Der unangefochtene Standard-Container in C++. Er verhält sich wie ein dynamisches Array. Der Speicher liegt hintereinander (kontinuierlich) im RAM. Das macht den Zugriff auf ein bestimmtes Element über einen Index blitzschnell. Das Hinzufügen am Ende ist meistens sehr effizient, während das Einfügen in der Mitte teuer ist, da alle nachfolgenden Elemente verschoben werden müssen.</li>
+<li><strong><code>std::list</code></strong>: Eine doppelt verkettete Liste. Jedes Element kennt seinen Nachfolger und seinen Vorgänger. Der Vorteil: Du kannst überall in der Liste extrem schnell Elemente einfügen oder löschen, ohne andere Elemente verschieben zu müssen. Der Nachteil: Du kannst nicht direkt auf das 5. Element springen, sondern musst dich vom Startelement aus durchhangeln.</li>
+<li><strong><code>std::forward_list</code></strong>: Eine einfach verkettete Liste. Jedes Element kennt nur seinen Nachfolger. Sie spart im Vergleich zur <code>std::list</code> Speicherplatz, da sie nur einen Zeiger pro Element benötigt, ist aber in ihrer Bewegungsrichtung eingeschränkt.</li>
+</ul>
+<h3 id="assoziative-container"><a class="header" href="#assoziative-container">Assoziative Container</a></h3>
+<p>Hier steht nicht die Reihenfolge der Speicherung im Vordergrund, sondern das schnelle Wiederfinden von Elementen anhand eines <strong>Schlüssels</strong> (Key).</p>
+<ul>
+<li><strong><code>std::map</code></strong>: Ein sortiertes Wörterbuch. Jedes Element besteht aus einem Schlüssel-Wert-Paar (Key-Value-Pair). Die Elemente werden automatisch nach dem Schlüssel sortiert (meistens als binärer Suchbaum implementiert). Die Suche hat eine logarithmische Laufzeit.</li>
+<li><strong><code>std::set</code></strong>: Eine Menge einzigartiger Elemente. Es speichert nur Schlüssel (keine doppelten Werte) und sortiert diese ebenfalls automatisch.</li>
+<li><strong><code>std::unordered_map</code></strong>: Ein ungeordnetes Wörterbuch. Es nutzt eine Hash-Tabelle. Das bedeutet, dass der Zugriff im Durchschnitt extrem schnell ist (konstante Laufzeit), die Elemente aber in keiner bestimmten Reihenfolge vorliegen.</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+Im Zweifel gilt in C++ fast immer die Faustregel: Benutze <code>std::vector</code>. Durch die kontinuierliche Speicheranordnung nutzt er die Cache-Mechanismen moderner CPUs optimal aus und schlägt in der Praxis oft Container, die theoretisch für bestimmte Operationen besser geeignet wären.</p>
+</blockquote>
+<hr />
+<h2 id="182-iteratoren-und-ranges"><a class="header" href="#182-iteratoren-und-ranges">18.2 Iteratoren und Ranges</a></h2>
+<p>Wie greift man einheitlich auf die Elemente eines Containers zu, ohne wissen zu müssen, ob es sich um einen Vektor, eine verkettete Liste oder einen Suchbaum handelt? Die Antwort lautet: <strong>Iteratoren</strong>.</p>
+<h3 id="das-iterator-prinzip"><a class="header" href="#das-iterator-prinzip">Das Iterator-Prinzip</a></h3>
+<p>Ein Iterator verhält sich im Grunde wie ein Zeiger. Er zeigt auf ein bestimmtes Element in einem Container und kann "weitergeschoben" werden (meist mit dem Inkrement-Operator <code>++</code>). Jeder Standard-Container stellt Methoden bereit, um den Anfang (<code>begin()</code>) und das Ende (<code>end()</code>) zu markieren.</p>
+<pre><code class="language-cpp">// Syntax-Skizze für das traditionelle Iterieren
+auto it = container.begin();
+while (it != container.end()) {
+    // Zugriff auf das Element via *it
+    ++it;
+}
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+Der Iterator <code>end()</code> zeigt <em>nicht</em> auf das letzte Element, sondern auf die Position <em>dahinter</em> (past-the-end). Ein Dereferenzieren von <code>end()</code> führt zu undefiniertem Verhalten!</p>
+</blockquote>
+<h3 id="ranges-und-views-c20-bis-c23"><a class="header" href="#ranges-und-views-c20-bis-c23">Ranges und Views (C++20 bis C++23)</a></h3>
+<p>Mit C++20 wurden <strong>Ranges</strong> eingeführt, die in C++23 weiter ausgebaut wurden. Eine Range ist vereinfacht gesagt alles, worüber man iterieren kann (z. B. ein Container).</p>
+<p>Anstatt mühsam mit <code>begin()</code> und <code>end()</code> zu hantieren, erlauben Ranges es uns, Operationen direkt auf dem Container auszuführen. Zudem bieten <strong>Views</strong> (Ansichten) die Möglichkeit, Datenströme faul (lazy) zu transformieren oder zu filtern. Sie kopieren die Daten nicht, sondern beschreiben nur eine Pipeline.</p>
+<p>Das Ganze wird mit dem Pipe-Operator <code>|</code> verknüpft, ähnlich wie in der Unix-Kommandozeile:</p>
+<pre><code class="language-cpp">// Prinzip der Pipeline-Syntax mit std::views:
+auto ergebnis = mein_container 
+                | std::views::filter(bedingung) 
+                | std::views::transform(umwandlung);
+</code></pre>
+<p>Unter C++23 kannst du dank verbesserter Ranges-Unterstützung noch flüssiger komplexe Transformationen schreiben, ohne jemals temporäre Kopien im Speicher anlegen zu müssen.</p>
+<hr />
+<h2 id="183-algorithmen-der-standardbibliothek"><a class="header" href="#183-algorithmen-der-standardbibliothek">18.3 Algorithmen der Standardbibliothek</a></h2>
+<p>C++ folgt der Philosophie: "Schreibe keine eigenen Schleifen, wenn es bereits einen Algorithmus dafür gibt." Die Standardbibliothek bietet im Header <code>&lt;algorithm&gt;</code> (bzw. im Modul <code>std</code>) über hundert hochinnovative, optimierte Algorithmen.</p>
+<p>Seit C++20 nutzen wir bevorzugt die Varianten aus dem Namensraum <code>std::ranges</code>, da sie sicherer und komfortabler zu bedienen sind.</p>
+<h3 id="wichtige-standardalgorithmen"><a class="header" href="#wichtige-standardalgorithmen">Wichtige Standardalgorithmen</a></h3>
+<ul>
+<li><strong><code>std::ranges::sort</code></strong>: Sortiert die Elemente einer Range aufsteigend.</li>
+<li><strong><code>std::ranges::find</code></strong>: Sucht nach einem bestimmten Wert und liefert einen Iterator auf das erste gefundene Element zurück.</li>
+<li><strong><code>std::ranges::transform</code></strong>: Wendet eine Funktion auf jedes Element an und schreibt das Ergebnis in ein Ziel.</li>
+<li><strong><code>std::ranges::any_of</code> / <code>all_of</code> / <code>none_of</code></strong>: Prüft, ob Bedingungen für (einige/alle/keine) Elemente zutreffen.</li>
+</ul>
+<pre><code class="language-cpp">// Syntax-Template für einen Sortiervorgang
+std::ranges::sort(container);
+</code></pre>
+<hr />
+<h2 id="184-fortgeschrittene-funktionskonzepte"><a class="header" href="#184-fortgeschrittene-funktionskonzepte">18.4 Fortgeschrittene Funktionskonzepte</a></h2>
+<p>Um die Algorithmen der Standardbibliothek effektiv nutzen zu können, müssen wir ihnen oft mitteilen, <em>wie</em> sie filtern, sortieren oder transformieren sollen. C++ bietet hierfür extrem flexible Konzepte.</p>
+<h3 id="decltype"><a class="header" href="#decltype">decltype</a></h3>
+<p>Mit dem Schlüsselwort <code>decltype</code> kannst du den Datentyp eines Ausdrucks zur Kompilierzeit abfragen, ohne ihn explizit ausschreiben zu müssen. Das ist besonders in der generischen Programmierung (Templates) nützlich.</p>
+<h3 id="lambda-funktionen"><a class="header" href="#lambda-funktionen">Lambda-Funktionen</a></h3>
+<p>Lambdas sind anonyme Funktionen, die du direkt "vor Ort" im Code definieren kannst. Sie eignen sich hervorragend als Argumente für Algorithmen.</p>
+<p>Eine Lambda-Funktion ist wie folgt aufgebaut:</p>
+<pre><code class="language-cpp">[capture_clause](parameters) -&gt; return_type {
+    // Funktionsrumpf
+}
+</code></pre>
+<ul>
+<li><strong>Capture-Clause (<code>[...]</code>)</strong>: Bestimmt, welche Variablen aus der umgebenden Funktion im Lambda verfügbar sind (z. B. per Kopie <code>[=]</code> oder per Referenz <code>[&amp;]</code>).</li>
+<li><strong>Generische Lambdas</strong>: Seit C++14 (und verfeinert in neueren Standards) kannst du <code>auto</code> in den Parametern verwenden, um ein "Mini-Template" zu erstellen.</li>
+<li><strong>Ausblick auf C++26 (Platzhalter <code>_</code>)</strong>: Zukünftig (ab C++26) kannst du den unbenannten Platzhalter <code>_</code> nutzen, um ungenutzte Parameter im Lambda prägnant zu ignorieren.</li>
+</ul>
+<h3 id="funktoren-callable-objects"><a class="header" href="#funktoren-callable-objects">Funktoren (Callable Objects)</a></h3>
+<p>Ein Funktor ist eine Klasse, die den Funktionsaufruf-Operator <code>operator()</code> überlädt. Dadurch kann eine Instanz dieser Klasse wie eine normale Funktion aufgerufen werden, besitzt aber den Vorteil, dass sie einen Zustand (Variablen) speichern kann.</p>
+<h3 id="nachlaufende-rückgabetypen-trailing-return-types"><a class="header" href="#nachlaufende-rückgabetypen-trailing-return-types">Nachlaufende Rückgabetypen (Trailing Return Types)</a></h3>
+<p>Manchmal hängt der Rückgabetyp einer Funktion von ihren Parametern ab. Mit der nachlaufenden Deklaration kannst du den Rückgabetyp <em>hinter</em> die Parameterliste schreiben:</p>
+<pre><code class="language-cpp">auto addiere(auto a, auto b) -&gt; decltype(a + b);
+</code></pre>
+<hr />
+<h2 id="185-smart-pointer-und-speicherverwaltung"><a class="header" href="#185-smart-pointer-und-speicherverwaltung">18.5 Smart Pointer und Speicherverwaltung</a></h2>
+<p>In C++ verwalten wir Ressourcen nach dem Prinzip <strong>RAII</strong> (Resource Acquisition Is Initialization). Das bedeutet: Wenn ein Objekt zerstört wird, soll es automatisch seinen Speicher freigeben. Die Verwendung von rohen Zeigern (<code>new</code> und <code>delete</code>) ist im modernen C++ verpönt, da sie extrem fehleranfällig is und zu Speicherlecks führt.</p>
+<p>Stattdessen nutzen wir intelligente Zeiger (<strong>Smart Pointer</strong>):</p>
+<h3 id="1-stdunique_ptr"><a class="header" href="#1-stdunique_ptr">1. <code>std::unique_ptr</code></a></h3>
+<p>Ein <code>std::unique_ptr</code> besitzt eine Ressource exklusiv. Es kann keine Kopie von ihm existieren. Wenn der <code>unique_ptr</code> den Gültigkeitsbereich (Scope) verlässt, wird der zugrundeliegende Speicher automatisch freigegeben.</p>
+<h3 id="2-stdshared_ptr"><a class="header" href="#2-stdshared_ptr">2. <code>std::shared_ptr</code></a></h3>
+<p>Ein <code>std::shared_ptr</code> teilt sich den Besitz einer Ressource mit anderen <code>shared_ptr</code>-Instanzen. Intern wird ein Referenzzähler (Reference Counter) verwaltet. Erst wenn der letzte <code>shared_ptr</code>, der auf die Ressource zeigt, zerstört wird, wird auch der Speicher freigegeben.</p>
+<h3 id="3-stdweak_ptr"><a class="header" href="#3-stdweak_ptr">3. <code>std::weak_ptr</code></a></h3>
+<p>Wenn sich zwei Objekte gegenseitig mit <code>shared_ptr</code> referenzieren, entsteht ein Kreisbezug. Der Referenzzähler wird niemals null, und es kommt zum Speicherleck. Ein <code>std::weak_ptr</code> bietet eine "schwache", nicht-besitzende Referenz auf ein von <code>std::shared_ptr</code> verwaltetes Objekt, ohne den Referenzzähler zu erhöhen.</p>
+<h3 id="move-semantik-und-stdmove"><a class="header" href="#move-semantik-und-stdmove">Move-Semantik und <code>std::move</code></a></h3>
+<p>Da ein <code>std::unique_ptr</code> nicht kopiert werden darf, müssen wir in der Lage sein, den Besitz an eine andere Funktion oder einen anderen Scope zu übertragen. Das geschieht über die <strong>Move-Semantik</strong> mit der Funktion <code>std::move</code>. Dabei wird die Ressource nicht kopiert, sondern die internen Zeiger werden einfach "umgehängt" (das alte Objekt wird in einen leeren, aber gültigen Zustand versetzt).</p>
+<pre><code class="language-cpp">// Syntax-Prinzip zum Verschieben von Ressourcen
+std::unique_ptr&lt;Typ&gt; ptr2 = std::move(ptr1);
+</code></pre>
+<hr />
+<h2 id="186-textansichten-und-formatierung"><a class="header" href="#186-textansichten-und-formatierung">18.6 Textansichten und Formatierung</a></h2>
+<p>Die Arbeit mit Texten wurde in den letzten C++-Standards revolutioniert. Vergiss die unhandlichen C-Strings oder die oft langsamen Kopien von <code>std::string</code>.</p>
+<h3 id="stdstring_view"><a class="header" href="#stdstring_view"><code>std::string_view</code></a></h3>
+<p>Ein <code>std::string_view</code> ist eine extrem leichtgewichtige, nicht-besitzende Ansicht auf ein Stück Text (eine Kombination aus Zeiger und Länge). Sie kopiert keine Zeichen. Wenn du eine Funktion schreibst, die einen String nur lesen soll, verwende standardmäßig <code>std::string_view</code> als Parametertyp.</p>
+<blockquote>
+<p>[!WARNING]
+Da <code>std::string_view</code> den Text nicht besitzt, musst du sicherstellen, dass der zugrundeliegende String (Besitzer) länger lebt als die Ansicht selbst. Andernfalls hast du eine "dangling reference" (einen hängenden Verweis).</p>
+</blockquote>
+<h3 id="stdformat-und-stdprint-c20-bis-c23"><a class="header" href="#stdformat-und-stdprint-c20-bis-c23"><code>std::format</code> und <code>std::print</code> (C++20 bis C++23)</a></h3>
+<p>Mit <code>std::format</code> (C++20) und den direkten Ausgabe-Funktionen <code>std::print</code> and <code>std::println</code> (C++23) wurde die String-Formatierung modernisiert. Sie vereint die Typsicherheit von <code>std::cout</code> mit der Übersichtlichkeit und Performance von <code>printf</code>.</p>
+<pre><code class="language-cpp">// Syntaxbeispiel für die moderne Ausgabe
+std::println("Hallo {}, du bist {} Jahre alt.", name, alter);
+</code></pre>
+<h3 id="eigene-typen-formatierbar-machen-stdformatter"><a class="header" href="#eigene-typen-formatierbar-machen-stdformatter">Eigene Typen formatierbar machen (<code>std::formatter</code>)</a></h3>
+<p>Du kannst das Verhalten von <code>std::format</code> für deine eigenen Klassen anpassen, indem du eine Spezialisierung des Templates <code>std::formatter</code> schreibst. Dadurch lassen sich deine eigenen Datenstrukturen nahtlos in Formatierungs-Strings einbetten.</p>
+<hr />
+<h2 id="187-die-zeitbibliothek-stdchrono"><a class="header" href="#187-die-zeitbibliothek-stdchrono">18.7 Die Zeitbibliothek (<code>std::chrono</code>)</a></h2>
+<p>Zeitberechnungen sind fehleranfällig. Wer hat nicht schon einmal Sekunden und Millisekunden verwechselt? Die Bibliothek <code>std::chrono</code> macht Zeitberechnungen durch ein starkes Typensystem absolut sicher.</p>
+<h3 id="die-kernkonzepte"><a class="header" href="#die-kernkonzepte">Die Kernkonzepte</a></h3>
+<ul>
+<li><strong>Duration (Dauer)</strong>: Repräsentiert eine Zeitspanne (z. B. 5 Sekunden, 20 Millisekunden). Typen wie <code>std::chrono::seconds</code> oder <code>std::chrono::milliseconds</code> verhindern, dass du aus Versehen Äpfel mit Birnen addierst.</li>
+<li><strong>Time Point (Zeitpunkt)</strong>: Repräsentiert einen konkreten Zeitpunkt relativ zu einer Epoche (z. B. "Jetzt" oder "1. Januar 1970").</li>
+<li><strong>Clocks (Uhren)</strong>: Liefern den aktuellen Zeitpunkt.
+<ul>
+<li><code>std::chrono::system_clock</code>: Die Systemuhr des Betriebssystems (kann vom Benutzer verstellt werden).</li>
+<li><code>std::chrono::steady_clock</code>: Eine monotone Uhr, die garantiert niemals rückwärts läuft (ideal für Performance-Messungen).</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cpp">// Typisches Muster für eine Zeitmessung
+auto start = std::chrono::steady_clock::now();
+// ... Code ausführen ...
+auto ende = std::chrono::steady_clock::now();
+auto dauer = ende - start;
+</code></pre>
+<hr />
+<h2 id="188-ausblick-auf-multithreading"><a class="header" href="#188-ausblick-auf-multithreading">18.8 Ausblick auf Multithreading</a></h2>
+<p>Moderne Computer besitzen viele CPU-Kerne. Um diese optimal auszulasten, müssen wir Aufgaben parallel (zeitgleich) berechnen lassen. C++ bietet direkt in der Standardbibliothek Unterstützung für Nebenläufigkeit (Concurrency).</p>
+<h3 id="stdthread-vs-stdjthread-c20"><a class="header" href="#stdthread-vs-stdjthread-c20"><code>std::thread</code> vs. <code>std::jthread</code> (C++20)</a></h3>
+<p>Ein <code>std::thread</code> repräsentiert einen Ausführungsthread des Betriebssystems. Der modernere <code>std::jthread</code> (joining thread) verbessert dies entscheidend: Er wartet beim Verlassen seines Gültigkeitsbereichs automatisch auf das Ende der Thread-Ausführung (RAII-Prinzip) und unterstützt das kooperative Abbrechen von Threads via Interrupt-Tokens.</p>
+<h3 id="asynchrone-tasks-stdasync-und-stdfuture"><a class="header" href="#asynchrone-tasks-stdasync-und-stdfuture">Asynchrone Tasks: <code>std::async</code> und <code>std::future</code></a></h3>
+<p>Manchmal möchten wir einfach eine Berechnung im Hintergrund starten und das Ergebnis zu einem späteren Zeitpunkt abholen.</p>
+<ul>
+<li><code>std::async</code> startet die Aufgabe (entweder in einem neuen Thread oder verzögert).</li>
+<li><code>std::future</code> ist das "Versprechen", mit dem wir später auf das Ergebnis zugreifen können (die Methode <code>.get()</code> wartet, bis die Berechnung fertig ist).</li>
+</ul>
+<pre><code class="language-cpp">// Syntax-Skizze für asynchrone Berechnungen
+std::future&lt;int&gt; zukunft = std::async(berechne_etwas);
+// ... im aktuellen Thread weiterarbeiten ...
+int ergebnis = zukunft.get(); // Blockiert, bis das Ergebnis da ist
+</code></pre>
+<hr />
+<h2 id="189-kontrollfragen-und-aufgaben"><a class="header" href="#189-kontrollfragen-und-aufgaben">18.9 Kontrollfragen und Aufgaben</a></h2>
+<h3 id="kontrollfragen"><a class="header" href="#kontrollfragen">Kontrollfragen</a></h3>
+<ol>
+<li>Welcher Container ist im kontinuierlichen Speicher aufgebaut und warum ist das für die CPU vorteilhaft?</li>
+<li>Was ist der Unterschied zwischen <code>std::map</code> und <code>std::unordered_map</code> bezüglich Sortierung und Performance?</li>
+<li>Warum darf man das Ergebnis von <code>container.end()</code> nicht dereferenzieren?</li>
+<li>Was ist eine "faule Auswertung" (Lazy Evaluation) bei C++ Ranges/Views?</li>
+<li>Warum sollte man bevorzugt <code>std::unique_ptr</code> statt roher Zeiger verwenden?</li>
+<li>Was passiert mit den Daten des Quell-Objekts, wenn wir <code>std::move</code> darauf anwenden?</li>
+<li>Welchen Vorteil bietet <code>std::string_view</code> gegenüber <code>const std::string&amp;</code>?</li>
+<li>Warum ist <code>std::jthread</code> sicherer als <code>std::thread</code>?</li>
+</ol>
+<h3 id="Übungsaufgaben"><a class="header" href="#Übungsaufgaben">Übungsaufgaben</a></h3>
+<h4 id="aufgabe-1-der-highscore-verwalter"><a class="header" href="#aufgabe-1-der-highscore-verwalter">Aufgabe 1: Der Highscore-Verwalter</a></h4>
+<p>Entwerfe eine Konsolenanwendung zur Verwaltung einer Highscore-Liste für ein Spiel.</p>
+<ul>
+<li>Verwende einen passenden Container, um Spielernamen und deren erreichte Punkte zu speichern. Die Liste soll automatisch nach der höchsten Punktzahl sortiert sein.</li>
+<li>Nutze <code>std::print</code> oder <code>std::println</code>, um die Highscore-Tabelle formatiert auszugeben.</li>
+<li><em>Hinweis:</em> Überlege, ob sich <code>std::map</code> oder ein sortierter <code>std::vector</code> mit Paaren besser eignet.</li>
+</ul>
+<h4 id="aufgabe-2-der-wort-filter-mit-ranges"><a class="header" href="#aufgabe-2-der-wort-filter-mit-ranges">Aufgabe 2: Der Wort-Filter mit Ranges</a></h4>
+<p>Schreibe ein Programm, das eine Liste von Wörtern (z. B. Namen) filtert.</p>
+<ul>
+<li>Es sollen nur Wörter übrig bleiben, die mit einem bestimmten Buchstaben beginnen.</li>
+<li>Verwende dafür die modernen C++ Ranges und Views (insbesondere den Pipe-Operator <code>|</code> und <code>std::views::filter</code>).</li>
+<li>Gib die gefilterten Wörter auf der Konsole aus, ohne eine Kopie der Liste im Speicher anzulegen.</li>
+</ul>
+<h4 id="aufgabe-3-zeitmessung-decorator"><a class="header" href="#aufgabe-3-zeitmessung-decorator">Aufgabe 3: Zeitmessung-Decorator</a></h4>
+<p>Erstelle ein kleines Testprogramm, das die Ausführungszeit einer mathematischen Berechnung misst.</p>
+<ul>
+<li>Nutze <code>std::chrono::steady_clock</code>, um die Zeit vor und nach der Berechnung zu erfassen.</li>
+<li>Gib die verstrichene Zeit präzise in Mikrosekunden aus.</li>
+<li>Verpacke die Berechnung optional in ein Lambda, um sie flexibel austauschbar zu machen.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="cpp-kapitel16.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase4-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="cpp-kapitel16.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase4-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

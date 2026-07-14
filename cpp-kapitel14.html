@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>14 Vererbung (Abgeleitete Klassen) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">6.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">7.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">8.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">9.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">11.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">12.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">12.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">12.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">12.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">12.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">12.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">12.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">12.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">12.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">12.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">12.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">12.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">12.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">12.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">13.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">13.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">13.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">14.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">14.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">14.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">14.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">15.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">16.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">17.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">19.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">21.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">22.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">23.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">23.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">23.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">23.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html" class="active"><strong aria-hidden="true">23.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">24.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">24.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">24.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">24.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">24.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">24.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">25.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">26.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">27.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">29.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">29.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">30.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">30.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">30.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">30.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">31.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">32.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">33.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">35.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">35.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">35.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">35.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">36.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">37.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">38.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">39.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">40.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">41.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">41.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">41.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">41.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">42.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">43.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">44.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">46.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">46.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">47.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">47.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">47.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">47.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">48.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">49.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">50.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">52.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">52.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">52.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">52.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">53.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">54.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">55.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">57.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">57.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">57.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">58.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">59.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">60.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">62.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">63.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">64.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">64.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">64.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">65.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">66.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">67.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">69.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">70.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">71.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">72.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">73.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">74.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">75.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">76.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">77.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">78.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">79.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">80.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">81.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">81.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">81.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">82.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">83.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">83.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">83.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">83.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">83.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">83.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">83.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">83.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">83.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">83.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">83.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">83.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">84.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">84.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">85.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">86.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">87.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">88.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">89.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">90.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="14-vererbung-abgeleitete-klassen"><a class="header" href="#14-vererbung-abgeleitete-klassen">14 Vererbung (Abgeleitete Klassen)</a></h1>
+<p>In diesem Kapitel erfährst du, wie du mithilfe von Vererbung bestehenden Code wiederverwendest, spezialisierst und erweiterst. Vererbung gehört zu den Grundpfeilern der objektorientierten Programmierung (OOP) und ermöglicht es dir, Hierarchien und logische Beziehungen zwischen Klassen abzubilden. Zudem lernst du, wie sich modernstes C++23 verhält und wie du mithilfe von Polymorphie flexiblen, erweiterbaren Code schreibst.</p>
+<hr />
+<h2 id="141-grundlagen-der-vererbung"><a class="header" href="#141-grundlagen-der-vererbung">14.1 Grundlagen der Vererbung</a></h2>
+<h3 id="was-ist-vererbung"><a class="header" href="#was-ist-vererbung">Was ist Vererbung?</a></h3>
+<p>In der realen Welt teilen viele Objekte gemeinsame Eigenschaften. Ein PKW, ein LKW und ein Motorrad sind allesamt Fahrzeuge. Sie besitzen einen Motor, eine Geschwindigkeit und können fahren. Dennoch hat jedes dieser Fahrzeuge eigene, spezifische Eigenschaften (ein LKW hat eine maximale Achslast, ein Cabrio ein Faltdach).</p>
+<p>In der Softwareentwicklung wollen wir dieses Prinzip nachbilden, um doppelten Code zu vermeiden. Vererbung beschreibt eine <strong>"Ist-ein"-Beziehung</strong> (engl. <em>IS-A</em>):</p>
+<ul>
+<li>Ein Auto <strong>ist ein</strong> Fahrzeug.</li>
+<li>Ein Kreis <strong>ist eine</strong> geometrische Form.</li>
+</ul>
+<p>Dies unterscheidet sich grundlegend von der <strong>"Hat-ein"-Beziehung</strong> (engl. <em>HAS-A</em>, auch Komposition genannt), bei der ein Objekt ein anderes Objekt als Member enthält (z. B. ein Auto <em>hat einen</em> Motor).</p>
+<h3 id="basisklasse-und-abgeleitete-klasse"><a class="header" href="#basisklasse-und-abgeleitete-klasse">Basisklasse und abgeleitete Klasse</a></h3>
+<ul>
+<li><strong>Basisklasse (Elternklasse / Superklasse):</strong> Die allgemeinere Klasse, die grundlegende Attribute und Funktionen definiert.</li>
+<li><strong>Abgeleitete Klasse (Kindklasse / Subklasse):</strong> Die speziellere Klasse, die alle Eigenschaften der Basisklasse übernimmt (erbt) und durch eigene Attribute und Funktionen ergänzen (erweitern) kann.</li>
+</ul>
+<h3 id="syntax-der-vererbung-in-c"><a class="header" href="#syntax-der-vererbung-in-c">Syntax der Vererbung in C++</a></h3>
+<p>Um eine Klasse von einer anderen erben zu lassen, verwendest du nach dem Klassennamen einen Doppelpunkt, gefolgt von einem Zugriffsmodifizierer und dem Namen der Basisklasse:</p>
+<pre><code class="language-cpp">// Syntax-Template
+class Basisklasse {
+    // Gemeinsame Attribute und Methoden
+};
+
+class AbgeleiteteKlasse : public Basisklasse {
+    // Zusätzliche Attribute und Methoden
+};
+</code></pre>
+<blockquote>
+<p>[!NOTE]
+Die abgeleitete Klasse besitzt nun automatisch alle Member-Variablen und Methoden der Basisklasse (abhängig von den Zugriffsrechten), ohne dass du diese erneut deklarieren musst.</p>
+</blockquote>
+<hr />
+<h2 id="142-zugriffsrechte-bei-vererbung"><a class="header" href="#142-zugriffsrechte-bei-vererbung">14.2 Zugriffsrechte bei Vererbung</a></h2>
+<p>In C++ gibt es drei Zugriffsmodifizierer innerhalb von Klassen: <code>public</code>, <code>protected</code> und <code>private</code>. Bei der Vererbung spielen sie zwei Rollen:</p>
+<ol>
+<li>Wie sind die Member in der Basisklasse geschützt?</li>
+<li>Wie wird die Basisklasse abgeleitet (Sichtbarkeit der Vererbung)?</li>
+</ol>
+<h3 id="der-zugriffsmodifizierer-protected"><a class="header" href="#der-zugriffsmodifizierer-protected">Der Zugriffsmodifizierer <code>protected</code></a></h3>
+<p>Du kennst bereits <code>public</code> (jeder hat Zugriff) und <code>private</code> (nur die Klasse selbst hat Zugriff).</p>
+<ul>
+<li><code>protected</code> schließt die Lücke: Auf <code>protected</code>-Member kann die Klasse selbst sowie <strong>jede von ihr abgeleitete Klasse</strong> zugreifen. Von außen (z. B. in der <code>main</code>-Funktion) ist der direkte Zugriff jedoch verboten.</li>
+</ul>
+<h3 id="arten-der-ableitung"><a class="header" href="#arten-der-ableitung">Arten der Ableitung</a></h3>
+<p>Wenn du eine Klasse ableitest, bestimmt der Modifizierer vor dem Namen der Basisklasse (<code>public</code>, <code>protected</code> oder <code>private</code>), wie sich die Zugriffsrechte der geerbten Member in der abgeleiteten Klasse verändern:</p>
+<pre><code class="language-cpp">class Kind : public Parent { ... };
+</code></pre>
+<p>Hier ist eine Übersicht, wie sich die Zugriffsrechte der Basisklasse in der abgeleiteten Klasse verhalten:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Sichtbarkeit in Basisklasse</th><th style="text-align: left">public Ableitung (<code>public</code>)</th><th style="text-align: left">protected Ableitung (<code>protected</code>)</th><th style="text-align: left">private Ableitung (<code>private</code>)</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>public</code></strong></td><td style="text-align: left">bleibt <code>public</code></td><td style="text-align: left">wird <code>protected</code></td><td style="text-align: left">wird <code>private</code></td></tr>
+<tr><td style="text-align: left"><strong><code>protected</code></strong></td><td style="text-align: left">bleibt <code>protected</code></td><td style="text-align: left">wird <code>protected</code></td><td style="text-align: left">wird <code>private</code></td></tr>
+<tr><td style="text-align: left"><strong><code>private</code></strong></td><td style="text-align: left">unzugänglich</td><td style="text-align: left">unzugänglich</td><td style="text-align: left">unzugänglich</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>[!TIP]
+In der Praxis wird fast ausschließlich die <strong><code>public</code>-Vererbung</strong> verwendet, da sie die klassische "Ist-ein"-Beziehung darstellt. <code>private</code>- und <code>protected</code>-Vererbung sind Spezialfälle (oft als "implementiert mittels"-Beziehung verstanden) und sollten nur mit gutem Grund eingesetzt werden.</p>
+</blockquote>
+<hr />
+<h2 id="143-methoden-überschreiben-und-konstruktorendestruktoren-in-abgeleiteten-klassen"><a class="header" href="#143-methoden-überschreiben-und-konstruktorendestruktoren-in-abgeleiteten-klassen">14.3 Methoden überschreiben und Konstruktoren/Destruktoren in abgeleiteten Klassen</a></h2>
+<h3 id="reihenfolge-der-konstruktion-und-destruktion"><a class="header" href="#reihenfolge-der-konstruktion-und-destruktion">Reihenfolge der Konstruktion und Destruktion</a></h3>
+<p>Wenn du ein Objekt einer abgeleiteten Klasse erstellst, muss zuerst die Basisklasse aufgebaut werden, da die abgeleitete Klasse auf deren Daten aufbaut.</p>
+<ul>
+<li><strong>Konstruktion:</strong> Die Basisklasse wird zuerst konstruiert, danach die abgeleitete Klasse.</li>
+<li><strong>Destruktion:</strong> Die abgeleitete Klasse wird zuerst destruiert, danach die Basisklasse (genau umgekehrt zur Konstruktion).</li>
+</ul>
+<p>Stell dir das wie eine Zwiebel vor: Die innerste Schicht (Basisklasse) wird zuerst angelegt. Beim Abziehen (Destruieren) nimmst du die äußeren Schichten (abgeleitete Klasse) zuerst ab.</p>
+<h3 id="aufruf-von-basisklassen-konstruktoren"><a class="header" href="#aufruf-von-basisklassen-konstruktoren">Aufruf von Basisklassen-Konstruktoren</a></h3>
+<p>C++ versucht standardmäßig, den parameterlosen Standardkonstruktor der Basisklasse aufzurufen. Besitzt deine Basisklasse keinen Standardkonstruktor oder möchtest du einen bestimmten parametrisierten Konstruktor aufrufen, musst du diesen explizit in der <strong>Initialisierungsliste</strong> des Kind-Konstruktors aufrufen:</p>
+<pre><code class="language-cpp">// Prinzipskizze
+AbgeleiteteKlasse(Typ parameter1, Typ parameter2)
+    : Basisklasse(parameter1) // Expliziter Aufruf des Basis-Konstruktors
+{
+    // Eigene Initialisierungen für die abgeleitete Klasse
+}
+</code></pre>
+<h3 id="konstruktoren-vererben-mit-using"><a class="header" href="#konstruktoren-vererben-mit-using">Konstruktoren vererben mit <code>using</code></a></h3>
+<p>Manchmal möchtest du, dass die abgeleitete Klasse exakt dieselben Konstruktoren anbietet wie die Basisklasse, ohne sie alle manuell neu zu schreiben. Seit C++11 (und unverändert im modernen C++23) kannst du dies mit dem <code>using</code>-Schlüsselwort tun:</p>
+<pre><code class="language-cpp">class AbgeleiteteKlasse : public Basisklasse {
+public:
+    using Basisklasse::Basisklasse; // Alle Konstruktoren der Basisklasse importieren
+};
+</code></pre>
+<h3 id="methoden-überschreiben"><a class="header" href="#methoden-überschreiben">Methoden überschreiben</a></h3>
+<p>Eine abgeleitete Klasse kann eine Methode der Basisklasse mit exakt demselben Namen und derselben Signatur neu definieren. Dies nennt man <strong>Überschreiben (Overriding)</strong>.
+Wenn du die Methode aufrufst, wird standardmäßig die Version der abgeleiteten Klasse ausgeführt. Möchtest du innerhalb der überschriebenen Methode dennoch die Funktionalität der Basisklasse aufrufen, kannst du den Gültigkeitsbereichsoperator <code>::</code> nutzen:</p>
+<pre><code class="language-cpp">// Aufruf der Basisklassen-Implementierung innerhalb einer Methode der abgeleiteten Klasse
+Basisklasse::methodenName();
+</code></pre>
+<hr />
+<h2 id="144-polymorphie-vielgestaltigkeit"><a class="header" href="#144-polymorphie-vielgestaltigkeit">14.4 Polymorphie (Vielgestaltigkeit)</a></h2>
+<p>Polymorphie ist die Fähigkeit, Objekte verschiedener Klassen einheitlich über eine gemeinsame Schnittstelle (Zeiger oder Referenzen auf die Basisklasse) anzusprechen, während zur Laufzeit das tatsächlich korrekte Verhalten der abgeleiteten Klasse ausgeführt wird.</p>
+<h3 id="dynamische-polymorphie-und-virtuelle-methoden"><a class="header" href="#dynamische-polymorphie-und-virtuelle-methoden">Dynamische Polymorphie und virtuelle Methoden</a></h3>
+<p>Standardmäßig führt C++ beim Aufruf einer Methode über einen Basisklassen-Zeiger die Methode der Basisklasse aus (statische Bindung). Um C++ mitzuteilen, dass die Methode der tatsächlich abgeleiteten Klasse aufgerufen werden soll (dynamische Bindung zur Laufzeit), deklarierst du die Methode in der Basisklasse als <code>virtual</code>.</p>
+<pre><code class="language-cpp">class Basisklasse {
+public:
+    virtual void zeigeInfo() const; // Virtuelle Methode
+};
+</code></pre>
+<h3 id="der-override-spezifizierer"><a class="header" href="#der-override-spezifizierer">Der <code>override</code>-Spezifizierer</a></h3>
+<p>Wenn du eine virtuelle Methode in einer abgeleiteten Klasse überschreibst, solltest du das Schlüsselwort <code>override</code> an das Ende der Methodendeklaration setzen:</p>
+<pre><code class="language-cpp">class AbgeleiteteKlasse : public Basisklasse {
+public:
+    void zeigeInfo() const override; // Signalisiert dem Compiler die Absicht zu überschreiben
+};
+</code></pre>
+<p>Warum ist <code>override</code> so wichtig?</p>
+<ul>
+<li>Wenn du dich beim Namen oder den Parametertypen verschreibst (z. B. <code>const</code> vergisst), würde der Compiler ohne <code>override</code> annehmen, dass du eine neue, zusätzliche Methode erstellst.</li>
+<li>Mit <code>override</code> prüft der Compiler, ob tatsächlich eine virtuelle Methode der Basisklasse exakt übereinstimmt. Tut sie das nicht, bricht der Übersetzungsvorgang mit einer Fehlermeldung ab. Das schützt dich vor schwer auffindbaren Fehlern!</li>
+</ul>
+<h3 id="der-virtuelle-destruktor--ein-absolutes-muss"><a class="header" href="#der-virtuelle-destruktor--ein-absolutes-muss">Der virtuelle Destruktor – Ein absolutes MUSS</a></h3>
+<p>Sobald eine Klasse mindestens eine virtuelle Methode besitzt und als Basisklasse dient, <strong>muss</strong> ihr Destruktor ebenfalls <code>virtual</code> deklariert werden!</p>
+<pre><code class="language-cpp">class Basisklasse {
+public:
+    virtual ~Basisklasse() = default; // Virtueller Destruktor
+};
+</code></pre>
+<blockquote>
+<p>[!WARNING]
+Vergisst du den virtuellen Destruktor und löschst ein Objekt der abgeleiteten Klasse über einen Zeiger auf die Basisklasse (<code>Basisklasse* ptr = new AbgeleiteteKlasse(); delete ptr;</code>), wird nur der Destruktor der Basisklasse aufgerufen. Der Destruktor der abgeleiteten Klasse wird ignoriert, was zu unvollständigem Abbau und Speicherlecks führt!</p>
+</blockquote>
+<h3 id="der-final-spezifizierer"><a class="header" href="#der-final-spezifizierer">Der <code>final</code>-Spezifizierer</a></h3>
+<p>Mit <code>final</code> kannst du die Vererbungshierarchie einschränken:</p>
+<ol>
+<li><strong>An einer Klasse:</strong> Verhindert, dass andere Klassen von dieser Klasse erben können.
+<code>class LetzteKlasse final : public Basisklasse { ... };</code></li>
+<li><strong>An einer virtuellen Methode:</strong> Verhindert, dass abgeleitete Klassen diese spezielle Methode weiter überschreiben können.
+<code>void methode() override final;</code></li>
+</ol>
+<h3 id="abstrakte-klassen-und-rein-virtuelle-methoden"><a class="header" href="#abstrakte-klassen-und-rein-virtuelle-methoden">Abstrakte Klassen und rein virtuelle Methoden</a></h3>
+<p>Manchmal ist eine Basisklasse so allgemein, dass es keinen Sinn ergibt, Objekte von ihr zu erstellen. Ein Objekt vom Typ <code>Form</code> macht keinen Sinn – es muss ein konkreter <code>Kreis</code> oder ein <code>Rechteck</code> sein.</p>
+<p>Eine Methode wird zu einer <strong>rein virtuellen Methode (Pure Virtual Function)</strong>, indem du <code>= 0</code> an ihre Deklaration anhängst:</p>
+<pre><code class="language-cpp">class Form {
+public:
+    virtual void zeichne() const = 0; // Rein virtuelle Methode
+    virtual ~Form() = default;
+};
+</code></pre>
+<ul>
+<li>Eine Klasse, die mindestens eine rein virtuelle Methode enthält, nennt man <strong>abstrakte Klasse</strong>.</li>
+<li>Von einer abstrakten Klasse können <strong>keine Objekte</strong> instanziiert werden.</li>
+<li>Abgeleitete Klassen müssen alle rein virtuellen Methoden überschreiben, um selbst instanziiert werden zu können.</li>
+</ul>
+<h3 id="schnittstellen-interfaces"><a class="header" href="#schnittstellen-interfaces">Schnittstellen (Interfaces)</a></h3>
+<p>C++ hat kein eigenes Schlüsselwort <code>interface</code> wie andere Programmiersprachen. Stattdessen realisieren wir Schnittstellen über abstrakte Klassen, die:</p>
+<ul>
+<li>ausschließlich rein virtuelle Methoden enthalten (keine Member-Variablen außer ggf. statischen Konstanten),</li>
+<li>einen virtuellen Standard-Destruktor besitzen.</li>
+</ul>
+<hr />
+<h2 id="145-mehrfachvererbung-und-das-diamant-problem"><a class="header" href="#145-mehrfachvererbung-und-das-diamant-problem">14.5 Mehrfachvererbung und das Diamant-Problem</a></h2>
+<p>In C++ kann eine abgeleitete Klasse von mehr als einer Basisklasse erben.</p>
+<pre><code class="language-cpp">class Smartphone : public Telefon, public Kamera { ... };
+</code></pre>
+<p>Obwohl dies mächtig ist, birgt es Gefahren wie Namenskollisionen (wenn beide Basisklassen eine Methode gleichen Namens haben).</p>
+<h3 id="das-diamant-problem-diamond-problem"><a class="header" href="#das-diamant-problem-diamond-problem">Das Diamant-Problem (Diamond Problem)</a></h3>
+<p>Das bekannteste Problem der Mehrfachvererbung entsteht, wenn zwei Klassen von derselben Basisklasse erben und eine vierte Klasse wiederum von beiden erbt.</p>
+<pre><code>       [ A ]  (Ur-Basisklasse)
+      /     \
+    [ B ]   [ C ]
+      \     /
+       [ D ]  (Mehrfach abgeleitet)
+</code></pre>
+<p>Wenn Klasse <code>A</code> ein Attribut <code>x</code> besitzt, besitzt Klasse <code>D</code> dieses Attribut nun doppelt (einmal über den Pfad <code>A -&gt; B -&gt; D</code> und einmal über <code>A -&gt; C -&gt; D</code>). Dies führt zu Mehrdeutigkeiten bei der Verwendung und unnötigem Speicherverbrauch.</p>
+<h3 id="virtuelle-basisklassen-als-rettung"><a class="header" href="#virtuelle-basisklassen-als-rettung">Virtuelle Basisklassen als Rettung</a></h3>
+<p>Um das Diamant-Problem zu lösen, müssen die mittleren Klassen (<code>B</code> und <code>C</code>) virtuell von der Ur-Basisklasse (<code>A</code>) erben. Das signalisiert dem Compiler, dass die Ur-Basisklasse nur ein einziges Mal in der finalen abgeleiteten Klasse existieren soll.</p>
+<pre><code class="language-cpp">// Syntax-Konzept zur Lösung des Diamant-Problems
+class UrBasis { ... };
+class BasisLinks : virtual public UrBasis { ... };
+class BasisRechts : virtual public UrBasis { ... };
+class KindKlasse : public BasisLinks, public BasisRechts { ... };
+</code></pre>
+<hr />
+<h2 id="146-implizite-und-explizite-typumwandlung-bei-abgeleiteten-klassen"><a class="header" href="#146-implizite-und-explizite-typumwandlung-bei-abgeleiteten-klassen">14.6 Implizite und explizite Typumwandlung bei abgeleiteten Klassen</a></h2>
+<h3 id="upcasting"><a class="header" href="#upcasting">Upcasting</a></h3>
+<p>Unter <em>Upcasting</em> versteht man das Konvertieren eines Zeigers oder einer Referenz einer abgeleiteten Klasse in einen Zeiger oder eine Referenz auf ihre Basisklasse.</p>
+<ul>
+<li>Da eine abgeleitete Klasse alle Eigenschaften der Basisklasse besitzt, ist diese Umwandlung immer sicher.</li>
+<li>Sie erfolgt <strong>implizit</strong> (du brauchst keinen speziellen Cast-Operator).</li>
+</ul>
+<h3 id="downcasting-und-dynamic_cast"><a class="header" href="#downcasting-und-dynamic_cast">Downcasting und <code>dynamic_cast</code></a></h3>
+<p>Unter <em>Downcasting</em> versteht man das Konvertieren von einer Basisklasse zurück zu einer abgeleiteten Klasse. Dies ist potenziell unsicher, da ein Basisklassen-Zeiger zur Laufzeit nicht zwingend auf die erwartete Kindklasse zeigen muss.</p>
+<p>Für sicheres Downcasting zur Laufzeit bietet C++ den Operator <code>dynamic_cast</code>.</p>
+<pre><code class="language-cpp">// Anwendungsschema
+Basisklasse* basisPtr = ...;
+AbgeleiteteKlasse* kindPtr = dynamic_cast&lt;AbgeleiteteKlasse*&gt;(basisPtr);
+</code></pre>
+<p>Wie verhält sich <code>dynamic_cast</code>?</p>
+<ol>
+<li><strong>Bei Zeigern:</strong>
+<ul>
+<li>Ist die Umwandlung gültig, wird der konvertierte Zeiger zurückgegeben.</li>
+<li>Ist die Umwandlung ungültig, gibt <code>dynamic_cast</code> <code>nullptr</code> zurück. Du solltest das Ergebnis also immer auf <code>nullptr</code> prüfen!</li>
+</ul>
+</li>
+<li><strong>Bei Referenzen:</strong>
+<ul>
+<li>Da es keine "Null-Referenzen" gibt, wirft <code>dynamic_cast</code> bei Fehlschlag eine Ausnahme vom Typ <code>std::bad_cast</code>.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!IMPORTANT]
+<code>dynamic_cast</code> funktioniert nur bei <strong>polymorphischen Klassen</strong>, das heißt, die Basisklasse muss mindestens eine virtuelle Methode (üblicherweise den Destruktor) besitzen. Der Compiler benötigt dies, um Typinformationen zur Laufzeit (RTTI - Run-Time Type Information) abzufragen.</p>
+</blockquote>
+<hr />
+<h2 id="147-kontrollfragen-und-aufgaben"><a class="header" href="#147-kontrollfragen-und-aufgaben">14.7 Kontrollfragen und Aufgaben</a></h2>
+<h3 id="kontrollfragen"><a class="header" href="#kontrollfragen">Kontrollfragen</a></h3>
+<ol>
+<li>Was ist der Unterschied zwischen einer "Ist-ein"-Beziehung und einer "Hat-ein"-Beziehung? Nenne jeweils ein Beispiel.</li>
+<li>Welche Sichtbarkeit besitzt ein Member in einer abgeleiteten Klasse, wenn er in der Basisklasse als <code>protected</code> deklariert wurde und die Ableitung <code>public</code> erfolgte? Was passiert bei einer <code>private</code>-Ableitung?</li>
+<li>Warum muss der Destruktor einer Basisklasse virtuell sein, wenn die Klasse polymorph genutzt wird?</li>
+<li>Was ist eine rein virtuelle Methode und was folgt daraus für die Instanziierung der Klasse?</li>
+<li>Wie unterscheidet sich das Verhalten von <code>dynamic_cast</code> bei Zeigern im Vergleich zu Referenzen im Fehlerfall?</li>
+</ol>
+<h3 id="praktische-aufgaben"><a class="header" href="#praktische-aufgaben">Praktische Aufgaben</a></h3>
+<blockquote>
+<p>[!TIP]
+Verwende für die Ausgaben in deinen Programmen den modernen C++23-Standard mit <code>import std;</code> und <code>std::println</code>.</p>
+</blockquote>
+<h4 id="aufgabe-1-die-tierhierarchie"><a class="header" href="#aufgabe-1-die-tierhierarchie">Aufgabe 1: Die Tierhierarchie</a></h4>
+<p>Entwirf eine Hierarchie von Klassen, die Tiere repräsentieren.</p>
+<ol>
+<li>Erstelle eine abstrakte Basisklasse <code>Tier</code>. Sie soll ein Attribut für den Namen des Tiers enthalten sowie eine rein virtuelle Methode <code>macheGeräusch()</code>.</li>
+<li>Leite mindestens zwei konkrete Klassen ab (z. B. <code>Hund</code> und <code>Katze</code>). Implementiere in diesen Klassen die Methode <code>macheGeräusch()</code> so, dass ein passender Text ausgegeben wird.</li>
+<li>Schreibe eine Funktion, die ein Array oder einen Vektor von Zeigern auf die Basisklasse <code>Tier</code> entgegennimmt und für jedes Tier das entsprechende Geräusch abspielt. Stelle sicher, dass kein Speicherleck entsteht!</li>
+</ol>
+<h4 id="aufgabe-2-das-diamant-problem-lösen"><a class="header" href="#aufgabe-2-das-diamant-problem-lösen">Aufgabe 2: Das Diamant-Problem lösen</a></h4>
+<p>Erstelle eine Struktur, die das Diamant-Problem demonstriert und löst.</p>
+<ol>
+<li>Definiere eine Basisklasse <code>Gerät</code> mit einer Methode <code>einschalten()</code>.</li>
+<li>Erstelle zwei abgeleitete Klassen <code>Drucker</code> und <code>Scanner</code>, die virtuell von <code>Gerät</code> erben.</li>
+<li>Erstelle eine vierte Klasse <code>Multifunktionsdrucker</code>, die von <code>Drucker</code> und <code>Scanner</code> erbt.</li>
+<li>Teste in einem Hauptprogramm, ob sich ein objekt der Klasse <code>Multifunktionsdrucker</code> fehlerfrei einschalten lässt und die Methode <code>einschalten()</code> eindeutig aufgerufen werden kann.</li>
+</ol>
+<h4 id="aufgabe-3-der-sichere-museumsbesucher-dynamic_cast"><a class="header" href="#aufgabe-3-der-sichere-museumsbesucher-dynamic_cast">Aufgabe 3: Der sichere Museumsbesucher (<code>dynamic_cast</code>)</a></h4>
+<p>Simuliere ein Einlasssystem für ein Museum mit verschiedenen Besuchertypen.</p>
+<ol>
+<li>Erstelle eine Basisklasse <code>Besucher</code> mit einem virtuellen Destruktor.</li>
+<li>Leite eine Klasse <code>StandardBesucher</code> und eine Klasse <code>PremiumBesucher</code> davon ab.</li>
+<li>Die Klasse <code>PremiumBesucher</code> besitzt eine zusätzliche Methode <code>nutzeVIPLounge()</code>.</li>
+<li>Schreibe eine Funktion <code>gewähreZutritt(Besucher* b)</code>, die überprüft, ob es sich bei dem übergebenen Besucher um einen <code>PremiumBesucher</code> handelt. Falls ja, soll die Methode <code>nutzeVIPLounge()</code> aufgerufen werden. Nutze hierfür <code>dynamic_cast</code> und fange eventuelle <code>nullptr</code>-Fälle sicher ab.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="cpp-kapitel13.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase3-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="cpp-kapitel13.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase3-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
