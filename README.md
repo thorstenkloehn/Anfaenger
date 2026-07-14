@@ -21,13 +21,18 @@ cd rust-projekte && mdbook serve
 Anfaenger/
 ├── README.md                  ← Du liest sie gerade
 ├── AGENTS.md                  ← Globale Regeln für den KI-Agenten
+├── .cursorrules               ← Regeln für Cursor / VS Code KIs
 ├── .agents/
 │   ├── AGENTS.md              ← Workspace-Regeln für den Agenten
-│   └── skills/
-│       ├── neues-kapitel/     ← Skill: Neue Buchkapitel erstellen
-│       │   └── SKILL.md
-│       └── verteile-subagent/ ← Skill: Aufgaben parallelisieren
-│           └── SKILL.md
+│   └── skills/                ← Spezialisierte Fähigkeiten des Agenten
+│       ├── anki-karten-generieren/
+│       ├── code-review/
+│       ├── fehler-erklaeren/
+│       ├── kapitel-lektorat/
+│       ├── neues-kapitel/
+│       ├── subagent-steuern/
+│       ├── uebungen-erstellen/
+│       └── verteile-subagent/
 └── rust-projekte/
     ├── book.toml              ← mdBook-Konfiguration
     ├── book/                  ← Generiertes HTML (nicht bearbeiten)
@@ -114,49 +119,47 @@ Oder durch einen beschreibenden Satz in deiner Anfrage:
 
 ## 📋 Verfügbare Skills
 
-### 🗒️ `neues-kapitel`
+Das Projekt verfügt über folgende spezialisierte Skills in `.agents/skills/`, die vom Agenten dynamisch geladen werden:
 
-**Zweck:** Erstellt neue mdBook-Kapitel im richtigen Stil und mit vollständiger Struktur.
+1. **`neues-kapitel`**
+   - **Zweck:** Erstellt mdBook-Kapitel strukturiert und stilistisch konform.
+   - **Trigger:** "neues Kapitel/Lektion", "Schreibe ein neues Kapitel über [Thema]".
+   - **Datei:** [`.agents/skills/neues-kapitel/SKILL.md`](.agents/skills/neues-kapitel/SKILL.md)
 
-**Skill-Datei:** [`.agents/skills/neues-kapitel/SKILL.md`](.agents/skills/neues-kapitel/SKILL.md)
+2. **`verteile-subagent`**
+   - **Zweck:** Splittet große Aufgaben auf und delegiert sie an Subagenten.
+   - **Trigger:** "Teile Aufgaben auf", "Nutze Subagenten", "Erstelle Kapitel parallel".
+   - **Datei:** [`.agents/skills/verteile-subagent/SKILL.md`](.agents/skills/verteile-subagent/SKILL.md)
 
-**Aktivierungs-Sätze:**
-```
-"Schreibe ein neues Kapitel über [THEMA]"
-"Erstelle eine neue Lektion zu [THEMA]"
-"Füge ein Bonus-Kapitel über [THEMA] hinzu"
-"Ich brauche ein neues Kapitel für Phase 2"
-```
+3. **`subagent-steuern`**
+   - **Zweck:** Koordiniert und integriert die Arbeit abgeschlossener Subagenten.
+   - **Trigger:** "Subagenten steuern", "Subagenten verwalten", "Subagenten koordinieren".
+   - **Datei:** [`.agents/skills/subagent-steuern/SKILL.md`](.agents/skills/subagent-steuern/SKILL.md)
 
-**Was der Skill enthält:**
-- ✅ Vollständige Kapitel-Vorlage (Markdown-Struktur)
-- ✅ 5-Schritte-Workflow (Analysieren → Schreiben → SUMMARY.md → Build → AGENTS.md)
-- ✅ Stil-Regeln (Sprache, Ton, mdBook-Kompatibilität)
-- ✅ Checkliste – damit nichts vergessen wird
-- ✅ Referenz auf bestehende Kapitel als Orientierung
+4. **`anki-karten-generieren`**
+   - **Zweck:** Extrahiert atomare Lernkarten im Format `Frage;Antwort` in `rust_anki_karten.csv`.
+   - **Trigger:** "Generiere Anki-Karten aus Kapitel [Name]", "Erstelle Karteikarten".
+   - **Datei:** [`.agents/skills/anki-karten-generieren/SKILL.md`](.agents/skills/anki-karten-generieren/SKILL.md)
 
----
+5. **`code-review`**
+   - **Zweck:** Analysiert Rust-Code auf Idiomatik, Ownership & Konventionen (keine fertigen Lösungen).
+   - **Trigger:** "Reviewe meinen Code", "Prüfe diesen Code", "Ist dieser Rust-Code idiomatisch?".
+   - **Datei:** [`.agents/skills/code-review/SKILL.md`](.agents/skills/code-review/SKILL.md)
 
-### 🔀 `verteile-subagent`
+6. **`fehler-erklaeren`**
+   - **Zweck:** Didaktische Erklärung von Compiler-Fehlern ohne direkte Lösungs-Codeausgabe.
+   - **Trigger:** "Erkläre diesen Compiler-Fehler", "Warum kompiliert das nicht?".
+   - **Datei:** [`.agents/skills/fehler-erklaeren/SKILL.md`](.agents/skills/fehler-erklaeren/SKILL.md)
 
-**Zweck:** Teilt große Aufgaben in parallele Teilaufgaben auf und delegiert sie an Subagenten.
+7. **`kapitel-lektorat`**
+   - **Zweck:** Lektoriert Kapitel auf Du-Form, didaktische Struktur und Code-Formatierung.
+   - **Trigger:** "Lektoriere dieses Kapitel", "Prüfe den Text", "Korrekturlesen".
+   - **Datei:** [`.agents/skills/kapitel-lektorat/SKILL.md`](.agents/skills/kapitel-lektorat/SKILL.md)
 
-**Skill-Datei:** [`.agents/skills/verteile-subagent/SKILL.md`](.agents/skills/verteile-subagent/SKILL.md)
-
-**Aktivierungs-Sätze:**
-```
-"Schreibe 3 neue Kapitel gleichzeitig"
-"Erstelle Theorie UND Praxisprojekte für mehrere Themen"
-"Aktualisiere alle KI-Lektionen parallel"
-"Nutze Subagenten für diese große Aufgabe"
-```
-
-**Was der Skill enthält:**
-- ✅ Entscheidungsbaum (wann Subagent, wann sequenziell?)
-- ✅ Workflow in 5 Schritten
-- ✅ Fertige Prompt-Vorlagen für Subagenten
-- ✅ Projektspezifische Regeln (absolute Pfade, SUMMARY.md erst am Ende)
-- ✅ Checkliste nach dem Zusammenführen
+8. **`uebungen-erstellen`**
+   - **Zweck:** Erstellt Übungen (Leicht, Mittel, Schwer) mit Assertions und Testfällen ohne Codelösung.
+   - **Trigger:** "Erstelle Übungen zu Kapitel [Name]", "Füge Aufgaben hinzu".
+   - **Datei:** [`.agents/skills/uebungen-erstellen/SKILL.md`](.agents/skills/uebungen-erstellen/SKILL.md)
 
 ---
 
