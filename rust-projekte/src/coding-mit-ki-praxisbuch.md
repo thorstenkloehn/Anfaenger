@@ -1,6 +1,6 @@
 # Coding mit KI – Sortiert nach Lernphasen
 
-Dieses Kapitel ordnet die Themen, Konzepte und Praxisprojekte aus führenden nationalen und internationalen Standardwerken (Auflagen 2025/2026) der KI-gestützten Softwareentwicklung den didaktischen Phasen unseres Kurses zu.
+Dieses Buch ordnet die Themen, Konzepte und Praxisprojekte aus führenden nationalen und internationalen Standardwerken (Auflagen 2025/2026) der KI-gestützten Softwareentwicklung den didaktischen Phasen unseres Kurses zu. Jedes Kapitel ist vollständig sprachenneutral gestaltet (anwendbar auf Python, JavaScript, Java, C, C++ und Rust).
 
 ### 📚 Einbezogene Bücher:
 1. **„Coding mit KI – Das Praxisbuch für die Softwareentwicklung“** (2. Auflage, 2026) von Michael Kofler, Bernd Öggl und Sebastian Springer (Rheinwerk)
@@ -12,133 +12,27 @@ Dieses Kapitel ordnet die Themen, Konzepte und Praxisprojekte aus führenden nat
 
 ---
 
-## 🗺️ Phasen-Inhaltsverzeichnis
+## 🗺️ Inhaltsverzeichnis nach Phasen
 
-### Phase 1: Grundlagen für Einsteiger (Erste Schritte, Prompting & Tools)
-* **Evolution & KI-Grundlagen**
-  * Evolution der Softwareentwicklung: Vom Compiler zur generativen KI *(Taulli, Kap. 1)*
-  * Funktionsweise von KI-Coding: Codevorschläge vs. klassische Code-Vervollständigung *(Taulli, Kap. 2)*
-  * Grundlagen von Large Language Models (LLMs): Token-Management und Kontextfenster *(Kofler, Kap. 1)*
-  * Die probabilistische Engine: Grundlagen und das Abstraktionsproblem *(Pawar, Teil 1)*
-  * Das mentale Modell für Vibe Engineering *(Lelek & Skowroński)*
-* **Der Paradigmenwechsel**
-  * Die FAAFO-Philosophie (Fast, Ambitious, Autonomous, Fun, Optionality) *(Kim & Yegge, Teil 1)*
-  * Vom Linienkoch zum Küchenchef: Der Wandel vom manuellen Code-Schreiber zum System-Orchestrator *(Kim & Yegge, Teil 2; Osmani)*
-* **Prompt Engineering & Tool-Setup**
-  * Grundlagen des Promptings: Zero-Shot, Few-Shot und Chain-of-Thought *(Kofler, Kap. 1)*
-  * Anatomie eines Prompts: Anweisungen, Kontext, Eingabedaten und Ausgabeformate *(Taulli, Kap. 3)*
-  * Einrichtung von GitHub Copilot und Alternativen (Tabnine, Amazon Q Developer, Gemini Code Assist, Cody, Warp) *(Taulli, Kap. 4 & 5)*
-  * Schnelles Prototyping im Browser mit stackblitz Bolt.new *(Osmani: Vibe Coding mit Bolt)*
-* **Pair Programming zum Lernen**
-  * Den passenden KI-Lernpartner auswählen und didaktisch nutzen *(Kofler, Kap. 2)*
-  * Code-Gerüste erstellen und in einfache Funktionen strukturieren *(Kofler, Kap. 2)*
-  * Praxisbeispiel: IBAN-Validierung schrittweise umsetzen *(Kofler, Kap. 2)*
-  * Praxisbeispiel: Ein einfaches Text-Quiz entwickeln *(Kofler, Kap. 2)*
-  * Inline-Dokumentation und verständliche Docstrings generieren lassen *(Kofler, Kap. 7)*
+Wähle eine Lernphase aus, um zu den detaillierten Themen, Lern-Prompts und Praxisprojekten zu gelangen:
 
----
-
-### Phase 2: Eigene Datentypen (Objektorientierung & Refactoring-Einstieg)
-* **Strukturierter Codeentwurf**
-  * Objektorientiertes und strukturiertes Design mit KI planen *(Kofler, Kap. 2)*
-  * Fortgeschrittenes Prompt-Engineering: *Contract-First* und *Explain-Then-Implement* *(Pawar, Teil 1)*
-  * Kontext-Management: Session-Architekturen optimal steuern *(Pawar, Teil 1)*
-  * Praxisprojekt: Ein modulares Sudoku-Spielfeld planen und entwerfen *(Kofler, Kap. 2)*
-* **Erstes Refactoring**
-  * Code lesbarer schreiben (Bezeichner verbessern, Magic Numbers eliminieren) *(Kofler, Kap. 5)*
-  * Code Smells mithilfe der KI erkennen und beheben *(Kofler, Kap. 5)*
-
----
-
-### Phase 3: Fehlerbehandlung & Collections (Debugging & Testen)
-* **Didaktisches Debugging**
-  * Compiler-Fehlermeldungen richtig interpretieren und beheben lassen *(Kofler, Kap. 4)*
-  * Debugging-Workflows in Visual Studio Code und Visual Studio *(Kofler, Kap. 4; Taulli)*
-  * Fehlerbehandlung: Strategien für robuste Fehlerbehandlung (`Result` und `Option` richtig einsetzen) *(Kofler)*
-* **Das kumulative Fehlerproblem (Compound Error)**
-  * Wie Fehler in KI-generiertem Code sich aufschaukeln und wie man sie behebt *(Pawar, Teil 1)*
-* **Software testen & validieren**
-  * Die KI als QA-Partner: Testabdeckung und Edge-Cases ermitteln *(Pawar, Teil 1; Kim & Yegge, Teil 3)*
-  * Synthetische Testdaten für Listen, Vektoren und Key-Value-Speicher generieren *(Kofler, Kap. 6)*
-  * Unit-Tests und Integrationstests automatisch erstellen lassen *(Kofler, Kap. 6)*
-  * Test-Driven Development (TDD) mit KI-Unterstützung ausprobieren *(Kofler, Kap. 6)*
-  * KI-gestützte Evaluierung und Validierung von Code *(Lelek & Skowroński)*
-
----
-
-### Phase 4: Module, Pfade, Packages & Crates (Multi-File & Integration)
-* **Multi-File-Entwicklung**
-  * Codebasen über Prompts auf mehrere Dateien und Module aufteilen *(Kofler, Kap. 2)*
-  * Importe und Sichtbarkeiten organisieren
-* **Modernisierung von Code**
-  * Modernisierung von Legacy-Applikationen mit KI *(Lelek & Skowroński)*
-* **Sicherheitsrisiken im Dependency-Management**
-  * Package-Halluzinationen: Risiken durch fiktive Bibliotheken erkennen *(Pawar, Teil 1)*
-  * API-Dokumentation für externe Abhängigkeiten generieren *(Kofler, Kap. 7)*
-
----
-
-### Phase 5: Generics, Traits & Lifetimes (Schnittstellen & Compiler-Hilfe)
-* **Schnittstellendesign**
-  * Generische Typen und Traits mit KI entwerfen *(Kofler)*
-  * Entwerfen von stabilen Verträgen (Contract-First) für generische APIs *(Pawar, Teil 1)*
-* **Komplexe Compiler-Kämpfe**
-  * Lebensdauern (Lifetimes) und Speicherregeln mithilfe von KI-Erklärungen verstehen und lösen
-
----
-
-### Phase 6: Smart Pointer & Speicherverwaltung (Lokale LLMs & Sicherheit)
-* **Lokale Ausführung von Modellen (Datenschutz)**
-  * Warum lokale LLMs? (Sicherheit für Firmen-Codebasen) *(Kofler, Kap. 8)*
-  * Server-Setup für lokale Modelle (Ollama, LM Studio) *(Kofler, Kap. 8)*
-  * Docker Model Runner und Llama.cpp verwenden *(Kofler, Kap. 8)*
-* **Sicherheitsrisiken**
-  * Absicherung von sensitivem Code bei der Arbeit mit LLMs (Prompt Injection) *(Pawar, Teil 1)*
-  * Speicherverwaltung und Heap-Allokationen (Box, Rc, Arc) optimieren *(Kofler, Kap. 5)*
-
----
-
-### Phase 7: Fearless Concurrency (Asynchronität & Deployment)
-* **Asynchrone Workflows**
-  * Asynchronen Code entwerfen (Tokio-Integration) *(Kofler)*
-  * Debugging von komplexen Race Conditions, Deadlocks und Threads *(Kofler, Kap. 4)*
-* **Deployment & CI/CD**
-  * KI-gestützte Bereitstellung und Deployment-Pipelines vorbereiten *(Taulli)*
-  * Erstellen von automatisierten Tests für nebenläufigen Code *(Kofler, Kap. 6)*
-
----
-
-### Phase 8: Idiomatisches Programmieren (Iteratoren & Closures)
-* **Fortgeschrittenes Refactoring**
-  * Imperative Schleifen in funktionale, idiomatische Iterator-Ketten übersetzen *(Kofler, Kap. 5)*
-  * Closures und Lambda-Ausdrücke optimieren *(Kofler, Kap. 5)*
-* **Automatisierung repetitiver Aufgaben**
-  * Generierung komplexer regulärer Ausdrücke (RegEx) und Texttransformationen *(Taulli)*
-
----
-
-### Phase 9: Systemprogrammierung (APIs, RAG & Risikomanagement)
-* **Eigene KI-Werkzeuge bauen**
-  * Nutzung von LLM-APIs in eigenen Anwendungen (Python, Rust, Node.js) *(Kofler, Kap. 9)*
-  * Retrieval-Augmented Generation (RAG) für lokale Wissensdatenbanken *(Kofler, Kap. 9)*
-  * SQL-to-Text und automatisierte Datenbankabfragen *(Kofler, Kap. 9)*
-* **Enterprise-Skalierung & Risikomanagement**
-  * Skalierung von AI-Agents in großen Infrastrukturen *(Kim & Yegge, Teil 4)*
-  * Governance, Urheberrechtsschutz und Open-Source-Compliance *(Kofler, Kap. 10; Taulli)*
-  * Risiko-Management: Halluzinationen in sicherheitskritischem Code vermeiden *(Taulli, Kap. 3; Osmani)*
-
----
-
-### Phase 10: Metaprogrammierung (Agentic Coding, MCP & Bolt.new)
-* **Das „70%-Problem“ & Agentic Coding**
-  * Das „70%-Problem“: Warum 30% der Softwareentwicklung menschliche Architektur-Expertise erfordern *(Osmani: Beyond Vibe Coding)*
-  * Einführung in das Agentic-Coding-Paradigma (Autonome Agenten vs. passive Assistenten) *(Taulli, Kap. 3; Kofler, Kap. 3)*
-  * Agentic Coding Best Practices und autonome Workflows *(Lelek & Skowroński)*
-  * Autonomes Arbeiten im Terminal (Claude Code, Antigravity CLI) *(Kofler, Kap. 3)*
-  * Agentic Coding mit Cursor (Composer, Multi-File-Edit) *(Kofler, Kap. 3)*
-  * Komplexe Web-Apps planen, entwickeln und betreiben mit stackblitz Bolt.new *(Osmani: Vibe Coding mit Bolt)*
-* **Erweiterbarkeit & Customizing**
-  * Model Context Protocol (MCP): Server einrichten und nutzen *(Kofler, Kap. 9)*
-  * Eigene Tools, MCP-Server und Custom Skills entwickeln *(Kofler, Kap. 9)*
-  * Makro-Generierung und Code-Erweiterungen mit KI
-  * Teambildung und funktionsübergreifende Zusammenarbeit in der KI-Ära *(Lelek & Skowroński)*
+*   [Phase 1: Grundlagen für Einsteiger (Erste Schritte, Prompting & Tools)](./coding-mit-ki-phase1.md)
+    *   *Evolution der Software, Codevorschläge vs. Autovervollständigung, Token-Management, der Paradigmenwechsel (Küchenchef-Modell, FAAFO), Prompt Engineering, Setup, Fortgeschrittene Prompt-Verfahren (Tree of Thoughts, Self-Consistency, Meta-Prompting), Vibe Coding Anti-Patterns (Infinite Loop of Fixes, Fatigue), Rapid Feedback Loops, Developer Joy, Prompt-Versionierung im Team & Pair Programming.*
+*   [Phase 2: Eigene Datentypen (Objektorientierung & Refactoring-Einstieg)](./coding-mit-ki-phase2.md)
+    *   *Strukturierter Codeentwurf mit Klassen/Datenstrukturen, Contract-First & Explain-Then-Implement, Session-Architektur, Lesbarkeit & Code Smells, UI/UX & Frontend-Prototyping mit KI, Technische Schulden durch KI-Code, Entwurfs-Muster & Over-Engineering, Barrierefreiheit (a11y) mit KI.*
+*   [Phase 3: Fehlerbehandlung & Collections (Debugging & Testen)](./coding-mit-ki-phase3.md)
+    *   *Fehlerbehandlung (Exceptions/Result/Option), Debugging-Workflows, Compound Errors (kumulative Fehler), Testabdeckung, synthetische Testdaten, Unit-Tests, Datenanalyse, Data Science & Visualisierung mit KI & TDD.*
+*   [Phase 4: Module, Pfade, Packages & Multi-File (Integration)](./coding-mit-ki-phase4.md)
+    *   *Multi-File-Entwicklung, Modularisierung, Code-Modernisierung (Legacy), Sicherheitsrisiken im Dependency-Management (Package-Halluzinationen), API-Dokumentation, Codebase-Exploration & Reverse Engineering.*
+*   [Phase 5: Generics & Interfaces (Schnittstellen & Abstraktion)](./coding-mit-ki-phase5.md)
+    *   *Schnittstellendesign mit generischen Typen/Klassen/Interfaces, Entwerfen stabiler Verträge für APIs, API Schema-Driven Code Generation (OpenAPI).*
+*   [Phase 6: Speicherverwaltung & Sicherheit (Smarte Zeiger & Lokale LLMs)](./coding-mit-ki-phase6.md)
+    *   *Sicherheit durch lokale LLMs (Setup mit Ollama, LM Studio), Absicherung (Prompt Injections), Sicherheits-Audits & Schwachstellen-Erkennung (OWASP), Heap-Allokationen & Speicheroptimierung (Garbage Collection vs. manuelle Freigabe/Smarte Pointer).*
+*   [Phase 7: Nebenläufigkeit & Asynchronität (Frameworks & Deployment)](./coding-mit-ki-phase7.md)
+    *   *Asynchroner und nebenläufiger Code (Threads, Promises, Async/Await), Race Conditions & Deadlocks debuggen, DevOps & Infrastructure as Code (IaC), Deployment & CI/CD mit KI.*
+*   [Phase 8: Idiomatisches Programmieren (Ausdrücke & Lambdas)](./coding-mit-ki-phase8.md)
+    *   *Refactoring von imperativen Schleifen in funktionale Ausdrücke (Iteratoren, Lambdas, map/filter), RegEx-Generierung, Texttransformationen, Algorithmen-Optimierung & Komplexitätsanalyse (Big-O).*
+*   [Phase 9: Fortgeschrittene Integration & APIs (RAG & Risikomanagement)](./coding-mit-ki-phase9.md)
+    *   *Nutzung von LLM-APIs, RAG (Retrieval-Augmented Generation), SQL-to-Text, Enterprise-Skalierung, Urheberrecht, Lizenzen & Compliance (GPL, IP-Schutz), Governance, Context Pollution (Kontext-Verschmutzung), Datenbank-Migrationen mit KI, Fine-Tuning vs. RAG für Code-Modelle.*
+*   [Phase 10: Metaprogrammierung & Agentic Coding (Autonome Workflows)](./coding-mit-ki-phase10.md)
+    *   *Das 70%-Problem, Agentic Coding (autonome Agenten vs. Assistenten), Terminal-Agenten (Claude Code, agy CLI), Cursor Composer, Bolt.new, Model Context Protocol (MCP), Team-Workflows & PR-Automatisierung.*
