@@ -1,0 +1,532 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>💡 Phase 1: Grundlagen für Einsteiger - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">6.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">6.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html" class="active"><strong aria-hidden="true">6.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">7.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">8.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">9.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">11.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">12.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">13.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">13.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">13.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">13.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">13.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">14.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">14.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">14.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">14.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">14.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">14.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">14.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">14.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">14.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">14.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">14.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">14.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">15.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">15.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">15.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">15.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">16.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">17.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">19.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">21.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">22.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">23.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">24.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">24.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">24.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">24.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">24.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">25.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">25.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">25.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">25.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">25.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">25.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">26.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">27.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">29.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">30.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">30.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">31.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">31.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">31.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">31.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">32.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">33.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">35.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">36.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">36.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">36.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">36.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">37.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">38.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">39.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">40.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">41.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">42.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">42.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">42.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">42.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">43.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">44.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">46.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">47.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">47.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">48.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">48.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">48.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">48.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">49.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">50.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">52.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">53.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">53.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">53.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">53.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">54.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">55.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">57.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">58.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">58.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">58.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">59.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">60.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">62.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">63.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">64.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">65.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">65.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">65.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">66.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">67.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">69.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">70.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">71.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">72.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">73.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">74.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">75.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">76.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">77.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">78.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">79.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">80.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">81.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">82.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">82.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">82.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">83.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">84.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">84.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">84.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">84.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">85.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">85.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">85.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">85.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">85.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">85.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">85.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">85.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">86.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">87.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">88.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">89.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">90.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html" class="active"><strong aria-hidden="true">90.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">90.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">90.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">90.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">90.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">90.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">90.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">90.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">90.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">90.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">91.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">92.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-projektvorschläge-coding-mit-ki-phase-1"><a class="header" href="#-projektvorschläge-coding-mit-ki-phase-1">💡 Projektvorschläge: Coding mit KI (Phase 1)</a></h1>
+<h2 id="willkommen-in-der-küche-des-system-orchestrators-"><a class="header" href="#willkommen-in-der-küche-des-system-orchestrators-">Willkommen in der Küche des System-Orchestrators! 🧑‍🍳</a></h2>
+<p>Egal ob du <strong>Rust, Python, JavaScript, C oder C++</strong> lernst: Die Konzepte des KI-gestützten Programmierens sind universell. In Phase 1 geht es darum zu verstehen, wie du dich vom reinen Code-Schreiber (dem „Linienkoch“) zum System-Orchestrator (dem „Küchenchef“) entwickelst. Du entwirfst die Logik, während die KI dir hilft, das Grundgerüst zu bauen.</p>
+<p>Hier findest du <strong>fünf sprachenunabhängige Praxisprojekte</strong>, die speziell darauf ausgelegt sind, das Zusammenspiel zwischen menschlicher Logik und KI-Assistenten zu trainieren.</p>
+<hr />
+<h2 id="-theorie-dein-sprachenunabhängiger-werkzeugkasten"><a class="header" href="#-theorie-dein-sprachenunabhängiger-werkzeugkasten">🧠 Theorie: Dein sprachenunabhängiger Werkzeugkasten</a></h2>
+<p>Um effektiv mit einer KI programmieren zu lernen, musst du wissen, wie du sie bremst, damit sie dir das Denken nicht abnimmt.</p>
+<h3 id="das-prinzip-der-didaktischen-platzhalter"><a class="header" href="#das-prinzip-der-didaktischen-platzhalter">Das Prinzip der „didaktischen Platzhalter“</a></h3>
+<p>Wenn du die KI nach einem Code-Gerüst fragst, soll sie die Logik aussparen. Jede Sprache hat dafür eigene Platzhalter, die du in den Gerüsten verwendest:</p>
+<ul>
+<li><strong>Rust:</strong> Das Makro <code>todo!()</code> (bringt das Programm beim Ausführen zum kontrollierten Absturz).</li>
+<li><strong>Python:</strong> Das Schlüsselwort <code>pass</code> oder <code>raise NotImplementedError()</code>.</li>
+<li><strong>JavaScript / TypeScript:</strong> Ein Kommentar <code>// TODO</code> oder <code>throw new Error("Nicht implementiert")</code>.</li>
+<li><strong>C / C++:</strong> Ein Kommentar <code>// TODO</code> und die Rückgabe eines leeren Dummy-Wertes (z. B. <code>return 0;</code> oder <code>return false;</code>).</li>
+</ul>
+<h3 id="fortgeschrittene-prompting-verfahren"><a class="header" href="#fortgeschrittene-prompting-verfahren">Fortgeschrittene Prompting-Verfahren</a></h3>
+<p>Wenn einfache Prompts an ihre Grenzen stoßen, helfen dir strukturierte Denkprozesse, die du der KI vorgibst. Diese Verfahren helfen besonders bei komplexen logischen Problemen oder beim Entwurf von Softwarearchitekturen:</p>
+<ul>
+<li><strong>Tree of Thoughts (Gedankenbaum):</strong>
+<ul>
+<li><em>Die Analogie:</em> Stell dir vor, du stehst vor einem Labyrinth oder planst Züge im Schach. Anstatt einfach den erstbesten Pfad zu wählen und blind loszulaufen, überlegst du an jeder Kreuzung verschiedene Möglichkeiten, bewertest deren Erfolgsaussichten und gehst nur die vielversprechendsten weiter. Sackgassen verwirfst du frühzeitig.</li>
+<li><em>Das Konzept:</em> Die KI generiert nicht nur eine einzige Antwortkette, sondern verzweigt sich in verschiedene Lösungswege („Gedanken“). Jeder Schritt wird bewertet, und nur die vielversprechendsten Äste werden weiterverfolgt.</li>
+<li><em>Nutzen:</em> Perfekt, um komplexe Algorithmen oder logische Probleme systematisch zu analysieren.</li>
+</ul>
+</li>
+<li><strong>Self-Consistency (Selbstkonsistenz / Mehrheitsentscheid):</strong>
+<ul>
+<li><em>Die Analogie:</em> Wenn du eine wichtige medizinische Diagnose brauchst, holst du dir oft Zweit- und Drittmeinungen ein. Wenn drei unabhängige Ärzte zur gleichen Diagnose kommen, bist du dir sehr sicher, dass sie stimmt, selbst wenn einer vielleicht ein kleines Detail anders erklärt.</li>
+<li><em>Das Konzept:</em> Du lässt die KI denselben komplexen logischen Gedankengang mehrfach unabhängig voneinander durchlaufen (z. B. in unterschiedlichen Chats). Das Endergebnis, das am häufigsten genannt wird (der Mehrheitsentscheid), ist mit hoher Wahrscheinlichkeit das korrekteste, da es zufällige Denkfehler („Halluzinationen“) der KI herausfiltert.</li>
+<li><em>Nutzen:</em> Erhöht die Genauigkeit bei mathematischen Berechnungen, Logikrätseln oder kniffligen Code-Analysen.</li>
+</ul>
+</li>
+<li><strong>Meta-Prompting (Prompten über Prompts):</strong>
+<ul>
+<li><em>Die Analogie:</em> Ein Filmregisseur, der nicht selbst schauspielert, sondern dem Hauptdarsteller eine detaillierte Regieanweisung schreibt, wie er die Rolle spielen soll, um die maximale Wirkung beim Publikum zu erzielen.</li>
+<li><em>Das Konzept:</em> Du nutzt die KI als „Prompt-Designer“. Sie schreibt oder optimiert für dich die Prompts, mit denen du anschließend arbeitest, um das bestmögliche Ergebnis zu erzielen.</li>
+<li><em>Nutzen:</em> Hilft dir, präzise und didaktisch wertvolle System-Prompts zu entwerfen, ohne selbst stundenlang an der Formulierung zu feilen.</li>
+</ul>
+</li>
+</ul>
+<h3 id="vibe-coding--die-mentalen-klippen"><a class="header" href="#vibe-coding--die-mentalen-klippen">Vibe Coding &amp; die mentalen Klippen</a></h3>
+<p>Wenn du mit einer KI programmierst, fühlt sich das oft magisch an. Du gibst ein paar Wünsche ein, und die KI generiert sofort lauffähigen Code. Dieses flüssige, intuitive Programmieren wird oft als <strong>Vibe Coding</strong> bezeichnet. Es birgt jedoch psychologische Gefahren, bei denen du das selbstständige Denken einstellst und die Kontrolle verlierst.</p>
+<ul>
+<li>
+<p><strong>Vibe Coding Anti-Patterns:</strong></p>
+<ul>
+<li><strong>The Infinite Loop of Fixes (Die Endlosschleife der Korrekturen):</strong>
+<ul>
+<li><em>Die Analogie:</em> Stell dir vor, du fährst mit einem Navigationsgerät, das dich fälschlicherweise in eine Sackgasse leitet. Anstatt anzuhalten, auf die Schilder zu schauen und die Karte zu studieren, drückst du einfach immer wieder hektisch auf „Route neu berechnen“, in der Hoffnung, dass das Gerät den Fehler von selbst korrigiert.</li>
+<li><em>Das Konzept:</em> Die KI generiert Code mit einem Fehler. Anstatt die Ursache selbst zu ergründen, kopierst du die Fehlermeldung zurück in den Chat und forderer: „Fix das.“ Die KI generiert neuen Code, der einen anderen Fehler wirft. Du kopierst auch diesen zurück... Nach kurzer Zeit hast du einen unlesbaren Code-Dschungel (Spaghetticode), den niemand mehr versteht.</li>
+<li><em>Die Lösung:</em> Sobald die KI einen Fehler im zweiten Versuch nicht löst: <strong>Stopp!</strong> Lies die Fehlermeldung selbst durch, analysiere den Code und leite die KI gezielt mit präzisen Hinweisen an.</li>
+</ul>
+</li>
+<li><strong>Vibe Coding Fatigue (Die Autopilot-Ermüdung):</strong>
+<ul>
+<li><em>Die Analogie:</em> Autofahren mit einem hochmodernen Autopiloten auf einer langen, geraden Autobahn. Weil das Auto fast alles alleine macht, schwindet deine Aufmerksamkeit. Du wirst unkonzentriert. Taucht plötzlich ein Hindernis auf, kannst du im passiven Zustand nicht schnell genug reagieren, weil du gar nicht weißt, was gerade im System vor sich geht.</li>
+<li><em>Das Konzept:</em> Weil die KI seitenweise funktionierenden Code ausspuckt, wirst du lesemüde. Du kopierst Code, ohne ihn Zeile für Zeile kritisch zu prüfen. Dadurch schleichen sich unbemerkt Logikfehler, Sicherheitslücken oder Performance-Probleme ein.</li>
+<li><em>Die Lösung:</em> Bleibe der aktive Fahrer! Jede Zeile Code, die du in dein Projekt übernimmst, musst du vollständig verstanden haben. Nutze die KI als Co-Piloten, der Vorschläge macht, aber behalte die volle Verantwortung.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rapid Feedback Loops (Schnelle Rückkopplungsschleifen nach Addy Osmani):</strong></p>
+<ul>
+<li><em>Die Analogie:</em> Ein Bildhauer, der nach jedem leichten Meißelschlag kurz einen Schritt zurücktritt, um das Werk aus der Ferne zu begutachten, anstatt mit geschlossenen Augen zehn Minuten lang wild auf den Stein einzuschlagen und erst am Ende die Augen zu öffnen.</li>
+<li><em>Das Konzept:</em> Die Geschwindigkeit, mit der du Feedback zu deinen Code-Änderungen erhältst, entscheidet über deinen Lernerfolg. Wenn du zu viel ungetesteten Code anhäufst, wird die Fehlersuche extrem schwer.</li>
+<li><em>Die Lösung:</em> Ändere Code immer nur in kleinsten Schritten und teste ihn sofort (Compiler ausführen, Tests starten oder das Skript ausführen). Ein extrem kurzer Zyklus aus „Ändern -&gt; Testen -&gt; Analysieren“ bricht die <em>Infinite Loop of Fixes</em> auf, bevor sie entsteht.</li>
+</ul>
+</li>
+<li>
+<p><strong>Developer Joy &amp; Reduzierung kognitiver Last (nach Gene Kim &amp; Steve Yegge):</strong></p>
+<ul>
+<li><em>Die Analogie:</em> Ein Koch in einer Sterne-Küche, in der das <em>Mise en Place</em> perfekt vorbereitet ist: Alle Zutaten sind bereits exakt geschnitten und griffbereit. Der Koch kann sich ganz auf das Abschmecken und Kreieren konzentrieren, statt Zeit mit dem Suchen nach Messern zu verschwenden.</li>
+<li><em>Das Konzept:</em> Kognitive Last (mental load) ist die geistige Energie, die du brauchst, um Code zu verstehen. Ist sie zu hoch, schwindet die Motivation.</li>
+<li><em>Die Lösung:</em> Die KI sollte deine kognitive Last verringern, indem sie dir Fleißarbeit abnimmt (z. B. das Nachschlagen von Bibliotheks-Syntax). Das steigert deine <strong>Developer Joy</strong> (die Freude am Entwickeln), da du deine mentale Energie für die Architektur und das logische Lösen des eigentlichen Problems nutzen kannst.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prompt-Versionierung &amp; Prompt-Ops im Team (nach Tomasz Lelek &amp; Artur Skowroński):</strong></p>
+<ul>
+<li><em>Die Analogie:</em> Stell dir vor, du arbeitest in einer Großküche. Wenn jeder Koch sein eigenes Rezept für die Soße im Kopf behält und nach Gefühl würzt, schmeckt das Gericht bei jedem Gast anders. Erst wenn das Rezept exakt aufgeschrieben, an einem zentralen Ort abgelegt und bei jeder Änderung mit einer Versionsnummer versehen wird, bleibt die Qualität der Gerichte im gesamten Team reproduzierbar und stabil.</li>
+<li><em>Das Konzept:</em> Prompts – insbesondere System-Prompts, die das Verhalten von KIs in Softwareanwendungen steuern – sind ein vollwertiger Teil deines Quellcodes. Wenn du sie direkt im Code als Zeichenketten (Strings) festschreibst, ist es extrem schwer, Änderungen nachzuvollziehen oder verschiedene Versionen zu vergleichen. Prompt-Ops (Prompt Operations) umfasst den gesamten Lebenszyklus von Prompts: von der Erstellung über das Testen und Versionieren bis zum Deployment.</li>
+<li><em>Die Lösung:</em> Speichere System-Prompts in separaten, versionierten Textdateien in deinem Git-Repository. So siehst du bei jedem <code>git diff</code>, was sich geändert hat, wer die Änderung vorgenommen hat und warum. Das Programm lädt diese Prompts dann dynamisch zur Laufzeit.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-praxis-aufgaben-kleine-fingerübungen"><a class="header" href="#-praxis-aufgaben-kleine-fingerübungen">🛠️ Praxis-Aufgaben: Kleine Fingerübungen</a></h2>
+<p>Probiere diese Übungen in deiner Wunsch-Programmiersprache aus:</p>
+<h3 id="aufgabe-a-den-lernpartner-richtig-anleiten-system-prompt"><a class="header" href="#aufgabe-a-den-lernpartner-richtig-anleiten-system-prompt">Aufgabe A: Den Lernpartner richtig anleiten (System-Prompt)</a></h3>
+<p>Gib deiner KI (z. B. ChatGPT, Gemini oder Claude) zu Beginn einer Session folgenden Prompt:</p>
+<blockquote>
+<p><em>„Du bist mein didaktischer Programmier-Tutor für [DEINE SPRACHE, z. B. Python/Rust]. Ich bin ein Einsteiger. Wenn ich dich nach Code frage, gib mir NIEMALS fertige Lösungen. Erstelle stattdessen strukturierte Code-Gerüste mit didaktischen Platzhaltern wie [dein Platzhalter, z. B. pass / todo!() / TODO-Kommentare] in den Funktionsrümpfen. Gib mir Tipps und stelle mir Leitfragen, damit ich die Logik selbst implementieren kann.“</em></p>
+</blockquote>
+<h3 id="aufgabe-b-compiler--oder-laufzeitfehler-verstehen"><a class="header" href="#aufgabe-b-compiler--oder-laufzeitfehler-verstehen">Aufgabe B: Compiler- oder Laufzeitfehler verstehen</a></h3>
+<p>Provoziere absichtlich einen Fehler (z. B. Division durch Null oder die Verwendung einer undefinierten Variable) und frage die KI:</p>
+<blockquote>
+<p><em>„Hier ist mein Code in [DEINE SPRACHE] und hier ist die Fehlermeldung: [Fehler einfügen]. Bitte erkläre mir den logischen Fehler dahinter anhand einer Analogie aus dem echten Leben, ohne mir den korrigierten Code zu zeigen.“</em></p>
+</blockquote>
+<h3 id="aufgabe-c-fortgeschrittenes-prompting-ausprobieren-meta-prompting"><a class="header" href="#aufgabe-c-fortgeschrittenes-prompting-ausprobieren-meta-prompting">Aufgabe C: Fortgeschrittenes Prompting ausprobieren (Meta-Prompting)</a></h3>
+<p>Nutze die KI als Prompt-Designer, um dir einen maßgeschneiderten didaktischen Lern-Prompt für ein beliebiges Programmierthema erstellen zu lassen:</p>
+<ol>
+<li>Sende der KI folgenden Prompt:
+<blockquote>
+<p><em>„Du bist ein Experte für Prompt-Engineering. Ich möchte das Konzept [Lernthema, z. B. Schleifen / Fehlerbehandlung / Arrays] in [DEINE SPRACHE] lernen. Schreibe mir einen optimalen, didaktischen Prompt für eine KI. Der Prompt soll die KI anweisen, mir das Thema mit einer Alltagsanalogie zu erklären, mir ein Code-Gerüst mit didaktischen Platzhaltern zu erstellen und mir drei kurze Fragen zur Selbstkontrolle zu stellen. Gib mir nur den Prompt als Kopiervorlage aus.“</em></p>
+</blockquote>
+</li>
+<li>Kopiere den generierten Prompt der KI.</li>
+<li>Öffne einen neuen, leeren Chat (um den Kontext zu bereinigen) und füge den kopierten Prompt dort ein.</li>
+<li>Arbeite die Antwort der KI durch und versuche, die Platzhalter im bereitgestellten Code-Gerüst selbst auszufüllen.</li>
+</ol>
+<h3 id="aufgabe-d-der-bewusste-ausbruch-aus-der-korrekturschleife-vibe-coding-anti-pattern"><a class="header" href="#aufgabe-d-der-bewusste-ausbruch-aus-der-korrekturschleife-vibe-coding-anti-pattern">Aufgabe D: Der bewusste Ausbruch aus der Korrekturschleife (Vibe Coding Anti-Pattern)</a></h3>
+<p>Um zu üben, wie du der <em>Infinite Loop of Fixes</em> entkommst und deine Aufmerksamkeit hochhältst:</p>
+<ol>
+<li>Baue absichtlich einen kleinen Tippfehler oder einen Logikfehler in dein aktuelles Programm ein.</li>
+<li>Kopiere den Code und die Fehlermeldung in die KI und frage nach einer Lösung.</li>
+<li>Sobald die KI dir geantwortet hat: <strong>Kopiere den Code nicht direkt!</strong></li>
+<li>Vergleiche stattdessen die vorgeschlagene Änderung Zeile für Zeile mit deinem fehlerhaften Code.</li>
+<li>Schreibe einen kurzen Kommentar über die fehlerhafte Zeile in deinem Code, um in eigenen Worten zu erklären, was die Ursache was, bevor du den Fehler manuell behebst.</li>
+<li>Führe den Code aus und nutze eine <em>Rapid Feedback Loop</em>, um sofort das Ergebnis zu prüfen.</li>
+</ol>
+<h3 id="aufgabe-e-system-prompts-entkoppeln-und-versionieren-prompt-ops"><a class="header" href="#aufgabe-e-system-prompts-entkoppeln-und-versionieren-prompt-ops">Aufgabe E: System-Prompts entkoppeln und versionieren (Prompt-Ops)</a></h3>
+<p>Um zu lernen, wie man Prompts im Team sauber verwaltet und versioniert:</p>
+<ol>
+<li>Erstelle in deinem Projektverzeichnis einen Ordner namens <code>prompts/</code>.</li>
+<li>Erstelle darin eine Textdatei <code>system_prompt_v1.txt</code> und schreibe dort deine System-Anweisungen hinein (z. B. den Tutor-Prompt aus Aufgabe A).</li>
+<li>Schreibe ein kurzes, sprachenneutrales Programmgerüst, das diese Datei einliest und den Inhalt zur Laufzeit lädt.</li>
+<li>Nutze Git, um die Datei zu versionieren. Ändere danach den Text in der Datei ab, erstelle ein Commit und schaue dir mit <code>git diff</code> an, wie sich dein System-Prompt verändert hat.</li>
+</ol>
+<h4 id="das-abstrakte-code-gerüst-pseudocode"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION lade_prompt_aus_datei(dateipfad: Text) -&gt; Text
+    // TODO: Öffne die Datei am angegebenen Pfad, lies ihren Inhalt
+    // und gib ihn als String zurück.
+    RETURN PLATZHALTER
+END FUNCTION
+
+FUNCTION main()
+    Pfad = "prompts/system_prompt_v1.txt"
+    SystemPrompt = lade_prompt_aus_datei(Pfad)
+    
+    // TODO: Initialisiere den KI-Client mit dem geladenen SystemPrompt
+    // und starte die Interaktion.
+    PLATZHALTER_INITIALISIERUNG
+END FUNCTION
+</code></pre>
+<hr />
+<h2 id="-projektvorschläge"><a class="header" href="#-projektvorschläge">🚀 Projektvorschläge</a></h2>
+<h3 id="-projekt-1-der-lochkarten-zu-hochsprache-Übersetzer"><a class="header" href="#-projekt-1-der-lochkarten-zu-hochsprache-Übersetzer">🦖 Projekt 1: Der "Lochkarten-zu-Hochsprache" Übersetzer</a></h3>
+<p><em>Fokus: Evolution der Softwareentwicklung &amp; Die probabilistische Engine</em></p>
+<p><strong>Beschreibung:</strong>
+Schreibe ein kurzes Programm in deiner gewählten Sprache, das eine mathematische oder logische Operation (z. B. Modulo <code>%</code> oder eine bitweise Verschiebung) durchführt. Lass dir von der KI erklären, wie dieselbe Operation in den früheren Epochen der Softwareentwicklung (Maschinencode und Assembler) gelöst wurde.</p>
+<p><strong>Didaktischer Nutzen (Taulli, Kap. 1 &amp; 2):</strong>
+Du verstehst den Weg der Abstraktion und erkennst, dass Programmiersprachen nur Werkzeuge sind, um der Hardware Befehle zu erteilen.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-1"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-1">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION main()
+    Zahl1 = 10
+    Zahl2 = 3
+    
+    // TODO: Berechne den Rest der Division von Zahl1 durch Zahl2 (Modulo)
+    Ergebnis = PLATZHALTER
+    
+    PRINT "Der Rest ist: " + Ergebnis
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt"><a class="header" href="#dein-lern-prompt-für-dieses-projekt">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>„Ich lerne gerade [DEINE SPRACHE]. Ich möchte ein Programm schreiben, das den Modulo-Wert zweier Zahlen berechnet. Bitte erkläre mir kurz, wie der Modulo-Operator in [DEINE SPRACHE] geschrieben wird. Erkläre mir zusätzlich, wie man eine Modulo-Operation in Assembler (Epoche 2) und in reinem Binärcode (Epoche 1) hätte umsetzen müssen, damit ich den historischen Abstraktionsschritt verstehe.“</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-2-der-küchenchef-taschenrechner"><a class="header" href="#-projekt-2-der-küchenchef-taschenrechner">🧑‍🍳 Projekt 2: Der "Küchenchef"-Taschenrechner</a></h3>
+<p><em>Fokus: Der Paradigmenwechsel &amp; Das 70%-Problem</em></p>
+<p><strong>Beschreibung:</strong>
+Plane einen einfachen Konsolen-Taschenrechner. Die KI übernimmt als „Praktikant“ die Fleißarbeit (Einlesen der Tastatureingaben), während du als „Küchenchef“ die Logik übernimmst und dich um die Fehlerbehandlung kümmerst (z. B. Division durch Null abfangen).</p>
+<p><strong>Didaktischer Nutzen (Kim &amp; Yegge, Teil 2; Osmani):</strong>
+Du lernst die Aufteilung kennen: Die KI schreibt das Boilerplate (die ersten 70%), du sicherst die Edge Cases und die Logik ab (die kritischen 30%).</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-2"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-2">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION lies_zahl_von_tastatur() -&gt; Zahl
+    // Boilerplate: Text einlesen und in Zahl konvertieren
+    // (Lass dies die KI für dich vorbereiten)
+    RETURN PLATZHALTER
+END FUNCTION
+
+FUNCTION main()
+    Zahl_A = lies_zahl_von_tastatur()
+    Zahl_B = lies_zahl_von_tastatur()
+    Operator = lies_zeichen_von_tastatur() // +, -, *, /
+    
+    WENN Operator == '/' DANN
+        // TODO: Das sind deine 30%! Fange ab, falls Zahl_B gleich 0 ist!
+        PLATZHALTER_FEHLERBEHANDLUNG
+    SONST
+        // Berechne das Ergebnis
+    ENDE WENN
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-1"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-1">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>„Ich möchte in [DEINE SPRACHE] einen Taschenrechner programmieren. Ich möchte die Rechenlogik und die Fehlerbehandlung (wie die Division durch Null) selbst schreiben. Bitte erstelle mir ein Code-Gerüst für das Einlesen von zwei Zahlen und einem Operator von der Konsole. Verwende in den Funktionsrümpfen didaktische Platzhalter, damit ich die eigentliche Berechnung selbst einfügen kann.“</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-3-der-prompt-baukasten-temperaturumrechner"><a class="header" href="#-projekt-3-der-prompt-baukasten-temperaturumrechner">💬 Projekt 3: Der Prompt-Baukasten (Temperaturumrechner)</a></h3>
+<p><em>Fokus: Zero-Shot, Few-Shot, Chain-of-Thought, fortgeschrittene Verfahren &amp; Tool-Setup</em></p>
+<p><strong>Beschreibung:</strong>
+Erstelle ein Programm zur Umrechnung von Celsius in Fahrenheit. Du programmierst dies jedoch nicht direkt, sondern testest verschiedene Prompting-Methoden an deiner KI, um das beste didaktische Ergebnis zu erzielen.</p>
+<p><strong>Didaktischer Nutzen (Kofler, Kap. 1; Taulli, Kap. 3):</strong>
+Du erfährst am eigenen Leib, wie sich die Qualität der KI-Vorschläge verändert, wenn du ihr Kontext und strukturierte Anweisungen gibst.</p>
+<h4 id="die-testphasen"><a class="header" href="#die-testphasen">Die Testphasen:</a></h4>
+<ol>
+<li><strong>Test 1 (Zero-Shot):</strong> Frage die KI: <em>„Schreibe mir ein Programm für Temperaturumrechnung in [DEINE SPRACHE].“</em> (Die KI wird dir fertigen Code ausspucken. Du lernst dabei fast nichts.)</li>
+<li><strong>Test 2 (Few-Shot):</strong> Zeige der KI ein Beispiel (z. B. Meilen in Kilometer) und fordere sie auf, das Umrechnungsmuster auf Temperaturen zu übertragen.</li>
+<li><strong>Test 3 (Chain-of-Thought):</strong> Sende einen strukturierten Prompt (siehe unten) und vergleiche das Ergebnis.</li>
+<li><strong>Test 4 (Meta-Prompting / Gedankenbaum):</strong> Lass dir von der KI einen optimalen Prompt entwerfen, der das Problem über einen „Gedankenbaum“ löst (z. B. indem die KI verschiedene Umrechnungswege vergleicht und bewertet, bevor sie das Gerüst ausgibt).</li>
+</ol>
+<h4 id="dein-lern-prompt-für-test-3-chain-of-thought"><a class="header" href="#dein-lern-prompt-für-test-3-chain-of-thought">Dein Lern-Prompt für Test 3 (Chain-of-Thought):</a></h4>
+<blockquote>
+<p>*„Rolle: Du bist mein didaktischer Programmier-Tutor für [DEINE SPRACHE].
+Aufgabe: Erstelle mir ein leeres Code-Gerüst für einen Temperaturumrechner (Celsius zu Fahrenheit).
+Schritte:</p>
+<ol>
+<li>Schreibe als Kommentar die mathematische Formel für die Umrechnung auf.</li>
+<li>Definiere die Funktion <code>celsius_zu_fahrenheit</code> mit leeren Rümpfen (nutze Platzhalter).</li>
+<li>Schreibe eine Hauptfunktion, die diese Umrechnung aufruft.
+Regel: Gib mir unter keinen Umständen die fertige mathematische Berechnung im Code aus!“*</li>
+</ol>
+</blockquote>
+<hr />
+<h3 id="-projekt-4-der-schrittweise-iban-validator"><a class="header" href="#-projekt-4-der-schrittweise-iban-validator">💳 Projekt 4: Der schrittweise IBAN-Validator</a></h3>
+<p><em>Fokus: Pair Programming zum Lernen &amp; Kontext-Management</em></p>
+<p><strong>Beschreibung:</strong>
+Entwickle eine vereinfachte IBAN-Validierung für deutsche Konten (beginnt mit <code>DE</code> und hat genau 22 Zeichen). Teile das große Problem in kleine Teilfunktionen auf und löse diese nacheinander mit der KI.</p>
+<p><strong>Didaktischer Nutzen (Kofler, Kap. 1 &amp; 2):</strong>
+Große Codeblöcke überfordern das Kontextfenster von KIs und führen zu „Halluzinationen“. Du lernst, modular zu programmieren und der KI immer nur kleine Informationshäppchen zu füttern.</p>
+<h4 id="die-logischen-schritte-sprachunabhängig"><a class="header" href="#die-logischen-schritte-sprachunabhängig">Die logischen Schritte (sprachunabhängig):</a></h4>
+<ol>
+<li><strong>Bereinigen:</strong> Entferne alle Leerzeichen und wandle den String in Großbuchstaben um.</li>
+<li><strong>Format-Check:</strong> Prüfe, ob die Länge genau 22 Zeichen beträgt und mit "DE" startet.</li>
+<li><strong>Verschieben:</strong> Schneide die ersten 4 Zeichen ab und hänge sie hinten an (z. B. <code>DE8912345</code> wird zu <code>12345DE89</code>).</li>
+</ol>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-3"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-3">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION bereinige_iban(iban: Text) -&gt; Text
+    // TIPP: Entferne Leerzeichen und wandle in Großbuchstaben um
+    RETURN PLATZHALTER
+END FUNCTION
+
+FUNCTION check_format(iban: Text) -&gt; Boolean
+    // TIPP: Prüfe Ländercode und Länge
+    RETURN PLATZHALTER
+END FUNCTION
+
+FUNCTION verschiebe_zeichen(iban: Text) -&gt; Text
+    // TIPP: Nutze String-Slicing
+    RETURN PLATZHALTER
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-schritt-3"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-schritt-3">Dein Lern-Prompt für dieses Projekt (Schritt 3):</a></h4>
+<blockquote>
+<p><em>„Ich arbeite an einer IBAN-Validierung in [DEINE SPRACHE]. Ich muss die ersten vier Zeichen eines Strings abschneiden und an das Ende des Strings anhängen. Ich weiß nicht, wie man in [DEINE SPRACHE] Teile von Zeichenketten (Slices/Substrings) ausschneidet. Erkläre mir bitte das Konzept des String-Slicings mit Beispielen, ohne die fertige Funktion für mich zu schreiben.“</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-5-das-interaktive-quiz-mit-docstrings"><a class="header" href="#-projekt-5-das-interaktive-quiz-mit-docstrings">🧠 Projekt 5: Das interaktive Quiz mit Docstrings</a></h3>
+<p><em>Fokus: Inline-Dokumentation &amp; verständliche Kommentare</em></p>
+<p><strong>Beschreibung:</strong>
+Baue ein kleines Text-Quiz für die Konsole, das Fragen zu den KI-Grundlagen (wie <em>Kontextfenster</em> oder <em>probabilistische Engine</em>) stellt und die Benutzereingaben auswertet. Am Ende nutzt du die KI, um professionelle Dokumentationskommentare (Docstrings) für deinen Code zu generieren, um diese zu lernen.</p>
+<p><strong>Didaktischer Nutzen (Kofler, Kap. 2 &amp; 7):</strong>
+Du lernst, wie wertvoll gute Code-Dokumentation ist und wie dir KI-Assistenten dabei helfen können, fremden oder eigenen Code blitzschnell zu erklären und zu strukturieren.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-4"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-4">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT Frage
+    FrageText: Text
+    AntwortA: Text
+    AntwortB: Text
+    KorrekteAntwort: Zeichen
+END STRUCT
+
+// TODO: Lass die KI diesen Bereich mit standardisierten Docstrings dokumentieren!
+FUNCTION frage_stellen(frage: Frage) -&gt; Boolean
+    PRINT frage.FrageText
+    PRINT "a) " + frage.AntwortA
+    PRINT "b) " + frage.AntwortB
+    Eingabe = lies_tastatur()
+    RETURN (Eingabe == frage.KorrekteAntwort)
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-2"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-2">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>„Hier ist mein Code für ein Konsolen-Quiz in [DEINE SPRACHE]: [Code einfügen]. Bitte generiere für alle Funktionen und Datenstrukturen standardkonforme Dokumentationskommentare (Docstrings) gemäß den Best Practices von [DEINE SPRACHE]. Erkläre darin die Parameter und die Rückgabewerte auf einfache Weise für Einsteiger.“</em></p>
+</blockquote>
+<hr />
+<h2 id="-zusammenfassung-welches-projekt-übt-was"><a class="header" href="#-zusammenfassung-welches-projekt-übt-was">💡 Zusammenfassung: Welches Projekt übt was?</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Projekt</th><th style="text-align: left">Programmier-Konzepte</th><th style="text-align: left">KI-Lernkonzept</th><th style="text-align: left">Didaktischer Fokus</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>1. Lochkarten-Übersetzer</strong></td><td style="text-align: left">Datentypen, Operatoren</td><td style="text-align: left">Evolution der Software</td><td style="text-align: left">Verständnis der Abstraktionsebenen</td></tr>
+<tr><td style="text-align: left"><strong>2. Küchenchef-Rechner</strong></td><td style="text-align: left">Verzweigungen, I/O</td><td style="text-align: left">Das 70%-Problem &amp; Reduzierung kognitiver Last</td><td style="text-align: left">Verantwortung für Fehlerbehandlung übernehmen (Steigerung der <em>Developer Joy</em>)</td></tr>
+<tr><td style="text-align: left"><strong>3. Prompt-Baukasten</strong></td><td style="text-align: left">Funktionen, Parameter</td><td style="text-align: left">Prompt-Techniken &amp; fortgeschrittene Verfahren</td><td style="text-align: left">Optimierung der eigenen Prompts (CoT, ToT, Self-Consistency, Meta-Prompting)</td></tr>
+<tr><td style="text-align: left"><strong>4. IBAN-Validator</strong></td><td style="text-align: left">Zeichenketten-Operationen</td><td style="text-align: left">Kontext-Management &amp; Rapid Feedback Loops</td><td style="text-align: left">Komplexe Probleme in kleine, testbare Häppchen aufteilen (Vermeidung von <em>Vibe Coding Fatigue</em> &amp; <em>Infinite Loops</em>)</td></tr>
+<tr><td style="text-align: left"><strong>5. KI-Quiz</strong></td><td style="text-align: left">Datenstrukturen (Structs/Klassen)</td><td style="text-align: left">Inline-Dokumentation</td><td style="text-align: left">Code verstehen durch automatische Erklärungen</td></tr>
+<tr><td style="text-align: left"><strong>Aufgabe E (Prompt-Ops)</strong></td><td style="text-align: left">Dateizugriff (I/O), Konfiguration</td><td style="text-align: left">Prompt-Ops &amp; Versionierung (Git)</td><td style="text-align: left">Entkopplung von Prompts und Code für reproduzierbare Ergebnisse im Team</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://learnprompting.org/de/">Learn Prompting - Kostenloser Kurs für Prompt Engineering</a></li>
+<li><a href="https://developer.mozilla.org/de/docs/Learn">MDN Web Docs: Programmieren für Einsteiger</a></li>
+<li>[Die offiziellen Dokumentationen deiner Wunschsprache (z.B. python.org, rust-lang.org)]</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="coding-mit-ki-phase1-workshop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="phase1-workshop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="coding-mit-ki-phase1-workshop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="phase1-workshop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

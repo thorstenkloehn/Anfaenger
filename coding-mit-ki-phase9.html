@@ -1,0 +1,693 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>💡 Phase 9: Fortgeschrittene Integration &amp; APIs - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">6.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">6.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">6.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">7.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">8.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">9.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">11.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">12.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">13.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">13.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">13.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">13.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">13.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">14.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">14.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">14.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">14.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">14.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">14.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">14.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">14.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">14.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">14.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">14.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">14.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">15.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">15.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">15.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">15.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">16.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">17.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">19.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">21.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">22.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">23.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">24.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">24.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">24.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">24.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">24.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">25.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">25.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">25.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">25.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">25.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">25.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">26.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">27.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">29.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">30.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">30.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">31.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">31.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">31.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">31.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">32.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">33.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">35.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">36.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">36.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">36.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">36.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">37.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">38.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">39.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">40.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">41.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">42.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">42.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">42.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">42.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">43.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">44.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">46.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">47.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">47.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">48.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">48.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">48.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">48.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">49.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">50.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">52.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">53.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">53.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">53.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">53.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">54.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">55.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">57.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">58.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">58.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">58.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">59.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">60.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">62.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">63.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">64.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">65.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">65.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">65.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">66.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">67.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">69.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">70.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">71.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">72.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">73.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">74.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">75.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">76.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">77.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">78.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">79.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">80.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">81.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">82.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">82.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">82.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">83.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">84.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">84.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">84.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">84.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">85.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">85.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">85.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">85.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">85.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">85.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">85.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">85.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">86.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">87.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">88.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">89.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">90.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">90.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">90.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">90.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">90.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">90.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">90.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">90.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">90.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html" class="active"><strong aria-hidden="true">90.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">90.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">91.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">92.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-phase-9-fortgeschrittene-integration--apis-rag--risikomanagement"><a class="header" href="#-phase-9-fortgeschrittene-integration--apis-rag--risikomanagement">💡 Phase 9: Fortgeschrittene Integration &amp; APIs (RAG &amp; Risikomanagement)</a></h1>
+<p>Willkommen in der Profiliga der KI-gestützten Softwareentwicklung! 🚀</p>
+<p>In den bisherigen Phasen hast du gelernt, wie du die KI als intelligenten Chat-Partner im Programmieralltag nutzt. Jetzt gehen wir einen großen Schritt weiter: Wir holen die künstliche Intelligenz direkt in unsere eigenen Anwendungen. Du wirst lernen, wie du Programme schreibst, die über Schnittstellen (APIs) mit Sprachmodellen kommunizieren, wie du KI mit eigenem Wissen fütterst (RAG) und wie du natürliche Sprache in präzise Datenbankabfragen übersetzt.</p>
+<p>Doch mit großer Macht kommt große Verantwortung: Wenn deine Software in echten Unternehmen skaliert werden soll, musst du Risiken kontrollieren. Wir sprechen in diesem Kapitel auch über Lizenzrechte (Urheberrecht), Datenschutz und die Vermeidung von gefährlichen "Halluzinationen" in sicherheitskritischem Code. Egal ob du mit Python, Rust, JavaScript, Java oder C++ programmierst – die Prinzipien der Integration und des Risikomanagements sind universell.</p>
+<hr />
+<h2 id="-theorie-intelligente-integration--risikominimierung"><a class="header" href="#-theorie-intelligente-integration--risikominimierung">🧠 Theorie: Intelligente Integration &amp; Risikominimierung</a></h2>
+<p>Bevor wir Code schreiben, müssen wir die architektonischen Muster verstehen. Lass uns die wichtigsten Konzepte anhand von anschaulichen Analogien betrachten.</p>
+<h3 id="1-eigene-ki-werkzeuge-bauen-kofler-kap-9"><a class="header" href="#1-eigene-ki-werkzeuge-bauen-kofler-kap-9">1. Eigene KI-Werkzeuge bauen (Kofler, Kap. 9)</a></h3>
+<h4 id="llm-apis-in-eigenen-anwendungen"><a class="header" href="#llm-apis-in-eigenen-anwendungen">LLM-APIs in eigenen Anwendungen</a></h4>
+<p>Eine API (Application Programming Interface) ist wie eine Telefonleitung zu einem hochspezialisierten Dienstleister. Anstatt über ein Webinterface (wie ChatGPT) zu chatten, sendet deine Anwendung eine strukturierte Anfrage (Request) an die API der KI und erhält eine strukturierte Antwort (Response, meist als JSON-Dokument).</p>
+<ul>
+<li><strong>Request (Anfrage):</strong> Du übergibst das Modell, die System-Prompts, Benutzereingaben und Parameter wie die <em>Temperatur</em> (bestimmt, wie kreativ oder präzise die KI antworten soll).</li>
+<li><strong>Response (Antwort):</strong> Deine Anwendung muss das JSON-Format parsen und die gewünschten Daten extrahieren.</li>
+</ul>
+<h4 id="retrieval-augmented-generation-rag"><a class="header" href="#retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)</a></h4>
+<p>Ein Sprachmodell weiß extrem viel über die Welt, kennt aber nicht deine privaten Notizen, die Dokumente deines Unternehmens oder brandneue Daten. RAG löst dieses Problem.</p>
+<ul>
+<li><strong>Die Analogie:</strong> Stell dir ein offenes Buch (Open-Book) bei einer Prüfung vor. Anstatt dass die KI aus dem Gedächtnis antwortet und rät (Halluzination), schlägst du zuerst in deiner lokalen Wissensdatenbank nach, suchst die passenden Seiten heraus und legst sie der KI zusammen mit der Frage vor.</li>
+<li><strong>Der Ablauf:</strong>
+<ol>
+<li><strong>Vektorisierung (Embeddings):</strong> Deine Dokumente werden in Zahlenkolonnen übersetzt, die deren Bedeutung repräsentieren.</li>
+<li><strong>Vektorsuche:</strong> Stellt der Benutzer eine Frage, suchst du in der Vektordatenbank nach den inhaltlich ähnlichsten Textabschnitten.</li>
+<li><strong>Context Injection:</strong> Du fügst diese Abschnitte in den Prompt ein (<em>"Beantworte die Frage nur basierend auf folgendem Kontext: ..."</em>).</li>
+</ol>
+</li>
+</ul>
+<h4 id="sql-to-text-und-datenbankabfragen"><a class="header" href="#sql-to-text-und-datenbankabfragen">SQL-to-Text und Datenbankabfragen</a></h4>
+<p>Die KI übersetzt einen einfachen menschlichen Wunsch (<em>"Zeige mir alle Kunden aus Berlin, die im letzten Monat bestellt haben"</em>) in ein präzises SQL-Statement (<em><code>SELECT * FROM kunden ...</code></em>).</p>
+<ul>
+<li><strong>Das Risiko:</strong> Eine KI versteht zwar Datenbankstrukturen, kann aber fehlerhaftes SQL erzeugen oder bei böswilligen Eingaben (Prompt Injections) sogar Daten löschen! Deshalb ist eine Sicherheitsüberprüfung (Guardrails) zwingend notwendig.</li>
+</ul>
+<h4 id="context-pollution-kontext-verschmutzung-nach-tomasz-lelek--artur-skowroński"><a class="header" href="#context-pollution-kontext-verschmutzung-nach-tomasz-lelek--artur-skowroński">Context Pollution (Kontext-Verschmutzung) (nach Tomasz Lelek &amp; Artur Skowroński)</a></h4>
+<p>Jedes Sprachmodell hat ein begrenztes "Kontextfenster" – eine maximale Menge an Text (Tokens), die es auf einmal lesen und verarbeiten kann. Bei einem Chatverlauf wird mit jeder neuen Frage der <em>gesamte</em> bisherige Chatverlauf an das Modell geschickt. Wenn dieser Verlauf lang und unübersichtlich wird, kommt es zur sogenannten <strong>Context Pollution (Kontext-Verschmutzung)</strong>.</p>
+<ul>
+<li><strong>Das Problem:</strong> Wenn dein Chatverlauf voll von alten Fehlversuchen, irrelevanten Fehlermeldungen, veraltetem Code oder Abschweifungen ist, sinkt die Leistung der KI. Sprachmodelle leiden unter dem "Lost in the Middle"-Effekt: Sie schenken Informationen am Anfang und am Ende des Prompts viel Aufmerksamkeit, übersehen aber wichtige Details in der Mitte.</li>
+<li><strong>Die Auswirkung:</strong> Die KI wiederholt plötzlich bereits gelöste Fehler, ignoriert neue Anweisungen oder fängt an zu halluzinieren.</li>
+<li><strong>Die Lösung:</strong>
+<ol>
+<li><strong>Frische Chats:</strong> Starte regelmäßig neue, saubere Chat-Sitzungen für neue Probleme.</li>
+<li><strong>Zusammenfassung (Refactoring des Kontexts):</strong> Wenn ein Chat zu lang wird, bitte die KI zuerst um eine kurze Zusammenfassung des aktuellen Stands und der funktionierenden Codeteile. Kopiere diese Zusammenfassung in einen brandneuen Chat.</li>
+<li><strong>Selektiver Kontext:</strong> Übergib der KI nur den Code, der für das aktuelle Problem wirklich relevant ist.</li>
+</ol>
+</li>
+</ul>
+<h4 id="datenbank-migrationen--schema-design-mit-ki-nach-michael-kofler"><a class="header" href="#datenbank-migrationen--schema-design-mit-ki-nach-michael-kofler">Datenbank-Migrationen &amp; Schema-Design mit KI (nach Michael Kofler)</a></h4>
+<p>Der Entwurf von Datenbankschemata und die Durchführung von Schema-Änderungen (Migrationen) gehören zu den kritischsten Aufgaben in der Softwareentwicklung. Fehler können zu Datenverlust oder Systemausfällen im Live-Betrieb führen. KI kann dich hierbei als wertvoller Sparringspartner unterstützen, wenn du strukturiert vorgehst.</p>
+<ul>
+<li><strong>Schema-Design entwerfen:</strong> Du kannst der KI deine fachlichen Anforderungen beschreiben und sie bitten, ein normalisiertes Tabellendesign vorzuschlagen. Die KI hilft dir dabei, Fremdschlüsselbeziehungen, Indizes und Datentypen sauber zu planen.</li>
+<li><strong>Sicher planen mit KI:</strong> Wenn du ein bestehendes Schema ändern willst (z. B. eine Tabelle aufteilen oder Spalten umbenennen), nutze die KI, um die Migrationsschritte abwärtskompatibel zu planen.</li>
+<li><strong>Die Goldenen Regeln für sichere KI-Migrationen:</strong>
+<ol>
+<li><strong>Trennung von Struktur (DDL) und Daten (DML):</strong> Lass dir DDL-Skripte (<code>CREATE TABLE</code>, <code>ALTER TABLE</code>) getrennt von DML-Skripten (<code>UPDATE</code>, <code>INSERT</code> zur Datenkonvertierung) generieren.</li>
+<li><strong>Rollback-Pläne einfordern:</strong> Lass dir von der KI zu jeder Migration immer ein korrespondierendes "Down-Skript" (Rollback) erstellen, mit dem die Änderungen im Fehlerfall rückgängig gemacht werden können.</li>
+<li><strong>Abwärtskompatibilität ("Expand and Contract"):</strong> Frage die KI nach abwärtskompatiblen Wegen. Bei einer Spaltenaufteilung bedeutet das z. B.: Erst neue Spalten hinzufügen (Expand), dann Daten per DML im Hintergrund migrieren, Anwendungscode anpassen, und erst nach erfolgreichem Deployment die alte Spalte löschen (Contract).</li>
+<li><strong>Sandbox-Validierung:</strong> Führe niemals von einer KI generierte SQL-Skripte ungeprüft auf deiner Live-Datenbank aus! Teste sie lokal in einer Testdatenbank mit synthetischen Testdaten.</li>
+</ol>
+</li>
+</ul>
+<h4 id="fine-tuning-vs-rag-für-code-modelle-nach-durgesh-rajubhai-pawar--michael-kofler"><a class="header" href="#fine-tuning-vs-rag-für-code-modelle-nach-durgesh-rajubhai-pawar--michael-kofler">Fine-Tuning vs. RAG für Code-Modelle (nach Durgesh Rajubhai Pawar &amp; Michael Kofler)</a></h4>
+<p>Wenn du KI tief in deine Code-Prozesse integrieren möchtest, stehst du vor einer grundlegenden Entscheidung: Sollst du das Modell mit eigenen Daten füttern (RAG) oder das Modell selbst trainieren (Fine-Tuning)? Beide Ansätze haben völlig unterschiedliche Stärken.</p>
+<ul>
+<li><strong>Die Analogie zur Veranschaulichung:</strong>
+<ul>
+<li><strong>RAG (Retrieval-Augmented Generation):</strong> Stell dir vor, du gehst mit einem großen Ordner voller Handbücher in eine Prüfung (Open-Book-Klausur). Du musst das Wissen nicht auswendig lernen. Du suchst im Moment der Frage einfach schnell das passende Kapitel heraus und liest es ab.</li>
+<li><strong>Fine-Tuning:</strong> Stell dir vor, du lernst wochenlang Vokabeln und Grammatik einer neuen Fremdsprache oder übst einen ganz bestimmten Schreibstil. Das Wissen geht dir "in Fleisch und Blut" über. Du veränderst dauerhaft die Art und Weise, wie dein Gehirn Verknüpfungen herstellt.</li>
+</ul>
+</li>
+</ul>
+<h5 id="unterschiede-und-arbeitsweise"><a class="header" href="#unterschiede-und-arbeitsweise">Unterschiede und Arbeitsweise</a></h5>
+<ul>
+<li><strong>RAG</strong> lässt das eigentliche Sprachmodell unangetastet. Stattdessen nutzt du ein separates System (wie eine Vektordatenbank), das bei einer Anfrage deines Entwicklers nach relevanten Code-Schnipseln oder Dokumenten sucht. Diese Ergebnisse werden als Kontext (Zusatzwissen) an das Sprachmodell übergeben.</li>
+<li><strong>Fine-Tuning</strong> modifiziert die internen Gewichte (Parameter) des Modells. Du nimmst ein bereits vortrainiertes Code-Modell und trainierst es mit einer sorgfältig vorbereiteten Liste von Codebeispielen weiter.</li>
+</ul>
+<h5 id="vor--und-nachteile-im-Überblick"><a class="header" href="#vor--und-nachteile-im-Überblick">Vor- und Nachteile im Überblick</a></h5>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Kriterium</th><th style="text-align: left">RAG (Retrieval-Augmented Generation)</th><th style="text-align: left">Fine-Tuning (Feinabstimmung)</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>Wissens-Aktualität</strong></td><td style="text-align: left"><strong>Sehr hoch:</strong> Du musst nur deine Dokumente aktualisieren. Keine Wartezeit.</td><td style="text-align: left"><strong>Statisch:</strong> Das Modell weiß nur, was zum Trainingszeitpunkt da war.</td></tr>
+<tr><td style="text-align: left"><strong>Lernaufwand &amp; Kosten</strong></td><td style="text-align: left"><strong>Gering:</strong> Keine teuren Grafikkarten (GPUs) für das Training nötig.</td><td style="text-align: left"><strong>Hoch:</strong> Das Aufbereiten der Daten und das Training kosten viel Zeit und Geld.</td></tr>
+<tr><td style="text-align: left"><strong>Stilanpassung</strong></td><td style="text-align: left"><strong>Mittel:</strong> Die KI kann Stile nachahmen, wenn sie gute Beispiele im Prompt bekommt.</td><td style="text-align: left"><strong>Sehr hoch:</strong> Ändert die Syntax-Fähigkeiten und den Ausgabe-Stil grundlegend.</td></tr>
+<tr><td style="text-align: left"><strong>Kontextfenster</strong></td><td style="text-align: left"><strong>Belastend:</strong> Verbraucht viele Tokens, da Kontext mitgeschickt wird (Context Pollution).</td><td style="text-align: left"><strong>Sparsam:</strong> Das Modell benötigt keinen zusätzlichen Kontext für gelerntes Wissen.</td></tr>
+<tr><td style="text-align: left"><strong>Nachvollziehbarkeit</strong></td><td style="text-align: left"><strong>Sehr gut:</strong> Du kannst genau zeigen, aus welcher Quelldatei das Wissen stammt.</td><td style="text-align: left"><strong>Gering:</strong> Die Antwort entsteht direkt aus den Gewichten (Black-Box-Effekt).</td></tr>
+</tbody></table>
+</div>
+<h5 id="die-einsatzgebiete-bei-codebasen"><a class="header" href="#die-einsatzgebiete-bei-codebasen">Die Einsatzgebiete bei Codebasen</a></h5>
+<p>Wann nutzt du was?</p>
+<ul>
+<li><strong>Verwende RAG für:</strong>
+<ul>
+<li>Die Einbindung von sich häufig ändernden Projekt-Dokumentationen.</li>
+<li>Das Durchsuchen deiner tagesaktuellen Codebase.</li>
+<li>Das Anbinden von Schnittstellenbeschreibungen (APIs) von Drittanbietern.</li>
+</ul>
+</li>
+<li><strong>Verwende Fine-Tuning für:</strong>
+<ul>
+<li>Die Anpassung an eine firmeninterne, proprietäre Programmiersprache (DSL).</li>
+<li>Das Erzwingen eines sehr spezifischen Code-Stils (z. B. Namenskonventionen, feste Formatierungsvorgaben).</li>
+<li>Die Optimierung von kleineren Modellen, die lokal offline auf Entwickler-Laptops laufen sollen (spart Ressourcen).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="2-enterprise-skalierung--risikomanagement"><a class="header" href="#2-enterprise-skalierung--risikomanagement">2. Enterprise-Skalierung &amp; Risikomanagement</a></h3>
+<p>Wenn Anwendungen von Tausenden Menschen gleichzeitig genutzt werden oder in sicherheitskritischen Bereichen laufen, gelten härtere Regeln.</p>
+<h4 id="skalierung-in-großen-infrastrukturen-kim--yegge-teil-4"><a class="header" href="#skalierung-in-großen-infrastrukturen-kim--yegge-teil-4">Skalierung in großen Infrastrukturen (Kim &amp; Yegge, Teil 4)</a></h4>
+<ul>
+<li><strong>Kostenkontrolle:</strong> Jedes Token kostet Geld. Unkontrollierte API-Aufrufe können die Kosten explodieren lassen. Caching (Speichern von häufigen Antworten) ist hier Pflicht.</li>
+<li><strong>Rate Limits:</strong> APIs begrenzen die Anzahl der Anfragen pro Minute. Deine Anwendung muss darauf vorbereitet sein, API-Fehler (z. B. HTTP 429 Too Many Requests) abzufangen und Anfragen automatisch nach einer Pause erneut zu versuchen (Exponential Backoff).</li>
+<li><strong>Asynchronität:</strong> Lange API-Anfragen dürfen deine Benutzeroberfläche nicht blockieren. Nutze Warteschlangen (Queues) und asynchrone Tasks.</li>
+</ul>
+<h4 id="governance-urheberrecht--compliance-kofler-kap-10-taulli"><a class="header" href="#governance-urheberrecht--compliance-kofler-kap-10-taulli">Governance, Urheberrecht &amp; Compliance (Kofler, Kap. 10; Taulli)</a></h4>
+<p>Wenn du Code mithilfe von KI generierst, bewegst du dich rechtlich auf Neuland. Es gibt drei zentrale Problemfelder, die du kennen musst:</p>
+<ol>
+<li>
+<p><strong>Das Urheberrechtsproblem (Wer hat's erfunden?):</strong>
+In den meisten Ländern (einschließlich Deutschland) gilt: Nur eine <em>menschliche Schöpfung</em> kann urheberrechtlich geschützt sein. Das bedeutet:</p>
+<ul>
+<li>Reiner, von einer KI generierter Code ist in der Regel <strong>nicht urheberrechtlich geschützt</strong> und gehört der Allgemeinheit.</li>
+<li><strong>Aber Achtung:</strong> KIs wurden mit Open-Source-Code trainiert. Manchmal schlägt dir die KI Code vor, der eins zu eins (oder fast identisch) aus einem existierenden, geschützten Projekt stammt. Verwendest du diesen Code, begehst du eventuell eine Urheberrechtsverletzung!</li>
+</ul>
+</li>
+<li>
+<p><strong>Copyleft-Lizenzen (Die "GPL-Infektion"):</strong>
+Lizenzen wie die <strong>GPL (General Public License)</strong> nutzen das sogenannte <em>Copyleft</em>-Prinzip. Es besagt: Wenn du GPL-Code in deinem Projekt verwendest, muss dein gesamtes Projekt unter der GPL lizenziert und somit als Open Source veröffentlicht werden.</p>
+<ul>
+<li><strong>Das Risiko:</strong> Schlägt dir ein KI-Assistent eine Funktion vor, die aus einem GPL-Projekt stammt, und du baust sie in deine kommerzielle, geschlossene Software ein, riskierst du eine "Lizenz-Infektion". Konkurrenten oder Lizenzinhaber könnten dich zwingen, deinen gesamten Quellcode offenzulegen oder die Nutzung einzustellen.</li>
+<li><strong>Gegenmittel:</strong> Lizenzen wie MIT oder Apache 2.0 sind "permissiv" (freizügig) und erlauben die Nutzung in kommerziellen Produkten ohne diese Pflicht.</li>
+</ul>
+</li>
+<li>
+<p><strong>Intellectual Property (IP)-Schutz &amp; Datengeheimnis:</strong></p>
+<ul>
+<li><strong>IP-Schutz:</strong> Wenn dein Startup eine innovative Software baut, die fast vollständig von einer KI geschrieben wurde, kannst du diesen Code rechtlich kaum vor Nachahmern schützen, da ihm die menschliche Schöpfungshöhe fehlt.</li>
+<li><strong>Datenabfluss:</strong> Sendest du proprietären Firmencode oder Kundendaten an eine öffentliche KI-API, um ihn optimieren zu lassen, landen diese Daten eventuell auf den Servern des Betreibers und werden zum Weitertrainieren genutzt. Dies verstößt gegen Datenschutzgesetze (DSGVO) und Geheimhaltungsvereinbarungen (NDA).</li>
+</ul>
+</li>
+</ol>
+<h4 id="audit-verfahren-wie-schützen-sich-profis"><a class="header" href="#audit-verfahren-wie-schützen-sich-profis">Audit-Verfahren: Wie schützen sich Profis?</a></h4>
+<p>Um diese Risiken zu minimieren, setzen Unternehmen auf strukturierte Compliance-Prozesse:</p>
+<ul>
+<li><strong>Software Composition Analysis (SCA):</strong> Tools wie FOSSA, Snyk oder Black Duck scannen den Code automatisch auf bekannte Open-Source-Schnipsel und deren Lizenzen.</li>
+<li><strong>IP-Filter in IDEs:</strong> Professionelle KI-Assistenten (wie GitHub Copilot) bieten Einstellungen, um Vorschläge zu blockieren, die mit öffentlichem Code auf GitHub übereinstimmen.</li>
+<li><strong>Clean-Room-Implementierung:</strong> Wenn die KI eine gute Idee liefert, schreiben Entwickler den Code oft in eigenen Worten komplett neu, um sicherzustellen, dass keine exakten Kopien vorliegen.</li>
+</ul>
+<h4 id="vermeidung-von-halluzinationen-in-sicherheitskritischem-code-taulli-kap-3-osmani"><a class="header" href="#vermeidung-von-halluzinationen-in-sicherheitskritischem-code-taulli-kap-3-osmani">Vermeidung von Halluzinationen in sicherheitskritischem Code (Taulli, Kap. 3; Osmani)</a></h4>
+<ul>
+<li><strong>Die Gefahr:</strong> KI-Modelle arbeiten probabilistisch – sie berechnen Wahrscheinlichkeiten für das nächste Wort. Sie haben kein echtes Verständnis für Logik. In einer medizinischen App oder einer Steuerung für Züge kann ein winziger logischer Fehler im Code fatale Folgen haben.</li>
+<li><strong>Die Abhilfe:</strong>
+<ul>
+<li><strong>Kein Code ohne menschliches Review:</strong> Nutze das Vier-Augen-Prinzip.</li>
+<li><strong>Strikte Validierung:</strong> Schreibe automatisierte Tests für alle Grenzbereiche (Edge Cases).</li>
+<li><strong>Defensives Programmieren:</strong> Gehe immer davon aus, dass der KI-generierte Code fehlerhaft sein könnte, und sichere ihn mit Typprüfungen und Zusicherungen (Assertions) ab.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="-praxis-aufgaben-kleine-fingerübungen"><a class="header" href="#-praxis-aufgaben-kleine-fingerübungen">🛠️ Praxis-Aufgaben: Kleine Fingerübungen</a></h2>
+<p>Probiere diese Aufgaben aus, um die theoretischen Grundlagen in der Praxis zu festigen:</p>
+<h3 id="aufgabe-a-den-api-json-payload-entwerfen-sprachneutral"><a class="header" href="#aufgabe-a-den-api-json-payload-entwerfen-sprachneutral">Aufgabe A: Den API-JSON-Payload entwerfen (sprachneutral)</a></h3>
+<p>Entwirf ein JSON-Objekt für einen API-Request an ein Sprachmodell. Es soll folgende Anforderungen erfüllen:</p>
+<ol>
+<li>Eine System-Nachricht, die der KI sagt, sie sei ein sachlicher Übersetzer für technische Fachbegriffe.</li>
+<li>Eine Benutzer-Nachricht mit dem zu übersetzenden Text.</li>
+<li>Die Temperatureinstellung soll auf maximale Präzision (sehr niedrig) gesetzt werden.</li>
+</ol>
+<p><strong>Leitfrage für dich:</strong> Wie sieht die JSON-Struktur aus und welche Rolle spielt das Feld <code>temperature</code> für die Stabilität deiner App?</p>
+<h3 id="aufgabe-b-das-rag-ablaufdiagramm-skizzieren"><a class="header" href="#aufgabe-b-das-rag-ablaufdiagramm-skizzieren">Aufgabe B: Das RAG-Ablaufdiagramm skizzieren</a></h3>
+<p>Zeichne auf einem Blatt Papier oder in einem Text-Editor den Datenfluss eines RAG-Systems auf. Verwende folgende Komponenten:
+<code>Benutzer-Frage</code> ➔ <code>Vektorisierung</code> ➔ <code>Vektordatenbank</code> ➔ <code>Kontext-Extraktion</code> ➔ <code>Prompt-Zusammenstellung</code> ➔ <code>LLM-API</code> ➔ <code>Antwort an Benutzer</code>.</p>
+<p><strong>Leitfrage:</strong> Warum schicken wir nicht einfach das gesamte Benutzerhandbuch (1000 Seiten) bei jeder Frage an das LLM, sondern nutzen stattdessen die Vektorsuche?</p>
+<h3 id="aufgabe-c-sicherheits-check-für-sql-generierung-entwerfen"><a class="header" href="#aufgabe-c-sicherheits-check-für-sql-generierung-entwerfen">Aufgabe C: Sicherheits-Check für SQL-Generierung entwerfen</a></h3>
+<p>Stell dir vor, deine Anwendung lässt Nutzer Abfragen in natürlicher Sprache eingeben, übersetzt diese per KI in SQL und führt sie direkt aus.</p>
+<ul>
+<li>Schreibe eine Liste von 5 Sicherheitsregeln (Guardrails) auf, die deine Software anwenden muss, bevor der generierte SQL-Befehl an die echte Datenbank geschickt wird.</li>
+</ul>
+<h3 id="aufgabe-d-risiko---compliance-audit-praxis-szenario"><a class="header" href="#aufgabe-d-risiko---compliance-audit-praxis-szenario">Aufgabe D: Risiko- &amp; Compliance-Audit (Praxis-Szenario)</a></h3>
+<p>Stell dir vor, du arbeitest an einer proprietären Zeiterfassungs-App für ein Kundenunternehmen. Dein Kollege schlägt vor, eine komplexe Funktion zur Feiertagsberechnung zu nutzen, die ihm Copilot generiert hat. Bei einer Websuche stellst du fest, dass der Code exakt einer Funktion aus einem GPLv3-lizenzierten Open-Source-Projekt entspricht.</p>
+<ul>
+<li>Erstelle eine kurze Checkliste mit 3 Schritten, wie du und dein Team in dieser Situation reagieren solltet, um rechtliche Risiken auszuschließen.</li>
+</ul>
+<p><strong>Leitfrage:</strong> Warum reicht es in diesem Fall nicht aus, einfach den Autor des ursprünglichen Codes im Quelltext als Kommentar zu erwähnen?</p>
+<h3 id="aufgabe-e-strategie-gegen-context-pollution-entwerfen"><a class="header" href="#aufgabe-e-strategie-gegen-context-pollution-entwerfen">Aufgabe E: Strategie gegen Context Pollution entwerfen</a></h3>
+<p>Stell dir vor, du hast stundenlang mit einem KI-Assistenten an einem Fehler gearbeitet. Der Chatverlauf ist extrem lang. Die KI fängt nun an, dir Code vorzuschlagen, der deine bereits behobenen Fehler wieder einführt, und übersieht deine expliziten Anweisungen zur Variablenbenennung.</p>
+<ul>
+<li>Schreibe eine kurze, dreistufige Strategie auf, wie du deinen Chatverlauf "refaktorieren" kannst, um die Konzentration der KI wiederherzustellen, ohne dein bisher erarbeitetes Wissen zu verlieren.</li>
+</ul>
+<h3 id="aufgabe-f-prompt-für-eine-abwärtskompatible-migration-formulieren"><a class="header" href="#aufgabe-f-prompt-für-eine-abwärtskompatible-migration-formulieren">Aufgabe F: Prompt für eine abwärtskompatible Migration formulieren</a></h3>
+<p>Du möchtest eine bestehende SQL-Tabelle <code>benutzer</code> ändern. Die Spalte <code>adresse</code> (enthält z. B. "Musterstraße 12, 12345 Musterstadt") soll in drei separate Spalten aufgeteilt werden: <code>strasse_hausnummer</code>, <code>plz</code> und <code>ort</code>.</p>
+<ul>
+<li>Formuliere einen präzisen, didaktischen Prompt für eine KI, um diese Migration sicher und abwärtskompatibel zu planen.</li>
+<li>Der Prompt soll die KI explizit anweisen, die Migration in DDL, DML und ein Rollback-Skript aufzuteilen. (Du musst die SQL-Statements hierfür nicht selbst schreiben, sondern nur den Prompt entwerfen!).</li>
+</ul>
+<h3 id="aufgabe-g-entscheidungsszenario-rag-vs-fine-tuning"><a class="header" href="#aufgabe-g-entscheidungsszenario-rag-vs-fine-tuning">Aufgabe G: Entscheidungsszenario RAG vs. Fine-Tuning</a></h3>
+<p>Lies dir die folgenden Szenarien durch und entscheide, ob du RAG oder Fine-Tuning (oder beides) einsetzen würdest. Begründe deine Entscheidung kurz:</p>
+<ol>
+<li><strong>Szenario 1:</strong> Dein Team entwickelt eine Web-App. Die verwendeten externen JavaScript-Bibliotheken werden fast jede Woche aktualisiert und verändern ihre API.</li>
+<li><strong>Szenario 2:</strong> Deine Firma nutzt eine sehr alte, selbst geschriebene Datenbanksprache ("Legacy-DSL"), die im Internet nirgends dokumentiert ist. Das KI-Modell soll lernen, diese Sprache fehlerfrei zu schreiben und zu verstehen.</li>
+<li><strong>Szenario 3:</strong> Die KI soll dir beim Schreiben von Code helfen und dabei zwingend eure internen Programmierrichtlinien (z. B. bestimmte Sicherheitsüberprüfungen vor jedem Datenbankzugriff) einhalten, ohne dass du diese Richtlinien jedes Mal manuell in den Chat kopieren musst.</li>
+</ol>
+<hr />
+<h2 id="-projektvorschläge"><a class="header" href="#-projektvorschläge">🚀 Projektvorschläge</a></h2>
+<h3 id="-projekt-1-der-api-chefkoch-universeller-llm-api-connector"><a class="header" href="#-projekt-1-der-api-chefkoch-universeller-llm-api-connector">🧑‍🍳 Projekt 1: Der "API-Chefkoch" (Universeller LLM-API-Connector)</a></h3>
+<p><em>Fokus: API-Kommunikation, JSON-Parsing und sichere Fehlerbehandlung</em></p>
+<p><strong>Beschreibung:</strong>
+Schreibe eine modulare Klasse oder Funktion in deiner Wunschsprache, die eine Verbindung zu einer LLM-API herstellt. Sie soll eine strukturierte Prompt-Anfrage senden, die HTTP-Statuscodes auswerten (insbesondere Ratenbegrenzungen und Netzwerkfehler abfangen) und die Antwort der KI sicher parsen.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du verstehst, wie man asynchrone Netzwerkaufrufe absichert und defensive Mechanismen wie automatisches Wiederholen bei Fehlern implementiert.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT APIResponse
+    status_code: Integer
+    antwort_text: String
+    fehler_meldung: String
+END STRUCT
+
+FUNCTION sende_ki_anfrage(prompt: String, api_key: String) -&gt; APIResponse
+    URL = "https://api.ki-provider.com/v1/chat/completions"
+    
+    // 1. TODO: Bereite den JSON-Payload mit System- und User-Prompts vor
+    payload = PLATZHALTER_JSON
+    
+    // 2. TODO: Führe den HTTP-POST-Request asynchron durch
+    VERSUCHE
+        response = HTTP_POST(URL, headers=[api_key], body=payload)
+        
+        WENN response.status_code == 200 DANN
+            // 3. TODO: Parse die Antwort und liefere den Text zurück
+            daten = PARSE_JSON(response.body)
+            RETURN APIResponse(200, daten.choices[0].text, "")
+        SONST WENN response.status_code == 429 DANN
+            // Ratenbegrenzung erreicht
+            RETURN APIResponse(429, "", "Zu viele Anfragen. Bitte kurz warten.")
+        SONST
+            RETURN APIResponse(response.status_code, "", "API-Fehler")
+        ENDE WENN
+        
+    FANG_AB (NetzwerkFehler)
+        RETURN APIResponse(500, "", "Netzwerkverbindung fehlgeschlagen")
+    ENDE VERSUCH
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt"><a class="header" href="#dein-lern-prompt-für-dieses-projekt">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich möchte in [DEINE SPRACHE] eine Funktion schreiben, die eine Verbindung zu einer REST-API aufbaut. Sie soll einen JSON-Body senden und die Antwort parsen. Bitte erstelle mir ein Code-Gerüst für diese Netzwerkverbindung mit didaktischen Platzhaltern im Funktionsrumpf. Erkläre mir auch, wie ich typische Netzwerkfehler und den Statuscode 429 (Rate Limit) sauber in [DEINE SPRACHE] abfangen kann."</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-2-der-wissens-bibliothekar-lokales-mini-rag"><a class="header" href="#-projekt-2-der-wissens-bibliothekar-lokales-mini-rag">📚 Projekt 2: Der "Wissens-Bibliothekar" (Lokales Mini-RAG)</a></h3>
+<p><em>Fokus: Context Injection und lokale Wissensdatenbanken</em></p>
+<p><strong>Beschreibung:</strong>
+Entwickle ein Konzept-Programm, das eine lokale Textdatei (z. B. ein kurzes FAQ-Dokument) als Wissensquelle nutzt. Bei einer Benutzerfrage sucht das Programm nach dem passenden Abschnitt in der Datei und fügt diesen als Kontext in den Prompt ein, bevor es die API aufruft.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du lernst das Herzstück von RAG-Systemen kennen – die gezielte Anreicherung des Prompts mit externen Daten, um Halluzinationen zu verhindern.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-1"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-1">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION lade_wissensbasis(dateipfad: String) -&gt; Liste_aus_Texten
+    // TODO: Lade die Dokumente und teile sie in Abschnitte (Chunks) auf
+    RETURN PLATZHALTER_DOKUMENTE
+END FUNCTION
+
+FUNCTION finde_relevanten_kontext(frage: String, chunks: Liste_aus_Texten) -&gt; String
+    // Für dieses einfache Projekt: Nutze eine einfache Schlagwortsuche (Keyword-Match)
+    // TODO: Durchsuche die Chunks nach Wortüberschneidungen mit der Frage
+    bester_chunk = PLATZHALTER_SUCHE
+    RETURN bester_chunk
+END FUNCTION
+
+FUNCTION baue_erweiterten_prompt(frage: String, kontext: String) -&gt; String
+    // Context Injection: Wir zwingen die KI, nur das bereitgestellte Wissen zu nutzen
+    erweiterter_prompt = "Hier ist das exklusive Hintergrundwissen: \n" 
+                        + kontext 
+                        + "\n\nFrage des Nutzers: " + frage
+                        + "\n\nAntworte kurz und stütze dich NUR auf das Hintergrundwissen. Wenn du es nicht weißt, sage 'Ich weiß es nicht'."
+    RETURN erweiterter_prompt
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-1"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-1">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich baue ein einfaches RAG-System in [DEINE SPRACHE]. Ich möchte eine Textdatei einlesen, sie in Absätze unterteilen und nach Schlüsselwörtern durchsuchen, um den passenden Absatz als Kontext in meinen API-Prompt einzubetten. Bitte zeige mir ein strukturiertes Code-Gerüst für das Einlesen und Filtern von Text in [DEINE SPRACHE]. Verwende Platzhalter für die Logik und erkläre mir das didaktische Konzept der 'Context Injection'."</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-3-der-sql-dolmetscher-sicherer-sql-generator"><a class="header" href="#-projekt-3-der-sql-dolmetscher-sicherer-sql-generator">🛡️ Projekt 3: Der "SQL-Dolmetscher" (Sicherer SQL-Generator)</a></h3>
+<p><em>Fokus: SQL-to-Text und Sicherheits-Guardrails (Risikomanagement)</em></p>
+<p><strong>Beschreibung:</strong>
+Erstelle ein Programm, das Benutzereingaben entgegennimmt und an eine KI sendet, um ein SQL-Abfragestatement zu generieren. Bevor dieses SQL-Statement ausgeführt wird, durchläuft es eine Sicherheitsüberprüfung (Guardrail), um sicherzustellen, dass nur lesende Abfragen (<code>SELECT</code>) zugelassen sind und destruktive Operationen blockiert werden.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du erfährst, wie wichtig defensive Programmierung bei KI-generierten Daten ist, um die Integrität von Produktivsystemen zu schützen.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-2"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-2">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">FUNCTION generiere_sql_abfrage(benutzer_wunsch: String) -&gt; String
+    // TODO: Sende den Wunsch an die KI mit der Anweisung, ein SQL-Statement zu generieren
+    sql_code = PLATZHALTER_KI_ANTWORT
+    RETURN sql_code
+END FUNCTION
+
+FUNCTION ist_sql_statement_sicher(sql_query: String) -&gt; Boolean
+    // Konvertiere in Großbuchstaben für die Sicherheitsprüfung
+    suche_query = TO_UPPERCASE(sql_query)
+    
+    // 1. TODO: Prüfe, ob die Abfrage mit "SELECT" beginnt
+    WENN NICHT (suche_query STARTET_MIT "SELECT") DANN
+        RETURN FALSE
+    ENDE WENN
+    
+    // 2. TODO: Definiere eine Blacklist mit verbotenen Befehlen (DROP, DELETE, UPDATE, INSERT)
+    blacklist = ["DROP", "DELETE", "UPDATE", "INSERT", "ALTER", "TRUNCATE"]
+    
+    // 3. TODO: Überprüfe, ob ein verbotenes Wort im SQL-Statement vorkommt
+    FUER JEDES wort IN blacklist
+        WENN suche_query ENTHAELT wort DANN
+            RETURN FALSE
+        ENDE WENN
+    ENDE FUER
+    
+    RETURN TRUE
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-2"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-2">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich möchte in [DEINE SPRACHE] ein Programm schreiben, das von einer KI generiertes SQL überprüft, bevor es ausgeführt wird. Es darf nur SELECT-Abfragen erlauben und muss destruktive Befehle wie DROP oder DELETE blockieren. Bitte erstelle mir ein Code-Gerüst für diese Überprüfungsfunktion mit didaktischen Platzhaltern und erkläre mir, welche Risiken (z. B. SQL Injection durch Prompt Injection) ich bei der automatischen Code-Generierung beachten muss."</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-4-der-lizenz-wächter-einfacher-code-compliance-scanner"><a class="header" href="#-projekt-4-der-lizenz-wächter-einfacher-code-compliance-scanner">🔍 Projekt 4: Der "Lizenz-Wächter" (Einfacher Code-Compliance-Scanner)</a></h3>
+<p><em>Fokus: Datei-Analyse, String-Matching und Lizenz-Compliance</em></p>
+<p><strong>Beschreibung:</strong>
+Entwickle ein Konzept-Tool, das Quellcode-Dateien einliest und nach Hinweisen auf unfreie Lizenzen (z. B. GPL) oder typische Plagiats-Signaturen durchsucht. Das Programm soll Entwickler warnen, wenn im Code verdächtige Schlüsselwörter auftauchen, die auf eine unbeabsichtigte Übernahme von Copyleft-Code hindeuten.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du verstehst, wie automatisierte Audit-Verfahren (Static Analysis) im Ansatz funktionieren und wie man Sicherheits- und Compliance-Prüfungen in den Build-Prozess integriert.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-3"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-3">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT AuditBericht
+    datei_pfad: String
+    ist_konform: Boolean
+    gefundene_risiken: Liste_aus_Strings
+END STRUCT
+
+FUNCTION scanne_datei_auf_lizenzen(dateipfad: String) -&gt; AuditBericht
+    risiken = LEERE_LISTE
+    
+    // 1. TODO: Lies den Inhalt der Datei ein
+    code_inhalt = LIES_DATEI(dateipfad)
+    
+    // 2. TODO: Definiere Indikatoren für Copyleft-Lizenzen (z. B. "GPL", "Copyleft", "GNU")
+    kritische_begriffe = ["GPL", "General Public License", "Copyleft", "gnu.org"]
+    
+    // 3. TODO: Durchsuche den Quellcode nach diesen Begriffen
+    FUER JEDES begriff IN kritische_begriffe
+        WENN code_inhalt ENTHAELT begriff DANN
+            FUEGE_HINZU(risiken, "Möglicher Copyleft-Code gefunden: " + begriff)
+        ENDE WENN
+    ENDE FUER
+    
+    // 4. TODO: Bewerte, ob die Datei compliance-konform ist
+    ist_sicher = (LAENGE(risiken) == 0)
+    
+    RETURN AuditBericht(dateipfad, ist_sicher, risiken)
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-3"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-3">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich möchte in [DEINE SPRACHE] ein kleines Tool schreiben, das lokale Quellcodedateien nach bestimmten Textmustern durchsucht, um unsichere Open-Source-Lizenzen wie GPL aufzuspüren. Bitte erstelle mir ein strukturiertes Code-Gerüst mit didaktischen Platzhaltern, das Dateien einliest, Zeile für Zeile scannt und einen Bericht ausgibt. Erkläre mir auch, wie ich dieses Tool um reguläre Ausdrücke (Regex) erweitern kann, um komplexere Lizenz-Header zu erkennen."</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-5-der-migration-architect-sichere-db-migration-mit-ki"><a class="header" href="#-projekt-5-der-migration-architect-sichere-db-migration-mit-ki">🗃️ Projekt 5: Der "Migration-Architect" (Sichere DB-Migration mit KI)</a></h3>
+<p><em>Fokus: Schema-Design, Abwärtskompatibilität und Rollback-Strategien</em></p>
+<p><strong>Beschreibung:</strong>
+Entwirf ein Konzept oder ein einfaches Hilfsprogramm in deiner Wunschsprache, das ein bestehendes Datenbankschema (z. B. eine DDL-SQL-Datei) einliest und einen strukturierten Prompt für ein Sprachmodell generiert, um eine Schema-Änderung abwärtskompatibel zu planen. Das Programm soll die Antwort der KI (die getrennte DDL-, DML- und Rollback-Skripte enthalten soll) entgegennehmen und in separate Dateien wegschreiben.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du verstehst, wie man KI gezielt als Architektur-Assistent einsetzt, um komplexe, risikoreiche Operationen wie Datenbank-Migrationen abzusichern, indem man sie zur Einhaltung bewährter Patterns zwingt.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-4"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-4">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT MigrationsPlan
+    ddl_skript: String      // Schema-Änderungen (CREATE, ALTER...)
+    dml_skript: String      // Daten-Änderungen (UPDATE, INSERT...)
+    rollback_skript: String // Wiederherstellung des alten Zustands
+END STRUCT
+
+FUNCTION plane_migration(aktuelles_schema: String, aenderungswunsch: String) -&gt; MigrationsPlan
+    // 1. TODO: Baue den Prompt zusammen. Weise die KI an, die Migration 
+    //    unbedingt in abwärtskompatible DDL-, DML- und Rollback-Blöcke zu trennen.
+    prompt = "Aktuelles Schema:\n" + aktuelles_schema + "\n"
+             + "Gewünschte Änderung:\n" + aenderungswunsch + "\n"
+             + "Erstelle eine sichere Migration. Teile das Ergebnis strikt in "
+             + "die Abschnitte DDL, DML und ROLLBACK auf."
+
+    // 2. TODO: Rufe die LLM-API auf (wie in Projekt 1 gelernt)
+    antwort_text = sende_ki_anfrage(prompt, PLATZHALTER_API_KEY)
+
+    // 3. TODO: Parse die Antwort der KI und trenne sie in die drei Teilskripte
+    ddl = extrahiere_abschnitt(antwort_text, "DDL")
+    dml = extrahiere_abschnitt(antwort_text, "DML")
+    rollback = extrahiere_abschnitt(antwort_text, "ROLLBACK")
+
+    RETURN MigrationsPlan(ddl, dml, rollback)
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-4"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-4">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich möchte in [DEINE SPRACHE] ein Programm schreiben, das eine bestehende Schema-Datei einliest und einen Prompt generiert, um ein Sprachmodell nach einer abwärtskompatiblen Datenbankmigration zu fragen. Die Antwort soll in DDL, DML und Rollback aufgeteilt und in separate Dateien gespeichert werden. Bitte zeige mir ein strukturiertes Code-Gerüst für dieses Tool in [DEINE SPRACHE] mit Platzhaltern und erkläre mir die Wichtigkeit der Trennung von Schema- und Datenänderungen."</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-6-der-architektur-entscheider-rag--vs-fine-tuning-evaluator"><a class="header" href="#-projekt-6-der-architektur-entscheider-rag--vs-fine-tuning-evaluator">⚖️ Projekt 6: Der "Architektur-Entscheider" (RAG- vs. Fine-Tuning-Evaluator)</a></h3>
+<p><em>Fokus: Kriterienkataloge, bedingte Logik und Architekturentscheidungen</em></p>
+<p><strong>Beschreibung:</strong>
+Entwickle ein interaktives Programm, das Software-Architekten durch einen Fragenkatalog führt. Das Tool bewertet Kriterien wie Budget, Datenaktualität und Stilanpassung und berechnet am Ende eine prozentuale Empfehlung, ob RAG oder Fine-Tuning für das jeweilige Projekt besser geeignet ist.</p>
+<p><strong>Didaktischer Nutzen:</strong>
+Du lernst, wie du komplexe Kriterienkataloge und logische Gewichtungen in Code übersetzt. Gleichzeitig festigst du dein Verständnis der Unterschiede zwischen RAG und Fine-Tuning.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-5"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-5">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT Bewertung
+    rag_score: Integer
+    fine_tuning_score: Integer
+END STRUCT
+
+FUNCTION evaluiere_architektur() -&gt; Bewertung
+    rag_punkte = 0
+    ft_punkte = 0
+    
+    // 1. Kriterium: Datenaktualität
+    drucke("Ändern sich die Daten des Projekts täglich oder wöchentlich? (ja/nein)")
+    antwort_aktualitaet = LIES_EINGABE()
+    WENN antwort_aktualitaet == "ja" DANN
+        // TODO: Welcher Ansatz profitiert von dynamischen Echtzeitdaten?
+        rag_punkte = rag_punkte + 3
+    SONST
+        ft_punkte = ft_punkte + 1
+    ENDE WENN
+    
+    // 2. Kriterium: Budget und Ressourcen
+    drucke("Steht ein großes Budget für GPU-Training und Datenaufbereitung zur Verfügung? (ja/nein)")
+    antwort_budget = LIES_EINGABE()
+    WENN antwort_budget == "nein" DANN
+        // TODO: Welcher Ansatz ist besonders kostengünstig?
+        rag_punkte = rag_punkte + 2
+    SONST
+        ft_punkte = ft_punkte + 2
+    ENDE WENN
+
+    // 3. Kriterium: Spezifischer Code-Stil oder proprietäre Sprache
+    drucke("Soll das Modell eine unbekannte, proprietäre Sprache erlernen oder einen strikten Stilausdruck erzwingen? (ja/nein)")
+    antwort_stil = LIES_EINGABE()
+    WENN antwort_stil == "ja" DANN
+        // TODO: Welcher Ansatz verändert das Verhalten und die Syntax-Fähigkeiten grundlegend?
+        ft_punkte = ft_punkte + 3
+    SONST
+        rag_punkte = rag_punkte + 1
+    ENDE WENN
+
+    RETURN Bewertung(rag_punkte, ft_punkte)
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-5"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-5">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>"Ich möchte in [DEINE SPRACHE] ein kleines Konsolenprogramm schreiben, das dem Benutzer Fragen zu seinem KI-Projekt stellt und bewertet, ob RAG oder Fine-Tuning besser geeignet ist. Bitte erstelle mir ein strukturiertes Code-Gerüst mit didaktischen Platzhaltern, das die Kriterien abfragt, die Punkte gewichtet und das Ergebnis als Empfehlung ausgibt. Erkläre mir auch, wie ich die Gewichtungen mathematisch normalisieren kann, um eine prozentuale Wahrscheinlichkeit auszugeben."</em></p>
+</blockquote>
+<hr />
+<h2 id="-zusammenfassung-welches-projekt-übt-was"><a class="header" href="#-zusammenfassung-welches-projekt-übt-was">💡 Zusammenfassung: Welches Projekt übt was?</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Projekt</th><th style="text-align: left">Programmier-Konzepte</th><th style="text-align: left">KI-Lernkonzept</th><th style="text-align: left">Didaktischer Fokus</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>1. API-Chefkoch</strong></td><td style="text-align: left">Netzwerk-Requests, JSON-Parsing, Fehlerbehandlung</td><td style="text-align: left">API-Integration &amp; Ratenbegrenzung</td><td style="text-align: left">Robustheit im Umgang mit externen Web-Diensten lernen</td></tr>
+<tr><td style="text-align: left"><strong>2. Wissens-Bibliothekar</strong></td><td style="text-align: left">Dateiverarbeitung, String-Operationen, Filterung</td><td style="text-align: left">Retrieval-Augmented Generation (RAG)</td><td style="text-align: left">Vermeidung von Halluzinationen durch Context Injection</td></tr>
+<tr><td style="text-align: left"><strong>3. SQL-Dolmetscher</strong></td><td style="text-align: left">Zeichenketten-Prüfung, Listen-Matching, Validierung</td><td style="text-align: left">Risikomanagement &amp; Guardrails</td><td style="text-align: left">Schutz der Infrastruktur vor unsicherem KI-Code</td></tr>
+<tr><td style="text-align: left"><strong>4. Lizenz-Wächter</strong></td><td style="text-align: left">Datei-Analyse, Musterabgleich (String-Matching), Validierung</td><td style="text-align: left">Compliance &amp; IP-Schutz</td><td style="text-align: left">Schutz vor Lizenz-Infektionen (GPL) und Einhalten von Firmenrichtlinien</td></tr>
+<tr><td style="text-align: left"><strong>5. Migration-Architect</strong></td><td style="text-align: left">Schema-Entwurf, Datei-Ausgabe, Text-Parsing</td><td style="text-align: left">Sicheres Schema-Design &amp; Migrationen</td><td style="text-align: left">Gefahrenfreie Datenbank-Updates mit abwärtskompatiblen Phasen (Expand/Contract)</td></tr>
+<tr><td style="text-align: left"><strong>6. Architektur-Entscheider</strong></td><td style="text-align: left">Entscheidungslogik, Kriterienkatalog, Eingabeverarbeitung</td><td style="text-align: left">Architekturmuster: RAG vs. Fine-Tuning</td><td style="text-align: left">Bewertung von Kosten, Aktualität und Anpassungsbedarf im Team lernen</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://platform.openai.com/docs/api-reference">OpenAI API Reference</a> &amp; <a href="https://docs.anthropic.com/">Anthropic API Docs</a> - Offizielle Dokumentationen der führenden API-Anbieter.</li>
+<li><a href="https://python.langchain.com/docs/concepts/">LangChain (Conceptual Guide)</a> - Einführung in Frameworks zur Orchestrierung von KI-Pipelines.</li>
+<li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLM Applications</a> - Die wichtigsten Sicherheitsrisiken bei der Arbeit mit Sprachmodellen im Detail erklärt.</li>
+<li>[Die offiziellen Dokumentationen deiner Programmiersprache zur sicheren Datenbankanbindung und Netzwerkprogrammierung.]</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="coding-mit-ki-phase8.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="coding-mit-ki-phase10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="coding-mit-ki-phase8.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="coding-mit-ki-phase10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>💡 Phase 10: Metaprogrammierung &amp; Agentic Coding - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">5.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">5.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">5.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">5.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">5.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">5.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">6.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">6.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">6.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">7.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">8.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">9.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">10.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">11.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">12.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">13.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">13.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">13.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">13.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">13.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">13.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">13.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">13.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">13.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">13.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">13.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">13.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">13.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">13.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">14.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">14.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">14.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">14.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">14.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">14.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">14.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">14.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">14.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">14.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">14.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">14.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">15.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">15.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">15.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">15.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">16.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">17.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">18.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">19.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">20.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">21.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">22.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">23.</strong> 🇨 C-Programmierung - Phase 2</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">24.</strong> 🚀 C++-Programmierung (C++23) - Phase 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">24.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">24.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">24.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">24.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">25.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">25.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">25.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">25.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">25.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">25.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">26.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">27.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">28.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">29.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">30.</strong> 🚀 C++-Programmierung (C++23) - Phase 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">30.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">31.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">31.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">31.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">31.3.</strong> Pfade & Importe</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">32.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">33.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">34.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">35.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">36.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">36.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">36.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">36.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">37.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">38.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">39.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">40.</strong> 100-projekte-prompts-phase5.md</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">41.</strong> 🚀 C++-Programmierung (C++23) - Phase 5</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">42.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">42.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">42.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">42.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">43.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">44.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">45.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">46.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">47.</strong> 🇨 C-Programmierung - Phase 6</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">47.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">48.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">48.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">48.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">48.3.</strong> Async/Await & Tokio-Grundlagen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">49.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">50.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">51.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">52.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">53.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">53.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">53.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">53.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">54.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">55.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">56.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">57.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">58.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">58.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">58.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">59.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">60.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">61.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">62.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">63.</strong> 🇨 C-Programmierung - Phase 9</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">64.</strong> 🚀 C++-Programmierung (C++23) - Phase 9</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">65.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">65.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">65.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">66.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">67.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">68.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">69.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">70.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">71.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">72.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">73.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">74.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">75.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">76.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">77.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">78.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">79.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">80.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">81.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">82.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">82.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">82.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">83.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">84.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">84.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">84.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">84.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">84.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">84.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">84.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">84.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">84.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">84.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">84.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">84.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">85.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">85.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">85.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">85.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">85.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">85.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">85.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">85.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">86.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">87.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">88.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">89.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">90.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">90.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">90.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">90.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">90.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">90.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">90.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">90.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">90.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">90.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html" class="active"><strong aria-hidden="true">90.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">91.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">92.</strong> Datenschutz</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-phase-10-metaprogrammierung--agentic-coding-autonome-workflows"><a class="header" href="#-phase-10-metaprogrammierung--agentic-coding-autonome-workflows">💡 Phase 10: Metaprogrammierung &amp; Agentic Coding (Autonome Workflows)</a></h1>
+<h2 id="willkommen-in-der-zukunft-der-softwareentwicklung-"><a class="header" href="#willkommen-in-der-zukunft-der-softwareentwicklung-">Willkommen in der Zukunft der Softwareentwicklung! 🚀</a></h2>
+<p>Herzlichen Glückwunsch, du hast die finale Phase erreicht! In den bisherigen Kapiteln hast du gelernt, wie du Programmierkonzepte verstehst und KI-Assistenten als intelligente Partner einsetzt. Jetzt gehen wir den entscheidenden Schritt weiter: Wir wechseln von passiven KI-Helfern zu <strong>autonomen Agenten</strong> und <strong>Metaprogrammierung</strong>.</p>
+<p>Hier geht es nicht mehr nur darum, dass eine KI dir Codezeilen vorschlägt. Stattdessen orchestrierst du autonome Workflows (sogenanntes <em>Agentic Coding</em>), bei denen die KI selbstständig plant, Dateien liest und schreibt, Befehle ausführt, Tests laufen lässt und Fehler behebt. Du wirst vom reinen Coder zum <strong>Software-Architekten</strong> und <strong>System-Orchestrator</strong>.</p>
+<p>Egal ob du mit <strong>Python, JavaScript/TypeScript, Java, C, C++ oder Rust</strong> arbeitest: Die Konzepte in diesem Kapitel sind universell und sprachneutral einsetzbar. Sie helfen dir, komplexe Systeme sicher zu planen und zu bauen.</p>
+<hr />
+<h2 id="-theorie-autonome-agenten--systemdesign"><a class="header" href="#-theorie-autonome-agenten--systemdesign">🧠 Theorie: Autonome Agenten &amp; Systemdesign</a></h2>
+<p>Um in dieser Ära der Softwareentwicklung erfolgreich zu sein, musst du verstehen, wie autonome Agenten arbeiten, wo ihre Grenzen liegen und wie du die Kontrolle über die Architektur behältst.</p>
+<h3 id="1-das-70-problem-beyond-vibe-coding"><a class="header" href="#1-das-70-problem-beyond-vibe-coding">1. Das „70%-Problem“ (Beyond Vibe Coding)</a></h3>
+<p><em>Referenz: Addy Osmani (Beyond Vibe Coding)</em></p>
+<p>Es ist verblüffend einfach geworden, mit KI-Tools wie Cursor oder Bolt.new in Sekundenschnelle lauffähigen Code zu generieren. Das nennen wir oft <strong>„Vibe Coding“</strong>: Du beschreibst ein Feature in natürlicher Sprache, lehnst dich zurück, und die KI baut es für dich. Doch Vorsicht! Hier lauert das <strong>70%-Problem</strong>:</p>
+<ul>
+<li><strong>Die ersten 70%</strong> (Boilerplate-Code, Standardfunktionen, grundlegende UI-Strukturen) erledigt die KI fehlerfrei und rasend schnell.</li>
+<li><strong>Die verbleibenden 30%</strong> machen den Unterschied zwischen einem Prototyp und professioneller Produktionssoftware aus. Dazu gehören:
+<ul>
+<li>Robuste Fehlerbehandlung und Edge-Cases.</li>
+<li>Sicherheit (Security), Skalierbarkeit und Performance.</li>
+<li>Software-Architektur und langfristige Wartbarkeit.</li>
+<li>Die Integration komplexer Drittsysteme.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Die Küchenchef-Analogie:</strong>
+Stell dir die KI wie einen sehr schnellen, aber unerfahrenen Jungkoch (Sous-Chef) vor. Er kann Gemüse schneiden und einfache Suppen ansetzen (die 70%). Doch die Menüplanung, die Qualitätskontrolle, das Abschmecken und die Koordination der Küche (die kritischen 30%) liegen allein bei dir als Küchenchef. Verlässt du dich blind auf den Jungkoch, schmeckt das Essen am Ende vielleicht ungenießbar.</p>
+</blockquote>
+<hr />
+<h3 id="2-das-agentic-coding-paradigma-agenten-vs-assistenten"><a class="header" href="#2-das-agentic-coding-paradigma-agenten-vs-assistenten">2. Das Agentic-Coding-Paradigma: Agenten vs. Assistenten</a></h3>
+<p><em>Referenz: Tom Taulli, Kap. 3; Michael Kofler, Kap. 3</em></p>
+<p>Was unterscheidet klassische KI-Assistenten von modernen, autonomen Agenten?</p>
+<ul>
+<li><strong>Passive Assistenten (z. B. klassisches Copilot-Autocomplete):</strong> Sie reagieren nur auf deine Tastatureingaben. Sie schreiben Zeile für Zeile Code weiter und haben kein Verständnis für das Gesamtprojekt.</li>
+<li><strong>Autonome Agenten (z. B. Claude Code, Antigravity CLI, Cursor Composer):</strong> Sie arbeiten zielorientiert. Du gibst ihnen ein Ziel (z. B. <em>„Füge eine Benutzeranmeldung hinzu und stelle sicher, dass alle Tests grün sind“</em>). Der Agent erstellt einen Plan, nutzt Werkzeuge (Tools) wie das Lesen von Dateien, das Ausführen von Terminal-Befehlen und das Beheben von Compiler-Fehlern in einer Schleife, bis das Ziel erreicht ist.</li>
+</ul>
+<pre><code class="language-mermaid">graph TD
+    A[Ziel vorgeben] --&gt; B[Agent analysiert Codebase]
+    B --&gt; C[Agent erstellt einen Plan]
+    C --&gt; D[Agent führt Tool aus: Datei editieren]
+    D --&gt; E[Agent führt Tool aus: Tests/Compiler starten]
+    E --&gt;|Fehler gefunden| F[Agent analysiert Fehler &amp; passt Code an]
+    F --&gt; E
+    E --&gt;|Erfolgreich| G[Ergebnis dem Entwickler präsentieren]
+</code></pre>
+<hr />
+<h3 id="3-agentic-coding-best-practices--workflows"><a class="header" href="#3-agentic-coding-best-practices--workflows">3. Agentic Coding Best Practices &amp; Workflows</a></h3>
+<p><em>Referenz: Tomasz Lelek &amp; Artur Skowroński (Vibe Engineering)</em></p>
+<p>Wenn du autonome Agenten in deine tägliche Arbeit integrierst, solltest du dich an diese Best Practices halten, um das Chaos in deiner Codebase zu verhindern:</p>
+<ul>
+<li><strong>Modularität first:</strong> Je kleiner und fokussierter deine Dateien und Module sind, desto präziser können Agenten daran arbeiten. Große, unübersichtliche Dateien führen schnell zu Kontextverlust und Fehlern.</li>
+<li><strong>Versionskontrolle als Sicherheitsnetz:</strong> Lass einen Agenten <em>niemals</em> auf einer ungesicherten Codebase arbeiten. Erstelle vor jedem Agenten-Aufruf einen Git-Commit oder Branch. Wenn der Agent sich verrennt, kannst du den Zustand sofort zurücksetzen (<code>git reset --hard</code>).</li>
+<li><strong>Verifikation statt blindem Vertrauen:</strong> Führe nach jeder Aktion des Agenten manuelle Reviews durch und lasse deine automatisierten Test-Suiten laufen. Du bist der Gatekeeper für die Codequality!</li>
+<li><strong>Regeln festlegen:</strong> Nutze Konfigurationsdateien wie <code>.cursorrules</code> oder System-Prompts, um dem Agenten architektonische Leitplanken zu setzen (z. B. <em>„Keine externen Bibliotheken ohne Rücksprache verwenden“</em> oder <em>„Schreibe immer Unit-Tests für neue Funktionen“</em>).</li>
+</ul>
+<hr />
+<h3 id="4-autonomes-arbeiten-im-terminal-claude-code--antigravity-cli"><a class="header" href="#4-autonomes-arbeiten-im-terminal-claude-code--antigravity-cli">4. Autonomes Arbeiten im Terminal (Claude Code &amp; Antigravity CLI)</a></h3>
+<p><em>Referenz: Michael Kofler, Kap. 3</em></p>
+<p>Terminal-Agenten laufen direkt in deiner Konsole. Tools wie <code>Claude Code</code> oder die <code>Antigravity CLI</code> (<code>agy</code>) sind direkt mit deiner Shell verbunden. Sie können:</p>
+<ol>
+<li>Deine Codebase nach bestimmten Mustern durchsuchen (Grep).</li>
+<li>Fehler direkt im Terminal patchen.</li>
+<li>Git-Befehle ausführen (Branches erstellen, Commits schreiben).</li>
+<li>Lernprozesse automatisieren, indem sie nach Fehlern suchen und Lösungswege vorschlagen.</li>
+</ol>
+<p>Der Vorteil: Kein ständiges Kopieren von Code zwischen Browser und Editor mehr. Die KI agiert wie ein virtueller Terminal-Entwickler.</p>
+<hr />
+<h3 id="5-agentic-coding-mit-cursor-composer"><a class="header" href="#5-agentic-coding-mit-cursor-composer">5. Agentic Coding mit Cursor (Composer)</a></h3>
+<p><em>Referenz: Michael Kofler, Kap. 3</em></p>
+<p>Cursor ist ein auf VS Code basierender Editor, der speziell für KI-gestütztes Arbeiten entwickelt wurde. Die wichtigste Funktion für autonomes Arbeiten ist der <strong>Composer</strong> (meist über <code>Cmd+I</code> oder <code>Strg+I</code> erreichbar).
+Während normale Chats immer nur eine Datei bearbeiten, kann der Composer:</p>
+<ul>
+<li>Änderungen über <strong>mehrere Dateien hinweg</strong> koordinieren.</li>
+<li>Neue Dateien erstellen, bestehende modifizieren und Import-Pfade in abhängigen Dateien automatisch anpassen.</li>
+<li>Einen visuellen Diff-Vergleich (Vorher/Nachher) anzeigen, bei dem du jede Änderung einzeln akzeptieren oder ablehnen kannst.</li>
+</ul>
+<hr />
+<h3 id="6-komplexe-web-apps-im-browser-stackblitz-boltnew"><a class="header" href="#6-komplexe-web-apps-im-browser-stackblitz-boltnew">6. Komplexe Web-Apps im Browser: stackblitz Bolt.new</a></h3>
+<p><em>Referenz: Addy Osmani (Vibe Coding mit Bolt)</em></p>
+<p>Bolt.new nutzt eine Technologie namens <strong>WebContainers</strong>, um ein komplettes Betriebssystem (Node.js, npm, Compiler) direkt im Webbrowser auszuführen.</p>
+<ul>
+<li>Du beschreibst eine Web-App (z. B. <em>„Erstelle mir ein Dashboard für ein Haushaltsbuch mit Diagrammen“</em>).</li>
+<li>Bolt.new erstellt das Projekt, installiert alle notwendigen Packages, baut die Komponenten und startet einen lokalen Server im Browser.</li>
+<li>Du kannst der KI live beim Schreiben zusehen und die fertige App sofort ausprobieren und deployen – alles ohne eine einzige Zeile Code auf deinem lokalen Rechner konfigurieren zu müssen. Dies eignet sich hervorragend für schnelles Prototyping (Rapid Prototyping).</li>
+</ul>
+<hr />
+<h3 id="7-model-context-protocol-mcp"><a class="header" href="#7-model-context-protocol-mcp">7. Model Context Protocol (MCP)</a></h3>
+<p><em>Referenz: Michael Kofler, Kap. 9</em></p>
+<p>Das <strong>Model Context Protocol (MCP)</strong> ist ein offener Standard, der von Anthropic entwickelt wurde. Es löst eines der größten Probleme von KIs: den Mangel an aktuellem Kontext und externen Werkzeugen.</p>
+<ul>
+<li><strong>Wie funktioniert es?</strong> MCP fungiert als standardisierte Schnittstelle (API) zwischen der KI (Client) und externen Datenquellen oder Programmen (MCP-Servern).</li>
+<li><strong>Was kann angebunden werden?</strong>
+<ul>
+<li><strong>Datenbanken:</strong> Die KI kann direkt SQL-Datenbanken abfragen.</li>
+<li><strong>Lokale Dokumente:</strong> Anbindung an firmeninterne Wikis oder Wissensdatenbanken.</li>
+<li><strong>Web-APIs:</strong> Websuchen, GitHub-Repositories, Slack-Kanäle oder Kalender.</li>
+</ul>
+</li>
+<li><strong>Eigene Custom Skills:</strong> Du kannst selbst kleine MCP-Server (in Python, Node.js oder Rust) schreiben, um deiner KI maßgeschneiderte Werkzeuge zur Verfügung zu stellen (z. B. Zugriff auf deine spezielle Hardware-API).</li>
+</ul>
+<pre><code>┌───────────┐         Model Context Protocol         ┌──────────────┐
+│  KI-Agent │ ─────────────────────────────────────&gt; │  MCP-Server  │
+│ (Client)  │ &lt;───────────────────────────────────── │ (Daten/Tools)│
+└───────────┘                                        └──────────────┘
+                                                             │
+                                             ┌───────────────┴───────────────┐
+                                             ▼                               ▼
+                                     [Lokale Datenbank]             [Web-Such-API]
+</code></pre>
+<hr />
+<h3 id="8-teambildung--zusammenarbeit-in-der-ki-Ära"><a class="header" href="#8-teambildung--zusammenarbeit-in-der-ki-Ära">8. Teambildung &amp; Zusammenarbeit in der KI-Ära</a></h3>
+<p><em>Referenz: Tomasz Lelek &amp; Artur Skowroński (Vibe Engineering)</em></p>
+<p>Die Rolle des Softwareentwicklers verändert sich grundlegend:</p>
+<ul>
+<li><strong>Vom Coder zum Reviewer:</strong> Du schreibst weniger Code selbst, verbringst aber mehr Zeit mit dem Lesen, Verifizieren und Testen von generiertem Code.</li>
+<li><strong>Funktionsübergreifende Teams:</strong> Da KIs komplexe technische Hürden abbauen, können Designer, Produktmanager oder Fachexperten schneller funktionale Prototypen erstellen.</li>
+<li><strong>Architektur-Konsens:</strong> In Teams wird es umso wichtiger, klare Schnittstellen und Design-Patterns zu vereinbaren. Wenn jeder Entwickler seine KI wild Code generieren lässt, entsteht unkontrollierbares System-Chaos („Software-Wildwuchs“).</li>
+</ul>
+<hr />
+<h3 id="9-team-workflows--pr-automatisierung-ki-gestützte-pull-requests--review-bots"><a class="header" href="#9-team-workflows--pr-automatisierung-ki-gestützte-pull-requests--review-bots">9. Team-Workflows &amp; PR-Automatisierung (KI-gestützte Pull Requests &amp; Review-Bots)</a></h3>
+<p><em>Referenz: Tomasz Lelek &amp; Artur Skowroński (Vibe Engineering)</em></p>
+<p>Die Integration von KI endet nicht auf deinem lokalen Rechner. In modernen Entwicklungsteams automatisieren KI-Systeme den gesamten Weg vom lokalen Commit bis zum fertigen Release im Haupt-Branch.</p>
+<ul>
+<li><strong>Automatisierte PR-Beschreibungen:</strong> Beim Erstellen eines Pull Requests (PR) analysiert eine KI die Unterschiede im Code (<code>git diff</code>) und schreibt automatisch eine strukturierte Zusammenfassung der Änderungen, der betroffenen Komponenten und der durchgeführten Tests. Das spart Entwicklern Zeit und sorgt für einheitlich dokumentierte PRs.</li>
+<li><strong>Review-Bots in CI/CD:</strong> Als Teil deiner Continuous Integration / Continuous Deployment (CI/CD)-Pipeline (z. B. GitHub Actions oder GitLab CI) können KI-Review-Bots (wie <em>PR-Agent</em> oder <em>CodiumAI</em>) den Code analysieren. Sie hinterlassen automatische Kommentare zu Codequality, Sicherheitsrisiken (z. B. SQL-Injections) und logischen Fehlern, noch bevor ein menschlicher Kollege den PR öffnet.</li>
+<li><strong>Collaborative Coding &amp; Der „Reviewer der ersten Stunde“:</strong> Siehe die KI als deine erste Verteidigungslinie. Indem du deinen Code vor dem echten Team-Review durch eine KI prüfen lässt (z. B. „Pre-Review“), filterst du Flüchtigkeitsfehler, Formatierungsprobleme und unvollständige Fehlerbehandlungen im Vorfeld heraus. Das entlastet deine Teammitglieder und erhöht die Qualität der Diskussionen im eigentlichen Code-Review.</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Qualität vor Bequemlichkeit:</strong>
+Automatische PR-Beschreibungen sind fantastisch, verleiten aber dazu, sie ungeprüft zu übernehmen. Vergewissere dich immer, dass die KI-Zusammenfassung den Kern deiner Änderungen exakt beschreibt und keine Halluzinationen enthält. Eine falsche Dokumentation im PR verwirrt dein Team langfristig.</p>
+</blockquote>
+<hr />
+<h2 id="-praxis-aufgaben-trainiere-deine-agentic-fähigkeiten"><a class="header" href="#-praxis-aufgaben-trainiere-deine-agentic-fähigkeiten">🛠️ Praxis-Aufgaben: Trainiere deine Agentic-Fähigkeiten</a></h2>
+<p>Probiere diese Aufgaben aus, um ein Gespür für autonome Workflows zu bekommen:</p>
+<h3 id="aufgabe-a-den-agenten-reglementieren-system-leitplanken"><a class="header" href="#aufgabe-a-den-agenten-reglementieren-system-leitplanken">Aufgabe A: Den Agenten reglementieren (System-Leitplanken)</a></h3>
+<p>Erstelle im Hauptverzeichnis deines aktuellen Projekts eine Datei namens <code>.cursorrules</code> (oder nutze die Custom Instructions deiner bevorzugten KI) und füge Regeln hinzu, die die KI zwingen, sauberer zu arbeiten.</p>
+<ul>
+<li><strong>Deine Aufgabe:</strong> Schreibe Regeln, die vorschreiben, dass:
+<ol>
+<li>Jede Funktion maximal eine bestimmte Zeilenanzahl haben darf.</li>
+<li>Keine externen Bibliotheken ohne deine explizite Erlaubnis installiert werden dürfen.</li>
+<li>Der Agent vor jeder Änderung erst eine kurze logische Erklärung liefern muss.</li>
+</ol>
+</li>
+<li><strong>Test:</strong> Fordere den Agenten auf, eine mathematische Hilfsfunktion zu schreiben, und prüfe, ob er sich an deine neuen Regeln hält.</li>
+</ul>
+<h3 id="aufgabe-b-konzeptskizze-für-ein-custom-mcp-tool"><a class="header" href="#aufgabe-b-konzeptskizze-für-ein-custom-mcp-tool">Aufgabe B: Konzeptskizze für ein Custom MCP Tool</a></h3>
+<p>Stell dir vor, du möchtest, dass eine KI direkt mit deinem Betriebssystem interagiert, um den freien Speicherplatz auf deiner Festplatte zu überwachen und alte Log-Dateien zu löschen.</p>
+<ul>
+<li><strong>Deine Aufgabe:</strong> Skizzieren Sie den JSON-Vertrag für ein solches Tool. Wie müssten der Name des Tools, die Beschreibung und die erwarteten Eingabeparameter (Schema) aussehen, damit die KI das Tool korrekt aufrufen kann? (Schreibe keinen echten Code, sondern nur das konzeptionelle Schema!).</li>
+</ul>
+<h3 id="aufgabe-c-das-kontrollierte-zerstören-experiment-terminal-debugging"><a class="header" href="#aufgabe-c-das-kontrollierte-zerstören-experiment-terminal-debugging">Aufgabe C: Das „Kontrollierte Zerstören“-Experiment (Terminal-Debugging)</a></h3>
+<ol>
+<li>Füge absichtlich einen Syntaxfehler oder einen logischen Fehler in eines deiner bestehenden Programme ein.</li>
+<li>Starte einen Terminal-Agenten (z. B. Claude Code oder die Antigravity CLI).</li>
+<li><strong>Wichtig:</strong> Lass den Agenten nicht einfach machen! Verwende einen Prompt, der ihn anweist:
+<blockquote>
+<p><em>„Analysiere den Compilerfehler in diesem Projekt. Erkläre mir zuerst deine Hypothese, warum dieser Fehler auftritt. Schlage mir drei mögliche Lösungswege vor. Warte auf meine Freigabe, bevor du eine Datei änderst.“</em></p>
+</blockquote>
+</li>
+<li>Beobachte, wie der Agent auf deine Rückfragen reagiert und lerne, den Workflow aktiv zu steuern.</li>
+</ol>
+<h3 id="aufgabe-d-der-virtuelle-reviewer-simuliertes-pr-review"><a class="header" href="#aufgabe-d-der-virtuelle-reviewer-simuliertes-pr-review">Aufgabe D: Der virtuelle Reviewer (Simuliertes PR-Review)</a></h3>
+<p>Um ein Gefühl für automatisierte PR-Reviews zu bekommen, kannst du den Workflow auf deinem lokalen Rechner simulieren.</p>
+<ul>
+<li><strong>Deine Aufgabe:</strong>
+<ol>
+<li>Wähle ein kleines Code-Stück, das du vor Kurzem geschrieben hast (oder füge absichtlich ein paar Schwachstellen wie fehlende Fehlerbehandlung oder schlechte Benennungen ein).</li>
+<li>Verwende deinen KI-Chatbot und gib ihm folgende Rolle per System-Prompt oder direktem Befehl:
+<blockquote>
+<p><em>„Du bist ein kritischer Senior-Entwickler und führst das Code-Review für meinen Pull Request durch. Analysiere den folgenden Code. Zeige mir Verbesserungspotenziale auf (z. B. bezüglich Edge-Cases, Lesbarkeit oder Robustheit). Gib mir jedoch keine fertigen Codelösungen, sondern erkläre das Problem didaktisch wertvoll und stelle mir Leitfragen, die mich zur eigenen Lösung führen.“</em></p>
+</blockquote>
+</li>
+<li>Analysiere das Feedback. Welche Ratschläge waren wirklich sinnvoll (die 30%), und wo lag die KI vielleicht daneben?</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h2 id="-projektvorschläge"><a class="header" href="#-projektvorschläge">🚀 Projektvorschläge</a></h2>
+<p>Hier sind drei sprachenunabhängige Projekte, mit denen du Metaprogrammierung, Agentic Coding und Tool-Integrationen in der Praxis üben kannst.</p>
+<h3 id="-projekt-1-der-autonome-datei-organisierer-file-agent"><a class="header" href="#-projekt-1-der-autonome-datei-organisierer-file-agent">🤖 Projekt 1: Der autonome Datei-Organisierer (File Agent)</a></h3>
+<p><em>Fokus: Lokaler Dateizugriff, Tool-Execution &amp; Fehlerbehandlung</em></p>
+<p><strong>Beschreibung:</strong>
+Entwickle ein Skript, das ein bestimmtes Verzeichnis scannt, Dateien nach ihren Endungen sortiert (z. B. Bilder in einen Ordner, Dokumente in einen anderen) und optional doppelte Dateien anhand eines Hash-Wertes löscht. Du entwirfst die Architektur und die Edge Cases (z. B. Schreibschutz-Fehler), während die KI dir hilft, die System-APIs deiner Sprache anzusprechen.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT DateiInfo
+    Pfad: Text
+    Dateiendung: Text
+    Dateigroesse: Ganzzahl
+    // TODO: Überlege, wie ein Hash-Wert zur Erkennung von Duplikaten gespeichert werden kann!
+END STRUCT
+
+FUNCTION scanne_verzeichnis(ziel_pfad: Text) -&gt; Liste von DateiInfo
+    // TODO: Nutze die Dateisystem-Bibliotheken deiner Sprache
+    // Lese alle Dateien im angegebenen Pfad aus
+    RETURN PLATZHALTER_DATEILISTE
+END FUNCTION
+
+FUNCTION verschiebe_datei(datei: DateiInfo, ziel_ordner: Text) -&gt; Logisch
+    // TODO: Verschiebe die Datei. Fange Fehler ab (z. B. Datei gesperrt oder Berechtigung fehlt!)
+    WENN FEHLER_AUFTRITT DANN
+        LOGGE "Fehler beim Verschieben von: " + datei.Pfad
+        RETURN FALSCH
+    SONST
+        RETURN WAHR
+    ENDE WENN
+END FUNCTION
+
+FUNCTION main()
+    Verzeichnis = "mein/pfad"
+    Dateien = scanne_verzeichnis(Verzeichnis)
+    
+    // Schleife über alle Dateien und Sortierlogik implementieren
+    // (Lass dich hierbei vom Agenten unterstützen, behalte aber die Kontrolle über die Pfad-Validierung!)
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt"><a class="header" href="#dein-lern-prompt-für-dieses-projekt">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>„Ich möchte in [DEINE SPRACHE] einen autonomen Datei-Organisierer schreiben. Ich habe mir bereits Gedanken über die Struktur gemacht: Ich benötige eine funktion zum Scannen eines Ordners und eine zum sicheren Verschieben mit Fehlerbehandlung. Bitte erstelle mir ein Code-Gerüst mit didaktischen Platzhaltern wie [dein Platzhalter, z.B. todo!() / pass / // TODO]. Erkläre mir außerdem, welche Fehler (Edge Cases) beim Verschieben von Dateien im Betriebssystem typischerweise auftreten können und wie ich diese abfange.“</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-2-der-mcp-gestützte-git-dokumentar-custom-mcp-tool"><a class="header" href="#-projekt-2-der-mcp-gestützte-git-dokumentar-custom-mcp-tool">📝 Projekt 2: Der MCP-gestützte Git-Dokumentar (Custom MCP Tool)</a></h3>
+<p><em>Fokus: API-Anbindung, Metaprogrammierung &amp; Tool-Integration</em></p>
+<p><strong>Beschreibung:</strong>
+Schreibe ein Werkzeug, das die letzten Commits aus deinem Git-Repository ausliest, die Änderungen analysiert und automatisch eine strukturierte Zusammenfassung (Changelog) für ein Release generiert. Du baust die Schnittstelle zu Git auf, während der Agent dir bei der Textformatierung hilft.</p>
+<h4 id="das-abstrakte-code-gerüst-pseudocode-1"><a class="header" href="#das-abstrakte-code-gerüst-pseudocode-1">Das abstrakte Code-Gerüst (Pseudocode):</a></h4>
+<pre><code class="language-text">STRUCT Commit
+    Hash: Text
+    Autor: Text
+    Nachricht: Text
+    Datum: Text
+END STRUCT
+
+FUNCTION hole_letzte_commits(anzahl: Ganzzahl) -&gt; Liste von Commit
+    // TODO: Führe einen System-Befehl (z. B. 'git log') aus und parse die Ausgabe.
+    // TIPP: Beachte die Sicherheitsrisiken bei der Ausführung von Systembefehlen (Command Injection)!
+    RETURN PLATZHALTER_COMMITS
+END FUNCTION
+
+FUNCTION generiere_changelog(commits: Liste von Commit) -&gt; Text
+    // TODO: Filter die Commits nach Typen (z. B. 'feat:', 'fix:')
+    // Erstelle ein formatiertes Markdown-Dokument
+    Changelog = "## Release Changelog\n"
+    // Schleife und Filterung hier implementieren
+    RETURN Changelog
+END FUNCTION
+
+FUNCTION main()
+    Commits = hole_letzte_commits(5)
+    Dokument = generiere_changelog(Commits)
+    PRINT Dokument
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-dieses-projekt-1"><a class="header" href="#dein-lern-prompt-für-dieses-projekt-1">Dein Lern-Prompt für dieses Projekt:</a></h4>
+<blockquote>
+<p><em>„Ich lerne [DEINE SPRACHE] und möchte ein Skript schreiben, das über die Befehlszeile 'git log' aufruft, die Ausgabe parst und daraus ein Changelog generiert. Bitte zeige mir ein sprachtypisches Code-Gerüst, bei dem die Ausführung des Systembefehls und das Parsen des Textes mit Platzhaltern versehen sind. Erkläre mir vor allem, wie ich Systembefehle in [DEINE SPRACHE] sicher ausführe, ohne Sicherheitslücken (Command Injections) zu riskieren.“</em></p>
+</blockquote>
+<hr />
+<h3 id="-projekt-3-die-modulare-web-app-mit-cursor-composer"><a class="header" href="#-projekt-3-die-modulare-web-app-mit-cursor-composer">👑 Projekt 3: Die modulare Web-App mit Cursor Composer</a></h3>
+<p><em>Fokus: Multi-File-Entwicklung, Session-Architektur &amp; System-Orchestrierung</em></p>
+<p><strong>Beschreibung:</strong>
+Erstelle ein kleines Aufgaben-Verwaltungssystem (To-Do App) mit einer sauberen Trennung zwischen Datenspeicherung (z. B. in einer JSON-Datei) und der Benutzeroberfläche (z. B. Konsolen-Menü oder einfache Web-Oberfläche). Nutze den Cursor Composer oder ein ähnliches Agenten-Tool, um diese Dateien parallel zu erstellen und miteinander zu verknüpfen.</p>
+<h4 id="die-geplante-dateistruktur-sprachneutral"><a class="header" href="#die-geplante-dateistruktur-sprachneutral">Die geplante Dateistruktur (sprachneutral):</a></h4>
+<ol>
+<li><code>model.[ext]</code>: Definiert die Datenstrukturen für Aufgaben.</li>
+<li><code>storage.[ext]</code>: Regelt das Laden und Speichern aus/in einer Datei.</li>
+<li><code>app.[ext]</code>: Die Hauptanwendung, die Benutzeroberfläche und Speicher verknüpft.</li>
+</ol>
+<h4 id="das-abstrakte-code-gerüst-für-storage-pseudocode"><a class="header" href="#das-abstrakte-code-gerüst-für-storage-pseudocode">Das abstrakte Code-Gerüst für <code>storage</code> (Pseudocode):</a></h4>
+<pre><code class="language-text">// TODO: Importiere die Datenstruktur aus 'model'
+
+FUNCTION speichere_aufgaben(aufgaben: Liste von Aufgabe, datei_pfad: Text) -&gt; Logisch
+    // TODO: Konvertiere die Liste in ein Format wie JSON und schreibe sie in die Datei
+    RETURN PLATZHALTER
+END FUNCTION
+
+FUNCTION lade_aufgaben(datei_pfad: Text) -&gt; Liste von Aufgabe
+    // TODO: Lese die Datei und fange ab, falls die Datei noch nicht existiert!
+    RETURN PLATZHALTER
+END FUNCTION
+</code></pre>
+<h4 id="dein-lern-prompt-für-diese-multi-file-session"><a class="header" href="#dein-lern-prompt-für-diese-multi-file-session">Dein Lern-Prompt für diese Multi-File-Session:</a></h4>
+<blockquote>
+<p><em>„Ich möchte mit dir als autonomer Agent (z. B. im Composer-Modus) eine To-Do-Anwendung in [DEINE SPRACHE] entwickeln. Die Anwendung soll modular in drei Dateien aufgeteilt sein: model, storage und app.
+Erstelle mir bitte für alle drei Dateien leere Gerüste mit didaktischen Platzhaltern. Stelle sicher, dass die Import- und Export-Pfade zwischen den Dateien korrekt aufgesetzt sind. Erkläre mir kurz, wie du die Abhängigkeiten zwischen den Modulen gelöst hast.“</em></p>
+</blockquote>
+<hr />
+<h2 id="-zusammenfassung-welches-tool-für-welchen-zweck"><a class="header" href="#-zusammenfassung-welches-tool-für-welchen-zweck">💡 Zusammenfassung: Welches Tool für welchen Zweck?</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Tool / Konzept</th><th style="text-align: left">Funktionsweise</th><th style="text-align: left">Dein Fokus (Die 30%)</th><th style="text-align: left">Bester Anwendungsfall</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>Agentic Coding</strong></td><td style="text-align: left">Autonome Agenten planen und editieren selbstständig ganze Projekte.</td><td style="text-align: left">Architektur-Design, Verifikation der Logik, Testen.</td><td style="text-align: left">Komplexe Features, Refactoring, Bug-Suche.</td></tr>
+<tr><td style="text-align: left"><strong>Terminal-Agenten</strong></td><td style="text-align: left">Agenten agieren direkt in deiner lokalen Konsole und Shell.</td><td style="text-align: left">Berechtigungen kontrollieren, Git-Commits prüfen.</td><td style="text-align: left">Automatisierung von Builds, Git-Workflows, lokales Testen.</td></tr>
+<tr><td style="text-align: left"><strong>Cursor Composer</strong></td><td style="text-align: left">Bearbeitet mehrere Dateien gleichzeitig mit visuellem Diff.</td><td style="text-align: left">Code-Reviews der Diffs, Konfliktlösung bei Merges.</td><td style="text-align: left">System-Strukturierung, dateiübergreifendes Refactoring.</td></tr>
+<tr><td style="text-align: left"><strong>Bolt.new</strong></td><td style="text-align: left">Erstellt komplette Web-Apps im Browser per Chat.</td><td style="text-align: left">Logisches Feintuning, API-Anbindung, UX-Kontrolle.</td><td style="text-align: left">Schnelle Prototypen, Dashboards, Web-Frontends.</td></tr>
+<tr><td style="text-align: left"><strong>MCP (Model Context Protocol)</strong></td><td style="text-align: left">Verbindet die KI sicher mit lokalen Daten, DBs und APIs.</td><td style="text-align: left">Einrichtung der Server, Definition von benutzerdefinierten Tools.</td><td style="text-align: left">Arbeiten mit realen Firmendaten, Datenbank-Abfragen, Custom Tools.</td></tr>
+<tr><td style="text-align: left"><strong>PR-Automatisierung &amp; Review-Bots</strong></td><td style="text-align: left">KI-gestützte Erstellung von PR-Beschreibungen und automatisierte Vorab-Reviews in CI/CD-Pipelines.</td><td style="text-align: left">Überprüfung der KI-PR-Beschreibung auf Richtigkeit, Verifikation von KI-Review-Kommentaren.</td><td style="text-align: left">Entlastung des Teams bei Routine-Reviews und verbesserte Dokumentation.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://addyosmani.com/blog/beyond-vibe-coding/">Beyond Vibe Coding - Addy Osmani (Englisch)</a> – Der wegweisende Artikel zum 70%-Problem.</li>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol (MCP) Dokumentation</a> – Die offizielle Dokumentation zum MCP-Standard von Anthropic.</li>
+<li><a href="https://www.cursor.com/">Cursor Editor - Features</a> – Dokumentation und Guides zum Arbeiten mit dem Composer.</li>
+<li><a href="https://bolt.new/">Bolt.new - Stackblitz</a> – Die browserbasierte Entwicklungsumgebung zum Ausprobieren.</li>
+<li><a href="https://www.atlassian.com/de/git">Lerne Git - Atlassian Tutorials</a> – Wichtiges Grundlagenwissen für das Arbeiten mit Agenten-Sicherheitsnetzen.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="coding-mit-ki-phase9.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Impressum.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="coding-mit-ki-phase9.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Impressum.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
