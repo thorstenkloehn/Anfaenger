@@ -1,0 +1,36 @@
+Welches Schlüsselwort deklariert eine unveränderbare Variable in Rust?;let
+Wie macht man eine Variable in Rust explizit veränderbar?;Mit dem Schlüsselwort mut (z. B. let mut name = wert;)
+Welcher Datentyp wird in Rust standardmäßig für ganze Zahlen verwendet?;i32 (32-Bit Integer)
+Welcher Datentyp speichert vorzeichenlose 8-Bit-Ganzzahlen?;u8 (vorzeichenlos, 8-Bit)
+Wie deklariert man eine globale Konstante in Rust?;Mit dem Schlüsselwort const und expliziter Typangabe (z. B. const MAX: u32 = 100;)
+Was unterscheidet eine Konstante von einer unveränderbaren Variable?;Konstanten erfordern immer eine Typannotation und sind zur Compilezeit bekannt.
+Welcher Datentyp repräsentiert einen Wahrheitswert in Rust?;bool (true oder false)
+Welches Zeichen umschließt einen einzelnen Zeichen-Datentyp (char)?;Einfache Anführungszeichen (z. B. 'a')
+Wie gibt man den Typ einer Variable explizit an (Typannotation)?;Mit einem Doppelpunkt nach dem Variablennamen (z. B. let x: i32 = 5;)
+Was versteht man unter Typinferenz?;Der Compiler leitet den Typ einer Variable automatisch aus ihrem Wert ab.
+Brauchen Bedingungen in einem if-Statement in Rust runden Klammern?;Nein, man schreibt einfach if x > 5 { ... }.
+Wie gibt man einen Wert aus einem if-else-Block zurück?;Indem man den Block als Ausdruck verwendet und das Semikolon am Ende weglässt.
+Mit welchem Schlüsselwort erstellt man eine Endlosschleife in Rust?;loop
+Wie bricht man aus einer Schleife aus und gibt gleichzeitig einen Wert zurück?;Mit break gefolgt vom Rückgabewert (z. B. break wert;).
+Wie springt man sofort zum nächsten Schleifendurchlauf?;Mit dem Schlüsselwort continue;
+Wie durchläuft man die Zahlen 1 bis 5 (ohne 5) mit einer for-Schleife?;for i in 1..5 { ... }
+Wie durchläuft man die Zahlen 1 bis einschließlich 5 mit einer for-Schleife?;for i in 1..=5 { ... }
+Welches Konstrukt wird in Rust anstelle eines klassischen switch-Blockes verwendet?;match
+Was passiert, wenn in einem match-Block nicht alle Fälle abgedeckt sind?;Es gibt einen Compilerfehler, da match-Ausdrücke vollständig sein müssen.
+Welches Symbol dient als Auffang-Muster (Wildcard) in einem match-Ausdruck?;Der Unterstrich (_)
+Welche Bibliothek muss importiert werden, um Tastatureingaben von der Konsole zu lesen?;std::io
+Wie liest man eine Zeile von der Standardeingabe in einen String ein?;io::stdin().read_line(&mut input)
+Warum muss read_line eine veränderbare Referenz (&mut) übergeben werden?;Damit read_line den eingelesenen Text direkt in den String schreiben kann.
+Welcher Typ wird von read_line zurückgegeben?;Ein Result-Typ (std::io::Result)
+Wofür wird die Methode .trim() beim Parsen einer Benutzereingabe benötigt?;Um unsichtbare Zeichen wie Zeilenumbrüche vor dem Parsen zu entfernen.
+Wie konvertiert man einen String in eine Zahl (z. B. u32)?;Mit der .parse() Methode (z. B. text.trim().parse())
+Was passiert, wenn man .expect("Fehler") auf ein Result aufruft und ein Fehler vorliegt?;Das Programm bricht geordnet mit der angegebenen Fehlermeldung ab (Panic).
+Was ist der Unterschied zwischen .unwrap() und .expect()?;unwrap() stürzt mit einer Standardmeldung ab, expect() erlaubt eine eigene Fehlermeldung.
+Wie viele Besitzer (Owner) kann ein Wert in Rust gleichzeitig haben?;Genau einen.
+Was passiert mit einem Wert, wenn sein Besitzer den Scope verlässt?;Der Wert wird automatisch gelöscht (Drop).
+Welcher Begriff beschreibt das Übertragen des Besitzes einer Variable?;Move (Verschiebung)
+Wie übergibt man eine Variable an eine Funktion, ohne Ownership abzugeben?;Indem man eine Referenz übergibt (&variable) - Borrowing.
+Wie viele veränderbare (&mut) Referenzen darf es gleichzeitig auf einen Wert geben?;Genau eine (Schutz vor Data Races).
+Darf man gleichzeitig unveränderbare (&T) und veränderbare (&mut T) Referenzen besitzen?;Nein, das verhindert der Borrow Checker.
+Welcher String-Typ kann zur Laufzeit wachsen und verändert werden?;String
+Welcher String-Typ ist meist fest im Programmcode verankert (String Slice)?;&str

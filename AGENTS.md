@@ -20,8 +20,9 @@ Dieses Repository enthält das Rust-Lernbuch "Anfänger". Als KI-Agent (Antigrav
 - **Inhaltsverzeichnis:** Neue Kapitel müssen immer manuell in [rust-projekte/src/SUMMARY.md](file:///home/thorsten/Anfaenger/rust-projekte/src/SUMMARY.md) eingetragen werden:
   `- [EMOJI Titel](./[name-kebab].md)`
 - **Validierung:** Nach jeder Änderung an Buchkapiteln oder der Struktur muss im Ordner [rust-projekte](file:///home/thorsten/Anfaenger/rust-projekte) der Befehl `mdbook build` ausgeführt werden, um sicherzustellen, dass das Buch fehlerfrei baut.
-- **Kapitelschutz (NICHT LÖSCHEN):** Lösche oder überschreibe unter keinen Umständen Kapitel, die sich auf Editoren, IDEs oder KI-Agenten beziehen. Das betrifft alle Dateien, deren Namen mit folgenden Mustern übereinstimmen:
-  `gemini*`, `copilot*`, `claude-code*`, `codex-cli*`, `agy-cli*`, `agy-sdk*`, `claude-sdk*`, `codex-sdk*`, `vibe-coding*`, `eigener-agent*`, `zed-ide*`, `vim*`, `antigravity*`.
+- **Kapitelschutz (NICHT LÖSCHEN):** Lösche oder überschreibe unter keinen Umständen Kapitel, die sich auf Editoren, IDEs, KI-Agenten oder Spezialthemen beziehen. Das betrifft alle Dateien, deren Namen mit folgenden Mustern übereinstimmen:
+  `gemini*`, `copilot*`, `claude-code*`, `codex-cli*`, `agy-cli*`, `agy-sdk*`, `claude-sdk*`, `codex-sdk*`, `vibe-coding*`, `eigener-agent*`, `zed-ide*`, `vim*`, `antigravity*`, `eigenen-compiler*`, `c-abi*`, `rust-embedded*`, `rust-web*`, `rust-gui*`, `rust-kryptographie*`, `rust-bevy*`.
+- **Anki-Lernkarten:** Anki-Karten werden phasenbasiert im Hauptverzeichnis in `AnkiRust1.csv` bis `AnkiRust10.csv` abgelegt. Format: `Frage;Antwort` (Keine zusätzlichen Semikolons oder Zeilenumbrüche im Text).
 
 ---
 

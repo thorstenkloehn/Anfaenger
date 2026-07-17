@@ -1,0 +1,18 @@
+Welches Schlüsselwort schaltet die Typsicherheitsprüfungen für bestimmte Operationen frei?;unsafe
+Welche beiden rohen Zeigertypen (Raw Pointers) gibt es in Unsafe Rust?;*const T (unveränderbar) und *mut T (veränderbar)
+Darf man rohe Zeiger außerhalb von unsafe-Blöcken erzeugen?;Ja, nur das Dereferenzieren (*) roher Zeiger erfordert einen unsafe-Block.
+Welches Attribut erzwingt das Speicherlayout der Programmiersprache C für Structs?;#[repr(C)]
+Welches Attribut verhindert, dass Rust den Funktionsnamen für den Linker verzerrt?;#[no_mangle]
+Welche Aufrufkonvention erzwingt die C-Calling-Convention für eine Rust-Funktion?;extern "C"
+Wofür steht das Kürzel FFI?;Foreign Function Interface (Schnittstelle zu fremden Sprachen)
+Was versteht man unter Padding im Speicherlayout?;Unsichtbare Füllbytes, um Variablen an natürlichen Speicheradressen (Alignment) auszurichten.
+Welche Datei führt Cargo vor dem eigentlichen Build aus, um z. B. C-Code zu kompilieren?;build.rs im Stammverzeichnis des Crates
+Welches Crate wird in build.rs genutzt, um C-Dateien automatisch zu kompilieren?;cc crate
+Welches Werkzeug generiert aus C-Header-Dateien (.h) automatisch Rust-FFI-Bindings?;bindgen
+Welches Attribut schaltet die Rust-Standardbibliothek für Bare-Metal-Projekte aus?;#![no_std]
+Welcher Handler muss in einem #![no_std]-Projekt für Laufzeitabstürze definiert werden?;#[panic_handler]
+Welche Kern-Bibliothek bleibt im #![no_std]-Modus ohne Betriebssystem verfügbar?;core
+Wofür steht das Kürzel WASM?;WebAssembly
+Welches Build-Tool wird verwendet, um Rust-Crates für WebAssembly und npm zu bauen?;wasm-pack
+Welche Bibliothek stellt die automatische Bindung zwischen Rust und JavaScript her?;wasm-bindgen
+Welche serverseitige Laufzeitumgebung führt .wasm-Dateien außerhalb des Browsers aus?;Wasmtime oder Wasmer

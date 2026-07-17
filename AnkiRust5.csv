@@ -1,0 +1,12 @@
+Welches Symbol kennzeichnet generische Typparameter in Rust?;Spitze Klammern (z. B. fn foo<T>(x: T))
+Welches Schlüsselwort deklariert eine Schnittstelle (Trait) in Rust?;trait (z. B. trait Druckbar { fn drucken(&self); })
+Wie implementiert man einen Trait für ein bestehendes Struct?;impl TraitName for StructName { ... }
+Was versteht man unter Trait Bounds?;Einschränkungen für Generics, damit nur Typen erlaubt sind, die bestimmte Traits erfüllen (z. B. T: Display).
+Wie schreibt man eine Trait Bound in kompakter Form bei Argumenten?;fn foo(x: &impl Display)
+Welches Schlüsselwort leitet einen separaten Block für komplexe Trait Bounds am Funktionsende ein?;where (z. B. where T: Display + Debug)
+Was kennzeichnet eine Lifetime-Annotation in Rust?;Ein vorangestelltes Apostroph (z. B. 'a)
+Wovor schützt der Compiler mithilfe von Lifetimes?;Vor ungültigen Referenzen auf bereits gelöschten Speicher (Dangling Pointers).
+Welches Schlüsselwort bezeichnet eine Lebensdauer, die über die gesamte Programmlaufzeit gültig ist?;'static
+Was versteht man unter Lifetime Elision?;Der Compiler leitet einfache Lifetimes automatisch ab, ohne dass man sie ausschreiben muss.
+Können Traits Standardimplementierungen für Methoden enthalten?;Ja.
+Kann man eigene Traits für fremde Typen (z. B. aus der Standardbibliothek) implementieren?;Ja, solange entweder der Trait oder der Typ im eigenen Crate deklariert wurde (Orphan Rule).

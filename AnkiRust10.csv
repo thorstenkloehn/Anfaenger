@@ -1,0 +1,10 @@
+Mit welchem Konstrukt definiert man deklarative Makros in Rust?;macro_rules!
+Welcher Bezeichner fängt in macro_rules! einen Ausdruck ein?;$expr (z. B. $x:expr)
+Welcher Bezeichner fängt in macro_rules! einen Identifikator oder Variablennamen ein?;$ident (z. B. $id:ident)
+Welches Zeichen leitet Wiederholungen in einem deklarativen Makro ein?;Das Dollarzeichen gefolgt von Klammern und Sternchen, z. B. $( $x:expr ),*
+Welcher Makro-Typ wird für automatisches Abbleiten von Traits verwendet?;Custom Derive Macro (z. B. #[derive(MeinTrait)])
+Welcher Makro-Typ ermöglicht eigene Attribute an Funktionen oder Structs?;Attribute Macro (z. B. #[mein_attribut])
+Welcher Makro-Typ verhält sich wie ein normaler Funktionsaufruf?;Function-like Macro (z. B. mein_makro!(...))
+Welche beiden Crates nutzt man meistens für das Parsen und Generieren in prozeduralen Makros?;syn (Parsen) und quote (Code-Generierung)
+Welcher Datenstrom-Typ dient als Ein- und Ausgabe für prozedurale Makros?;proc_macro::TokenStream
+In welchem speziellen Crate-Typ müssen prozedurale Makros deklariert werden?;In einem separaten Crate mit proc-macro = true in der Cargo.toml.

@@ -1,0 +1,13 @@
+Mit welchem Schlüsselwort erstellt man ein Modul in Rust?;mod (z. B. mod netzwerk;)
+Welches Schlüsselwort macht ein Modul oder eine Funktion für andere sichtbar?;pub (public)
+Welches Schlüsselwort verweist auf die Wurzel des aktuellen Crates?;crate::
+Welches Schlüsselwort verweist im Modulbaum auf das übergeordnete Elternmodul?;super::
+Was ist ein Cargo Workspace?;Ein Verbund mehrerer Crates, die sich eine Cargo.lock und einen target/-Ordner teilen.
+Wo werden die Mitglied-Crates eines Cargo Workspaces deklariert?;In der Wurzel-Cargo.toml unter [workspace] members = [...]
+Wofür werden Feature-Flags in der Cargo.toml verwendet?;Um bestimmte Abhängigkeiten oder Code-Module optional zur Compilezeit zu steuern.
+Wie prüft man im Rust-Code, ob ein bestimmtes Feature aktiviert ist?;Mit #[cfg(feature = "name")] oder cfg!(feature = "name")
+Was bedeutet LTO (Link-Time Optimization) im Release-Profil?;Kompilierungsübergreifende Optimierung über Crate-Grenzen hinweg für maximale Performance.
+Welcher Parameter in der Cargo.toml entfernt alle Debug-Symbole aus der Binärdatei?;strip = true
+Welcher Befehl baut ein Projekt mit allen verfügbaren Feature-Flags?;cargo build --all-features
+Welche Datei deklariert die Abhängigkeiten und Metadaten eines Rust-Projekts?;Cargo.toml
+Welche Datei garantiert, dass alle Entwickler exakt dieselben Abhängigkeitsversionen nutzen?;Cargo.lock

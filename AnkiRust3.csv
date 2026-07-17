@@ -1,0 +1,18 @@
+Welcher Datentyp repräsentiert eine dynamische, veränderbare Liste in Rust?;Vec
+Welche Methode fügt ein Element hinten an einen Vektor an?;.push()
+Welche Datenstruktur speichert Schlüssel-Wert-Paare in Rust?;HashMap
+Welche Methode fügt ein Schlüssel-Wert-Paar in eine HashMap ein?;.insert()
+Welcher Enum wird verwendet, wenn ein Wert vorhanden sein oder fehlen kann?;Option
+Welche beiden Varianten hat der Option-Enum?;Some und None
+Welcher Enum wird verwendet, wenn eine Operation erfolgreich sein oder fehlschlagen kann?;Result
+Welche beiden Varianten hat der Result-Enum?;Ok und Err
+Welches Zeichen leitet einen Fehler in einer Funktion blitzschnell an den Aufrufer weiter?;Das Fragezeichen (?)
+Welches Attribut markiert eine Funktion als Unit-Test?;#[test]
+In welchem separaten Ordner liegen Integrationstests in einem Rust-Projekt?;Im Ordner tests/ im Stammverzeichnis des Projekts.
+Welches Attribut stellt sicher, dass Test-Code im Release-Build nicht mitkompiliert wird?;#[cfg(test)]
+Wie nennt man Tests, die direkt in den dreifachen Dokumentationskommentaren (///) liegen?;Doc-Tests (Dokumentationstests)
+Welches Attribut prüft, ob eine Test-Funktion kontrolliert abbricht?;#[should_panic]
+Welches populäre Rust-Crate wird für statistisches Benchmarking verwendet?;criterion
+Warum verwendet man black_box() bei Benchmarks?;Um zu verhindern, dass der Compiler die Testberechnung wegoptimiert.
+Mit welchem Cargo-Befehl führt man Benchmarks aus?;cargo bench
+Mit welchem Cargo-Befehl führt man alle Unit- und Integrationstests aus?;cargo test

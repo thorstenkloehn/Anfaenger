@@ -37,7 +37,7 @@ Der Hauptagent besitzt folgende vordefinierte Fähigkeiten, die bei passenden Tr
 - `neues-kapitel` (Erstellt mdBook-Kapitel strukturiert und stilistisch konform)
 - `verteile-subagent` (Splittet große Aufgaben auf und delegiert sie an Subagenten)
 - `subagent-steuern` (Koordiniert und integriert die Arbeit abgeschlossener Subagenten)
-- `anki-karten-generieren` (Extrahiert atomare Lernkarten in `rust_anki_karten.csv`)
+- `anki-karten-generieren` (Extrahiert atomare Lernkarten in phasenbasierte CSV-Dateien `AnkiRust1.csv` bis `AnkiRust10.csv`)
 - `code-review` (Analysiert Rust-Code auf Idiomatik, Ownership & Konventionen)
 - `fehler-erklaeren` (Didaktische Erklärung von Compiler-Fehlern)
 - `kapitel-lektorat` (Lektoriert Kapitel auf Du-Form, Didaktik und Formatierung)

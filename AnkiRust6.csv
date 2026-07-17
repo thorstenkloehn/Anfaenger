@@ -1,0 +1,10 @@
+Welcher Smart Pointer speichert einen Wert direkt auf dem Heap statt auf dem Stack?;Box<T>
+Welcher Smart Pointer ermöglicht geteilten Besitz (Reference Counting) in einem Thread?;Rc<T>
+Welcher Smart Pointer ermöglicht geteilten Besitz über mehrere Threads hinweg?;Arc<T> (Atomic Reference Counting)
+Welcher Smart Pointer ermöglicht Interior Mutability (Veränderbarkeit trotz immutabler Referenz)?;RefCell<T>
+Wann prüft RefCell<T> die Borrowing-Regeln?;Zur Laufzeit (statt zur Compilezeit).
+Welcher Trait ermöglicht das automatische Deragieren von Smart Pointern mit dem Sternchen (*)?;Deref Trait
+Welcher Trait definiert das Verhalten, wenn ein Wert den Scope verlässt und aufgeräumt wird?;Drop Trait
+Wie erhöht man den Referenzzähler eines Rc<T> oder Arc<T>?;Mit Rc::clone(&wert) bzw. Arc::clone(&wert)
+Welches Risiko besteht bei unvorsichtigem Einsatz von Rc<T> (zyklische Referenzen)?;Speicherlecks (Memory Leaks), da der Referenzzähler niemals auf 0 sinkt.
+Welcher Smart Pointer bricht die Referenzschleife bei Rc<T>, ohne den Zähler zu erhöhen?;Weak<T>

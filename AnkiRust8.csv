@@ -1,0 +1,15 @@
+Wie heißen anonyme Funktionen in Rust, die Umgebungsvariablen einfangen können?;Closures (z. B. |x| x + 1)
+Welches Zeichen umschließt die Parameter einer Closure?;Vertikale Striche (z. B. |a, b|)
+Welcher Trait gilt für Closures, die ihre Umgebung nur unveränderbar ausleihen?;Fn Trait
+Welcher Trait gilt für Closures, die ihre Umgebung verändern können?;FnMut Trait
+Welcher Trait gilt für Closures, die den Besitz eingefangener Variablen einmalig konsumieren?;FnOnce Trait
+Welcher Trait ist die Basis für alle Iteratoren in Rust?;Iterator Trait
+Welche Methode muss jedes Iterator-Trait zwingend implementieren?;.next()
+Warum sagt man, dass Iteratoren in Rust faul (lazy) sind?;Sie führen erst dann Berechnungen aus, wenn eine konsumierende Methode (wie .collect()) aufgerufen wird.
+Welche Methode transformiert die Elemente eines Iterators mit einer Funktion?;.map()
+Welche Methode filtert Elemente eines Iterators basierend auf einer Bedingung?;.filter()
+Welche Methode sammelt die Ergebnisse eines Iterators in eine Ziel-Collection (z. B. Vec)?; .collect()
+Welche Methode aggregiert alle Elemente eines Iterators zu einem einzelnen Endwert?;.fold() oder .reduce()
+Wie erzeugt man einen Iterator über unveränderbare Referenzen einer Liste?;.iter()
+Wie erzeugt man einen Iterator über veränderbare Referenzen einer Liste?;.iter_mut()
+Wie erzeugt man einen Iterator, der den Besitz der Elemente übernimmt?;.into_iter()
