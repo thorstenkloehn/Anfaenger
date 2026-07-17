@@ -58,3 +58,22 @@ Welcher Enum wird verwendet, wenn eine Operation erfolgreich sein oder fehlschla
 Welche beiden Varianten hat der Result-Enum?;Ok und Err
 Welches Zeichen leitet einen Fehler in einer Funktion blitzschnell an den Aufrufer weiter?;Das Fragezeichen (?)
 Welche Methode greift direkt auf den Wert einer Option zu, riskiert aber einen Absturz?;.unwrap()
+Mit welchem Schlüsselwort deklariert man eine eigene Datenstruktur (Struct) in Rust?;struct
+Wie greift man auf ein Feld einer Struct-Instanz zu?;Mit dem Punkt-Operator (z. B. instanz.feld)
+Welcher Block wird verwendet, um Methoden für ein Struct zu definieren?;Der impl-Block (z. B. impl MeinStruct { ... })
+Welches Schlüsselwort repräsentiert die eigene Instanz als ersten Parameter einer Methode?;self (bzw. &self oder &mut self)
+Wie unterscheidet sich eine assoziierte Funktion von einer Methode?;Assoziierte Funktionen haben keinen self-Parameter und werden mit doppeltem Doppelpunkt aufgerufen (z. B. Struct::new()).
+Wie nennt man ein Struct ohne benannte Felder, nur mit Typen?;Tuple Struct (z. B. struct Farbe(u8, u8, u8);)
+Wie greift man auf die Felder eines Tuple Structs zu?;Mit dem Index (z. B. farbe.0)
+Wie nennt man ein Struct, das gar keine Felder besitzt?;Unit-like Struct (z. B. struct Leer;)
+Welches Attribut ermöglicht das automatische Ausgeben einer Struct-Instanz mit {:?}?;#[derive(Debug)]
+Welches Schlüsselwort deklariert einen Datentyp mit verschiedenen festen Varianten?;enum
+Können Varianten eines Rust-Enums eigene Daten enthalten?;Ja, jede Variante kann unterschiedliche Daten und Typen enthalten.
+Wie greift man auf eine Variante eines Enums zu?;Mit dem doppelten Doppelpunkt (z. B. Option::Some)
+Welches Konstrukt ermöglicht das Entpacken (Destructuring) von Enum-Varianten?;match
+Wie nennt man das vereinfachte Matching für nur ein einzelnes Muster?;if let (z. B. if let Some(x) = option { ... })
+Welches Schlüsselwort leitet eine Kurzschreibweise für einen Bedingungsvergleich mit Enums ein?;if let
+Müssen alle Varianten eines Enums in einem match-Ausdruck abgedeckt werden?;Ja, Rust erfordert vollständige (exhaustive) Abdeckung aller Varianten.
+Wie entpackt man die Felder eines Structs in einem match-Muster?;Mit geschweiften Klammern und den Feldnamen (z. B. Point { x, y })
+Was bedeutet Feld-Init-Kurzschreibweise (Field Init Shorthand) bei Structs?;Wenn Variable und Feldname identisch sind, reicht der Variablenname aus (z. B. User { name, alter }).
+Wie kopiert man restliche Felder aus einer bestehenden Struct-Instanz (Struct Update Syntax)?;Mit zwei Punkten gefolgt von der Instanz (z. B. ..alte_instanz)

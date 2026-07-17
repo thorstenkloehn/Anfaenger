@@ -117,3 +117,121 @@ Ein Konto, das Transaktionen (Einzahlungen/Auszahlungen) verarbeitet.
 - Nutze ein **Struct** `Konto` mit dem aktuellen Saldo.
 - Nutze ein **Enum** `Transaktion` (`Einzahlung(f64)`, `Auszahlung(f64)`).
 - Schreibe eine **Methode** `verarbeite(&mut self, t: Transaktion)`, die das `Enum` mit `match` auswertet und den Saldo entsprechend aktualisiert.
+
+---
+
+## 🛠️ Didaktische Übungen (mit Code-Gerüsten)
+
+### 🟢 Übung 1 (Leicht): Structs & Methoden
+Schreibe ein Struct `Rechteck` mit den Feldern `breite` und `hoehe` (jeweils `u32`) sowie eine Methode `flaeche(&self) -> u32`.
+
+```rust
+struct Rechteck {
+    breite: u32,
+    hoehe: u32,
+}
+
+impl Rechteck {
+    fn new(breite: u32, hoehe: u32) -> Self {
+        // todo: Erstelle und liefere eine Rechteck-Instanz zurück
+        todo!()
+    }
+
+    fn flaeche(&self) -> u32 {
+        // todo: Berechne die Fläche (Breite * Höhe)
+        todo!()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_rechteck_flaeche() {
+        let r = Rechteck::new(5, 10);
+        assert_eq!(r.flaeche(), 50);
+    }
+}
+```
+
+---
+
+### 🟡 Übung 2 (Mittel): Enums mit Daten & Pattern Matching
+Definiere ein Enum `Signal` mit den Varianten `Rot`, `Gelb` und `Gruen(u32)` (wobei die Zahl für die verbleibende Restzeit in Sekunden steht). Implementiere eine Methode `ist_fahrt_erlaubt(&self) -> bool`, die nur bei `Gruen` (egal wie viele Sekunden) `true` zurückgibt.
+
+```rust
+enum Signal {
+    Rot,
+    Gelb,
+    Gruen(u32),
+}
+
+impl Signal {
+    fn ist_fahrt_erlaubt(&self) -> bool {
+        // todo: Nutze match oder if let, um zu prüfen, ob es sich um Gruen handelt!
+        todo!()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_signal_fahrt() {
+        let rot = Signal::Rot;
+        let gruen = Signal::Gruen(30);
+        
+        assert_eq!(rot.ist_fahrt_erlaubt(), false);
+        assert_eq!(gruen.ist_fahrt_erlaubt(), true);
+    }
+}
+```
+
+---
+
+### 🔴 Übung 3 (Schwer): Zustandsübergänge mit `&mut self` und Enum
+Schreibe eine Datenstruktur `Paket` mit einem Absender (`String`) und einem `Status`. Das Enum `Status` kann `Unterwegs` oder `Zugestellt(String)` (mit dem Namen des Empfängers) sein. Implementiere die Methode `zustellen(&mut self, empfaenger: &str)`.
+
+```rust
+#[derive(Debug, PartialEq)]
+enum Status {
+    Unterwegs,
+    Zugestellt(String),
+}
+
+struct Paket {
+    absender: String,
+    status: Status,
+}
+
+impl Paket {
+    fn new(absender: &str) -> Self {
+        Paket {
+            absender: absender.to_string(),
+            status: Status::Unterwegs,
+        }
+    }
+
+    fn zustellen(&mut self, empfaenger: &str) {
+        // todo: Ändere den Status der Paket-Instanz auf Zugestellt(empfaenger.to_string())
+        todo!()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_paket_zustellung() {
+        let mut p = Paket::new("DHL");
+        assert_eq!(p.status, Status::Unterwegs);
+
+        p.zustellen("Thorsten");
+        assert_eq!(p.status, Status::Zugestellt("Thorsten".to_string()));
+    }
+}
+```
+
