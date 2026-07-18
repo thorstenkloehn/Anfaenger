@@ -56,6 +56,13 @@
   - [8 Funktionen](./cpp-kapitel08.md)
   - [9 Modularisierung und Präprozessor](./cpp-kapitel09.md)
   - [17 Ein-/Ausgabestreams für Dateien](./cpp-kapitel17.md)
+- [🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1](./kotlin-phase1-konzepte.md)
+  - [🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch](./rust-und-kotlin-gleichzeitig-lernen.md)
+  - [🛹 Mitmach-Workshop](./kotlin-phase1-workshop.md)
+  - [Projektvorschläge Phase 1](./kotlin-phase1.md)
+  - [1 Einstieg in die Welt von Kotlin](./kotlin-kapitel01.md)
+  - [2 Variablen, Datentypen & Null-Safety in Kotlin](./kotlin-kapitel02.md)
+  - [3 Kontrollstrukturen & Funktionen in Kotlin](./kotlin-kapitel03.md)
 
 
 # Phase 2: Eigene Datentypen (Structs & Enums)
