@@ -175,264 +175,189 @@
                     <main>
                         <h1 id="-projektvorschläge-phase-1-kotlin"><a class="header" href="#-projektvorschläge-phase-1-kotlin">💡 Projektvorschläge Phase 1 (Kotlin)</a></h1>
 <p>Willkommen zu den Praxisprojekten der <strong>Phase 1</strong>! Hier wendest du die Kernkonzepte von Kotlin in kleinen, überschaubaren Konsolenanwendungen an.</p>
-<p>In dieser Phase vertiefst du folgende Grundlagen:</p>
-<ul>
-<li><strong>Null-Safety &amp; Terminal-Eingabe:</strong> Der sichere Umgang mit <code>String?</code>, Elvis-Operator (<code>?:</code>), Safe-Calls (<code>?.</code>) und <code>readlnOrNull()</code>.</li>
-<li><strong>Kontrollstrukturen &amp; Funktionen:</strong> Der mächtige <code>when</code>-Ausdruck als Expression sowie saubere Funktionsdeklarationen.</li>
-<li><strong>Schleifen &amp; Bedingungen:</strong> <code>for</code>- und <code>while</code>-Schleifen, Zählerlogik und Auswertungen.</li>
-<li><strong>Kollektionen &amp; Immutability:</strong> Der Unterschied zwischen <code>List</code> (unveränderbar) und <code>MutableList</code> (veränderbar).</li>
-</ul>
 <blockquote>
-<p>[!TIP]
-<strong>Hinweis zum Lernen:</strong> Alle Projekte enthalten ein unvollständiges Starter-Gerüst mit <code>TODO()</code>. Deine Aufgabe ist es, den Code eigenständig zu vervollständigen. Es gibt hier bewusst keine vorgefertigten Lösungen!</p>
+<p><strong>Hinweis:</strong> Alle Projekte werden ohne fertige Code-Vorschläge begleitet. Erarbeite die Lösung eigenständig!</p>
 </blockquote>
+<hr />
+<h2 id="-Überblick-über-die-kernkonzepte-der-phase-1"><a class="header" href="#-Überblick-über-die-kernkonzepte-der-phase-1">🎯 Überblick über die Kernkonzepte der Phase 1</a></h2>
+<p>In dieser Phase festigst du dein Fundament in Kotlin durch eigenständige Implementierung:</p>
+<div class="table-wrapper"><table><thead><tr><th>Thema</th><th>Was du lernst &amp; anwendest</th></tr></thead><tbody>
+<tr><td>🛡️ <strong>Null-Safety &amp; Eingabe</strong></td><td><code>String?</code>, Elvis-Operator (<code>?:</code>), Safe-Calls (<code>?.</code>), <code>readlnOrNull()</code></td></tr>
+<tr><td>🔀 <strong>Kontrollstrukturen</strong></td><td><code>when</code>-Ausdrücke als Expression, <code>if/else</code>, Verzweigungen</td></tr>
+<tr><td>🔄 <strong>Schleifen &amp; Iteration</strong></td><td><code>for</code>, <code>while</code>, <code>do-while</code>, Bereichsabfragen (<code>indices</code>, <code>1..10</code>)</td></tr>
+<tr><td>🧱 <strong>Kollektionen &amp; Immutability</strong></td><td><code>List</code> (unveränderbar) vs. <code>MutableList</code> (veränderbar)</td></tr>
+<tr><td>⚙️ <strong>Funktionen &amp; Modulatität</strong></td><td>Deklaration mit <code>fun</code>, Parameter, Rückgabewerte, Auslagerung von Logik</td></tr>
+</tbody></table>
+</div>
 <hr />
 <h2 id="-projekt-1-das-sichere-notizbuch-null-safety--terminal-eingabe"><a class="header" href="#-projekt-1-das-sichere-notizbuch-null-safety--terminal-eingabe">📓 Projekt 1: Das sichere Notizbuch (Null-Safety &amp; Terminal-Eingabe)</a></h2>
 <h3 id="problemstellung"><a class="header" href="#problemstellung">Problemstellung</a></h3>
-<p>In vielen Programmiersprachen führen unbehandelte <code>null</code>-Werte zu unerwarteten Abstürzen (<code>NullPointerException</code>). Kotlin löst dieses Problem durch sein striktes Typsystem. Ziel dieses Projekts ist es, ein kleines Konsolen-Notizbuch zu bauen, das Benutzereingaben entgegennimmt und fehlerfrei mit <code>null</code> oder leeren Eingaben umgeht.</p>
+<p>In vielen Programmiersprachen führen unbehandelte <code>null</code>-Werte zu unerwarteten Abstürzen. Kotlins Typsystem unterscheidet strikt zwischen Werten, die <code>null</code> sein können (<code>String?</code>), und solchen, die garantiert einen Wert enthalten (<code>String</code>). In diesem Projekt baust du ein Konsolen-Notizbuch, das Benutzereingaben entgegennimmt und leere oder fehlerhafte Eingaben elegant abfängt.</p>
 <h3 id="anforderungen"><a class="header" href="#anforderungen">Anforderungen</a></h3>
 <ol>
-<li>Lies Text über die Konsole mit <code>readlnOrNull()</code> ein.</li>
-<li>Sichere den optionalen String (<code>String?</code>) mit Kotlins Null-Safety-Mechanismen ab (z. B. Elvis-Operator <code>?:</code> oder <code>takeIf</code>).</li>
-<li>Wenn der Benutzer nichts oder nur Leerzeichen eingibt, soll automatisch eine Standardnachricht (<em>"Leere Notiz"</em> oder <em>"Keine Notiz vorhanden"</em>) verwendet werden.</li>
+<li>Lies Text über die Konsole ein.</li>
+<li>Sichere den eingelesenen Wert mit Kotlins Null-Safety-Mechanismen ab.</li>
+<li>Wenn der Benutzer nichts oder nur Leerzeichen eingibt, soll automatisch ein vordefinierter Standardtext zugewiesen werden.</li>
 <li>Gib die abgesicherte Notiz sowie ihre genaue Zeichenlänge auf der Konsole aus.</li>
 </ol>
-<h3 id="architektur-skizze"><a class="header" href="#architektur-skizze">Architektur-Skizze</a></h3>
+<h3 id="didaktische-leitfragen--denkanstöße"><a class="header" href="#didaktische-leitfragen--denkanstöße">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
+<ul>
+<li><em>Wie unterscheidet Kotlin bei der Typdeklaration zwischen einer Nullable-Variable und einer Non-Null-Variable?</em></li>
+<li><em>Welcher elegante Operator (oft nach einer bekannten Rocklegende benannt) ermöglicht es dir, im Falle von <code>null</code> einen Standardwert bereitzustellen?</em></li>
+<li><em>Mit welcher Methode kannst du prüfen, ob ein eingegebener String nur aus Leerzeichen besteht oder echten Inhalt bietet?</em></li>
+<li><em>Wie kannst du String-Interpolation nutzen, um Variablenwerte direkt in Textausgaben einzubinden?</em></li>
+</ul>
+<h3 id="architektur---ablaufskizze"><a class="header" href="#architektur---ablaufskizze">Architektur- &amp; Ablaufskizze</a></h3>
 <pre><code class="language-mermaid">graph TD
-    A[Start] --&gt; B[Eingabe einlesen: readlnOrNull]
-    B --&gt; C{Notiz null oder blank?}
+    A[Start] --&gt; B[Eingabe einlesen]
+    B --&gt; C{Ist Eingabe null oder blank?}
     C -- Ja --&gt; D[Standard-Text zuweisen via Elvis-Operator]
-    C -- Nein --&gt; E[Notiz übernehmen &amp; trimmen]
-    D --&gt; F[Formatierte Ausgabe Notiz &amp; Zeichenlänge]
+    C -- Nein --&gt; E[Eingabe übernehmen &amp; trimmen]
+    D --&gt; F[Formatierte Ausgabe: Notiz &amp; Zeichenlänge]
     E --&gt; F
 </code></pre>
-<h3 id="todo-starter-gerüst"><a class="header" href="#todo-starter-gerüst">TODO()-Starter-Gerüst</a></h3>
-<pre><code class="language-kotlin">fun main() {
-    println("=== Das sichere Notizbuch ===")
-    print("Bitte gib deine Notiz ein: ")
-    
-    // 1. Notiz einlesen (Rückgabetyp ist String?)
-    val eingabe: String? = readlnOrNull()
-    
-    // 2. Null-Safety nutzen: 
-    // Nutze eingabe?.trim() und takeIf { it.isNotBlank() } zusammen mit dem Elvis-Operator `?:`,
-    // um im Falle von null oder leeren Eingaben einen Standardtext zuzuweisen.
-    val notiz: String = TODO("Sichere die Eingabe ab (z. B. eingabe?.trim()?.takeIf { it.isNotEmpty() } ?: \"[Keine Notiz eingegeben]\")")
-    
-    // 3. Ausgabe der Notiz und ihrer Länge
-    TODO("Gib die Notiz und ihre Zeichenlänge mit String-Interpolation ($notiz / ${notiz.length}) aus")
-}
-</code></pre>
-<h3 id="erweiterungsideen"><a class="header" href="#erweiterungsideen">Erweiterungsideen</a></h3>
-<ul>
-<li>Ergänze eine Abfrage, ob die Notiz in Großbuchstaben umgewandelt werden soll (nutze <code>uppercase()</code>).</li>
-<li>Füge ein Datums- oder Zeitstempel-Präfix vor die Notiz ein.</li>
-</ul>
 <hr />
 <h2 id="-projekt-2-der-interaktive-einheiten-umrechner-when-ausdrücke--funktionen"><a class="header" href="#-projekt-2-der-interaktive-einheiten-umrechner-when-ausdrücke--funktionen">🔄 Projekt 2: Der interaktive Einheiten-Umrechner (when-Ausdrücke &amp; Funktionen)</a></h2>
 <h3 id="problemstellung-1"><a class="header" href="#problemstellung-1">Problemstellung</a></h3>
-<p>Einheitenumrechnungen (wie Kilometer in Meilen oder Celsius in Fahrenheit) erfordern eine klare Menüführung. In Kotlin lässt sich eine solche Fallunterscheidung besonders elegant und übersichtlich mit dem <code>when</code>-Ausdruck lösen, der zudem direkt Werte zurückgeben kann.</p>
+<p>Einheitenumrechnungen (wie Kilometer in Meilen, Celsius in Fahrenheit oder Kilogramm in Pfund) erfordern eine übersichtliche Menüführung. In Kotlin lässt sich eine Fallunterscheidung besonders elegant mit dem <code>when</code>-Ausdruck lösen, der Werte direkt als Expression zurückgeben kann.</p>
 <h3 id="anforderungen-1"><a class="header" href="#anforderungen-1">Anforderungen</a></h3>
 <ol>
 <li>Zeige dem Benutzer ein strukturiertes Hauptmenü zur Auswahl der Umrechnungsart.</li>
 <li>Lies die Menüauswahl und den umzurechnenden Zahlenwert von der Konsole ein.</li>
-<li>Verwende <code>when</code> als Ausdruck (Expression), um den passenden Berechnungsschritt auszuwählen.</li>
-<li>Lager die eigentlichen mathematischen Formeln in separate, gut benannte Funktionen aus (z. B. <code>kmZuMeilen</code>).</li>
-<li>Fange ungültige Menüoptionen über den <code>else</code>-Zweig des <code>when</code>-Ausdrucks ab.</li>
+<li>Verwende <code>when</code> als Ausdruck, um den passenden Berechnungsschritt auszuwählen.</li>
+<li>Lagere die mathematischen Formeln in separate, gut benannte Funktionen aus.</li>
+<li>Fange ungültige Menüoptionen sowie fehlerhafte Zahleneingaben ab.</li>
 </ol>
-<h3 id="architektur-skizze-1"><a class="header" href="#architektur-skizze-1">Architektur-Skizze</a></h3>
+<h3 id="didaktische-leitfragen--denkanstöße-1"><a class="header" href="#didaktische-leitfragen--denkanstöße-1">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
+<ul>
+<li><em>Was bedeutet es, dass <code>when</code> in Kotlin ein Ausdruck (Expression) und keine reine Anweisung (Statement) ist?</em></li>
+<li><em>Welche Methode nutzt du, um einen eingelesenen String sicher in eine Fließkommazahl (<code>Double</code>) umzuwandeln, ohne dass das Programm bei einer Fehleingabe abstürzt?</em></li>
+<li><em>Wie baust du eigene Funktionen mit Eingabeparametern und Rückgabewerten in Kotlin auf?</em></li>
+<li><em>Wie behandelst du den <code>else</code>-Zweig in deinem <code>when</code>-Ausdruck, wenn der Benutzer eine Zahl außerhalb des Menübereichs eingibt?</em></li>
+</ul>
+<h3 id="architektur---ablaufskizze-1"><a class="header" href="#architektur---ablaufskizze-1">Architektur- &amp; Ablaufskizze</a></h3>
 <pre><code class="language-mermaid">graph TD
     A[Menü anzeigen] --&gt; B[Auswahl &amp; Zahlenwert einlesen]
     B --&gt; C{when-Ausdruck}
-    C -- 1 --&gt; D[kmZuMeilen funktion]
-    C -- 2 --&gt; E[celsiusZuFahrenheit funktion]
-    C -- 3 --&gt; F[kgZuPfund funktion]
-    C -- else --&gt; G[Fehlermeldung / null]
-    D --&gt; H[Ergebnis anzeigen]
+    C -- Option 1 --&gt; D[Kilometer in Meilen umrechnen]
+    C -- Option 2 --&gt; E[Celsius in Fahrenheit umrechnen]
+    C -- Option 3 --&gt; F[Kilogramm in Pfund umrechnen]
+    C -- Ungültig --&gt; G[Fehlermeldung ausgeben]
+    D --&gt; H[Formatierte Ergebnisausgabe]
     E --&gt; H
     F --&gt; H
     G --&gt; H
 </code></pre>
-<h3 id="todo-starter-gerüst-1"><a class="header" href="#todo-starter-gerüst-1">TODO()-Starter-Gerüst</a></h3>
-<pre><code class="language-kotlin">fun main() {
-    println("=== Einheiten-Umrechner ===")
-    println("1: Kilometer -&gt; Meilen")
-    println("2: Celsius -&gt; Fahrenheit")
-    println("3: Kilogramm -&gt; Pfund")
-    print("Wähle eine Option (1-3): ")
-    
-    val auswahl = readlnOrNull()?.toIntOrNull()
-    
-    if (auswahl == null) {
-        println("Fehler: Ungültige Menüauswahl!")
-        return
-    }
-    
-    print("Gib den umzurechnenden Wert ein: ")
-    val wert = readlnOrNull()?.toDoubleOrNull() ?: 0.0
-    
-    // Nutze when als Expression für die Zuweisung
-    val ergebnis: Double? = when (auswahl) {
-        1 -&gt; TODO("Rufe kmZuMeilen(wert) auf")
-        2 -&gt; TODO("Rufe celsiusZuFahrenheit(wert) auf")
-        3 -&gt; TODO("Rufe kgZuPfund(wert) auf")
-        else -&gt; {
-            println("Unbekannte Option!")
-            null
-        }
-    }
-    
-    // Ausgabe des Ergebnisses
-    if (ergebnis != null) {
-        TODO("Gib das formatierte Ergebnis aus (z.B. 'Ergebnis: $ergebnis')")
-    }
-}
-
-fun kmZuMeilen(km: Double): Double {
-    TODO("Berechne Meilen: km * 0.621371")
-}
-
-fun celsiusZuFahrenheit(celsius: Double): Double {
-    TODO("Berechne Fahrenheit: celsius * 1.8 + 32")
-}
-
-fun kgZuPfund(kg: Double): Double {
-    TODO("Berechne Pfund: kg * 2.20462")
-}
-</code></pre>
-<h3 id="erweiterungsideen-1"><a class="header" href="#erweiterungsideen-1">Erweiterungsideen</a></h3>
-<ul>
-<li>Füge Rückwärts-Umrechnungen hinzu (z. B. Meilen in Kilometer).</li>
-<li>Verpacke die Anwendung in eine <code>do-while</code>-Schleife, damit der Benutzer beliebig viele Umrechnungen durchführen kann.</li>
-</ul>
 <hr />
-<h2 id="-projekt-3-das-mini-quizsystem-schleifen-bedingungsprüfungen--punktezähler"><a class="header" href="#-projekt-3-das-mini-quizsystem-schleifen-bedingungsprüfungen--punktezähler">🎯 Projekt 3: Das Mini-Quizsystem (Schleifen, Bedingungsprüfungen &amp; Punktezähler)</a></h2>
+<h2 id="-projekt-3-das-mini-quizsystem-schleifen-bedingungen--punktezähler"><a class="header" href="#-projekt-3-das-mini-quizsystem-schleifen-bedingungen--punktezähler">🎯 Projekt 3: Das Mini-Quizsystem (Schleifen, Bedingungen &amp; Punktezähler)</a></h2>
 <h3 id="problemstellung-2"><a class="header" href="#problemstellung-2">Problemstellung</a></h3>
-<p>Ein Quizsystem ist ideal, um das Zusammenspiel von Arrays/Listen, Schleifen und Zählervariablen zu üben. Das Programm soll nacheinander mehrere Fragen stellen, die Eingaben prüfen und am Ende eine Zusammenfassung der erreichten Punkte ausgeben.</p>
+<p>Ein Quizsystem eignet sich hervorragend, um das Zusammenspiel von Datensammlungen, Schleifen und Zählervariablen zu üben. Das Programm stellt nacheinander mehrere Fragen, vergleicht die Antworten und gibt am Ende eine Zusammenfassung der Punkte und eine Erfolgsquote aus.</p>
 <h3 id="anforderungen-2"><a class="header" href="#anforderungen-2">Anforderungen</a></h3>
 <ol>
-<li>Speichere Fragen und dazugehörige Antworten in passenden Datenstrukturen (z. B. <code>arrayOf</code> oder <code>listOf</code>).</li>
-<li>Durchlaufe die Fragen mithilfe einer <code>for</code>-Schleife (<code>for (i in fragen.indices)</code>).</li>
-<li>Vergleiche die Benutzereingabe mit der korrekten Antwort (ignoriere dabei Groß- und Kleinschreibung mit <code>equals(..., ignoreCase = true)</code>).</li>
-<li>Führe eine Zählervariable (<code>var punkte</code>), die bei jeder richtigen Antwort erhöht wird.</li>
-<li>Gib nach Durchlauf aller Fragen die Gesamtpunktzahl und eine prozentuale Bewertung aus.</li>
+<li>Speichere Fragen und dazu passende Antworten in geeigneten Datenstrukturen (z. B. Listen oder Arrays).</li>
+<li>Durchlaufe die Fragen mithilfe einer Schleife.</li>
+<li>Vergleiche die Benutzereingabe mit der korrekten Antwort (Groß- und Kleinschreibung soll ignoriert werden).</li>
+<li>Führe einen Punktezähler mit, der bei jeder richtigen Antwort erhöht wird.</li>
+<li>Gib nach Ablauf aller Fragen die Gesamtpunktzahl und eine prozentuale Auswertung aus.</li>
 </ol>
-<h3 id="architektur-skizze-2"><a class="header" href="#architektur-skizze-2">Architektur-Skizze</a></h3>
+<h3 id="didaktische-leitfragen--denkanstöße-2"><a class="header" href="#didaktische-leitfragen--denkanstöße-2">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
+<ul>
+<li><em>Mit welcher Schleifenvariante kannst du direkt über den Index oder die Elemente einer Liste/eines Arrays iterieren?</em></li>
+<li><em>Welche Methode der Klasse <code>String</code> erlaubt einen Textvergleich, bei dem die Groß-/Kleinschreibung ignoriert wird?</em></li>
+<li><em>Welche Art von Variable (<code>val</code> oder <code>var</code>) musst du für den Punktezähler wählen und warum?</em></li>
+<li><em>Wie berechnest du die Erfolgsquote in Prozent und wie vermeidest du dabei eine ungewollte Ganzzahl-Division?</em></li>
+</ul>
+<h3 id="architektur---ablaufskizze-2"><a class="header" href="#architektur---ablaufskizze-2">Architektur- &amp; Ablaufskizze</a></h3>
 <pre><code class="language-mermaid">graph TD
-    A[Quiz starten] --&gt; B[punkte = 0]
-    B --&gt; C[for-Schleife über alle Fragen]
+    A[Quiz starten] --&gt; B[Punktezähler initialisieren]
+    B --&gt; C[Schleife über alle Fragen]
     C --&gt; D[Frage anzeigen &amp; Antwort einlesen]
     D --&gt; E{Antwort korrekt?}
-    E -- Ja --&gt; F[punkte++ &amp; 'Richtig!' ausgeben]
-    E -- Nein --&gt; G['Falsch!' &amp; korrekte Antwort anzeigen]
-    F --&gt; H{Weitere Fragen?}
+    E -- Ja --&gt; F[Punkte erhöhen &amp; Erfolg meiden]
+    E -- Nein --&gt; G[Korrektur anzeigen]
+    F --&gt; H{Weitere Fragen vorhanden?}
     G --&gt; H
     H -- Ja --&gt; C
-    H -- Nein --&gt; I[Gesamtergebnis &amp; Bewertung ausgeben]
+    H -- Nein --&gt; I[Gesamtergebnis &amp; Prozentwert anzeigen]
 </code></pre>
-<h3 id="todo-starter-gerüst-2"><a class="header" href="#todo-starter-gerüst-2">TODO()-Starter-Gerüst</a></h3>
-<pre><code class="language-kotlin">fun main() {
-    println("=== Kotlin Mini-Quiz ===")
-    
-    val fragen = arrayOf(
-        "1. Welches Schlüsselwort deklariert eine unveränderbare Variable in Kotlin?",
-        "2. Wie heißt der Operator '?:' in Kotlin?",
-        "3. Mit welchem Schlüsselwort werden Funktionen in Kotlin eingeleitet?"
-    )
-    val antworten = arrayOf("val", "elvis", "fun")
-    
-    var punkte = 0
-    
-    for (i in fragen.indices) {
-        println("\n${fragen[i]}")
-        print("Deine Antwort: ")
-        val eingabe = readlnOrNull()?.trim() ?: ""
-        
-        // Prüfung der Antwort
-        TODO("Prüfe, ob eingabe.equals(antworten[i], ignoreCase = true). Erhöhe 'punkte' um 1 bei Erfolg.")
-    }
-    
-    println("\n=== Quiz Beendet ===")
-    TODO("Gib die Punkte aus (z.B. '$punkte von ${fragen.size} richtig') und berechne die Erfolgsquote")
-}
-</code></pre>
-<h3 id="erweiterungsideen-2"><a class="header" href="#erweiterungsideen-2">Erweiterungsideen</a></h3>
-<ul>
-<li>Mische die Fragen vor Quizbeginn nach dem Zufallsprinzip (<code>shuffled()</code>).</li>
-<li>Ziehe bei falschen Antworten Punkte ab oder vergebe Zusatzpunkte für schnelle Eingaben.</li>
-</ul>
 <hr />
-<h2 id="-projekt-4-der-einkaufslisten-planer-listen--basic-immutability"><a class="header" href="#-projekt-4-der-einkaufslisten-planer-listen--basic-immutability">🛒 Projekt 4: Der Einkaufslisten-Planer (Listen &amp; basic Immutability)</a></h2>
+<h2 id="-projekt-4-der-einkaufslisten-planer-mutablelist--konsolen-menü"><a class="header" href="#-projekt-4-der-einkaufslisten-planer-mutablelist--konsolen-menü">🛒 Projekt 4: Der Einkaufslisten-Planer (MutableList &amp; Konsolen-Menü)</a></h2>
 <h3 id="problemstellung-3"><a class="header" href="#problemstellung-3">Problemstellung</a></h3>
-<p>In Kotlin wird streng zwischen unveränderbaren Kollektionen (<code>List</code>) und veränderbaren Kollektionen (<code>MutableList</code>) unterschieden. In diesem Projekt erstellst du eine interaktive Einkaufsliste, bei der Artikel dynamically hinzugefügt, aufgelistet und entfernt werden können.</p>
+<p>In Kotlin wird strikt zwischen unveränderbaren Kollektionen (<code>List</code>) und veränderbaren Kollektionen (<code>MutableList</code>) unterschieden. In diesem Projekt erstellst du eine interaktive Einkaufsliste, bei der Artikel während der Laufzeit hinzugefügt, aufgelistet und entfernt werden können.</p>
 <h3 id="anforderungen-3"><a class="header" href="#anforderungen-3">Anforderungen</a></h3>
 <ol>
-<li>Verwende eine <code>MutableList&lt;String&gt;</code>, um Artikel während der Laufzeit zu verwalten.</li>
-<li>Baue eine interaktive <code>while</code>-Hauptschleife mit folgenden Optionen:
+<li>Verwende eine veränderbare Liste (<code>MutableList</code>), um Artikel dynamisch zu verwalten.</li>
+<li>Baue eine interaktive Hauptschleife mit folgenden Optionen:
 <ul>
-<li><code>1</code>: Artikel hinzufügen (leere Eingaben oder Duplikate vermeiden).</li>
-<li><code>2</code>: Einkaufsliste anzeigen (mit Zeilennummern via <code>forEachIndexed</code>).</li>
-<li><code>3</code>: Artikel entfernen (nach Namen oder Index).</li>
-<li><code>4</code>: Beenden.</li>
+<li>Artikel hinzufügen (leere Eingaben vermeiden).</li>
+<li>Einkaufsliste anzeigen (mit fortlaufender Nummerierung).</li>
+<li>Artikel entfernen (nach Namen oder Index).</li>
+<li>Programm beenden.</li>
 </ul>
 </li>
-<li>Achte auf saubere Rückmeldungen an den Benutzer, wenn die Liste leer ist.</li>
+<li>Informiere den Benutzer angemessen, falls die Liste leer ist.</li>
 </ol>
-<h3 id="architektur-skizze-3"><a class="header" href="#architektur-skizze-3">Architektur-Skizze</a></h3>
+<h3 id="didaktische-leitfragen--denkanstöße-3"><a class="header" href="#didaktische-leitfragen--denkanstöße-3">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
+<ul>
+<li><em>Warum ist es in Kotlin guter Stil, standardmäßig unveränderbare Listen zu bevorzugen und <code>MutableList</code> nur dort zu nutzen, wo Elemente verändert werden müssen?</em></li>
+<li><em>Mit welcher Hilfsmethode kannst du eine Liste durchlaufen und dabei gleichzeitig auf das Element und dessen aktuellen Index zugreifen?</em></li>
+<li><em>Welche Sicherheitsprüfung solltest du durchführen, bevor der Benutzer versucht, ein Element aus der Liste zu entfernen?</em></li>
+<li><em>Wie verhinderst du, dass Duplikate oder leere Zeichenketten in deine Einkaufsliste gelangen?</em></li>
+</ul>
+<h3 id="architektur---ablaufskizze-3"><a class="header" href="#architektur---ablaufskizze-3">Architektur- &amp; Ablaufskizze</a></h3>
 <pre><code class="language-mermaid">graph TD
-    A[Start Schleife while] --&gt; B[Menü ausgeben]
-    B --&gt; C[Benutzerauswahl einlesen]
-    C --&gt; D{Option}
-    D -- 1 --&gt; E[Artikel zu MutableList hinzufügen]
-    D -- 2 --&gt; F[Liste anzeigen mit forEachIndexed]
-    D -- 3 --&gt; G[Artikel aus Liste entfernen]
-    D -- 4 --&gt; H[Schleife beenden]
+    A[Hauptschleife starten] --&gt; B[Menü anzeigen]
+    B --&gt; C[Option einlesen]
+    C --&gt; D{Option währen}
+    D -- 1: Hinzufügen --&gt; E[Artikel validieren &amp; zur MutableList hinzufügen]
+    D -- 2: Anzeigen --&gt; F[Liste durchlaufen &amp; nummeriert ausgeben]
+    D -- 3: Entfernen --&gt; G[Prüfen ob Liste nicht leer &amp; Artikel löschen]
+    D -- 4: Beenden --&gt; H[Schleife abbrechen &amp; Programm beenden]
     E --&gt; A
     F --&gt; A
     G --&gt; A
 </code></pre>
-<h3 id="todo-starter-gerüst-3"><a class="header" href="#todo-starter-gerüst-3">TODO()-Starter-Gerüst</a></h3>
-<pre><code class="language-kotlin">fun main() {
-    val einkaufsliste = mutableListOf&lt;String&gt;()
-    var laeuft = true
-    
-    while (laeuft) {
-        println("\n=== Einkaufslisten-Planer ===")
-        println("1. Artikel hinzufügen")
-        println("2. Einkaufsliste anzeigen")
-        println("3. Artikel entfernen")
-        println("4. Beenden")
-        print("Wähle eine Option: ")
-        
-        val wahl = readlnOrNull()?.trim()
-        
-        when (wahl) {
-            "1" -&gt; {
-                print("Artikelname: ")
-                val artikel = readlnOrNull()?.trim()
-                TODO("Füge 'artikel' der Liste hinzu, sofern er nicht null oder leer ist")
-            }
-            "2" -&gt; {
-                TODO("Gib die Einkaufsliste formatiert mit forEachIndexed aus. Behandle den Fall, dass die Liste leer ist.")
-            }
-            "3" -&gt; {
-                print("Welcher Artikel soll entfernt werden? ")
-                val artikel = readlnOrNull()?.trim()
-                TODO("Entferne den Artikel aus der Liste (z.B. mit einkaufsliste.remove(artikel))")
-            }
-            "4" -&gt; {
-                println("Programm wird beendet. Viel Erfolg beim Einkaufen!")
-                laeuft = false
-            }
-            else -&gt; println("Ungültige Option, bitte erneut versuchen.")
-        }
-    }
-}
-</code></pre>
-<h3 id="erweiterungsideen-3"><a class="header" href="#erweiterungsideen-3">Erweiterungsideen</a></h3>
+<hr />
+<h2 id="-projekt-5-der-notenspiegel-analysator-zahlenverarbeitung--schleifen"><a class="header" href="#-projekt-5-der-notenspiegel-analysator-zahlenverarbeitung--schleifen">📊 Projekt 5: Der Notenspiegel-Analysator (Zahlenverarbeitung &amp; Schleifen)</a></h2>
+<h3 id="problemstellung-4"><a class="header" href="#problemstellung-4">Problemstellung</a></h3>
+<p>Du möchtest eine Reihe von Prüfungsnoten eingeben und statistisch auswerten. Das Programm soll Noten entgegennehmen, bis der Nutzer die Eingabe beendet, und anschließend Notendurchschnitt, beste Note sowie schlechteste Note berechnen.</p>
+<h3 id="anforderungen-4"><a class="header" href="#anforderungen-4">Anforderungen</a></h3>
+<ol>
+<li>Lies wiederholt Noten (Dezimalzahlen) über die Konsole ein, bis ein Abbruchsignal (z. B. das Wort <code>"ende"</code>) eingegeben wird.</li>
+<li>Validiere, dass eingegebene Noten im gültigen Notenbereich (z. B. 1.0 bis 6.0) liegen.</li>
+<li>Speichere die gültigen Noten in einer Liste.</li>
+<li>Berechne nach Abschluss der Eingabe den Notendurchschnitt, das Minimum und das Maximum.</li>
+<li>Behandle Sonderfälle (z. B. wenn gar keine Note eingegeben wurde).</li>
+</ol>
+<h3 id="didaktische-leitfragen--denkanstöße-4"><a class="header" href="#didaktische-leitfragen--denkanstöße-4">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
 <ul>
-<li>Implementiere eine Option zum Sortieren der Einkaufsliste (<code>sort()</code>).</li>
-<li>Erlaube das Hinzufügen von Mengenangaben zu jedem Artikel.</li>
+<li><em>Welche Schleifenform (<code>while</code> oder <code>do-while</code>) eignet sich besonders gut für eine Eingabeschleife mit ungewisser Anzahl an Durchläufen?</em></li>
+<li><em>Welche vorgefertigten Funktionen bietet Kotlins Standardbibliothek für Listen von Zahlen, um Summe, Minimum oder Maximum zu ermitteln?</em></li>
+<li><em>Wie schützt du dein Programm vor einer Division durch 0 bei der Durchschnittsberechnung?</em></li>
+</ul>
+<hr />
+<h2 id="-projekt-6-der-passwort-sicherheitsprüfer-string-analyse--logik"><a class="header" href="#-projekt-6-der-passwort-sicherheitsprüfer-string-analyse--logik">🔐 Projekt 6: Der Passwort-Sicherheitsprüfer (String-Analyse &amp; Logik)</a></h2>
+<h3 id="problemstellung-5"><a class="header" href="#problemstellung-5">Problemstellung</a></h3>
+<p>Ein sicheres Passwort sollte bestimmte Kriterien erfüllen (Mindestlänge, Großbuchstaben, Ziffern, Sonderzeichen). Du baust ein Werkzeug, das ein Passwort analysiert und dem Nutzer detailliertes Feedback zur Passwortstärke gibt.</p>
+<h3 id="anforderungen-5"><a class="header" href="#anforderungen-5">Anforderungen</a></h3>
+<ol>
+<li>Lies ein Passwort als Text von der Konsole ein.</li>
+<li>Überprüfe folgende Sicherheitsregeln:
+<ul>
+<li>Mindestens 8 Zeichen lang.</li>
+<li>Enthält mindestens einen Großbuchstaben.</li>
+<li>Enthält mindestens eine Ziffer.</li>
+<li>Enthält mindestens ein Sonderzeichen.</li>
+</ul>
+</li>
+<li>Gib für jede nicht erfüllte Regel einen konkreten Hinweis aus.</li>
+<li>Eruiere eine Gesamtbewertung (z. B. <em>Schwach</em>, <em>Mittel</em>, <em>Stark</em>).</li>
+</ol>
+<h3 id="didaktische-leitfragen--denkanstöße-5"><a class="header" href="#didaktische-leitfragen--denkanstöße-5">Didaktische Leitfragen &amp; Denkanstöße</a></h3>
+<ul>
+<li><em>Welche nützlichen Prüfmethoden bietet die Klasse <code>Char</code> in Kotlin (z. B. <code>isUpperCase()</code>, <code>isDigit()</code>)?</em></li>
+<li><em>Wie kannst du mit der Kotlin-Funktion <code>any { ... }</code> prüfen, ob mindestens ein Zeichen in einem String eine Bedingung erfüllt?</em></li>
+<li><em>Wie strukturierst du deine Prüflogik, damit alle Schwachstellen auf einmal angezeigt werden und nicht nur die erste fehlerhafte Regel?</em></li>
 </ul>
 
                     </main>
