@@ -137,6 +137,7 @@
   - [Channels & Nachrichtenaustausch](./konzept-channels.md)
   - [Async/Await & Tokio-Grundlagen](./konzept-async.md)
   - [🌐 Web-Backend & REST APIs (Axum & SQLx)](./rust-web-backend.md)
+  - [⚡ Static Site Generator: Eigene Website mit Rust bauen](./rust-static-site-generator.md)
 - [📦 Mitmach-Workshop: Phase 7 bildhaft verstehen](./phase7-workshop.md)
 - [Projektvorschläge Phase 7](./phase7.md)
 - [100 Projekte - Fearless Concurrency](./100-projekte-phase7.md)

@@ -8,3 +8,6 @@ Welche zwei Teile gibt eine mpsc::channel()-Funktion zurück?;(sender, receiver)
 Welches Schlüsselwort markiert eine Funktion als asynchron?;async (z. B. async fn hole_daten())
 Wie wartet man in einer async-Funktion auf das Ergebnis einer asynchronen Operation?;Mit dem Schlüsselwort .await am Ende des Aufrufs
 Welche asynchrone Laufzeitumgebung (Runtime) ist der Industriestandard in Rust?;Tokio (#[tokio::main])
+Was versteht man unter Frontmatter in Markdown-Dateien?;Ein Kopfbereich (meist zwischen ---) mit Metadaten im YAML- oder TOML-Format.
+Aus welchen Hauptphasen besteht die Pipeline eines Static Site Generators (SSG)?;File-Traversal, Parsing, Template-Rendering und Dateiexport.
+Welches Crate wird in Rust häufig zum Parsen von Markdown zu HTML verwendet?;pulldown-cmark
