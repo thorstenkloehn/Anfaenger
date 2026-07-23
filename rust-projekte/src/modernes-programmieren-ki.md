@@ -228,7 +228,7 @@ Wenn Sie bereits eine Sprache können (oder Grundlagen haben) und ein neues, abs
 Nutzen Sie diesen Prompt, wenn Sie auf eine Codezeile mit ungewohnten Symbolen, Schlüsselwörtern oder einer unklaren Syntax stoßen und die genaue Grammatik verstehen wollen.
 
 **Prompt-Vorlage:**
-> *„Ich lerne gerade Rust und verstehe die Syntax dieser Codezeile nicht: `[Codezeile, z. B. impl<'a> MyStruct<'a> / let x = match y { ... }]`. Bitte brich die Zeile in ihre einzelnen Bestandteile herunter. Erkläre mir genau, was jedes Symbol (z. B. < >, &, ', _, ::) und jedes Schlüsselwort in dieser Zeile bedeutet und welche grammatikalische Funktion es erfüllt.“*
+> *„Ich lerne gerade Rust und verstehe die Syntax dieser Codezeile nicht: `[Codezeile, z. B. impl<'a> MyStruct<'a> / let x = match y { ... }]`. Bitte brich die Zeile in ihre einzelnen Bestandteile herunter. Erkläre mir genau, was jedes Symbol (z. B. `< >`, `&`, `'`, `_`, `::`) und jedes Schlüsselwort in dieser Zeile bedeutet und welche grammatikalische Funktion es erfüllt.“*
 
 ---
 

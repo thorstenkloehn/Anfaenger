@@ -1,4 +1,4 @@
-# 🧪 RefCell<T> & Interior Mutability – Das Bibliothekar-Prinzip
+# 🧪 `RefCell<T>` & Interior Mutability – Das Bibliothekar-Prinzip
 
 Bisher hat uns der Rust-Compiler eine eiserne Regel eingeprägt: **Du darfst Daten entweder an viele Leser gleichzeitig verleihen ODER an genau einen Schreiber, aber niemals beides zeitgleich.** 
 
@@ -169,7 +169,7 @@ Erstelle eine Gegenüberstellung der Vor- und Nachteile der compilezeit-geprüft
 
 ## 📚 Links
 
-*   [Das offizielle Rust-Buch: RefCell<T> und das Interior Mutability Pattern (Englisch)](https://doc.rust-lang.org/book/ch15-05-interior-mutability.html)
-*   [Die deutsche Übersetzung des Rust-Buchs: RefCell<T> (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-05-interior-mutability.html)
+*   [Das offizielle Rust-Buch: `RefCell<T>` und das Interior Mutability Pattern (Englisch)](https://doc.rust-lang.org/book/ch15-05-interior-mutability.html)
+*   [Die deutsche Übersetzung des Rust-Buchs: `RefCell<T>` (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-05-interior-mutability.html)
 *   [Rust by Example: RefCell (Englisch)](https://doc.rust-lang.org/rust-by-example/std/box.html)
-*   [Konzept: Rc<T> & Arc<T> (Die Grundlage für geteilten Besitz)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-rc-arc.md)
+*   [Konzept: `Rc<T>` & `Arc<T>` (Die Grundlage für geteilten Besitz)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-rc-arc.md)

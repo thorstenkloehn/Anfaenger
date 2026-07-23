@@ -1,4 +1,4 @@
-# HashMaps (HashMap<K, V>) – Schlüssel-Wert-Speicher in Rust
+# HashMaps (`HashMap<K, V>`) – Schlüssel-Wert-Speicher in Rust
 
 Vektoren (`Vec<T>`) und Arrays (`[T; N]`) sind hervorragend geeignet, wenn wir über eine fortlaufende Ganzzahl (den Index `0, 1, 2, ...`) auf unsere Elemente zugreifen wollen. Manchmal wollen wir unsere Daten jedoch mit einem beliebigen anderen Datentyp verknüpfen.
 

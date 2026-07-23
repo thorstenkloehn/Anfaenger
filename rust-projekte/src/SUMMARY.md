@@ -127,9 +127,9 @@
 # Phase 6: Smart Pointer & Speicherverwaltung
 
 - [Konzepte statt Syntax lernen](./phase6-konzepte.md)
-  - [Box<T> & Heap-Allokation](./konzept-box.md)
-  - [Rc<T> & Arc<T> (Geteilter Besitz)](./konzept-rc-arc.md)
-  - [RefCell<T> (Interior Mutability)](./konzept-refcell.md)
+  - [`Box<T>` & Heap-Allokation](./konzept-box.md)
+  - [`Rc<T>` & `Arc<T>` (Geteilter Besitz)](./konzept-rc-arc.md)
+  - [`RefCell<T>` (Interior Mutability)](./konzept-refcell.md)
 - [📦 Mitmach-Workshop: Phase 6 bildhaft verstehen](./phase6-workshop.md)
 - [Projektvorschläge Phase 6](./phase6.md)
 - [100 Projekte - Smart Pointer & Speicherverwaltung](./100-projekte-phase6.md)

@@ -1,6 +1,6 @@
 # Phase 6: Projektvorschläge zu Smart Pointer & Speicherverwaltung
 
-In dieser Phase tauchst du tief in die fortgeschrittene Speicherverwaltung von Rust ein. Du verlässt die Pfade der klassischen Ownership-Modelle und nutzt die Werkzeuge für geteilten Besitz und dynamische Veränderlichkeit zur Laufzeit: **[Box<T>](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-box.md)**, **[Rc<T> und Arc<T>](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-rc-arc.md)** sowie **[RefCell<T>](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-refcell.md)**. 
+In dieser Phase tauchst du tief in die fortgeschrittene Speicherverwaltung von Rust ein. Du verlässt die Pfade der klassischen Ownership-Modelle und nutzt die Werkzeuge für geteilten Besitz und dynamische Veränderlichkeit zur Laufzeit: **[`Box<T>`](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-box.md)**, **[`Rc<T>` und `Arc<T>`](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-rc-arc.md)** sowie **[`RefCell<T>`](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-refcell.md)**. 
 
 Diese Smart Pointer ermöglichen es dir, hochflexible Architekturen zu entwerfen, wie sie in Benutzeroberflächen, Graphenstrukturen, Event-Systemen und parallelen Programmen benötigt werden.
 

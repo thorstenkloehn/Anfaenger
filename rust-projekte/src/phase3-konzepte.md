@@ -52,7 +52,7 @@ Der Compiler zwingt dich über sein Typsystem, dieses Paket zu öffnen und beide
 
 ---
 
-## 2. Option<T> – Die Lösung für das "Nichts"
+## 2. `Option<T>` – Die Lösung für das "Nichts"
 
 Der Erfinder der Null-Referenz, Tony Hoare, bezeichnete die Erfindung von `null` im Jahr 2009 als seinen **„Billion Dollar Mistake“**. In fast allen Sprachen kann eine Referenz auf ein Objekt `null` (oder `None` / `nil`) sein. Wenn man vergisst zu prüfen, ob die Variable leer ist, stürzt das Programm ab (`NullPointerException`).
 
@@ -120,7 +120,7 @@ enum Option<T> {
 
 ---
 
-## 3. Result<T, E> – Umgang mit echten Fehlern
+## 3. `Result<T, E>` – Umgang mit echten Fehlern
 
 Während `Option` signalisiert, dass ein Wert *fehlt* (was völlig normal sein kann), signalisiert `Result`, dass eine Operation *fehlgeschlagen* ist.
 
@@ -165,7 +165,7 @@ fn lies_einstellungen() -> Result<String, io::Error> {
 
 ---
 
-## 4. Vec<T> – Dynamische Listen auf dem Heap
+## 4. `Vec<T>` – Dynamische Listen auf dem Heap
 
 Ein Array in Rust hat eine feste Größe (z. B. `[i32; 5]`). Es liegt direkt auf dem Stack. Ein Vektor (`Vec<T>`) hingegen ist eine dynamisch wachsende Liste, die auf dem **Heap** gespeichert wird.
 
@@ -195,7 +195,7 @@ Wenn du nun ein 5. Element hinzufügen willst, ist die Kapazität erschöpft. Nu
 
 ---
 
-## 5. HashMap<K, V> – Schlüssel-Wert-Tabellen
+## 5. `HashMap<K, V>` – Schlüssel-Wert-Tabellen
 
 Eine HashMap speichert Daten in Form von Schlüssel-Wert-Paaren (Key-Value). Statt über eine Zahl greifst du über einen beliebigen Typ (z. B. einen `String`) auf die Daten zu.
 

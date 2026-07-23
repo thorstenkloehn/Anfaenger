@@ -1,4 +1,4 @@
-# 🔍 Fehlerbehandlung mit Option<T> – Werte, die fehlen dürfen
+# 🔍 Fehlerbehandlung mit `Option<T>` – Werte, die fehlen dürfen
 
 Im echten Leben begegnen uns ständig optionale Dinge:
 * Eine E-Mail-Adresse im Profil eines Benutzers (manche haben keine hinterlegt).

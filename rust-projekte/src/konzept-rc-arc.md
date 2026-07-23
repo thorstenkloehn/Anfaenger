@@ -1,4 +1,4 @@
-# 👥 Rc<T> & Arc<T> – Das WG-Fernseher-Prinzip (Geteilter Besitz)
+# 👥 `Rc<T>` & `Arc<T>` – Das WG-Fernseher-Prinzip (Geteilter Besitz)
 
 Rusts grundlegendes Prinzip lautet: **Jeder Wert hat genau einen Besitzer (Single Ownership).** Wenn dieser Besitzer den Scope verlässt, wird der Wert vernichtet. Das sorgt für Ordnung und verhindert Speicherfehler.
 
@@ -164,7 +164,7 @@ Ein Anfänger fragt sich: *"Warum soll ich Rc::clone nutzen, wenn ich auch einfa
 
 ## 📚 Links
 
-*   [Das offizielle Rust-Buch: Rc<T> der Referenzzähler-Smart-Pointer (Englisch)](https://doc.rust-lang.org/book/ch15-04-rc.html)
-*   [Die deutsche Übersetzung des Rust-Buchs: Rc<T> (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-04-rc.html)
+*   [Das offizielle Rust-Buch: `Rc<T>` der Referenzzähler-Smart-Pointer (Englisch)](https://doc.rust-lang.org/book/ch15-04-rc.html)
+*   [Die deutsche Übersetzung des Rust-Buchs: `Rc<T>` (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-04-rc.html)
 *   [Rust by Example: Arc (Englisch)](https://doc.rust-lang.org/rust-by-example/std/arc.html)
-*   [Konzept: Box<T> (Der einfachere Smart Pointer für exklusiven Besitz)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-box.md)
+*   [Konzept: `Box<T>` (Der einfachere Smart Pointer für exklusiven Besitz)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-box.md)

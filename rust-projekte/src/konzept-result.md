@@ -1,4 +1,4 @@
-# ⚠️ Fehlerbehandlung mit Result<T, E> – Operationen, die fehlschlagen können
+# ⚠️ Fehlerbehandlung mit `Result<T, E>` – Operationen, die fehlschlagen können
 
 Jedes Programm, das mit der Außenwelt interagiert, wird früher oder später mit Fehlern konfrontiert:
 * Eine Datei soll geöffnet werden, existiert aber nicht.

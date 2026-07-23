@@ -1702,7 +1702,7 @@ Eine doppelt verkettete Liste erlaubt das Navigieren in beide Richtungen. In Rus
 * **Ziel:** Definiere die Datenstruktur für einen Knoten und die Liste selbst. Da mehrere Instanzen Besitzrechte an einem Knoten teilen (Nachfolger und Vorgänger) und Knoten veränderbar sein müssen, ist eine Heap-Allokation mit geteilten Besitzrechten und innerer Veränderbarkeit notwendig. Um Speicherlecks durch zirkuläre Referenzen zu vermeiden, muss eine Richtung schwach referenziert werden.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1721,7 +1721,7 @@ Eine doppelt verkettete Liste erlaubt das Navigieren in beide Richtungen. In Rus
 
 ---
 
-### 62. Shared State im Multi-Threading (Arc<Mutex>)
+### 62. Shared State im Multi-Threading (`Arc<Mutex>`)
 
 **Hintergrund:**
 Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies aus Sicherheitsgründen standardmäßig. Mit atomaren Smart Pointern und Mutexen kannst du Daten sicher über Thread-Grenzen hinweg teilen und gegenseitigen Ausschluss garantieren.
@@ -1730,7 +1730,7 @@ Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies au
 * **Ziel:** Erstelle eine Struktur, die den geteilten Zustand (einen Zähler) kapselt. Überlege, wie dieser Zustand für mehrere Threads im Speicher alloziiert und abgesichert sein muss, damit Threads gleichzeitig Zugriff anfordern können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1749,7 +1749,7 @@ Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies au
 
 ---
 
-### 63. Multi-Reader, Single-Writer Cache (Arc<RwLock>)
+### 63. Multi-Reader, Single-Writer Cache (`Arc<RwLock>`)
 
 **Hintergrund:**
 In leseintensiven Szenarien bremst ein einfacher Mutex die Performance aus, da immer nur ein Thread gleichzeitig zugreifen darf. Mit einem Lese-Schreib-Lock können beliebig viele Threads gleichzeitig lesen, während Schreibzugriffe exklusiv gesichert werden.
@@ -1758,7 +1758,7 @@ In leseintensiven Szenarien bremst ein einfacher Mutex die Performance aus, da i
 * **Ziel:** Entwirf eine Cache-Struktur (z. B. auf Basis einer Schlüssel-Wert-Tabelle), die über Thread-Grenzen hinweg geteilt werden kann. Die Struktur muss so verpackt sein, dass paralleles Lesen effizient möglich ist, aber Schreiben exklusiv bleibt.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1786,7 +1786,7 @@ Soziale Netzwerke oder Web-Graphen bestehen aus Knoten, die sich gegenseitig ref
 * **Ziel:** Definiere eine Struktur für eine Person (Knoten) und das Netzwerk (Graph). Da Personen mehrere Freunde (Referenzen auf andere Personen) haben und Profile veränderbar sein müssen, ist eine Heap-Struktur mit Referenzzählung und innerer Veränderbarkeit gefragt.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1814,7 +1814,7 @@ In modernen Anwendungen ist es üblich, dass Hintergrundaufgaben von mehreren Er
 * **Ziel:** Definiere ein Struct für einen Job und eine Warteschlange (z.B. eine doppelseitige Warteschlange). Der Speicherplatz für die Jobs muss so geteilt werden, dass mehrere Threads sicher Elemente hinzufügen oder entnehmen können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1842,7 +1842,7 @@ In Benutzeroberflächen oder Szenengraphen müssen Knoten oft flexibel im Baum v
 * **Ziel:** Erstelle eine Knotenstruktur für den Baum. Jeder Knoten soll eine Liste von Kindknoten besitzen und optional auf seinen Elternknoten verweisen können. Die Referenz auf die Kinder muss das Eigentum teilen und veränderbar sein, während die Referenz zum Elternteil das Löschen des Knotens nicht verhindern darf.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1870,7 +1870,7 @@ Bei einem Multiplayer-Spiel greifen viele Clients gleichzeitig auf denselben Ser
 * **Ziel:** Definiere den Spielzustand (z. B. eine Liste aktiver Spieler und deren Koordinaten). Verpacke diesen Zustand so, dass mehrere Client-Threads parallel Lese- und Schreibrechte anfordern können, ohne dass das Programm abstürzt oder inkonsistente Zustände entstehen.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1898,7 +1898,7 @@ Ein Event-Bus verteilt Ereignisse (Events) an registrierte Abonnenten. Da diese 
 * **Ziel:** Definiere ein Event-Objekt und die Struktur des Event-Bus. Der Bus muss eine Liste von Abonnenten (Subscribers) verwalten. Die Liste muss threadsicher geteilt werden und dynamisch erweitert oder verringert werden können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1926,7 +1926,7 @@ In komplexen CLI-Anwendungen hängen Menüpunkte oft voneinander ab oder verweis
 * **Ziel:** Definiere die Strukturen für einen Menüpunkt und ein Untermenü. Untermenüs müssen eine Liste ihrer Kind-Einträge besitzen und einen Zeiger auf das übergeordnete Menü (Parent) halten. Die Speicherstruktur muss zirkelsicher und veränderbar sein.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1954,7 +1954,7 @@ Wenn viele Programmteile gleichzeitig Log-Einträge schreiben, müssen diese geo
 * **Ziel:** Definiere die Logger-Struktur, die einen internen Puffer (z.B. eine Liste von Texten) verwaltet. Der Puffer muss so im Speicher abgelegt sein, dass mehrere Threads gleichzeitig und sicher neue Log-Meldungen hineinschreiben können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -1982,7 +1982,7 @@ Ein Chat-Server muss die Verbindungen aller aktiven Benutzer verwalten. Da Benut
 * **Ziel:** Erstelle eine Datenstruktur für Benutzer und eine Teilnehmerliste (z.B. eine Hash-Tabelle). Da die Liste von vielen Threads gelesen wird (Nachrichtenverteilung) und seltener geschrieben wird (Beitritt/Austritt), muss die Struktur entsprechend geschützt werden.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2010,7 +2010,7 @@ Beim parallelen Herunterladen von Webseiten (Web Scraping) verarbeiten mehrere T
 * **Ziel:** Definiere eine Struktur für die gesammelten Seitendaten (z.B. URL und Inhalt) und die Ergebnisliste. Der Speicherplatz für die Ergebnisliste muss so aufgeteilt werden, dass Threads unkompliziert Daten anhängen können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2038,7 +2038,7 @@ Ein autonomer Roboter besitzt verschiedene Subsysteme (z. B. Abstandssensoren, A
 * **Ziel:** Definiere die Datenstruktur für den Roboterzustand (z. B. Sensorwerte, Motorleistung, Systemstatus). Da dieser Zustand von mehreren Threads gelesen und geschrieben wird, muss er im Speicher atomar geschützt und geteilt werden.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2066,7 +2066,7 @@ In einem kooperativen Dokumenten-Editor arbeiten mehrere Bearbeiter gleichzeitig
 * **Ziel:** Definiere die Strukturen für einen Dokumentenabschnitt (Text) und das Dokument selbst. Da mehrere Bearbeiter-Objekte auf Abschnitte verweisen und diese verändern können müssen, ist eine Heap-Struktur mit geteilten Rechten und innerer Veränderbarkeit notwendig.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2094,7 +2094,7 @@ Ein Rate-Limiter schützt APIs vor Überlastung, indem er Anfragen zählt und ab
 * **Ziel:** Entwirf eine Struktur für die Anfragedaten (z. B. eine Tabelle mit Benutzer-IDs und deren Anfrage-Zeitstempeln). Verpacke diese Struktur so, dass sie für alle anfragenden Threads zugänglich und vor Gleichzeitigkeitskonflikten geschützt ist.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2122,7 +2122,7 @@ In einem Dateisystem hat jede Datei eine Größe. Wenn sich die Größe einer Da
 * **Ziel:** Definiere die Strukturen für Dateien und Ordner. Ein Ordner hält eine Liste von Dateien und Unterordnern. Da Dateigrößen geändert werden können und diese Änderung nach oben propagiert werden muss, ist eine flexible Speicherstruktur auf dem Heap nötig.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2150,7 +2150,7 @@ Datenbankverbindungen sind teuer in der Erstellung. Ein Connection-Pool hält ei
 * **Ziel:** Definiere die Struktur einer Verbindung und des Pools. Der Pool muss eine Liste freier Verbindungen verwalten. Diese Liste muss threadsicher geteilt werden, sodass Verbindungen entnommen und wieder hinzugefügt werden können.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2178,7 +2178,7 @@ Ein Ticker-System aktualisiert im Hintergrund Börsenkurse. Gleichzeitig wollen 
 * **Ziel:** Definiere die Struktur für die Aktienpreise (z. B. eine Tabelle mit Aktiensymbolen und Preisen). Verpacke diese Struktur so, dass sie für viele Threads parallel lesbar ist, aber ein Hintergrund-Thread exklusiv schreiben kann.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2206,7 +2206,7 @@ In einem Kartenspiel teilen sich alle Spieler dasselbe Deck und den Ablagestapel
 * **Ziel:** Definiere ein Struct für das Deck und einen Spieler. Da alle Spieler auf dasselbe Deck zugreifen und dieses manipulieren, muss das Deck im Speicher geteilt und veränderbar sein.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden
@@ -2234,7 +2234,7 @@ Dateizugriffe sind langsam. Ein Dateicache liest Dateien beim ersten Zugriff von
 * **Ziel:** Definiere die Cache-Struktur (z.B. eine Tabelle, die Pfade auf Dateiinhalte abbildet). Wähle eine Verpackung, die paralleles Auslesen bereits gecachter Dateien erlaubt, aber das Hinzufügen einer neuen Datei absichert.
 * **Schlüsselfragen für dich:**
   - Wie sieht das Speicherlayout aus?
-  - Welche Smart Pointer (z.B. Rc<RefCell<T>>, Arc<Mutex<T>>, Arc<RwLock<T>>) sind notwendig und warum?
+  - Welche Smart Pointer (z.B. `Rc<RefCell<T>>`, `Arc<Mutex<T>>`, `Arc<RwLock<T>>`) sind notwendig und warum?
   - Welche Felder müssen öffentlich (pub) sein?
 
 #### Modul 2: Implementierung & Methoden

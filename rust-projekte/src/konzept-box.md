@@ -1,4 +1,4 @@
-# 📦 Box<T> & Heap-Allokation – Das Schließfach-Prinzip
+# 📦 `Box<T>` & Heap-Allokation – Das Schließfach-Prinzip
 
 Stell dir vor, du gehst auf eine große Wandertour. Du trägst einen Rucksack, in dem sich deine Trinkflasche, dein Handy und dein Geldbeutel befinden. Das sind leichte, kleine Gegenstände, auf die du schnell zugreifen musst. Sie befinden sich direkt in deiner Reichweite (in Rust: auf dem **Stack**).
 
@@ -140,14 +140,14 @@ Der Stack-Speicher ist standardmäßig sehr klein (oft nur wenige Megabyte).
 *   **`Box<T>`** speichert Daten vom Typ `T` auf dem Heap und hält nur einen Zeiger darauf auf dem Stack.
 *   Sie ist ein **Smart Pointer**, besitzt die Daten und gibt den Heap-Speicher automatisch frei, sobald sie den Scope verlässt (`Drop`-Trait).
 *   **Anwendungsfall 1:** Umgehung von Endlosschleifen bei rekursiven Typen (z. B. verketteten Listen oder Baumstrukturen).
-*   **Anwendungsfall 2:** Speichern von unterschiedlich großen Typen, die dasselbe Trait implementieren, in Collections (`Box<dyn Trait>`).
+*   **Anwendungsfall 2:** Speichern von unterschiedlich großen Typen, die dasselbe Trait implementieren, in Collections (``Box<dyn Trait>``).
 *   Der Zugriff ist geringfügig langsamer als auf dem Stack, da der Zeiger aufgelöst werden muss, ermöglicht aber maximale Flexibilität beim Speicherplatz.
 
 ---
 
 ## 📚 Links
 
-*   [Das offizielle Rust-Buch: Verwenden von Box<T> (Englisch)](https://doc.rust-lang.org/book/ch15-01-box.html)
-*   [Die deutsche Übersetzung des Rust-Buchs: Box<T> nutzen (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-01-box.html)
+*   [Das offizielle Rust-Buch: Verwenden von `Box<T>` (Englisch)](https://doc.rust-lang.org/book/ch15-01-box.html)
+*   [Die deutsche Übersetzung des Rust-Buchs: `Box<T>` nutzen (Deutsch)](https://rust-lang-de.github.io/rustbook-de/ch15-01-box.html)
 *   [Rust by Example: Box, stack and heap (Englisch)](https://doc.rust-lang.org/rust-by-example/std/box.html)
-*   [Konzept: Traits & Schnittstellen (Grundlage für Box<dyn Trait>)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-traits.md)
+*   [Konzept: Traits & Schnittstellen (Grundlage für `Box<dyn Trait>`)](file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-traits.md)

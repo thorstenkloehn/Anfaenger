@@ -13,7 +13,7 @@ Das Ziel ist das **passive Auffrischen** und aktive Verstehen der Modul- und Dat
 
 ---
 ## 100 Projekte – Nur Prompts (Modulares Prinzip) (Phase 3)
-In diesem Kapitel erarbeitest du die 100 Projekte aus **Phase 3 (Fehlerbehandlung & Collections: Vec<T> & Option<T>)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
+In diesem Kapitel erarbeitest du die 100 Projekte aus **Phase 3 (Fehlerbehandlung & Collections: `Vec<T>` & `Option<T>`)** Schritt für Schritt mithilfe von künstlicher Intelligenz (KI), ohne fertigen Code abzuschreiben.
 Das Ziel ist das **passive Auffrischen** und aktive Verstehen der Fehlerbehandlung und Datensammlungen (Collections) in Rust.
 
 ---

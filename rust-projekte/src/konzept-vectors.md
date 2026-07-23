@@ -1,4 +1,4 @@
-# Vektoren (Vec<T>) – Dynamische Listen in Rust
+# Vektoren (`Vec<T>`) – Dynamische Listen in Rust
 
 Arrays (`[T; N]`) sind hervorragend geeignet, wenn du eine Datensammlung mit einer festen, unveränderlichen Größe verwalten möchtest. Ein typisches Beispiel sind die Koordinaten eines Punkts im dreidimensionalen Raum: Sie bestehen immer aus genau drei Werten (X, Y, Z). Da diese Größe bereits beim Schreiben des Codes feststeht, kann der Compiler den Speicherplatz dafür direkt auf dem schnellen Stack-Speicher reservieren.
 
