@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,126 +69,95 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html" class="active"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="100-projekte--modulare-workflows-phase-1"><a class="header" href="#100-projekte--modulare-workflows-phase-1">100 Projekte – Modulare Workflows (Phase 1)</a></h1>
 <p>In diesem Kapitel findest du <strong>100 Miniprojekte für Einsteiger</strong>. Jedes dieser Projekte ist so konzipiert, dass es alle fünf Kernbereiche der Phase 1 gleichzeitig abdeckt.</p>
 <p>Das Ziel ist das <strong>passive Auffrischen</strong>: Du schreibst den Code nicht selbst und schreibst ihn auch nicht ab. Stattdessen nutzt du deine KI (z. B. Antigravity) als interaktiven Coding-Partner. Du führst die KI Schritt für Schritt durch das Projekt und liest, verstehst und hinterfragst jede Codezeile, die sie für dich generiert.</p>
-<hr />
+<hr>
 <h3 id="die-5-säulen-in-jedem-projekt"><a class="header" href="#die-5-säulen-in-jedem-projekt">Die 5 Säulen in jedem Projekt</a></h3>
 <p>Jedes der folgenden Projekte kombiniert diese fünf Grundlagen:</p>
 <ul>
@@ -186,11 +167,11 @@
 <li>🧠 <strong>Ownership &amp; Borrowing</strong>: Referenzen (<code>&amp;</code> / <code>&amp;mut</code>) nutzen und Werte übergeben</li>
 <li>📝 <strong>String vs. &amp;str</strong>: Dynamischen Speicher (<code>String</code>) vergleichen mit statischen Literalen (<code>&amp;str</code>)</li>
 </ul>
-<hr />
+<hr>
 <h3 id="das-modulare-prinzip-vom-monster-workflow-zum-präzisions-workflow"><a class="header" href="#das-modulare-prinzip-vom-monster-workflow-zum-präzisions-workflow">Das Modulare Prinzip: Vom Monster-Workflow zum Präzisions-Workflow</a></h3>
 <p>Ein häufiger Fehler bei der Arbeit mit einer KI ist der <strong>Monster-Prompt</strong>:</p>
 <blockquote>
-<p><em>"Schreibe ein Programm, das eine Zahl einliest, prüft ob sie eine Primzahl ist, das in einer Schleife wiederholt und mir am Ende anzeigt, wie viele Primzahlen ich eingegeben habe."</em></p>
+<p><em>“Schreibe ein Programm, das eine Zahl einliest, prüft ob sie eine Primzahl ist, das in einer Schleife wiederholt und mir am Ende anzeigt, wie viele Primzahlen ich eingegeben habe.”</em></p>
 </blockquote>
 <p><strong>Warum das scheitert:</strong> Die KI spuckt sofort 50 Zeilen fertigen Code aus. Du kopierst ihn, verstehst die Hälfte nicht, und wenn ein Fehler auftritt, bist du verloren.</p>
 <p><strong>Die Lösung: Präzisions-Workflows.</strong> Wir teilen jedes Projekt in 3 logische Module auf:</p>
@@ -199,25 +180,25 @@
 <li><strong>Interaktivität &amp; Konvertierung (Modul 2)</strong>: Fügt Benutzereingaben hinzu.</li>
 <li><strong>Logik &amp; Kontrollfluss (Modul 3)</strong>: Integriert Schleifen und Verzweigungen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="der-100-projekte-workflow-katalog"><a class="header" href="#der-100-projekte-workflow-katalog">Der 100-Projekte-Workflow-Katalog</a></h2>
-<hr />
+<hr>
 <h3 id="projekt-1-begrüßungs-simulator"><a class="header" href="#projekt-1-begrüßungs-simulator">Projekt 1: Begrüßungs-Simulator</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Den Namen des Benutzers einlesen und prüfen, ob er mit einem vordefinierten Namen übereinstimmt.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle ein minimales Rust-Programm mit einer <code>main</code>-Funktion. Definiere darin einen statischen Namen als <code>&amp;str</code>. Gib einen Begrüßungstext aus."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle ein minimales Rust-Programm mit einer <code>main</code>-Funktion. Definiere darin einen statischen Namen als <code>&amp;str</code>. Gib einen Begrüßungstext aus.“
 <ul>
 <li><em>KI-Aktion:</em> Initialisiert das Projekt und erklärt den Unterschied zwischen einem statischen <code>&amp;str</code> und dynamischen Variablen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Erweitere das Programm: Lies den Namen des Benutzers von der Konsole in einen veränderbaren <code>String</code> ein. Nutze dafür eine Referenz (<code>&amp;mut</code>)."
+<li><strong>Prompt 2 (Eingabe):</strong> „Erweitere das Programm: Lies den Namen des Benutzers von der Konsole in einen veränderbaren <code>String</code> ein. Nutze dafür eine Referenz (<code>&amp;mut</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Importiert <code>std::io</code> und nutzt <code>read_line</code>, um Eingaben im Speicher-Puffer zu sichern.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Entferne Leerzeichen mit <code>.trim()</code>. Vergleiche die Eingabe mit dem statischen Namen per <code>if/else</code> und gib eine passende Meldung aus."
+<li><strong>Prompt 3 (Logik):</strong> „Entferne Leerzeichen mit <code>.trim()</code>. Vergleiche die Eingabe mit dem statischen Namen per <code>if/else</code> und gib eine passende Meldung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert den String-Vergleich und die Ausgabe.</li>
 </ul>
@@ -225,23 +206,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-2-zahlen-addierer-bis-zum-limit"><a class="header" href="#projekt-2-zahlen-addierer-bis-zum-limit">Projekt 2: Zahlen-Addierer bis zum Limit</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Der Nutzer gibt eine Obergrenze ein, und das Programm addiert alle Zahlen von 1 bis zu dieser Grenze.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine veränderbare Variable <code>summe</code> und weise ihr den Startwert <code>0</code> zu."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine veränderbare Variable <code>summe</code> und weise ihr den Startwert <code>0</code> zu.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt die veränderliche Variable für das Endergebnis.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies das Limit als <code>String</code> vom Benutzer ein und konvertiere es in eine Ganzzahl (<code>i32</code>). Fange Fehler ab, falls keine Zahl eingegeben wurde."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies das Limit als <code>String</code> vom Benutzer ein und konvertiere es in eine Ganzzahl (<code>i32</code>). Fange Fehler ab, falls keine Zahl eingegeben wurde.“
 <ul>
 <li><em>KI-Aktion:</em> Fügt <code>parse()</code> hinzu und nutzt Fehlerbehandlung mit <code>expect</code> oder <code>match</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Schleife):</strong> „Nutze eine <code>for</code>-Schleife von 1 bis zum eingegebenen Limit, um die Zahlen aufzuaddieren und gib das Ergebnis aus."
+<li><strong>Prompt 3 (Schleife):</strong> „Nutze eine <code>for</code>-Schleife von 1 bis zum eingegebenen Limit, um die Zahlen aufzuaddieren und gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife und gibt die Summe aus.</li>
 </ul>
@@ -249,23 +230,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-3-passwort-tresor"><a class="header" href="#projekt-3-passwort-tresor">Projekt 3: Passwort-Tresor</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Passwort abfragen und bei Falscheingabe in einer Schleife erneut nachfragen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere ein geheimes Master-Passwort als statischen Text (<code>&amp;str</code>)."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere ein geheimes Master-Passwort als statischen Text (<code>&amp;str</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Legt das Passwort im Speicher an.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Erstelle eine <code>loop</code>-Schleife. Frage in der Schleife den Benutzer nach dem Passwort und lies es in einen veränderbaren <code>String</code> ein."
+<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Erstelle eine <code>loop</code>-Schleife. Frage in der Schleife den Benutzer nach dem Passwort und lies es in einen veränderbaren <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt eine Endlosschleife und liest die Konsoleneingabe ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik &amp; Abbruch):</strong> „Bereinige die Eingabe mit <code>.trim()</code>. Wenn die Eingabe mit dem Master-Passwort übereinstimmt, gib eine Erfolgsmeldung aus und brich die Schleife mit <code>break</code> ab."
+<li><strong>Prompt 3 (Logik &amp; Abbruch):</strong> „Bereinige die Eingabe mit <code>.trim()</code>. Wenn die Eingabe mit dem Master-Passwort übereinstimmt, gib eine Erfolgsmeldung aus und brich die Schleife mit <code>break</code> ab.“
 <ul>
 <li><em>KI-Aktion:</em> Vergleicht den String-Slice und bricht die Schleife bei Erfolg.</li>
 </ul>
@@ -273,23 +254,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-4-celsius-fahrenheit-rechner"><a class="header" href="#projekt-4-celsius-fahrenheit-rechner">Projekt 4: Celsius-Fahrenheit-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eine Celsius-Temperatur einlesen, umrechnen und bewerten (z. B. Warnung bei Hitze).</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle eine funktionale Umrechnung von Celsius zu Fahrenheit. Sie soll einen <code>f64</code>-Wert als Parameter annehmen."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle eine funktionale Umrechnung von Celsius zu Fahrenheit. Sie soll einen <code>f64</code>-Wert als Parameter annehmen.“
 <ul>
 <li><em>KI-Aktion:</em> Definiert die Funktion und zeigt, wie Parameter per Wert oder Referenz übergeben werden.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Frage den Benutzer nach einer Temperatur in Celsius, lies sie ein und parse sie in ein <code>f64</code>."
+<li><strong>Prompt 2 (Eingabe):</strong> „Frage den Benutzer nach einer Temperatur in Celsius, lies sie ein und parse sie in ein <code>f64</code>.“
 <ul>
 <li><em>KI-Aktion:</em> Setzt die Eingabe und Konvertierung um.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung &amp; If):</strong> „Rechne den Wert mit deiner Funktion um. Nutze ein <code>if/else</code>, um bei über 30°C Celsius eine Hitzewarnung auszugeben."
+<li><strong>Prompt 3 (Berechnung &amp; If):</strong> „Rechne den Wert mit deiner Funktion um. Nutze ein <code>if/else</code>, um bei über 30°C Celsius eine Hitzewarnung auszugeben.“
 <ul>
 <li><em>KI-Aktion:</em> Ruft die Funktion auf und verzweigt die Ausgabe.</li>
 </ul>
@@ -297,23 +278,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-5-noten-durchschnitt"><a class="header" href="#projekt-5-noten-durchschnitt">Projekt 5: Noten-Durchschnitt</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Noten eingeben, in einem veränderbaren Vektor speichern und den Schnitt ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle eine leere, veränderbare Liste (Vektor) für Fließkommazahlen (<code>f64</code>)."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle eine leere, veränderbare Liste (Vektor) für Fließkommazahlen (<code>f64</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Legt einen veränderbaren <code>Vec&lt;f64&gt;</code> an.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Lies in einer <code>while</code>-Schleife Noten vom Benutzer ein. Wenn der Benutzer 'fertig' eingibt, soll die Schleife enden. Sonst konvertiere die Eingabe in <code>f64</code> und füge sie der Liste hinzu."
+<li><strong>Prompt 2 (Schleife):</strong> „Lies in einer <code>while</code>-Schleife Noten vom Benutzer ein. Wenn der Benutzer ‘fertig’ eingibt, soll die Schleife enden. Sonst konvertiere die Eingabe in <code>f64</code> und füge sie der Liste hinzu.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife und fügt Validierungen hinzu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung):</strong> „Berechne den Durchschnitt aller Noten in der Liste mit einer Schleife und gib ihn aus. Nutze Referenzen, um die Liste nicht zu konsumieren."
+<li><strong>Prompt 3 (Berechnung):</strong> „Berechne den Durchschnitt aller Noten in der Liste mit einer Schleife und gib ihn aus. Nutze Referenzen, um die Liste nicht zu konsumieren.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Summe über Referenzen (<code>&amp;vec</code>) und gibt den Durchschnitt aus.</li>
 </ul>
@@ -321,23 +302,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-6-zähler-mit-abbruchwort"><a class="header" href="#projekt-6-zähler-mit-abbruchwort">Projekt 6: Zähler mit Abbruchwort</a></h3>
 <ul>
-<li><strong>Ziel:</strong> Ein Programm, das kontinuierlich von 1 an hochzählt, bis der Benutzer das Wort „stop" eingibt.</li>
+<li><strong>Ziel:</strong> Ein Programm, das kontinuierlich von 1 an hochzählt, bis der Benutzer das Wort „stop“ eingibt.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine veränderbare Ganzzahl, die bei 1 startet."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine veränderbare Ganzzahl, die bei 1 startet.“
 <ul>
 <li><em>KI-Aktion:</em> Legt den Zähler an.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Erstelle eine Schleife. In jedem Durchlauf soll der Benutzer gefragt werden, ob er weitermachen will. Lies die Antwort ein."
+<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Erstelle eine Schleife. In jedem Durchlauf soll der Benutzer gefragt werden, ob er weitermachen will. Lies die Antwort ein.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife und liest die Eingabe ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Wenn die Eingabe 'stop' ist, brich ab. Ansonsten erhöhe den Zähler um 1 und gib den aktuellen Stand aus."
+<li><strong>Prompt 3 (Logik):</strong> „Wenn die Eingabe ‘stop’ ist, brich ab. Ansonsten erhöhe den Zähler um 1 und gib den aktuellen Stand aus.“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert den Abbruch und die Inkrementierung.</li>
 </ul>
@@ -345,23 +326,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-7-wortlängen-prüfer"><a class="header" href="#projekt-7-wortlängen-prüfer">Projekt 7: Wortlängen-Prüfer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Wort einlesen und prüfen, ob es länger als ein vorgegebenes Limit ist.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine unveränderbare Zahl für die maximale Wortlänge."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine unveränderbare Zahl für die maximale Wortlänge.“
 <ul>
 <li><em>KI-Aktion:</em> Legt das Limit fest.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein und entferne Leerzeichen am Rand."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein und entferne Leerzeichen am Rand.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den String von stdin und trimmt ihn.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Bestimme die Länge des Worts unter Nutzung von Borrowing. Nutze ein <code>if/else</code>, um auszugeben, ob das Wort zu lang ist."
+<li><strong>Prompt 3 (Logik):</strong> „Bestimme die Länge des Worts unter Nutzung von Borrowing. Nutze ein <code>if/else</code>, um auszugeben, ob das Wort zu lang ist.“
 <ul>
 <li><em>KI-Aktion:</em> Ermittelt die Länge (<code>.len()</code>) und prüft sie gegen das Limit.</li>
 </ul>
@@ -369,23 +350,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-8-alters-klassifizierer"><a class="header" href="#projekt-8-alters-klassifizierer">Projekt 8: Alters-Klassifizierer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Das Alter einlesen und prüfen, ob die Person volljährig ist oder nicht.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere das Volljährigkeitsalter als statische Konstante."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere das Volljährigkeitsalter als statische Konstante.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt eine Konstante (<code>const VOLLJAEHRIG: i32 = 18;</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies das Alter ein und konvertiere es in eine Ganzzahl. Behandle ungültige Zeichen."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies das Alter ein und konvertiere es in eine Ganzzahl. Behandle ungültige Zeichen.“
 <ul>
 <li><em>KI-Aktion:</em> Setzt <code>parse::&lt;i32&gt;()</code> mit Fehlerprüfung um.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche das Alter mit der Konstanten. Gib aus, ob die Person volljährig ist."
+<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche das Alter mit der Konstanten. Gib aus, ob die Person volljährig ist.“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert die Verzweigung.</li>
 </ul>
@@ -393,23 +374,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-9-einfacher-taschenrechner"><a class="header" href="#projekt-9-einfacher-taschenrechner">Projekt 9: Einfacher Taschenrechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Zwei Zahlen und einen Operator einlesen und das Ergebnis ausrechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Zahlen (<code>f64</code>) nacheinander vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Zahlen (<code>f64</code>) nacheinander vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Legt zwei Eingabeblöcke und Parses an.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Operator-Eingabe):</strong> „Lies ein einzelnes Zeichen als Operator (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>) ein."
+<li><strong>Prompt 2 (Operator-Eingabe):</strong> „Lies ein einzelnes Zeichen als Operator (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Operator-Zeichen als <code>&amp;str</code> oder <code>char</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Match-Logik):</strong> „Nutze ein <code>match</code>-Statement, um die entsprechende Berechnung durchzuführen. Gib das Ergebnis aus."
+<li><strong>Prompt 3 (Match-Logik):</strong> „Nutze ein <code>match</code>-Statement, um die entsprechende Berechnung durchzuführen. Gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Operation aus und gibt das Ergebnis aus.</li>
 </ul>
@@ -417,23 +398,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-10-interaktives-fizzbuzz"><a class="header" href="#projekt-10-interaktives-fizzbuzz">Projekt 10: Interaktives FizzBuzz</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Der Nutzer gibt eine Start- und Endzahl ein, und das Programm führt FizzBuzz aus.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Startzahl und eine Endzahl vom Benutzer ein und konvertiere sie in <code>i32</code>."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Startzahl und eine Endzahl vom Benutzer ein und konvertiere sie in <code>i32</code>.“
 <ul>
 <li><em>KI-Aktion:</em> Liest beide Grenzwerte ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine Schleife, die von der Startzahl bis zur Endzahl läuft."
+<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine Schleife, die von der Startzahl bis zur Endzahl läuft.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife über die Range.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Prüfe in der Schleife: Ist die Zahl durch 3 teilbar (Ausgabe 'Fizz'), durch 5 ('Buzz') oder durch beide ('FizzBuzz')."
+<li><strong>Prompt 3 (Logik):</strong> „Prüfe in der Schleife: Ist die Zahl durch 3 teilbar (Ausgabe ‘Fizz’), durch 5 (‘Buzz’) oder durch beide (‘FizzBuzz’).“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert die Modulo-Prüfungen.</li>
 </ul>
@@ -441,23 +422,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-11-kilometer-meilen-rechner"><a class="header" href="#projekt-11-kilometer-meilen-rechner">Projekt 11: Kilometer-Meilen-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Kilometer eingeben, in Meilen umrechnen und mit Referenzen arbeiten.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Umrechnungsfunktion):</strong> „Erstelle eine Funktion <code>km_zu_meilen</code>, die eine Referenz auf ein <code>f64</code> (Kilometer) nimmt und die Meilen zurückgibt."
+<li><strong>Prompt 1 (Umrechnungsfunktion):</strong> „Erstelle eine Funktion <code>km_zu_meilen</code>, die eine Referenz auf ein <code>f64</code> (Kilometer) nimmt und die Meilen zurückgibt.“
 <ul>
 <li><em>KI-Aktion:</em> Definiert die Funktion mit Borrowing.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies eine Distanz in Kilometern ein und parse sie."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies eine Distanz in Kilometern ein und parse sie.“
 <ul>
 <li><em>KI-Aktion:</em> Handhabt die Eingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Rufe die Funktion mit einer Referenz auf den eingegebenen Wert auf und gib das Ergebnis aus."
+<li><strong>Prompt 3 (Logik):</strong> „Rufe die Funktion mit einer Referenz auf den eingegebenen Wert auf und gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Berechnung aus und gibt das Resultat aus.</li>
 </ul>
@@ -465,23 +446,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-12-dynamische-einkaufsliste-vom-benutzer-gefüllt"><a class="header" href="#projekt-12-dynamische-einkaufsliste-vom-benutzer-gefüllt">Projekt 12: Dynamische Einkaufsliste (Vom Benutzer gefüllt)</a></h3>
 <ul>
-<li><strong>Ziel:</strong> Artikel eingeben und an eine Liste anhängen, bis "fertig" eingegeben wird.</li>
+<li><strong>Ziel:</strong> Artikel eingeben und an eine Liste anhängen, bis “fertig” eingegeben wird.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle einen leeren Vektor für Strings."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle einen leeren Vektor für Strings.“
 <ul>
 <li><em>KI-Aktion:</em> Deklariert einen veränderbaren <code>Vec&lt;String&gt;</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Schreibe eine Schleife, die Artikelnamen einliest und in der Liste speichert. Übergib das Ownership des Strings an den Vektor."
+<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Schreibe eine Schleife, die Artikelnamen einliest und in der Liste speichert. Übergib das Ownership des Strings an den Vektor.“
 <ul>
 <li><em>KI-Aktion:</em> Verschiebt den eingelesenen String mittels <code>push</code> in den Vektor.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib nach der Schleife alle Artikel mit einer <code>for</code>-Schleife und unter Nutzung von Referenzen aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib nach der Schleife alle Artikel mit einer <code>for</code>-Schleife und unter Nutzung von Referenzen aus.“
 <ul>
 <li><em>KI-Aktion:</em> Iteriert über den Vektor mit <code>&amp;vektor</code>.</li>
 </ul>
@@ -489,23 +470,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-13-countdown-mit-startwert"><a class="header" href="#projekt-13-countdown-mit-startwert">Projekt 13: Countdown mit Startwert</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Benutzer gibt Startwert ein, das Programm zählt rückwärts bis 0.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen ganzzahligen Startwert vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen ganzzahligen Startwert vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Wert und parst ihn.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine Schleife, die rückwärts von der Startzahl bis 0 zählt."
+<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine Schleife, die rückwärts von der Startzahl bis 0 zählt.“
 <ul>
 <li><em>KI-Aktion:</em> Nutze <code>for i in (0..=startzahl).rev()</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib jede Zahl aus und am Ende den Text 'Liftoff!'."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib jede Zahl aus und am Ende den Text ‘Liftoff!’.“
 <ul>
 <li><em>KI-Aktion:</em> Formatiert die Ausgaben.</li>
 </ul>
@@ -513,23 +494,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-14-währungsumrechner-eur---usd"><a class="header" href="#projekt-14-währungsumrechner-eur---usd">Projekt 14: Währungsumrechner (EUR -&gt; USD)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eurobetrag einlesen und mit einem veränderbaren Wechselkurs umrechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere den Wechselkurs als veränderbare Fließkommazahl."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere den Wechselkurs als veränderbare Fließkommazahl.“
 <ul>
 <li><em>KI-Aktion:</em> Deklariert <code>let mut kurs = 1.09;</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies den Eurobetrag vom Benutzer ein und parse ihn in ein <code>f64</code>."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies den Eurobetrag vom Benutzer ein und parse ihn in ein <code>f64</code>.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Eingabe aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Berechne den Dollarwert und gib ihn aus. Nutze ein <code>if/else</code>, um bei Beträgen über 1000 Dollar eine Warnung auszugeben."
+<li><strong>Prompt 3 (Logik):</strong> „Berechne den Dollarwert und gib ihn aus. Nutze ein <code>if/else</code>, um bei Beträgen über 1000 Dollar eine Warnung auszugeben.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet das Produkt und verzweigt die Ausgabe.</li>
 </ul>
@@ -537,23 +518,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-15-vokal-zähler"><a class="header" href="#projekt-15-vokal-zähler">Projekt 15: Vokal-Zähler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text einlesen und zählen, wie viele Vokale darin enthalten sind.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen beliebigen Text vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen beliebigen Text vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt den Eingabe-Puffer.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über die Zeichen des Texts und prüfe für jedes Zeichen, ob es ein Vokal (a, e, i, o, u) ist."
+<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über die Zeichen des Texts und prüfe für jedes Zeichen, ob es ein Vokal (a, e, i, o, u) ist.“
 <ul>
 <li><em>KI-Aktion:</em> Iteriert über <code>.chars()</code> und vergleicht sie.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Zähler):</strong> „Erhöhe bei jedem Vokal einen veränderbaren Zähler und gib das Endergebnis aus."
+<li><strong>Prompt 3 (Zähler):</strong> „Erhöhe bei jedem Vokal einen veränderbaren Zähler und gib das Endergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Addiert die Treffer und gibt die Summe aus.</li>
 </ul>
@@ -561,23 +542,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-16-gehaltserhöhungs-rechner"><a class="header" href="#projekt-16-gehaltserhöhungs-rechner">Projekt 16: Gehaltserhöhungs-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Aktuelles Gehalt und Prozentsatz einlesen, neues Gehalt berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das aktuelle Gehalt und den gewünschten Prozentsatz als Fließkommazahlen ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das aktuelle Gehalt und den gewünschten Prozentsatz als Fließkommazahlen ein.“
 <ul>
 <li><em>KI-Aktion:</em> Liest zwei Werte ein und parst sie.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Erstelle eine Funktion, die das neue Gehalt berechnet, indem sie Referenzen auf Gehalt und Prozent nutzt."
+<li><strong>Prompt 2 (Berechnung):</strong> „Erstelle eine Funktion, die das neue Gehalt berechnet, indem sie Referenzen auf Gehalt und Prozent nutzt.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt die Berechnungsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das neue Gehalt formatiert aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das neue Gehalt formatiert aus.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt den berechneten Wert aus.</li>
 </ul>
@@ -585,23 +566,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-17-bmi-rechner"><a class="header" href="#projekt-17-bmi-rechner">Projekt 17: BMI-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Gewicht und Größe abfragen, BMI berechnen und klassifizieren.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies Körpergröße (in Metern, z. B. 1.80) und Gewicht (in kg) als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies Körpergröße (in Metern, z. B. 1.80) und Gewicht (in kg) als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Eingaben durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den BMI (Gewicht / (Größe * Größe)) in einer eigenen Funktion."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den BMI (Gewicht / (Größe * Größe)) in einer eigenen Funktion.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt die mathematische Hilfsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Nutze ein <code>if/else</code>-Konstrukt, um den BMI in Untergewicht, Normalgewicht oder Übergewicht einzuteilen."
+<li><strong>Prompt 3 (Logik):</strong> „Nutze ein <code>if/else</code>-Konstrukt, um den BMI in Untergewicht, Normalgewicht oder Übergewicht einzuteilen.“
 <ul>
 <li><em>KI-Aktion:</em> Klassifiziert das Ergebnis und gibt es aus.</li>
 </ul>
@@ -609,23 +590,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-18-schaltjahr-prüfer"><a class="header" href="#projekt-18-schaltjahr-prüfer">Projekt 18: Schaltjahr-Prüfer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Jahr eingeben und prüfen, ob es ein Schaltjahr ist.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Kalenderjahr als Ganzzahl (<code>i32</code>) vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Kalenderjahr als Ganzzahl (<code>i32</code>) vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst das eingegebene Jahr.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Schreibe eine Bedingung: Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar ist, aber nicht durch 100, es sei denn, es ist auch durch 400 teilbar."
+<li><strong>Prompt 2 (Logik):</strong> „Schreibe eine Bedingung: Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar ist, aber nicht durch 100, es sei denn, es ist auch durch 400 teilbar.“
 <ul>
 <li><em>KI-Aktion:</em> Setzt die Modulo-Bedingungen um.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob es sich um ein Schaltjahr handelt oder nicht."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob es sich um ein Schaltjahr handelt oder nicht.“
 <ul>
 <li><em>KI-Aktion:</em> Verzweigt die Ausgabe.</li>
 </ul>
@@ -633,23 +614,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-19-passwort-stärkemesser"><a class="header" href="#projekt-19-passwort-stärkemesser">Projekt 19: Passwort-Stärkemesser</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Passwort einlesen und die Stärke anhand von Kriterien bewerten.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort als <code>String</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort als <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Passwort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Kriterien):</strong> „Prüfe zwei Kriterien: Hat das Passwort mindestens 8 Zeichen und enthält es eine Zahl?"
+<li><strong>Prompt 2 (Kriterien):</strong> „Prüfe zwei Kriterien: Hat das Passwort mindestens 8 Zeichen und enthält es eine Zahl?“
 <ul>
 <li><em>KI-Aktion:</em> Analysiert die Länge und prüft mit <code>.any(char::is_numeric)</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Klassifizierung):</strong> „Gib per <code>if/else</code> aus, ob das Passwort 'stark', 'mittel' oder 'schwach' ist."
+<li><strong>Prompt 3 (Klassifizierung):</strong> „Gib per <code>if/else</code> aus, ob das Passwort ‘stark’, ‘mittel’ oder ‘schwach’ ist.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt die Bewertung aus.</li>
 </ul>
@@ -657,23 +638,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-20-rabatt-kalkulator"><a class="header" href="#projekt-20-rabatt-kalkulator">Projekt 20: Rabatt-Kalkulator</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Preis und Gutscheincode einlesen, Rabatt anwenden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Grundpreis als <code>f64</code> und einen Gutscheincode als <code>String</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Grundpreis als <code>f64</code> und einen Gutscheincode als <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Liest Preis und Code ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Vergleich):</strong> „Vergleiche den Gutscheincode mit einem statischen Gutschein (<code>&amp;str</code>, z. B. 'SAVE10')."
+<li><strong>Prompt 2 (Vergleich):</strong> „Vergleiche den Gutscheincode mit einem statischen Gutschein (<code>&amp;str</code>, z. B. ‘SAVE10’).“
 <ul>
 <li><em>KI-Aktion:</em> Führt den String-Vergleich durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung):</strong> „Wenn der Code übereinstimmt, ziehe 10% ab. Gib den finalen Preis aus."
+<li><strong>Prompt 3 (Berechnung):</strong> „Wenn der Code übereinstimmt, ziehe 10% ab. Gib den finalen Preis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Rabattierung durch und gibt den Endpreis aus.</li>
 </ul>
@@ -681,23 +662,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-21-text-umkehrer"><a class="header" href="#projekt-21-text-umkehrer">Projekt 21: Text-Umkehrer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text einlesen und ihn spiegelverkehrt ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer in einen <code>String</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer in einen <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Sichert die Benutzereingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Verarbeitung):</strong> „Kehre die Reihenfolge der Zeichen des Strings um. Nutze dafür die Iteratoren."
+<li><strong>Prompt 2 (Verarbeitung):</strong> „Kehre die Reihenfolge der Zeichen des Strings um. Nutze dafür die Iteratoren.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt <code>.chars().rev().collect::&lt;String&gt;()</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den umgekehrten Text aus und erkläre, wie Ownership beim Erstellen des neuen Strings funktioniert."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den umgekehrten Text aus und erkläre, wie Ownership beim Erstellen des neuen Strings funktioniert.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt den gespiegelten Text aus und erläutert die Speicherallokation.</li>
 </ul>
@@ -705,23 +686,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-22-kreisflächen-berechner"><a class="header" href="#projekt-22-kreisflächen-berechner">Projekt 22: Kreisflächen-Berechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Radius einlesen und Fläche berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere den Wert Pi als Konstante in deinem Programm."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere den Wert Pi als Konstante in deinem Programm.“
 <ul>
 <li><em>KI-Aktion:</em> Legt die Konstante <code>PI</code> fest (oder nutzt <code>std::f64::consts::PI</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies den Radius als <code>f64</code> ein."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies den Radius als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst den Radius.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung):</strong> „Berechne die Fläche (Pi * Radius * Radius) und gib sie aus."
+<li><strong>Prompt 3 (Berechnung):</strong> „Berechne die Fläche (Pi * Radius * Radius) und gib sie aus.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet und formatiert die Ausgabe.</li>
 </ul>
@@ -729,23 +710,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-23-sekundenzähler"><a class="header" href="#projekt-23-sekundenzähler">Projekt 23: Sekundenzähler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Minuten einlesen und in Sekunden umwandeln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Minutenanzahl als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Minutenanzahl als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Minutenwert.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere die Minuten mit 60 in einer Funktion <code>minuten_zu_sekunden</code>."
+<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere die Minuten mit 60 in einer Funktion <code>minuten_zu_sekunden</code>.“
 <ul>
 <li><em>KI-Aktion:</em> Definiert die Berechnungsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das Ergebnis aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis.</li>
 </ul>
@@ -753,23 +734,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-24-ticketpreis-rechner"><a class="header" href="#projekt-24-ticketpreis-rechner">Projekt 24: Ticketpreis-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Alter eingeben und Ticketpreis ermitteln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter des Benutzers ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter des Benutzers ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst das Alter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze eine <code>if/else</code>-Struktur: Kinder unter 6 Jahren zahlen 0€, Jugendliche unter 18 Jahren zahlen 5€, Erwachsene zahlen 10€."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze eine <code>if/else</code>-Struktur: Kinder unter 6 Jahren zahlen 0€, Jugendliche unter 18 Jahren zahlen 5€, Erwachsene zahlen 10€.“
 <ul>
 <li><em>KI-Aktion:</em> Weist den Preis basierend auf dem Alter zu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den berechneten Ticketpreis aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den berechneten Ticketpreis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Preis auf der Konsole an.</li>
 </ul>
@@ -777,23 +758,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-25-zufallszahlen-vergleicher"><a class="header" href="#projekt-25-zufallszahlen-vergleicher">Projekt 25: Zufallszahlen-Vergleicher</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eine eingegebene Zahl mit einer festen geheimen Zahl vergleichen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine geheime Zahl als unveränderliche Ganzzahl."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine geheime Zahl als unveränderliche Ganzzahl.“
 <ul>
 <li><em>KI-Aktion:</em> Initialisiert das Geheimnis.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies einen Tipp vom Benutzer ein und parse ihn."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies einen Tipp vom Benutzer ein und parse ihn.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die Eingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Vergleich):</strong> „Gib aus, ob der Tipp 'zu hoch', 'zu niedrig' oder 'korrekt' ist."
+<li><strong>Prompt 3 (Vergleich):</strong> „Gib aus, ob der Tipp ‘zu hoch’, ‘zu niedrig’ oder ‘korrekt’ ist.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die drei Vergleiche per <code>if/else</code> aus.</li>
 </ul>
@@ -801,23 +782,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-26-wochentag-finder"><a class="header" href="#projekt-26-wochentag-finder">Projekt 26: Wochentag-Finder</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eine Zahl von 1 bis 7 eingeben und den Wochentag als Text ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Zahl von 1 bis 7 ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Zahl von 1 bis 7 ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst den Wochentag-Index.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement, um der Zahl den Wochentag als <code>&amp;str</code> zuzuweisen."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement, um der Zahl den Wochentag als <code>&amp;str</code> zuzuweisen.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt den <code>match</code>-Block.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Namen des Wochentages aus. Fange ungültige Zahlen aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Namen des Wochentages aus. Fange ungültige Zahlen aus.“
 <ul>
 <li><em>KI-Aktion:</em> Behandelt den Standardfall im <code>match</code> (<code>_ =&gt; "Ungültiger Tag"</code>) und gibt ihn aus.</li>
 </ul>
@@ -825,23 +806,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-27-stromkosten-schätzer"><a class="header" href="#projekt-27-stromkosten-schätzer">Projekt 27: Stromkosten-Schätzer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Verbrauch und Preis pro kWh abfragen, Jahreskosten berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den monatlichen Verbrauch in kWh und den Preis pro kWh als Fließkommazahlen ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den monatlichen Verbrauch in kWh und den Preis pro kWh als Fließkommazahlen ein.“
 <ul>
 <li><em>KI-Aktion:</em> Liest beide Werte ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die jährlichen Kosten (Monatsverbrauch * 12 * Preis)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die jährlichen Kosten (Monatsverbrauch * 12 * Preis).“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Multiplikation aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die geschätzten Jahreskosten aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die geschätzten Jahreskosten aus.“
 <ul>
 <li><em>KI-Aktion:</em> Formatiert das Ergebnis als Währungsbetrag.</li>
 </ul>
@@ -849,23 +830,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-28-benzinverbrauch-rechner"><a class="header" href="#projekt-28-benzinverbrauch-rechner">Projekt 28: Benzinverbrauch-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Strecke und getanktes Benzin einlesen, Durchschnittsverbrauch berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gefahrene Strecke (km) und das getankte Benzin (Liter) als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gefahrene Strecke (km) und das getankte Benzin (Liter) als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Strecke und Liter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Verbrauch pro 100 km (Liter * 100 / Strecke)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Verbrauch pro 100 km (Liter * 100 / Strecke).“
 <ul>
 <li><em>KI-Aktion:</em> Führt die mathematische Operation durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Durchschnittsverbrauch aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Durchschnittsverbrauch aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -873,23 +854,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-29-wort-wiederholer"><a class="header" href="#projekt-29-wort-wiederholer">Projekt 29: Wort-Wiederholer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Wort und eine Zahl einlesen und das Wort entsprechend oft ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort (<code>String</code>) und eine Anzahl (<code>i32</code>) vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort (<code>String</code>) und eine Anzahl (<code>i32</code>) vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Wort und die Anzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Schreibe eine <code>for</code>-Schleife, die so oft durchläuft, wie die Anzahl vorgibt."
+<li><strong>Prompt 2 (Schleife):</strong> „Schreibe eine <code>for</code>-Schleife, die so oft durchläuft, wie die Anzahl vorgibt.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt den Schleifenkopf.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib in jedem Durchlauf das Wort aus. Nutze eine Referenz auf das Wort."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib in jedem Durchlauf das Wort aus. Nutze eine Referenz auf das Wort.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt das Wort unter Verwendung von <code>&amp;wort</code>.</li>
 </ul>
@@ -897,23 +878,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-30-quadratzahlen-generator"><a class="header" href="#projekt-30-quadratzahlen-generator">Projekt 30: Quadratzahlen-Generator</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein Limit eingeben und alle Quadratzahlen bis zu diesem Limit ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Limit als Ganzzahl vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Limit als Ganzzahl vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Limit.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Schreibe eine <code>while</code>-Schleife, die bei 1 startet."
+<li><strong>Prompt 2 (Schleife):</strong> „Schreibe eine <code>while</code>-Schleife, die bei 1 startet.“
 <ul>
 <li><em>KI-Aktion:</em> Baut das Schleifengerüst.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung &amp; Abbruch):</strong> „Berechne das Quadrat der aktuellen Zahl. Wenn das Quadrat größer als das Limit ist, brich ab. Sonst gib es aus und erhöhe die Zahl."
+<li><strong>Prompt 3 (Berechnung &amp; Abbruch):</strong> „Berechne das Quadrat der aktuellen Zahl. Wenn das Quadrat größer als das Limit ist, brich ab. Sonst gib es aus und erhöhe die Zahl.“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert die Abbruchbedingung.</li>
 </ul>
@@ -921,23 +902,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-31-temperatur-warnung"><a class="header" href="#projekt-31-temperatur-warnung">Projekt 31: Temperatur-Warnung</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Aktuelle Temperatur einlesen und bei Frost oder Hitze warnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Temperatur als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Temperatur als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst den Wert.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Bedingungen):</strong> „Prüfe: Ist der Wert kleiner als 0 (Ausgabe 'Frost!'), über 30 ('Hitze!') oder dazwischen ('Mild!')."
+<li><strong>Prompt 2 (Bedingungen):</strong> „Prüfe: Ist der Wert kleiner als 0 (Ausgabe ‘Frost!’), über 30 (‘Hitze!’) oder dazwischen (‘Mild!’).“
 <ul>
 <li><em>KI-Aktion:</em> Schreibt die <code>if</code>/<code>else if</code>/<code>else</code>-Kette.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die entsprechende Warnung aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die entsprechende Warnung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Meldung an.</li>
 </ul>
@@ -945,23 +926,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-32-dreiecks-typ-bestimmer"><a class="header" href="#projekt-32-dreiecks-typ-bestimmer">Projekt 32: Dreiecks-Typ-Bestimmer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Drei Seitenlängen einlesen und den Typ des Dreiecks bestimmen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies drei Seitenlängen (A, B, C) als <code>f64</code> vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies drei Seitenlängen (A, B, C) als <code>f64</code> vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt alle drei Seitenlängen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Bedingung):</strong> „Prüfe: Sind alle drei Seiten gleich lang (gleichseitig), zwei gleich lang (gleichschenklig) oder alle verschieden (unregelmäßig)?"
+<li><strong>Prompt 2 (Bedingung):</strong> „Prüfe: Sind alle drei Seiten gleich lang (gleichseitig), zwei gleich lang (gleichschenklig) oder alle verschieden (unregelmäßig)?“
 <ul>
 <li><em>KI-Aktion:</em> Implementiert die Vergleiche.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Dreieckstyp aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Dreieckstyp aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt das Ergebnis.</li>
 </ul>
@@ -969,23 +950,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-33-zeichen-zähler"><a class="header" href="#projekt-33-zeichen-zähler">Projekt 33: Zeichen-Zähler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text und einen Suchbuchstaben einlesen, Häufigkeit ermitteln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und ein einzelnes Suchzeichen (<code>char</code>) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und ein einzelnes Suchzeichen (<code>char</code>) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst den Text und das Zeichen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über den Text und vergleiche jedes Zeichen mit dem Suchzeichen."
+<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über den Text und vergleiche jedes Zeichen mit dem Suchzeichen.“
 <ul>
 <li><em>KI-Aktion:</em> Vergleicht die Zeichen in einer Schleife.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ergebnis):</strong> „Zähle die Vorkommen und gib die Summe aus."
+<li><strong>Prompt 3 (Ergebnis):</strong> „Zähle die Vorkommen und gib die Summe aus.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt die Gesamtzahl aus.</li>
 </ul>
@@ -993,23 +974,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-34-mehrwertsteuer-rechner"><a class="header" href="#projekt-34-mehrwertsteuer-rechner">Projekt 34: Mehrwertsteuer-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Nettopreis und Steuersatz einlesen, Bruttobetrag berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Nettopreis (<code>f64</code>) und den Steuersatz (z.B. 19 für 19%) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Nettopreis (<code>f64</code>) und den Steuersatz (z.B. 19 für 19%) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst Preis und Steuersatz.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Steuer und den Bruttobetrag."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Steuer und den Bruttobetrag.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet Steuer und Summe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib Steuerbetrag und Bruttobetrag formatiert aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib Steuerbetrag und Bruttobetrag formatiert aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Beträge an.</li>
 </ul>
@@ -1017,23 +998,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-35-trinkgeld-rechner"><a class="header" href="#projekt-35-trinkgeld-rechner">Projekt 35: Trinkgeld-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Rechnungsbetrag und Zufriedenheit (1-3) einlesen, Trinkgeld vorschlagen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Rechnungsbetrag (<code>f64</code>) und den Service-Level (1 = Schlecht, 2 = Gut, 3 = Ausgezeichnet) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Rechnungsbetrag (<code>f64</code>) und den Service-Level (1 = Schlecht, 2 = Gut, 3 = Ausgezeichnet) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Betrag und Service-Level.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code> auf den Service-Level, um den Trinkgeldsatz festzulegen (1 = 0%, 2 = 10%, 3 = 20%)."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code> auf den Service-Level, um den Trinkgeldsatz festzulegen (1 = 0%, 2 = 10%, 3 = 20%).“
 <ul>
 <li><em>KI-Aktion:</em> Setzt den Prozentsatz.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne das Trinkgeld und die Gesamtsumme und gib beides aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne das Trinkgeld und die Gesamtsumme und gib beides aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Berechnung durch.</li>
 </ul>
@@ -1041,23 +1022,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-36-passwort-bestätigung"><a class="header" href="#projekt-36-passwort-bestätigung">Projekt 36: Passwort-Bestätigung</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Passwort zweimal abfragen und auf Gleichheit prüfen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe 1):</strong> „Frage den Benutzer nach einem Passwort und lies es ein."
+<li><strong>Prompt 1 (Eingabe 1):</strong> „Frage den Benutzer nach einem Passwort und lies es ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das erste Passwort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe 2):</strong> „Frage nach der Bestätigung und lies diese in eine zweite Variable ein."
+<li><strong>Prompt 2 (Eingabe 2):</strong> „Frage nach der Bestätigung und lies diese in eine zweite Variable ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das zweite Passwort.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche beide gekürzten Strings mit <code>.trim()</code> und gib aus, ob sie übereinstimmen."
+<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche beide gekürzten Strings mit <code>.trim()</code> und gib aus, ob sie übereinstimmen.“
 <ul>
 <li><em>KI-Aktion:</em> Vergleicht beide Werte und meldet das Ergebnis.</li>
 </ul>
@@ -1065,23 +1046,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-37-simuliertes-würfelspiel"><a class="header" href="#projekt-37-simuliertes-würfelspiel">Projekt 37: Simuliertes Würfelspiel</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eine simulierte Augenzahl abfragen und bewerten.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Frage den Benutzer nach seiner gewürfelten Zahl (1-6) und lies sie ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Frage den Benutzer nach seiner gewürfelten Zahl (1-6) und lies sie ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Zahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement: Bei 6 gib 'Gewonnen!', bei 1-5 'Erneut versuchen!' aus."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement: Bei 6 gib ‘Gewonnen!’, bei 1-5 ‘Erneut versuchen!’ aus.“
 <ul>
 <li><em>KI-Aktion:</em> Bildet das Match.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Fange ungültige Zahlen außerhalb von 1-6 ab und gib eine Fehlermeldung aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Fange ungültige Zahlen außerhalb von 1-6 ab und gib eine Fehlermeldung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Handhabt den Wildcard-Fall (<code>_</code>).</li>
 </ul>
@@ -1089,23 +1070,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-38-alter-in-tagen"><a class="header" href="#projekt-38-alter-in-tagen">Projekt 38: Alter in Tagen</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Alter in Jahren einlesen und in Tage umrechnen (Schaltjahre vernachlässigt).</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter in Jahren als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter in Jahren als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Alter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere das Alter mit 365 in einer separaten Funktion, die eine Referenz nutzt."
+<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere das Alter mit 365 in einer separaten Funktion, die eine Referenz nutzt.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt die Berechnungsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Alter in Tagen aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Alter in Tagen aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis an.</li>
 </ul>
@@ -1113,23 +1094,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-39-noten-feedback"><a class="header" href="#projekt-39-noten-feedback">Projekt 39: Noten-Feedback</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Schulnote (1-6) einlesen und Text-Feedback ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Schulnote (1-6) als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Schulnote (1-6) als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Note.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Match):</strong> „Nutze ein <code>match</code>-Statement, um ein Text-Feedback (z.B. 1 -&gt; 'Sehr gut', 6 -&gt; 'Ungenügend') zuzuweisen."
+<li><strong>Prompt 2 (Match):</strong> „Nutze ein <code>match</code>-Statement, um ein Text-Feedback (z.B. 1 -&gt; ‘Sehr gut’, 6 -&gt; ‘Ungenügend’) zuzuweisen.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt das Match auf die Zahlen 1 bis 6.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Feedback aus. Gib bei anderen Eingaben eine Fehlermeldung aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Feedback aus. Gib bei anderen Eingaben eine Fehlermeldung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt den Text aus.</li>
 </ul>
@@ -1137,23 +1118,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-40-kilometer-schritte-konverter"><a class="header" href="#projekt-40-kilometer-schritte-konverter">Projekt 40: Kilometer-Schritte-Konverter</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Schritte einlesen und geschätzte Distanz berechnen (Schrittlänge = 0.75m).</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Schritte vom Benutzer als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Schritte vom Benutzer als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Schrittanzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere die Schritte mit 0.75, um die Meter zu erhalten, und rechne sie in Kilometer um."
+<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere die Schritte mit 0.75, um die Meter zu erhalten, und rechne sie in Kilometer um.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Multiplikation und Division durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Distanz in Kilometern aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Distanz in Kilometern aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -1161,23 +1142,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-41-wort-ersetzer"><a class="header" href="#projekt-41-wort-ersetzer">Projekt 41: Wort-Ersetzer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Satz, ein zu ersetzendes Wort und das neue Wort abfragen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Satz, das Zielwort und das Ersatzwort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Satz, das Zielwort und das Ersatzwort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt alle drei Strings.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze die String-Methode <code>.replace()</code>, um das Wort im Satz auszutauschen."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze die String-Methode <code>.replace()</code>, um das Wort im Satz auszutauschen.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt den neuen String mit den Ersetzungen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den modifizierten Satz aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den modifizierten Satz aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den geänderten Satz an.</li>
 </ul>
@@ -1185,23 +1166,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-42-rechtecks-umfang"><a class="header" href="#projekt-42-rechtecks-umfang">Projekt 42: Rechtecks-Umfang</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Länge und Breite einlesen, Umfang ermitteln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies Länge und Breite des Rechtecks als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies Länge und Breite des Rechtecks als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Länge und Breite.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Umfang (2 * (Länge + Breite)) in einer Funktion."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Umfang (2 * (Länge + Breite)) in einer Funktion.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt die Berechnungsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Umfang aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Umfang aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -1209,23 +1190,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-43-multiplikationstabelle"><a class="header" href="#projekt-43-multiplikationstabelle">Projekt 43: Multiplikationstabelle</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Eine Zahl einlesen und ihre Multiplikationstabelle (1 bis 10) ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Ganzzahl vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Ganzzahl vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Zahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine <code>for</code>-Schleife von 1 bis 10."
+<li><strong>Prompt 2 (Schleife):</strong> „Erstelle eine <code>for</code>-Schleife von 1 bis 10.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife auf.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib in jedem Durchlauf die Rechnung (i * Zahl = Ergebnis) aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib in jedem Durchlauf die Rechnung (i * Zahl = Ergebnis) aus.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet das Produkt und gibt die Zeile aus.</li>
 </ul>
@@ -1233,23 +1214,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-44-sparziel-rechner"><a class="header" href="#projekt-44-sparziel-rechner">Projekt 44: Sparziel-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Monatliche Rate und Sparziel einlesen, Dauer berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Sparziel und die monatliche Sparrate als Fließkommazahlen ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Sparziel und die monatliche Sparrate als Fließkommazahlen ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Ziel und Rate.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Berechne in einer <code>while</code>-Schleife, wie viele Monate benötigt werden, um das Ziel zu erreichen."
+<li><strong>Prompt 2 (Schleife):</strong> „Berechne in einer <code>while</code>-Schleife, wie viele Monate benötigt werden, um das Ziel zu erreichen.“
 <ul>
 <li><em>KI-Aktion:</em> Erhöht die Monate, bis das Guthaben das Ziel erreicht.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die benötigten Monate aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die benötigten Monate aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die berechnete Dauer an.</li>
 </ul>
@@ -1257,23 +1238,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-45-text-kürzer"><a class="header" href="#projekt-45-text-kürzer">Projekt 45: Text-Kürzer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text einlesen und bei einer maximalen Länge abschneiden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und ein Längenlimit als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und ein Längenlimit als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Text und Limit.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Prüfe mit <code>if/else</code>, ob der Text länger als das Limit ist. Wenn ja, kürze ihn auf das Limit und hänge '...' an."
+<li><strong>Prompt 2 (Logik):</strong> „Prüfe mit <code>if/else</code>, ob der Text länger als das Limit ist. Wenn ja, kürze ihn auf das Limit und hänge ‘…’ an.“
 <ul>
 <li><em>KI-Aktion:</em> Schneidet den String ab (z.B. mittels <code>.chars().take()</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den gekürzten oder originalen Text aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den gekürzten oder originalen Text aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Resultat.</li>
 </ul>
@@ -1281,23 +1262,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-46-altersgruppen-kategorisierer"><a class="header" href="#projekt-46-altersgruppen-kategorisierer">Projekt 46: Altersgruppen-Kategorisierer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Das Alter einlesen und einer Lebensphase zuordnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Alter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Kategorisiere das Alter per <code>if/else</code>: 0-12 (Kind), 13-17 (Teenager), 18-64 (Erwachsen), 65+ (Senioren)."
+<li><strong>Prompt 2 (Logik):</strong> „Kategorisiere das Alter per <code>if/else</code>: 0-12 (Kind), 13-17 (Teenager), 18-64 (Erwachsen), 65+ (Senioren).“
 <ul>
 <li><em>KI-Aktion:</em> Bestimmt die Kategorie.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Alterskategorie als Text aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Alterskategorie als Text aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt die Lebensphase.</li>
 </ul>
@@ -1305,23 +1286,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-47-sekunden-zu-minuten-konverter"><a class="header" href="#projekt-47-sekunden-zu-minuten-konverter">Projekt 47: Sekunden-zu-Minuten-Konverter</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Sekunden einlesen und in Minuten und Restsekunden aufteilen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Anzahl an Sekunden als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine Anzahl an Sekunden als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Sekunden.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Minuten mittels Ganzzahldivision (<code>/ 60</code>) und den Rest mittels Modulo (<code>% 60</code>)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Minuten mittels Ganzzahldivision (<code>/ 60</code>) und den Rest mittels Modulo (<code>% 60</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Führt Division und Modulo aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis im Format 'X Minuten und Y Sekunden' aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis im Format ‘X Minuten und Y Sekunden’ aus.“
 <ul>
 <li><em>KI-Aktion:</em> Formatiert die Ausgabe.</li>
 </ul>
@@ -1329,23 +1310,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-48-einfacher-login-simulator"><a class="header" href="#projekt-48-einfacher-login-simulator">Projekt 48: Einfacher Login-Simulator</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Benutzername und Passwort abfragen und abgleichen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Benutzernamen und ein Passwort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Benutzernamen und ein Passwort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Strings.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Vergleich):</strong> „Vergleiche beide mit festen Werten im Code (z.B. 'admin' und 'secret')."
+<li><strong>Prompt 2 (Vergleich):</strong> „Vergleiche beide mit festen Werten im Code (z.B. ‘admin’ und ‘secret’).“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Vergleiche durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob der Login erfolgreich war."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob der Login erfolgreich war.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Status an.</li>
 </ul>
@@ -1353,23 +1334,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-49-fahrtzeit-rechner"><a class="header" href="#projekt-49-fahrtzeit-rechner">Projekt 49: Fahrtzeit-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Distanz und Geschwindigkeit abfragen, Dauer berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Distanz (km) und die Geschwindigkeit (km/h) als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Distanz (km) und die Geschwindigkeit (km/h) als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Distanz und Tempo.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Fahrtzeit (Distanz / Geschwindigkeit)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Fahrtzeit (Distanz / Geschwindigkeit).“
 <ul>
 <li><em>KI-Aktion:</em> Teilt Distanz durch Tempo.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Fahrtzeit in Stunden aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Fahrtzeit in Stunden aus.“
 <ul>
 <li><em>KI-Aktion:</em> Formatiert die Ausgabe.</li>
 </ul>
@@ -1377,23 +1358,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-50-kalorienbedarf-messer"><a class="header" href="#projekt-50-kalorienbedarf-messer">Projekt 50: Kalorienbedarf-Messer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Gewicht und Aktivitätslevel einlesen, Kalorien schätzen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Gewicht (kg) und den Aktivitätsfaktor (1 = sitzend, 2 = aktiv) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Gewicht (kg) und den Aktivitätsfaktor (1 = sitzend, 2 = aktiv) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Gewicht und Faktor.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere das Gewicht mit 30 bei Faktor 1, bzw. mit 35 bei Faktor 2."
+<li><strong>Prompt 2 (Berechnung):</strong> „Multipliziere das Gewicht mit 30 bei Faktor 1, bzw. mit 35 bei Faktor 2.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den geschätzten Bedarf.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den täglichen Kalorienbedarf aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den täglichen Kalorienbedarf aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Kalorienzahl an.</li>
 </ul>
@@ -1401,23 +1382,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-51-rabatt-staffel"><a class="header" href="#projekt-51-rabatt-staffel">Projekt 51: Rabatt-Staffel</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Bestellmenge abfragen, gestaffelten Rabatt anwenden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der bestellten Artikel als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der bestellten Artikel als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Bestellmenge.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Bestimme den Rabatt per <code>if/else</code>: ab 10 Stück 5%, ab 50 Stück 10%, ab 100 Stück 15%."
+<li><strong>Prompt 2 (Logik):</strong> „Bestimme den Rabatt per <code>if/else</code>: ab 10 Stück 5%, ab 50 Stück 10%, ab 100 Stück 15%.“
 <ul>
 <li><em>KI-Aktion:</em> Setzt den Rabattsatz.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den angewendeten Rabattsatz aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den angewendeten Rabattsatz aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt das Ergebnis.</li>
 </ul>
@@ -1425,23 +1406,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-52-wort-verkettung"><a class="header" href="#projekt-52-wort-verkettung">Projekt 52: Wort-Verkettung</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Zwei Wörter einlesen und zu einem Satz zusammenfügen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Wörter nacheinander vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Wörter nacheinander vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Sichert beide Wörter in getrennten Variablen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Verkette die beiden Wörter mit einem Leerzeichen dazwischen."
+<li><strong>Prompt 2 (Logik):</strong> „Verkette die beiden Wörter mit einem Leerzeichen dazwischen.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt <code>format!</code> oder String-Konkatenation.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus und erkläre die Speicherallokation."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus und erkläre die Speicherallokation.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt den Satz aus und erläutert Ownership.</li>
 </ul>
@@ -1449,23 +1430,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-53-quadratwurzel-rechner"><a class="header" href="#projekt-53-quadratwurzel-rechner">Projekt 53: Quadratwurzel-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Zahl einlesen, Quadratwurzel berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine positive Zahl als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine positive Zahl als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die Zahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Quadratwurzel mit <code>.sqrt()</code>. Fange negative Zahlen ab."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Quadratwurzel mit <code>.sqrt()</code>. Fange negative Zahlen ab.“
 <ul>
 <li><em>KI-Aktion:</em> Prüft auf Negativität und berechnet die Wurzel.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechnete Wurzel aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechnete Wurzel aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -1473,23 +1454,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-54-wasserbedarf-rechner"><a class="header" href="#projekt-54-wasserbedarf-rechner">Projekt 54: Wasserbedarf-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Körpergewicht einlesen, täglichen Wasserbedarf schätzen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Körpergewicht in kg ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Körpergewicht in kg ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst das Gewicht.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Bedarf (Gewicht * 0.03 Liter)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Bedarf (Gewicht * 0.03 Liter).“
 <ul>
 <li><em>KI-Aktion:</em> Multipliziert das Gewicht mit 0.03.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die empfohlene Trinkmenge in Litern aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die empfohlene Trinkmenge in Litern aus.“
 <ul>
 <li><em>KI-Aktion:</em> Formatiert die Ausgabe.</li>
 </ul>
@@ -1497,23 +1478,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-55-buchseiten-zähler"><a class="header" href="#projekt-55-buchseiten-zähler">Projekt 55: Buchseiten-Zähler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Gelesene und Gesamtseiten vergleichen, prozentualen Fortschritt anzeigen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Gesamtseiten und die bereits gelesenen Seiten als Ganzzahlen ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Gesamtseiten und die bereits gelesenen Seiten als Ganzzahlen ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Werte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Fortschritt in Prozent (gelesen * 100 / gesamt) als Fließkommazahl."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Fortschritt in Prozent (gelesen * 100 / gesamt) als Fließkommazahl.“
 <ul>
 <li><em>KI-Aktion:</em> Konvertiert zu <code>f64</code> und führt die Division aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Fortschritt aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Fortschritt aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Prozentsatz an.</li>
 </ul>
@@ -1521,23 +1502,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-56-kaffeebestell-system"><a class="header" href="#projekt-56-kaffeebestell-system">Projekt 56: Kaffeebestell-System</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Kaffeegröße abfragen und Preis berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Kaffeegröße (S, M, L) vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Kaffeegröße (S, M, L) vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Sichert die Größe.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement, um den Preis zuzuweisen (S = 2.00, M = 3.00, L = 4.00)."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement, um den Preis zuzuweisen (S = 2.00, M = 3.00, L = 4.00).“
 <ul>
 <li><em>KI-Aktion:</em> Ordnet den Preisen die Größen zu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Preis aus. Behandle ungültige Größen."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Preis aus. Behandle ungültige Größen.“
 <ul>
 <li><em>KI-Aktion:</em> Fängt falsche Eingaben im <code>match</code> ab und gibt den Preis aus.</li>
 </ul>
@@ -1545,23 +1526,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-57-text-längen-klassifizierer"><a class="header" href="#projekt-57-text-längen-klassifizierer">Projekt 57: Text-Längen-Klassifizierer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text einlesen und bewerten, ob er kurz, mittel oder lang ist.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den String.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Ermittle die Länge. Nutze <code>if/else</code>: unter 10 Zeichen (kurz), 10-50 (mittel), über 50 (lang)."
+<li><strong>Prompt 2 (Logik):</strong> „Ermittle die Länge. Nutze <code>if/else</code>: unter 10 Zeichen (kurz), 10-50 (mittel), über 50 (lang).“
 <ul>
 <li><em>KI-Aktion:</em> Klassifiziert die String-Länge.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Klassifizierung aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Klassifizierung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt die Bewertung.</li>
 </ul>
@@ -1569,23 +1550,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-58-prozentrechner"><a class="header" href="#projekt-58-prozentrechner">Projekt 58: Prozentrechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Anteil und Gesamtwert einlesen, Prozentsatz berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Teilwert und den Gesamtwert als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Teilwert und den Gesamtwert als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst beide Werte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Prozentsatz (Teilwert * 100 / Gesamtwert) in einer Funktion."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Prozentsatz (Teilwert * 100 / Gesamtwert) in einer Funktion.“
 <ul>
 <li><em>KI-Aktion:</em> Definiert die Berechnungsfunktion.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das Ergebnis aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Rufe die Funktion auf und gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Prozentsatz an.</li>
 </ul>
@@ -1593,23 +1574,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-59-bestands-prüfer"><a class="header" href="#projekt-59-bestands-prüfer">Projekt 59: Bestands-Prüfer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Lagerbestand einlesen und bei Unterbestand warnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den aktuellen Lagerbestand als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den aktuellen Lagerbestand als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Bestand.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Prüfe per <code>if/else</code>: Ist der Bestand 0 (Ausgabe 'Ausverkauft!'), unter 5 ('Nachbestellen!') oder ausreichend."
+<li><strong>Prompt 2 (Logik):</strong> „Prüfe per <code>if/else</code>: Ist der Bestand 0 (Ausgabe ‘Ausverkauft!’), unter 5 (‘Nachbestellen!’) oder ausreichend.“
 <ul>
 <li><em>KI-Aktion:</em> Verzweigt nach Bestandsgrenzen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Status aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Status aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Meldung an.</li>
 </ul>
@@ -1617,23 +1598,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-60-punktzahl-zu-prozent"><a class="header" href="#projekt-60-punktzahl-zu-prozent">Projekt 60: Punktzahl-zu-Prozent</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Erreichte und maximale Punktzahl abfragen, Prozentsatz berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die erreichte Punktzahl und die maximale Punktzahl als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die erreichte Punktzahl und die maximale Punktzahl als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst beide Punktzahlen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne das Verhältnis und wandle es in Prozent um."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne das Verhältnis und wandle es in Prozent um.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Prozentrechnung aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus und fange Division durch Null ab."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus und fange Division durch Null ab.“
 <ul>
 <li><em>KI-Aktion:</em> Validiert die maximale Punktzahl vor der Division.</li>
 </ul>
@@ -1641,23 +1622,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-61-einfaches-quiz"><a class="header" href="#projekt-61-einfaches-quiz">Projekt 61: Einfaches Quiz</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Dem Benutzer eine Frage stellen, Antwort abgleichen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Frage):</strong> „Gib eine Quizfrage auf der Konsole aus."
+<li><strong>Prompt 1 (Frage):</strong> „Gib eine Quizfrage auf der Konsole aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt die Frage.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies die Antwort des Benutzers ein."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies die Antwort des Benutzers ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Antwort als String.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche die Antwort mit der korrekten Lösung (ignoriere Groß-/Kleinschreibung) und gib aus, ob sie stimmt."
+<li><strong>Prompt 3 (Vergleich):</strong> „Vergleiche die Antwort mit der korrekten Lösung (ignoriere Groß-/Kleinschreibung) und gib aus, ob sie stimmt.“
 <ul>
 <li><em>KI-Aktion:</em> Trimmt, wandelt in Kleinbuchstaben um und vergleicht.</li>
 </ul>
@@ -1665,23 +1646,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-62-stundenlohn-rechner"><a class="header" href="#projekt-62-stundenlohn-rechner">Projekt 62: Stundenlohn-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Arbeitsstunden und Stundenlohn einlesen, Gesamtverdienst berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gearbeiteten Stunden und den Stundenlohn als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gearbeiteten Stunden und den Stundenlohn als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Stunden und Lohn.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Gesamtverdienst. Ziehe 15% Steuern ab, falls der Verdienst über 450€ liegt."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Gesamtverdienst. Ziehe 15% Steuern ab, falls der Verdienst über 450€ liegt.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den Verdienst und wendet Steuerlogik an.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Nettoverdienst aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Nettoverdienst aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis an.</li>
 </ul>
@@ -1689,23 +1670,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-63-zeichenketten-präfix"><a class="header" href="#projekt-63-zeichenketten-präfix">Projekt 63: Zeichenketten-Präfix</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Prüfen, ob ein eingegebenes Wort mit einem bestimmten Buchstaben beginnt.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Wort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Prüfung):</strong> „Prüfe, ob das Wort mit dem Zeichen 'R' (oder einem beliebigen anderen statischen Zeichen) beginnt."
+<li><strong>Prompt 2 (Prüfung):</strong> „Prüfe, ob das Wort mit dem Zeichen ‘R’ (oder einem beliebigen anderen statischen Zeichen) beginnt.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt die String-Methode <code>.starts_with()</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob die Bedingung zutrifft."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, ob die Bedingung zutrifft.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Bestätigung oder Verneinung an.</li>
 </ul>
@@ -1713,23 +1694,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-64-notenpunkte-rechner"><a class="header" href="#projekt-64-notenpunkte-rechner">Projekt 64: Notenpunkte-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Oberstufenpunkte (0-15) in klassische Noten (1-6) übersetzen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Notenpunkte (0-15) als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Notenpunkte (0-15) als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die Punkte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Match):</strong> „Nutze ein <code>match</code>-Statement, um die Punkte den klassischen Schulnoten (15-13 -&gt; 1, 12-10 -&gt; 2, usw.) zuzuordnen."
+<li><strong>Prompt 2 (Match):</strong> „Nutze ein <code>match</code>-Statement, um die Punkte den klassischen Schulnoten (15-13 -&gt; 1, 12-10 -&gt; 2, usw.) zuzuordnen.“
 <ul>
 <li><em>KI-Aktion:</em> Erstellt den <code>match</code>-Block mit Ranges (z.B. <code>13..=15 =&gt; 1</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die klassische Note aus und behandle Fehler."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die klassische Note aus und behandle Fehler.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an und fängt Werte außerhalb von 0-15 ab.</li>
 </ul>
@@ -1737,23 +1718,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-65-schrittzähler-analyse"><a class="header" href="#projekt-65-schrittzähler-analyse">Projekt 65: Schrittzähler-Analyse</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Schritte einlesen und bewerten, ob das Tagesziel erreicht wurde.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gegangenen Schritte vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gegangenen Schritte vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Schritte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Definiere ein Tagesziel (z.B. 10.000 Schritte) und vergleiche die Schritte per <code>if/else</code>."
+<li><strong>Prompt 2 (Logik):</strong> „Definiere ein Tagesziel (z.B. 10.000 Schritte) und vergleiche die Schritte per <code>if/else</code>.“
 <ul>
 <li><em>KI-Aktion:</em> Führt den Vergleich durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, wie viele Schritte noch fehlen oder ob das Ziel erreicht wurde."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, wie viele Schritte noch fehlen oder ob das Ziel erreicht wurde.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Differenz und gibt sie aus.</li>
 </ul>
@@ -1761,23 +1742,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-66-text-sucher"><a class="header" href="#projekt-66-text-sucher">Projekt 66: Text-Sucher</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Prüfen, ob ein bestimmtes Wort in einem eingegebenen Satz enthalten ist.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Satz und ein Suchwort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Satz und ein Suchwort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Strings.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Suche):</strong> „Nutze die Methode <code>.contains()</code>, um zu prüfen, ob das Wort im Satz vorkommt."
+<li><strong>Prompt 2 (Suche):</strong> „Nutze die Methode <code>.contains()</code>, um zu prüfen, ob das Wort im Satz vorkommt.“
 <ul>
 <li><em>KI-Aktion:</em> Sucht nach dem Substring.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt an, ob das Wort gefunden wurde.</li>
 </ul>
@@ -1785,23 +1766,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-67-strompreis-vergleich"><a class="header" href="#projekt-67-strompreis-vergleich">Projekt 67: Strompreis-Vergleich</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Daten zweier Stromtarife einlesen und den günstigeren ermitteln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies Grundpreis und Arbeitspreis pro kWh für zwei verschiedene Stromtarife als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies Grundpreis und Arbeitspreis pro kWh für zwei verschiedene Stromtarife als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Daten für Tarif A und Tarif B.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Kosten für einen angenommenen Jahresverbrauch von 3500 kWh."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Kosten für einen angenommenen Jahresverbrauch von 3500 kWh.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Jahressummen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Vergleiche die Ergebnisse und gib aus, welcher Tarif günstiger ist."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Vergleiche die Ergebnisse und gib aus, welcher Tarif günstiger ist.“
 <ul>
 <li><em>KI-Aktion:</em> Führt den Vergleich durch und gibt den Gewinner aus.</li>
 </ul>
@@ -1809,23 +1790,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-68-datenvolumen-rechner"><a class="header" href="#projekt-68-datenvolumen-rechner">Projekt 68: Datenvolumen-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Verbrauchtes Datenvolumen abfragen und Restvolumen anzeigen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere das monatliche Inklusivvolumen (z.B. 10.0 GB) als Fließkommazahl."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere das monatliche Inklusivvolumen (z.B. 10.0 GB) als Fließkommazahl.“
 <ul>
 <li><em>KI-Aktion:</em> Legt das Limit fest.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies das bereits verbrauchte Volumen in GB ein."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies das bereits verbrauchte Volumen in GB ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Eingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Berechnung):</strong> „Subtrahiere den Verbrauch vom Limit. Falls der Verbrauch das Limit überschreitet, gib eine Drosselungswarnung aus."
+<li><strong>Prompt 3 (Berechnung):</strong> „Subtrahiere den Verbrauch vom Limit. Falls der Verbrauch das Limit überschreitet, gib eine Drosselungswarnung aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Subtraktion durch und verzweigt per <code>if/else</code>.</li>
 </ul>
@@ -1833,23 +1814,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-69-zeichen-entferner"><a class="header" href="#projekt-69-zeichen-entferner">Projekt 69: Zeichen-Entferner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einen Text einlesen und alle Leerzeichen daraus entfernen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Sichert die Eingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Filterung):</strong> „Filtere alle Leerzeichen aus dem String heraus."
+<li><strong>Prompt 2 (Filterung):</strong> „Filtere alle Leerzeichen aus dem String heraus.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt <code>.chars().filter(|c| !c.is_whitespace()).collect::&lt;String&gt;()</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den bereinigten Text aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den bereinigten Text aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis an.</li>
 </ul>
@@ -1857,23 +1838,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-70-radius-zu-umfang"><a class="header" href="#projekt-70-radius-zu-umfang">Projekt 70: Radius-zu-Umfang</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Radius einlesen und Kreisumfang berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Radius als <code>f64</code> vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Radius als <code>f64</code> vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst den Radius.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Umfang (2 * Pi * Radius)."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den Umfang (2 * Pi * Radius).“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den Umfang.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis formatiert aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Ergebnis formatiert aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Umfang an.</li>
 </ul>
@@ -1881,23 +1862,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-71-alters-zukunftsrechner"><a class="header" href="#projekt-71-alters-zukunftsrechner">Projekt 71: Alters-Zukunftsrechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Alter eingeben und berechnen, wie alt man in X Jahren sein wird.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das aktuelle Alter und die Anzahl der Zukunftsjahre ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das aktuelle Alter und die Anzahl der Zukunftsjahre ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Ganzzahlen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Addiere die Zukunftsjahre zum aktuellen Alter."
+<li><strong>Prompt 2 (Berechnung):</strong> „Addiere die Zukunftsjahre zum aktuellen Alter.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Addition durch.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Zukunfts-Wert aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Zukunfts-Wert aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -1905,23 +1886,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-72-kinokarten-kauf-mit-mengenrabatt"><a class="header" href="#projekt-72-kinokarten-kauf-mit-mengenrabatt">Projekt 72: Kinokarten-Kauf mit Mengenrabatt</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ticketanzahl einlesen, Gesamtpreis mit Rabatt berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Kinokarten vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Kinokarten vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die Ticketanzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Ein Ticket kostet 10€. Ab 4 Tickets gibt es 15% Rabatt auf den Gesamtpreis."
+<li><strong>Prompt 2 (Berechnung):</strong> „Ein Ticket kostet 10€. Ab 4 Tickets gibt es 15% Rabatt auf den Gesamtpreis.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den Preis und wendet den Rabatt per <code>if/else</code> an.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den finalen Preis aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den finalen Preis aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Gesamtpreis an.</li>
 </ul>
@@ -1929,23 +1910,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-73-text-verdoppler"><a class="header" href="#projekt-73-text-verdoppler">Projekt 73: Text-Verdoppler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Jedes Zeichen in einem eingelesenen Text verdoppeln.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den String.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Verarbeitung):</strong> „Iteriere über jedes Zeichen des Worts und füge es doppelt in einen neuen String ein."
+<li><strong>Prompt 2 (Verarbeitung):</strong> „Iteriere über jedes Zeichen des Worts und füge es doppelt in einen neuen String ein.“
 <ul>
 <li><em>KI-Aktion:</em> Baut den verdoppelten String auf (z.B. per <code>chars().map(...).collect()</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den verdoppelten Text aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den verdoppelten Text aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis an.</li>
 </ul>
@@ -1953,23 +1934,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-74-zinseszins-rechner"><a class="header" href="#projekt-74-zinseszins-rechner">Projekt 74: Zinseszins-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Kapital, Zinssatz und Laufzeit einlesen, Endkapital berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Startkapital, den Zinssatz (in %) und die Laufzeit (in Jahren) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Startkapital, den Zinssatz (in %) und die Laufzeit (in Jahren) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die drei Werte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Berechne in einer <code>for</code>-Schleife über die Jahre hinweg das jährliche Wachstum (Kapital = Kapital * (1 + Zins/100))."
+<li><strong>Prompt 2 (Schleife):</strong> „Berechne in einer <code>for</code>-Schleife über die Jahre hinweg das jährliche Wachstum (Kapital = Kapital * (1 + Zins/100)).“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Zinseszinsberechnung aus.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Endkapital aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das Endkapital aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Ergebnis an.</li>
 </ul>
@@ -1977,23 +1958,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-75-vornamen-längenvergleicher"><a class="header" href="#projekt-75-vornamen-längenvergleicher">Projekt 75: Vornamen-Längenvergleicher</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Zwei Vornamen abfragen und ermitteln, welcher länger ist.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Vornamen als <code>String</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Vornamen als <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Strings.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Längenvergleich):</strong> „Vergleiche die Längen der getrimmten Strings."
+<li><strong>Prompt 2 (Längenvergleich):</strong> „Vergleiche die Längen der getrimmten Strings.“
 <ul>
 <li><em>KI-Aktion:</em> Vergleicht die Zeichenanzahl per <code>.len()</code>.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, welcher Name länger ist oder ob sie gleich lang sind."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, welcher Name länger ist oder ob sie gleich lang sind.“
 <ul>
 <li><em>KI-Aktion:</em> Verzweigt per <code>if/else</code>.</li>
 </ul>
@@ -2001,23 +1982,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-76-passwort-sicherheitsprüfer-komplex"><a class="header" href="#projekt-76-passwort-sicherheitsprüfer-komplex">Projekt 76: Passwort-Sicherheitsprüfer (Komplex)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Passwort einlesen und auf Länge, Zahlen und Sonderzeichen prüfen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Passwort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Prüfung):</strong> „Prüfe drei Kriterien: Länge &gt;= 8, enthält Zahl, enthält mindestens ein Sonderzeichen (z. B. <code>!</code>, <code>?</code>, <code>#</code>)."
+<li><strong>Prompt 2 (Prüfung):</strong> „Prüfe drei Kriterien: Länge &gt;= 8, enthält Zahl, enthält mindestens ein Sonderzeichen (z. B. <code>!</code>, <code>?</code>, <code>#</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt String-Iteratoren zur Überprüfung der Zeichenklassen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, wie viele der Kriterien erfüllt wurden."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib aus, wie viele der Kriterien erfüllt wurden.“
 <ul>
 <li><em>KI-Aktion:</em> Zählt die erfüllten Kriterien und gibt das Feedback aus.</li>
 </ul>
@@ -2025,23 +2006,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-77-haustier-futter-rechner"><a class="header" href="#projekt-77-haustier-futter-rechner">Projekt 77: Haustier-Futter-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Gewicht des Tiers einlesen, Futterportion berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Gewicht eines Hundes in kg ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Gewicht eines Hundes in kg ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst das Gewicht.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Als Richtwert gilt: 2% des Körpergewichts pro Tag als Futtermenge."
+<li><strong>Prompt 2 (Berechnung):</strong> „Als Richtwert gilt: 2% des Körpergewichts pro Tag als Futtermenge.“
 <ul>
 <li><em>KI-Aktion:</em> Multipliziert das Gewicht mit 0.02.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Futtermenge in Gramm aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Futtermenge in Gramm aus.“
 <ul>
 <li><em>KI-Aktion:</em> Konvertiert kg in Gramm und gibt das Ergebnis aus.</li>
 </ul>
@@ -2049,23 +2030,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-78-temperatur-fühler-zielwert"><a class="header" href="#projekt-78-temperatur-fühler-zielwert">Projekt 78: Temperatur-Fühler (Zielwert)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Aktuelle Temperatur einlesen und mit Zielwert vergleichen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine Zieltemperatur (z.B. 21.0°C) als Konstante."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere eine Zieltemperatur (z.B. 21.0°C) als Konstante.“
 <ul>
 <li><em>KI-Aktion:</em> Legt die Konstante fest.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies die aktuelle Temperatur ein."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies die aktuelle Temperatur ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Wert.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Wenn der Wert unter dem Ziel liegt, gib 'Heizen!' aus. Wenn er darüber liegt, gib 'Kühlen!' aus. Sonst 'Zieltemperatur erreicht!'."
+<li><strong>Prompt 3 (Logik):</strong> „Wenn der Wert unter dem Ziel liegt, gib ‘Heizen!’ aus. Wenn er darüber liegt, gib ‘Kühlen!’ aus. Sonst ‘Zieltemperatur erreicht!’.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Verzweigungen durch.</li>
 </ul>
@@ -2073,23 +2054,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-79-wort-mischmasch"><a class="header" href="#projekt-79-wort-mischmasch">Projekt 79: Wort-Mischmasch</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Zwei Wörter abwechselnd Buchstabe für Buchstabe zusammensetzen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Wörter gleicher Länge vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies zwei Wörter gleicher Länge vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt beide Wörter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Verarbeitung):</strong> „Iteriere parallel über beide Wörter und füge abwechselnd ein Zeichen des ersten und ein Zeichen des zweiten Worts zusammen."
+<li><strong>Prompt 2 (Verarbeitung):</strong> „Iteriere parallel über beide Wörter und füge abwechselnd ein Zeichen des ersten und ein Zeichen des zweiten Worts zusammen.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt <code>.chars()</code> und <code>zip()</code> für die Kombination.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das kombinierte Wort aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das kombinierte Wort aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den zusammengesetzten String an.</li>
 </ul>
@@ -2097,23 +2078,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-80-benzinrechner-für-reise"><a class="header" href="#projekt-80-benzinrechner-für-reise">Projekt 80: Benzinrechner für Reise</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Strecke, Verbrauch und Spritpreis abfragen, Reisekosten berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die geplante Strecke (km), den Durchschnittsverbrauch (l/100km) und den Literpreis (€) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die geplante Strecke (km), den Durchschnittsverbrauch (l/100km) und den Literpreis (€) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt alle three Fließkommazahlen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne das benötigte Benzin und multipliziere es mit dem Literpreis."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne das benötigte Benzin und multipliziere es mit dem Literpreis.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet Benzinbedarf und Preis.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechneten Gesamtkosten der Fahrt aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechneten Gesamtkosten der Fahrt aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Reisekosten an.</li>
 </ul>
@@ -2121,23 +2102,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-81-rundenzeit-stoppuhr-simulation"><a class="header" href="#projekt-81-rundenzeit-stoppuhr-simulation">Projekt 81: Rundenzeit-Stoppuhr (Simulation)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Rundenzeiten abfragen und Summe bilden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Schleife &amp; Eingabe):</strong> „Schreibe eine Schleife, die Rundenzeiten (Sekunden) als Fließkommazahl abfragt, bis der Benutzer 'stop' eingibt."
+<li><strong>Prompt 1 (Schleife &amp; Eingabe):</strong> „Schreibe eine Schleife, die Rundenzeiten (Sekunden) als Fließkommazahl abfragt, bis der Benutzer ‘stop’ eingibt.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Eingabe-Schleife auf.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Addiere alle gültigen Rundenzeiten in einer veränderbaren Variable auf."
+<li><strong>Prompt 2 (Berechnung):</strong> „Addiere alle gültigen Rundenzeiten in einer veränderbaren Variable auf.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Gesamtlaufzeit.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Gesamtzeit aller Runden aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Gesamtzeit aller Runden aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Summe an.</li>
 </ul>
@@ -2145,23 +2126,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-82-interaktiver-notenschnitt-rechner"><a class="header" href="#projekt-82-interaktiver-notenschnitt-rechner">Projekt 82: Interaktiver Notenschnitt-Rechner</a></h3>
 <ul>
-<li><strong>Ziel:</strong> Beliebig viele Noten abfragen, bis der Benutzer '0' eingibt, Schnitt berechnen.</li>
+<li><strong>Ziel:</strong> Beliebig viele Noten abfragen, bis der Benutzer ‘0’ eingibt, Schnitt berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Schleife):</strong> „Erstelle eine Schleife, die fortlaufend Noten (1-6) einliest."
+<li><strong>Prompt 1 (Schleife):</strong> „Erstelle eine Schleife, die fortlaufend Noten (1-6) einliest.“
 <ul>
 <li><em>KI-Aktion:</em> Richtet das Schleifengerüst ein.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Speichere die Summe und die Anzahl der Noten. Bricht ab, wenn der Benutzer '0' eingibt."
+<li><strong>Prompt 2 (Berechnung):</strong> „Speichere die Summe und die Anzahl der Noten. Bricht ab, wenn der Benutzer ‘0’ eingibt.“
 <ul>
 <li><em>KI-Aktion:</em> Addiert die Noten und zählt die Durchläufe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne nach dem Abbruch den Schnitt (Summe / Anzahl) und gib ihn aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne nach dem Abbruch den Schnitt (Summe / Anzahl) und gib ihn aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Division aus und gibt den Schnitt aus.</li>
 </ul>
@@ -2169,23 +2150,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-83-zeichenketten-slicer"><a class="header" href="#projekt-83-zeichenketten-slicer">Projekt 83: Zeichenketten-Slicer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Wort einlesen, nur die ersten X Zeichen anzeigen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort und eine Zahl X vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort und eine Zahl X vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Wort und Anzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Slicing):</strong> „Erstelle einen slice der ersten X Zeichen unter Verwendung von Referenzen."
+<li><strong>Prompt 2 (Slicing):</strong> „Erstelle einen slice der ersten X Zeichen unter Verwendung von Referenzen.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt <code>.chars().take(X).collect::&lt;String&gt;()</code> zur Vermeidung von Panics bei UTF-8-Grenzen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das gekürzte Wort aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das gekürzte Wort aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt das Ergebnis.</li>
 </ul>
@@ -2193,23 +2174,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-84-kalorien-sport-rechner"><a class="header" href="#projekt-84-kalorien-sport-rechner">Projekt 84: Kalorien-Sport-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Sportart und Dauer einlesen, verbrannte Kalorien berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Dauer (in Minuten) und die Sportart (Laufen, Radfahren) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Dauer (in Minuten) und die Sportart (Laufen, Radfahren) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Dauer und Sportart.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>: Laufen verbrennt 10 Kalorien/Min, Radfahren 7 Kalorien/Min."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>: Laufen verbrennt 10 Kalorien/Min, Radfahren 7 Kalorien/Min.“
 <ul>
 <li><em>KI-Aktion:</em> Weist den Verbrennungswert zu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne die verbrannten Gesamtkalorien und gib sie aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne die verbrannten Gesamtkalorien und gib sie aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Multiplikation aus.</li>
 </ul>
@@ -2217,23 +2198,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-85-einfacher-passwort-generator"><a class="header" href="#projekt-85-einfacher-passwort-generator">Projekt 85: Einfacher Passwort-Generator</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Länge einlesen, einfaches Pseudozufalls-Passwort generieren.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gewünschte Passwortlänge als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die gewünschte Passwortlänge als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Länge.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Generiere ein Passwort, indem du in einer Schleife abwechselnd Buchstaben und Zahlen anreihst."
+<li><strong>Prompt 2 (Schleife):</strong> „Generiere ein Passwort, indem du in einer Schleife abwechselnd Buchstaben und Zahlen anreihst.“
 <ul>
 <li><em>KI-Aktion:</em> Baut den String in einer Schleife auf.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das generierte Passwort aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib das generierte Passwort aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Passwort an.</li>
 </ul>
@@ -2241,23 +2222,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-86-steuersatz-ermittler"><a class="header" href="#projekt-86-steuersatz-ermittler">Projekt 86: Steuersatz-Ermittler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Einkommen abfragen, Steuersatz zuordnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Bruttoeinkommen als <code>f64</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Bruttoeinkommen als <code>f64</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Einkommen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Klassifiziere den Steuersatz per <code>if/else</code>: bis 10.000€ -&gt; 0%, bis 50.000€ -&gt; 20%, darüber -&gt; 40%."
+<li><strong>Prompt 2 (Logik):</strong> „Klassifiziere den Steuersatz per <code>if/else</code>: bis 10.000€ -&gt; 0%, bis 50.000€ -&gt; 20%, darüber -&gt; 40%.“
 <ul>
 <li><em>KI-Aktion:</em> Bestimmt den Steuersatz.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Steuersatz und den errechneten Steuerbetrag aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Steuersatz und den errechneten Steuerbetrag aus.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Steuer und gibt beide Werte aus.</li>
 </ul>
@@ -2265,23 +2246,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-87-würfel-simulator-mehrfach"><a class="header" href="#projekt-87-würfel-simulator-mehrfach">Projekt 87: Würfel-Simulator (Mehrfach)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Anzahl der Würfelwürfe einlesen, Würfe simulieren und Gesamtsumme berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Würfelwürfe vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Anzahl der Würfelwürfe vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Wurfanzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Simuliere in einer Schleife die Würfe (nutze z. B. Modulo auf eine wachsende Zahl oder die Systemzeit, falls <code>rand</code> nicht geladen ist, um eine Zahl von 1-6 zu emulieren)."
+<li><strong>Prompt 2 (Schleife):</strong> „Simuliere in einer Schleife die Würfe (nutze z. B. Modulo auf eine wachsende Zahl oder die Systemzeit, falls <code>rand</code> nicht geladen ist, um eine Zahl von 1-6 zu emulieren).“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Schleife auf und generiert Pseudo-Zufallszahlen.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Addiere alle Ergebnisse und gib die Gesamtsumme aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Addiere alle Ergebnisse und gib die Gesamtsumme aus.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt die Summe aus.</li>
 </ul>
@@ -2289,23 +2270,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-88-wort-palindrom-prüfer"><a class="header" href="#projekt-88-wort-palindrom-prüfer">Projekt 88: Wort-Palindrom-Prüfer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Wort einlesen, prüfen ob es vorwärts und rückwärts gleich gelesen wird.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Wort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Wort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Vergleiche das trim-bereinigte Wort mit seiner umgekehrten Variante unter Verwendung von Iteratoren."
+<li><strong>Prompt 2 (Logik):</strong> „Vergleiche das trim-bereinigte Wort mit seiner umgekehrten Variante unter Verwendung von Iteratoren.“
 <ul>
 <li><em>KI-Aktion:</em> Vergleicht den String mit dem reversierten String.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib per <code>if/else</code> aus, ob es ein Palindrom ist."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib per <code>if/else</code> aus, ob es ein Palindrom ist.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt die Entscheidung an.</li>
 </ul>
@@ -2313,23 +2294,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-89-alters-klassiker-erweitert"><a class="header" href="#projekt-89-alters-klassiker-erweitert">Projekt 89: Alters-Klassiker (Erweitert)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Alter einlesen, detaillierte Kategorie bestimmen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies das Alter als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst das Alter.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Teile das Alter in folgende Phasen ein: Baby (0-2), Kind (3-12), Teenager (13-17), Erwachsener (18-64), Rentner (65+)."
+<li><strong>Prompt 2 (Logik):</strong> „Teile das Alter in folgende Phasen ein: Baby (0-2), Kind (3-12), Teenager (13-17), Erwachsener (18-64), Rentner (65+).“
 <ul>
 <li><em>KI-Aktion:</em> Bestimmt die Phase.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Lebensphase aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Lebensphase aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt das Ergebnis.</li>
 </ul>
@@ -2337,23 +2318,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-90-aggregatzustand-von-wasser"><a class="header" href="#projekt-90-aggregatzustand-von-wasser">Projekt 90: Aggregatzustand von Wasser</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Temperatur einlesen, Zustand ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Wassertemperatur in °C als Fließkommazahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies die Wassertemperatur in °C als Fließkommazahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die Temperatur.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze <code>if/else</code>: unter oder gleich 0°C -&gt; fest (Eis), über 0°C und unter 100°C -&gt; flüssig, ab 100°C -&gt; gasförmig (Dampf)."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze <code>if/else</code>: unter oder gleich 0°C -&gt; fest (Eis), über 0°C und unter 100°C -&gt; flüssig, ab 100°C -&gt; gasförmig (Dampf).“
 <ul>
 <li><em>KI-Aktion:</em> Weist den Zustand zu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Aggregatzustand aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Aggregatzustand aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt den Zustand.</li>
 </ul>
@@ -2361,23 +2342,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-91-mini-einkaufsliste-mit-löschfunktion"><a class="header" href="#projekt-91-mini-einkaufsliste-mit-löschfunktion">Projekt 91: Mini-Einkaufsliste (Mit Löschfunktion)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Artikel hinzufügen oder den letzten Artikel entfernen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle einen veränderbaren Vektor für Strings."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Erstelle einen veränderbaren Vektor für Strings.“
 <ul>
 <li><em>KI-Aktion:</em> Initialisiert den Vektor.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Lies in einer Schleife Aktionen ein: 'add [Artikel]' fügt einen Artikel hinzu, 'remove' löscht den letzten Artikel, 'exit' beendet das Programm."
+<li><strong>Prompt 2 (Schleife):</strong> „Lies in einer Schleife Aktionen ein: ‘add [Artikel]’ fügt einen Artikel hinzu, ‘remove’ löscht den letzten Artikel, ‘exit’ beendet das Programm.“
 <ul>
 <li><em>KI-Aktion:</em> Analysiert die Eingabebefehle (z. B. mit <code>starts_with</code> und <code>pop()</code>).</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib nach jeder Aktion den aktuellen Inhalt der Liste aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib nach jeder Aktion den aktuellen Inhalt der Liste aus.“
 <ul>
 <li><em>KI-Aktion:</em> Druckt die Artikelliste über Referenzen.</li>
 </ul>
@@ -2385,23 +2366,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-92-vokal-ersetzer"><a class="header" href="#projekt-92-vokal-ersetzer">Projekt 92: Vokal-Ersetzer</a></h3>
 <ul>
-<li><strong>Ziel:</strong> Einen Text einlesen und alle Vokale durch 'x' ersetzen.</li>
+<li><strong>Ziel:</strong> Einen Text einlesen und alle Vokale durch ‘x’ ersetzen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den String.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Iteriere über jedes Zeichen. Wenn es ein Vokal ist, ersetze es durch 'x', andernfalls behalte das Zeichen bei."
+<li><strong>Prompt 2 (Logik):</strong> „Iteriere über jedes Zeichen. Wenn es ein Vokal ist, ersetze es durch ‘x’, andernfalls behalte das Zeichen bei.“
 <ul>
 <li><em>KI-Aktion:</em> Filtert/Mappt den String.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den modifizierten Text aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den modifizierten Text aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das bearbeitete Wort an.</li>
 </ul>
@@ -2409,23 +2390,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-93-notfall-nummern-finder"><a class="header" href="#projekt-93-notfall-nummern-finder">Projekt 93: Notfall-Nummern-Finder</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Suchbegriff (z.B. Feuerwehr) abfragen, passende Nummer zurückgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Suchbegriff (z.B. Polizei, Feuerwehr, Notarzt) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Suchbegriff (z.B. Polizei, Feuerwehr, Notarzt) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Suchbegriff.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement auf den Begriff, um die passende Telefonnummer als <code>&amp;str</code> zuzuordnen."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze ein <code>match</code>-Statement auf den Begriff, um die passende Telefonnummer als <code>&amp;str</code> zuzuordnen.“
 <ul>
 <li><em>KI-Aktion:</em> Weist die Telefonnummern zu.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Nummer aus oder zeige eine Fehlermeldung, falls der Begriff unbekannt ist."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die Nummer aus oder zeige eine Fehlermeldung, falls der Begriff unbekannt ist.“
 <ul>
 <li><em>KI-Aktion:</em> Handhabt den Standardfall (<code>_</code>).</li>
 </ul>
@@ -2433,23 +2414,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-94-rabatt-gutschein-system-mehrere-codes"><a class="header" href="#projekt-94-rabatt-gutschein-system-mehrere-codes">Projekt 94: Rabatt-Gutschein-System (Mehrere Codes)</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Rabattcode prüfen und entsprechenden Rabatt anwenden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Einkaufswert (<code>f64</code>) und einen Rabattcode ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies den Einkaufswert (<code>f64</code>) und einen Rabattcode ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Wert und Code.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Nutze <code>match</code> auf den Code: 'BRONZE' gibt 5%, 'SILVER' gibt 10%, 'GOLD' gibt 20% Rabatt."
+<li><strong>Prompt 2 (Logik):</strong> „Nutze <code>match</code> auf den Code: ‘BRONZE’ gibt 5%, ‘SILVER’ gibt 10%, ‘GOLD’ gibt 20% Rabatt.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den Rabattsatz.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne den neuen Preis und gib ihn aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Berechne den neuen Preis und gib ihn aus.“
 <ul>
 <li><em>KI-Aktion:</em> Führt die Subtraktion durch und gibt das Ergebnis aus.</li>
 </ul>
@@ -2457,23 +2438,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-95-ziffern-quersummen-rechner"><a class="header" href="#projekt-95-ziffern-quersummen-rechner">Projekt 95: Ziffern-Quersummen-Rechner</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ganzzahl einlesen, Quersumme berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine positive Ganzzahl als <code>String</code> ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies eine positive Ganzzahl als <code>String</code> ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt den Ziffernstring.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über die Zeichen des Strings, parse jedes Zeichen zurück in eine Zahl und addiere sie."
+<li><strong>Prompt 2 (Schleife):</strong> „Iteriere über die Zeichen des Strings, parse jedes Zeichen zurück in eine Zahl und addiere sie.“
 <ul>
 <li><em>KI-Aktion:</em> Konvertiert die Zeichen in Ziffern und summiert sie.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechnete Quersumme aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib die berechnete Quersumme aus.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt das Endergebnis an.</li>
 </ul>
@@ -2481,23 +2462,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-96-schere-stein-papier"><a class="header" href="#projekt-96-schere-stein-papier">Projekt 96: Schere-Stein-Papier</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Wahl einlesen, gegen eine vordefinierte Wahl spielen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere die Wahl des Gegners statisch im Code (z. B. 'Stein')."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere die Wahl des Gegners statisch im Code (z. B. ‘Stein’).“
 <ul>
 <li><em>KI-Aktion:</em> Legt die gegnerische Wahl fest.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Eingabe):</strong> „Lies die Wahl des Spielers (Schere, Stein, Papier) ein."
+<li><strong>Prompt 2 (Eingabe):</strong> „Lies die Wahl des Spielers (Schere, Stein, Papier) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt die Spieler-Eingabe.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik):</strong> „Vergleiche beide Eingaben per <code>if/else</code> und gib aus, wer gewonnen hat."
+<li><strong>Prompt 3 (Logik):</strong> „Vergleiche beide Eingaben per <code>if/else</code> und gib aus, wer gewonnen hat.“
 <ul>
 <li><em>KI-Aktion:</em> Ermittelt den Gewinner oder Unentschieden.</li>
 </ul>
@@ -2505,23 +2486,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-97-text-zentrierer"><a class="header" href="#projekt-97-text-zentrierer">Projekt 97: Text-Zentrierer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Text einlesen und in einer festen Breite zentrieren.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und eine Zielbreite als Ganzzahl ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies einen Text und eine Zielbreite als Ganzzahl ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt Text und Breite.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den nötigen Abstand links und rechts (Breite - Textlänge) / 2."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne den nötigen Abstand links und rechts (Breite - Textlänge) / 2.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet die Leerzeichenanzahl.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Erstelle den zentrierten String, indem du die Leerzeichen links und rechts anfügst, und gib ihn aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Erstelle den zentrierten String, indem du die Leerzeichen links und rechts anfügst, und gib ihn aus.“
 <ul>
 <li><em>KI-Aktion:</em> Gibt den zentrierten Text aus.</li>
 </ul>
@@ -2529,23 +2510,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-98-trinkgeld-teiler"><a class="header" href="#projekt-98-trinkgeld-teiler">Projekt 98: Trinkgeld-Teiler</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Rechnungssumme, Trinkgeldprozent und Personenanzahl abfragen, Anteil berechnen.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies Gesamtrechnung (<code>f64</code>), Trinkgeld (in %) und Personenanzahl (<code>i32</code>) ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies Gesamtrechnung (<code>f64</code>), Trinkgeld (in %) und Personenanzahl (<code>i32</code>) ein.“
 <ul>
 <li><em>KI-Aktion:</em> Parst die drei Werte.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Gesamtsumme inklusive Trinkgeld und teile sie durch die Personenanzahl."
+<li><strong>Prompt 2 (Berechnung):</strong> „Berechne die Gesamtsumme inklusive Trinkgeld und teile sie durch die Personenanzahl.“
 <ul>
 <li><em>KI-Aktion:</em> Berechnet den Pro-Kopf-Anteil.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Betrag aus, den jede Person zahlen muss."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Gib den Betrag aus, den jede Person zahlen muss.“
 <ul>
 <li><em>KI-Aktion:</em> Zeigt den Anteil an.</li>
 </ul>
@@ -2553,23 +2534,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-99-passwort-maskierer"><a class="header" href="#projekt-99-passwort-maskierer">Projekt 99: Passwort-Maskierer</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Passwort einlesen und die gleiche Länge in Sternchen (*) ausgeben.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort vom Benutzer ein."
+<li><strong>Prompt 1 (Eingabe):</strong> „Lies ein Passwort vom Benutzer ein.“
 <ul>
 <li><em>KI-Aktion:</em> Holt das Passwort.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Logik):</strong> „Ermittle die Länge des Passworts unter Nutzung von Borrowing."
+<li><strong>Prompt 2 (Logik):</strong> „Ermittle die Länge des Passworts unter Nutzung von Borrowing.“
 <ul>
 <li><em>KI-Aktion:</em> Bestimmt die Länge.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Ausgabe):</strong> „Erstelle einen neuen String, der nur aus Sternchen besteht und genau so lang ist wie das Passwort. Gib ihn aus."
+<li><strong>Prompt 3 (Ausgabe):</strong> „Erstelle einen neuen String, der nur aus Sternchen besteht und genau so lang ist wie das Passwort. Gib ihn aus.“
 <ul>
 <li><em>KI-Aktion:</em> Nutzt die String-Wiederholung (z.B. <code>"*".repeat(laenge)</code>) und gibt sie aus.</li>
 </ul>
@@ -2577,23 +2558,23 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="projekt-100-ultimate-grundlagen-check"><a class="header" href="#projekt-100-ultimate-grundlagen-check">Projekt 100: Ultimate-Grundlagen-Check</a></h3>
 <ul>
 <li><strong>Ziel:</strong> Ein interaktives Text-Abenteuer, bei dem der Spieler Entscheidungen trifft und Werte (Leben, Gold) verwaltet werden.</li>
 <li><strong>Modulare Prompts:</strong>
 <ol>
-<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere veränderbare Statuswerte wie <code>leben</code> (<code>i32</code>) und <code>gold</code> (<code>i32</code>). Definiere Spielorte als statische Texte (<code>&amp;str</code>)."
+<li><strong>Prompt 1 (Datenbasis):</strong> „Definiere veränderbare Statuswerte wie <code>leben</code> (<code>i32</code>) und <code>gold</code> (<code>i32</code>). Definiere Spielorte als statische Texte (<code>&amp;str</code>).“
 <ul>
 <li><em>KI-Aktion:</em> Initialisiert die Statuswerte und Ortsbeschreibungen.</li>
 </ul>
 </li>
-<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Schreibe eine Spiel-Schleife. Frage den Spieler in jedem Zug nach seiner Richtung (z.B. links, rechts) und lies seine Entscheidung ein."
+<li><strong>Prompt 2 (Schleife &amp; Eingabe):</strong> „Schreibe eine Spiel-Schleife. Frage den Spieler in jedem Zug nach seiner Richtung (z.B. links, rechts) und lies seine Entscheidung ein.“
 <ul>
 <li><em>KI-Aktion:</em> Baut die Spielschleife und die Richtungsabfragen auf.</li>
 </ul>
 </li>
-<li><strong>Prompt 3 (Logik &amp; Status):</strong> „Nutze ein <code>match</code>-Statement auf die Richtung. Ändere die Werte für Leben und Gold entsprechend und brich die Schleife ab, wenn das Leben auf 0 sinkt. Zeige nach jedem Zug den Status an."
+<li><strong>Prompt 3 (Logik &amp; Status):</strong> „Nutze ein <code>match</code>-Statement auf die Richtung. Ändere die Werte für Leben und Gold entsprechend und brich die Schleife ab, wenn das Leben auf 0 sinkt. Zeige nach jedem Zug den Status an.“
 <ul>
 <li><em>KI-Aktion:</em> Verarbeitet die Spielzüge, aktualisiert den Zustand über veränderbare Referenzen und steuert das Spielende.</li>
 </ul>
@@ -2601,7 +2582,7 @@
 </ol>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="fazit-wie-du-mit-diesem-katalog-arbeitest"><a class="header" href="#fazit-wie-du-mit-diesem-katalog-arbeitest">Fazit: Wie du mit diesem Katalog arbeitest</a></h2>
 <p>Dieser Katalog ist dein Werkzeug, um <strong>aktives Denken über Code</strong> zu trainieren.
 Wenn du ein Projekt umsetzt:</p>
@@ -2618,11 +2599,11 @@ Wenn du ein Projekt umsetzt:</p>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="100-projekte-prompts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="anki.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -2632,16 +2613,21 @@ Wenn du ein Projekt umsetzt:</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="100-projekte-prompts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="anki.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -2650,17 +2636,15 @@ Wenn du ein Projekt umsetzt:</p>
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,121 +69,90 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html" class="active"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="phase-8---prompts-1-bis-20-closures-fokus"><a class="header" href="#phase-8---prompts-1-bis-20-closures-fokus">Phase 8 - Prompts 1 bis 20: Closures-Fokus</a></h1>
 <h3 id="1-verzögerter-logger-lazy-logger"><a class="header" href="#1-verzögerter-logger-lazy-logger">1. Verzögerter Logger (Lazy Logger)</a></h3>
@@ -190,7 +171,7 @@
 <li><strong>Ziel</strong>: Erstelle das Hauptprogramm und teste die Verzögerung.</li>
 <li><strong>Hinweise</strong>: Schreibe eine <code>main</code>-Funktion. Erstelle einen <code>Logger</code> mit Level <code>Warn</code>. Rufe <code>log</code> einmal mit <code>Info</code> und einmal mit <code>Error</code> auf. Platziere innerhalb der Closures ein <code>println!</code>, um auf der Konsole sichtbar zu machen, dass die Closure bei <code>Info</code> überhaupt nicht ausgeführt wird.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="2-dynamischer-rabatt-kalkulator"><a class="header" href="#2-dynamischer-rabatt-kalkulator">2. Dynamischer Rabatt-Kalkulator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -207,7 +188,7 @@
 <li><strong>Ziel</strong>: Bilde den Kassiervorgang ab und teste verschiedene Rabatte.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> mehrere Produkte. Definiere unterschiedliche Closures (z.B. eine für 10% Rabatt, eine andere für Rabatt plus Steuer) und wende sie auf die Produkte an. Gib die berechneten Endpreise aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="3-zustandsbehafteter-klick-zähler"><a class="header" href="#3-zustandsbehafteter-klick-zähler">3. Zustandsbehafteter Klick-Zähler</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -224,7 +205,7 @@
 <li><strong>Ziel</strong>: Simuliere mehrere Klicks und zeige die Funktionsweise.</li>
 <li><strong>Hinweise</strong>: Rufe die Closure in einer Schleife in <code>main</code> mehrmals auf. Gib den zurückgegebenen Zählerstand aus. Demonstriere, dass der Zählerzustand über die Aufrufe hinweg erhalten bleibt.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="4-einmaliger-ressourcen-verbraucher"><a class="header" href="#4-einmaliger-ressourcen-verbraucher">4. Einmaliger Ressourcen-Verbraucher</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -241,7 +222,7 @@
 <li><strong>Ziel</strong>: Teste den einmaligen Verbrauch der Ressource.</li>
 <li><strong>Hinweise</strong>: Versuche in <code>main</code>, die Closure ein zweites Mal aufzurufen, und beobachte, wie der Compiler dies verhindert. Implementiere ein sauberes Hauptprogramm, das die Closure genau einmal aufruft und das korrekte Verhalten aufzeigt.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="5-generischer-event-callback"><a class="header" href="#5-generischer-event-callback">5. Generischer Event-Callback</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -258,7 +239,7 @@
 <li><strong>Ziel</strong>: Simuliere die Interaktion mit dem Event-Manager.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Instanz deiner Struktur. Registriere eine Closure, die eine Nachricht ausgibt oder eine Variable in der Umgebung manipuliert (falls <code>FnMut</code> verwendet wird). Löse das Event aus und verifiziere die Ausgabe.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="6-mathematische-funktions-tabelle"><a class="header" href="#6-mathematische-funktions-tabelle">6. Mathematische Funktions-Tabelle</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -275,7 +256,7 @@
 <li><strong>Ziel</strong>: Werte verschiedene mathematische Funktionen aus.</li>
 <li><strong>Hinweise</strong>: Rufe in <code>main</code> die Funktion <code>print_table</code> mit unterschiedlichen Closures auf (z.B. für eine lineare Funktion <code>x * 2.0</code>, eine quadratische <code>x * x</code> oder die Sinus-Funktion). Gib die Werte übersichtlich formatiert auf der Konsole aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="7-thread-sicherer-job-wrapper"><a class="header" href="#7-thread-sicherer-job-wrapper">7. Thread-sicherer Job-Wrapper</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -292,7 +273,7 @@
 <li><strong>Ziel</strong>: Führe einen Job im Hintergrund aus.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> Daten (z.B. einen Vektor), erstelle einen <code>Job</code>, der diese Daten in einer Closure verarbeitet, und starte ihn im Hintergrund. Warte mit <code>.join()</code> auf das Ende des Threads und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="8-memoisation-cache"><a class="header" href="#8-memoisation-cache">8. Memoisation-Cache</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -309,7 +290,7 @@
 <li><strong>Ziel</strong>: Teste den Cache auf Performance und Korrektheit.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen <code>Cacher</code> mit einer Closure, die eine langsame Berechnung simuliert (z.B. mit <code>sleep</code> oder einer rechenintensiven Operation). Rufe <code>.value()</code> mehrmals auf und zeige, dass der langsame Teil nur beim ersten Mal ausgeführt wird.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="9-benutzerdefinierter-kontrollfluss"><a class="header" href="#9-benutzerdefinierter-kontrollfluss">9. Benutzerdefinierter Kontrollfluss</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -326,7 +307,7 @@
 <li><strong>Ziel</strong>: Teste deinen Kontrollfluss im Einsatz.</li>
 <li><strong>Hinweise</strong>: Rufe <code>unless</code> in <code>main</code> mit Bedingungen auf, die zur Laufzeit ermittelt werden. Gib in den Closures unterschiedliche Testnachrichten aus, um zu zeigen, dass nur der zutreffende Zweig evaluiert wird.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="10-sortier-kriterium-konfigurator"><a class="header" href="#10-sortier-kriterium-konfigurator">10. Sortier-Kriterium-Konfigurator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -343,7 +324,7 @@
 <li><strong>Ziel</strong>: Sortiere eine Liste nach verschiedenen Kriterien.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Personen. Sortiere sie einmal nach Alter (aufsteigend) und einmal nach Name (alphabetisch), indem du jeweils eine passende Sortier-Closure übergibst. Gib das Ergebnis jeweils aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="11-flexibler-text-formatierer"><a class="header" href="#11-flexibler-text-formatierer">11. Flexibler Text-Formatierer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -360,7 +341,7 @@
 <li><strong>Ziel</strong>: Wende verschiedene Transformationen an.</li>
 <li><strong>Hinweise</strong>: Teste die Funktion in <code>main</code> mit verschiedenen Closures: Eine, die Wörter zensiert (z.B. durch Sternchen ersetzt), eine, die alles in Großbuchstaben umwandelt, und eine, die jedes Wort umdreht.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="12-zustandsautomat-mit-fnmut"><a class="header" href="#12-zustandsautomat-mit-fnmut">12. Zustandsautomat mit FnMut</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -377,7 +358,7 @@
 <li><strong>Ziel</strong>: Simuliere einen Bewegungspfad.</li>
 <li><strong>Hinweise</strong>: Rufe die Closure in <code>main</code> mehrmals auf, um den Spieler in eine bestimmte Richtung zu bewegen (z.B. im Zickzack). Gib die Position des Spielers nach jedem Schritt aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="13-konfigurations-fallback"><a class="header" href="#13-konfigurations-fallback">13. Konfigurations-Fallback</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -394,7 +375,7 @@
 <li><strong>Ziel</strong>: Zeige das Verhalten bei vorhandenen und fehlenden Werten.</li>
 <li><strong>Hinweise</strong>: Teste in <code>main</code> beide Fälle: Einmal ist der Konfigurationswert <code>Some</code>, einmal <code>None</code>. Gib aus, in welchem Fall die Fallback-Closure tatsächlich ausgeführt wird (z.B. indem du ein <code>println!</code> in die Closure einbaust).</li>
 </ul>
-<hr />
+<hr>
 <h3 id="14-sicheres-ressourcen-handling-scope-guard"><a class="header" href="#14-sicheres-ressourcen-handling-scope-guard">14. Sicheres Ressourcen-Handling (Scope Guard)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -411,7 +392,7 @@
 <li><strong>Ziel</strong>: Teste die Absicherung bei normalen und fehlerhaften Durchläufen.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>ScopeGuard</code>, dessen Closure eine Datei schließt oder eine Statusmeldung ausgibt. Zeige, dass die Closure ausgeführt wird, sobald die Variable den Scope verlässt (auch bei einem vorzeitigen <code>return</code>).</li>
 </ul>
-<hr />
+<hr>
 <h3 id="15-verzeichnis-filter-mit-dynamischem-muster"><a class="header" href="#15-verzeichnis-filter-mit-dynamischem-muster">15. Verzeichnis-Filter mit dynamischem Muster</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -428,7 +409,7 @@
 <li><strong>Ziel</strong>: Filter ein fiktives oder echtes Verzeichnis.</li>
 <li><strong>Hinweise</strong>: Definiere in <code>main</code> eine Liste von Dateinamen. Verwende die Filterfunktion mit einer Closure, die nach verschiedenen Kriterien filtert (z.B. nur <code>.txt</code>-Dateien, oder Dateien, die mit <code>log</code> beginnen). Gib die Ergebnisse aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="16-fortschritts-callback"><a class="header" href="#16-fortschritts-callback">16. Fortschritts-Callback</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -445,7 +426,7 @@
 <li><strong>Ziel</strong>: Zeige eine Fortschrittsanzeige auf der Konsole.</li>
 <li><strong>Hinweise</strong>: Simuliere in <code>main</code> das Kopieren einer Datei. Die übergebene Closure soll den aktuellen Fortschritt in Prozent auf der Konsole ausgeben (z.B. mit Wagenrücklauf <code>\r</code>, um die Zeile zu aktualisieren).</li>
 </ul>
-<hr />
+<hr>
 <h3 id="17-validierungs-pipeline"><a class="header" href="#17-validierungs-pipeline">17. Validierungs-Pipeline</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -462,7 +443,7 @@
 <li><strong>Ziel</strong>: Validierte Benutzereingaben (z.B. ein Passwort oder Alter).</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>Validator</code> für Strings. Füge Regeln hinzu (z.B. Mindestlänge, enthält Zahlen). Teste verschiedene Strings und gib aus, ob sie valide sind.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="18-zufallszahlengenerator-mit-zustand"><a class="header" href="#18-zufallszahlengenerator-mit-zustand">18. Zufallszahlengenerator mit Zustand</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -479,7 +460,7 @@
 <li><strong>Ziel</strong>: Generiere eine Sequenz von Zufallszahlen.</li>
 <li><strong>Hinweise</strong>: Rufe in <code>main</code> die Generator-Closure mehrmals auf. Gib die Zahlen aus und zeige, dass sich bei gleichem Startwert (Seed) immer dieselbe deterministische Sequenz ergibt.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="19-currying-simulation"><a class="header" href="#19-currying-simulation">19. Currying-Simulation</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -496,7 +477,7 @@
 <li><strong>Ziel</strong>: Wende die gecurryte Funktion an.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine spezialisierte Funktion <code>add_five</code> durch Aufruf von <code>add(5)</code>. Benutze diese neue Funktion, um verschiedene Zahlen um 5 zu erhöhen, und gib die Ergebnisse aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="20-fehler-mapper"><a class="header" href="#20-fehler-mapper">20. Fehler-Mapper</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -530,7 +511,7 @@
 <li><strong>Ziel</strong>: Gib einen Ausschnitt der Fibonacci-Folge aus.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Instanz des Iterators. Verwende Iterator-Adapter wie <code>.take(n)</code> oder <code>.skip(m)</code>, um eine bestimmte Anzahl von Zahlen auszugeben, da eine einfache Schleife ohne Abbruchbedingung unendlich laufen würde.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="22-bereichs-iterator-mit-schrittweite"><a class="header" href="#22-bereichs-iterator-mit-schrittweite">22. Bereichs-Iterator mit Schrittweite</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -547,7 +528,7 @@
 <li><strong>Ziel</strong>: Durchlaufe einen Bereich mit Fließkommazahlen.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Bereich von <code>0.0</code> bis <code>3.0</code> mit einer Schrittweite von <code>0.5</code>. Gib alle Werte mit einer Schleife oder <code>.for_each()</code> aus und überprüfe die korrekte Einhaltung der Grenzen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="23-custom-string-splitter"><a class="header" href="#23-custom-string-splitter">23. Custom String-Splitter</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -564,7 +545,7 @@
 <li><strong>Ziel</strong>: Zerlege einen Satz in Wörter.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Satz (z.B. durch Kommata getrennt). Verwende deinen <code>CustomSplit</code>-Iterator, um die Einzelteile nacheinander auszulesen, und gib sie auf der Konsole aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="24-endloser-zufalls-stream"><a class="header" href="#24-endloser-zufalls-stream">24. Endloser Zufalls-Stream</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -581,7 +562,7 @@
 <li><strong>Ziel</strong>: Lies eine Stichprobe von Zufallszahlen aus.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> den <code>RandomStream</code>. Verwende <code>.take(10)</code>, um genau 10 Zufallszahlen zu ziehen und diese auszugeben.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="25-grid-traversierer"><a class="header" href="#25-grid-traversierer">25. Grid-Traversierer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -598,7 +579,7 @@
 <li><strong>Ziel</strong>: Traversiere ein Grid auf beide Arten.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> ein 3x3-Grid. Verwende den <code>GridTraverser</code>, um die Werte einmal zeilenweise und einmal spaltenweise auszugeben.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="26-beidseitiger-queue-iterator"><a class="header" href="#26-beidseitiger-queue-iterator">26. Beidseitiger Queue-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -615,7 +596,7 @@
 <li><strong>Ziel</strong>: Entnehme Elemente von beiden Seiten.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste. Rufe abwechselnd <code>next()</code> und <code>next_back()</code> auf und beobachte, wie sich die Indizes aufeinander zubewegen, bis der Iterator leer ist.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="27-zirkulärer-puffer-iterator"><a class="header" href="#27-zirkulärer-puffer-iterator">27. Zirkulärer Puffer-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -632,7 +613,7 @@
 <li><strong>Ziel</strong>: Lese Daten aus dem Ringpuffer aus.</li>
 <li><strong>Hinweise</strong>: Befülle den Puffer in <code>main</code> mit Elementen. Erstelle den Iterator und nutze <code>.take(15)</code>, um zu demonstrieren, wie sich die Elemente wiederholen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="28-dateizeilen-streaming"><a class="header" href="#28-dateizeilen-streaming">28. Dateizeilen-Streaming</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -649,7 +630,7 @@
 <li><strong>Ziel</strong>: Lies eine Testdatei zeilenweise ein.</li>
 <li><strong>Hinweise</strong>: Schreibe in <code>main</code> ein Programm, das eine Textdatei öffnet, sie mit deinem <code>FileLineReader</code> zeilenweise durchläuft und jede Zeile nummeriert ausgibt.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="29-primzahl-iterator-sieb"><a class="header" href="#29-primzahl-iterator-sieb">29. Primzahl-Iterator (Sieb)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -666,7 +647,7 @@
 <li><strong>Ziel</strong>: Generiere die ersten n Primzahlen.</li>
 <li><strong>Hinweise</strong>: Erzeuge den <code>Primes</code>-Iterator in <code>main</code> und gib mithilfe von <code>.take(20)</code> die ersten 20 Primzahlen aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="30-rückwärts-iterator-für-verkettete-listen"><a class="header" href="#30-rückwärts-iterator-für-verkettete-listen">30. Rückwärts-Iterator für verkettete Listen</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -683,7 +664,7 @@
 <li><strong>Ziel</strong>: Gib eine Liste rückwärts aus.</li>
 <li><strong>Hinweise</strong>: Baue in <code>main</code> eine verkettete Liste mit den Werten 1 -&gt; 2 -&gt; 3 auf. Erzeuge den Rückwärts-Iterator und gib die Elemente in der Reihenfolge 3, 2, 1 aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="31-custom-chunk-iterator"><a class="header" href="#31-custom-chunk-iterator">31. Custom Chunk-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -700,7 +681,7 @@
 <li><strong>Ziel</strong>: Zerlege ein Array in Pakete.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> ein Array mit 10 Elementen. Erzeuge einen <code>Chunks</code>-Iterator mit einer Größe von 3. Gib die einzelnen Teilstücke aus (die letzten sollten kleiner sein).</li>
 </ul>
-<hr />
+<hr>
 <h3 id="32-dna-basen-transkriptor"><a class="header" href="#32-dna-basen-transkriptor">32. DNA-Basen-Transkriptor</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -717,7 +698,7 @@
 <li><strong>Ziel</strong>: Transkribiere eine DNA-Sequenz.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen Vektor mit DNA-Basen. Wandle ihn in einen Iterator um, jage ihn durch den <code>Transcriptor</code> und gib die resultierenden RNA-Basen aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="33-run-length-decoder"><a class="header" href="#33-run-length-decoder">33. Run-Length-Decoder</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -734,7 +715,7 @@
 <li><strong>Ziel</strong>: Dekodiere eine komprimierte Sequenz.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Liste von RLE-Daten wie <code>[(3, 'A'), (1, 'B'), (2, 'C')]</code>. Dekodiere sie und gib das Ergebnis <code>AAABCC</code> aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="34-historien-fenster-windowed-iterator"><a class="header" href="#34-historien-fenster-windowed-iterator">34. Historien-Fenster (Windowed Iterator)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -751,7 +732,7 @@
 <li><strong>Ziel</strong>: Analysiere eine Sequenz in Dreier-Fenstern.</li>
 <li><strong>Hinweise</strong>: Übergib einen Iterator von Zahlen an den <code>WindowedIterator</code> mit Fenstergröße 3. Gib in <code>main</code> jedes Fenster aus und zeige das Gleiten.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="35-kombinations-iterator"><a class="header" href="#35-kombinations-iterator">35. Kombinations-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -768,7 +749,7 @@
 <li><strong>Ziel</strong>: Erzeuge alle Paare aus einer Liste.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Liste von Namen. Nutze deinen Iterator, um alle Zweier-Kombinationen auszugeben, ohne dass Paare doppelt (in unterschiedlicher Reihenfolge) vorkommen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="36-interleaved-iterator"><a class="header" href="#36-interleaved-iterator">36. Interleaved Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -785,7 +766,7 @@
 <li><strong>Ziel</strong>: Mische zwei Listen.</li>
 <li><strong>Hinweise</strong>: Erstelle zwei Vektoren in <code>main</code> (z.B. Zahlen und Buchstaben). Mische sie mit <code>Interleave</code> und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="37-csv-parser-iterator"><a class="header" href="#37-csv-parser-iterator">37. CSV-Parser-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -802,7 +783,7 @@
 <li><strong>Ziel</strong>: Lese eine simulierte CSV-Datei aus.</li>
 <li><strong>Hinweise</strong>: Übergib einen Iterator von Strings (Zeilen), der auch fehlerhafte Zeilen enthält. Gib in <code>main</code> nur die erfolgreich geparsten Zeilen als Vektoren aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="38-dateisystem-tiefensuche-dfs"><a class="header" href="#38-dateisystem-tiefensuche-dfs">38. Dateisystem-Tiefensuche (DFS)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -819,7 +800,7 @@
 <li><strong>Ziel</strong>: Liste alle Dateien unter einem Startverzeichnis auf.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> einen <code>DirectoryDfs</code> für einen Testordner und gib alle darin gefundenen Dateipfade aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="39-fortschritts-iterator-exactsize"><a class="header" href="#39-fortschritts-iterator-exactsize">39. Fortschritts-Iterator (ExactSize)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -836,7 +817,7 @@
 <li><strong>Ziel</strong>: Visualisiere verbleibende Schritte.</li>
 <li><strong>Hinweise</strong>: Nutze den Iterator in <code>main</code> und zeige in jedem Schleifendurchlauf an, wie viele Elemente noch verarbeitet werden müssen, indem du <code>.len()</code> abfragst.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="40-zyklischer-wochentags-iterator"><a class="header" href="#40-zyklischer-wochentags-iterator">40. Zyklischer Wochentags-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -870,7 +851,7 @@
 <li><strong>Ziel</strong>: Werte und vergleiche die Eingabe und Ausgabe.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> die Ausgangsliste und die resultierende Liste aus, um zu verifizieren, dass alle Kriterien korrekt verarbeitet wurden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="42-gesamtwortlängen-rechner"><a class="header" href="#42-gesamtwortlängen-rechner">42. Gesamtwortlängen-Rechner</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -887,7 +868,7 @@
 <li><strong>Ziel</strong>: Berechne und präsentiere das Ergebnis.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> den ursprünglichen Satz sowie die berechnete Gesamtlänge aller Wörter aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="43-e-mail-domänen-filter"><a class="header" href="#43-e-mail-domänen-filter">43. E-Mail-Domänen-Filter</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -904,7 +885,7 @@
 <li><strong>Ziel</strong>: Gib die Domänenliste aus.</li>
 <li><strong>Hinweise</strong>: Drucke in <code>main</code> die gesammelten Domänen aus und verifiziere, dass keine Domäne doppelt aufgeführt ist.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="44-gleitender-durchschnitt-mit-scan"><a class="header" href="#44-gleitender-durchschnitt-mit-scan">44. Gleitender Durchschnitt mit Scan</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -921,7 +902,7 @@
 <li><strong>Ziel</strong>: Stelle den Verlauf der Durchschnittswerte dar.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Messreihe mit Ausreißern. Wende die Kette an und gib die Liste der gleitenden Durchschnitte aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="45-wörter-partitionierung"><a class="header" href="#45-wörter-partitionierung">45. Wörter-Partitionierung</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -938,12 +919,12 @@
 <li><strong>Ziel</strong>: Zeige beide Teil-Listen.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> beide durch die Partitionierung entstandenen Listen getrennt aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="46-indexbasierte-suche"><a class="header" href="#46-indexbasierte-suche">46. Indexbasierte Suche</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
 <li><strong>Ziel</strong>: Bereite die Suchdaten vor.</li>
-<li><strong>Hinweise</strong>: Definiere einen Vektor mit Elementen (z.B. Strings) und lege ein Kriterium fest (z.B. das erste Wort, das mit 'Z' beginnt).</li>
+<li><strong>Hinweise</strong>: Definiere einen Vektor mit Elementen (z.B. Strings) und lege ein Kriterium fest (z.B. das erste Wort, das mit ‘Z’ beginnt).</li>
 </ul>
 <p><strong>Modul 2: Implementierung &amp; Methoden</strong></p>
 <ul>
@@ -955,7 +936,7 @@
 <li><strong>Ziel</strong>: Werte das Suchergebnis aus.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> aus, an welchem Index das gesuchte Element gefunden wurde. Behandle auch den Fall, dass kein Element die Bedingung erfüllt (<code>Option</code> sauber behandeln).</li>
 </ul>
-<hr />
+<hr>
 <h3 id="47-verschachteltes-json-flattening"><a class="header" href="#47-verschachteltes-json-flattening">47. Verschachteltes JSON-Flattening</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -972,7 +953,7 @@
 <li><strong>Ziel</strong>: Teste die Strukturierung auf einer Testeingabe.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine verschachtelte Struktur wie <code>[1, [2, 3], null, [4]]</code>. Jage sie durch deine Kette und sammle alle gefundenen Zahlen in einem flachen Vektor.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="48-debugging-pipeline-mit-inspect"><a class="header" href="#48-debugging-pipeline-mit-inspect">48. Debugging-Pipeline mit Inspect</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -989,7 +970,7 @@
 <li><strong>Ziel</strong>: Beobachte den Datenfluss.</li>
 <li><strong>Hinweise</strong>: Führe die Kette in <code>main</code> aus. Achte in der Konsolenausgabe darauf, wie die Elemente Schritt für Schritt die Kette durchlaufen und an welchen Stellen sie ausgefiltert werden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="49-wort-häufigkeits-zähler"><a class="header" href="#49-wort-häufigkeits-zähler">49. Wort-Häufigkeits-Zähler</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1006,7 +987,7 @@
 <li><strong>Ziel</strong>: Gib die Häufigkeitstabelle aus.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> die resultierende Map formatiert aus, sodass man die Häufigkeit jedes Wortes ablesen kann.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="50-id-namens-verknüpfung-zip"><a class="header" href="#50-id-namens-verknüpfung-zip">50. ID-Namens-Verknüpfung (Zip)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1023,7 +1004,7 @@
 <li><strong>Ziel</strong>: Zeige die verknüpften Benutzer.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> die Liste der erzeugten <code>User</code>-Strukturen aus. Achte darauf, was passiert, wenn eine der beiden Listen kürzer war.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="51-paginierte-dateiliste"><a class="header" href="#51-paginierte-dateiliste">51. Paginierte Dateiliste</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1040,7 +1021,7 @@
 <li><strong>Ziel</strong>: Simuliere das Blättern.</li>
 <li><strong>Hinweise</strong>: Implementiere in <code>main</code> eine Schleife oder manuelle Abfragen für Seite 0 und Seite 1 mit einer festen Seitengröße und gib die Ergebnisse aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="52-messdaten-abbruchbedingung"><a class="header" href="#52-messdaten-abbruchbedingung">52. Messdaten-Abbruchbedingung</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1057,7 +1038,7 @@
 <li><strong>Ziel</strong>: Überprüfe das Abbruchverhalten.</li>
 <li><strong>Hinweise</strong>: Jage die Liste in <code>main</code> durch den Iterator und gib die extrahierten Werte aus. Stelle sicher, dass nach dem ersten ungültigen Wert keine weiteren (auch wenn sie wieder gültig wären) verarbeitet werden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="53-status-check-allany"><a class="header" href="#53-status-check-allany">53. Status-Check (All/Any)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1074,7 +1055,7 @@
 <li><strong>Ziel</strong>: Werte die Verbindungen aus.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> verschiedene Test-Szenarien (alle aktiv, eine inaktiv, eine mit Fehler) und gib die jeweiligen Testergebnisse aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="54-komplexer-maximum-finder"><a class="header" href="#54-komplexer-maximum-finder">54. Komplexer Maximum-Finder</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1091,7 +1072,7 @@
 <li><strong>Ziel</strong>: Zeige das Gewinner-Item.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Einkaufsliste. Finde das beste Item und gib es aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="55-vektor-flattener"><a class="header" href="#55-vektor-flattener">55. Vektor-Flattener</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1108,7 +1089,7 @@
 <li><strong>Ziel</strong>: Vergleiche vor und nach dem Flatten.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> beide Strukturen aus und demonstriere, wie aus dem verschachtelten Konstrukt eine flache Liste geworden ist.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="56-bedingtes-fold-reduce"><a class="header" href="#56-bedingtes-fold-reduce">56. Bedingtes Fold (Reduce)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1125,7 +1106,7 @@
 <li><strong>Ziel</strong>: Behandle beide Fälle.</li>
 <li><strong>Hinweise</strong>: Teste in <code>main</code> das Reduzieren mit einem vollen und einem leeren Vektor. Fange das <code>Option</code>-Ergebnis sauber ab.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="57-string-konkatenation-ohne-alloc"><a class="header" href="#57-string-konkatenation-ohne-alloc">57. String-Konkatenation ohne Alloc</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1142,7 +1123,7 @@
 <li><strong>Ziel</strong>: Gib den zusammengefügten String aus.</li>
 <li><strong>Hinweise</strong>: Setze in <code>main</code> eine Liste von Begriffen zu einem Satz zusammen und gib diesen aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="58-gleitende-fenster-windows"><a class="header" href="#58-gleitende-fenster-windows">58. Gleitende Fenster (Windows)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1159,7 +1140,7 @@
 <li><strong>Ziel</strong>: Gib den Trend aus.</li>
 <li><strong>Hinweise</strong>: Analysiere eine Kursreihe in <code>main</code> und gib für jeden Schritt aus, ob sich der Kurs positiv oder negativ entwickelt hat.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="59-batch-verarbeiter-chunks"><a class="header" href="#59-batch-verarbeiter-chunks">59. Batch-Verarbeiter (Chunks)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1176,7 +1157,7 @@
 <li><strong>Ziel</strong>: Simuliere die paketweise Verarbeitung.</li>
 <li><strong>Hinweise</strong>: Durchlaufe in <code>main</code> die Chunks (z.B. in 5er-Paketen) und gib jeweils aus, welche IDs gerade verarbeitet werden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="60-ergebnis-filterung-ok-werte-extrahieren"><a class="header" href="#60-ergebnis-filterung-ok-werte-extrahieren">60. Ergebnis-Filterung (Ok-Werte extrahieren)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1210,7 +1191,7 @@
 <li><strong>Ziel</strong>: Gib das Balkendiagramm aus.</li>
 <li><strong>Hinweise</strong>: Gib die erzeugten Zeilen in <code>main</code> aus, sodass auf der Konsole ein sauberes Balkendiagramm entsteht.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="62-umgebungsdaten-parser-env"><a class="header" href="#62-umgebungsdaten-parser-env">62. Umgebungsdaten-Parser (.env)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1227,7 +1208,7 @@
 <li><strong>Ziel</strong>: Lies die Konfiguration aus.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> die finale <code>HashMap</code> aus und greife gezielt auf einen Schlüssel zu.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="63-markdown-toc-builder"><a class="header" href="#63-markdown-toc-builder">63. Markdown-TOC-Builder</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1244,7 +1225,7 @@
 <li><strong>Ziel</strong>: Generiere das Inhaltsverzeichnis.</li>
 <li><strong>Hinweise</strong>: Sammele die formatierten Zeilen in <code>main</code> und gib sie als Inhaltsverzeichnis (TOC) aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="64-zeilenumbruch-formatierer"><a class="header" href="#64-zeilenumbruch-formatierer">64. Zeilenumbruch-Formatierer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1261,7 +1242,7 @@
 <li><strong>Ziel</strong>: Gib den neu umgebrochenen Text aus.</li>
 <li><strong>Hinweise</strong>: Teste den Formatierer in <code>main</code> mit verschiedenen Zeilenbreiten und verifiziere, dass keine Zeile die Grenze überschreitet.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="65-csv-spalten-extraktor"><a class="header" href="#65-csv-spalten-extraktor">65. CSV-Spalten-Extraktor</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1278,7 +1259,7 @@
 <li><strong>Ziel</strong>: Gib die gefilterte CSV aus.</li>
 <li><strong>Hinweise</strong>: Jage die CSV-Zeilen durch deinen Extraktor und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="66-caesar-verschlüsselung"><a class="header" href="#66-caesar-verschlüsselung">66. Caesar-Verschlüsselung</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1295,7 +1276,7 @@
 <li><strong>Ziel</strong>: Verschlüssele und entschlüssele einen Text.</li>
 <li><strong>Hinweise</strong>: Verschlüssele in <code>main</code> eine Nachricht. Entschlüssele sie wieder, indem du die Verschiebung umkehrst, und gib beide Zwischenschritte aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="67-log-analysator"><a class="header" href="#67-log-analysator">67. Log-Analysator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1312,7 +1293,7 @@
 <li><strong>Ziel</strong>: Gib die Analyse aus.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Logs. Berechne die durchschnittliche Antwortzeit bei Fehlern und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="68-passwort-validator"><a class="header" href="#68-passwort-validator">68. Passwort-Validator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1329,7 +1310,7 @@
 <li><strong>Ziel</strong>: Teste verschiedene Passwörter.</li>
 <li><strong>Hinweise</strong>: Prüfe in <code>main</code> schwache und starke Passwörter und gib eine detaillierte Liste der verletzten Regeln aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="69-matrix-transposition"><a class="header" href="#69-matrix-transposition">69. Matrix-Transposition</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1346,7 +1327,7 @@
 <li><strong>Ziel</strong>: Zeige die transponierte Matrix.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> die ursprüngliche und die transponierte Matrix Zeile für Zeile aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="70-spielkartendeck-ersteller"><a class="header" href="#70-spielkartendeck-ersteller">70. Spielkartendeck-Ersteller</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1363,7 +1344,7 @@
 <li><strong>Ziel</strong>: Gib das Kartendeck aus.</li>
 <li><strong>Hinweise</strong>: Zeige in <code>main</code>, dass exakt 52 (oder 32) einzigartige Karten generiert wurden, und gib das gesamte Deck aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="71-run-length-encoder-rle"><a class="header" href="#71-run-length-encoder-rle">71. Run-Length-Encoder (RLE)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1380,7 +1361,7 @@
 <li><strong>Ziel</strong>: Zeige das Kompressionsergebnis.</li>
 <li><strong>Hinweise</strong>: Wandle das Ergebnis in einen lesbaren String um (z.B. <code>3A1B2C4D</code>) und gib das Ergebnis sowie die Ersparnis in Prozent aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="72-subnetz-ip-generator"><a class="header" href="#72-subnetz-ip-generator">72. Subnetz-IP-Generator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1397,7 +1378,7 @@
 <li><strong>Ziel</strong>: Generiere IPs aus einem Subnetz.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> ein Subnetz und gib die ersten 10 verfügbaren IP-Adressen sowie die Gesamtzahl aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="73-pfad-normalisierer"><a class="header" href="#73-pfad-normalisierer">73. Pfad-Normalisierer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1414,7 +1395,7 @@
 <li><strong>Ziel</strong>: Gib den normalisierten Pfad aus.</li>
 <li><strong>Hinweise</strong>: Führe die Normalisierung in <code>main</code> aus und verknüpfe die verbleibenden Segmente wieder zu einem sauberen Pfad-String.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="74-anagramm-prüfer"><a class="header" href="#74-anagramm-prüfer">74. Anagramm-Prüfer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1429,9 +1410,9 @@
 <p><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong></p>
 <ul>
 <li><strong>Ziel</strong>: Teste positive und negative Beispiele.</li>
-<li><strong>Hinweise</strong>: Prüfe in <code>main</code> Wortpaare wie "Ampel" und "Palme" (Anagramm) sowie "Test" und "Toast" (kein Anagramm) und gib das Ergebnis aus.</li>
+<li><strong>Hinweise</strong>: Prüfe in <code>main</code> Wortpaare wie “Ampel” und “Palme” (Anagramm) sowie “Test” und “Toast” (kein Anagramm) und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="75-sql-select-builder"><a class="header" href="#75-sql-select-builder">75. SQL-Select-Builder</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1448,7 +1429,7 @@
 <li><strong>Ziel</strong>: Erzeuge eine SQL-Abfrage.</li>
 <li><strong>Hinweise</strong>: Definiere in <code>main</code> eine Abfrage, generiere das SQL-Statement und gib es aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="76-messwert-glättung"><a class="header" href="#76-messwert-glättung">76. Messwert-Glättung</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1465,7 +1446,7 @@
 <li><strong>Ziel</strong>: Vergleiche Rohdaten und geglättete Daten.</li>
 <li><strong>Hinweise</strong>: Gib in <code>main</code> beide Datenreihen aus und vergleiche die Kurvenverläufe.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="77-html-tag-entferner"><a class="header" href="#77-html-tag-entferner">77. HTML-Tag-Entferner</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1482,7 +1463,7 @@
 <li><strong>Ziel</strong>: Zeige den bereinigten Text.</li>
 <li><strong>Hinweise</strong>: Jage einen HTML-Text in <code>main</code> durch deinen Entferner und gib den reinen Text aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="78-template-engine"><a class="header" href="#78-template-engine">78. Template-Engine</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1499,7 +1480,7 @@
 <li><strong>Ziel</strong>: Generiere eine E-Mail oder Nachricht.</li>
 <li><strong>Hinweise</strong>: Befülle in <code>main</code> ein Template mit dynamischen Daten aus der Map und gib das Ergebnis aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="79-rechnungs-kalkulator"><a class="header" href="#79-rechnungs-kalkulator">79. Rechnungs-Kalkulator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1516,7 +1497,7 @@
 <li><strong>Ziel</strong>: Gib eine detaillierte Rechnungssumme aus.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine Liste von Artikeln, berechne die Gesamtsumme und gib sie aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="80-bibliotheks-katalog-suche"><a class="header" href="#80-bibliotheks-katalog-suche">80. Bibliotheks-Katalog-Suche</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1550,7 +1531,7 @@
 <li><strong>Ziel</strong>: Generiere Primzahlen nach Bedarf.</li>
 <li><strong>Hinweise</strong>: Erzeuge den Generator in <code>main</code>. Nutze <code>.take(15)</code> oder filtere Primzahlen in einem bestimmten Zahlenbereich heraus, um zu zeigen, dass Berechnungen nur für die tatsächlich abgerufenen Zahlen stattfinden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="82-fehler-verkettung-mit-monaden-mustern"><a class="header" href="#82-fehler-verkettung-mit-monaden-mustern">82. Fehler-Verkettung mit Monaden-Mustern</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1567,7 +1548,7 @@
 <li><strong>Ziel</strong>: Teste die Verkettung mit verschiedenen Datenkonstellationen.</li>
 <li><strong>Hinweise</strong>: Simuliere in <code>main</code> unvollständige Daten und stelle sicher, dass die Pipeline nicht abstürzt, sondern elegant mit <code>None</code> oder Fehlern umgeht.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="83-einfacher-parser-kombinator"><a class="header" href="#83-einfacher-parser-kombinator">83. Einfacher Parser-Kombinator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1584,7 +1565,7 @@
 <li><strong>Ziel</strong>: Parser für eine einfache Grammatik.</li>
 <li><strong>Hinweise</strong>: Baue in <code>main</code> einen Parser für eine Zahl gefolgt von einem Buchstaben auf und teste ihn mit verschiedenen Eingabestrings.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="84-echtzeit-stream-aggregator"><a class="header" href="#84-echtzeit-stream-aggregator">84. Echtzeit-Stream-Aggregator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1601,7 +1582,7 @@
 <li><strong>Ziel</strong>: Analysiere einen Live-Datenstrom.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen unendlichen Strom von Zahlen. Lass den Aggregator laufen und gib in regelmäßigen Abständen die aktuellen Top-5-Werte aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="85-lazy-json-pfad-evaluator"><a class="header" href="#85-lazy-json-pfad-evaluator">85. Lazy JSON-Pfad-Evaluator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1618,7 +1599,7 @@
 <li><strong>Ziel</strong>: Suche in einem komplexen Dokument.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> eine tiefe Baumstruktur und frage Pfade ab. Zeige das lazy Verhalten, indem du den Zugriff protokollierst.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="86-n-damen-problem-als-iterator"><a class="header" href="#86-n-damen-problem-als-iterator">86. N-Damen-Problem als Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1635,7 +1616,7 @@
 <li><strong>Ziel</strong>: Finde alle Lösungen für ein 8x8-Brett.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> den Solver für N=8. Iteriere über alle Lösungen und gib die Gesamtanzahl sowie einige Bretter als Textdiagramm aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="87-state-monaden-simulator"><a class="header" href="#87-state-monaden-simulator">87. State-Monaden-Simulator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1652,7 +1633,7 @@
 <li><strong>Ziel</strong>: Simuliere einen Spielzustand.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> eine Kette von Zustandsübergängen (z.B. Lebenspunkte abziehen, Gold hinzufügen) und führe sie mit einem Startzustand aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="88-custom-zip-with-adapter"><a class="header" href="#88-custom-zip-with-adapter">88. Custom Zip-With-Adapter</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1669,7 +1650,7 @@
 <li><strong>Ziel</strong>: Kombiniere Zahlenreihen.</li>
 <li><strong>Hinweise</strong>: Erstelle zwei Vektoren in <code>main</code> und nutze <code>zip_with</code> mit einer Additions- oder Multiplikations-Closure, um die Elemente paarweise zu verrechnen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="89-binärbaum-traversierer"><a class="header" href="#89-binärbaum-traversierer">89. Binärbaum-Traversierer</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1686,7 +1667,7 @@
 <li><strong>Ziel</strong>: Traversiere einen Testbaum.</li>
 <li><strong>Hinweise</strong>: Baue in <code>main</code> einen kleinen Binärbaum auf und gib seine Elemente über die Iterator-Traversierung aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="90-collatz-folgen-iterator"><a class="header" href="#90-collatz-folgen-iterator">90. Collatz-Folgen-Iterator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1703,7 +1684,7 @@
 <li><strong>Ziel</strong>: Analysiere Collatz-Folgen.</li>
 <li><strong>Hinweise</strong>: Nutze den Iterator in <code>main</code> für alle Zahlen bis 1000. Finde über Iterator-Ketten heraus, welche Startzahl die längste Collatz-Folge generiert.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="91-curried-logger"><a class="header" href="#91-curried-logger">91. Curried Logger</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1720,7 +1701,7 @@
 <li><strong>Ziel</strong>: Erstelle spezialisierte Logger.</li>
 <li><strong>Hinweise</strong>: Erzeuge in <code>main</code> einen <code>info_logger</code> und daraus einen <code>database_info_logger</code>. Protokolliere Nachrichten und zeige die Flexibilität auf.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="92-funktionale-funktionskomposition"><a class="header" href="#92-funktionale-funktionskomposition">92. Funktionale Funktionskomposition</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1737,7 +1718,7 @@
 <li><strong>Ziel</strong>: Kombiniere mathematische und Text-Transformationen.</li>
 <li><strong>Hinweise</strong>: Komponiere in <code>main</code> eine Funktion, die eine Zahl verdoppelt und das Ergebnis in einen String umwandelt. Wende sie an.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="93-lazy-matrix-transposition-zero-copy"><a class="header" href="#93-lazy-matrix-transposition-zero-copy">93. Lazy Matrix-Transposition (Zero-Copy)</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1754,7 +1735,7 @@
 <li><strong>Ziel</strong>: Traversiere die transponierte Matrix.</li>
 <li><strong>Hinweise</strong>: Erstelle eine 3x4-Matrix in <code>main</code>, transponiere sie virtuell und gib die transponierten Werte aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="94-ressourceneffizienter-stream-join"><a class="header" href="#94-ressourceneffizienter-stream-join">94. Ressourceneffizienter Stream-Join</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1771,7 +1752,7 @@
 <li><strong>Ziel</strong>: Führe zwei sortierte Listen zusammen.</li>
 <li><strong>Hinweise</strong>: Erstelle in <code>main</code> zwei sortierte Vektoren und merge sie mit deinem <code>SortedMerge</code>-Iterator zu einem einzigen sortierten Datenstrom.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="95-partielle-applikation"><a class="header" href="#95-partielle-applikation">95. Partielle Applikation</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1788,7 +1769,7 @@
 <li><strong>Ziel</strong>: Erzeuge spezialisierte mathematische Funktionen.</li>
 <li><strong>Hinweise</strong>: Fixiere in <code>main</code> den Zinssatz einer Zinseszinsberechnung und berechne Zinsen für unterschiedliche Laufzeiten und Anlagebeträge.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="96-lazy-stream-chiffre"><a class="header" href="#96-lazy-stream-chiffre">96. Lazy Stream-Chiffre</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1805,7 +1786,7 @@
 <li><strong>Ziel</strong>: Ver- und entschlüssele eine Nachricht.</li>
 <li><strong>Hinweise</strong>: Verschlüssele in <code>main</code> einen String in ein Byte-Array und entschlüssele dieses wieder mit demselben Keystream.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="97-funktionale-runden-simulation"><a class="header" href="#97-funktionale-runden-simulation">97. Funktionale Runden-Simulation</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1822,7 +1803,7 @@
 <li><strong>Ziel</strong>: Simuliere ein Spiel bis zum Ende.</li>
 <li><strong>Hinweise</strong>: Nutze die Iterator-Kette in <code>main</code> und breche die Simulation mit <code>.take_while()</code> ab, sobald einer der Spieler keine Lebenspunkte mehr hat. Gib den Verlauf aus.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="98-fehlertoleranter-flatten-adapter"><a class="header" href="#98-fehlertoleranter-flatten-adapter">98. Fehlertoleranter Flatten-Adapter</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1839,7 +1820,7 @@
 <li><strong>Ziel</strong>: Teste das Abbruchverhalten.</li>
 <li><strong>Hinweise</strong>: Übergib in <code>main</code> eine Liste von Listen, in der ein Fehler versteckt ist. Verifiziere, dass nach dem Auftreten des Fehlers keine weiteren Elemente mehr verarbeitet werden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="99-lazy-regex-matcher"><a class="header" href="#99-lazy-regex-matcher">99. Lazy-Regex-Matcher</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1856,7 +1837,7 @@
 <li><strong>Ziel</strong>: Teste das Pattern-Matching.</li>
 <li><strong>Hinweise</strong>: Prüfe in <code>main</code> verschiedene Wörter gegen einfache Muster (z.B. <code>a.b</code> oder <code>a?bc</code>) und gib aus, ob sie matchen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="100-map-reduce-simulator"><a class="header" href="#100-map-reduce-simulator">100. Map-Reduce-Simulator</a></h3>
 <p><strong>Modul 1: Basis-Datenstrukturen</strong></p>
 <ul>
@@ -1879,11 +1860,11 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="100-projekte-phase8.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="phase9-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -1893,16 +1874,21 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="100-projekte-phase8.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="phase9-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -1911,17 +1897,15 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

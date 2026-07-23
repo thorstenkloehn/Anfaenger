@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,128 +69,97 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html" class="active"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="-konzepte-statt-syntax-lernen-coding-mit-ki--phase-1"><a class="header" href="#-konzepte-statt-syntax-lernen-coding-mit-ki--phase-1">🤖 Konzepte statt Syntax lernen (Coding mit KI – Phase 1)</a></h1>
 <h2 id="willkommen-in-der-zukunft-der-softwareentwicklung"><a class="header" href="#willkommen-in-der-zukunft-der-softwareentwicklung">Willkommen in der Zukunft der Softwareentwicklung!</a></h2>
 <p>Herzlichen Glückwunsch! Du machst deine ersten Schritte in der Programmierung zu einer Zeit, in der sich die Softwareentwicklung so rasant verändert wie noch nie zuvor. Früher mussten Programmierer Monate damit verbringen, kryptische Syntax auswendig zu lernen, Semikolons zu suchen und dicke Handbücher zu wälzen, um überhaupt ein einfaches Programm zum Laufen zu bringen. Heute stehen dir künstliche Intelligenzen (KIs) als persönliche Tutoren, Code-Generatoren und Sparringspartner zur Seite.</p>
 <p>Doch diese neue Macht bringt eine große Gefahr mit sich: Wer sich blind auf die Vorschläge einer KI verlässt, ohne die grundlegenden Konzepte dahinter zu verstehen, wird niemals ein eigenständiger Entwickler. Du wirst zu einem reinen „Copy-Paste-Coder“, der nicht in der Lage ist, Fehler zu beheben, Sicherheitsrisiken zu erkennen oder eigene, kreative Systemarchitekturen zu entwerfen.</p>
 <p>In diesem Kapitel lernst du, wie du das Steuer selbst in der Hand behältst. Wir betrachten die Funktionsweise von KI-Systemen, verstehen den gewaltigen Paradigmenwechsel in unserem Berufsbild und lernen handfeste Techniken, um KI als didaktisches Werkzeug einzusetzen, das dein Lernen beschleunigt, statt dein Denken zu ersetzen.</p>
-<hr />
+<hr>
 <h2 id="-lernziele-für-dieses-kapitel"><a class="header" href="#-lernziele-für-dieses-kapitel">📌 Lernziele für dieses Kapitel</a></h2>
 <p>Am Ende dieses Kapitels wirst du in der Lage sein:</p>
 <ol>
@@ -195,7 +176,7 @@
 <li><strong>Geführtes Pair Programming</strong> mit der KI durchzuführen und mithilfe des Rust-Makros <code>todo!()</code> komplexe Probleme (wie IBAN-Validierung oder ein Text-Quiz) schrittweise selbst zu lösen.</li>
 <li><strong>Professionelle Inline-Dokumentation</strong> (Docstrings) generieren zu lassen und zu interpretieren, um den eigenen und fremden Code besser zu verstehen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="1-evolution--ki-grundlagen"><a class="header" href="#1-evolution--ki-grundlagen">1. Evolution &amp; KI-Grundlagen</a></h2>
 <h3 id="11-evolution-der-softwareentwicklung-vom-compiler-zur-generativen-ki"><a class="header" href="#11-evolution-der-softwareentwicklung-vom-compiler-zur-generativen-ki">1.1 Evolution der Softwareentwicklung: Vom Compiler zur generativen KI</a></h3>
 <p><em>Referenz: Taulli, Kap. 1</em></p>
@@ -211,36 +192,42 @@
 <p>In den Anfängen der Informatik gab es keine Bildschirme, keine Tastaturen und keine Programmiersprachen. Computer wurden über physische Kabelverbindungen oder Lochkarten programmiert. Programmierer mussten in reinem Binärcode (Nullen und Einsen) denken. Ein winziger Fehler – ein falsch gestanztes Loch – bedeutete, dass ein tagelang vorbereiteter Stapel Lochkarten unbrauchbar war. Die Fehlerquote war enorm, und das Schreiben von Software war eine rein mathematisch-physikalische Tortur.</p>
 <h5 id="epoche-2-assemblersprachen"><a class="header" href="#epoche-2-assemblersprachen">Epoche 2: Assemblersprachen</a></h5>
 <p>Um das Binärchaos zu lichten, wurden Assemblersprachen entwickelt. Statt <code>01101011</code> schrieben Programmierer nun sogenannte <em>Mnemonics</em> wie <code>MOV</code> (Verschiebe Daten), <code>ADD</code> (Addiere) oder <code>PUSH</code> (Schiebe auf den Stapel). Ein Programm namens Assembler übersetzte diese Befehle in den Maschinencode. Dies war der erste echte Abstraktionsschritt, allerdings war der Code immer noch extrem hardwarenah und musste für jeden Prozessortyp völlig neu geschrieben werden.</p>
-<h5 id="epoche-3-die-Ära-der-compiler-und-hochsprachen"><a class="header" href="#epoche-3-die-Ära-der-compiler-und-hochsprachen">Epoche 3: Die Ära der Compiler und Hochsprachen</a></h5>
+<h5 id="epoche-3-die-ära-der-compiler-und-hochsprachen"><a class="header" href="#epoche-3-die-ära-der-compiler-und-hochsprachen">Epoche 3: Die Ära der Compiler und Hochsprachen</a></h5>
 <p>Ende der 1950er Jahre erfand Grace Hopper den ersten Compiler. Damit war der Weg frei für die ersten Hochsprachen wie Fortran, LISP und COBOL, später folgten C und C++. Programmierer konnten nun mathematische Formeln und logische Strukturen schreiben, die der menschlichen Denkweise ähnelten (z. B. <code>if x &gt; 5 { y = 10; }</code>). Der Compiler übernahm die komplexe Übersetzung in den Maschinencode des jeweiligen Prozessors. Software wurde portabel und für wesentlich mehr Menschen zugänglich.</p>
 <h5 id="epoche-4-integrierte-entwicklungsumgebungen-ides-und-autovervollständigung"><a class="header" href="#epoche-4-integrierte-entwicklungsumgebungen-ides-und-autovervollständigung">Epoche 4: Integrierte Entwicklungsumgebungen (IDEs) und Autovervollständigung</a></h5>
 <p>Mit dem Aufkommen von IDEs in den 1980er und 1990er Jahren änderte sich der Workflow erneut. Editoren wurden intelligenter. Sie hoben Syntaxfehler farbig hervor (Syntax-Highlighting), boten Debugger zur Fehlersuche und führten die Autovervollständigung (wie Microsofts <em>IntelliSense</em>) ein. Programmierer mussten nicht mehr jede Bibliotheksfunktion auswendig wissen; ein Druck auf die Tastenkombination genügte, um die verfügbaren Methoden anzuzeigen. Dennoch musste jede einzelne Zeile Logik manuell eingetippt werden.</p>
 <h5 id="epoche-5-generative-ki-und-natürlicher-sprachcode"><a class="header" href="#epoche-5-generative-ki-und-natürlicher-sprachcode">Epoche 5: Generative KI und natürlicher Sprachcode</a></h5>
-<p>Heute befinden wir uns in der fünften Epoche. Die generative KI ermöglicht es uns, die Programmiersprache selbst als eine Art "Zwischen-Compiler" zu betrachten. Wir beschreiben das gewünschte Verhalten der Software in natürlicher Sprache (Deutsch, Englisch etc.), und ein Large Language Model generiert den passenden Quellcode in Rust, Python oder JavaScript. Wir programmieren nicht mehr auf der Ebene der Syntax, sondern auf der Ebene der Konzepte und Anforderungen.</p>
-<hr />
+<p>Heute befinden wir uns in der fünften Epoche. Die generative KI ermöglicht es uns, die Programmiersprache selbst als eine Art “Zwischen-Compiler” zu betrachten. Wir beschreiben das gewünschte Verhalten der Software in natürlicher Sprache (Deutsch, Englisch etc.), und ein Large Language Model generiert den passenden Quellcode in Rust, Python oder JavaScript. Wir programmieren nicht mehr auf der Ebene der Syntax, sondern auf der Ebene der Konzepte und Anforderungen.</p>
+<hr>
 <h3 id="12-funktionsweise-von-ki-coding-codevorschläge-vs-klassische-code-vervollständigung"><a class="header" href="#12-funktionsweise-von-ki-coding-codevorschläge-vs-klassische-code-vervollständigung">1.2 Funktionsweise von KI-Coding: Codevorschläge vs. klassische Code-Vervollständigung</a></h3>
 <p><em>Referenz: Taulli, Kap. 2</em></p>
 <p>Viele Einsteiger verwechseln moderne KI-Assistenten mit der klassischen Autovervollständigung, die sie aus ihren Editoren kennen. Es ist jedoch essenziell, die grundlegenden Unterschiede in ihrer Funktionsweise zu verstehen, um die jeweiligen Stärken und Schwächen einschätzen zu können.</p>
 <h4 id="der-direkte-vergleich"><a class="header" href="#der-direkte-vergleich">Der direkte Vergleich</a></h4>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Merkmal</th><th style="text-align: left">Klassische Autovervollständigung (z. B. IntelliSense)</th><th style="text-align: left">KI-gestützte Codevorschläge (z. B. GitHub Copilot)</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Merkmal</th><th style="text-align: left">Klassische Autovervollständigung (z. B. IntelliSense)</th><th style="text-align: left">KI-gestützte Codevorschläge (z. B. GitHub Copilot)</th></tr>
+</thead>
+<tbody>
 <tr><td style="text-align: left"><strong>Technologie</strong></td><td style="text-align: left">Deterministische Algorithmen, Compiler-APIs, AST (Abstract Syntax Trees)</td><td style="text-align: left">Probabilistische neuronale Netze (Transformer-Architektur)</td></tr>
 <tr><td style="text-align: left"><strong>Funktionsweise</strong></td><td style="text-align: left">Liest die exakten Regeln der Sprache und analysiert den bestehenden Code-Zustand.</td><td style="text-align: left">Berechnet die statistisch wahrscheinlichste Fortsetzung deines Textes.</td></tr>
 <tr><td style="text-align: left"><strong>Zuverlässigkeit</strong></td><td style="text-align: left"><strong>100% korrekt</strong> im Rahmen der Syntax. Schlägt nur Dinge vor, die tatsächlich existieren.</td><td style="text-align: left"><strong>Variabel.</strong> Kann fantastischen Code schreiben, aber auch Fehler erfinden (Halluzinationen).</td></tr>
 <tr><td style="text-align: left"><strong>Kontext-Verständnis</strong></td><td style="text-align: left">Lokal beschränkt (aktuelle Klasse, importierte Module, Typdefinitionen).</td><td style="text-align: left">Global und semantisch (Kommentare, offene Tabs, Muster im gesamten Projekt).</td></tr>
 <tr><td style="text-align: left"><strong>Generierungstiefe</strong></td><td style="text-align: left">Einzelne Wörter, Methodennamen, Variablen, kurze Snippets.</td><td style="text-align: left">Ganze Funktionen, Klassen, Test-Suiten, SQL-Abfragen, Dokumentationen.</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h4 id="wie-klassische-systeme-arbeiten"><a class="header" href="#wie-klassische-systeme-arbeiten">Wie klassische Systeme arbeiten</a></h4>
 <p>Wenn du in deiner IDE eine Variable namens <code>benutzer_name</code> vom Typ <code>String</code> eingibst und einen Punkt <code>.</code> dahintersetzt, fragt die IDE den Sprachserver (z. B. den Rust Analyzer) ab. Dieser kennt die Definition des Typs <code>String</code> in der Standardbibliothek ganz genau. Er liefert dir eine Liste aller Methoden wie <code>.len()</code>, <code>.trim()</code> oder <code>.push_str()</code>. Die IDE zeigt dir ausschließlich Methoden an, die syntaktisch an dieser Stelle erlaubt sind und tatsächlich existieren. Es gibt keinen Raum für Spekulationen oder Fehler.</p>
 <h4 id="wie-ki-systeme-arbeiten"><a class="header" href="#wie-ki-systeme-arbeiten">Wie KI-Systeme arbeiten</a></h4>
 <p>Wenn du ein KI-Tool nutzt, schickst du im Hintergrund kontinuierlich Teile deines Codes an ein neuronales Netz. Die KI analysiert den Text und berechnet: <em>„Welche Zeichenkette folgt am wahrscheinlichsten auf diesen Code-Kontext?“</em>
 Wenn du beispielsweise folgenden Kommentar schreibst:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Funktion, die prüft, ob eine Zahl eine Primzahl ist
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>erkennt das Modell das Muster. In seinen gigantischen Trainingsdaten (bestehend aus Milliarden Zeilen Code von GitHub) folgte auf einen solchen Kommentar sehr häufig eine Funktion wie <code>fn ist_primzahl(n: u32) -&gt; bool { ... }</code>. Die KI schlägt dir diesen Block vor. Sie tut dies nicht, weil sie die mathematischen Regeln von Primzahlen „versteht“, sondern weil dieses Textmuster in ihrer Datenbank statistisch extrem dominant ist.</p>
-<hr />
+<hr>
 <h3 id="13-grundlagen-von-large-language-models-llms-token-management-und-kontextfenster"><a class="header" href="#13-grundlagen-von-large-language-models-llms-token-management-und-kontextfenster">1.3 Grundlagen von Large Language Models (LLMs): Token-Management und Kontextfenster</a></h3>
 <p><em>Referenz: Kofler, Kap. 1</em></p>
 <p>Um KI-Tools effizient zu nutzen und die gefürchteten Leistungseinbrüche oder Logikfehler zu vermeiden, musst du zwei technische Kernkonzepte von LLMs verstehen: <strong>Tokens</strong> und das <strong>Kontextfenster</strong>.</p>
@@ -288,13 +275,13 @@ Wenn du beispielsweise folgenden Kommentar schreibst:</p>
 <li><strong>Schließe ungenutzte Tabs:</strong> Viele IDE-Plugins senden den Inhalt aller geöffneten Tabs als Kontext mit. Schließe Dateien, die für deine aktuelle Aufgabe irrelevant sind.</li>
 <li><strong>Präzise Code-Auswahl:</strong> Markiere nur den spezifischen Codeblock, über den du sprechen möchtest, statt der KI die gesamte Datei zu senden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="14-die-probabilistische-engine-grundlagen-und-das-abstraktionsproblem"><a class="header" href="#14-die-probabilistische-engine-grundlagen-und-das-abstraktionsproblem">1.4 Die probabilistische Engine: Grundlagen und das Abstraktionsproblem</a></h3>
 <p><em>Referenz: Pawar, Teil 1</em></p>
 <p>Wie wir bereits gelernt haben, ist eine generative KI eine <strong>probabilistische Engine</strong>. Das bedeutet, dass jede Antwort das Produkt einer Wahrscheinlichkeitsrechnung ist. Daraus ergibt sich eine der größten Herausforderungen für angehende Entwickler: das <strong>Abstraktionsproblem</strong>.</p>
 <h4 id="next-token-prediction-anschaulich-erklärt"><a class="header" href="#next-token-prediction-anschaulich-erklärt">Next-Token-Prediction anschaulich erklärt</a></h4>
 <p>Stell dir vor, du spielst das Spiel „Satz vervollständigen“.
-Wenn ich sage: <em>„Der Hund bellt den...“</em>, welches Wort folgt als nächstes?</p>
+Wenn ich sage: <em>„Der Hund bellt den…“</em>, welches Wort folgt als nächstes?</p>
 <ul>
 <li><em>„Postboten“</em> (Wahrscheinlichkeit: 70%)</li>
 <li><em>„Baum“</em> (Wahrscheinlichkeit: 20%)</li>
@@ -316,12 +303,12 @@ Wenn ich sage: <em>„Der Hund bellt den...“</em>, welches Wort folgt als näc
 <li><strong>Bibliotheken-Halluzination:</strong> Wenn die KI vor einem schwierigen Problem steht, erfindet sie manchmal einfach eine Rust-Bibliothek (ein Crate), die perfekt für dieses Problem geeignet wäre, aber in der Realität gar nicht existiert (z. B. <code>extern crate super_simple_iban_validator;</code>).</li>
 <li><strong>Sicherheitslücken:</strong> Die KI neigt dazu, den einfachsten Code zu generieren. Dieser vernachlässigt jedoch oft Sicherheitsprüfungen, Validierungen von Benutzereingaben oder Fehlerbehandlungen, da diese in den Trainingsdaten seltener oder komplexer zu finden sind.</li>
 </ol>
-<blockquote>
-<p>[!WARNING]
-<strong>Die goldene Regel des KI-gestützten Codens:</strong>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p><strong>Die goldene Regel des KI-gestützten Codens:</strong>
 Vertraue niemals einem Codevorschlag, den du nicht selbst logisch nachvollziehen und durch Tests verifizieren kannst. Du bist die Qualitätskontrolle!</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="15-das-mentale-modell-für-vibe-engineering"><a class="header" href="#15-das-mentale-modell-für-vibe-engineering">1.5 Das mentale Modell für Vibe Engineering</a></h3>
 <p><em>Referenz: Lelek &amp; Skowroński</em></p>
 <p>Der Begriff <strong>Vibe Engineering</strong> (oder auch <em>Vibe Coding</em>) beschreibt einen Programmierstil, der durch generative KI populär geworden ist. Man schreibt kaum noch selbst Code, sondern beschreibt der KI die Anforderungen, lässt sie den Code generieren, testet das Ergebnis und gibt bei Fehlern neue Prompts ein („Der Vibe stimmt noch nicht, korrigiere das“).</p>
@@ -342,7 +329,7 @@ Vertraue niemals einem Codevorschlag, den du nicht selbst logisch nachvollziehen
 <li><strong>Definiere Schnittstellen (Contracts):</strong> Sage ihm genau, wie die Eingaben und Ausgaben einer Funktion auszusehen haben, bevor er mit der Arbeit beginnt.</li>
 <li><strong>Schreibe Tests:</strong> Der beste Weg, um zu prüfen, ob der Praktikant sauber gearbeitet hat, sind automatisierte Tests. Lass ihn die Tests schreiben und überprüfe sie selbst.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="2-der-paradigmenwechsel"><a class="header" href="#2-der-paradigmenwechsel">2. Der Paradigmenwechsel</a></h2>
 <h3 id="21-die-faafo-philosophie-fast-ambitious-autonomous-fun-optionality"><a class="header" href="#21-die-faafo-philosophie-fast-ambitious-autonomous-fun-optionality">2.1 Die FAAFO-Philosophie (Fast, Ambitious, Autonomous, Fun, Optionality)</a></h3>
 <p><em>Referenz: Kim &amp; Yegge, Teil 1</em></p>
@@ -360,14 +347,14 @@ Vertraue niemals einem Codevorschlag, den du nicht selbst logisch nachvollziehen
 <h4 id="fast-schnell"><a class="header" href="#fast-schnell">Fast (Schnell)</a></h4>
 <p>Früher war der Zyklus zwischen einer Idee und dem ersten lauffähigen Prototyp lang. Man musste Bibliotheken konfigurieren, Build-Systeme einrichten und seitenweise Boilerplate-Code schreiben. Mit KI verkürzt sich dieser Zyklus auf Sekunden. Du kannst eine Idee beschreiben, die KI generiert das Grundgerüst, und du siehst sofort, ob das Konzept funktioniert. Das Feedback ist unmittelbar.</p>
 <h4 id="ambitious-ambitioniert"><a class="header" href="#ambitious-ambitioniert">Ambitious (Ambitioniert)</a></h4>
-<p>Als Anfänger bist du oft durch deine mangelnden Kenntnisse der komplexen Syntax eingeschränkt. Du traust dir vielleicht nicht zu, eine Netzwerk-Applikation oder ein komplexes Datenverarbeitungsprogramm zu schreiben. Die KI nimmt dir diese "Syntax-Angst". Du kannst ehrgeizige Projekte planen, da du weißt, dass die KI dir bei der Umsetzung der komplizierten Sprachkonstrukte hilft.</p>
+<p>Als Anfänger bist du oft durch deine mangelnden Kenntnisse der komplexen Syntax eingeschränkt. Du traust dir vielleicht nicht zu, eine Netzwerk-Applikation oder ein komplexes Datenverarbeitungsprogramm zu schreiben. Die KI nimmt dir diese “Syntax-Angst”. Du kannst ehrgeizige Projekte planen, da du weißt, dass die KI dir bei der Umsetzung der komplizierten Sprachkonstrukte hilft.</p>
 <h4 id="autonomous-autonom"><a class="header" href="#autonomous-autonom">Autonomous (Autonom)</a></h4>
 <p>Wenn du früher beim Programmieren auf einen Fehler gestoßen bist, den du nicht verstanden hast, musstest du in Foren wie Stack Overflow suchen oder auf die Hilfe eines erfahrenen Kollegen warten. Heute macht dich die KI autonom. Sie kann dir Compiler-Fehler verständlich auf Deutsch erklären, dir alternative Lösungswege aufzeigen und dich Schritt für Schritt durch das Problem führen.</p>
 <h4 id="fun-spaß"><a class="header" href="#fun-spaß">Fun (Spaß)</a></h4>
 <p>Der Spaßfaktor beim Programmieren steigt enorm, wenn man sich auf die kreative Problemlösung konzentrieren kann, anstatt Stunden mit der Suche nach einem vergessenen Semikolon oder einer falsch gesetzten geschweiften Klammer zu verschwenden. Du erlebst schneller Erfolgserlebnisse, was deine Motivation aufrechterhält.</p>
 <h4 id="optionality-optionen"><a class="header" href="#optionality-optionen">Optionality (Optionen)</a></h4>
 <p>Da das Erstellen von Code kaum noch Zeit kostet, musst du dich nicht sofort auf den ersten Lösungsansatz festlegen. Du kannst die KI bitten: <em>„Zeige mir drei verschiedene Wege, um dieses Problem in Rust zu lösen: einmal mit einer Schleife, einmal funktional mit Iteratoren und einmal rekursiv. Erkläre mir die Vor- und Nachteile von jedem Ansatz.“</em> So lernst du verschiedene Programmierparadigmen parallel kennen.</p>
-<hr />
+<hr>
 <h3 id="22-vom-linienkoch-zum-küchenchef-der-wandel-vom-manuellen-code-schreiber-zum-system-orchestrator"><a class="header" href="#22-vom-linienkoch-zum-küchenchef-der-wandel-vom-manuellen-code-schreiber-zum-system-orchestrator">2.2 Vom Linienkoch zum Küchenchef: Der Wandel vom manuellen Code-Schreiber zum System-Orchestrator</a></h3>
 <p><em>Referenz: Kim &amp; Yegge, Teil 2; Osmani</em></p>
 <p>Dieses Bild ist eines der wichtigsten mentalen Modelle für deine zukünftige Karriere als Softwareentwickler. Es beschreibt die Transformation deiner Rolle.</p>
@@ -413,7 +400,7 @@ Die restlichen 30% sind jedoch die schwierigsten und kritischsten:</p>
 <li>Ist der Code so strukturiert, dass man ihn in zwei Jahren noch erweitern kann (Wartbarkeit)?</li>
 </ul>
 <p>Die KI scheitert oft an diesen 30%. Wenn du als Entwickler nicht die Kompetenz besitzt, diese 30% selbstständig zu analysieren, zu programmieren und zu überwachen, wird dein Projekt scheitern. Die 30% erfordern dein tiefes Verständnis der fundamentalen Konzepte.</p>
-<hr />
+<hr>
 <h2 id="3-prompt-engineering--tool-setup"><a class="header" href="#3-prompt-engineering--tool-setup">3. Prompt Engineering &amp; Tool-Setup</a></h2>
 <h3 id="31-grundlagen-des-promptings-zero-shot-few-shot-und-chain-of-thought"><a class="header" href="#31-grundlagen-des-promptings-zero-shot-few-shot-und-chain-of-thought">3.1 Grundlagen des Promptings: Zero-Shot, Few-Shot und Chain-of-Thought</a></h3>
 <p><em>Referenz: Kofler, Kap. 1</em></p>
@@ -429,7 +416,7 @@ Die KI generiert direkt die einfache Funktion unter Verwendung des Modulo-Operat
 </blockquote>
 <h5 id="wann-nutzen"><a class="header" href="#wann-nutzen">Wann nutzen?</a></h5>
 <p>Für einfache, standardisierte Aufgaben, die keine spezielle Formatierung oder ungewöhnliche Logik erfordern.</p>
-<hr />
+<hr>
 <h4 id="2-few-shot-prompting"><a class="header" href="#2-few-shot-prompting">2. Few-Shot-Prompting</a></h4>
 <p>Du gibst dem Modell vor der eigentlichen Aufgabe ein oder mehrere Beispiele (Demonstrationen) für Eingabe und die gewünschte Ausgabe. Dies hilft der KI, das gewünschte Antwortformat, den Programmierstil oder spezifische Design-Muster exakt zu übernehmen.</p>
 <h5 id="beispiel-few-shot"><a class="header" href="#beispiel-few-shot">Beispiel (Few-Shot):</a></h5>
@@ -447,7 +434,7 @@ Die KI generiert direkt die einfache Funktion unter Verwendung des Modulo-Operat
 </blockquote>
 <h5 id="wann-nutzen-1"><a class="header" href="#wann-nutzen-1">Wann nutzen?</a></h5>
 <p>Wenn du Code in einem ganz bestimmten Stil generieren lassen willst (z. B. nach den Stilrichtlinien deines Unternehmens), wenn du Testfälle in einer bestimmten Syntax brauchst oder komplexe Daten transformieren musst.</p>
-<hr />
+<hr>
 <h4 id="3-chain-of-thought-prompting-cot"><a class="header" href="#3-chain-of-thought-prompting-cot">3. Chain-of-Thought-Prompting (CoT)</a></h4>
 <p>Du weist die KI explizit an, das Problem Schritt für Schritt logisch zu analysieren und ihren Denkprozess aufzuschreiben, <em>bevor</em> sie den finalen Code generiert. Dies zwingt das Modell, Zwischenschritte in seinem Kontextfenster abzuspeichern, was die Fehlerquote bei komplexen mathematischen oder logischen Aufgaben drastisch senkt.</p>
 <h5 id="beispiel-chain-of-thought"><a class="header" href="#beispiel-chain-of-thought">Beispiel (Chain-of-Thought):</a></h5>
@@ -459,22 +446,22 @@ Denke zuerst Schritt für Schritt laut über die Regeln nach: Welche Bedingungen
 „<strong>Schritt-für-Schritt-Analyse:</strong></p>
 <ol>
 <li>Ein Jahr ist grundsätzlich ein Schaltjahr, wenn es restlos durch 4 teilbar ist.</li>
-<li>Ausnahme: Ist das Jahr durch 100 teilbar, ist es kein Schaltjahr...</li>
+<li>Ausnahme: Ist das Jahr durch 100 teilbar, ist es kein Schaltjahr…</li>
 <li>Ausnahme von der Ausnahme: Ist das Jahr jedoch auch durch 400 teilbar, ist es dennoch ein Schaltjahr.</li>
 </ol>
 <p>Hier ist das Code-Gerüst basierend auf dieser Logik:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn ist_schaltjahr(jahr: u32) -&gt; bool {
     // 1. Teilbarkeit durch 4, 100 und 400 prüfen
     todo!("Logik für Schaltjahr-Prüfung implementieren")
 }
 ```“
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </blockquote>
 <h5 id="wann-nutzen-2"><a class="header" href="#wann-nutzen-2">Wann nutzen?</a></h5>
 <p>Bei allen komplexen logischen Problemen, Algorithmen, mathematischen Berechnungen oder bei der Fehlersuche (Debugging).</p>
-<hr />
+<hr>
 <h3 id="32-anatomie-eines-prompts-anweisungen-kontext-eingabedaten-und-ausgabeformate"><a class="header" href="#32-anatomie-eines-prompts-anweisungen-kontext-eingabedaten-und-ausgabeformate">3.2 Anatomie eines Prompts: Anweisungen, Kontext, Eingabedaten und Ausgabeformate</a></h3>
 <p><em>Referenz: Taulli, Kap. 3</em></p>
 <p>Ein schlecht geschriebener Prompt führt zu schlechtem Code. Wenn du der KI nur hinwirfst: <em>„Mach IBAN Prüfung Rust“</em>, wirst du einen Codeblock erhalten, der dich didaktisch nicht weiterbringt, eventuell veraltet ist oder Bibliotheken nutzt, die du gar nicht verwenden willst.</p>
@@ -527,7 +514,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
 <li>Stelle mir am Ende deiner Antwort eine Verständnisfrage zum Thema, um mein Wissen zu prüfen.“</li>
 </ol>
 </blockquote>
-<hr />
+<hr>
 <h3 id="33-einrichtung-von-github-copilot-und-alternativen"><a class="header" href="#33-einrichtung-von-github-copilot-und-alternativen">3.3 Einrichtung von GitHub Copilot und Alternativen</a></h3>
 <p><em>Referenz: Taulli, Kap. 4 &amp; 5</em></p>
 <p>Um produktiv mit KI zu arbeiten, musst du sie in deine tägliche Arbeitsumgebung (deine IDE) integrieren. Hier ist ein Überblick über die wichtigsten Werkzeuge und wie du sie einrichtest.</p>
@@ -545,7 +532,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
 </ul>
 </li>
 </ol>
-<hr />
+<hr>
 <h4 id="2-tabnine-die-datenschutzfreundliche-alternative"><a class="header" href="#2-tabnine-die-datenschutzfreundliche-alternative">2. Tabnine: Die datenschutzfreundliche Alternative</a></h4>
 <p>Tabnine zeichnet sich dadurch aus, dass es lokal auf deinem Rechner ausgeführt werden kann, ohne dass dein Code an externe Server gesendet wird.</p>
 <h5 id="stärken"><a class="header" href="#stärken">Stärken:</a></h5>
@@ -553,21 +540,21 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
 <li><strong>Datenschutz:</strong> Perfekt für Unternehmen mit strengen Compliance-Richtlinien.</li>
 <li><strong>Ressourcenschonend:</strong> Bietet schnelle, lokale Autovervollständigung basierend auf kleineren, spezialisierten Modellen.</li>
 </ul>
-<hr />
+<hr>
 <h4 id="3-cody-sourcegraph-der-codebase-spezialist"><a class="header" href="#3-cody-sourcegraph-der-codebase-spezialist">3. Cody (Sourcegraph): Der Codebase-Spezialist</a></h4>
 <p>Cody ist ein Open-Source-KI-Assistent, der sich besonders durch seine Fähigkeit auszeichnet, deine <strong>gesamte Codebase</strong> zu analysieren.</p>
 <h5 id="stärken-1"><a class="header" href="#stärken-1">Stärken:</a></h5>
 <ul>
 <li>Während Copilot oft nur die aktuell geöffneten Dateien im Blick hat, durchsucht Cody dein gesamtes Projektverzeichnis. Du kannst Fragen stellen wie: <em>„Wo im Projekt wird die Benutzer-Authentifizierung durchgeführt und wie kann ich dort eine neue Rolle hinzufügen?“</em></li>
 </ul>
-<hr />
+<hr>
 <h4 id="4-warp-das-ki-terminal"><a class="header" href="#4-warp-das-ki-terminal">4. Warp: Das KI-Terminal</a></h4>
 <p>Warp ist ein modernes, auf Rust basierendes Terminal für macOS und Linux. Es integriert KI direkt in die Befehlszeile.</p>
 <h5 id="stärken-2"><a class="header" href="#stärken-2">Stärken:</a></h5>
 <ul>
 <li>Du musst keine kryptischen Terminalbefehle mehr auswendig lernen. Drücke <code>#</code> und tippe auf Deutsch ein, was du tun willst (z. B. <em>„Finde alle Dateien im Ordner src, die das Wort iban enthalten“</em>). Warp übersetzt dies in den passenden Bash-Befehl.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="34-schnelles-prototyping-im-browser-mit-stackblitz-boltnew"><a class="header" href="#34-schnelles-prototyping-im-browser-mit-stackblitz-boltnew">3.4 Schnelles Prototyping im Browser mit stackblitz Bolt.new</a></h3>
 <p><em>Referenz: Osmani: Vibe Coding mit Bolt</em></p>
 <p>Ein großes Hindernis für Programmier-Anfänger ist das lokale Setup: Node.js installieren, den Compiler konfigurieren, Umgebungsvariablen setzen, Datenbanken einrichten. Hier kommt <strong>Bolt.new</strong> ins Spiel.</p>
@@ -599,7 +586,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
 <li><strong>Eingeschränkte Rust-Unterstützung:</strong> Da Bolt.new primär auf Web-Technologien (JavaScript/TypeScript/Node.js) optimiert ist, lassen sich komplexe Systemprogrammiersprachen wie Rust dort nur schwer lokal kompilieren und ausführen.</li>
 <li><strong>Kontrollverlust:</strong> Die KI trifft alle architektonischen Entscheidungen für dich. Als Anfänger verstehst du oft nicht, warum ein bestimmtes Framework oder eine bestimmte Struktur gewählt wurde.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="4-pair-programming-zum-lernen"><a class="header" href="#4-pair-programming-zum-lernen">4. Pair Programming zum Lernen</a></h2>
 <h3 id="41-den-passenden-ki-lernpartner-auswählen-und-didaktisch-nutzen"><a class="header" href="#41-den-passenden-ki-lernpartner-auswählen-und-didaktisch-nutzen">4.1 Den passenden KI-Lernpartner auswählen und didaktisch nutzen</a></h3>
 <p><em>Referenz: Kofler, Kap. 2</em></p>
@@ -614,7 +601,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
     F --&gt; C
 </code></pre>
 <p><em>Lerneffekt bei diesem Prozess: <strong>Nahezu Null.</strong></em> Du trainierst lediglich deine Muskeln beim Drücken von <code>Ctrl+C</code> und <code>Ctrl+V</code>. Sobald du in einer Prüfung oder in einem echten Job ohne Internetverbindung Code schreiben musst, wirst du scheitern.</p>
-<hr />
+<hr>
 <h4 id="der-aktive-weg-der-lern-turbo"><a class="header" href="#der-aktive-weg-der-lern-turbo">Der aktive Weg (Der Lern-Turbo)</a></h4>
 <pre><code class="language-mermaid">graph TD
     A["Aufgabe erhalten"] --&gt; B["Prompt: 'Erkläre mir das Konzept hinter...'"]
@@ -628,7 +615,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
     I --&gt; J["Code läuft &amp; Konzept verstanden!"]
 </code></pre>
 <p><em>Lerneffekt bei diesem Prozess: <strong>Maximal.</strong></em> Du nutzt die KI als geduldigen Mentor, der dir die Richtung weist, das eigentliche Laufen (das Denken und Tippen der Logik) aber dir überlässt.</p>
-<hr />
+<hr>
 <h3 id="42-code-gerüste-erstellen-und-in-einfache-funktionen-strukturieren"><a class="header" href="#42-code-gerüste-erstellen-und-in-einfache-funktionen-strukturieren">4.2 Code-Gerüste erstellen und in einfache Funktionen strukturieren</a></h3>
 <p><em>Referenz: Kofler, Kap. 2</em></p>
 <p>Gute Softwarearchitektur zeichnet sich durch Modularität aus. Das bedeutet: Wir schreiben nicht eine gigantische Funktion, die alles auf einmal erledigt, sondern wir zerlegen das Problem in kleine, spezialisierte Hilfsfunktionen. Jede Funktion sollte genau eine Aufgabe haben (Single Responsibility Principle).</p>
@@ -640,7 +627,7 @@ Bitte befolge bei all deinen Antworten diese Regeln:</p>
 <h5 id="beispiel-für-den-strukturierten-entwurf-eines-programms"><a class="header" href="#beispiel-für-den-strukturierten-entwurf-eines-programms">Beispiel für den strukturierten Entwurf eines Programms:</a></h5>
 <p>Stell dir vor, wir wollen ein Programm schreiben, das eine Zahl vom Benutzer einliest, prüft, ob sie eine Primzahl ist, und das Ergebnis ausgibt.</p>
 <p>Wir fordern von der KI ein <strong>Code-Gerüst</strong> an:</p>
-<pre><pre class="playground"><code class="language-rust">// ==========================================
+<pre class="playground"><code class="language-rust">// ==========================================
 // CODE-GERÜST: Primzahlprüfer
 // ==========================================
 
@@ -680,9 +667,9 @@ fn main() {
             println!("Fehler bei der Eingabe: {}", fehler);
         }
     }
-}</code></pre></pre>
+}</code></pre>
 <p>Mit diesem Gerüst hast du eine klare Roadmap. Du musst nicht darüber nachdenken, wie die gesamte Applikation aufgebaut ist, sondern kannst dich vollkommen auf das Lösen einer einzelnen, kleinen Teilaufgabe (z. B. der mathematischen Logik in <code>ist_primzahl</code>) konzentrieren.</p>
-<hr />
+<hr>
 <h3 id="43-praxisbeispiel-iban-validierung-schrittweise-umsetzen"><a class="header" href="#43-praxisbeispiel-iban-validierung-schrittweise-umsetzen">4.3 Praxisbeispiel: IBAN-Validierung schrittweise umsetzen</a></h3>
 <p><em>Referenz: Kofler, Kap. 2</em></p>
 <p>Die Validierung einer IBAN (International Bank Account Number) ist ein hervorragendes Praxisprojekt, um den Umgang mit Strings, Zeichenketten-Manipulationen, Schleifen und Datentyp-Konvertierungen in Rust zu lernen.</p>
@@ -697,7 +684,7 @@ fn main() {
 <li><em>Beispiel:</em> Aus <code>DE89 3704 0044 0532 0130 00</code> wird <code>370400440532013000DE89</code>.</li>
 </ul>
 </li>
-<li><strong>Konvertierung in Zahlen:</strong> Ersetze jeden Buchstaben durch eine zweistellige Zahl, wobei <code>A = 10</code>, <code>B = 11</code>, ..., <code>Z = 35</code> entspricht.
+<li><strong>Konvertierung in Zahlen:</strong> Ersetze jeden Buchstaben durch eine zweistellige Zahl, wobei <code>A = 10</code>, <code>B = 11</code>, …, <code>Z = 35</code> entspricht.
 <ul>
 <li><em>Aus unserem Beispiel:</em> <code>D</code> wird <code>13</code>, <code>E</code> wird <code>14</code>. Die Zeichenkette wird zu einer riesigen Zahl: <code>370400440532013000131489</code>.</li>
 </ul>
@@ -709,10 +696,10 @@ fn main() {
 </ul>
 </li>
 </ol>
-<hr />
+<hr>
 <h4 id="dein-didaktisches-code-gerüst-zum-ausfüllen"><a class="header" href="#dein-didaktisches-code-gerüst-zum-ausfüllen">Dein didaktisches Code-Gerüst zum Ausfüllen:</a></h4>
 <p>Kopiere diesen Code in deine <code>src/main.rs</code> Datei. Deine Aufgabe ist es, die mit <code>todo!()</code> markierten Bereiche selbstständig zu implementieren. Die Kommentare geben dir wertvolle Hinweise auf die benötigten Rust-Methoden.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ==========================================
 // PRAXISPROJEKT: IBAN-Validator in Rust
@@ -837,8 +824,8 @@ mod tests {
         assert_eq!(verschiebe_anfang_nach_ende("DE89123456"), "123456DE89");
     }
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h3 id="44-praxisbeispiel-ein-einfaches-text-quiz-entwickeln"><a class="header" href="#44-praxisbeispiel-ein-einfaches-text-quiz-entwickeln">4.4 Praxisbeispiel: Ein einfaches Text-Quiz entwickeln</a></h3>
 <p><em>Referenz: Kofler, Kap. 2</em></p>
 <p>Ein interaktives Text-Quiz auf der Kommandozeile ist die perfekte Übung, um Datenstrukturen (<code>struct</code>), Vektoren (<code>Vec</code>), Schleifen (<code>for</code>/<code>loop</code>), Bedingungen (<code>if</code>/<code>else</code>) und interaktive Benutzereingaben (<code>std::io</code>) miteinander zu verknüpfen.</p>
@@ -856,10 +843,10 @@ mod tests {
 </ul>
 </li>
 </ol>
-<hr />
+<hr>
 <h4 id="dein-didaktisches-code-gerüst-zum-ausfüllen-1"><a class="header" href="#dein-didaktisches-code-gerüst-zum-ausfüllen-1">Dein didaktisches Code-Gerüst zum Ausfüllen:</a></h4>
 <p>Kopiere dieses Gerüst. Konzentriere dich darauf, die Logik für das Anzeigen der Frage und das Einlesen der Antwort selbstständig auszuarbeiten.</p>
-<pre><pre class="playground"><code class="language-rust">// ==========================================
+<pre class="playground"><code class="language-rust">// ==========================================
 // PRAXISPROJEKT: Konsolen-Quiz in Rust
 // ==========================================
 
@@ -971,8 +958,8 @@ fn main() {
 
     println!("\n=== QUIZ BEENDET ===");
     println!("Du hast {} von {} Punkten erreicht.", punktestand, fragen.len());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h3 id="45-inline-dokumentation-und-verständliche-docstrings-generieren-lassen"><a class="header" href="#45-inline-dokumentation-und-verständliche-docstrings-generieren-lassen">4.5 Inline-Dokumentation und verständliche Docstrings generieren lassen</a></h3>
 <p><em>Referenz: Kofler, Kap. 2</em></p>
 <p>Ein oft unterschätzter Bereich beim Programmierenlernen ist das Schreiben von Dokumentation. Es gilt die Regel: <strong>Wer seinen Code nicht dokumentieren kann, hat ihn meist selbst nicht ganz verstanden.</strong></p>
@@ -980,14 +967,14 @@ fn main() {
 <h4 id="der-unterschied-zwischen-normalen-kommentaren-und-dokumentationskommentaren"><a class="header" href="#der-unterschied-zwischen-normalen-kommentaren-und-dokumentationskommentaren">Der Unterschied zwischen normalen Kommentaren und Dokumentationskommentaren</a></h4>
 <h5 id="normale-kommentare"><a class="header" href="#normale-kommentare">Normale Kommentare:</a></h5>
 <p>Werden mit <code>//</code> eingeleitet. Sie sind für Entwickler gedacht, die den Quellcode direkt vor sich haben. Sie erklären das <em>Wie</em> und <em>Warum</em> von internen Codezeilen.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Dieser Zähler wird erhöht, da wir den aktuellen Index überspringen müssen
 index += 1;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h5 id="dokumentationskommentare-docstrings"><a class="header" href="#dokumentationskommentare-docstrings">Dokumentationskommentare (Docstrings):</a></h5>
 <p>Werden mit <code>///</code> (drei Schrägstrichen) eingeleitet. Sie stehen immer direkt <strong>über</strong> der Funktionsdefinition, Struktur oder dem Modul. Sie beschreiben das <em>Was</em> – also was die Funktion tut, welche Parameter sie erwartet, welche Fehler auftreten können und wie man sie benutzt. Sie unterstützen vollwertiges Markdown.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Berechnet das Quadrat einer übergebenen Zahl.
 ///
@@ -999,7 +986,7 @@ index += 1;
 fn quadrat(n: u32) -&gt; u32 {
     n * n
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="wie-du-die-ki-didaktisch-zur-dokumentation-nutzt"><a class="header" href="#wie-du-die-ki-didaktisch-zur-dokumentation-nutzt">Wie du die KI didaktisch zur Dokumentation nutzt</a></h4>
 <p>Wenn du ein Stück Code geschrieben hast, das zwar funktioniert, bei dem du dir aber über die genauen Abläufe noch unsicher bist, nutze folgenden Trick:
 Bitte die KI, für deinen Code <strong>vollständige, didaktische Docstrings nach dem Rust-Standard</strong> zu generieren.</p>
@@ -1008,7 +995,7 @@ Bitte die KI, für deinen Code <strong>vollständige, didaktische Docstrings nac
 <p>„Hier ist meine Funktion zur Überprüfung von Altersgrenzen in Rust. Bitte erstelle mir dafür einen ausführlichen Dokumentationskommentar mit drei Schrägstrichen (///). Erkläre die Parameter, den Rückgabetyp und füge ein Markdown-Beispiel (Examples) hinzu, wie man die Funktion aufruft.“</p>
 </blockquote>
 <h5 id="die-ki-liefert-dir-daraufhin"><a class="header" href="#die-ki-liefert-dir-daraufhin">Die KI liefert dir daraufhin:</a></h5>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Überprüft, ob ein Benutzer basierend auf seinem Geburtsjahr das Mindestalter erreicht hat.
 ///
@@ -1038,15 +1025,15 @@ fn pruefe_mindestalter(geburtsjahr: u32, aktuelles_jahr: u32, mindestalter: u32)
     let alter = aktuelles_jahr - geburtsjahr;
     alter &gt;= mindestalter
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Durch das Lesen dieses Docstrings wird dir die Funktionsweise deines eigenen Codes noch einmal kristallklar vor Augen geführt. Zudem lernst du, wie man APIs sauber designt und für andere Entwickler verständlich macht.</p>
-<hr />
-<h2 id="-praxis-Übungen-für-dich-ohne-codelösung"><a class="header" href="#-praxis-Übungen-für-dich-ohne-codelösung">🛠️ Praxis-Übungen für dich (Ohne Codelösung!)</a></h2>
-<blockquote>
-<p>[!IMPORTANT]
-<strong>Didaktische Regel:</strong> Die folgenden Aufgaben enthalten keine fertigen Lösungen. Versuche, sie unter Zuhilfenahme der gelernten Prompting-Techniken und mit Unterstützung deiner didaktisch konfigurierten KI selbstständig zu lösen.</p>
+<hr>
+<h2 id="-praxis-übungen-für-dich-ohne-codelösung"><a class="header" href="#-praxis-übungen-für-dich-ohne-codelösung">🛠️ Praxis-Übungen für dich (Ohne Codelösung!)</a></h2>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Didaktische Regel:</strong> Die folgenden Aufgaben enthalten keine fertigen Lösungen. Versuche, sie unter Zuhilfenahme der gelernten Prompting-Techniken und mit Unterstützung deiner didaktisch konfigurierten KI selbstständig zu lösen.</p>
 </blockquote>
-<h3 id="Übung-1-der-temperatur-konverter-schwierigkeit-leicht"><a class="header" href="#Übung-1-der-temperatur-konverter-schwierigkeit-leicht">Übung 1: Der Temperatur-Konverter (Schwierigkeit: Leicht)</a></h3>
+<h3 id="übung-1-der-temperatur-konverter-schwierigkeit-leicht"><a class="header" href="#übung-1-der-temperatur-konverter-schwierigkeit-leicht">Übung 1: Der Temperatur-Konverter (Schwierigkeit: Leicht)</a></h3>
 <p>Schreibe ein Rust-Programm, das Temperaturen zwischen Celsius und Fahrenheit konvertiert.</p>
 <ul>
 <li><strong>Anforderung:</strong>
@@ -1058,7 +1045,7 @@ fn pruefe_mindestalter(geburtsjahr: u32, aktuelles_jahr: u32, mindestalter: u32)
 </li>
 <li><strong>Code-Gerüst mit todo!() zum Starten:</strong></li>
 </ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn celsius_zu_fahrenheit(celsius: f64) -&gt; f64 {
     todo!("Formel für Umrechnung implementieren")
@@ -1067,9 +1054,9 @@ fn pruefe_mindestalter(geburtsjahr: u32, aktuelles_jahr: u32, mindestalter: u32)
 fn fahrenheit_zu_celsius(fahrenheit: f64) -&gt; f64 {
     todo!("Formel für Umrechnung implementieren")
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<h3 id="Übung-2-der-einfache-passwort-generator-schwierigkeit-mittel"><a class="header" href="#Übung-2-der-einfache-passwort-generator-schwierigkeit-mittel">Übung 2: Der einfache Passwort-Generator (Schwierigkeit: Mittel)</a></h3>
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="übung-2-der-einfache-passwort-generator-schwierigkeit-mittel"><a class="header" href="#übung-2-der-einfache-passwort-generator-schwierigkeit-mittel">Übung 2: Der einfache Passwort-Generator (Schwierigkeit: Mittel)</a></h3>
 <p>Erstelle eine Funktion, die ein zufälliges Passwort mit einer vom Benutzer vorgegebenen Länge generiert.</p>
 <ul>
 <li><strong>Anforderung:</strong>
@@ -1081,14 +1068,14 @@ fn fahrenheit_zu_celsius(fahrenheit: f64) -&gt; f64 {
 </li>
 <li><strong>Code-Gerüst mit todo!():</strong></li>
 </ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn generiere_passwort(laenge: usize, sonderzeichen: bool) -&gt; String {
     todo!("Passwort-Generierung implementieren")
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<h3 id="Übung-3-der-einfache-römische-zahlen-Übersetzer-schwierigkeit-schwer"><a class="header" href="#Übung-3-der-einfache-römische-zahlen-Übersetzer-schwierigkeit-schwer">Übung 3: Der einfache Römische-Zahlen-Übersetzer (Schwierigkeit: Schwer)</a></h3>
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="übung-3-der-einfache-römische-zahlen-übersetzer-schwierigkeit-schwer"><a class="header" href="#übung-3-der-einfache-römische-zahlen-übersetzer-schwierigkeit-schwer">Übung 3: Der einfache Römische-Zahlen-Übersetzer (Schwierigkeit: Schwer)</a></h3>
 <p>Schreibe ein Programm, das römische Zahlen (z. B. <code>XIV</code>) in arabische Zahlen (z. B. <code>14</code>) übersetzt.</p>
 <ul>
 <li><strong>Anforderung:</strong>
@@ -1099,7 +1086,7 @@ fn fahrenheit_zu_celsius(fahrenheit: f64) -&gt; f64 {
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-didaktischer-leitfaden-für-dein-tägliches-lernen-in-phase-1"><a class="header" href="#-didaktischer-leitfaden-für-dein-tägliches-lernen-in-phase-1">📌 Didaktischer Leitfaden für dein tägliches Lernen in Phase 1</a></h2>
 <p>Damit du deine Programmierfähigkeiten in Rekordzeit ausbaust, solltest du dich an diese drei eisernen Regeln halten:</p>
 <ol>
@@ -1117,11 +1104,11 @@ Verwende niemals, absolut niemals, ein Sprachkonstrukt, ein Crate oder ein Entwu
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="konzept-string.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="coding-mit-ki-phase1-workshop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -1131,16 +1118,21 @@ Verwende niemals, absolut niemals, ein Sprachkonstrukt, ein Crate oder ein Entwu
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="konzept-string.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="coding-mit-ki-phase1-workshop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -1149,17 +1141,15 @@ Verwende niemals, absolut niemals, ein Sprachkonstrukt, ein Crate oder ein Entwu
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

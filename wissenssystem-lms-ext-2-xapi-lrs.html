@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>📊 LMS-Erweiterung 2: xAPI Analytics &amp; Learning Record Store (LRS) - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-lms-erweiterung-2-xapi-analytics--learning-record-store-lrs"><a class="header" href="#-lms-erweiterung-2-xapi-analytics--learning-record-store-lrs">📊 LMS-Erweiterung 2: xAPI Analytics &amp; Learning Record Store (LRS)</a></h1>
+<p>Willkommen zum zweiten Erweiterungsmodul unseres Learning Management Systems (LMS)! In diesem Kapitel tauchen wir tief in die Welt der <strong>lernbezogenen Datenanalytik (Learning Analytics)</strong> ein. Wir lernen den Industriestandard <strong>xAPI</strong> (Experience API, früher bekannt als <em>Tin Can API</em>) kennen und erfahren, wie wir in Rust einen performanten und typsicheren <strong>Learning Record Store (LRS)</strong> aufbauen.</p>
+<hr>
+<h2 id="-1-einleitung--vision-standardisierte-lern-analytik-mit-xapi"><a class="header" href="#-1-einleitung--vision-standardisierte-lern-analytik-mit-xapi">🚀 1. Einleitung &amp; Vision: Standardisierte Lern-Analytik mit xAPI</a></h2>
+<p>Stell dir vor, du absolvierst einen Rust-Kurs. Du liest Kapitel im Buch, löst Aufgaben im Terminal, schaust ein Video-Tutorial und diskutierst im Forum. Traditionelle LMS-Systeme (wie klassisches SCORM) konnten früher nur erfassen: <em>“Hat der User den Kurs bestanden? Ja/Nein.”</em></p>
+<p>Das ist im Zeitalter des modernen, verteilten Lernens viel zu wenig!</p>
+<p>Hier kommt <strong>xAPI</strong> ins Spiel. xAPI ist ein freier Open-Source-Standard zur Verfolgung von Lernerfahrungen – egal wo, wann und auf welchem Gerät sie stattfinden. Mit xAPI erfassen wir jede Interaktion in Form von präzisen Event-Streams.</p>
+<p>Unsere Vision für das Rust-LMS: Wir möchten einen eigenen <strong>Learning Record Store (LRS)</strong> bauen, der Millionen von Lern-Events in Echtzeit empfangen, filterfeste Abfragen ausführen und wertvolle Insights für Lernende und Dozenten generieren kann.</p>
+<hr>
+<h2 id="-2-die-bildmetapher-der-flugschreiber-des-lern-flugzeugs"><a class="header" href="#-2-die-bildmetapher-der-flugschreiber-des-lern-flugzeugs">🧠 2. Die Bildmetapher: Der Flugschreiber des Lern-Flugzeugs</a></h2>
+<p>Stell dir eine moderne Passagiermaschine auf dem Flug von “Rust-Anfänger” zu “Rust-Profi” vor.</p>
+<pre><code>       ✈️  "Lern-Flugzeug" (User lernt im LMS, CLI, Simulator...)
+       │
+       ▼  (Erzeugt kontinuierlich Telemetrie-Daten / xAPI Statements)
++-------------------------------------------------------------+
+|              📟 DER FLUGSCHREIBER (Black Box / LRS)          |
+|                                                             |
+| [ Thorsten ]  ➡️  [ hat absolviert ]  ➡️  [ Quiz: Ownership ]|
+| [ Anna     ]  ➡️  [ hat gestartet  ]  ➡️  [ Video: Lifetimes]|
+| [ Maria    ]  ➡️  [ hat fehlgeschlagen]➡️ [ Test: Mutability]|
++-------------------------------------------------------------+
+       │
+       ▼  (Analyse &amp; Auswertung)
+📊 Dashboard / Auswertung für Fluglotsen (Lehrende &amp; Lernende)
+</code></pre>
+<p>Ein <strong>Flugschreiber</strong> (Blackbox) registriert während des gesamten Fluges unaufhörlich Daten: Ausgeschlagene Ruder, Flughöhe, Triebwerksleistung und Funksprüche. Er bewertet nichts direkt, sondern speichert unveränderlich (<em>append-only</em>), was wann passiert ist.</p>
+<p>Genau das ist der <strong>Learning Record Store (LRS)</strong>: Er ist der unbestechliche Flugschreiber deines LMS. Jede Lernaktivität ist ein Datenpunkt in diesem Flugschreiber.</p>
+<hr>
+<h2 id="-3-architektur--xapi-standard"><a class="header" href="#-3-architektur--xapi-standard">🏗️ 3. Architektur &amp; xAPI-Standard</a></h2>
+<h3 id="das-xapi-statement-tripel"><a class="header" href="#das-xapi-statement-tripel">Das xAPI Statement Tripel</a></h3>
+<p>Ein xAPI-Statement ist wie ein Grammatik-Satz aufgebaut: <strong>Subjekt - Verb - Objekt</strong> (Actor - Verb - Object).</p>
+<pre><code class="language-mermaid">graph LR
+    Actor["👤 Actor (Wer?)"] --&gt; Verb["⚡ Verb (Was getan?)"]
+    Verb --&gt; Object["🎯 Object (Womit?)"]
+    Object --&gt; Result["📊 Result &amp; Context (Wie gut? Wann?)"]
+</code></pre>
+<p>Die Kernbestandteile eines xAPI Statements:</p>
+<ol>
+<li><strong>Actor (“Wer?”):</strong> Identifiziert den Lernenden (z. B. Name, E-Mail oder eindeutige User-ID).</li>
+<li><strong>Verb (“Was getan?”):</strong> Die ausgeführte Aktion (z. B. <code>completed</code>, <code>attempted</code>, <code>passed</code>, <code>failed</code>, <code>answered</code>).</li>
+<li><strong>Object (“Womit?”):</strong> Das Lernobjekt oder die Aktivität (z. B. ein Quiz, ein Video, eine Übungsaufgabe).</li>
+<li><strong>Result &amp; Context (Optional):</strong> Zusatzinformationen wie Testergebnis (Score 95%), benötigte Zeit, Erfolgsstatus oder Systemumgebung.</li>
+</ol>
+<h4 id="beispiel-tripel"><a class="header" href="#beispiel-tripel">Beispiel-Tripel:</a></h4>
+<ul>
+<li><code>("Student Thorsten", "completed", "Quiz Rust Ownership", score: 95%, timestamp: "2026-07-23T12:00:00Z")</code></li>
+<li><code>("Studentin Anna", "watched", "Video: Lifetimes erklärt", progress: 80%, timestamp: "2026-07-23T12:05:00Z")</code></li>
+</ul>
+<h3 id="der-learning-record-store-lrs"><a class="header" href="#der-learning-record-store-lrs">Der Learning Record Store (LRS)</a></h3>
+<p>Der <strong>LRS</strong> ist die spezialisierte Datenbank, die ausschließlich für das Entgegennehmen, Validieren, Speichern und Abfragen dieser xAPI Statements zuständig ist. In Rust können wir einen LRS extrem speichereffizient und thread-sicher umsetzen.</p>
+<hr>
+<h2 id="-4-code-gerüst--typen-design"><a class="header" href="#-4-code-gerüst--typen-design">⚙️ 4. Code-Gerüst &amp; Typen-Design</a></h2>
+<p>Lass uns nun die Datenstrukturen für unsere xAPI-Engine definieren. Achte darauf, wie Rusts Structs und Traits uns helfen, den Standard typsicher abzubilden.</p>
+<blockquote>
+<p>⚠️ <strong>WICHTIGER HINWEIS:</strong> Die folgenden Code-Beispiele enthalten <code>todo!()</code>-Platzhalter. Deine Aufgabe ist es, die Logik selbst zu entwickeln!</p>
+</blockquote>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+/// Identifiziert den Lernenden (Actor)
+#[derive(Debug, Clone, PartialEq)]
+pub struct Agent {
+    pub id: String,
+    pub name: String,
+    pub email: String,
+}
+
+/// Das Verb beschreibt die Aktion (z. B. "completed", "attempted")
+#[derive(Debug, Clone, PartialEq)]
+pub struct Verb {
+    pub id: String,          // Oft eine URI, z. B. "http://adlnet.gov/expapi/verbs/completed"
+    pub display_name: String,// "completed"
+}
+
+/// Das Objekt / die Aktivität
+#[derive(Debug, Clone, PartialEq)]
+pub struct Activity {
+    pub id: String,
+    pub title: String,
+}
+
+/// Testergebnisse und Zusatzmetriken
+#[derive(Debug, Clone, PartialEq)]
+pub struct ResultData {
+    pub score_raw: f32,      // z. B. 95.0
+    pub score_max: f32,      // z. B. 100.0
+    pub success: Option&lt;bool&gt;,
+    pub duration_seconds: Option&lt;u64&gt;,
+}
+
+/// Das zentrale xAPI Statement (Der Logbuch-Eintrag)
+#[derive(Debug, Clone, PartialEq)]
+pub struct XApiStatement {
+    pub actor: Agent,
+    pub verb: Verb,
+    pub object: Activity,
+    pub result: Option&lt;ResultData&gt;,
+    pub timestamp: String,   // ISO-Zeitstempel (z. B. "2026-07-23T13:00:00Z")
+}
+
+/// Der Learning Record Store (LRS)
+pub struct LearningRecordStore {
+    statements: Vec&lt;XApiStatement&gt;,
+}
+
+impl LearningRecordStore {
+    /// Erstellt einen neuen, leeren LRS
+    pub fn new() -&gt; Self {
+        Self {
+            statements: Vec::new(),
+        }
+    }
+
+    /// Speichert ein neues xAPI Statement im LRS
+    pub fn record_statement(&amp;mut self, statement: XApiStatement) {
+        self.statements.push(statement);
+    }
+
+    /// Filtert Statements nach optionaler Actor-ID und/oder Verb-ID
+    pub fn query_statements(
+        &amp;self,
+        actor_id: Option&lt;&amp;str&gt;,
+        verb_id: Option&lt;&amp;str&gt;,
+    ) -&gt; Vec&lt;&amp;XApiStatement&gt; {
+        // TODO: Implementiere das Filtern der Statements!
+        // Leitfrage: Wie kannst du iter() und filter() kombinieren, um 
+        // sowohl actor_id als auch verb_id optional zu prüfen?
+        todo!("Filtere self.statements anhand von actor_id und verb_id");
+    }
+}
+<span class="boring">}</span></code></pre>
+<h3 id="denkanstöße-für-die-implementierung"><a class="header" href="#denkanstöße-für-die-implementierung">Denkanstöße für die Implementierung</a></h3>
+<ol>
+<li><strong>Iteratoren nutzen:</strong> In Rust ist <code>self.statements.iter()</code> ideal, um durch die Referenzen zu wandern.</li>
+<li><strong>Option-Matching:</strong> Überlege, wie du mit <code>if let Some(id) = actor_id</code> oder <code>.all(...)</code> die optionalen Filter elegant verknüpfst.</li>
+</ol>
+<hr>
+<h2 id="-5-übungsaufgaben"><a class="header" href="#-5-übungsaufgaben">🧪 5. Übungsaufgaben</a></h2>
+<p>Hier kannst du dein neues Wissen praktisch anwenden. Löse die drei Aufgaben Schritt für Schritt!</p>
+<h3 id="-aufgabe-1-leicht-verb-filter-im-lrs"><a class="header" href="#-aufgabe-1-leicht-verb-filter-im-lrs">🟢 Aufgabe 1 (Leicht): Verb-Filter im LRS</a></h3>
+<p><strong>Ziel:</strong> Vervollständige die Methode <code>query_statements</code>.</p>
+<ul>
+<li>Schreibe einen Unittest <code>test_query_by_verb</code>, der testet, ob nur Statements mit dem Verb <code>"completed"</code> zurückgegeben werden.</li>
+<li><strong>Denkanstoß:</strong>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[test]
+fn test_query_by_verb() {
+    // 1. Erstelle einen LRS und füge 3 Statements mit verschiedenen Verben hinzu
+    // 2. Rufe lrs.query_statements(None, Some("completed")) auf
+    // 3. Überprüfe mit assert_eq!(), ob die Anzahl der Treffer stimmt
+}
+<span class="boring">}</span></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="-aufgabe-2-mittel-lernzeit-aggregation-per-student"><a class="header" href="#-aufgabe-2-mittel-lernzeit-aggregation-per-student">🟡 Aufgabe 2 (Mittel): Lernzeit-Aggregation per Student</a></h3>
+<p><strong>Ziel:</strong> Berechne die gesamte gebuchte Lernzeit (<code>duration_seconds</code>) für einen bestimmten Studenten über alle Aktivitäten hinweg.</p>
+<ul>
+<li>Erstelle eine Funktion:
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn total_learning_time(lrs: &amp;LearningRecordStore, actor_id: &amp;str) -&gt; u64 {
+    todo!("Summiere alle duration_seconds aus den ResultData aller Statements von actor_id");
+}
+<span class="boring">}</span></code></pre>
+</li>
+<li><strong>Leitfragen:</strong>
+<ul>
+<li>Nicht jedes Statement hat ein <code>result</code> oder <code>duration_seconds</code>! Wie gehst du sicher mit <code>Option&lt;ResultData&gt;</code> um (<code>filter_map</code>)?</li>
+<li>Welcher Iterator-Befehl eignet sich hervorragend zum Aufsummieren von Werten? (<code>sum()</code>)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-aufgabe-3-schwer-realtime-xapi-analytics-stream-mit-tokio--channels"><a class="header" href="#-aufgabe-3-schwer-realtime-xapi-analytics-stream-mit-tokio--channels">🔴 Aufgabe 3 (Schwer): Realtime xAPI Analytics Stream mit Tokio &amp; Channels</a></h3>
+<p><strong>Ziel:</strong> In einer echten Anwendung treffen xAPI Statements asynchron aus vielen Quellen ein. Baue einen Event-Stream!</p>
+<ul>
+<li>Nutze <code>tokio::sync::mpsc</code> (Multi-Producer, Single-Consumer Channel), um einen asynchronen xAPI-Receiver zu bauen.</li>
+<li><strong>Pseudocode / Konzeptionelles Gerüst:</strong>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Pseudocode - Entwickle die asynchrone Schleife selbst!
+// async fn process_xapi_stream(mut receiver: mpsc::Receiver&lt;XApiStatement&gt;, lrs: Arc&lt;Mutex&lt;LearningRecordStore&gt;&gt;) {
+//     while let Some(statement) = receiver.recv().await {
+//         // 1. Thread-sicher in den LRS eintragen
+//         // 2. Falls Verb = "failed", Warnung auf der Konsole ausgeben!
+//         todo!()
+//     }
+// }
+<span class="boring">}</span></code></pre>
+</li>
+<li><strong>Herausforderung:</strong> Wie schützt du den <code>LearningRecordStore</code> vor concurrent writes, wenn mehrere Tasks gleichzeitig Statements senden? (Stichwort: <code>Arc&lt;Mutex&lt;...&gt;&gt;</code>).</li>
+</ul>
+<hr>
+<h2 id="-6-zusammenfassung"><a class="header" href="#-6-zusammenfassung">🎯 6. Zusammenfassung</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Konzept</th><th style="text-align: left">Erklärung</th><th style="text-align: left">Rust-Entsprechung</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>xAPI Statement</strong></td><td style="text-align: left">Grammatikalisch aufgebautes Event (Actor + Verb + Object)</td><td style="text-align: left"><code>struct XApiStatement</code></td></tr>
+<tr><td style="text-align: left"><strong>LRS (Learning Record Store)</strong></td><td style="text-align: left">Append-only Event-Speicher für Lernaktivitäten</td><td style="text-align: left"><code>struct LearningRecordStore</code></td></tr>
+<tr><td style="text-align: left"><strong>Analytics Query</strong></td><td style="text-align: left">Filtern und Aggregieren von Events nach Lernenden/Aktionen</td><td style="text-align: left">Iteratoren, <code>filter()</code>, <code>filter_map()</code>, <code>sum()</code></td></tr>
+<tr><td style="text-align: left"><strong>Realtime Stream</strong></td><td style="text-align: left">Asynchrones Verarbeiten von Event-Streams in Echtzeit</td><td style="text-align: left">Async Rust, <code>tokio::sync::mpsc</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Mit einem xAPI-fähigen LRS legst du den Grundstein für datengetriebene Didaktik, adaptive Lernpfade und maßgeschneidertes Feedback in deinem Rust-LMS! 🚀</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="wissenssystem-lms-ext-1-gamification.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="wissenssystem-lms-ext-3-plagiatsscanner.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="wissenssystem-lms-ext-1-gamification.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="wissenssystem-lms-ext-3-plagiatsscanner.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>📇 Alternativ-System 1: Der Anki Karteikarten-Trainer - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-alternativ-system-1-der-anki--spaced-repetition-karteikarten-trainer"><a class="header" href="#-alternativ-system-1-der-anki--spaced-repetition-karteikarten-trainer">📇 Alternativ-System 1: Der Anki / Spaced-Repetition Karteikarten-Trainer</a></h1>
+<p>Willkommen zu einer spannenden Alternative für dein persönliches Wissenssystem! In diesem Kapitel widmen wir uns einem mächtigen Werkzeug gegen das Vergessen: einem eigenen <strong>Spaced-Repetition Karteikarten-Trainer</strong> auf Basis des berühmten SM-2-Algorithmus (bekannt aus Anki).</p>
+<hr>
+<h2 id="-einleitung--vision-die-vergessenskurve-austricksen"><a class="header" href="#-einleitung--vision-die-vergessenskurve-austricksen">🚀 Einleitung &amp; Vision: Die Vergessenskurve austricksen</a></h2>
+<p>Kennst du das Gefühl? Du liest ein fantastisches Buch über Rust, verstehst ein schwieriges Konzept wie <em>Lifetimes</em> oder <em>Interior Mutability</em> auf Anhieb – doch drei Wochen später stehst du wieder vor einem leeren Bildschirm und musst es erneut nachschlagen.</p>
+<p>Der deutsche Psychologe <strong>Hermann Ebbinghaus</strong> hat dieses Phänomen bereits im 19. Jahrhundert erforscht und die sogenannte <strong>Vergessenskurve</strong> beschrieben: Unser Gehirn baut neu gelerntes Wissen exponentiell schnell ab, wenn wir es nicht im richtigen Moment wiederholen.</p>
+<p>Hier kommt <strong>Spaced Repetition</strong> (abgestufte Wiederholung) ins Spiel! Anstatt eine Karteikarte täglich stur zu pauken, fragen wir sie genau dann ab, wenn das Gehirn kurz davor ist, sie zu vergessen. Mit jeder erfolgreichen Wiederholung wird das Intervall bis zur nächsten Abfrage länger: von 1 Tag auf 6 Tage, dann auf 2 Wochen, 1 Monat, 3 Monate…</p>
+<h3 id="warum-bauen-wir-das-in-rust"><a class="header" href="#warum-bauen-wir-das-in-rust">Warum bauen wir das in Rust?</a></h3>
+<ul>
+<li><strong>Strikte Datentypen &amp; Datumslogik:</strong> Mit Rust-Crates wie <code>chrono</code> (für Daten) und <code>uuid</code> (für eindeutige Karten-IDs) lernst du, wie man zeitkritische und strukturierte Daten sicher verwaltet.</li>
+<li><strong>Rustikale Performance:</strong> Selbst Sammlungen mit zehntausenden Karteikarten lassen sich blitzschnell im Arbeitsspeicher auswerten und filtern.</li>
+</ul>
+<hr>
+<h2 id="-die-bildmetapher-der-gedächtnisoptimierte-lernkarteikasten"><a class="header" href="#-die-bildmetapher-der-gedächtnisoptimierte-lernkarteikasten">🧠 Die Bildmetapher: Der gedächtnisoptimierte Lernkarteikasten</a></h2>
+<p>Stell dir einen klassischen Karteikasten auf deinem Schreibtisch vor – allerdings einen <strong>magischen Karteikasten 2.0</strong>:</p>
+<ol>
+<li><strong>Die Fächer (Intervalle):</strong> Der Kasten hat nicht nur 5 feste Fächer, sondern dynamische Zeitfächer. Auf jedem Fach steht ein Kalenderdatum (z. B. <em>“Morgen”</em>, <em>“In 6 Tagen”</em>, <em>“In 3 Wochen”</em>).</li>
+<li><strong>Der Schwierigkeits-Regler (<code>ease_factor</code>):</strong> Jede Karteikarte trägt einen kleinen Schieberegler an der Seite. Er steht standardmäßig auf <code>2.5</code>. Fällt dir eine Frage kinderleicht, schiebst du den Regler etwas höher – die Abstände für diese Karte werden in Zukunft riesig! Fällt dir die Antwort schwer, stellst du den Regler niedriger – die Karte wird dich öfter besuchen.</li>
+<li><strong>Der Lern-Coach (<code>StudySession</code>):</strong> Jeden Morgen öffnet dein Coach den Kasten, greift genau die Karten heraus, deren Abfragedatum heute erreicht oder überschritten ist, und legt sie dir vor.</li>
+</ol>
+<hr>
+<h2 id="-architektur--datenstrukturen"><a class="header" href="#-architektur--datenstrukturen">🏗️ Architektur &amp; Datenstrukturen</a></h2>
+<p>Lass uns diesen magischen Karteikasten in klare Rust-Datenstrukturen gießen.</p>
+<h3 id="1-die-karteikarte-flashcard"><a class="header" href="#1-die-karteikarte-flashcard">1. Die Karteikarte (<code>Flashcard</code>)</a></h3>
+<p>Jede Karteikarte benötigt Metadaten, um den Abfragezustand zu speichern:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use chrono::NaiveDate;
+use uuid::Uuid;
+
+#[derive(Debug, Clone)]
+pub struct Flashcard {
+    pub id: Uuid,
+    pub question: String,
+    pub answer: String,
+    /// Das aktuelle Intervall in Tagen bis zur nächsten Abfrage
+    pub interval_days: u32,
+    /// Der Erleichterungsfaktor (Schwierigkeits-Multiplikator, Startwert z.B. 2.5)
+    pub ease_factor: f32,
+    /// Das konkrete Datum, an dem die Karte wieder vorgelegt werden soll
+    pub next_review: NaiveDate,
+}
+<span class="boring">}</span></code></pre>
+<h3 id="2-der-sm-2-algorithmus-supermemo-2"><a class="header" href="#2-der-sm-2-algorithmus-supermemo-2">2. Der SM-2 Algorithmus (SuperMemo 2)</a></h3>
+<p>Der SM-2-Algorithmus steuert, wie sich <code>interval_days</code> und <code>ease_factor</code> ändern, basierend auf deiner Selbsteinschätzung (Rating von 0 bis 5):</p>
+<ul>
+<li>
+<p><strong>Bewertungsskala (0 - 5):</strong></p>
+<ul>
+<li><code>0</code>: Kompletter Blackout, keine Ahnung.</li>
+<li><code>1</code>: Falsche Antwort, aber bei der Lösung kam die Erinnerung.</li>
+<li><code>2</code>: Falsche Antwort, schien aber leicht erinnerbar.</li>
+<li><code>3</code>: Richtige Antwort mit großer Anstrengung.</li>
+<li><code>4</code>: Richtige Antwort nach kurzer Überlegung.</li>
+<li><code>5</code>: Perfekte Antwort ohne Zögern.</li>
+</ul>
+</li>
+<li>
+<p><strong>Regeln zur Berechnung:</strong></p>
+<ol>
+<li>Bei einer Bewertung <code>&lt; 3</code> gilt die Karte als <strong>nicht gewusst</strong>: Das Intervall wird auf <code>1</code> Tag zurückgesetzt, der <code>ease_factor</code> bleibt unverändert oder sinkt leicht.</li>
+<li>Bei einer Bewertung <code>&gt;= 3</code> gilt die Karte als <strong>gewusst</strong>:
+<ul>
+<li>
+<ol>
+<li>Wiederholung: <code>interval_days = 1</code></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Wiederholung: <code>interval_days = 6</code></li>
+</ol>
+</li>
+<li>Ab der 3. Wiederholung: <code>interval_days = (bisheriges_intervall * ease_factor)</code></li>
+</ul>
+</li>
+<li><strong>Anpassung des Ease Factors:</strong>
+$$\text{ease_factor}<em>{\text{neu}} = \text{ease_factor}</em>{\text{alt}} + (0.1 - (5 - q) \cdot (0.08 + (5 - q) \cdot 0.02))$$
+<em>(wobei $q$ das Rating von 0 bis 5 ist)</em>.
+<em>Hinweis:</em> Der <code>ease_factor</code> sollte niemals unter den Minimalwert von <code>1.3</code> fallen!</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="-code-gerüst-zum-selberbauen"><a class="header" href="#-code-gerüst-zum-selberbauen">⚙️ Code-Gerüst zum Selberbauen</a></h2>
+<p>Jetzt bist du an der Reihe! Nachfolgend findest du das Gerüst für die Kernlogik deines Anki-Trainers. Ergänze die Lücken überall dort, wo <code>todo!()</code> steht.</p>
+<pre class="playground"><code class="language-rust">use chrono::{Local, NaiveDate, Days};
+use uuid::Uuid;
+
+#[derive(Debug, Clone)]
+pub struct Flashcard {
+    pub id: Uuid,
+    pub question: String,
+    pub answer: String,
+    pub interval_days: u32,
+    pub ease_factor: f32,
+    pub next_review: NaiveDate,
+}
+
+impl Flashcard {
+    pub fn new(question: String, answer: String) -&gt; Self {
+        let today = Local::now().date_naive();
+        Self {
+            id: Uuid::new_v4(),
+            question,
+            answer,
+            interval_days: 0,
+            ease_factor: 2.5,
+            next_review: today,
+        }
+    }
+}
+
+pub struct StudySession {
+    pub cards: Vec&lt;Flashcard&gt;,
+}
+
+impl StudySession {
+    pub fn new(cards: Vec&lt;Flashcard&gt;) -&gt; Self {
+        Self { cards }
+    }
+
+    /// Liefert alle Karten zurück, die heute oder früher zur Wiederholung fällig sind.
+    pub fn due_cards(&amp;self) -&gt; Vec&lt;&amp;Flashcard&gt; {
+        let today = Local::now().date_naive();
+        // TODO: Filter die Karten in self.cards heraus, deren `next_review` &lt;= today ist.
+        todo!("Filtere fällige Karten heraus")
+    }
+}
+
+/// Aktualisiert die Karteikarte basierend auf der Bewertungsqualität (0 bis 5).
+pub fn calculate_next_review(card: &amp;mut Flashcard, quality_rating: u8) {
+    // Sicherstellen, dass das Rating im gültigen Bereich 0..=5 liegt
+    assert!(quality_rating &lt;= 5, "Rating muss zwischen 0 und 5 liegen!");
+
+    let today = Local::now().date_naive();
+
+    // TODO: Schritt 1 - Berechne den neuen `ease_factor`.
+    // Formel: new_ease = old_ease + (0.1 - (5.0 - q) * (0.08 + (5.0 - q) * 0.02))
+    // Achtung: Der ease_factor darf nicht kleiner als 1.3 werden! (Verwende .max(1.3))
+
+    // TODO: Schritt 2 - Berechne das neue `interval_days`.
+    // Denkanstoß:
+    // - Wenn quality_rating &lt; 3: Das Intervall wird auf 1 zurückgesetzt.
+    // - Wenn quality_rating &gt;= 3:
+    //   - War interval_days 0? -&gt; neues Intervall = 1
+    //   - War interval_days 1? -&gt; neues Intervall = 6
+    //   - War interval_days &gt;= 6? -&gt; neues Intervall = (altes Intervall als f32 * new_ease) gerundet als u32
+
+    // TODO: Schritt 3 - Setze `card.next_review` auf `today + Days::new(card.interval_days as u64)`.
+
+    todo!("Implementiere die SM-2 Abfragedatum-Berechnung")
+}
+
+fn main() {
+    println!("=== Anki Spaced-Repetition Trainer ===");
+
+    let mut card = Flashcard::new(
+        "Was ist Ownership in Rust?".to_string(),
+        "Das Speichermanagement-Modell ohne GC.".to_string(),
+    );
+
+    println!("Start-Karte: {:?}", card);
+
+    // Simulation einer erfolgreichen Abfrage mit Rating 4
+    // calculate_next_review(&amp;mut card, 4);
+    // println!("Nach Abfrage: {:?}", card);
+}</code></pre>
+<h3 id="leitfragen-für-deine-implementierung"><a class="header" href="#leitfragen-für-deine-implementierung">Leitfragen für deine Implementierung:</a></h3>
+<ol>
+<li>Warum übergeben wir in <code>calculate_next_review</code> eine veränderbare Referenz (<code>&amp;mut Flashcard</code>) statt die Karte zu konsumieren?</li>
+<li>Was passiert, wenn ein Nutzer mehrmals hintereinander eine <code>0</code> eingibt? Wie verändert sich der <code>ease_factor</code> und das Intervall?</li>
+<li>Wie verhält sich Rusts <code>f32</code> beim Multiplizieren und anschließenden Konvertieren zu <code>u32</code>? (Denke an Rundungen mit <code>.round()</code>).</li>
+</ol>
+<hr>
+<h2 id="-übungsaufgaben"><a class="header" href="#-übungsaufgaben">🧪 Übungsaufgaben</a></h2>
+<p>Bringe deinen Trainer auf das nächste Level!</p>
+<h3 id="-leicht-interaktives-hinzufügen-neuer-karten"><a class="header" href="#-leicht-interaktives-hinzufügen-neuer-karten">🟢 Leicht: Interaktives Hinzufügen neuer Karten</a></h3>
+<p>Erweitere dein CLI-Programm so, dass der Nutzer über die Konsole (<code>std::io::stdin()</code>) neue Fragen und Antworten eingeben kann. Erstelle daraus eine neue <code>Flashcard</code> und hänge sie an deine Kartenliste an.</p>
+<h3 id="-mittel-anki-csv-export--import"><a class="header" href="#-mittel-anki-csv-export--import">🟡 Mittel: Anki-CSV-Export &amp; Import</a></h3>
+<p>Implementiere eine Export-Funktion, die deine Kartenliste in ein CSV-Format schreibt (z. B. <code>Frage;Antwort;Intervall;EaseFactor;NächstesDatum</code>), sodass du deine Karten in den offiziellen Anki-Desktop-Client importieren kannst. Schreib auch die passende Import-Funktion!</p>
+<h3 id="-schwer-fuzzy-matching-bei-freitext-antworten"><a class="header" href="#-schwer-fuzzy-matching-bei-freitext-antworten">🔴 Schwer: Fuzzy Matching bei Freitext-Antworten</a></h3>
+<p>Wenn der Nutzer im CLI-Trainer die Antwort frei eintippt, führen kleine Tippfehler (z. B. <em>“Owership”</em> statt <em>“Ownership”</em>) sofort zu einem Punktabzug.</p>
+<ul>
+<li><strong>Herausforderung:</strong> Verwende den Levenshtein-Distanz-Algorithmus (oder ein Crate wie <code>strsim</code>), um die Ähnlichkeit zwischen der Benutzereingabe und der gespeicherten <code>answer</code> zu berechnen. Schlage bei einer Ähnlichkeit von &gt; 85% vor, dass die Antwort trotz Tippfehler als richtig gewertet werden kann!</li>
+</ul>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">🎯 Zusammenfassung</a></h2>
+<p>Mit dem <strong>Anki / Spaced-Repetition Trainer</strong> hast du das Fundament für ein gedächtnisoptimiertes Lernwerkzeug gelegt. Du hast gesehen, wie mathematische Lernmodelle wie der SM-2-Algorithmus in elegante Rust-Datenstrukturen übersetzt werden. Kombiniere dieses Modul später mit deinen Markdown-Notizen oder dem Terminal-Wiki, um aus deinem Wissen ein dauerhaftes Power-Gehirn zu bauen!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="wissenssystem-best-of-both-worlds.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="wissenssystem-alt-2-cheatsheet-manager.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="wissenssystem-best-of-both-worlds.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="wissenssystem-alt-2-cheatsheet-manager.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

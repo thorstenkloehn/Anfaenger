@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,126 +69,95 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html" class="active"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="konzepte-statt-syntax-lernen-phase-4"><a class="header" href="#konzepte-statt-syntax-lernen-phase-4">Konzepte statt Syntax lernen (Phase 4)</a></h1>
 <p>Wenn deine Rust-Programme wachsen, reicht eine einzige große Code-Datei nicht mehr aus. In Phase 4 lernst du, wie du deinen Code sauber strukturierst, modular aufteilst und externe Bibliotheken einbindest. Das Wichtigste ist auch hier, die grundlegenden Konzepte zu verstehen, anstatt nur die Syntax auswendig zu lernen.</p>
 <p>Dieses Dokument dient dir als detaillierte Landkarte für diese Phase. Es erklärt dir die fundamentalen Prinzipien hinter Packages, Crates, Modulen, Pfaden, Sichtbarkeiten und dem Cargo-Ökosystem.</p>
-<hr />
+<hr>
 <h2 id="-1-einleitung-die-kunst-der-ordnung"><a class="header" href="#-1-einleitung-die-kunst-der-ordnung">🗺️ 1. Einleitung: Die Kunst der Ordnung</a></h2>
 <h3 id="warum-struktur-kein-luxus-ist"><a class="header" href="#warum-struktur-kein-luxus-ist">Warum Struktur kein Luxus ist</a></h3>
 <p>Wenn man mit dem Programmieren anfängt, fühlt sich eine einzelne Datei wie <code>main.rs</code> gemütlich an. Man hat alles im Blick. Man scrollt nach oben, man scrollt nach unten – alles ist an einem Ort.</p>
@@ -221,7 +202,7 @@ Modularer Code (Klare Grenzen und Schnittstellen)
 <li><strong>Module &amp; Sichtbarkeit:</strong> Wie wir Grenzen innerhalb eines Crates ziehen und entscheiden, wer was sehen darf.</li>
 <li><strong>Pfade &amp; Importe:</strong> Wie wir uns in unserem eigenen Code-Gebäude zurechtfinden und Abkürzungen legen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="-2-die-erste-säule-packages-pakete"><a class="header" href="#-2-die-erste-säule-packages-pakete">📦 2. Die erste Säule: Packages (Pakete)</a></h2>
 <h3 id="was-ist-ein-package"><a class="header" href="#was-ist-ein-package">Was ist ein Package?</a></h3>
 <p>Ein <strong>Package</strong> (Paket) ist eine Cargo-Funktionalität, die es dir ermöglicht, ein oder mehrere Crates zu bauen, zu testen und zu teilen. Ein Package wird physisch durch ein Verzeichnis auf deiner Festplatte definiert, das eine Datei namens <code>Cargo.toml</code> im Hauptverzeichnis enthält.</p>
@@ -243,7 +224,7 @@ Modularer Code (Klare Grenzen und Schnittstellen)
 <p>Rust und Cargo erzwingen klare Regeln für den Aufbau eines Packages. Diese Regeln garantieren, dass Cargo genau weiß, wie es dein Projekt zu kompilieren hat:</p>
 <ol>
 <li><strong>Exakt eine <code>Cargo.toml</code>:</strong> Jedes Package muss im Stammverzeichnis eine Konfigurationsdatei besitzen.</li>
-<li><strong>Mindestens ein Crate:</strong> Ein Package darf nicht "leer" sein. Es muss mindestens ein Crate enthalten (entweder eine Bibliothek oder ein ausführbares Programm).</li>
+<li><strong>Mindestens ein Crate:</strong> Ein Package darf nicht “leer” sein. Es muss mindestens ein Crate enthalten (entweder eine Bibliothek oder ein ausführbares Programm).</li>
 <li><strong>Höchstens eine Library:</strong> Ein Package darf <em>maximal ein</em> Library-Crate enthalten. Der Standardpfad dafür ist <code>src/lib.rs</code>. Wenn du mehrere Bibliotheken schreiben möchtest, musst du entweder mehrere Packages anlegen oder einen Workspace verwenden.</li>
 <li><strong>Beliebig viele Binaries:</strong> Ein Package kann beliebig viele Binary-Crates (ausführbare Programme) besitzen. Die primäre Binärdatei liegt standardmäßig unter <code>src/main.rs</code>. Alle weiteren Binärdateien können im Unterordner <code>src/bin/</code> abgelegt werden. Jede Datei in diesem Ordner wird als eigenständiges Binary-Crate kompiliert.</li>
 </ol>
@@ -254,7 +235,7 @@ Modularer Code (Klare Grenzen und Schnittstellen)
 <li>Im Koffer befindet sich das Hauptgerät, beispielsweise ein Akku-Bohrschrauber. Das ist die <strong>Library Crate</strong> (<code>src/lib.rs</code>). Du kannst ihn nicht direkt an eine Steckdose anschließen und betreiben, aber du kannst ihn für alle möglichen Bohr- und Schraubarbeiten (in anderen Programmen) verwenden.</li>
 <li>Zusätzlich liegen im Koffer noch kleine Zubehörteile wie eine LED-Taschenlampe-Aufsatz oder ein kleiner Akkusauger. Das sind die <strong>Binary Crates</strong> in <code>src/bin/</code>. Diese Geräte kannst du sofort eigenständig benutzen. Sie teilen sich denselben Werkzeugkoffer (das Package) und dieselbe Packliste (die Metadaten).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="-3-die-zweite-säule-crates-kisten"><a class="header" href="#-3-die-zweite-säule-crates-kisten">📚 3. Die zweite Säule: Crates (Kisten)</a></h2>
 <h3 id="was-ist-ein-crate"><a class="header" href="#was-ist-ein-crate">Was ist ein Crate?</a></h3>
 <p>Ein <strong>Crate</strong> ist die kleinste eigenständige Code-Einheit, die der Rust-Compiler (<code>rustc</code>) verarbeiten kann. Wenn du <code>cargo build</code> ausgeführt hast, kompiliert Cargo jedes Crate einzeln und fügt sie am Ende zusammen. Ein Crate besteht aus einem Baum von Modulen, wobei eine einzige Datei die Wurzel (der Einstiegspunkt) dieses Baums bildet.</p>
@@ -269,11 +250,11 @@ Modularer Code (Klare Grenzen und Schnittstellen)
 <ul>
 <li><strong>Was sie sind:</strong> Sammlungen von nützlichem Code (Funktionen, Structs, Enums), die von anderen Programmen wiederverwendet werden können. Sie können nicht eigenständig ausgeführt werden.</li>
 <li><strong>Erkennungsmerkmal:</strong> Sie besitzen keine <code>main()</code>-Funktion. Die Standard-Wurzeldatei ist <code>src/lib.rs</code>.</li>
-<li><strong>Analogie:</strong> Ein Automotor. Du kannst ihn nicht direkt "fahren", aber du kannst ihn in verschiedene Autos (Binary Crates) einbauen.</li>
+<li><strong>Analogie:</strong> Ein Automotor. Du kannst ihn nicht direkt “fahren”, aber du kannst ihn in verschiedene Autos (Binary Crates) einbauen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="die-cargotoml-und-semantic-versioning"><a class="header" href="#die-cargotoml-und-semantic-versioning">Die Cargo.toml und Semantic Versioning</a></h3>
-<p>Wenn du Cargo-Projekte erstellst, findest du im Hauptverzeichnis deines Projekts immer eine Datei namens <code>Cargo.toml</code>. Sie wird im <strong>TOML-Format</strong> (<em>Tom's Obvious Minimal Language</em>) geschrieben und ist die Steuerzentrale und Packliste deines Projekts.</p>
+<p>Wenn du Cargo-Projekte erstellst, findest du im Hauptverzeichnis deines Projekts immer eine Datei namens <code>Cargo.toml</code>. Sie wird im <strong>TOML-Format</strong> (<em>Tom’s Obvious Minimal Language</em>) geschrieben und ist die Steuerzentrale und Packliste deines Projekts.</p>
 <p>Eine typische <code>Cargo.toml</code> sieht so aus:</p>
 <pre><code class="language-toml">[package]
 name = "mein_projekt"
@@ -300,7 +281,7 @@ rand = "0.8.5"
 <li><code>rand = "~0.8.5"</code>: Cargo darf nur Patch-Updates installieren (alles von <code>0.8.5</code> bis vor <code>0.8.6</code>).</li>
 <li><code>rand = "=0.8.5"</code>: Cargo muss exakt diese Version verwenden.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="der-unterschied-zwischen-cargotoml-und-cargolock"><a class="header" href="#der-unterschied-zwischen-cargotoml-und-cargolock">Der Unterschied zwischen Cargo.toml und Cargo.lock</a></h3>
 <p>Ein häufiger Stolperstein für Anfänger ist das Zusammenspiel zwischen <code>Cargo.toml</code> und <code>Cargo.lock</code>. Warum gibt es zwei Dateien, die scheinbar dasselbe tun?</p>
 <ul>
@@ -319,11 +300,11 @@ rand = "0.8.5"
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>[!IMPORTANT]
-Für Binary-Projekte (Anwendungen) solltest du die <code>Cargo.lock</code> immer ins Git-Repository einchecken. Nur so ist garantiert, dass das Programm bei allen Entwicklern identisch gebaut wird. Bei Library-Projekten (Bibliotheken) wird die <code>Cargo.lock</code> oft ignoriert (<code>.gitignore</code>), da die Bibliothek flexibel mit den Abhängigkeiten des übergeordneten Programms zusammenarbeiten muss.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p>Für Binary-Projekte (Anwendungen) solltest du die <code>Cargo.lock</code> immer ins Git-Repository einchecken. Nur so ist garantiert, dass das Programm bei allen Entwicklern identisch gebaut wird. Bei Library-Projekten (Bibliotheken) wird die <code>Cargo.lock</code> oft ignoriert (<code>.gitignore</code>), da die Bibliothek flexibel mit den Abhängigkeiten des übergeordneten Programms zusammenarbeiten muss.</p>
 </blockquote>
-<hr />
+<hr>
 <h2 id="-4-die-dritte-säule-module-und-sichtbarkeit"><a class="header" href="#-4-die-dritte-säule-module-und-sichtbarkeit">🚪 4. Die dritte Säule: Module und Sichtbarkeit</a></h2>
 <h3 id="die-analogie-das-firmengebäude"><a class="header" href="#die-analogie-das-firmengebäude">Die Analogie: Das Firmengebäude</a></h3>
 <p>Stell dir eine große Firma vor. Das Gebäude ist in verschiedene Abteilungen unterteilt:</p>
@@ -359,17 +340,17 @@ Für Binary-Projekte (Anwendungen) solltest du die <code>Cargo.lock</code> immer
 In Python importiert <code>import dateiname</code> eine Datei direkt als Modul.
 In Java spiegelt die Ordnerstruktur exakt die Package-Struktur wider.</p>
 <p>In Rust funktioniert das grundlegend anders! <strong>Der Rust-Compiler baut einen Modulbaum auf, beginnend bei der Wurzel (<code>src/main.rs</code> oder <code>src/lib.rs</code>).</strong></p>
-<p>Wenn du eine Datei namens <code>src/hilfsmittel.rs</code> erstellst, weiß der Rust-Compiler zunächst absolut nichts von ihrer Existenz! Er wird sie komplett ignorieren. Du musst ihm in der Wurzeldatei (<code>src/main.rs</code>) ausdrücklich sagen: "Hey Compiler, deklariere ein Modul namens <code>hilfsmittel</code>, und suche den Code dafür in einer Datei, die so heißt wie dieses Modul."</p>
+<p>Wenn du eine Datei namens <code>src/hilfsmittel.rs</code> erstellst, weiß der Rust-Compiler zunächst absolut nichts von ihrer Existenz! Er wird sie komplett ignorieren. Du musst ihm in der Wurzeldatei (<code>src/main.rs</code>) ausdrücklich sagen: “Hey Compiler, deklariere ein Modul namens <code>hilfsmittel</code>, und suche den Code dafür in einer Datei, die so heißt wie dieses Modul.”</p>
 <p>Das machst du mit dem Schlüsselwort <code>mod</code>:</p>
-<pre><pre class="playground"><code class="language-rust">// In src/main.rs
+<pre class="playground"><code class="language-rust">// In src/main.rs
 mod hilfsmittel; // 1. Deklaration: "Es gibt ein Modul namens hilfsmittel!"
                  // Rust sucht nun nach src/hilfsmittel.rs oder src/hilfsmittel/mod.rs
 
 fn main() {
     hilfsmittel::tue_etwas(); // 2. Nutzung des Moduls
-}</code></pre></pre>
+}</code></pre>
 <p>Die Datei <code>src/hilfsmittel.rs</code> selbst enthält <strong>kein</strong> <code>mod hilfsmittel { ... }</code>! Sie enthält einfach direkt den Code. Die Datei selbst <em>ist</em> das Modul.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// In src/hilfsmittel.rs
 // FALSCH: mod hilfsmittel { ... } &lt;- Schreibe das niemals in die Datei selbst!
@@ -378,8 +359,8 @@ fn main() {
 pub fn tue_etwas() {
     println!("Ich helfe dir!");
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h3 id="dateisystem-mapping-der-klassische-vs-der-moderne-stil"><a class="header" href="#dateisystem-mapping-der-klassische-vs-der-moderne-stil">Dateisystem-Mapping: Der klassische vs. der moderne Stil</a></h3>
 <p>Wenn du dein Projekt tiefer verschachteln möchtest, stellt sich die Frage, wie die Dateien auf der Festplatte organisiert sein müssen. Rust bietet hierfür zwei Stile an:</p>
 <h4 id="1-der-klassische-stil-rust-2015-und-älter"><a class="header" href="#1-der-klassische-stil-rust-2015-und-älter">1. Der klassische Stil (Rust 2015 und älter)</a></h4>
@@ -401,18 +382,18 @@ pub fn tue_etwas() {
     └── gemuese.rs    # Untermodul von garten
 </code></pre>
 <p><em>Vorteil:</em> Eindeutige Dateinamen im Editor (<code>garten.rs</code> statt <code>garten/mod.rs</code>).</p>
-<hr />
+<hr>
 <h3 id="die-sichtbarkeitsstufen-im-detail"><a class="header" href="#die-sichtbarkeitsstufen-im-detail">Die Sichtbarkeitsstufen im Detail</a></h3>
 <p>Sichtbarkeit ist in Rust kein All-or-Nothing-Prinzip. Es gibt fein abgestufte Sicherheitsstufen, um deinen Code präzise zu kapseln:</p>
 <ol>
 <li><strong>Vollständig privat (Standard):</strong> Ohne Schlüsselwort. Nur innerhalb desselben Moduls und in dessen direkten Untermodulen sichtbar.</li>
 <li><strong>Vollständig öffentlich (<code>pub</code>):</strong> Für jeden sichtbar, der dein Crate importiert oder nutzt.</li>
 <li><strong>Projekt-öffentlich (<code>pub(crate)</code>):</strong> Sichtbar im gesamten aktuellen Crate (deinem Projekt), aber völlig unsichtbar für jeden, der dein Projekt als externe Bibliothek einbindet. Das ist perfekt für interne Hilfsfunktionen, die deine Module untereinander austauschen müssen.</li>
-<li><strong>Verwandten-öffentlich (<code>pub(super)</code>):</strong> Macht ein Element für das direkte Elternmodul sichtbar. Es ist wie ein "Familienschlüssel", der eine Ebene nach oben gereicht wird.</li>
+<li><strong>Verwandten-öffentlich (<code>pub(super)</code>):</strong> Macht ein Element für das direkte Elternmodul sichtbar. Es ist wie ein “Familienschlüssel”, der eine Ebene nach oben gereicht wird.</li>
 <li><strong>Pfad-öffentlich (<code>pub(in crate::pfad)</code>):</strong> Eine sehr spezifische Freigabe, mit der du festlegen kannst, dass nur ein bestimmtes Modul und dessen Untermodule dieses Element sehen dürfen.</li>
 </ol>
 <p>Hier ist ein visuelles Beispiel für diese Grenzen:</p>
-<pre><pre class="playground"><code class="language-rust">mod bibliothek {
+<pre class="playground"><code class="language-rust">mod bibliothek {
     // Diese Funktion ist privat. Nur das Modul 'bibliothek' kann sie sehen.
     fn buch_einsortieren() {
         println!("Buch steht im Regal.");
@@ -457,12 +438,12 @@ fn main() {
 
     // ✅ OK! Öffnungszeiten sind komplett öffentlich.
     bibliothek::archiv::oeffnungszeiten();
-}</code></pre></pre>
+}</code></pre>
 <h3 id="die-kapselung-von-datenstrukturen-structs-vs-enums"><a class="header" href="#die-kapselung-von-datenstrukturen-structs-vs-enums">Die Kapselung von Datenstrukturen (Structs vs. Enums)</a></h3>
 <p>Ein wichtiger Unterschied bei der Sichtbarkeit betrifft Structs und Enums:</p>
 <h4 id="1-structs-standardmäßig-privat"><a class="header" href="#1-structs-standardmäßig-privat">1. Structs: Standardmäßig privat</a></h4>
 <p>Wenn du ein Struct als öffentlich (<code>pub</code>) markierst, sind seine Felder dennoch standardmäßig privat. Das zwingt dich dazu, Konstruktoren und Zugriffsmethoden (Getter/Setter) anzubieten.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>mod bank {
     pub struct Konto {
@@ -479,19 +460,19 @@ fn main() {
         }
     }
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-enums-alles-oder-nichts"><a class="header" href="#2-enums-alles-oder-nichts">2. Enums: Alles oder Nichts</a></h4>
 <p>Wenn du ein Enum als öffentlich (<code>pub</code>) markierst, sind <strong>automatisch auch alle seine Varianten öffentlich</strong>. Es gibt keine Möglichkeit, einzelne Varianten eines Enums privat zu halten.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub enum Ampel {
     Rot,   // Automatisch öffentlich!
     Gelb,  // Automatisch öffentlich!
     Gruen, // Automatisch öffentlich!
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><em>Warum ist das so?</em> Ein Enum definiert feste Zustände. Wenn eine Variante privat wäre, könnte man kein vollständiges Pattern Matching mehr durchführen, da der Compiler nicht prüfen könnte, ob alle Fälle abgedeckt sind.</p>
-<hr />
+<hr>
 <h2 id="-5-die-vierte-säule-pfade-und-importe"><a class="header" href="#-5-die-vierte-säule-pfade-und-importe">🔗 5. Die vierte Säule: Pfade und Importe</a></h2>
 <h3 id="die-analogie-das-gps-navigationssystem"><a class="header" href="#die-analogie-das-gps-navigationssystem">Die Analogie: Das GPS-Navigationssystem</a></h3>
 <p>Wenn du dich in deinem Code bewegst, musst du dem Compiler sagen, wo sich die gewünschten Typen und Funktionen befinden. Das funktioniert exakt wie eine Wegbeschreibung oder ein GPS-Navigationssystem:</p>
@@ -499,8 +480,8 @@ fn main() {
 <li><strong>Absoluter Pfad (<code>crate::</code>):</strong> Startet immer ganz oben an der Wurzel deines Projekts. Es ist wie eine vollständige Postadresse mit Postleitzahl, Ort und Straße. Egal wo du dich im Haus befindest – diese Adresse führt dich immer zum Ziel.</li>
 <li><strong>Relative Pfade:</strong> Starten an deiner aktuellen Position.
 <ul>
-<li><strong><code>self::</code>:</strong> "In diesem Raum." Sucht im aktuellen Modul. (Da dies der Standard ist, lassen wir es meistens weg).</li>
-<li><strong><code>super::</code>:</strong> "Gehe eine Etage nach oben." Springt in das Elternmodul. Das ist extrem nützlich für Untermodule, die Hilfsfunktionen des übergeordneten Moduls nutzen wollen.</li>
+<li><strong><code>self::</code>:</strong> “In diesem Raum.” Sucht im aktuellen Modul. (Da dies der Standard ist, lassen wir es meistens weg).</li>
+<li><strong><code>super::</code>:</strong> “Gehe eine Etage nach oben.” Springt in das Elternmodul. Das ist extrem nützlich für Untermodule, die Hilfsfunktionen des übergeordneten Moduls nutzen wollen.</li>
 </ul>
 </li>
 </ol>
@@ -520,7 +501,7 @@ crate (Wurzel)
 <h3 id="importe-mit-use"><a class="header" href="#importe-mit-use">Importe mit <code>use</code></a></h3>
 <p>Pfade können sehr lang und unhandlich werden. Wenn du in deiner Datei 50-mal <code>crate::garten::gemuese::karotte_ernten()</code> schreiben musst, bläht das den Code unnötig auf und macht ihn schwer lesbar.</p>
 <p>Mit dem Schlüsselwort <code>use</code> legst du eine Verknüpfung (ein Alias) in deinem aktuellen Scope an. Es ist wie eine Verknüpfung auf deinem Desktop: Du musst nicht jedes Mal durch fünf Unterordner klicken, sondern klickst einfach auf das Icon.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Ohne use:
 fn kochen_langweilig() {
@@ -535,7 +516,7 @@ fn kochen_elegant() {
     let zutat1 = Karotte::neu(); // Direkt nutzbar!
     let zutat2 = Salat::neu();
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="der-glob-import--und-seine-gefahren"><a class="header" href="#der-glob-import--und-seine-gefahren">Der Glob-Import (<code>*</code>) und seine Gefahren</a></h4>
 <p>Du kannst mit <code>use std::collections::*;</code> alle öffentlichen Elemente eines Moduls auf einmal importieren. Das klingt im ersten Moment verlockend, da man weniger tippen muss. Es ist jedoch ein <strong>Anti-Pattern</strong>, das du in produktivem Code vermeiden solltest.</p>
 <p><strong>Warum?</strong></p>
@@ -547,7 +528,7 @@ fn kochen_elegant() {
 <p><em>Die einzige Ausnahme:</em> In Test-Modulen schreibt man fast immer <code>use super::*;</code>, um alle Funktionen des darüber liegenden Moduls, das man gerade testen möchte, schnell im Zugriff zu haben.</p>
 <h4 id="namenskonflikte-lösen-mit-as"><a class="header" href="#namenskonflikte-lösen-mit-as">Namenskonflikte lösen mit <code>as</code></a></h4>
 <p>Manchmal kommst du in die Situation, dass du zwei unterschiedliche Dinge importieren musst, die denselben Namen tragen. Ein klassisches Beispiel ist das <code>Result</code>-Objekt, das für Fehlerbehandlung genutzt wird.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Wir brauchen das Result für Dateizugriffe (std::io)
 // UND das Result für Formatierungen (std::fmt)
@@ -558,14 +539,14 @@ fn datei_schreiben() -&gt; IoResult&lt;()&gt; {
     // ...
     Ok(())
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Durch das Schlüsselwort <code>as</code> benennst du den Import für die aktuelle Datei einfach um. So verhinderst du Namenskonflikte und hältst deinen Code sauber.</p>
 <h3 id="re-exporting-mit-pub-use-das-fassaden-muster"><a class="header" href="#re-exporting-mit-pub-use-das-fassaden-muster">Re-Exporting mit <code>pub use</code> (Das Fassaden-Muster)</a></h3>
-<p>Stell dir vor, du kaufst ein neues Smartphone. Wenn du es einschaltest, möchtest du ein einfaches Menü sehen: "Telefon", "Kamera", "Internet".</p>
+<p>Stell dir vor, du kaufst ein neues Smartphone. Wenn du es einschaltest, möchtest du ein einfaches Menü sehen: “Telefon”, “Kamera”, “Internet”.</p>
 <p>Dich interessiert in diesem Moment überhaupt nicht, dass der Code für die Kamera-App in einem Unterordner namens <code>/system/drivers/hardware/camera/v2/capture.so</code> liegt. Du möchtest einfach nur auf das Kamera-Symbol auf dem Startbildschirm tippen.</p>
 <p>Wenn du eine Rust-Bibliothek schreibst, solltest du deinen Code für dich selbst intern sauber strukturieren. Das bedeutet oft viele verschachtelte Ordner und Module. Für den Entwickler, der deine Bibliothek später nutzt, ist diese Struktur jedoch viel zu komplex. Er möchte nicht zehn Ebenen tief Pfade importieren müssen.</p>
 <p>Mit <code>pub use</code> kannst du eine <strong>Fassade</strong> (Facade Pattern) bauen. Du importierst ein Element aus einem tief verschachtelten, privaten Modul und exportierst es auf einer höheren Ebene direkt wieder als öffentlich.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Interne Struktur deiner Bibliothek (für dich als Entwickler)
 mod treiber {
@@ -577,11 +558,11 @@ mod treiber {
 // Re-Export an der Wurzel (für die Nutzer deiner Bibliothek)
 // pub use holt das Struct aus der Tiefe und legt es direkt auf die "Ladentheke".
 pub use crate::treiber::grafik::GrafikKarte;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Der Nutzer deiner Bibliothek muss jetzt nur noch schreiben:
 <code>use deine_crate::GrafikKarte;</code></p>
 <p>Er muss nicht wissen, dass es intern ein Modul <code>treiber</code> und ein Untermodul <code>grafik</code> gibt. Du hast die interne Komplexität versteckt und dem Nutzer eine saubere, flache Schnittstelle präsentiert.</p>
-<hr />
+<hr>
 <h2 id="-6-fortgeschrittene-cargo-konzepte"><a class="header" href="#-6-fortgeschrittene-cargo-konzepte">⚙️ 6. Fortgeschrittene Cargo-Konzepte</a></h2>
 <p>Wenn Projekte wachsen, reichen einfache Konfigurationen in der <code>Cargo.toml</code> oft nicht mehr aus. Cargo bietet drei mächtige Werkzeuge, um auch riesige Codebasen effizient zu verwalten.</p>
 <h3 id="1-cargo-workspaces-monorepos"><a class="header" href="#1-cargo-workspaces-monorepos">1. Cargo Workspaces (Monorepos)</a></h3>
@@ -615,10 +596,10 @@ members = [
 <li><strong>Gemeinsames Target-Verzeichnis:</strong> Alle Packages teilen sich den <code>target/</code>-Ordner. Wenn die <code>gemeinsame_logik</code> kompiliert wurde, können sowohl das <code>backend</code> als auch das <code>frontend</code> direkt darauf zugreifen, ohne sie erneut kompilieren zu müssen. Das spart Gigabytes an Speicherplatz und verkürzt die Kompilierzeit drastisch.</li>
 <li><strong>Gemeinsame Lock-Datei:</strong> Es gibt nur eine einzige <code>Cargo.lock</code> im Hauptverzeichnis. Dadurch wird erzwungen, dass alle Packages im gesamten Workspace exakt dieselben Versionen von externen Abhängigkeiten (z. B. <code>serde</code> oder <code>rand</code>) verwenden.</li>
 </ol>
-<hr />
+<hr>
 <h3 id="2-cargo-features-optionale-abhängigkeiten"><a class="header" href="#2-cargo-features-optionale-abhängigkeiten">2. Cargo Features (Optionale Abhängigkeiten)</a></h3>
 <p>Nicht jeder Benutzer deiner Bibliothek benötigt alle Funktionen. Wenn du beispielsweise eine Netzwerk-Bibliothek schreibst, die sowohl sichere Verbindungen (TLS) als auch unverschlüsselte Verbindungen unterstützt, benötigt ein Benutzer, der nur unverschlüsselte Verbindungen nutzt, keine schweren Kryptografie-Bibliotheken.</p>
-<p>Mit <strong>Cargo Features</strong> kannst du Teile deines Codes und deiner Abhängigkeiten optional machen. Der Benutzer entscheidet beim Einbinden deiner Bibliothek selbst, welche "Schalter" er aktivieren möchte.</p>
+<p>Mit <strong>Cargo Features</strong> kannst du Teile deines Codes und deiner Abhängigkeiten optional machen. Der Benutzer entscheidet beim Einbinden deiner Bibliothek selbst, welche “Schalter” er aktivieren möchte.</p>
 <p>In der <code>Cargo.toml</code> deiner Bibliothek definierst du die Features:</p>
 <pre><code class="language-toml">[features]
 # Standardmäßig aktivieren wir das Feature "normales_web"
@@ -633,7 +614,7 @@ sicheres_web = ["dep:openssl"] # Aktiviert die optionale Abhängigkeit openssl
 openssl = { version = "0.10", optional = true }
 </code></pre>
 <p>In deinem Rust-Code kannst du nun über Bedingte Kompilierung (<code>cfg</code>) steuern, welcher Code kompiliert wird:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(feature = "sicheres_web")]
 pub fn verbinde_sicher() {
@@ -644,12 +625,12 @@ pub fn verbinde_sicher() {
 pub fn verbinde_sicher() {
     panic!("Sicheres Web-Feature wurde nicht einkompiliert!");
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Der Benutzer deines Crates bindet es dann hochgradig angepasst ein:</p>
 <pre><code class="language-toml">[dependencies]
 meine_netzwerk_crate = { version = "1.0", default-features = false, features = ["sicheres_web"] }
 </code></pre>
-<hr />
+<hr>
 <h3 id="3-cargo-profile-cargo-profiles"><a class="header" href="#3-cargo-profile-cargo-profiles">3. Cargo Profile (<code>Cargo Profiles</code>)</a></h3>
 <p>Cargo bietet vorkonfigurierte Einstellungen für den Compiler, die steuern, wie dein Code optimiert wird. Es gibt standardmäßig zwei Profile:</p>
 <ol>
@@ -680,7 +661,7 @@ opt-level = 3  # Maximale Optimierung
 lto = true     # Link-Time Optimization (optimiert über Crate-Grenzen hinweg)
 panic = "abort"# Im Fehlerfall das Programm sofort beenden (spart Dateigröße)
 </code></pre>
-<hr />
+<hr>
 <h2 id="-7-tiefergehender-vergleich-mit-anderen-sprachen"><a class="header" href="#-7-tiefergehender-vergleich-mit-anderen-sprachen">🌎 7. Tiefergehender Vergleich mit anderen Sprachen</a></h2>
 <p>Um zu verstehen, warum Rust sein Modulsystem genau so aufgebaut hat, hilft ein Blick über den Tellerrand. Jede Programmiersprache hat einen anderen Ansatz, um Code zu organisieren.</p>
 <h3 id="1-der-vergleich-mit-java"><a class="header" href="#1-der-vergleich-mit-java">1. Der Vergleich mit Java</a></h3>
@@ -719,19 +700,19 @@ public class App {
 <li>Rust entkoppelt das Dateisystem teilweise vom Modulsystem. Du deklarierst die Modulstruktur explizit über <code>mod</code>-Anweisungen im Code.</li>
 </ul>
 <p><strong>Rust-Äquivalent:</strong></p>
-<pre><pre class="playground"><code class="language-rust">// Wurzel-Datei: src/main.rs
+<pre class="playground"><code class="language-rust">// Wurzel-Datei: src/main.rs
 mod schule; // Deklaration des Moduls 'schule'
 
 fn main() {
     let s = schule::verwaltung::Schueler::neu("Thorsten");
     println!("{}", s.name());
-}</code></pre></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+}</code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Datei: src/schule.rs
 pub mod verwaltung; // Deklaration des Untermoduls 'verwaltung'
-<span class="boring">}</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<span class="boring">}</span></code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Datei: src/schule/verwaltung.rs
 pub struct Schueler {
@@ -746,7 +727,7 @@ impl Schueler {
         &amp;self.name
     }
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="2-der-vergleich-mit-python"><a class="header" href="#2-der-vergleich-mit-python">2. Der Vergleich mit Python</a></h3>
 <p>Python nutzt ein implizites Modulsystem. Jede <code>.py</code>-Datei ist automatisch ein Modul. Jeder Ordner, der eine (oft leere) <code>__init__.py</code>-Datei enthält, ist ein Package.</p>
 <p><strong>Python-Beispiel:</strong></p>
@@ -809,7 +790,7 @@ int main() {
 <li>Module werden sauber voneinander isoliert. Ein Modul kann niemals den Namensraum eines anderen Moduls ohne explizite Erlaubnis (<code>pub</code> und <code>use</code>) beeinflussen.</li>
 <li>Es gibt keine Präprozessor-Textersetzung für Modulimporte, was die Kompilierung drastisch sicherer und deterministischer macht.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="-8-schritt-für-schritt-praxis-szenario-migration-zum-workspace"><a class="header" href="#-8-schritt-für-schritt-praxis-szenario-migration-zum-workspace">🛠️ 8. Schritt-für-Schritt-Praxis-Szenario: Migration zum Workspace</a></h2>
 <p>Um den Übergang von einer einfachen Datei zu einem strukturierten Multi-Crate-Monorepo (Workspace) zu verstehen, spielen wir eine typische Entwicklungsschrittfolge durch.</p>
 <h3 id="schritt-1-der-monolith-alles-in-mainrs"><a class="header" href="#schritt-1-der-monolith-alles-in-mainrs">Schritt 1: Der Monolith (Alles in <code>main.rs</code>)</a></h3>
@@ -831,12 +812,12 @@ int main() {
     └── berechnung.rs   # Mathematische Berechnungsalgorithmen
 </code></pre>
 <p>In deiner <code>main.rs</code> deklarierst du die neuen Module:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>mod cli;
 mod datenbank;
 mod berechnung;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Du nutzt nun Pfade wie <code>crate::datenbank::Speicher::neu()</code> oder importierst sie mit <code>use crate::datenbank::Speicher;</code>. Der Code ist jetzt aufgeräumt und logisch sortiert.</p>
 <h3 id="schritt-3-auslagerung-der-logik-in-ein-library-crate"><a class="header" href="#schritt-3-auslagerung-der-logik-in-ein-library-crate">Schritt 3: Auslagerung der Logik in ein Library Crate</a></h3>
 <p>Nach einem Monat stellst du fest, dass andere Entwickler deine Berechnungsalgorithmen gerne in ihren eigenen Projekten verwenden möchten. Da ein Binary Crate (<code>src/main.rs</code>) nicht von anderen Projekten importiert werden kann, musst du dein Projekt so umbauen, dass es sowohl eine Library als auch eine Binary anbietet.
@@ -851,16 +832,16 @@ Dazu erstellst du eine <code>src/lib.rs</code> im selben Ordner:</p>
     └── berechnung.rs   # Gehört zur Library
 </code></pre>
 <p>In <code>src/lib.rs</code> deklarierst du die Module, die für andere nützlich sein sollen, und machst sie öffentlich:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub mod datenbank;
 pub mod berechnung;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>In deiner <code>src/main.rs</code> deklarierst du <strong>nicht mehr</strong> <code>mod datenbank;</code>! Stattdessen importierst du die Module aus der Library deines eigenen Packages. Wenn dein Package in der <code>Cargo.toml</code> den Namen <code>rechner_app</code> hat, schreibst du in <code>main.rs</code>:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use rechner_app::berechnung; // Zugriff auf die Library des eigenen Packages!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="schritt-4-die-evolution-zum-cargo-workspace"><a class="header" href="#schritt-4-die-evolution-zum-cargo-workspace">Schritt 4: Die Evolution zum Cargo Workspace</a></h3>
 <p>Dein Projekt explodiert förmlich vor Erfolg. Du möchtest nun ein völlig neues Desktop-Programm (mit einer grafischen Oberfläche) schreiben, das dieselben Berechnungsalgorithmen nutzt. Zudem wachsen die Tests für die Berechnungen so stark, dass die Kompilierzeiten steigen.
 Du migrierst zu einem <strong>Cargo Workspace</strong>:
@@ -886,12 +867,12 @@ Du erstellst einen neuen Ordner <code>rechner_workspace/</code> und ordnest die 
 rechner_core = { path = "../rechner_core" }
 </code></pre>
 <p>Jetzt hast du ein professionelles Monorepo geschaffen! Beide Frontend-Projekte (<code>cli</code> und <code>gui</code>) greifen auf denselben optimierten Code in <code>rechner_core</code> zu. Der Compiler baut <code>rechner_core</code> nur ein einziges Mal für beide Programme, und deine Codebasis bleibt sauber entkoppelt.</p>
-<hr />
+<hr>
 <h2 id="-9-didaktische-vertiefung-die-evolution-eines-projekts-in-code"><a class="header" href="#-9-didaktische-vertiefung-die-evolution-eines-projekts-in-code">🎓 9. Didaktische Vertiefung: Die Evolution eines Projekts in Code</a></h2>
 <p><em>Um die soeben besprochenen Stufen der Modularisierung visuell nachvollziehen zu können, schauen wir uns das Ganze an einem konkreten Programmierbeispiel an: Einer einfachen Benutzerverwaltung.</em></p>
 <h3 id="stufe-1-der-monolith-alles-in-mainrs"><a class="header" href="#stufe-1-der-monolith-alles-in-mainrs">Stufe 1: Der Monolith (Alles in <code>main.rs</code>)</a></h3>
 <p>In diesem ersten Schritt wird der gesamte Code unstrukturiert in eine einzige Datei geschrieben.</p>
-<pre><pre class="playground"><code class="language-rust">// Datei: src/main.rs
+<pre class="playground"><code class="language-rust">// Datei: src/main.rs
 // Alles liegt auf einer einzigen Ebene. Es gibt keine Kapselung.
 
 struct Benutzer {
@@ -934,11 +915,11 @@ fn main() {
     db.liste[0].ist_aktiv = false; 
     
     db.zeige_alle();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h3 id="stufe-2-inline-module-logische-strukturierung"><a class="header" href="#stufe-2-inline-module-logische-strukturierung">Stufe 2: Inline-Module (Logische Strukturierung)</a></h3>
 <p>Wir fassen thematisch zusammengehörende Teile in <code>mod</code>-Blöcken zusammen. Dadurch erzwingen wir erste Kapselungsgrenzen, behalten jedoch alles in einer Datei, um die Struktur zu studieren.</p>
-<pre><pre class="playground"><code class="language-rust">// Datei: src/main.rs
+<pre class="playground"><code class="language-rust">// Datei: src/main.rs
 // Wir unterteilen die Datei logisch.
 
 pub mod model {
@@ -1017,11 +998,11 @@ fn main() {
     // db.liste[0].ist_aktiv = false; 
     
     db.zeige_alle();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h3 id="stufe-3-datei-module-physische-trennung-im-crate"><a class="header" href="#stufe-3-datei-module-physische-trennung-im-crate">Stufe 3: Datei-Module (Physische Trennung im Crate)</a></h3>
 <p>Wir lagern die Inline-Module in eigene Dateien aus. Die <code>src/main.rs</code> fungiert als Wurzel des Modulbaums und deklariert die Module lediglich.</p>
-<pre><pre class="playground"><code class="language-rust">// Datei: src/main.rs
+<pre class="playground"><code class="language-rust">// Datei: src/main.rs
 // Der Modulbaum-Einstiegspunkt.
 
 mod model;   // Rust sucht nach src/model.rs
@@ -1034,8 +1015,8 @@ fn main() {
     
     db.deaktivieren(1);
     db.zeige_alle();
-}</code></pre></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+}</code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Datei: src/model.rs
 // Kein 'mod model { ... }' in dieser Datei schreiben! 
@@ -1064,8 +1045,8 @@ impl Benutzer {
         self.ist_aktiv
     }
 }
-<span class="boring">}</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<span class="boring">}</span></code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Datei: src/storage.rs
 // Import aus dem Geschwistermodul 'model' über die Wurzel 'crate'
@@ -1098,11 +1079,11 @@ impl BenutzerDatenbank {
         }
     }
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h3 id="stufe-4-library-crate--binary-crate-die-profilösung"><a class="header" href="#stufe-4-library-crate--binary-crate-die-profilösung">Stufe 4: Library Crate &amp; Binary Crate (Die Profilösung)</a></h3>
-<p>Wir trennen die Logik (das "Was") von der Interaktion (das "Wie"). Die Logik wird in eine Library ausgelagert, das Hauptprogramm greift darauf als externer Verbraucher zu. Wir nehmen an, unser Cargo Package heißt <code>user_manager</code>.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<p>Wir trennen die Logik (das “Was”) von der Interaktion (das “Wie”). Die Logik wird in eine Library ausgelagert, das Hauptprogramm greift darauf als externer Verbraucher zu. Wir nehmen an, unser Cargo Package heißt <code>user_manager</code>.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Datei: src/lib.rs
 // Einstiegspunkt der Library. Deklariert und re-exportiert Module.
@@ -1112,8 +1093,8 @@ pub mod storage;
 
 // Komfort: Wir re-exportieren die Datenbank auf die oberste Ebene (Fassade)
 pub use storage::BenutzerDatenbank;
-<span class="boring">}</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust">// Datei: src/main.rs
+<span class="boring">}</span></code></pre>
+<pre class="playground"><code class="language-rust">// Datei: src/main.rs
 // Der Einstiegspunkt der CLI-App.
 
 // Da wir uns in der Binary befinden, importieren wir aus dem Library-Crate 'user_manager'!
@@ -1127,15 +1108,15 @@ fn main() {
     
     db.deaktivieren(1);
     db.zeige_alle();
-}</code></pre></pre>
+}</code></pre>
 <p><em>(Die Dateien <code>src/model.rs</code> und <code>src/storage.rs</code> bleiben unverändert im Vergleich zu Stufe 3).</em></p>
-<hr />
+<hr>
 <h2 id="-10-die-anti-pattern--fehler-enzyklopädie-fortsetzung"><a class="header" href="#-10-die-anti-pattern--fehler-enzyklopädie-fortsetzung">🚫 10. Die Anti-Pattern &amp; Fehler-Enzyklopädie (Fortsetzung)</a></h2>
 <p><em>Die Fehlerbilder 1 bis 5 befinden sich weiter oben. Hier folgen zwei zusätzliche, kritische Fehlerbilder, die häufig beim Arbeiten mit Modulbäumen auftreten.</em></p>
-<h3 id="fehlerbild-6-e0603-module-is-private"><a class="header" href="#fehlerbild-6-e0603-module-is-private">Fehlerbild 6: "E0603: module is private"</a></h3>
+<h3 id="fehlerbild-6-e0603-module-is-private"><a class="header" href="#fehlerbild-6-e0603-module-is-private">Fehlerbild 6: “E0603: module is private”</a></h3>
 <p><strong>Das Szenario:</strong>
 Du hast ein Untermodul deklariert, aber vergessen, es öffentlich zu machen:</p>
-<pre><pre class="playground"><code class="language-rust">// In src/main.rs
+<pre class="playground"><code class="language-rust">// In src/main.rs
 mod netzwerk {
     mod client {
         pub fn verbinden() {
@@ -1146,12 +1127,12 @@ mod netzwerk {
 
 fn main() {
     netzwerk::client::verbinden(); // ❌ Compiler-Fehler: "module `client` is private"
-}</code></pre></pre>
+}</code></pre>
 <p><strong>Die Ursache:</strong>
 Standardmäßig ist alles in Rust privat, auch Module. Zwar ist die Funktion <code>verbinden</code> als <code>pub</code> markiert, aber das Modul <code>client</code> selbst ist von außen nicht sichtbar. Es ist, als stünde ein Tresor (die öffentliche Funktion) in einem verschlossenen Keller (das private Modul).</p>
 <p><strong>Die Lösung:</strong>
 Markiere auch das Modul mit <code>pub</code>:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>mod netzwerk {
     pub mod client { // ✅ pub hinzugefügt!
@@ -1160,22 +1141,22 @@ Markiere auch das Modul mit <code>pub</code>:</p>
         }
     }
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h3 id="fehlerbild-7-mehrfache-moduldeklaration"><a class="header" href="#fehlerbild-7-mehrfache-moduldeklaration">Fehlerbild 7: Mehrfache Moduldeklaration</a></h3>
 <p><strong>Das Szenario:</strong>
 Du hast eine Datei <code>src/helfer.rs</code> angelegt. In deiner <code>src/main.rs</code> hast du <code>mod helfer;</code> deklariert. Nun möchtest du die Funktionen aus <code>helfer.rs</code> in einer anderen Datei, zum Beispiel <code>src/netzwerk.rs</code>, nutzen. Du schreibst in <code>src/netzwerk.rs</code>:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// In src/netzwerk.rs
 mod helfer; // ❌ Schwerer Fehler!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Ursache:</strong>
-Durch das erneute Schreiben von <code>mod helfer;</code> sagst du dem Compiler: "Suche nach einer Datei <code>helfer.rs</code> und erstelle ein neues Modul namens <code>helfer</code> <em>als Untermodul von netzwerk</em>."
+Durch das erneute Schreiben von <code>mod helfer;</code> sagst du dem Compiler: “Suche nach einer Datei <code>helfer.rs</code> und erstelle ein neues Modul namens <code>helfer</code> <em>als Untermodul von netzwerk</em>.”
 Der Compiler versucht nun, dieselbe Datei ein zweites Mal an einer anderen Stelle in den Modulbaum einzuhängen. Das führt zu Fehlermeldungen und im schlimmsten Fall dazu, dass dein Programm dieselben Funktionen doppelt kompiliert.</p>
 <p><strong>Die Lösung:</strong>
 Deklariere Module <strong>immer nur ein einziges Mal</strong> (in der Regel in der Wurzeldatei <code>main.rs</code> oder <code>lib.rs</code>). Wenn ein anderes Modul die Funktionen nutzen möchte, importiert es diese mit <code>use</code>, anstatt das Modul neu zu deklarieren!</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// In src/netzwerk.rs
 // Richtig: Nutze den Pfad, um auf das bereits deklarierte Modul zuzugreifen!
@@ -1184,8 +1165,8 @@ use crate::helfer;
 pub fn daten_senden() {
     helfer::hilfsfunktion();
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h2 id="-best-practices-für-api-design--projektstruktur"><a class="header" href="#-best-practices-für-api-design--projektstruktur">🛠️ Best Practices für API-Design &amp; Projektstruktur</a></h2>
 <p>Wenn du eigene Bibliotheken oder größere Programme schreibst, solltest du dich an bewährte Architekturmuster der Rust-Community halten:</p>
 <ol>
@@ -1196,7 +1177,7 @@ Die <code>main.rs</code> sollte extrem schlank sein. Ihre einzige Aufgabe is es,
 <li><strong>Die flache API durch Re-Exports:</strong>
 Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutzer deiner Bibliothek eine flache Schnittstelle an. Nutze <code>pub use</code>, um die wichtigsten Structs und Funktionen direkt auf der obersten Ebene anzubieten.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="-11-häufig-gestellte-fragen-faq--phase-4"><a class="header" href="#-11-häufig-gestellte-fragen-faq--phase-4">❓ 11. Häufig gestellte Fragen (FAQ) – Phase 4</a></h2>
 <h3 id="1-kann-ich-mehrere-librs-dateien-in-einem-einzigen-package-haben"><a class="header" href="#1-kann-ich-mehrere-librs-dateien-in-einem-einzigen-package-haben">1. Kann ich mehrere <code>lib.rs</code>-Dateien in einem einzigen Package haben?</a></h3>
 <p>Nein. Ein Cargo-Package darf maximal ein Library-Crate besitzen, das standardmäßig in <code>src/lib.rs</code> definiert ist. Wenn du mehrere Bibliotheken entwickeln möchtest, musst du einen Cargo Workspace verwenden.</p>
@@ -1247,7 +1228,7 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
 <h3 id="21-was-ist-der-unterschied-zwischen-cargolock-und-den-lock-dateien-anderer-sprachen-z-b-package-lockjson"><a class="header" href="#21-was-ist-der-unterschied-zwischen-cargolock-und-den-lock-dateien-anderer-sprachen-z-b-package-lockjson">21. Was ist der Unterschied zwischen <code>Cargo.lock</code> und den Lock-Dateien anderer Sprachen (z. B. package-lock.json)?</a></h3>
 <p>Konzeptionell tun sie exakt dasselbe: Sie sichern die Reproduzierbarkeit eines Softwarestands. Rusts <code>Cargo.lock</code> ist jedoch extrem restriktiv bei der Prüfung von Checksummen und Abhängigkeitsbäumen, was den Buildprozess im Vergleich zu anderen Paketmanagern deutlich robuster gegen Manipulationen macht.</p>
 <h3 id="22-kompiliert-rust-privaten-code-mit-wenn-dieser-nicht-verwendet-wird"><a class="header" href="#22-kompiliert-rust-privaten-code-mit-wenn-dieser-nicht-verwendet-wird">22. Kompiliert Rust privaten Code mit, wenn dieser nicht verwendet wird?</a></h3>
-<p>Der Compiler analysiert privaten ungenutzten Code. In Entwicklungs-Builds wird er mitkompiliert und erzeugt Warnungen ("unused function"). In Release-Builds (<code>--release</code>) führt der Compiler eine "Dead Code Elimination" durch und entfernt den ungenutzten Code vollständig, um die Dateigröße zu minimieren.</p>
+<p>Der Compiler analysiert privaten ungenutzten Code. In Entwicklungs-Builds wird er mitkompiliert und erzeugt Warnungen (“unused function”). In Release-Builds (<code>--release</code>) führt der Compiler eine “Dead Code Elimination” durch und entfernt den ungenutzten Code vollständig, um die Dateigröße zu minimieren.</p>
 <h3 id="23-welche-rolle-spielt-die-edition-in-externen-abhängigkeiten"><a class="header" href="#23-welche-rolle-spielt-die-edition-in-externen-abhängigkeiten">23. Welche Rolle spielt die Edition in externen Abhängigkeiten?</a></h3>
 <p>Jedes Crate im Ökosystem kann eine andere Rust-Edition (2015, 2018, 2021) nutzen. Cargo sorgt dafür, dass diese problemlos miteinander vermischt werden können. Du kannst eine Bibliothek der Edition 2015 problemlos in einer Anwendung der Edition 2021 einbinden.</p>
 <h3 id="24-kann-man-ein-binary-crate-als-abhängigkeit-in-ein-anderes-binary-crate-einbinden"><a class="header" href="#24-kann-man-ein-binary-crate-als-abhängigkeit-in-ein-anderes-binary-crate-einbinden">24. Kann man ein Binary-Crate als Abhängigkeit in ein anderes Binary-Crate einbinden?</a></h3>
@@ -1255,9 +1236,9 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
 <h3 id="25-was-ist-der-unterschied-zwischen-pubsuper-und-relativen-pfaden-mit-super"><a class="header" href="#25-was-ist-der-unterschied-zwischen-pubsuper-und-relativen-pfaden-mit-super">25. Was ist der Unterschied zwischen <code>pub(super)</code> und relativen Pfaden mit <code>super::</code>?</a></h3>
 <ul>
 <li><code>pub(super)</code> definiert die <strong>Sichtbarkeit</strong> (wer darf das Element aufrufen?). In diesem Fall darf das direkte Elternmodul darauf zugreifen.</li>
-<li><code>super::</code> beschreibt den <strong>Navigationspfad</strong> im Code (wohin muss ich gehen, um das Element zu finden?). Es bedeutet "eine Ebene nach oben springen".</li>
+<li><code>super::</code> beschreibt den <strong>Navigationspfad</strong> im Code (wohin muss ich gehen, um das Element zu finden?). Es bedeutet “eine Ebene nach oben springen”.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="-12-konzeptioneller-selbsttest-selbststudium"><a class="header" href="#-12-konzeptioneller-selbsttest-selbststudium">🧠 12. Konzeptioneller Selbsttest (Selbststudium)</a></h2>
 <p>Prüfe dein Verständnis mit diesen 20 anspruchsvollen Fragen. Versuche, die Antworten im Kopf zu formulieren, bevor du die Erklärung liest.</p>
 <h3 id="frage-1"><a class="header" href="#frage-1">Frage 1:</a></h3>
@@ -1266,35 +1247,35 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
 <blockquote>
 <p>Nein! Obwohl die Funktion <code>hallo()</code> selbst öffentlich (<code>pub</code>) ist, befindet sie sich in einem privaten Modul <code>b</code>. Das Modul <code>b</code> wirkt wie ein verschlossener Raum. Da niemand von außen in den Raum <code>b</code> schauen darf, kann auch niemand die darin befindlichen (wenn auch öffentlichen) Objekte sehen. Damit der Aufruf klappt, müsste das Modul <code>b</code> ebenfalls als <code>pub mod b;</code> deklariert sein.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-2"><a class="header" href="#frage-2">Frage 2:</a></h3>
 <p>Was passiert mit dem Speicherplatz auf deiner Festplatte und der Kompilierzeit, wenn du in einem Cargo Workspace mit drei Unterprojekten (Crates) arbeitest, im Vergleich zu drei völlig separaten Cargo-Projekten?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Ein Cargo Workspace spart enorm viel Speicherplatz und Kompilierzeit! In einem Workspace teilen sich alle Unterprojekte einen einzigen <code>target</code>-Ordner. Wenn zwei deiner Crates dieselbe Version der Crate <code>serde</code> nutzen, wird diese nur ein einziges Mal kompiliert. Bei drei separaten Projekten würde Cargo die Crate <code>serde</code> dreimal komplett unabhängig voneinander herunterladen und kompilieren, was dreimal so viel Festplattenplatz belegt.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-3"><a class="header" href="#frage-3">Frage 3:</a></h3>
 <p>Warum warnt dich der Compiler, wenn du <code>use std::collections::*;</code> in einer Bibliotheksdatei nutzt, aber meckert nicht, wenn du <code>use super::*;</code> in einer Testdatei schreibst?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Der Wildcard-Import <code>*</code> (Glob) in Bibliotheken macht den Code instabil, da zukünftige Versionen der Standardbibliothek neue Typen einführen könnten, die zu Namenskonflikten führen. In Testdateien ist dies jedoch gewollt: Das Testmodul befindet sich in der Regel ganz unten in der Datei (als Untermodul) und soll alle Funktionen des darüber liegenden Moduls testen. Hier ist die enge Kopplung erwünscht, da sich die Tests direkt auf den Code beziehen, den sie prüfen.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-4"><a class="header" href="#frage-4">Frage 4:</a></h3>
 <p>Du hast eine externe Crate namens <code>cool_calc</code> in Version <code>1.2.3</code> in deine <code>Cargo.toml</code> eingetragen. Auf crates.io wird nun die Version <code>1.3.0</code> veröffentlicht, die neue nützliche Funktionen bringt. Wird Cargo diese Version automatisch herunterladen, wenn du das nächste Mal <code>cargo build</code> ausführst?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Nein, nicht automatisch durch <code>cargo build</code>, da Cargo die exakten Versionen in der <code>Cargo.lock</code> eingefroren hat. Erst wenn du explizit den Befehl <code>cargo update</code> im Terminal ausführst, erlaubt Cargo das Update auf die Version <code>1.3.0</code> (da es sich um ein abwärtskompatibles Minor-Update handelt) und schreibt diese neue Version in die <code>Cargo.lock</code>.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-5"><a class="header" href="#frage-5">Frage 5:</a></h3>
 <p>Warum zwingt dich Rust dazu, einen Konstruktor (wie <code>pub fn neu(...) -&gt; Self</code>) zu schreiben, wenn du ein öffentliches Struct mit privaten Feldern verwenden willst?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Weil du von außerhalb des Moduls kein Struct erstellen kannst, das private Felder besitzt. Rust verbietet es dir, Felder beim Erstellen leer zu lassen oder direkt zu initialisieren, wenn sie nicht sichtbar sind. Der einzige Weg, die privaten Felder mit Werten zu befüllen, ist eine Funktion <em>innerhalb</em> des Moduls (wo die Felder sichtbar sind), die das fertige Struct zurückgibt.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-6"><a class="header" href="#frage-6">Frage 6:</a></h3>
 <p>Was ist der konzeptionelle Unterschied zwischen einer Zuweisung in der <code>Cargo.toml</code> mit <code>rand = "0.8.5"</code> und <code>rand = "=0.8.5"</code>?</p>
 <p><strong>Erklärung:</strong></p>
@@ -1302,109 +1283,109 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
 <p><code>rand = "0.8.5"</code> erlaubt es Cargo, abwärtskompatible Updates (wie <code>0.8.6</code> oder <code>0.8.9</code>) zu installieren. Das ist flexibel und sicher.
 <code>rand = "=0.8.5"</code> zwingt Cargo, exakt und ausschließlich diese Version zu nutzen. Es sind keine Sicherheitsupdates oder Fehlerbehebungen für diese Crate erlaubt. Dies sollte man nur in Ausnahmefällen tun, wenn neuere Versionen einen kritischen Bug enthalten.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-7"><a class="header" href="#frage-7">Frage 7:</a></h3>
-<p>Du liest in einem Online-Forum, dass ein Entwickler schreibt: "Ich nutze keine Module in Rust, weil mir das zu viele Dateien erzeugt. Ich packe einfach alles in separate Crates." Warum ist das eine schlechte Idee?</p>
+<p>Du liest in einem Online-Forum, dass ein Entwickler schreibt: “Ich nutze keine Module in Rust, weil mir das zu viele Dateien erzeugt. Ich packe einfach alles in separate Crates.” Warum ist das eine schlechte Idee?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Weil Crates die primären Kompiliereinheiten in Rust sind. Wenn du dein Programm in Dutzende Crates aufteilst, muss der Compiler für jedes Crate einen eigenen Kompilierschritt starten, Metadaten erstellen und diese am Ende linken. Das treibt die Kompilierzeit massiv in die Höhe. Module hingegen sind extrem leichtgewichtig. Sie strukturieren den Code logisch, werden aber als eine einzige Einheit kompiliert. Crates nutzt man für physische Trennung (z. B. Bibliothek vs. CLI), Module für logische Ordnung.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-8"><a class="header" href="#frage-8">Frage 8:</a></h3>
 <p>Stell dir vor, du hast ein Struct <code>Datenbank</code> im Modul <code>db</code>. Du möchtest eine Methode implementieren, die eine Verbindung aufbaut. Sollte die Methode <code>pub</code> oder <code>pub(crate)</code> sein, wenn die Verbindung nur von deiner eigenen Webserver-Logik im selben Projekt genutzt werden darf?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
-<p>Sie sollte <code>pub(crate)</code> sein! Wenn du sie als <code>pub</code> deklarierst, wäre sie theoretisch auch für externe Nutzer sichtbar, falls dein Projekt jemals als Bibliothek eingebunden wird. Indem du <code>pub(crate)</code> nutzt, sagst du dem Compiler: "Dieser Code ist für mein gesamtes Projekt frei zugänglich, bleibt aber nach außen hin streng geheim."</p>
+<p>Sie sollte <code>pub(crate)</code> sein! Wenn du sie als <code>pub</code> deklarierst, wäre sie theoretisch auch für externe Nutzer sichtbar, falls dein Projekt jemals als Bibliothek eingebunden wird. Indem du <code>pub(crate)</code> nutzt, sagst du dem Compiler: “Dieser Code ist für mein gesamtes Projekt frei zugänglich, bleibt aber nach außen hin streng geheim.”</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-9"><a class="header" href="#frage-9">Frage 9:</a></h3>
 <p>Warum scheitert der Versuch, eine Funktion aus einem Untermodul mit <code>self::super::funktion()</code> aufzurufen?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Weil dieser Pfad logisch keinen Sinn ergibt. <code>self</code> verweist auf das aktuelle Modul. Wenn du danach <code>super</code> anhängst, versuchst du, vom aktuellen Modul aus nach oben zu springen – aber der Pfadpfad-Parser von Rust erlaubt es nicht, diese Schlüsselwörter beliebig aneinanderzureihen. Du kannst direkt <code>super::funktion()</code> schreiben, um eine Ebene nach oben zu springen. <code>self</code> wird nur am Anfang eines Pfads verwendet.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-10"><a class="header" href="#frage-10">Frage 10:</a></h3>
 <p>Was ist die Hauptaufgabe der Datei <code>Cargo.lock</code> in einem Git-Repository?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Die <code>Cargo.lock</code> sorgt für <strong>Reproduzierbarkeit</strong>. Sie dokumentiert die exakten Versionen aller Bibliotheken, die beim letzten erfolgreichen Build verwendet wurden. Wenn ein anderer Entwickler das Projekt klont, garantiert die <code>Cargo.lock</code>, dass er exakt dieselben Bits kompiliert, wodurch Fehler durch unvorhergesehene Bibliotheks-Updates ausgeschlossen werden.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-11"><a class="header" href="#frage-11">Frage 11:</a></h3>
 <p>Was passiert, wenn du in einer Datei <code>src/netzwerk.rs</code> ein Modul <code>mod client;</code> deklarierst? Wo sucht der Compiler nach dem Code für dieses Untermodul?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Da <code>netzwerk</code> bereits ein eigenständiges Modul ist, sucht der Compiler nach Untermodulen von <code>netzwerk</code> eine Ebene tiefer im Dateisystem. Er sucht nach der Datei <code>src/netzwerk/client.rs</code> (moderner Stil) oder nach <code>src/netzwerk/client/mod.rs</code> (klassischer Stil).</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-12"><a class="header" href="#frage-12">Frage 12:</a></h3>
 <p>Kann man in Rust ein privates Struct deklarieren, das jedoch eine öffentliche Methode besitzt? Macht das konzeptionell Sinn?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
-<p>Ja, das ist syntaktisch erlaubt und macht absolut Sinn! Man nennt dieses Konzept oft ein "undurchsichtiges" oder "internes" Objekt. Das Struct selbst kann außerhalb des Moduls nicht direkt benannt oder instanziiert werden. Wenn das Modul jedoch eine Funktion anbietet, die eine Referenz auf dieses private Struct zurückgibt (als Trait oder verdecktes Objekt), kann der Aufrufer die öffentlichen Methoden auf diesem Objekt ausführen, ohne die interne Datenstruktur kennen zu müssen.</p>
+<p>Ja, das ist syntaktisch erlaubt und macht absolut Sinn! Man nennt dieses Konzept oft ein “undurchsichtiges” oder “internes” Objekt. Das Struct selbst kann außerhalb des Moduls nicht direkt benannt oder instanziiert werden. Wenn das Modul jedoch eine Funktion anbietet, die eine Referenz auf dieses private Struct zurückgibt (als Trait oder verdecktes Objekt), kann der Aufrufer die öffentlichen Methoden auf diesem Objekt ausführen, ohne die interne Datenstruktur kennen zu müssen.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-13"><a class="header" href="#frage-13">Frage 13:</a></h3>
 <p>Warum erlaubt Rust zirkuläre Abhängigkeiten auf Modulebene (Modul A importiert Modul B und Modul B importiert Modul A), verbietet sie jedoch strikt auf Crate-Ebene (Crate A hat Crate B in der Cargo.toml, Crate B hat Crate A in der Cargo.toml)?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Module befinden sich innerhalb desselben Crates und werden gemeinsam in einem einzigen Durchlauf kompiliert. Daher kann der Compiler alle Abhängigkeiten auflösen. Crates hingegen sind unabhängige Kompiliereinheiten. Der Compiler muss Crate B vollständig fertig kompiliert haben, bevor er mit dem Kompilieren von Crate A beginnen kann (wenn A von B abhängt). Wenn beide voneinander abhängen, entsteht unweigerlich ein Deadlock: Keines der beiden Crates kann zuerst kompiliert werden.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-14"><a class="header" href="#frage-14">Frage 14:</a></h3>
-<p>Was bedeutet die Fehlermeldung "can't leak private type in public signature"?</p>
+<p>Was bedeutet die Fehlermeldung “can’t leak private type in public signature”?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Diese Fehlermeldung tritt auf, wenn eine öffentliche Funktion (<code>pub</code>) versucht, ein privates Struct als Parameter zu erwarten oder als Rückgabewert zu liefern. Rust verbietet dies aus Sicherheitsgründen: Wenn die Funktion öffentlich ist, jeder sie also aufrufen darf, muss auch der Typ, den sie verarbeitet, öffentlich sein, da der Aufrufer sonst keinen gültigen Wert übergeben oder das Ergebnis verarbeiten könnte.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-15"><a class="header" href="#frage-15">Frage 15:</a></h3>
 <p>Was ist der Vorteil von optionalen Features (<code>Cargo Features</code>) im Hinblick auf Sicherheitsaudits von Code?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Bei einem Sicherheitsaudit (Code-Überprüfung) muss jede einkompilierte Code-Zeile analysiert werden. Wenn eine Crate viele Features besitzt (z. B. Unterstützung für 10 verschiedene Krypto-Algorithmen), du aber nur einen einzigen benötigst, kannst du die anderen 9 Features deaktivieren. Dadurch wird der ungenutzte Code nicht mitkompiliert. Bei einem Audit musst du dann nur den tatsächlich genutzten Code prüfen, was Zeit und Kosten spart und die Angriffsfläche verringert.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-16"><a class="header" href="#frage-16">Frage 16:</a></h3>
 <p>Welches Problem löst das Schlüsselwort <code>pub(super)</code> im Vergleich zu <code>pub(crate)</code>?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p><code>pub(crate)</code> macht ein Element im gesamten Projekt sichtbar. Das kann bei großen Projekten zu viel sein, wenn eine Hilfsfunktion wirklich nur für das direkte Elternmodul gedacht ist. Mit <code>pub(super)</code> wird die Sichtbarkeit exakt auf eine Ebene über dem aktuellen Modul begrenzt. So verhinderst du, dass andere, weit entfernte Module im Crate diese Funktion versehentlich aufrufen.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-17"><a class="header" href="#frage-17">Frage 17:</a></h3>
 <p>Warum ist es unklug, in der <code>Cargo.toml</code> standardmäßig die Version einer Abhängigkeit mit <code>rand = "*"</code> anzugeben?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
-<p>Das Sternchen <code>*</code> bedeutet: "Nimm immer die absolut neueste Version, die auf crates.io verfügbar ist." Dies hebelt jegliche Stabilität aus. Sobald die Entwickler von <code>rand</code> eine neue Major-Version mit inkompatiblen API-Änderungen veröffentlichen, wird dein Projekt beim nächsten Kompilieren auf einem neuen PC fehlschlagen, da Cargo die inkompatible Version herunterlädt.</p>
+<p>Das Sternchen <code>*</code> bedeutet: “Nimm immer die absolut neueste Version, die auf crates.io verfügbar ist.” Dies hebelt jegliche Stabilität aus. Sobald die Entwickler von <code>rand</code> eine neue Major-Version mit inkompatiblen API-Änderungen veröffentlichen, wird dein Projekt beim nächsten Kompilieren auf einem neuen PC fehlschlagen, da Cargo die inkompatible Version herunterlädt.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-18"><a class="header" href="#frage-18">Frage 18:</a></h3>
 <p>Stell dir vor, du hast ein Projekt mit einer <code>lib.rs</code> und einer <code>main.rs</code>. In der <code>lib.rs</code> hast du eine Funktion <code>pub fn rechne()</code> definiert. Wie greifst du in der <code>main.rs</code> auf diese Funktion zu? Nutzt du <code>crate::rechne()</code>?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Nein! Das ist ein häufiger Fehler. <code>lib.rs</code> (die Library Crate) und <code>main.rs</code> (die Binary Crate) sind <strong>zwei völlig separate Crates</strong> innerhalb deines Packages. <code>crate::</code> verweist in der <code>main.rs</code> auf die Wurzel der Binary Crate. Um auf die Library zuzugreifen, musst du den Namen des Packages als Crate-Namen verwenden: <code>name_des_packages::rechne()</code>.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-19"><a class="header" href="#frage-19">Frage 19:</a></h3>
 <p>Warum kompiliert ein Struct, das ein Feld mit einem privaten Enum enthält, aber selbst mit <code>pub</code> markiert ist, fehlerfrei, solange das Feld privat bleibt?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
-<p>Da das Feld privat ist, kann niemand außerhalb des Moduls direkt auf dieses Feld zugreifen oder den darin enthaltenen Typ sehen. Es ist ein internes Detail des Structs. Daher stört es den Compiler nicht, dass der Typ des Feldes (das private Enum) eine geringere Sichtbarkeit hat als das Struct selbst. Erst wenn das Feld ebenfalls <code>pub</code> gemacht würde, käme es zum Fehler "private type in public interface".</p>
+<p>Da das Feld privat ist, kann niemand außerhalb des Moduls direkt auf dieses Feld zugreifen oder den darin enthaltenen Typ sehen. Es ist ein internes Detail des Structs. Daher stört es den Compiler nicht, dass der Typ des Feldes (das private Enum) eine geringere Sichtbarkeit hat als das Struct selbst. Erst wenn das Feld ebenfalls <code>pub</code> gemacht würde, käme es zum Fehler “private type in public interface”.</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="frage-20"><a class="header" href="#frage-20">Frage 20:</a></h3>
 <p>Warum führt das Hinzufügen von <code>edition = "2021"</code> in der <code>Cargo.toml</code> dazu, dass der Compiler einige deiner alten Programme anders verarbeitet?</p>
 <p><strong>Erklärung:</strong></p>
 <blockquote>
 <p>Die Rust-Editions (2015, 2018, 2021) erlauben es der Rust-Community, die Sprache weiterzuentwickeln und neue Schlüsselwörter oder Verhaltensweisen einzuführen, ohne alten Code zu brechen. Jedes Crate wird basierend auf seiner deklarierten Edition kompiliert. Die Edition 2021 führt beispielsweise neue Pattern-Matching-Regeln oder geänderte Standard-Traits ein. Cargo stellt sicher, dass Crates verschiedener Editionen problemlos zusammenarbeiten können.</p>
 </blockquote>
-<hr />
+<hr>
 <h2 id="-merkzettel-phase-4-auf-einen-blick"><a class="header" href="#-merkzettel-phase-4-auf-einen-blick">📌 Merkzettel: Phase 4 auf einen Blick</a></h2>
-<blockquote>
-<p>[!IMPORTANT]
-<strong>Die 4 Kernkonzepte der Phase 4:</strong></p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p><strong>Die 4 Kernkonzepte der Phase 4:</strong></p>
 <ul>
 <li>
 <p><strong>Packages (Pakete):</strong> Ein Verzeichnis mit einer <code>Cargo.toml</code>. Es bündelt ein oder mehrere Crates (höchstens eine Library, beliebig viele Binaries). Cargo verwaltet das Package als Ganzes.</p>
@@ -1426,11 +1407,11 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="cpp-kapitel18.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="konzept-crates.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -1440,16 +1421,21 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="cpp-kapitel18.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="konzept-crates.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -1458,17 +1444,15 @@ Strukturiere deine Ordner tief und logisch für dich selbst, aber biete dem Nutz
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

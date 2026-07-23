@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,125 +69,94 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html" class="active"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="didaktische-prompts-für-rust-concurrency-projekte-120"><a class="header" href="#didaktische-prompts-für-rust-concurrency-projekte-120">Didaktische Prompts für Rust-Concurrency-Projekte (1–20)</a></h1>
 <p>Dieses Dokument enthält strukturierte, modulare Prompts für die ersten 20 Projekte deines Rust-Anfängerbuchs. Jedes Projekt ist in drei aufeinander aufbauende Module unterteilt, die dich schrittweise durch den Entwicklungsprozess führen, ohne fertigen Code vorwegzunehmen.</p>
-<hr />
+<hr>
 <h2 id="projekt-1-paralleler-array-summierer"><a class="header" href="#projekt-1-paralleler-array-summierer">Projekt 1: Paralleler Array-Summierer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen"><a class="header" href="#modul-1-basis-datenstrukturen">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -213,7 +194,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-2-geteilter-zähler-mit-mutex"><a class="header" href="#projekt-2-geteilter-zähler-mit-mutex">Projekt 2: Geteilter Zähler mit Mutex</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-1"><a class="header" href="#modul-1-basis-datenstrukturen-1">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -233,7 +214,7 @@
 <li><strong>Konzepte</strong>: Sperren (Locks), RAII-Pattern (Resource Acquisition Is Initialization), Poisoning.</li>
 <li><strong>Hinweise</strong>:
 <ul>
-<li>Um den Wert im Mutex zu verändern, musst du zuerst <code>.lock()</code> aufrufen. Das gibt ein <code>Result</code> zurück. Warum? Wenn ein Thread mit einem aktiven Lock panickt, wird der Mutex "vergiftet" (poisoned).</li>
+<li>Um den Wert im Mutex zu verändern, musst du zuerst <code>.lock()</code> aufrufen. Das gibt ein <code>Result</code> zurück. Warum? Wenn ein Thread mit einem aktiven Lock panickt, wird der Mutex “vergiftet” (poisoned).</li>
 <li>Nach erfolgreichem <code>.lock()</code> erhältst du einen <code>MutexGuard</code>. Dieser verhält sich dank des <code>Deref</code>-Traits wie eine veränderbare Referenz auf deinen inneren Wert.</li>
 <li>Der Lock wird automatisch freigegeben, sobald der <code>MutexGuard</code> den Scope verlässt (RAII). Überlege dir, wie du Scopes bewusst klein halten kannst, damit andere Threads nicht unnötig blockiert werden.</li>
 </ul>
@@ -251,7 +232,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-3-threadsichere-log-datei"><a class="header" href="#projekt-3-threadsichere-log-datei">Projekt 3: Threadsichere Log-Datei</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-2"><a class="header" href="#modul-1-basis-datenstrukturen-2">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -290,7 +271,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-4-paralleler-primzahlprüfer"><a class="header" href="#projekt-4-paralleler-primzahlprüfer">Projekt 4: Paralleler Primzahlprüfer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-3"><a class="header" href="#modul-1-basis-datenstrukturen-3">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -327,7 +308,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-5-multi-reader-lese-schreibsperre-rwlock"><a class="header" href="#projekt-5-multi-reader-lese-schreibsperre-rwlock">Projekt 5: Multi-Reader Lese-/Schreibsperre (RwLock)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-4"><a class="header" href="#modul-1-basis-datenstrukturen-4">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -363,7 +344,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-6-atomarer-fortschrittsbalken"><a class="header" href="#projekt-6-atomarer-fortschrittsbalken">Projekt 6: Atomarer Fortschrittsbalken</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-5"><a class="header" href="#modul-1-basis-datenstrukturen-5">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -400,7 +381,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-7-thread-spawning-in-einer-schleife"><a class="header" href="#projekt-7-thread-spawning-in-einer-schleife">Projekt 7: Thread-Spawning in einer Schleife</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-6"><a class="header" href="#modul-1-basis-datenstrukturen-6">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -437,7 +418,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-8-parallele-bildverarbeitung-graustufen"><a class="header" href="#projekt-8-parallele-bildverarbeitung-graustufen">Projekt 8: Parallele Bildverarbeitung (Graustufen)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-7"><a class="header" href="#modul-1-basis-datenstrukturen-7">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -446,7 +427,7 @@
 <li><strong>Hinweise</strong>:
 <ul>
 <li>Repräsentiere ein Bild als <code>struct Image</code> mit Breite, Höhe und einem flachen <code>Vec&lt;u8&gt;</code> oder <code>Vec&lt;Pixel&gt;</code> (wobei <code>Pixel</code> ein Struct aus R, G, B ist).</li>
-<li>Wie teilen wir diesen Bildvektor auf, sodass mehrere Threads gleichzeitig darin schreiben können, ohne dass Rusts Compiler wegen veränderbarer Aliase ("mutable aliasing") protestiert?</li>
+<li>Wie teilen wir diesen Bildvektor auf, sodass mehrere Threads gleichzeitig darin schreiben können, ohne dass Rusts Compiler wegen veränderbarer Aliase (“mutable aliasing”) protestiert?</li>
 </ul>
 </li>
 </ul>
@@ -474,7 +455,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-9-deadlock-demonstrator"><a class="header" href="#projekt-9-deadlock-demonstrator">Projekt 9: Deadlock-Demonstrator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-8"><a class="header" href="#modul-1-basis-datenstrukturen-8">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -511,7 +492,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-10-thread-lokaler-zustand-thread-local"><a class="header" href="#projekt-10-thread-lokaler-zustand-thread-local">Projekt 10: Thread-lokaler Zustand (Thread Local)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-9"><a class="header" href="#modul-1-basis-datenstrukturen-9">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -546,7 +527,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-11-parallele-wortzählung-in-texten"><a class="header" href="#projekt-11-parallele-wortzählung-in-texten">Projekt 11: Parallele Wortzählung in Texten</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-10"><a class="header" href="#modul-1-basis-datenstrukturen-10">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -583,7 +564,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-12-thread-priorisierungs-simulator"><a class="header" href="#projekt-12-thread-priorisierungs-simulator">Projekt 12: Thread-Priorisierungs-Simulator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-11"><a class="header" href="#modul-1-basis-datenstrukturen-11">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -619,7 +600,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-13-daten-rennen-schutz"><a class="header" href="#projekt-13-daten-rennen-schutz">Projekt 13: Daten-Rennen-Schutz</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-12"><a class="header" href="#modul-1-basis-datenstrukturen-12">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -655,7 +636,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-14-parallele-matrix-multiplikation"><a class="header" href="#projekt-14-parallele-matrix-multiplikation">Projekt 14: Parallele Matrix-Multiplikation</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-13"><a class="header" href="#modul-1-basis-datenstrukturen-13">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -692,7 +673,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-15-selbstgemachter-thread-pool-worker"><a class="header" href="#projekt-15-selbstgemachter-thread-pool-worker">Projekt 15: Selbstgemachter Thread-Pool-Worker</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-14"><a class="header" href="#modul-1-basis-datenstrukturen-14">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -731,7 +712,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-16-atomarer-stopp-schalter-kill-switch"><a class="header" href="#projekt-16-atomarer-stopp-schalter-kill-switch">Projekt 16: Atomarer Stopp-Schalter (Kill Switch)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-15"><a class="header" href="#modul-1-basis-datenstrukturen-15">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -768,7 +749,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-17-mutex-basiertes-bankkonto"><a class="header" href="#projekt-17-mutex-basiertes-bankkonto">Projekt 17: Mutex-basiertes Bankkonto</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-16"><a class="header" href="#modul-1-basis-datenstrukturen-16">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -801,11 +782,11 @@
 <ul>
 <li>Erstelle im Hauptprogramm einen Vektor von Konten, die jeweils in <code>Arc</code> verpackt sind.</li>
 <li>Starte viele Threads, die zufällige Überweisungen zwischen den Konten vornehmen.</li>
-<li>Berechne vor und nach der Simulation die Summe aller Kontostände und stelle sicher, dass kein Geld "erfunden" wurde oder verloren ging.</li>
+<li>Berechne vor und nach der Simulation die Summe aller Kontostände und stelle sicher, dass kein Geld “erfunden” wurde oder verloren ging.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-18-paralleler-dateisucher"><a class="header" href="#projekt-18-paralleler-dateisucher">Projekt 18: Paralleler Dateisucher</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-17"><a class="header" href="#modul-1-basis-datenstrukturen-17">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -842,7 +823,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-19-threadübergreifende-fehlerbehandlung"><a class="header" href="#projekt-19-threadübergreifende-fehlerbehandlung">Projekt 19: Threadübergreifende Fehlerbehandlung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-18"><a class="header" href="#modul-1-basis-datenstrukturen-18">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -879,7 +860,7 @@
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-20-daten-pipeline-mit-barriere"><a class="header" href="#projekt-20-daten-pipeline-mit-barriere">Projekt 20: Daten-Pipeline mit Barriere</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-19"><a class="header" href="#modul-1-basis-datenstrukturen-19">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -918,7 +899,7 @@
 </ul>
 <h1 id="didaktische-prompts-für-rust-projekte-21---40"><a class="header" href="#didaktische-prompts-für-rust-projekte-21---40">Didaktische Prompts für Rust-Projekte (21 - 40)</a></h1>
 <p>Dieses Dokument enthält strukturierte, modulare Prompts für die Projekte 21 bis 40, die darauf ausgelegt sind, Rust-Anfänger Schritt für Schritt an fortgeschrittene Concurrency- und Kommunikationskonzepte heranzuführen. Für jedes Projekt gibt es genau drei Module: Basis-Datenstrukturen, Implementierung &amp; Methoden sowie Vollendung &amp; Hauptprogramm.</p>
-<hr />
+<hr>
 <h2 id="projekt-21-einfacher-nachrichtenkanal-mpsc"><a class="header" href="#projekt-21-einfacher-nachrichtenkanal-mpsc">Projekt 21: Einfacher Nachrichtenkanal (mpsc)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-20"><a class="header" href="#modul-1-basis-datenstrukturen-20">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -945,7 +926,7 @@ Führe die Teile in der <code>main.rs</code> zusammen.</p>
 <li>Nutze eine blockierende Empfangsmethode und gib die empfangene Nachricht formatiert auf der Konsole aus.</li>
 <li>Implementiere eine saubere Fehlerbehandlung: Was passiert, wenn der Sender vorzeitig geschlossen wird? Fange diesen Fall ab, ohne dass das Programm abstürzt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-22-fortschritts-updates-via-channel"><a class="header" href="#projekt-22-fortschritts-updates-via-channel">Projekt 22: Fortschritts-Updates via Channel</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-21"><a class="header" href="#modul-1-basis-datenstrukturen-21">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -971,7 +952,7 @@ Baue die Benutzeroberfläche in der <code>main.rs</code> auf.</p>
 <li>Statt nur Text auszugeben, zeichne einen dynamischen Ladebalken auf der Konsole (z. B. unter Verwendung des Zeilenumbruch-Zeichens <code>\r</code>, um die aktuelle Zeile zu überschreiben).</li>
 <li>Beende das Hauptprogramm sauber, sobald <code>ProgressUpdate::Finished</code> empfangen wurde oder der Kanal geschlossen ist.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-23-producer-consumer-bäcker"><a class="header" href="#projekt-23-producer-consumer-bäcker">Projekt 23: Producer-Consumer-Bäcker</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-22"><a class="header" href="#modul-1-basis-datenstrukturen-22">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -986,7 +967,7 @@ Entwirf das Domänenmodell für ein Producer-Consumer-Szenario am Beispiel einer
 Implementiere die Rollen des Bäckers (Producer) und des Kunden (Consumer).</p>
 <ul>
 <li>Der Bäcker soll in einem eigenen Thread laufen und in definierten Abständen neue <code>BakedGood</code>-Instanzen erzeugen und in einen Kanal einspeisen.</li>
-<li>Der Kunde läuft in einem anderen Thread und entnimmt die Brötchen dem Kanal, um sie zu "verarbeiten" (was du durch ein kurzes Schlafen des Threads simulieren kannst).</li>
+<li>Der Kunde läuft in einem anderen Thread und entnimmt die Brötchen dem Kanal, um sie zu “verarbeiten” (was du durch ein kurzes Schlafen des Threads simulieren kannst).</li>
 <li>Verwende einen Standard-mpsc-Kanal. Überlege, wie du den Kanal schließt, wenn der Bäcker seine Arbeit beendet hat, und wie der Kunde das Ende des Datenstroms erkennt.</li>
 </ul>
 <h3 id="modul-3-vollendung--hauptprogramm-22"><a class="header" href="#modul-3-vollendung--hauptprogramm-22">Modul 3: Vollendung &amp; Hauptprogramm</a></h3>
@@ -997,7 +978,7 @@ Verbinde die Threads in der <code>main.rs</code> und visualisiere den Ablauf.</p
 <li>Implementiere ein Konsolenmenü, in dem der Benutzer festlegen kann, wie viele Brötchen gebacken werden sollen.</li>
 <li>Stelle sicher, dass das Programm erst beendet wird, wenn der Kunde das letzte Brötchen verarbeitet hat (nutze dafür <code>join</code> auf den Thread-Handles).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-24-mehrere-sender-ein-empfänger"><a class="header" href="#projekt-24-mehrere-sender-ein-empfänger">Projekt 24: Mehrere Sender, ein Empfänger</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-23"><a class="header" href="#modul-1-basis-datenstrukturen-23">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1005,7 +986,7 @@ Entwirf die Datenstrukturen für ein Multi-Producer-Szenario.</p>
 <ul>
 <li>Definiere ein Struct <code>TaskResult</code> (z. B. das Ergebnis eines Workers). Es soll eine <code>worker_id: usize</code> und einen berechneten Wert (<code>i32</code>) enthalten.</li>
 <li>Überlege dir, wie du die Sichtbarkeiten der Felder gestaltest.</li>
-<li>Warum ist es in Rust möglich, dass mehrere Threads in denselben Kanal schreiben, aber nur einer liest? Recherchiere das Konzept hinter "mpsc" (Multi-Producer, Single-Consumer).</li>
+<li>Warum ist es in Rust möglich, dass mehrere Threads in denselben Kanal schreiben, aber nur einer liest? Recherchiere das Konzept hinter “mpsc” (Multi-Producer, Single-Consumer).</li>
 </ul>
 <h3 id="modul-2-implementierung--methoden-23"><a class="header" href="#modul-2-implementierung--methoden-23">Modul 2: Implementierung &amp; Methoden</a></h3>
 <p><em>Prompt:</em>
@@ -1023,7 +1004,7 @@ Führe die Fäden im Hauptthread zusammen.</p>
 <li>Da der Empfänger blockiert, solange noch Sender existieren, stellt das korrekte Droppen aller Sender sicher, dass die Schleife terminiert.</li>
 <li>Gib eine Übersichtstabelle aller Worker-Ergebnisse auf der Konsole aus und berechne die Summe aller Werte.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-25-begrenzter-kanal-syncchannel"><a class="header" href="#projekt-25-begrenzter-kanal-syncchannel">Projekt 25: Begrenzter Kanal (SyncChannel)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-24"><a class="header" href="#modul-1-basis-datenstrukturen-24">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1050,7 +1031,7 @@ Integriere das Experiment in dein Hauptprogramm.</p>
 <li>Zeige auf der Konsole in Echtzeit an, wie viele Elemente sich im Kanal befinden bzw. wann der Sender blockiert ist.</li>
 <li>Fange Fehler beim Schließen des Kanals ab und beende das Programm ordnungsgemäß.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-26-job-queue-mit-channels"><a class="header" href="#projekt-26-job-queue-mit-channels">Projekt 26: Job-Queue mit Channels</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-25"><a class="header" href="#modul-1-basis-datenstrukturen-25">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1076,7 +1057,7 @@ Erstelle das interaktive Kontrollzentrum.</p>
 <li>Biete eine Option an, um den Worker sauber herunterzufahren (<code>Shutdown</code>).</li>
 <li>Warte mit <code>join</code> auf den Worker-Thread, um sicherzustellen, dass alle restlichen Jobs vor Programmende verarbeitet wurden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-27-bidirektionale-kommunikation"><a class="header" href="#projekt-27-bidirektionale-kommunikation">Projekt 27: Bidirektionale Kommunikation</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-26"><a class="header" href="#modul-1-basis-datenstrukturen-26">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1102,7 +1083,7 @@ Verbinde die Akteure in der <code>main.rs</code>.</p>
 <li>Setze ein Limit für die Rundenanzahl fest. Sobald dieses erreicht ist, bricht die Kommunikation ab.</li>
 <li>Gib jede gesendete und empfangene Nachricht mit Zeitstempel auf der Konsole aus, um den Ablauf sichtbar zu machen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-28-kanal-verteilung-multiplexer"><a class="header" href="#projekt-28-kanal-verteilung-multiplexer">Projekt 28: Kanal-Verteilung (Multiplexer)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-27"><a class="header" href="#modul-1-basis-datenstrukturen-27">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1128,7 +1109,7 @@ Erstelle das Hauptprogramm für die Datenvisualisierung.</p>
 <li>Der Multiplexer-Thread soll die Daten sammeln und in eine zentrale Log-Datei schreiben oder formatiert ausgeben.</li>
 <li>Implementiere eine Fehlerbehandlung für den Fall, dass eine der Datenquellen unerwartet abbricht.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-29-konsolen-chatroom-simulator"><a class="header" href="#projekt-29-konsolen-chatroom-simulator">Projekt 29: Konsolen-Chatroom-Simulator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-28"><a class="header" href="#modul-1-basis-datenstrukturen-28">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1154,7 +1135,7 @@ Simuliere das Chat-Szenario im Hauptprogramm.</p>
 <li>Erstelle mehrere Client-Threads, die in zufälligen Abständen Nachrichten in den Raum senden und gleichzeitig auf ihren individuellen Empfangskanälen lauschen.</li>
 <li>Gib den gesamten Chatverlauf synchronisiert auf der Konsole aus.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-30-dateiverarbeitungs-pipeline"><a class="header" href="#projekt-30-dateiverarbeitungs-pipeline">Projekt 30: Dateiverarbeitungs-Pipeline</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-29"><a class="header" href="#modul-1-basis-datenstrukturen-29">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1181,14 +1162,14 @@ Konfiguriere und starte die Pipeline in der <code>main.rs</code>.</p>
 <li>Starte alle Threads, warte auf deren Beendigung und gib eine Erfolgsmeldung inklusive der Anzahl verarbeiteter Zeilen aus.</li>
 <li>Behandle E/A-Fehler (z. B. Datei nicht gefunden) robust auf der Ebene des Hauptprogramms.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-31-timeout-beim-kanal-empfang"><a class="header" href="#projekt-31-timeout-beim-kanal-empfang">Projekt 31: Timeout beim Kanal-Empfang</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-30"><a class="header" href="#modul-1-basis-datenstrukturen-30">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
 Entwirf ein System für zeitkritische Nachrichten.</p>
 <ul>
 <li>Erstelle ein Struct <code>SensorData</code>, das eine Sensor-ID und einen Messwert enthält.</li>
-<li>Überlege, wie du die Zeitspanne (Timeout) definierst, nach der ein Datenpaket als "verloren" gilt. Welche Typen aus <code>std::time</code> sind dafür geeignet?</li>
+<li>Überlege, wie du die Zeitspanne (Timeout) definierst, nach der ein Datenpaket als “verloren” gilt. Welche Typen aus <code>std::time</code> sind dafür geeignet?</li>
 <li>Bereite die Datenstruktur so vor, dass sie für Concurrency-Zwecke geeignet ist.</li>
 </ul>
 <h3 id="modul-2-implementierung--methoden-30"><a class="header" href="#modul-2-implementierung--methoden-30">Modul 2: Implementierung &amp; Methoden</a></h3>
@@ -1207,7 +1188,7 @@ Bringe das Zeitlimit-Experiment in die <code>main.rs</code>.</p>
 <li>Das Hauptprogramm soll nach drei aufeinanderfolgenden Timeouts die Reißleine ziehen, eine Fehlermeldung ausgeben und sich kontrolliert beenden.</li>
 <li>Implementiere ein Konsolenmenü, um die Timeout-Dauer vor dem Start dynamisch anzupassen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-32-nicht-blockierendes-abfragen-try_recv"><a class="header" href="#projekt-32-nicht-blockierendes-abfragen-try_recv">Projekt 32: Nicht-blockierendes Abfragen (try_recv)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-31"><a class="header" href="#modul-1-basis-datenstrukturen-31">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1221,7 +1202,7 @@ Entwirf die Datenstrukturen für eine interaktive Hauptschleife mit Hintergrunda
 Implementiere das Polling in der Hauptschleife.</p>
 <ul>
 <li>Starte einen Hintergrund-Thread, der langwierige Aufgaben erledigt und die Ergebnisse über einen Kanal zurücksendet.</li>
-<li>Implementiere im Hauptthread eine "Game Loop"-ähnliche Schleife. Nutze <code>try_recv</code>, um in jedem Durchlauf zu prüfen, ob ein Ergebnis vorliegt.</li>
+<li>Implementiere im Hauptthread eine “Game Loop”-ähnliche Schleife. Nutze <code>try_recv</code>, um in jedem Durchlauf zu prüfen, ob ein Ergebnis vorliegt.</li>
 <li>Wenn kein Ergebnis vorliegt, darf die Schleife nicht blockieren. Führe stattdessen eine andere Aktion aus (z. B. das Zeichnen eines sich drehenden Symbols oder das Verarbeiten von Benutzereingaben).</li>
 </ul>
 <h3 id="modul-3-vollendung--hauptprogramm-31"><a class="header" href="#modul-3-vollendung--hauptprogramm-31">Modul 3: Vollendung &amp; Hauptprogramm</a></h3>
@@ -1232,7 +1213,7 @@ Baue die interaktive Konsole in <code>main.rs</code> auf.</p>
 <li>Zeige an, wie die Tastatureingaben sofort reagieren, obwohl im Hintergrund gearbeitet wird.</li>
 <li>Beende das Programm sauber, sobald der Hintergrund-Thread meldet, dass er fertig ist.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-33-event-bus-mit-kanälen"><a class="header" href="#projekt-33-event-bus-mit-kanälen">Projekt 33: Event-Bus mit Kanälen</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-32"><a class="header" href="#modul-1-basis-datenstrukturen-32">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1258,7 +1239,7 @@ Integriere den Event-Bus in das Gesamtsystem.</p>
 <li>Lass das Hauptprogramm die ankommenden System-Alerts auf der Konsole farbig hervorheben.</li>
 <li>Stelle sicher, dass bei einem kritischen SystemAlert das gesamte System geordnet heruntergefahren wird.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-34-datenfilter-worker"><a class="header" href="#projekt-34-datenfilter-worker">Projekt 34: Datenfilter-Worker</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-33"><a class="header" href="#modul-1-basis-datenstrukturen-33">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1284,7 +1265,7 @@ Verbinde die Stufen in <code>main.rs</code>.</p>
 <li>Begrenze die Anzahl der zu generierenden Zahlen, damit das Programm nicht endlos läuft.</li>
 <li>Implementiere eine saubere Join-Logik für alle beteiligten Threads.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-35-sensor-aggregator"><a class="header" href="#projekt-35-sensor-aggregator">Projekt 35: Sensor-Aggregator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-34"><a class="header" href="#modul-1-basis-datenstrukturen-34">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1308,9 +1289,9 @@ Führe die Sensoren in der <code>main.rs</code> zusammen.</p>
 <ul>
 <li>Starte fünf unterschiedliche Sensor-Threads über eine Schleife.</li>
 <li>Gib in der Konsole periodisch eine formatierte Tabelle aus, die den aktuellen Mittelwert jedes Sensors anzeigt.</li>
-<li>Biete dem Benutzer die Möglichkeit, die Simulation durch Drücken von 'Enter' sauber zu beenden.</li>
+<li>Biete dem Benutzer die Möglichkeit, die Simulation durch Drücken von ‘Enter’ sauber zu beenden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-36-graceful-shutdown-via-channel"><a class="header" href="#projekt-36-graceful-shutdown-via-channel">Projekt 36: Graceful Shutdown via Channel</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-35"><a class="header" href="#modul-1-basis-datenstrukturen-35">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1336,7 +1317,7 @@ Integriere das Shutdown-Protokoll in die <code>main.rs</code>.</p>
 <li>Sende anschließend die <code>Shutdown</code>-Nachricht.</li>
 <li>Warte mit <code>join</code> auf den Worker-Thread und gib eine Bestätigung aus, dass der Thread sich ordnungsgemäß beendet hat.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-37-auftragsbestätigung-request-response"><a class="header" href="#projekt-37-auftragsbestätigung-request-response">Projekt 37: Auftragsbestätigung (Request-Response)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-36"><a class="header" href="#modul-1-basis-datenstrukturen-36">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1362,7 +1343,7 @@ Setze das Client-Server-Szenario in der <code>main.rs</code> um.</p>
 <li>Er schickt ein <code>Request</code> mit seinen Daten und dem Sender dieses temporären Kanals an den Server-Thread.</li>
 <li>Der Client wartet dann auf dem Empfänger des temporären Kanals auf die Antwort. Gib das Ergebnis auf der Konsole aus und teste das Verhalten mit mehreren parallelen Anfragen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-38-paralleler-web-scraper-simuliert"><a class="header" href="#projekt-38-paralleler-web-scraper-simuliert">Projekt 38: Paralleler Web-Scraper (Simuliert)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-37"><a class="header" href="#modul-1-basis-datenstrukturen-37">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1388,7 +1369,7 @@ Erstelle den Aggregator im Hauptprogramm.</p>
 <li>Berechne die Gesamtanzahl der gescrapten Wörter über alle Seiten hinweg und gib eine formatierte Zusammenfassung aus.</li>
 <li>Implementiere eine Fehlerbehandlung für URLs, die nicht geladen werden konnten (simuliere z. B. Netzwerkfehler).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-39-lastverteilung-load-balancer"><a class="header" href="#projekt-39-lastverteilung-load-balancer">Projekt 39: Lastverteilung (Load Balancer)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-38"><a class="header" href="#modul-1-basis-datenstrukturen-38">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1414,7 +1395,7 @@ Simuliere eine hohe Arbeitslast in <code>main.rs</code>.</p>
 <li>Generiere in einer Schleife 20 Aufgaben und verteile sie über den Load Balancer.</li>
 <li>Gib auf der Konsole aus, welcher Worker welche Aufgabe erhalten hat, um die gleichmäßige Verteilung zu verifizieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-40-audio-synthesizer-pipeline"><a class="header" href="#projekt-40-audio-synthesizer-pipeline">Projekt 40: Audio-Synthesizer-Pipeline</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-39"><a class="header" href="#modul-1-basis-datenstrukturen-39">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><em>Prompt:</em>
@@ -1442,7 +1423,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 <h1 id="didaktische-prompts-für-rust-projekte-kapitel-41---60"><a class="header" href="#didaktische-prompts-für-rust-projekte-kapitel-41---60">Didaktische Prompts für Rust-Projekte (Kapitel 41 - 60)</a></h1>
 <p>Dieses Dokument enthält präzise, modulare Prompts für die Projekte 41 bis 60 eines Rust-Anfängerbuchs. Die Prompts sind didaktisch aufgebaut, verzichten vollständig auf fertige Codelösungen und leiten dich Schritt für Schritt durch die asynchrone Programmierung mit der Tokio-Runtime.</p>
-<hr />
+<hr>
 <h2 id="projekt-41-erste-asynchrone-funktion"><a class="header" href="#projekt-41-erste-asynchrone-funktion">Projekt 41: Erste asynchrone Funktion</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-40"><a class="header" href="#modul-1-basis-datenstrukturen-40">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1483,7 +1464,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-42-parallele-http-anfragen-simuliert"><a class="header" href="#projekt-42-parallele-http-anfragen-simuliert">Projekt 42: Parallele HTTP-Anfragen (Simuliert)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-41"><a class="header" href="#modul-1-basis-datenstrukturen-41">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1522,7 +1503,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-43-asynchroner-timer-dienst"><a class="header" href="#projekt-43-asynchroner-timer-dienst">Projekt 43: Asynchroner Timer-Dienst</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-42"><a class="header" href="#modul-1-basis-datenstrukturen-42">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1562,7 +1543,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-44-asynchrone-dateileser"><a class="header" href="#projekt-44-asynchrone-dateileser">Projekt 44: Asynchrone Dateileser</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-43"><a class="header" href="#modul-1-basis-datenstrukturen-43">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1595,11 +1576,11 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Erzeuge einige Testdateien auf deiner Festplatte.</li>
 <li>Starte das Lesen dieser Dateien parallel mit <code>tokio::spawn</code>.</li>
-<li>Warte auf alle Tasks und gib die gelesenen Inhalte oder aufgetretene Fehler (z. B. "Datei nicht gefunden") sauber formatiert auf der Konsole aus.</li>
+<li>Warte auf alle Tasks und gib die gelesenen Inhalte oder aufgetretene Fehler (z. B. “Datei nicht gefunden”) sauber formatiert auf der Konsole aus.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-45-tokio-channel-mpsc"><a class="header" href="#projekt-45-tokio-channel-mpsc">Projekt 45: Tokio-Channel (mpsc)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-44"><a class="header" href="#modul-1-basis-datenstrukturen-44">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1609,7 +1590,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Definiere ein Enum <code>Message</code> mit verschiedenen Varianten (z. B. <code>WorkData(u32)</code>, <code>StatusReport(String)</code>, <code>Shutdown</code>).</li>
 <li>Warum eignet sich ein Enum hier besser als ein einfacher String oder eine Zahl?</li>
-<li>MPSC steht für "Multi-Producer, Single-Consumer". Überlege dir vorab, wie viele Sender (Producer) und wie viele Empfänger (Consumer) du benötigst.</li>
+<li>MPSC steht für “Multi-Producer, Single-Consumer”. Überlege dir vorab, wie viele Sender (Producer) und wie viele Empfänger (Consumer) du benötigst.</li>
 </ul>
 </li>
 </ul>
@@ -1638,7 +1619,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-46-timeout-für-asynchrone-tasks"><a class="header" href="#projekt-46-timeout-für-asynchrone-tasks">Projekt 46: Timeout für asynchrone Tasks</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-45"><a class="header" href="#modul-1-basis-datenstrukturen-45">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1680,7 +1661,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-47-parallele-ausführung-mit-join"><a class="header" href="#projekt-47-parallele-ausführung-mit-join">Projekt 47: Parallele Ausführung mit join!</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-46"><a class="header" href="#modul-1-basis-datenstrukturen-46">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1718,7 +1699,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-48-wer-gewinnt-select"><a class="header" href="#projekt-48-wer-gewinnt-select">Projekt 48: Wer gewinnt? (select!)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-47"><a class="header" href="#modul-1-basis-datenstrukturen-47">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1739,7 +1720,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Erstelle zwei asynchrone Funktionen mit unvorhersehbarer Dauer (z. B. unter Verwendung eines Zufallszahlengenerators für die Schlafdauer).</li>
 <li>Nutze <code>tokio::select!</code>, um auf beide Futures zu warten.</li>
-<li>Wichtiges Konzept: Was passiert mit der verbleibenden Future, die den "Wettlauf" verloren hat, wenn <code>select!</code> feuert? (Stichwort: Cancellation / Dropping).</li>
+<li>Wichtiges Konzept: Was passiert mit der verbleibenden Future, die den “Wettlauf” verloren hat, wenn <code>select!</code> feuert? (Stichwort: Cancellation / Dropping).</li>
 <li>Achte darauf, wie du die Zweige in <code>select!</code> formulierst. Jeder Zweig wartet auf eine Future und stellt Variablen für den zugehörigen Codeblock bereit.</li>
 </ul>
 </li>
@@ -1756,7 +1737,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-49-asynchroner-tcp-echo-server"><a class="header" href="#projekt-49-asynchroner-tcp-echo-server">Projekt 49: Asynchroner TCP-Echo-Server</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-48"><a class="header" href="#modul-1-basis-datenstrukturen-48">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1794,7 +1775,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-50-asynchroner-tcp-client"><a class="header" href="#projekt-50-asynchroner-tcp-client">Projekt 50: Asynchroner TCP-Client</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-49"><a class="header" href="#modul-1-basis-datenstrukturen-49">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1829,11 +1810,11 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Ermögliche es dem Benutzer in einer Schleife, Text in die Konsole einzugeben.</li>
 <li>Sende diesen Text asynchron an den Echo-Server.</li>
 <li>Zeige die Antwort des Servers an.</li>
-<li>Implementiere eine Abbruchbedingung (z. B. wenn der Benutzer "exit" eingibt).</li>
+<li>Implementiere eine Abbruchbedingung (z. B. wenn der Benutzer “exit” eingibt).</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-51-asynchroner-mutex"><a class="header" href="#projekt-51-asynchroner-mutex">Projekt 51: Asynchroner Mutex</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-50"><a class="header" href="#modul-1-basis-datenstrukturen-50">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1869,11 +1850,11 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Erstelle in <code>main</code> den geteilten Zähler.</li>
 <li>Spawne in einer Schleife z. B. 100 Tasks, die alle den Zähler erhöhen.</li>
 <li>Warte, bis alle Tasks abgeschlossen sind.</li>
-<li>Gib den finalen Wert des Zählers aus. Stelle sicher, dass keine "Race Conditions" aufgetreten sind (der Endwert muss exakt der Anzahl der Inkremente entsprechen).</li>
+<li>Gib den finalen Wert des Zählers aus. Stelle sicher, dass keine “Race Conditions” aufgetreten sind (der Endwert muss exakt der Anzahl der Inkremente entsprechen).</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-52-task-limitierung-semaphore"><a class="header" href="#projekt-52-task-limitierung-semaphore">Projekt 52: Task-Limitierung (Semaphore)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-51"><a class="header" href="#modul-1-basis-datenstrukturen-51">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1892,7 +1873,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li><strong>Konzepte</strong>: <code>Semaphore::acquire</code>, <code>SemaphorePermit</code>, Freigabe von Ressourcen.</li>
 <li><strong>Hinweise</strong>:
 <ul>
-<li>Bevor der Download-Task mit der Arbeit beginnt, muss er ein "Permit" (Erlaubnis) vom Semaphor anfordern: <code>let permit = semaphore.acquire().await.unwrap();</code>.</li>
+<li>Bevor der Download-Task mit der Arbeit beginnt, muss er ein “Permit” (Erlaubnis) vom Semaphor anfordern: <code>let permit = semaphore.acquire().await.unwrap();</code>.</li>
 <li>Simuliere den Download mit <code>tokio::time::sleep</code>.</li>
 <li>Was passiert mit dem Permit, wenn die Funktion beendet wird oder ein Fehler auftritt? (Stichwort: RAII-Pattern, automatisches Droppen gibt das Permit wieder frei).</li>
 <li>Protokolliere den Start und das Ende des Downloads, um die Limitierung optisch sichtbar zu machen.</li>
@@ -1907,11 +1888,11 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Erstelle einen Semaphor mit einer Kapazität von z. B. 3 (maximal 3 gleichzeitige Downloads).</li>
 <li>Spawne 10 Download-Tasks parallel.</li>
-<li>Beobachte die Konsolenausgabe: Es dürfen zu jedem Zeitpunkt nie mehr als 3 Downloads gleichzeitig aktiv ("in Arbeit") sein.</li>
+<li>Beobachte die Konsolenausgabe: Es dürfen zu jedem Zeitpunkt nie mehr als 3 Downloads gleichzeitig aktiv (“in Arbeit”) sein.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-53-broadcast-channel"><a class="header" href="#projekt-53-broadcast-channel">Projekt 53: Broadcast-Channel</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-52"><a class="header" href="#modul-1-basis-datenstrukturen-52">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1944,13 +1925,13 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li><strong>Hinweise</strong>:
 <ul>
 <li>Erstelle in <code>main</code> den Broadcast-Sender.</li>
-<li>Spawne drei "Client"-Tasks, die den Kanal abonnieren und empfangene Nachrichten mit ihrem Namen auf der Konsole ausgeben.</li>
+<li>Spawne drei “Client”-Tasks, die den Kanal abonnieren und empfangene Nachrichten mit ihrem Namen auf der Konsole ausgeben.</li>
 <li>Sende aus dem Hauptprogramm oder einem separaten Task im Sekundentakt Nachrichten über den Sender <code>tx</code>.</li>
 <li>Stelle sicher, dass alle Clients die Nachrichten zeitgleich erhalten.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-54-oneshot-kanal"><a class="header" href="#projekt-54-oneshot-kanal">Projekt 54: Oneshot-Kanal</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-53"><a class="header" href="#modul-1-basis-datenstrukturen-53">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1960,7 +1941,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Erstelle ein Struct <code>CalculationTask</code> mit Eingabedaten (z. B. einer großen Zahl).</li>
 <li>Für das Ergebnis deklariere einen <code>oneshot::channel</code>.</li>
-<li>Warum heißt dieser Kanal "oneshot"? (Er kann exakt eine Nachricht senden und wird danach konsumiert).</li>
+<li>Warum heißt dieser Kanal “oneshot”? (Er kann exakt eine Nachricht senden und wird danach konsumiert).</li>
 </ul>
 </li>
 </ul>
@@ -1989,7 +1970,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-55-asynchroner-intervall-ticker"><a class="header" href="#projekt-55-asynchroner-intervall-ticker">Projekt 55: Asynchroner Intervall-Ticker</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-54"><a class="header" href="#modul-1-basis-datenstrukturen-54">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2026,7 +2007,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-56-paralleler-web-crawler-limitierung"><a class="header" href="#projekt-56-paralleler-web-crawler-limitierung">Projekt 56: Paralleler Web-Crawler (Limitierung)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-55"><a class="header" href="#modul-1-basis-datenstrukturen-55">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2064,7 +2045,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-57-asynchroner-ping-utility"><a class="header" href="#projekt-57-asynchroner-ping-utility">Projekt 57: Asynchroner Ping-Utility</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-56"><a class="header" href="#modul-1-basis-datenstrukturen-56">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2103,7 +2084,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-58-watch-channel-für-konfigurations-updates"><a class="header" href="#projekt-58-watch-channel-für-konfigurations-updates">Projekt 58: Watch-Channel für Konfigurations-Updates</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-57"><a class="header" href="#modul-1-basis-datenstrukturen-57">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2141,7 +2122,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-59-asynchrones-log-rotationssystem"><a class="header" href="#projekt-59-asynchrones-log-rotationssystem">Projekt 59: Asynchrones Log-Rotationssystem</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-58"><a class="header" href="#modul-1-basis-datenstrukturen-58">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2179,7 +2160,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-60-dateien-downloader-mit-fortschritt"><a class="header" href="#projekt-60-dateien-downloader-mit-fortschritt">Projekt 60: Dateien-Downloader mit Fortschritt</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-59"><a class="header" href="#modul-1-basis-datenstrukturen-59">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -2220,7 +2201,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 <h1 id="präzisions-prompts-für-rust-projekte-kapitel-61---80"><a class="header" href="#präzisions-prompts-für-rust-projekte-kapitel-61---80">Präzisions-Prompts für Rust-Projekte (Kapitel 61 - 80)</a></h1>
 <p>Dieses Dokument enthält didaktische, modulare Prompts für die Rust-Projekte 61 bis 80. Jedes Projekt ist in drei aufeinander aufbauende Module unterteilt, die ohne fertige Codelösungen den Lernenden helfen, die Konzepte selbstständig zu erarbeiten.</p>
-<hr />
+<hr>
 <h2 id="61-bridge-cpu-intensive-tasks-aus-tokio-auslagern"><a class="header" href="#61-bridge-cpu-intensive-tasks-aus-tokio-auslagern">61. Bridge: CPU-intensive Tasks aus Tokio auslagern</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-60"><a class="header" href="#modul-1-basis-datenstrukturen-60">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für ein System, das rechenintensive mathematische Berechnungen (z. B. Primzahlprüfung oder Faser-Berechnungen) auslagert.</p>
@@ -2246,7 +2227,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte parallel dazu deine rechenintensive Aufgabe über den in Modul 2 gebauten Mechanismus.</li>
 <li>Zeige auf der Konsole, dass die periodischen Meldungen flüssig weiterlaufen, während die CPU-intensive Berechnung im Hintergrund rattert. Baue ein einfaches Konsolenmenü ein, um neue Berechnungen anzustoßen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="62-multiplayer-lobby-mit-async-und-threads"><a class="header" href="#62-multiplayer-lobby-mit-async-und-threads">62. Multiplayer-Lobby mit Async und Threads</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-61"><a class="header" href="#modul-1-basis-datenstrukturen-61">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Datenmodell für eine Spiele-Lobby, bei der Netzwerkverbindungen asynchron verwaltet werden, während die Spielphysik auf einem separaten OS-Thread läuft.</p>
@@ -2271,7 +2252,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Spawne mehrere asynchrone Tokio-Tasks, die Spieleraktivitäten und Beitritte simulieren.</li>
 <li>Implementiere eine ordentliche Fehlerbehandlung für den Fall, dass Threads unerwartet beendet werden, und sorge dafür, dass beim Beenden des Hauptprogramms alle Ressourcen sauber freigegeben werden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="63-daten-pipeline-thread-zu-async-task"><a class="header" href="#63-daten-pipeline-thread-zu-async-task">63. Daten-Pipeline (Thread zu Async-Task)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-62"><a class="header" href="#modul-1-basis-datenstrukturen-62">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für eine Pipeline, die Daten von einem schnellen, synchronen Treiber-Thread an eine asynchrone Speicher-Task weiterleitet.</p>
@@ -2295,7 +2276,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Implementiere eine Fehlerbehandlung: Was passiert, wenn der Empfänger geschlossen wird, während der Sender noch Daten schicken will? Wie reagiert <code>blocking_send</code> darauf?</li>
 <li>Baue eine Konsolenanzeige, die die Anzahl der verarbeiteten Pakete und eventuelle Puffer-Engpässe live darstellt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="64-dateisystem-beobachter-mit-callback-bridge"><a class="header" href="#64-dateisystem-beobachter-mit-callback-bridge">64. Dateisystem-Beobachter mit Callback-Bridge</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-63"><a class="header" href="#modul-1-basis-datenstrukturen-63">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Brücken-Layout für ein System, das synchrone Dateisystem-Events in eine asynchrone Anwendung leitet.</p>
@@ -2318,7 +2299,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte den asynchronen Event-Loop, der auf eingehende Dateiänderungen reagiert und diese formatiert auf der Konsole ausgibt.</li>
 <li>Implementiere eine robuste Fehlerbehandlung für den Fall, dass Verzeichnisse nicht existieren oder Berechtigungen fehlen. Biete dem Benutzer die Möglichkeit, die Überwachung per Tastendruck sauber zu beenden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="65-asynchroner-webserver-mit-synchroner-datenbank"><a class="header" href="#65-asynchroner-webserver-mit-synchroner-datenbank">65. Asynchroner Webserver mit synchroner Datenbank</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-64"><a class="header" href="#modul-1-basis-datenstrukturen-64">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen asynchronen HTTP-Dienst, der mit einer blockierenden relationalen Datenbank kommuniziert.</p>
@@ -2342,7 +2323,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Schreibe Handler, die Benutzerdaten abfragen, und stelle sicher, dass parallele Anfragen nicht gegenseitig blockiert werden.</li>
 <li>Implementiere ein detailliertes Logging und eine Fehlerbehandlung für Verbindungsabbrüche zur Datenbank.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="66-chat-server-mit-raumverwaltung"><a class="header" href="#66-chat-server-mit-raumverwaltung">66. Chat-Server mit Raumverwaltung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-65"><a class="header" href="#modul-1-basis-datenstrukturen-65">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen TCP-Chat-Server mit mehreren Räumen.</p>
@@ -2366,7 +2347,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Implementiere das Verbindungsmanagement: Verbindungsaufbau, Zuweisung eines Standardraums und sauberes Aufräumen, wenn ein Client die Verbindung trennt (z. B. leere Räume löschen).</li>
 <li>Behandele I/O-Fehler und Kapazitätsgrenzen des Broadcast-Kanals (z. B. wenn ein Client zu langsam liest und Nachrichten verloren gehen).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="67-parallele-map-reduce-engine"><a class="header" href="#67-parallele-map-reduce-engine">67. Parallele Map-Reduce-Engine</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-66"><a class="header" href="#modul-1-basis-datenstrukturen-66">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout für eine einfache Map-Reduce-Engine, die Daten auf Threads verteilt und asynchron zusammenfasst.</p>
@@ -2390,7 +2371,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Miss die Zeit, die für die Verarbeitung benötigt wird, und vergleiche sie mit einer sequentiellen Ausführung.</li>
 <li>Baue eine Fehlerbehandlung ein für den Fall, dass ein Worker-Thread abstürzt (Panic), damit das Hauptprogramm nicht einfrieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="68-verteilter-task-planer"><a class="header" href="#68-verteilter-task-planer">68. Verteilter Task-Planer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-67"><a class="header" href="#modul-1-basis-datenstrukturen-67">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen Task-Planer.</p>
@@ -2413,7 +2394,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte mehrere asynchrone Listener-Tasks, die auf den Broadcast-Kanal hören und die Ergebnisse der ausgeführten Aufgaben formatieren.</li>
 <li>Sorge für ein sauberes Herunterfahren (Graceful Shutdown) des gesamten Systems: Alle ausstehenden Aufgaben in der Queue sollten abgearbeitet und die Worker-Threads ordentlich beendet werden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="69-rate-limiter-mit-token-bucket"><a class="header" href="#69-rate-limiter-mit-token-bucket">69. Rate-Limiter mit Token-Bucket</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-68"><a class="header" href="#modul-1-basis-datenstrukturen-68">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen Token-Bucket Rate-Limiter.</p>
@@ -2435,7 +2416,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Spawne mehrere asynchrone Tasks, die in unregelmäßigen Abständen Anfragen an einen simulierten Endpunkt stellen.</li>
 <li>Protokolliere auf der Konsole präzise, welche Anfragen durchgelassen, welche verzögert und welche blockiert wurden. Behandle Fehler bei der Thread-Synchronisation.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="70-asynchroner-datei-hasher-mit-thread-pool"><a class="header" href="#70-asynchroner-datei-hasher-mit-thread-pool">70. Asynchroner Datei-Hasher mit Thread-Pool</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-69"><a class="header" href="#modul-1-basis-datenstrukturen-69">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für ein paralleles Datei-Hashing-System.</p>
@@ -2455,10 +2436,10 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <p>Integriere das System in <code>main.rs</code>.</p>
 <ul>
 <li>Lies den Zielpfad (Verzeichnis) über die Kommandozeile oder ein einfaches Prompt ein.</li>
-<li>Starte den Hashing-Prozess und zeige auf der Konsole eine Live-Statistik an (z. B. "15/100 Dateien verarbeitet").</li>
+<li>Starte den Hashing-Prozess und zeige auf der Konsole eine Live-Statistik an (z. B. “15/100 Dateien verarbeitet”).</li>
 <li>Behandle typische I/O-Fehler (z. B. fehlende Zugriffsrechte auf Systemdateien) robust, ohne dass das gesamte Programm abbricht. Gib am Ende eine Zusammenfassung aller Hashes aus.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="71-sensor-dashboard-mit-websocket-simulator"><a class="header" href="#71-sensor-dashboard-mit-websocket-simulator">71. Sensor-Dashboard mit WebSocket-Simulator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-70"><a class="header" href="#modul-1-basis-datenstrukturen-70">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für ein Sensor-Dashboard mit Datenpufferung.</p>
@@ -2481,7 +2462,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte den synchronen Festplatten-Schreiber.</li>
 <li>Implementiere eine Konsolen-Oberfläche, die im Sekundentakt den aktuellen Zustand des Dashboards anzeigt (z. B. Durchschnittswerte der letzten Messungen). Behandle Fehler wie Schreibblockaden oder Dateisystemfehler.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="72-parallele-suchmaschine-für-textdateien"><a class="header" href="#72-parallele-suchmaschine-für-textdateien">72. Parallele Suchmaschine für Textdateien</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-71"><a class="header" href="#modul-1-basis-datenstrukturen-71">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für eine lokale Text-Suchmaschine.</p>
@@ -2504,7 +2485,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte die Suche, zeige währenddessen einen Fortschrittsanzeiger und gib die Suchergebnisse formatiert aus.</li>
 <li>Implementiere eine Fehlerbehandlung für nicht lesbare Dateien (z. B. Binärdateien oder gesperrte Dateien).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="73-zustands-synchronisation-im-netzwerkspiel"><a class="header" href="#73-zustands-synchronisation-im-netzwerkspiel">73. Zustands-Synchronisation im Netzwerkspiel</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-72"><a class="header" href="#modul-1-basis-datenstrukturen-72">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout für die Zustandssynchronisation eines Multiplayer-Spiels.</p>
@@ -2527,7 +2508,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Simuliere mehrere Clients, die UDP-Pakete mit Positionsdaten an deinen Server senden.</li>
 <li>Baue eine Konsolen-Visualisierung, die die Positionen der Spieler in Echtzeit darstellt. Behandle fehlerhafte Paketdaten und Netzwerkunterbrechungen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="74-dynamischer-thread-pool-skalierer"><a class="header" href="#74-dynamischer-thread-pool-skalierer">74. Dynamischer Thread-Pool-Skalierer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-73"><a class="header" href="#modul-1-basis-datenstrukturen-73">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen selbst-skalierenden Thread-Pool.</p>
@@ -2550,7 +2531,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Gib auf der Konsole periodisch aus, wie viele Worker-Threads gerade aktiv sind und wie lang die Warteschlange ist.</li>
 <li>Implementiere eine Fehlerbehandlung für den Fall, dass Threads beim Spawnen fehlschlagen oder Aufgaben unerwartet fehlschlagen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="75-backup-system-mit-abbruchfunktion"><a class="header" href="#75-backup-system-mit-abbruchfunktion">75. Backup-System mit Abbruchfunktion</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-74"><a class="header" href="#modul-1-basis-datenstrukturen-74">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Datenmodell für ein abbrechbares Backup-System.</p>
@@ -2564,7 +2545,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Schreibe eine synchrone Kopierfunktion, die auf einem OS-Thread ausgeführt wird. Diese Funktion durchläuft die Quellverzeichnisse und kopiert Dateien blockweise.</li>
 <li><strong>Wichtig:</strong> Nach jedem kopierten Datenblock (z. B. alle 10 KB) muss die Funktion den Zustand des <code>AtomicBool</code>-Abbruch-Signals prüfen. Ist es auf <code>true</code> gesetzt, bricht die Funktion sofort ab und löscht ggf. die angefangene Zieldatei.</li>
-<li>Implementiere einen asynchronen Task, der auf Benutzereingaben wartet (z. B. Tastendruck auf 'q') und bei Erkennung das Abbruch-Signal umschaltet.</li>
+<li>Implementiere einen asynchronen Task, der auf Benutzereingaben wartet (z. B. Tastendruck auf ‘q’) und bei Erkennung das Abbruch-Signal umschaltet.</li>
 </ul>
 <h3 id="modul-3-vollendung--hauptprogramm-74"><a class="header" href="#modul-3-vollendung--hauptprogramm-74">Modul 3: Vollendung &amp; Hauptprogramm</a></h3>
 <p>Integriere das Backup in <code>main.rs</code>.</p>
@@ -2573,7 +2554,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte den Kopiervorgang auf einem Thread und die Abbruch-Überwachung in der Tokio-Laufzeitumgebung.</li>
 <li>Zeige den Fortschritt des Backups live an. Stelle sicher, dass das Programm nach einem Abbruch sauber aufräumt (Teildateien löschen) und eine entsprechende Meldung ausgibt. Behandle I/O-Fehler wie fehlenden Speicherplatz.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="76-verteiltes-logging-mit-puffer"><a class="header" href="#76-verteiltes-logging-mit-puffer">76. Verteiltes Logging mit Puffer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-75"><a class="header" href="#modul-1-basis-datenstrukturen-75">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Strukturen für ein gepuffertes Logging-System.</p>
@@ -2596,7 +2577,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Spawne viele parallele asynchrone Tasks, die intensiv Log-Nachrichten erzeugen.</li>
 <li>Baue eine Fehlerbehandlung ein für den Fall, dass die Log-Datei nicht geöffnet oder geschrieben werden kann. Stelle sicher, dass Fehler im Logger nicht die Hauptanwendung zum Absturz bringen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="77-echtzeit-daten-filter"><a class="header" href="#77-echtzeit-daten-filter">77. Echtzeit-Daten-Filter</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-76"><a class="header" href="#modul-1-basis-datenstrukturen-76">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für eine Echtzeit-Filter-Pipeline.</p>
@@ -2619,7 +2600,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Verbinde die asynchronen I/O-Teile mit den synchronen Filter-Threads.</li>
 <li>Implementiere eine detaillierte Fehlerbehandlung für Verbindungsabbrüche und Pufferüberläufe. Zeige die Latenzzeit zwischen Empfang und Senden der gefilterten Frames auf der Konsole an.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="78-asynchrone-gui-mit-synchronem-rechenkern"><a class="header" href="#78-asynchrone-gui-mit-synchronem-rechenkern">78. Asynchrone GUI mit synchronem Rechenkern</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-77"><a class="header" href="#modul-1-basis-datenstrukturen-77">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Architekturmodell für eine GUI-Anwendung mit schwerem Rechenkern.</p>
@@ -2643,7 +2624,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Starte Berechnungen im Hintergrund und visualisiere den Fortschrittsbalken live.</li>
 <li>Behandle Fehler wie den Absturz des Rechenkerns oder blockierte Nachrichtenkanäle auf didaktische Weise.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="79-batch-verarbeitungs-manager"><a class="header" href="#79-batch-verarbeitungs-manager">79. Batch-Verarbeitungs-Manager</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-78"><a class="header" href="#modul-1-basis-datenstrukturen-78">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen Batch-Manager.</p>
@@ -2674,7 +2655,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <li>Warte asynchron auf die Antworten der einzelnen Anfragen und gib diese aus.</li>
 <li>Implementiere eine Fehlerbehandlung für Timeouts und den Fall, dass der Worker-Thread überlastet ist. Miss die Effizienz der Batch-Verarbeitung im Vergleich zur Einzelverarbeitung.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="80-web-scraper-mit-persistenter-queue"><a class="header" href="#80-web-scraper-mit-persistenter-queue">80. Web-Scraper mit persistenter Queue</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-79"><a class="header" href="#modul-1-basis-datenstrukturen-79">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen Web-Scraper mit persistenter Warteschlange.</p>
@@ -2700,7 +2681,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 <h1 id="didaktische-prompts-für-rust-projekte-81-100"><a class="header" href="#didaktische-prompts-für-rust-projekte-81-100">Didaktische Prompts für Rust-Projekte (81-100)</a></h1>
 <p>Dieses Dokument enthält strukturierte, modulare Anleitungen für die Projekte 81 bis 100. Jedes Projekt ist in drei Module unterteilt, um einen schrittweisen und didaktisch begleiteten Lernprozess zu ermöglichen, ohne fertige Codelösungen vorwegzunehmen.</p>
-<hr />
+<hr>
 <h2 id="projekt-81-eigener-executor-für-futures"><a class="header" href="#projekt-81-eigener-executor-für-futures">Projekt 81: Eigener Executor für Futures</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-80"><a class="header" href="#modul-1-basis-datenstrukturen-80">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die grundlegenden Datenstrukturen für deine eigene minimale asynchrone Runtime auf dem Heap und Stack.</p>
@@ -2738,7 +2719,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-82-lock-freie-stack-datenstruktur"><a class="header" href="#projekt-82-lock-freie-stack-datenstruktur">Projekt 82: Lock-freie Stack-Datenstruktur</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-81"><a class="header" href="#modul-1-basis-datenstrukturen-81">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout für einen Stack, der ohne traditionelle Mutex- oder RwLock-Sperren auskommt.</p>
@@ -2775,7 +2756,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-83-mehrbenutzer-chat-per-udp"><a class="header" href="#projekt-83-mehrbenutzer-chat-per-udp">Projekt 83: Mehrbenutzer-Chat per UDP</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-82"><a class="header" href="#modul-1-basis-datenstrukturen-82">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für einen asynchronen UDP-basierten Chat-Server und -Client.</p>
@@ -2813,7 +2794,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-84-asynchroner-proxy-server"><a class="header" href="#projekt-84-asynchroner-proxy-server">Projekt 84: Asynchroner Proxy-Server</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-83"><a class="header" href="#modul-1-basis-datenstrukturen-83">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Modelliere die Datenstrukturen für deinen HTTP/TCP-Proxy-Server.</p>
@@ -2851,7 +2832,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-85-custom-waker-implementierung"><a class="header" href="#projekt-85-custom-waker-implementierung">Projekt 85: Custom Waker-Implementierung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-84"><a class="header" href="#modul-1-basis-datenstrukturen-84">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicher- und Signalmodell für ein eigenes Future, das auf ein Ereignis wartet.</p>
@@ -2889,7 +2870,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-86-distributed-key-value-store-simuliert"><a class="header" href="#projekt-86-distributed-key-value-store-simuliert">Projekt 86: Distributed Key-Value-Store (Simuliert)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-85"><a class="header" href="#modul-1-basis-datenstrukturen-85">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout und Kommunikationsmodell für simulierte Datenbankknoten.</p>
@@ -2922,12 +2903,12 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Initialisiere in der <code>main.rs</code> ein System aus z. B. 3 oder 5 Knoten.</li>
 <li>Implementiere ein CLI-Interface, das dem Benutzer erlaubt, Lese- und Schreibbefehle an bestimmte Knoten zu senden.</li>
-<li>Füge eine funktionale Logik hinzu, um Knoten künstlich zu "stoppen" (z.B. durch Schließen oder Ignorieren seines Empfangskanals), um die Ausfallsicherheit des Quorums zu demonstrieren.</li>
+<li>Füge eine funktionale Logik hinzu, um Knoten künstlich zu “stoppen” (z.B. durch Schließen oder Ignorieren seines Empfangskanals), um die Ausfallsicherheit des Quorums zu demonstrieren.</li>
 <li>Behandle Fehler bei Kanaltrennungen und Timeouts.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-87-tcp-chat-server-mit-authentifizierung"><a class="header" href="#projekt-87-tcp-chat-server-mit-authentifizierung">Projekt 87: TCP-Chat-Server mit Authentifizierung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-86"><a class="header" href="#modul-1-basis-datenstrukturen-86">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für Verbindungszustände und Benutzerverwaltung.</p>
@@ -2965,7 +2946,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-88-asynchroner-dns-client"><a class="header" href="#projekt-88-asynchroner-dns-client">Projekt 88: Asynchroner DNS-Client</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-87"><a class="header" href="#modul-1-basis-datenstrukturen-87">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout für DNS-Pakete im Binärformat.</p>
@@ -3002,7 +2983,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-89-lock-freier-ringpuffer-single-producer-single-consumer"><a class="header" href="#projekt-89-lock-freier-ringpuffer-single-producer-single-consumer">Projekt 89: Lock-freier Ringpuffer (Single-Producer, Single-Consumer)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-88"><a class="header" href="#modul-1-basis-datenstrukturen-88">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Speicherlayout eines performanten Ringpuffers für einen Schreiber und einen Leser.</p>
@@ -3040,7 +3021,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-90-tcp-port-scanner"><a class="header" href="#projekt-90-tcp-port-scanner">Projekt 90: TCP-Port-Scanner</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-89"><a class="header" href="#modul-1-basis-datenstrukturen-89">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Definiere die Strukturen für den parallelen Port-Scanner.</p>
@@ -3078,7 +3059,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-91-dateitransfer-server-mit-flusssteuerung"><a class="header" href="#projekt-91-dateitransfer-server-mit-flusssteuerung">Projekt 91: Dateitransfer-Server mit Flusssteuerung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-90"><a class="header" href="#modul-1-basis-datenstrukturen-90">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Modell für die speicherschonende Dateiübertragung.</p>
@@ -3115,7 +3096,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-92-raft-konsensus-prototyp-simuliert"><a class="header" href="#projekt-92-raft-konsensus-prototyp-simuliert">Projekt 92: Raft-Konsensus-Prototyp (Simuliert)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-91"><a class="header" href="#modul-1-basis-datenstrukturen-91">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Modelliere die Zustände und Nachrichten des Raft-Konsensprotokolls.</p>
@@ -3148,12 +3129,12 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 <ul>
 <li>Schreibe die <code>main.rs</code>, die ein System aus mehreren Knoten (z. B. 5) über Tokio-Channels vernetzt.</li>
 <li>Implementiere eine Konsolenausgabe, die den Zustand jedes Knotens visualisiert.</li>
-<li>Biete CLI-Befehle an, um einzelne Knoten "ausfallen" zu lassen oder Netzwerk-Partitionen zu simulieren, und beobachte, wie sich das System verhält.</li>
+<li>Biete CLI-Befehle an, um einzelne Knoten “ausfallen” zu lassen oder Netzwerk-Partitionen zu simulieren, und beobachte, wie sich das System verhält.</li>
 <li>Behandle Fehler bei Kanaltrennungen und unvollständigen Quoren.</li>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-93-websocket-chat-server"><a class="header" href="#projekt-93-websocket-chat-server">Projekt 93: Websocket-Chat-Server</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-92"><a class="header" href="#modul-1-basis-datenstrukturen-92">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Websocket-Verbindungsdatenstrukturen.</p>
@@ -3190,7 +3171,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-94-asynchrone-ablaufsteuerung-workflow-engine"><a class="header" href="#projekt-94-asynchrone-ablaufsteuerung-workflow-engine">Projekt 94: Asynchrone Ablaufsteuerung (Workflow-Engine)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-93"><a class="header" href="#modul-1-basis-datenstrukturen-93">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für eine Workflow-Engine auf Basis eines DAG (Directed Acyclic Graph).</p>
@@ -3228,7 +3209,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-95-netzwerk-bandbreiten-limiter"><a class="header" href="#projekt-95-netzwerk-bandbreiten-limiter">Projekt 95: Netzwerk-Bandbreiten-Limiter</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-94"><a class="header" href="#modul-1-basis-datenstrukturen-94">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf den Wrapper zur künstlichen Drosselung von asynchronen Streams.</p>
@@ -3267,7 +3248,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-96-einfaches-actor-modell"><a class="header" href="#projekt-96-einfaches-actor-modell">Projekt 96: Einfaches Actor-Modell</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-95"><a class="header" href="#modul-1-basis-datenstrukturen-95">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf das Typmodell für Aktoren und asynchrone Nachrichten.</p>
@@ -3305,7 +3286,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-97-sicherer-shutdown-koordinator"><a class="header" href="#projekt-97-sicherer-shutdown-koordinator">Projekt 97: Sicherer Shutdown-Koordinator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-96"><a class="header" href="#modul-1-basis-datenstrukturen-96">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Datenstrukturen für das Shutdown-Tracking.</p>
@@ -3342,7 +3323,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-98-load-balancer-mit-least-connections-algorithmus"><a class="header" href="#projekt-98-load-balancer-mit-least-connections-algorithmus">Projekt 98: Load-Balancer mit Least-Connections-Algorithmus</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-97"><a class="header" href="#modul-1-basis-datenstrukturen-97">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Backend-Strukturen und den Verbindungszähler.</p>
@@ -3379,7 +3360,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-99-asynchroner-ssh-tunnel-simulator"><a class="header" href="#projekt-99-asynchroner-ssh-tunnel-simulator">Projekt 99: Asynchroner SSH-Tunnel-Simulator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-98"><a class="header" href="#modul-1-basis-datenstrukturen-98">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Entwirf die Tunnel- und Verschlüsselungskonfiguration.</p>
@@ -3417,7 +3398,7 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-100-verteiltes-map-reduce-über-tcp"><a class="header" href="#projekt-100-verteiltes-map-reduce-über-tcp">Projekt 100: Verteiltes Map-Reduce über TCP</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-99"><a class="header" href="#modul-1-basis-datenstrukturen-99">Modul 1: Basis-Datenstrukturen</a></h3>
 <p>Modelliere das verteilte Berechnungsnetzwerk.</p>
@@ -3461,11 +3442,11 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="100-projekte-phase7.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="phase8-konzepte.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -3475,16 +3456,21 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="100-projekte-phase7.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="phase8-konzepte.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -3493,17 +3479,15 @@ Erstelle das Steuerungsmenü in <code>main.rs</code>.</p>
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

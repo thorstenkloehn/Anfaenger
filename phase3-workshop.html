@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,127 +69,96 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html" class="active"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="-mitmach-workshop-phase-3-bildhaft-verstehen-der-süßigkeiten-laden"><a class="header" href="#-mitmach-workshop-phase-3-bildhaft-verstehen-der-süßigkeiten-laden">🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen (Der Süßigkeiten-Laden)</a></h1>
 <p>Willkommen im magischen Süßigkeiten-Laden! 🍬✨</p>
 <p>Manchmal klingen Programmierbegriffe wie <strong>Vektoren</strong>, <strong>HashMaps</strong>, <strong>Option</strong> und <strong>Result</strong> ziemlich kompliziert und trocken. Aber eigentlich sind sie so einfach wie die Arbeitsschritte in einem echten Kiosk!</p>
 <p>In diesem Kapitel bauen wir zusammen einen Kiosk im Kopf auf und setzen ihn danach Schritt für Schritt in Rust um. Mach dich bereit für ein echtes Programmier-Abenteuer! Dieses Kapitel dient dir als umfassendes Handbuch und Nachschlagewerk für alle wichtigen Datenstrukturen und Konzepte aus Phase 3.</p>
-<hr />
+<hr>
 <h2 id="-der-kiosk-plan-auf-einen-blick"><a class="header" href="#-der-kiosk-plan-auf-einen-blick">🗺️ Der Kiosk-Plan auf einen Blick</a></h2>
 <p>Schau dir an, welche Aufgaben unsere neuen Werkzeuge im Kiosk übernehmen:</p>
 <pre><code class="language-text">┌────────────────────────┐      ┌──────────────────────────────────┐
@@ -201,7 +182,7 @@
                                 │  └─ Err: Fehler: Zu wenig Geld!  │
                                 └──────────────────────────────────┘
 </code></pre>
-<hr />
+<hr>
 <h2 id="-hintergrund-wo-liegen-die-süßigkeiten-stack-vs-heap"><a class="header" href="#-hintergrund-wo-liegen-die-süßigkeiten-stack-vs-heap">🧠 Hintergrund: Wo liegen die Süßigkeiten? (Stack vs. Heap)</a></h2>
 <p>Bevor wir anfangen, müssen wir verstehen, wo der Computer unsere Kiosk-Daten speichert. Stell dir vor, du hast zwei Orte, um Dinge aufzubewahren:</p>
 <h3 id="1-der-schreibtisch-stack--stapelspeicher"><a class="header" href="#1-der-schreibtisch-stack--stapelspeicher">1. Der Schreibtisch (Stack / Stapelspeicher)</a></h3>
@@ -216,7 +197,7 @@
 <ul>
 <li><strong>Vorteil:</strong> Fast unendlich viel Platz. Deine Kisten können beliebig wachsen oder schrumpfen!</li>
 <li><strong>Wie funktioniert das?</strong> Die Lagerhalle packt deine Lollis in einen großen Karton. Sie gibt dir einen Zettel mit der genauen Regalnummer (die <strong>Adresse</strong> oder den <strong>Pointer</strong>). Diesen Zettel legst du auf deinen Schreibtisch.</li>
-<li>In Rust nutzen dynamische Datenstrukturen wie <code>String</code>, <code>Vec&lt;T&gt;</code> und <code>HashMap&lt;K, V&gt;</code> diesen Speicherort. Auf dem Stack liegt nur die "Adresse", die echten Daten liegen auf dem Heap!</li>
+<li>In Rust nutzen dynamische Datenstrukturen wie <code>String</code>, <code>Vec&lt;T&gt;</code> und <code>HashMap&lt;K, V&gt;</code> diesen Speicherort. Auf dem Stack liegt nur die “Adresse”, die echten Daten liegen auf dem Heap!</li>
 </ul>
 <h4 id="speicher-layout-im-detail-visualisierung"><a class="header" href="#speicher-layout-im-detail-visualisierung">Speicher-Layout im Detail (Visualisierung)</a></h4>
 <p>Stell dir vor, du hast eine Warteschlange von Kunden im Speicher:</p>
@@ -228,7 +209,7 @@
 │ - Length: 3                │          │ Index 3: (Freier Speicherplatz)  │
 └────────────────────────────┘          └──────────────────────────────────┘
 </code></pre>
-<hr />
+<hr>
 <h2 id="-micro-learning-1-die-bonbon-warteschlange-vektoren--vect"><a class="header" href="#-micro-learning-1-die-bonbon-warteschlange-vektoren--vect">📦 Micro-Learning 1: Die Bonbon-Warteschlange (Vektoren / <code>Vec&lt;T&gt;</code>)</a></h2>
 <h3 id="-die-analogie-eine-kette-aus-bunten-holzperlen"><a class="header" href="#-die-analogie-eine-kette-aus-bunten-holzperlen">🧸 Die Analogie: Eine Kette aus bunten Holzperlen</a></h3>
 <p>Stell dir eine lange Schnur vor, auf die du bunte Holzperlen fädelst. Du kannst hinten immer eine neue Perle dranhängen oder die letzte Perle abziehen. Wenn du eine Perle aus der Mitte wegnimmst, rutschen alle anderen Perlen automatisch zusammen, damit keine Lücke entsteht.</p>
@@ -243,7 +224,7 @@
 <h3 id="-der-ultimative-spickzettel-vektor-operationen-in-der-praxis"><a class="header" href="#-der-ultimative-spickzettel-vektor-operationen-in-der-praxis">🛠️ Der ultimative Spickzettel: Vektor-Operationen in der Praxis</a></h3>
 <p>Hier sind alle wichtigen Vektor-Werkzeuge für deinen Kiosk mit ausführlicher Erklärung:</p>
 <h4 id="1-erstellen-und-initialisieren"><a class="header" href="#1-erstellen-und-initialisieren">1. Erstellen und Initialisieren</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Erstellt einen komplett leeren Vektor. Auf dem Heap wird erst Speicher reserviert, 
 // wenn das erste Element per .push() eingefügt wird.
@@ -256,9 +237,9 @@ let mut warteschlange = vec![String::from("Paul"), String::from("Mia")];
 // Erstellt einen leeren Vektor, reserviert aber im Voraus Platz für 10 Elemente auf dem Heap.
 // Verhindert unnötige Speicher-Reallokationen, wenn die ungefähre Zielgröße bekannt ist.
 let mut warteschlange_optimiert: Vec&lt;String&gt; = Vec::with_capacity(10);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-elemente-hinzufügen-und-einfügen"><a class="header" href="#2-elemente-hinzufügen-und-einfügen">2. Elemente hinzufügen und einfügen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Hängt ein Element an das Ende des Vektors an.
 // Falls die Kapazität erschöpft ist, wird im Hintergrund Speicher neu alloziiert.
@@ -268,9 +249,9 @@ warteschlange.push(String::from("Leo")); // ["Paul", "Mia", "Leo"]
 // Alle nachfolgenden Elemente werden im Speicher um eine Position nach rechts verschoben.
 // Achtung: Kann bei sehr langen Vektoren langsam sein!
 warteschlange.insert(1, String::from("Anna")); // ["Paul", "Anna", "Mia", "Leo"]
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="3-elemente-entfernen-und-auslesen"><a class="header" href="#3-elemente-entfernen-und-auslesen">3. Elemente entfernen und auslesen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Entfernt das letzte Element und gibt es verpackt in Option&lt;T&gt; zurück.
 // Gibt Some(Element) zurück, falls der Vektor nicht leer war, ansonsten None.
@@ -284,9 +265,9 @@ let paul = warteschlange.remove(0); // Entfernt "Paul", "Anna" rutscht auf Index
 // Löscht alle Elemente aus dem Vektor.
 // Der Vektor ist danach leer, behält aber seine reservierte Heap-Kapazität.
 warteschlange.clear();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="4-informationen-über-den-vektor-abfragen"><a class="header" href="#4-informationen-über-den-vektor-abfragen">4. Informationen über den Vektor abfragen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Gibt die aktuelle Anzahl der Elemente im Vektor als usize zurück.
 let anzahl = warteschlange.len();
@@ -297,16 +278,16 @@ let leer = warteschlange.is_empty();
 
 // Gibt die aktuelle Heap-Kapazität des Vektors zurück.
 let kapazitaet = warteschlange.capacity();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="5-suchen-und-prüfen"><a class="header" href="#5-suchen-und-prüfen">5. Suchen und Prüfen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Prüft, ob ein bestimmtes Element im Vektor existiert.
 // Vergleicht den Wert mittels des PartialEq-Traits.
 let hat_mia = warteschlange.contains(&amp;String::from("Mia"));
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="6-zugriff-auf-elemente"><a class="header" href="#6-zugriff-auf-elemente">6. Zugriff auf Elemente</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Unmittelbarer Zugriff über eckige Klammern.
 // ACHTUNG: Stürzt ab (panic!), falls der Index nicht existiert.
@@ -315,9 +296,9 @@ let kunde_referenz = &amp;warteschlange[0];
 // Sicherer Zugriff mit der .get()-Methode.
 // Gibt Some(&amp;T) zurück, wenn der Index existiert, andernfalls None.
 let sicherer_kunde = warteschlange.get(0); 
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="7-iteration-durchlaufen"><a class="header" href="#7-iteration-durchlaufen">7. Iteration (Durchlaufen)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Über die Elemente lesend iterieren. Die Elemente werden per Referenz (&amp;) geliehen.
 for kunde in &amp;warteschlange {
@@ -328,34 +309,34 @@ for kunde in &amp;warteschlange {
 for kunde in &amp;mut warteschlange {
     kunde.push_str(" (Wartend)");
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-häufige-stolperfallen-mit-vektoren"><a class="header" href="#-häufige-stolperfallen-mit-vektoren">⚠️ Häufige Stolperfallen mit Vektoren</a></h3>
 <h4 id="-falle-1-index-out-of-bounds-der-griff-ins-nichts"><a class="header" href="#-falle-1-index-out-of-bounds-der-griff-ins-nichts">❌ Falle 1: Index out of Bounds (Der Griff ins Nichts)</a></h4>
 <p>Wenn du direkt über eckige Klammern <code>[index]</code> auf ein Element zugreifst, das nicht existiert, stürzt dein Programm sofort ab.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let kunden = vec![String::from("Mia")];
 // let fehler = &amp;kunden[5]; // BOOM! Das Programm stürzt ab (panic!).
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Nutze <code>.get(index)</code>, um eine sichere <code>Option</code> zu erhalten:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>match kunden.get(5) {
     Some(kunde) =&gt; println!("Kunde an Index 5: {}", kunde),
     None =&gt; println!("Kein Kunde an diesem Index vorhanden!"),
 }
-<span class="boring">}</span></code></pre></pre>
-<h4 id="-falle-2-der-borrow-checker-schlägt-beim-Ändern-in-schleifen-zu"><a class="header" href="#-falle-2-der-borrow-checker-schlägt-beim-Ändern-in-schleifen-zu">❌ Falle 2: Der Borrow Checker schlägt beim Ändern in Schleifen zu</a></h4>
+<span class="boring">}</span></code></pre>
+<h4 id="-falle-2-der-borrow-checker-schlägt-beim-ändern-in-schleifen-zu"><a class="header" href="#-falle-2-der-borrow-checker-schlägt-beim-ändern-in-schleifen-zu">❌ Falle 2: Der Borrow Checker schlägt beim Ändern in Schleifen zu</a></h4>
 <p>Du kannst den Vektor nicht verändern, während du über ihn iterierst!</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut kunden = vec![String::from("Mia"), String::from("Leo")];
 for kunde in &amp;kunden {
     // kunden.push(String::from("Paul")); // FEHLER: Vektor ist bereits für die Schleife geliehen!
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Nutze eine Schleife, die Indizes durchläuft, oder sammle die neuen Elemente temporär in einem separaten Vektor, den du nach der Schleife anfügst:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut kunden = vec![String::from("Mia"), String::from("Leo")];
 let mut neue_kunden = Vec::new();
@@ -365,7 +346,7 @@ for kunde in &amp;kunden {
     }
 }
 kunden.append(&amp;mut neue_kunden); // Funktioniert problemlos!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-vergleich-mit-anderen-sprachen-für-umsteiger"><a class="header" href="#-vergleich-mit-anderen-sprachen-für-umsteiger">🔄 Vergleich mit anderen Sprachen (Für Umsteiger)</a></h3>
 <p>Wenn du bereits Programmiererfahrung hast, kannst du Vektoren direkt mit bekannten Strukturen vergleichen:</p>
 <ul>
@@ -379,7 +360,7 @@ kunden.append(&amp;mut neue_kunden); // Funktioniert problemlos!
 <li><strong>In JavaScript:</strong> Ein <code>Vec&lt;T&gt;</code> entspricht dem <strong>Array</strong>.
 <ul>
 <li><em>JavaScript:</em> <code>let kunden = ["Mia", "Leo"];</code> -&gt; <code>kunden.push("Paul");</code></li>
-<li><em>Der Unterschied:</em> Auch hier erzwingt Rust Typsicherheit. Zudem sind Vektoren in Rust nicht "sparse" – du kannst nicht einfach ein Element an Index 100 einfügen, wenn dein Vektor nur 2 Elemente hat.</li>
+<li><em>Der Unterschied:</em> Auch hier erzwingt Rust Typsicherheit. Zudem sind Vektoren in Rust nicht “sparse” – du kannst nicht einfach ein Element an Index 100 einfügen, wenn dein Vektor nur 2 Elemente hat.</li>
 </ul>
 </li>
 <li><strong>In Java:</strong> Ein <code>Vec&lt;T&gt;</code> entspricht einer <strong><code>ArrayList&lt;T&gt;</code></strong>.
@@ -389,11 +370,11 @@ kunden.append(&amp;mut neue_kunden); // Funktioniert problemlos!
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-micro-learning-2-das-beschriftete-regal-hashmaps--hashmapk-v"><a class="header" href="#-micro-learning-2-das-beschriftete-regal-hashmaps--hashmapk-v">🏷️ Micro-Learning 2: Das beschriftete Regal (HashMaps / <code>HashMap&lt;K, V&gt;</code>)</a></h2>
 <h3 id="-die-analogie-das-apotheker-regal-mit-beschrifteten-fächern"><a class="header" href="#-die-analogie-das-apotheker-regal-mit-beschrifteten-fächern">🧸 Die Analogie: Das Apotheker-Regal mit beschrifteten Fächern</a></h3>
-<p>In unserem Kiosk haben wir ein großes Holzregal. Darauf stehen viele Gläser voller Leckereien. Auf jedem Glas klebt ein großes, deutliches Schild: "Erdbeer-Lollis", "Zitronen-Bonbons" oder "Saure Gurken".</p>
-<p>Wenn ein Kunde "Erdbeer-Lollis" möchte, suchst du nicht das "Glas Nummer 3", sondern du liest einfach die Schilder ab! Das Schild ist der <strong>Schlüssel (Key)</strong>. Der Inhalt des Glases (z. B. 15 Stück) ist der <strong>Wert (Value)</strong>.</p>
+<p>In unserem Kiosk haben wir ein großes Holzregal. Darauf stehen viele Gläser voller Leckereien. Auf jedem Glas klebt ein großes, deutliches Schild: “Erdbeer-Lollis”, “Zitronen-Bonbons” oder “Saure Gurken”.</p>
+<p>Wenn ein Kunde “Erdbeer-Lollis” möchte, suchst du nicht das “Glas Nummer 3”, sondern du liest einfach die Schilder ab! Das Schild ist der <strong>Schlüssel (Key)</strong>. Der Inhalt des Glases (z. B. 15 Stück) ist der <strong>Wert (Value)</strong>.</p>
 <p>In Rust nennen wir das eine <strong>HashMap</strong>. Sie verbindet immer einen Schlüssel mit einem Wert im Heap-Speicher.</p>
 <h3 id="-der-speicher-deep-dive-wie-funktioniert-hashing"><a class="header" href="#-der-speicher-deep-dive-wie-funktioniert-hashing">🔍 Der Speicher-Deep-Dive: Wie funktioniert Hashing?</a></h3>
 <p>Wie findet die HashMap so schnell das richtige Fach?</p>
@@ -406,7 +387,7 @@ kunden.append(&amp;mut neue_kunden); // Funktioniert problemlos!
 <h3 id="-der-ultimative-spickzettel-hashmap-operationen"><a class="header" href="#-der-ultimative-spickzettel-hashmap-operationen">🛠️ Der ultimative Spickzettel: HashMap-Operationen</a></h3>
 <p>Hier sind die wichtigsten Werkzeuge für dein Verkaufsregal mit ausführlicher Erklärung:</p>
 <h4 id="1-importieren-und-initialisieren"><a class="header" href="#1-importieren-und-initialisieren">1. Importieren und Initialisieren</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Da HashMaps nicht in der absoluten Standard-Präludium-Bibliothek liegen, 
 // müssen wir sie explizit aus dem collections-Modul importieren.
@@ -418,9 +399,9 @@ let mut regal: HashMap&lt;String, u32&gt; = HashMap::new();
 
 // Erstellt eine leere HashMap mit einer reservierten Kapazität für 50 verschiedene Sorten.
 let mut regal_optimiert: HashMap&lt;String, u32&gt; = HashMap::with_capacity(50);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-elemente-einfügen-und-aktualisieren"><a class="header" href="#2-elemente-einfügen-und-aktualisieren">2. Elemente einfügen und aktualisieren</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Fügt ein Schlüssel-Wert-Paar in die HashMap ein.
 // Falls der Schlüssel bereits existierte, wird der alte Wert überschrieben 
@@ -437,9 +418,9 @@ regal.entry(String::from("Schokolade")).or_insert(10);
 // Das Sternchen (*) dereferenziert die Referenz, um den Wert direkt zu ändern.
 let lolli_eintrag = regal.entry(String::from("Lollis")).or_insert(0);
 *lolli_eintrag += 5; // Lolli-Bestand um 5 erhöht!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="3-elemente-auslesen-und-entfernen"><a class="header" href="#3-elemente-auslesen-und-entfernen">3. Elemente auslesen und entfernen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Holt den Wert zu einem Schlüssel.
 // Gibt Option&lt;&amp;V&gt; zurück: Some(&amp;wert) falls vorhanden, None falls nicht vorhanden.
@@ -451,9 +432,9 @@ let geloeschter_wert = regal.remove("Lollis"); // Gibt Some(55) zurück, Lollis 
 
 // Löscht alle Einträge aus der HashMap, behält aber die Kapazität bei.
 regal.clear();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="4-informationen-abfragen"><a class="header" href="#4-informationen-abfragen">4. Informationen abfragen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Gibt die Anzahl der Schlüssel-Wert-Paare in der HashMap zurück.
 let sorten_anzahl = regal.len();
@@ -464,9 +445,9 @@ let leer = regal.is_empty();
 // Prüft, ob ein bestimmter Schlüssel in der HashMap existiert.
 // Liefert true oder false. Ist performanter als .get().is_some().
 let hat_schokolade = regal.contains_key("Schokolade");
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="5-iteration-durchlaufen"><a class="header" href="#5-iteration-durchlaufen">5. Iteration (Durchlaufen)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Nur über alle Schlüssel (Sortennamen) iterieren.
 for sorte in regal.keys() {
@@ -483,41 +464,41 @@ for bestand in regal.values() {
 for (sorte, bestand) in &amp;regal {
     println!("Sorte: {}, Vorhanden: {}", sorte, bestand);
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-häufige-stolperfallen-mit-hashmaps"><a class="header" href="#-häufige-stolperfallen-mit-hashmaps">⚠️ Häufige Stolperfallen mit HashMaps</a></h3>
 <h4 id="-falle-1-die-reihenfolge-ist-zufällig"><a class="header" href="#-falle-1-die-reihenfolge-ist-zufällig">❌ Falle 1: Die Reihenfolge ist zufällig!</a></h4>
 <p>Eine HashMap speichert ihre Elemente <em>nicht</em> in der Reihenfolge ab, in der du sie einfügst. Wenn du eine Schleife über das Regal laufen lässt, kommen die Sorten jedes Mal in einer anderen Reihenfolge heraus!</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert("Erdbeere", 1);
 regal.insert("Zitrone", 2);
 regal.insert("Cola", 3);
 // Schleife gibt vielleicht "Cola", "Erdbeere", "Zitrone" aus!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Wenn die Reihenfolge wichtig ist, nutze zusätzlich einen Vektor oder eine <code>BTreeMap</code> aus der Standardbibliothek:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::collections::BTreeMap;
 // Ein BTreeMap sortiert die Schlüssel automatisch alphabetisch bzw. nach ihrer natürlichen Ordnung.
 let mut sortiertes_regal: BTreeMap&lt;String, u32&gt; = BTreeMap::new();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="-falle-2-ownership-konflikte-mit-keys"><a class="header" href="#-falle-2-ownership-konflikte-mit-keys">❌ Falle 2: Ownership-Konflikte mit Keys</a></h4>
 <p>Wenn du einen <code>String</code> als Schlüssel in eine HashMap einfügst, „frisst“ die HashMap den String auf. Du verlierst das Besitzrecht (Ownership).</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let name = String::from("Gummibärchen");
 let mut regal = HashMap::new();
 regal.insert(name, 10);
 // println!("{}", name); // FEHLER: 'name' wurde in die HashMap verschoben (moved)!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Gib der HashMap eine Kopie des Strings mit <code>.clone()</code> oder erstelle den String erst beim Einfügen:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let name = String::from("Gummibärchen");
 let mut regal = HashMap::new();
 regal.insert(name.clone(), 10); // name bleibt weiterhin verwendbar!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-vergleich-mit-anderen-sprachen-für-umsteiger-1"><a class="header" href="#-vergleich-mit-anderen-sprachen-für-umsteiger-1">🔄 Vergleich mit anderen Sprachen (Für Umsteiger)</a></h3>
 <p>Hier siehst du, wie die <code>HashMap&lt;K, V&gt;</code> in anderen Sprachen heißt und funktioniert:</p>
 <ul>
@@ -540,39 +521,39 @@ regal.insert(name.clone(), 10); // name bleibt weiterhin verwendbar!
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-micro-learning-3-der-griff-ins-bonbonglas-optiont"><a class="header" href="#-micro-learning-3-der-griff-ins-bonbonglas-optiont">🍯 Micro-Learning 3: Der Griff ins Bonbonglas (<code>Option&lt;T&gt;</code>)</a></h2>
-<h3 id="-die-analogie-die-Überraschung-beim-hineingreifen"><a class="header" href="#-die-analogie-die-Überraschung-beim-hineingreifen">🧸 Die Analogie: Die Überraschung beim Hineingreifen</a></h3>
-<p>Du nimmst das Glas mit der Aufschrift "Erdbeer-Lollis" und greifst blind hinein. Es gibt genau zwei Möglichkeiten, was passieren kann:</p>
+<h3 id="-die-analogie-die-überraschung-beim-hineingreifen"><a class="header" href="#-die-analogie-die-überraschung-beim-hineingreifen">🧸 Die Analogie: Die Überraschung beim Hineingreifen</a></h3>
+<p>Du nimmst das Glas mit der Aufschrift “Erdbeer-Lollis” und greifst blind hinein. Es gibt genau zwei Möglichkeiten, was passieren kann:</p>
 <ol>
 <li><strong>Some (Etwas):</strong> Deine Finger spüren etwas. Du ziehst ein Erdbeer-Bonbon heraus.</li>
 <li><strong>None (Nichts):</strong> Deine Hand greift ins Leere. Das Glas ist komplett leer!</li>
 </ol>
 <p>Rust zwingt dich dazu, <strong>beide Möglichkeiten</strong> einzuplanen. Der Computer darf nicht einfach davon ausgehen, dass immer ein Bonbon da ist, sonst würde er abstürzen, wenn er ins Leere greift!</p>
 <h3 id="-der-speicher-deep-dive-warum-rust-keine-null-pointer-hat"><a class="header" href="#-der-speicher-deep-dive-warum-rust-keine-null-pointer-hat">🔍 Der Speicher-Deep-Dive: Warum Rust keine NULL-Pointer hat</a></h3>
-<p>In vielen anderen Programmiersprachen gibt es das Konzept von <code>null</code> (ein Zeiger, der auf nichts zeigt). Wenn du versehentlich auf ein <code>null</code>-Objekt zugreifst, stürzt die Anwendung ab (z. B. <code>NullPointerException</code>). Der Erfinder dieses Konzepts, Tony Hoare, nannte es seinen "Milliarden-Dollar-Fehler".</p>
+<p>In vielen anderen Programmiersprachen gibt es das Konzept von <code>null</code> (ein Zeiger, der auf nichts zeigt). Wenn du versehentlich auf ein <code>null</code>-Objekt zugreifst, stürzt die Anwendung ab (z. B. <code>NullPointerException</code>). Der Erfinder dieses Konzepts, Tony Hoare, nannte es seinen “Milliarden-Dollar-Fehler”.</p>
 <p>Rust hat <strong>kein</strong> <code>null</code>. Stattdessen gibt es den Datentyp <code>Option&lt;T&gt;</code>, der ein Enum ist:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>enum Option&lt;T&gt; {
     Some(T),
     None,
 }
-<span class="boring">}</span></code></pre></pre>
-<p>Der Compiler zwingt dich, das Enum explizit auszupacken. So wird verhindert, dass du aus Versehen auf "Nichts" zugreifst.</p>
+<span class="boring">}</span></code></pre>
+<p>Der Compiler zwingt dich, das Enum explizit auszupacken. So wird verhindert, dass du aus Versehen auf “Nichts” zugreifst.</p>
 <h3 id="-der-ultimative-spickzettel-option-operationen-im-detail"><a class="header" href="#-der-ultimative-spickzettel-option-operationen-im-detail">🛠️ Der ultimative Spickzettel: Option-Operationen im Detail</a></h3>
 <p>Hier sind alle wichtigen Methoden zur Handhabung von <code>Option</code> mit detaillierten Code-Beispielen:</p>
 <h4 id="1-erstellen-von-options"><a class="header" href="#1-erstellen-von-options">1. Erstellen von Options</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Erstellt eine Option, die einen String enthält (Erfolgsfall)
 let lolli: Option&lt;String&gt; = Some(String::from("Erdbeer-Lolli"));
 
 // Erstellt eine Option, die keinen Inhalt hat (Leerfall)
 let leeres_glas: Option&lt;String&gt; = None;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-auspacken-und-verarbeiten-pattern-matching"><a class="header" href="#2-auspacken-und-verarbeiten-pattern-matching">2. Auspacken und Verarbeiten (Pattern Matching)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Der sichere Match-Wächter (Das Schweizer Taschenmesser)
 // Du musst zwingend beide Pfade (Some und None) abdecken, sonst meckert der Compiler!
@@ -586,18 +567,18 @@ match lolli {
 if let Some(ref bonbon) = lolli {
     println!("Schnellzugriff: Ich habe ein {}", bonbon);
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="3-zustand-abfragen"><a class="header" href="#3-zustand-abfragen">3. Zustand abfragen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Gibt true zurück, wenn ein Wert vorhanden ist (Some), andernfalls false.
 let hat_inhalt = lolli.is_some();
 
 // Gibt true zurück, wenn kein Wert vorhanden ist (None), andernfalls false.
 let ist_leer = lolli.is_none();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="4-standardwerte-setzen-sicheres-entpacken"><a class="header" href="#4-standardwerte-setzen-sicheres-entpacken">4. Standardwerte setzen (Sicheres Entpacken)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Entpackt den Wert. Wenn die Option None ist, wird das Argument als Standardwert zurückgegeben.
 // Achtung: Das Argument wird immer ausgewertet (auch wenn Some vorliegt).
@@ -610,9 +591,9 @@ let naschwerk_lazy = leeres_glas.clone().unwrap_or_else(|| {
     // Dieser Code läuft NUR, wenn leeres_glas wirklich None ist!
     String::from("Mühsam frisch hergestellter Lolli")
 });
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="5-werte-transformieren-und-filtern"><a class="header" href="#5-werte-transformieren-und-filtern">5. Werte transformieren und filtern</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// .map() transformiert den inneren Wert, falls vorhanden (Some).
 // Wenn None vorliegt, bleibt das Ergebnis None.
@@ -622,9 +603,9 @@ let laenge: Option&lt;usize&gt; = lolli.as_ref().map(|s| s.len());
 // .filter() wertet eine Bedingung aus.
 // Gibt Some(Wert) zurück, wenn der Wert die Bedingung erfüllt, andernfalls None.
 let saures_bonbon = lolli.clone().filter(|s| s.contains("Sauer"));
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="6-werte-manipulieren-besonders-nützlich-bei-veränderbaren-options"><a class="header" href="#6-werte-manipulieren-besonders-nützlich-bei-veränderbaren-options">6. Werte manipulieren (Besonders nützlich bei veränderbaren Options)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut mein_naschglas = Some(String::from("Apfel-Bonbon"));
 
@@ -634,9 +615,9 @@ let entnommenes_bonbon = mein_naschglas.take(); // entnommenes_bonbon ist Some("
 
 // .replace() legt einen neuen Wert in eine veränderbare Option und gibt den alten Wert als Option zurück.
 let vorheriger_inhalt = mein_naschglas.replace(String::from("Cola-Lolli")); // mein_naschglas ist Some("Cola-Lolli"), vorheriger_inhalt ist None
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="7-verkettung-mit-dem----operator"><a class="header" href="#7-verkettung-mit-dem----operator">7. Verkettung mit dem ? - Operator</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Wenn eine Methode oder Funktion Option zurückgibt, kann das ? an einen Aufruf gehängt werden.
 // Falls der Aufruf None liefert, bricht die gesamte Funktion sofort ab und gibt None zurück.
@@ -644,15 +625,15 @@ fn hole_bonbon_laenge(regal: &amp;HashMap&lt;String, u32&gt;, artikel: &amp;str)
     let anzahl = regal.get(artikel)?; // Bricht sofort ab, falls Artikel nicht in der HashMap existiert
     Some(anzahl.to_string().len())
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-häufige-stolperfallen-mit-option"><a class="header" href="#-häufige-stolperfallen-mit-option">⚠️ Häufige Stolperfallen mit Option</a></h3>
 <h4 id="-falle-1-unwrap-blind-vertrauen"><a class="header" href="#-falle-1-unwrap-blind-vertrauen">❌ Falle 1: <code>.unwrap()</code> blind vertrauen</a></h4>
 <p>Wenn du <code>.unwrap()</code> auf eine Variable anwendest, die <code>None</code> ist, stürzt dein Programm augenblicklich ab.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let leeres_glas: Option&lt;String&gt; = None;
 // let bonbon = leeres_glas.unwrap(); // PANIC: Das Programm stürzt ab!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Nutze immer <code>match</code>, <code>if let</code>, <code>.unwrap_or()</code> oder <code>.unwrap_or_else()</code>. Verwende <code>.unwrap()</code> nur in Tests oder wenn du durch vorherigen Code mathematisch beweisen kannst, dass die Variable niemals <code>None</code> sein kann.</p>
 <h3 id="-vergleich-mit-anderen-sprachen-für-umsteiger-2"><a class="header" href="#-vergleich-mit-anderen-sprachen-für-umsteiger-2">🔄 Vergleich mit anderen Sprachen (Für Umsteiger)</a></h3>
 <p>So wird das Konzept von Vorhandensein/Fehlen (Option) in anderen Sprachen gehandhabt:</p>
@@ -676,13 +657,13 @@ fn hole_bonbon_laenge(regal: &amp;HashMap&lt;String, u32&gt;, artikel: &amp;str)
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-micro-learning-4-das-bezahlen-an-der-kasse-resultt-e"><a class="header" href="#-micro-learning-4-das-bezahlen-an-der-kasse-resultt-e">🪙 Micro-Learning 4: Das Bezahlen an der Kasse (<code>Result&lt;T, E&gt;</code>)</a></h2>
 <h3 id="-die-analogie-der-kassiervorgang"><a class="header" href="#-die-analogie-der-kassiervorgang">🧸 Die Analogie: Der Kassiervorgang</a></h3>
 <p>Ein Kind steht an der Kasse und möchte ein Bonbon für 50 Cent kaufen. Es legt eine Münze auf den Tresen. Der Kassiervorgang ist eine Aktion, die entweder gelingt oder schiefgeht:</p>
 <ol>
 <li><strong>Ok:</strong> Das Kind hat 50 Cent (oder mehr). Die Kasse rattert, du nimmst das Geld und gibst eventuell Wechselgeld zurück. <code>Ok(Wechselgeld)</code></li>
-<li><strong>Err (Error):</strong> Das Kind hat nur 20 Cent dabei. Du musst den Kauf abbrechen und sagen: "Halt stop, das reicht nicht!" <code>Err("Nicht genug Taschengeld!")</code></li>
+<li><strong>Err (Error):</strong> Das Kind hat nur 20 Cent dabei. Du musst den Kauf abbrechen und sagen: “Halt stop, das reicht nicht!” <code>Err("Nicht genug Taschengeld!")</code></li>
 </ol>
 <p>Ein <code>Result</code> speichert also entweder den Erfolgswert (<code>Ok</code>) oder eine Fehlermeldung (<code>Err</code>).</p>
 <h3 id="-der-speicher-deep-dive-gesteuerte-fehler-vs-katastrophen"><a class="header" href="#-der-speicher-deep-dive-gesteuerte-fehler-vs-katastrophen">🔍 Der Speicher-Deep-Dive: Gesteuerte Fehler vs. Katastrophen</a></h3>
@@ -694,7 +675,7 @@ fn hole_bonbon_laenge(regal: &amp;HashMap&lt;String, u32&gt;, artikel: &amp;str)
 <h3 id="-der-ultimative-spickzettel-result-operationen-im-detail"><a class="header" href="#-der-ultimative-spickzettel-result-operationen-im-detail">🛠️ Der ultimative Spickzettel: Result-Operationen im Detail</a></h3>
 <p>Hier sind die wichtigsten Werkzeuge für Fehlerbehandlung an der Kasse mit detaillierten Code-Beispielen:</p>
 <h4 id="1-definieren-und-erzeugen"><a class="header" href="#1-definieren-und-erzeugen">1. Definieren und Erzeugen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Ein Result definieren. Es hat zwei generische Typen: den Erfolgstyp und den Fehlertyp.
 // u32 ist der Typ für das Wechselgeld (Erfolg), String ist der Typ für den Fehlertext (Fehler).
@@ -705,9 +686,9 @@ fn bezahlen(preis: u32, gegeben: u32) -&gt; Result&lt;u32, String&gt; {
         Err(String::from("Fehler: Zu wenig Geld eingeworfen!")) // Fehler
     }
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-fehlerbehandlung-pattern-matching"><a class="header" href="#2-fehlerbehandlung-pattern-matching">2. Fehlerbehandlung (Pattern Matching)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Das komplette Match auf Result. Garantiert, dass der Fehlerfall niemals ignoriert wird.
 match bezahlen(50, 100) {
@@ -724,9 +705,9 @@ if let Ok(geld) = bezahlen(50, 100) {
 if let Err(fehler) = bezahlen(50, 20) {
     println!("Kunde abgewiesen wegen: {}", fehler);
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="3-zustand-abfragen-1"><a class="header" href="#3-zustand-abfragen-1">3. Zustand abfragen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis = bezahlen(50, 20);
 
@@ -735,9 +716,9 @@ let hat_geklappt = ergebnis.is_ok(); // false
 
 // Gibt true zurück, wenn das Resultat Err(E) ist.
 let ist_fehlgeschlagen = ergebnis.is_err(); // true
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="4-standardwerte-setzen"><a class="header" href="#4-standardwerte-setzen">4. Standardwerte setzen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Falls die Bezahlung fehlschlägt, tun wir so, als ob 0 Cent Wechselgeld zurückkamen.
 let wechselgeld_sicher = bezahlen(50, 20).unwrap_or(0);
@@ -748,9 +729,9 @@ let wechselgeld_lazy = bezahlen(50, 20).unwrap_or_else(|e| {
     println!("Fehler abgefangen und protokolliert: {}", e);
     0 // Fallback-Wert
 });
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="5-werte-transformieren"><a class="header" href="#5-werte-transformieren">5. Werte transformieren</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// .map() transformiert den Erfolgswert (Ok), lässt Fehler aber unverändert.
 // Hier: Cent-Betrag in Euro (f64) umrechnen
@@ -759,16 +740,16 @@ let wechselgeld_in_euro: Result&lt;f64, String&gt; = bezahlen(50, 100).map(|cent
 // .map_err() transformiert NUR den Fehlerwert, lässt Erfolge aber unverändert.
 // Nützlich, um Fehlermeldungen mit Kontext anzureichern.
 let fehler_mit_kontext: Result&lt;u32, String&gt; = bezahlen(50, 20).map_err(|e| format!("Kassenstation 1 - {}", e));
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="6-umwandlung-in-option"><a class="header" href="#6-umwandlung-in-option">6. Umwandlung in Option</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Konvertiert ein Result&lt;T, E&gt; in ein Option&lt;T&gt;.
 // Aus Ok(Wert) wird Some(Wert), aus Err(Fehler) wird None. Der Fehlerwert wird verworfen.
 let option_wechselgeld: Option&lt;u32&gt; = bezahlen(50, 100).ok();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="7-fehlerweiterleitung-der----operator"><a class="header" href="#7-fehlerweiterleitung-der----operator">7. Fehlerweiterleitung (Der ? - Operator)</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Das ? kann an Funktionen gehängt werden, die ein Result liefern.
 // Wenn das Resultat Err ist, bricht die aktuelle Funktion sofort ab 
@@ -778,22 +759,22 @@ fn einkauf_abwickeln() -&gt; Result&lt;String, String&gt; {
     let wechselgeld = bezahlen(50, 20)?; 
     Ok(format!("Erfolg! Wechselgeld: {} Cent", wechselgeld))
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-häufige-stolperfallen-mit-result"><a class="header" href="#-häufige-stolperfallen-mit-result">⚠️ Häufige Stolperfallen mit Result</a></h3>
 <h4 id="-falle-1-fehler-ignorieren-der-compiler-schimpft"><a class="header" href="#-falle-1-fehler-ignorieren-der-compiler-schimpft">❌ Falle 1: Fehler ignorieren (Der Compiler schimpft)</a></h4>
 <p>Wenn eine Funktion ein <code>Result</code> zurückgibt, <em>musst</em> du es verwenden. Rust lässt dich den Wert nicht einfach ignorieren, sonst warnt dich der Compiler mit der Meldung <code>unused Result that must be used</code>.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// bezahlen(50, 20); // Warnung: unused `Result` that must be used!
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><strong>Die Lösung:</strong> Nimm den Wert entgegen, behandle ihn oder markiere ihn bewusst als ignoriert mit <code>let _ = bezahlen(50, 20);</code>.</p>
 <h4 id="-falle-2-der--operator-in-main"><a class="header" href="#-falle-2-der--operator-in-main">❌ Falle 2: Der <code>?</code>-Operator in <code>main</code></a></h4>
 <p>Du versuchst, den <code>?</code>-Operator in einer Funktion zu nutzen, die kein <code>Result</code> zurückgibt (z. B. in einer einfachen <code>fn main()</code>).</p>
-<pre><pre class="playground"><code class="language-rust">/*
+<pre class="playground"><code class="language-rust">/*
 fn main() {
     let wechselgeld = bezahlen(50, 20)?; // FEHLER: the `?` operator can only be used in a function that returns `Result` or `Option`
 }
-*/</code></pre></pre>
+*/</code></pre>
 <p><strong>Die Lösung:</strong> Behandle den Fehler in <code>main</code> mittels <code>match</code> oder <code>if let</code>, anstatt ihn weiterzuleiten, oder ändere den Rückgabetyp von <code>main</code> auf <code>Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt;</code>.</p>
 <h3 id="-vergleich-mit-anderen-sprachen-für-umsteiger-3"><a class="header" href="#-vergleich-mit-anderen-sprachen-für-umsteiger-3">🔄 Vergleich mit anderen Sprachen (Für Umsteiger)</a></h3>
 <p>Die strukturierte Fehlerbehandlung mit <code>Result</code> weicht stark vom klassischen Exceptions-Modell ab:</p>
@@ -811,7 +792,7 @@ except ValueError as e:
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-micro-learning-5-die-bonbontüte-mehrere-rückgabewerte--debug-ausgabe"><a class="header" href="#-micro-learning-5-die-bonbontüte-mehrere-rückgabewerte--debug-ausgabe">🛍️ Micro-Learning 5: Die Bonbontüte (Mehrere Rückgabewerte &amp; Debug-Ausgabe)</a></h2>
 <h3 id="-die-analogie-die-papiertüte"><a class="header" href="#-die-analogie-die-papiertüte">🧸 Die Analogie: Die Papiertüte</a></h3>
 <p>Wenn ein Kunde eine Süßigkeit kauft und Wechselgeld bekommt, gibst du ihm nicht beides einzeln mit leeren Händen. Stattdessen packst du beides zusammen in eine kleine Papiertüte. Der Kunde nimmt die Papiertüte entgegen und packt sie zu Hause aus.</p>
@@ -824,16 +805,16 @@ except ValueError as e:
 <h3 id="-der-ultimative-spickzettel-tupel--ausgabe-operationen-im-detail"><a class="header" href="#-der-ultimative-spickzettel-tupel--ausgabe-operationen-im-detail">🛠️ Der ultimative Spickzettel: Tupel &amp; Ausgabe-Operationen im Detail</a></h3>
 <p>Hier sind die wichtigsten Werkzeuge für Tupel und deren Konsolen-Ausgabe:</p>
 <h4 id="1-erstellen-von-tupeln"><a class="header" href="#1-erstellen-von-tupeln">1. Erstellen von Tupeln</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Ein Tupel kann verschiedene Typen mischen (hier: String, u32, bool)
 let tuete: (String, u32, bool) = (String::from("Saures Bonbon"), 50, true);
 
 // Das leere Tupel (Unit-Typ). Repräsentiert das Fehlen eines Werts.
 let leeres_tupel: () = ();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="2-tupel-auspacken-und-ansprechen"><a class="header" href="#2-tupel-auspacken-und-ansprechen">2. Tupel auspacken und ansprechen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Komplettes Auspacken (Destrukturierung)
 let (artikel, preis, vorraetig) = tuete.clone();
@@ -843,9 +824,9 @@ println!("Artikel: {}, Preis: {} Cent", artikel, preis);
 let name_der_ware = tuete.0;  // "Saures Bonbon"
 let cent_betrag = tuete.1;    // 50
 let ist_verfuegbar = tuete.2; // true
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="3-tupel-als-funktions-rückgabewert"><a class="header" href="#3-tupel-als-funktions-rückgabewert">3. Tupel als Funktions-Rückgabewert</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Gibt ein Tupel aus Name und Preis zurück
 fn einkauf_einpacken() -&gt; (String, u32) {
@@ -853,10 +834,10 @@ fn einkauf_einpacken() -&gt; (String, u32) {
     let preis = 60;
     (name, preis) // Kein Semikolon = Rückgabe!
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="4-die-debug-ausgabe--und--die-debug-brille"><a class="header" href="#4-die-debug-ausgabe--und--die-debug-brille">4. Die Debug-Ausgabe {:?} und {:#?} (Die Debug-Brille)</a></h4>
 <p>Weil komplexe Typen wie Tupel, Vektoren, <code>Option</code> und <code>Result</code> keine feste Textdarstellung haben, weigert sich Rust, sie mit dem Standard-Platzhalter <code>{}</code> auszugeben. Wir müssen die Debug-Brille aufsetzen!</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let test_tupel = (String::from("Kaugummi"), 20);
 let test_option = Some(15);
@@ -872,7 +853,7 @@ let mut regal = HashMap::new();
 regal.insert(String::from("Apfel-Lolli"), 10);
 regal.insert(String::from("Zitronen-Bonbon"), 30);
 println!("Unser Regal:\n{:#?}", regal);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="-vergleich-mit-anderen-sprachen-für-umsteiger-4"><a class="header" href="#-vergleich-mit-anderen-sprachen-für-umsteiger-4">🔄 Vergleich mit anderen Sprachen (Für Umsteiger)</a></h3>
 <p>Tupel sind eine schnelle Allzweck-Waffe, die in fast allen modernen Sprachen vorhanden ist:</p>
 <ul>
@@ -895,7 +876,7 @@ println!("Unser Regal:\n{:#?}", regal);
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="-mitmach-workshop-programmiere-deinen-kiosk"><a class="header" href="#-mitmach-workshop-programmiere-deinen-kiosk">🛠️ Mitmach-Workshop: Programmiere deinen Kiosk!</a></h2>
 <p>Jetzt bist du dran! Wir bauen ein vollständiges Kiosk-Programm. Keine Angst: Wir verraten dir keine fertigen Codelösungen. Du bist der Architekt und die KI ist dein Bauhelfer.</p>
 <h3 id="-dein-notizzettel-das-ziel-des-workshops"><a class="header" href="#-dein-notizzettel-das-ziel-des-workshops">📝 Dein Notizzettel (Das Ziel des Workshops)</a></h3>
@@ -906,7 +887,7 @@ println!("Unser Regal:\n{:#?}", regal);
 <li>Eine Warteschlange für Kunden haben.</li>
 <li>Eine Kasse haben, die Geld einnimmt und Wechselgeld berechnet.</li>
 </ol>
-<hr />
+<hr>
 <h3 id="-schritt-für-schritt-bauanleitung"><a class="header" href="#-schritt-für-schritt-bauanleitung">🧱 Schritt-für-Schritt-Bauanleitung</a></h3>
 <h4 id="-schritt-1-die-fehler-definieren-enum"><a class="header" href="#-schritt-1-die-fehler-definieren-enum">🏃 Schritt 1: Die Fehler definieren (Enum)</a></h4>
 <p>Zuerst überlegen wir, was in unserem Kiosk alles schiefgehen kann. Erstelle ein <strong>Enum</strong> mit dem Namen <code>KioskFehler</code>. Es soll folgende Zustände darstellen können:</p>
@@ -956,21 +937,21 @@ Das ist das Herzstück! Gehe logisch vor wie ein echter Kioskbesitzer:
 <h4 id="-schritt-4-der-testlauf-in-main"><a class="header" href="#-schritt-4-der-testlauf-in-main">🚦 Schritt 4: Der Testlauf in <code>main</code></a></h4>
 <p>Schreibe eine <code>main</code>-Funktion und spiele den Ablauf durch:</p>
 <ol>
-<li>Erstelle einen Kiosk namens "Magischer Kiosk".</li>
-<li>Liefere 5 "Erdbeer-Lollis" für je 50 Cent und 1 "Super-Schokolade" für 150 Cent.</li>
-<li>Stelle "Mia", "Leo" und "Noah" in die Warteschlange.</li>
-<li>Lass "Mia" einen Lolli für 100 Cent kaufen (Erfolg! Wechselgeld: 50 Cent).</li>
-<li>Lass "Leo" versuchen, Schokolade für 100 Cent zu kaufen (Fehler! Zu wenig Geld).</li>
+<li>Erstelle einen Kiosk namens “Magischer Kiosk”.</li>
+<li>Liefere 5 “Erdbeer-Lollis” für je 50 Cent und 1 “Super-Schokolade” für 150 Cent.</li>
+<li>Stelle “Mia”, “Leo” und “Noah” in die Warteschlange.</li>
+<li>Lass “Mia” einen Lolli für 100 Cent kaufen (Erfolg! Wechselgeld: 50 Cent).</li>
+<li>Lass “Leo” versuchen, Schokolade für 100 Cent zu kaufen (Fehler! Zu wenig Geld).</li>
 <li>Gib nach jedem Kaufversuch den Status des Kiosks (Kassenbestand, Warteschlange) aus, um zu sehen, ob alles geklappt hat.</li>
 </ol>
-<hr />
-<h2 id="-das-große-Übungs-archiv-10-Übungen-zum-vertiefen"><a class="header" href="#-das-große-Übungs-archiv-10-Übungen-zum-vertiefen">📝 Das große Übungs-Archiv (10 Übungen zum Vertiefen)</a></h2>
+<hr>
+<h2 id="-das-große-übungs-archiv-10-übungen-zum-vertiefen"><a class="header" href="#-das-große-übungs-archiv-10-übungen-zum-vertiefen">📝 Das große Übungs-Archiv (10 Übungen zum Vertiefen)</a></h2>
 <p>Jetzt festigen wir das Gelernte systematisch mit 10 praktischen Aufgaben. Jede Aufgabe enthält ein reales Kiosk-Szenario, eine klare Zielformulierung, eine Übersicht über typische Stolpersteine beim Programmieren, gestaffelte didaktische Tipps, ein mentales Modell mit Pseudocode sowie eine Analyse möglicher Compilerfehler.</p>
 <p>Erstelle für diese Übungen eine neue Datei (z. B. <code>uebungen_phase3.rs</code>) und versuche, die Vorlagen zum Laufen zu bringen!</p>
-<hr />
-<h3 id="-Übung-1-leicht-die-bonbon-sortiermaschine-vec--option"><a class="header" href="#-Übung-1-leicht-die-bonbon-sortiermaschine-vec--option">🟢 Übung 1 (Leicht): Die Bonbon-Sortiermaschine (<code>Vec</code> &amp; <code>Option</code>)</a></h3>
+<hr>
+<h3 id="-übung-1-leicht-die-bonbon-sortiermaschine-vec--option"><a class="header" href="#-übung-1-leicht-die-bonbon-sortiermaschine-vec--option">🟢 Übung 1 (Leicht): Die Bonbon-Sortiermaschine (<code>Vec</code> &amp; <code>Option</code>)</a></h3>
 <h4 id="-das-kiosk-szenario"><a class="header" href="#-das-kiosk-szenario">🧸 Das Kiosk-Szenario</a></h4>
-<p>Der Lieferant bringt eine unsortierte Holzkiste. Darin befinden sich Süßigkeiten, aber auch jede Menge Staub, alte Verpackungen und Kieselsteine. Wir wollen eine Maschine programmieren, die diese Kiste automatisch sortiert. Nur echte Süßigkeiten ("Lolli", "Kaugummi", "Bonbon") kommen in unsere Auslage.</p>
+<p>Der Lieferant bringt eine unsortierte Holzkiste. Darin befinden sich Süßigkeiten, aber auch jede Menge Staub, alte Verpackungen und Kieselsteine. Wir wollen eine Maschine programmieren, die diese Kiste automatisch sortiert. Nur echte Süßigkeiten (“Lolli”, “Kaugummi”, “Bonbon”) kommen in unsere Auslage.</p>
 <h4 id="-das-ziel"><a class="header" href="#-das-ziel">🎯 Das Ziel</a></h4>
 <p>Schreibe eine Funktion <code>sortiere_kiste(kiste: Vec&lt;String&gt;) -&gt; Option&lt;Vec&lt;String&gt;&gt;</code>. Sie soll die Kiste filtern.</p>
 <ul>
@@ -1001,14 +982,14 @@ Das ist das Herzstück! Gehe logisch vor wie ein echter Kioskbesitzer:
 </code></pre>
 <h4 id="-compiler-fehlermeldungen-verstehen"><a class="header" href="#-compiler-fehlermeldungen-verstehen">🔍 Compiler-Fehlermeldungen verstehen</a></h4>
 <p>Wenn du folgendes schreibst:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// error[E0308]: mismatched types
 // expected enum `Option&lt;Vec&lt;String&gt;&gt;`
 // found struct `Vec&lt;String&gt;`
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><em>Was bedeutet das?</em> Du hast vergessen, den Vektor in eine <code>Option</code> einzupacken. Korrigiere dies, indem du <code>Some(suesigkeiten)</code> zurückgibst!</p>
-<pre><pre class="playground"><code class="language-rust">fn sortiere_kiste(kiste: Vec&lt;String&gt;) -&gt; Option&lt;Vec&lt;String&gt;&gt; {
+<pre class="playground"><code class="language-rust">fn sortiere_kiste(kiste: Vec&lt;String&gt;) -&gt; Option&lt;Vec&lt;String&gt;&gt; {
     let mut suesigkeiten = Vec::new();
     
     for gegenstand in kiste {
@@ -1040,11 +1021,11 @@ fn main() {
     assert!(sortiere_kiste(leere_kiste).is_none());
     
     println!("🎉 Übung 1 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-2-leicht-der-kiosk-eröffnungs-check-option--unwrap_or"><a class="header" href="#-Übung-2-leicht-der-kiosk-eröffnungs-check-option--unwrap_or">🟢 Übung 2 (Leicht): Der Kiosk-Eröffnungs-Check (<code>Option</code> &amp; <code>.unwrap_or</code>)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-2-leicht-der-kiosk-eröffnungs-check-option--unwrap_or"><a class="header" href="#-übung-2-leicht-der-kiosk-eröffnungs-check-option--unwrap_or">🟢 Übung 2 (Leicht): Der Kiosk-Eröffnungs-Check (<code>Option</code> &amp; <code>.unwrap_or</code>)</a></h3>
 <h4 id="-das-kiosk-szenario-1"><a class="header" href="#-das-kiosk-szenario-1">🧸 Das Kiosk-Szenario</a></h4>
-<p>Wir erstellen ein Online-Formular zur Kiosk-Registrierung. Viele Kioskbesitzer geben keinen Wunschnamen an. Da wir aber auf der Webseite nicht "Kiosk: None" stehen haben wollen, vergeben wir automatisch den Standardnamen "Mein Dorfkiosk", wenn kein Name eingetragen wurde.</p>
+<p>Wir erstellen ein Online-Formular zur Kiosk-Registrierung. Viele Kioskbesitzer geben keinen Wunschnamen an. Da wir aber auf der Webseite nicht “Kiosk: None” stehen haben wollen, vergeben wir automatisch den Standardnamen “Mein Dorfkiosk”, wenn kein Name eingetragen wurde.</p>
 <h4 id="-das-ziel-1"><a class="header" href="#-das-ziel-1">🎯 Das Ziel</a></h4>
 <p>Schreibe eine Funktion <code>hole_kiosk_name(eingabe: Option&lt;String&gt;) -&gt; String</code>. Sie soll den Namen auspacken oder eben den Standardnamen zurückliefern.</p>
 <h4 id="-typische-stolpersteine-1"><a class="header" href="#-typische-stolpersteine-1">⚠️ Typische Stolpersteine</a></h4>
@@ -1062,13 +1043,13 @@ fn main() {
     Gib aus: Inhalt von 'eingabe' ODER den Standard-String "Mein Dorfkiosk"
 </code></pre>
 <h4 id="-compiler-fehlermeldungen-verstehen-1"><a class="header" href="#-compiler-fehlermeldungen-verstehen-1">🔍 Compiler-Fehlermeldungen verstehen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// error[E0308]: mismatched types
 // expected struct `String`, found `&amp;str`
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><em>Was bedeutet das?</em> Du hast versucht, <code>.unwrap_or("Mein Dorfkiosk")</code> zu schreiben. Rust erzwingt, dass beide Seiten denselben Typ haben. Schreibe stattdessen <code>.unwrap_or(String::from("Mein Dorfkiosk"))</code>.</p>
-<pre><pre class="playground"><code class="language-rust">fn hole_kiosk_name(eingabe: Option&lt;String&gt;) -&gt; String {
+<pre class="playground"><code class="language-rust">fn hole_kiosk_name(eingabe: Option&lt;String&gt;) -&gt; String {
     // TODO: Verwende .unwrap_or(), um bei None den Namen "Mein Dorfkiosk" zurückzugeben.
     todo!()
 }
@@ -1077,11 +1058,11 @@ fn main() {
     assert_eq!(hole_kiosk_name(Some(String::from("Zuckerparadies"))), "Zuckerparadies");
     assert_eq!(hole_kiosk_name(None), "Mein Dorfkiosk");
     println!("🎉 Übung 2 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-3-mittel-der-kiosksuche-wächter-hashmap--option"><a class="header" href="#-Übung-3-mittel-der-kiosksuche-wächter-hashmap--option">🟡 Übung 3 (Mittel): Der Kiosksuche-Wächter (<code>HashMap</code> &amp; <code>Option</code>)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-3-mittel-der-kiosksuche-wächter-hashmap--option"><a class="header" href="#-übung-3-mittel-der-kiosksuche-wächter-hashmap--option">🟡 Übung 3 (Mittel): Der Kiosksuche-Wächter (<code>HashMap</code> &amp; <code>Option</code>)</a></h3>
 <h4 id="-das-kiosk-szenario-2"><a class="header" href="#-das-kiosk-szenario-2">🧸 Das Kiosk-Szenario</a></h4>
-<p>Ein Kind kommt in den Laden und fragt: "Haben Sie Zitronen-Lollis und wie viele?" Der Ladenbesitzer schaut zuerst in der Preisliste nach, ob die Sorte überhaupt geführt wird (Sortimentsprüfung). Falls ja, schaut er im Regal (Bestandstabelle) nach, wie viele Gläser noch da sind.</p>
+<p>Ein Kind kommt in den Laden und fragt: “Haben Sie Zitronen-Lollis und wie viele?” Der Ladenbesitzer schaut zuerst in der Preisliste nach, ob die Sorte überhaupt geführt wird (Sortimentsprüfung). Falls ja, schaut er im Regal (Bestandstabelle) nach, wie viele Gläser noch da sind.</p>
 <h4 id="-das-ziel-2"><a class="header" href="#-das-ziel-2">🎯 Das Ziel</a></h4>
 <p>Schreibe eine Funktion <code>bestand_pruefen(preise, bestand, gesuchter_artikel) -&gt; Option&lt;u32&gt;</code>.</p>
 <ul>
@@ -1111,14 +1092,14 @@ fn main() {
             Gib Some(0) zurück
 </code></pre>
 <h4 id="-compiler-fehlermeldungen-verstehen-2"><a class="header" href="#-compiler-fehlermeldungen-verstehen-2">🔍 Compiler-Fehlermeldungen verstehen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// error[E0308]: mismatched types
 // expected enum `Option&lt;u32&gt;`
 // found enum `Option&lt;&amp;u32&gt;`
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><em>Was bedeutet das?</em> Du hast vergessen, die Referenz aus der HashMap zu dereferenzieren. Nutze <code>*</code>, um an den echten <code>u32</code>-Wert zu gelangen!</p>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
 
 fn bestand_pruefen(
     preise: &amp;HashMap&lt;String, u32&gt;,
@@ -1145,9 +1126,9 @@ fn main() {
     assert_eq!(bestand_pruefen(&amp;preise, &amp;bestand, "Gummibaerchen"), None);
 
     println!("🎉 Übung 3 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-4-mittel-die-tagesabrechnung-result--eigene-enums"><a class="header" href="#-Übung-4-mittel-die-tagesabrechnung-result--eigene-enums">🟡 Übung 4 (Mittel): Die Tagesabrechnung (<code>Result</code> &amp; Eigene Enums)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-4-mittel-die-tagesabrechnung-result--eigene-enums"><a class="header" href="#-übung-4-mittel-die-tagesabrechnung-result--eigene-enums">🟡 Übung 4 (Mittel): Die Tagesabrechnung (<code>Result</code> &amp; Eigene Enums)</a></h3>
 <h4 id="-das-kiosk-szenario-3"><a class="header" href="#-das-kiosk-szenario-3">🧸 Das Kiosk-Szenario</a></h4>
 <p>Am Abend zählt Herr Rustig die Kasse. Das Programm sagt, es müssten 10,00 Euro in der Kasse sein (<code>soll_kasse</code>). Die Zählung ergibt jedoch einen anderen Wert (<code>ist_kasse</code>). Wir wollen ein Fehlersystem schreiben, das Fehlbeträge und Überschüsse präzise erfasst und ausgibt.</p>
 <h4 id="-das-ziel-3"><a class="header" href="#-das-ziel-3">🎯 Das Ziel</a></h4>
@@ -1178,7 +1159,7 @@ fn main() {
         differenz = ist_kasse - soll_kasse
         Gib Err(Ueberschuss(differenz)) zurück
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">#[derive(Debug, PartialEq)]
+<pre class="playground"><code class="language-rust">#[derive(Debug, PartialEq)]
 enum AbrechnungsFehler {
     Fehlbetrag(u32), // Wie viel Geld fehlt?
     Ueberschuss(u32), // Wie viel Geld ist zu viel?
@@ -1200,9 +1181,9 @@ fn main() {
     assert_eq!(tagesabschluss(1000, 1150), Err(AbrechnungsFehler::Ueberschuss(150)));
 
     println!("🎉 Übung 4 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-5-mittel-rabatt-aktion-kalkulieren-option--map"><a class="header" href="#-Übung-5-mittel-rabatt-aktion-kalkulieren-option--map">🟡 Übung 5 (Mittel): Rabatt-Aktion kalkulieren (<code>Option</code> &amp; <code>.map</code>)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-5-mittel-rabatt-aktion-kalkulieren-option--map"><a class="header" href="#-übung-5-mittel-rabatt-aktion-kalkulieren-option--map">🟡 Übung 5 (Mittel): Rabatt-Aktion kalkulieren (<code>Option</code> &amp; <code>.map</code>)</a></h3>
 <h4 id="-das-kiosk-szenario-4"><a class="header" href="#-das-kiosk-szenario-4">🧸 Das Kiosk-Szenario</a></h4>
 <p>Um Platz für neue Lollis zu schaffen, gibt der Kiosk heute 20% Rabatt. Wir wollen ein System schreiben, das einen optionalen Preis nimmt (da manche Sorten keinen Preis hinterlegt haben) und den Rabattpreis ermittelt.</p>
 <h4 id="-das-ziel-4"><a class="header" href="#-das-ziel-4">🎯 Das Ziel</a></h4>
@@ -1222,7 +1203,7 @@ fn main() {
     Wende auf 'preis_opt' die Transformation an:
         Nimm den Preis und multipliziere ihn mit 80, teile dann durch 100
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">fn rabatt_berechnen(preis_opt: Option&lt;u32&gt;) -&gt; Option&lt;u32&gt; {
+<pre class="playground"><code class="language-rust">fn rabatt_berechnen(preis_opt: Option&lt;u32&gt;) -&gt; Option&lt;u32&gt; {
     // TODO: Benutze .map(), um den Preis um 20% zu reduzieren (preis * 80 / 100).
     todo!()
 }
@@ -1232,9 +1213,9 @@ fn main() {
     assert_eq!(rabatt_berechnen(Some(50)), Some(40));
     assert_eq!(rabatt_berechnen(None), None);
     println!("🎉 Übung 5 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-6-mittel-münzen-einwurf-zähler-result--unwrap_or_else"><a class="header" href="#-Übung-6-mittel-münzen-einwurf-zähler-result--unwrap_or_else">🟡 Übung 6 (Mittel): Münzen-Einwurf-Zähler (<code>Result</code> &amp; <code>unwrap_or_else</code>)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-6-mittel-münzen-einwurf-zähler-result--unwrap_or_else"><a class="header" href="#-übung-6-mittel-münzen-einwurf-zähler-result--unwrap_or_else">🟡 Übung 6 (Mittel): Münzen-Einwurf-Zähler (<code>Result</code> &amp; <code>unwrap_or_else</code>)</a></h3>
 <h4 id="-das-kiosk-szenario-5"><a class="header" href="#-das-kiosk-szenario-5">🧸 Das Kiosk-Szenario</a></h4>
 <p>Ein moderner Münzprüfer wirft beim Zählen manchmal Fehler aus (z. B. wenn eine Münze verkantet ist). Bei einem Lesefehler soll das System nicht abstürzen. Stattdessen soll eine Fehlermeldung ausgegeben werden, und der Automat bucht als Trost für den Kunden eine Standardkraft von 5 Cent ein.</p>
 <h4 id="-das-ziel-5"><a class="header" href="#-das-ziel-5">🎯 Das Ziel</a></h4>
@@ -1257,7 +1238,7 @@ fn main() {
         Drucke den Fehler auf dem Bildschirm
         Gib 5 zurück
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">fn muenze_auswerten(ergebnis: Result&lt;u32, String&gt;) -&gt; u32 {
+<pre class="playground"><code class="language-rust">fn muenze_auswerten(ergebnis: Result&lt;u32, String&gt;) -&gt; u32 {
     // TODO: Verwende .unwrap_or_else(), um im Fehlerfall eine Fehlermeldung auszugeben 
     // und den Standardwert 5 zurückzugeben.
     todo!()
@@ -1267,9 +1248,9 @@ fn main() {
     assert_eq!(muenze_auswerten(Ok(50)), 50);
     assert_eq!(muenze_auswerten(Err(String::from("Münze klemmt"))), 5);
     println!("🎉 Übung 6 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-7-mittel-regalfächer-sortieren-vec--hashmap--sortierung"><a class="header" href="#-Übung-7-mittel-regalfächer-sortieren-vec--hashmap--sortierung">🟡 Übung 7 (Mittel): Regalfächer sortieren (<code>Vec</code> &amp; <code>HashMap</code> &amp; Sortierung)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-7-mittel-regalfächer-sortieren-vec--hashmap--sortierung"><a class="header" href="#-übung-7-mittel-regalfächer-sortieren-vec--hashmap--sortierung">🟡 Übung 7 (Mittel): Regalfächer sortieren (<code>Vec</code> &amp; <code>HashMap</code> &amp; Sortierung)</a></h3>
 <h4 id="-das-kiosk-szenario-6"><a class="header" href="#-das-kiosk-szenario-6">🧸 Das Kiosk-Szenario</a></h4>
 <p>Herr Rustig will eine Liste aller Süßigkeiten ausdrucken. Um die Übersicht zu behalten, soll diese Liste alphabetisch von A bis Z sortiert sein.</p>
 <h4 id="-das-ziel-6"><a class="header" href="#-das-ziel-6">🎯 Das Ziel</a></h4>
@@ -1293,7 +1274,7 @@ fn main() {
     Sortiere 'liste' alphabetisch
     Gib 'liste' zurück
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
 
 fn hole_sortierte_sorten(regal: &amp;HashMap&lt;String, u32&gt;) -&gt; Vec&lt;String&gt; {
     // TODO:
@@ -1317,9 +1298,9 @@ fn main() {
     assert_eq!(sortiert[2], "Zitronen-Bonbon");
 
     println!("🎉 Übung 7 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-8-schwer-das-transaktionssichere-liefer-system-vec-hashmap-result--"><a class="header" href="#-Übung-8-schwer-das-transaktionssichere-liefer-system-vec-hashmap-result--">🔴 Übung 8 (Schwer): Das transaktionssichere Liefer-System (<code>Vec</code>, <code>HashMap</code>, <code>Result</code> &amp; <code>?</code>)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-8-schwer-das-transaktionssichere-liefer-system-vec-hashmap-result--"><a class="header" href="#-übung-8-schwer-das-transaktionssichere-liefer-system-vec-hashmap-result--">🔴 Übung 8 (Schwer): Das transaktionssichere Liefer-System (<code>Vec</code>, <code>HashMap</code>, <code>Result</code> &amp; <code>?</code>)</a></h3>
 <h4 id="-das-kiosk-szenario-7"><a class="header" href="#-das-kiosk-szenario-7">🧸 Das Kiosk-Szenario</a></h4>
 <p>Ein Lieferant bringt eine Kiste mit Waren. Die Sorten müssen bereits in der Preisliste des Kiosks eingetragen sein (wir nehmen keine unbepreisten Exoten an). Falls auch nur eine einzige gelieferte Sorte nicht in der Preisliste existiert, verweigern wir die <strong>gesamte Annahme</strong> der Lieferung, um Datenchaos zu vermeiden.</p>
 <h4 id="-das-ziel-7"><a class="header" href="#-das-ziel-7">🎯 Das Ziel</a></h4>
@@ -1351,7 +1332,7 @@ fn main() {
         Bestand von 'artikel' um 'menge' erhöhen
     Gib Ok(()) zurück
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
 
 #[derive(Debug, PartialEq)]
 enum LieferFehler {
@@ -1392,9 +1373,9 @@ fn main() {
     assert_eq!(*bestand.get("Lolli").unwrap(), 20);
 
     println!("🎉 Übung 8 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-9-schwer-der-automatische-einkaufszettel-vec-hashmap-option--tupel"><a class="header" href="#-Übung-9-schwer-der-automatische-einkaufszettel-vec-hashmap-option--tupel">🔴 Übung 9 (Schwer): Der automatische Einkaufszettel (<code>Vec</code>, <code>HashMap</code>, <code>Option</code> &amp; Tupel)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-9-schwer-der-automatische-einkaufszettel-vec-hashmap-option--tupel"><a class="header" href="#-übung-9-schwer-der-automatische-einkaufszettel-vec-hashmap-option--tupel">🔴 Übung 9 (Schwer): Der automatische Einkaufszettel (<code>Vec</code>, <code>HashMap</code>, <code>Option</code> &amp; Tupel)</a></h3>
 <h4 id="-das-kiosk-szenario-8"><a class="header" href="#-das-kiosk-szenario-8">🧸 Das Kiosk-Szenario</a></h4>
 <p>Um niemals vor leeren Regalen zu stehen, führt Herr Rustig jeden Samstagabend eine Bestandsprüfung durch. Er will einen automatischen Einkaufszettel drucken lassen. Jedes Produkt, dessen Bestand unter 5 Stück liegt, soll nachbestellt werden, und zwar genau so viel, dass der Zielbestand von 20 Stück wieder erreicht wird.</p>
 <h4 id="-das-ziel-8"><a class="header" href="#-das-ziel-8">🎯 Das Ziel</a></h4>
@@ -1419,7 +1400,7 @@ fn main() {
             Füge (artikel_name, differenz) an 'zettel' an
     Gib 'zettel' zurück
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
 
 fn einkaufszettel_erstellen(bestand: &amp;HashMap&lt;String, u32&gt;) -&gt; Vec&lt;(String, u32)&gt; {
     // TODO: Implementiere die Einkaufszettel-Erstellung
@@ -1446,9 +1427,9 @@ fn main() {
     assert_eq!(schoko_bestellung.unwrap().1, 20);
 
     println!("🎉 Übung 9 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
-<h3 id="-Übung-10-sehr-schwer-die-transaktionssichere-großbestellung-vec-hashmap-result----rollback"><a class="header" href="#-Übung-10-sehr-schwer-die-transaktionssichere-großbestellung-vec-hashmap-result----rollback">💀 Übung 10 (Sehr Schwer): Die transaktionssichere Großbestellung (<code>Vec</code>, <code>HashMap</code>, <code>Result</code> &amp; <code>?</code> &amp; Rollback)</a></h3>
+}</code></pre>
+<hr>
+<h3 id="-übung-10-sehr-schwer-die-transaktionssichere-großbestellung-vec-hashmap-result----rollback"><a class="header" href="#-übung-10-sehr-schwer-die-transaktionssichere-großbestellung-vec-hashmap-result----rollback">💀 Übung 10 (Sehr Schwer): Die transaktionssichere Großbestellung (<code>Vec</code>, <code>HashMap</code>, <code>Result</code> &amp; <code>?</code> &amp; Rollback)</a></h3>
 <h4 id="-das-kiosk-szenario-9"><a class="header" href="#-das-kiosk-szenario-9">🧸 Das Kiosk-Szenario</a></h4>
 <p>Die örtliche Grundschule bestellt eine Liste von Süßigkeiten für das Schulfest. Die Bestellung wird als Liste von Tupeln <code>Vec&lt;(String, u32)&gt;</code> übergeben. Wenn auch nur ein einziger Artikel der Bestellung nicht im Sortiment ist oder die gewünschte Menge den Kioskbestand übersteigt, soll die <strong>gesamte Bestellung storniert</strong> werden. Es darf kein einziger Lolli das Regal verlassen haben!</p>
 <h4 id="-das-ziel-9"><a class="header" href="#-das-ziel-9">🎯 Das Ziel</a></h4>
@@ -1483,12 +1464,12 @@ fn main() {
     Gib Ok(()) zurück
 </code></pre>
 <h4 id="-compiler-fehlermeldungen-verstehen-3"><a class="header" href="#-compiler-fehlermeldungen-verstehen-3">🔍 Compiler-Fehlermeldungen verstehen</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// error[E0507]: cannot move out of `*bestand` which is behind a mutable reference
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p><em>Was bedeutet das?</em> Du versuchst, den Originalbestand zu verschieben. Nutze <code>.clone()</code>, um eine eigenständige Kopie zu erstellen, statt die Referenz direkt zu manipulieren.</p>
-<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
 
 #[derive(Debug, PartialEq)]
 enum BestellFehler {
@@ -1549,16 +1530,16 @@ fn main() {
     assert_eq!(*bestand.get("Kaugummi").unwrap(), 3); 
 
     println!("🎉 Übung 10 erfolgreich gelöst!");
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="-praxis-guide-echte-kiosk-szenarien-programmieren-architektur--entwurfsmuster-in-rust"><a class="header" href="#-praxis-guide-echte-kiosk-szenarien-programmieren-architektur--entwurfsmuster-in-rust">🛠️ Praxis-Guide: Echte Kiosk-Szenarien programmieren (Architektur &amp; Entwurfsmuster in Rust)</a></h2>
 <p>Wenn wir größere Anwendungen in Rust schreiben (wie unseren Kiosk-Simulator), reichen reine Sprachgrundlagen oft nicht aus. Wir müssen wissen, wie wir den Code so strukturieren, dass er lesbar, erweiterbar und absolut sicher gegen Fehler bleibt. In diesem Leitfaden betrachten wir die wichtigsten Entwurfsmuster und Architekturkonzepte, die speziell in Phase 3 eine Rolle spielen.</p>
-<hr />
+<hr>
 <h3 id="1-kapselung-und-state-management-zustands-verwaltung"><a class="header" href="#1-kapselung-und-state-management-zustands-verwaltung">1. Kapselung und State-Management (Zustands-Verwaltung)</a></h3>
 <p>In objektorientierten Sprachen neigt man dazu, Felder von Objekten direkt veränderbar zu machen. In Rust führt das schnell zu Konflikten mit dem Borrow Checker. Daher trennen wir Daten und Logik streng.</p>
 <h4 id="das-prinzip-des-privaten-zustands"><a class="header" href="#das-prinzip-des-privaten-zustands">Das Prinzip des privaten Zustands</a></h4>
 <p>Ein guter Kiosk erlaubt es Kunden nicht, direkt ins Süßigkeitenregal zu greifen oder Geld aus der Kasse zu nehmen. Alles läuft über den Kioskbesitzer (die Methoden des Structs). In Rust setzen wir das mit Sichtbarkeitsmodifikatoren (<code>pub</code>) um.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// In einer echten Bibliotheksdatei (z.B. kiosk.rs)
 pub struct Kiosk {
@@ -1587,13 +1568,13 @@ impl Kiosk {
         self.kasse += betrag;
     }
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="warum-machen-wir-das"><a class="header" href="#warum-machen-wir-das">Warum machen wir das?</a></h4>
 <ul>
 <li><strong>Daten-Konsistenz (Invarianten):</strong> Wir können in <code>geld_einnehmen</code> prüfen, ob der Betrag gültig ist (z. B. nicht 0). Wenn das Feld <code>kasse</code> öffentlich (<code>pub</code>) wäre, könnte jeder beliebige Code von außen <code>kiosk.kasse = 0</code> schreiben und unsere Kassenabrechnung ruinieren.</li>
 <li><strong>Refactoring-Freundlichkeit:</strong> Wenn wir uns später entscheiden, die Kasse nicht als <code>u32</code> (Cent), sondern als <code>f64</code> (Euro) zu speichern, müssen wir nur die internen Methoden anpassen. Der Code außerhalb des Structs, der <code>.kassenstand()</code> aufruft, bleibt unverändert!</li>
 </ul>
-<hr />
+<hr>
 <h3 id="2-das-rollback-pattern-transaktionssicherheit"><a class="header" href="#2-das-rollback-pattern-transaktionssicherheit">2. Das Rollback-Pattern (Transaktionssicherheit)</a></h3>
 <p>In Übung 10 sind wir auf das Problem gestoßen, dass eine Bestellung nur dann ausgeführt werden darf, wenn <em>alle</em> Artikel vorhanden sind. Schlägt ein einziger Artikel fehl, müssen alle bisherigen Änderungen rückgängig gemacht werden.</p>
 <h4 id="die-drei-strategien-für-transaktionen"><a class="header" href="#die-drei-strategien-für-transaktionen">Die drei Strategien für Transaktionen</a></h4>
@@ -1626,12 +1607,12 @@ Schritt 2: Prüfen ───&gt; Ist Schokolade da? ───&gt; Nein! ──�
 </ul>
 <h4 id="rust-empfehlung"><a class="header" href="#rust-empfehlung">Rust-Empfehlung</a></h4>
 <p>Nutze für Phase 3 immer <strong>Strategie B</strong> (State-Cloning). Rusts <code>.clone()</code>-Methode macht dies extrem einfach und lesbar. Sie zeigt die Stärke von Rusts Ownership-Modell: Wir können Daten kopieren, manipulieren und bei Erfolg einfach die alte Struktur verwerfen.</p>
-<hr />
+<hr>
 <h3 id="3-fortgeschrittene-fehlerbehandlung-mit-enums"><a class="header" href="#3-fortgeschrittene-fehlerbehandlung-mit-enums">3. Fortgeschrittene Fehlerbehandlung mit Enums</a></h3>
 <p>Ein einfacher Fehlertext (<code>String</code>) reicht in professionellen Anwendungen selten aus. Der Aufrufer einer Funktion muss wissen, <em>warum</em> eine Aktion fehlgeschlagen ist, um programmgesteuert darauf reagieren zu können (z. B. dem Benutzer eine spezifische Meldung anzuzeigen oder eine Alternativroute zu wählen).</p>
 <h4 id="fehler-mit-daten-payload"><a class="header" href="#fehler-mit-daten-payload">Fehler mit Daten-Payload</a></h4>
 <p>Rust-Enums können Daten tragen. Das nutzen wir für informative Fehlerklassen:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, PartialEq)]
 pub enum BestellFehler {
@@ -1643,10 +1624,10 @@ pub enum BestellFehler {
     }, // Trägt detaillierte Bestandszahlen
     KasseDefekt, // Trägt keine zusätzlichen Daten
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h4 id="fehler-verarbeiten-und-darauf-reagieren"><a class="header" href="#fehler-verarbeiten-und-darauf-reagieren">Fehler verarbeiten und darauf reagieren</a></h4>
 <p>Der Aufrufer kann nun mittels Pattern Matching genau analysieren, was schiefgelaufen ist, und entsprechende Maßnahmen ergreifen:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>match bestellung_ausfuehren(&amp;mut regal, bestellung) {
     Ok(()) =&gt; println!("Bestellung erfolgreich übergeben!"),
@@ -1663,12 +1644,12 @@ pub enum BestellFehler {
         println!("Bitte rufen Sie den Techniker!");
     }
 }
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h3 id="4-ownership-und-borrow-checker-muster-in-schleifen"><a class="header" href="#4-ownership-und-borrow-checker-muster-in-schleifen">4. Ownership und Borrow-Checker Muster in Schleifen</a></h3>
 <p>Ein häufiges Problem in Phase 3 ist das Iterieren über eine HashMap, während man gleichzeitig Einträge in ihr ändern möchte.</p>
 <h4 id="das-problem"><a class="header" href="#das-problem">Das Problem</a></h4>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 5);
@@ -1679,12 +1660,12 @@ for (sorte, anzahl) in &amp;mut regal {
         // FEHLER: we cannot borrow `regal` as mutable more than once at a time!
     }
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <p>Der Borrow Checker verbietet es, die HashMap zu verändern, während der Iterator <code>&amp;mut regal</code> aktiv ist, da dies die internen Speicheradressen der Map ungültig machen könnte.</p>
 <h4 id="die-lösungsmuster"><a class="header" href="#die-lösungsmuster">Die Lösungsmuster</a></h4>
 <h5 id="muster-1-temporäre-sammelliste-collector"><a class="header" href="#muster-1-temporäre-sammelliste-collector">Muster 1: Temporäre Sammelliste (Collector)</a></h5>
 <p>Sammle alle Schlüssel, die du ändern willst, in einem separaten Vektor. Iteriere danach über diesen Vektor, um die HashMap zu manipulieren.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 5);
@@ -1702,10 +1683,10 @@ for sorte in zu_wenig {
     let eintrag = regal.entry(sorte).or_insert(0);
     *eintrag += 10; // Aufstocken!
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h5 id="muster-2-retain-methode-nutzen"><a class="header" href="#muster-2-retain-methode-nutzen">Muster 2: Retain-Methode nutzen</a></h5>
 <p>Für das reine Löschen von Elementen bietet Rust die optimierte Methode <code>.retain()</code> an:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 0); // Ausverkauft
@@ -1713,21 +1694,21 @@ regal.insert(String::from("Bonbons"), 15);
 
 // Behalte nur Einträge, deren Bestand größer als 0 ist (entfernt Ausverkauftes)
 regal.retain(|_sorte, anzahl| *anzahl &gt; 0);
-<span class="boring">}</span></code></pre></pre>
-<hr />
+<span class="boring">}</span></code></pre>
+<hr>
 <h2 id="-das-ultimative-50-methoden-lexikon-der-vollständige-spickzettel-anhang"><a class="header" href="#-das-ultimative-50-methoden-lexikon-der-vollständige-spickzettel-anhang">📖 Das ultimative 50-Methoden-Lexikon (Der vollständige Spickzettel-Anhang)</a></h2>
 <p>Dieses Lexikon dient dir als allumfassendes Nachschlagewerk für alle Typen aus Phase 3. Zu jeder Methode findest du eine genaue Erklärung der Funktionsweise, ein praxisnahes Codebeispiel aus unserem Süßigkeiten-Kiosk und einen didaktischen Tipp.</p>
-<hr />
+<hr>
 <h3 id="-1-das-vektor-methoden-lexikon-vect"><a class="header" href="#-1-das-vektor-methoden-lexikon-vect">📦 1. Das Vektor-Methoden-Lexikon (<code>Vec&lt;T&gt;</code>)</a></h3>
 <h4 id="method-1-vecnew"><a class="header" href="#method-1-vecnew">Method 1: <code>Vec::new()</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Erstellt einen neuen, leeren Vektor. Auf dem Heap wird erst Speicher reserviert, wenn das erste Element eingefügt wird.</li>
 <li><strong>Kiosk-Fall:</strong> Du eröffnest eine leere Warteschlange am Morgen.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut kunden: Vec&lt;String&gt; = Vec::new();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Du musst oft den Typ explizit angeben, da Rust beim Erstellen noch nicht weiß, was in der Schlange stehen wird.</li>
 </ul>
@@ -1736,10 +1717,10 @@ regal.retain(|_sorte, anzahl| *anzahl &gt; 0);
 <li><strong>Funktionsweise:</strong> Erstellt einen leeren Vektor, reserviert aber im Voraus Platz für eine bestimmte Anzahl an Elementen auf dem Heap, um Reallokationen zu vermeiden.</li>
 <li><strong>Kiosk-Fall:</strong> Du weißt, dass zur großen Pause etwa 30 Schulkinder kommen werden.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut schüler: Vec&lt;String&gt; = Vec::with_capacity(30);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Nutze dies immer, wenn die ungefähre Endgröße der Liste im Voraus bekannt ist, um Performance zu sparen.</li>
 </ul>
@@ -1748,11 +1729,11 @@ regal.retain(|_sorte, anzahl| *anzahl &gt; 0);
 <li><strong>Funktionsweise:</strong> Hängt das übergebene Element an das Ende des Vektors an.</li>
 <li><strong>Kiosk-Fall:</strong> Ein neuer Kunde stellt sich hinten in der Schlange an.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut schlange = vec![String::from("Mia")];
 schlange.push(String::from("Leo")); // ["Mia", "Leo"]
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Variable, die du übergibst, verliert ihr Ownership und wird in den Vektor verschoben (moved).</li>
 </ul>
@@ -1761,11 +1742,11 @@ schlange.push(String::from("Leo")); // ["Mia", "Leo"]
 <li><strong>Funktionsweise:</strong> Entfernt das letzte Element des Vektors und gibt es als <code>Option&lt;T&gt;</code> zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Der Kunde, der sich als Letztes angestellt hat, verlässt verärgert die Warteschlange.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut schlange = vec![String::from("Mia"), String::from("Leo")];
 let gegangen = schlange.pop(); // Some("Leo"), schlange ist nun ["Mia"]
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Wenn der Vektor leer ist, liefert <code>.pop()</code> einfach <code>None</code> zurück, ohne dass das Programm abstürzt.</li>
 </ul>
@@ -1774,11 +1755,11 @@ let gegangen = schlange.pop(); // Some("Leo"), schlange ist nun ["Mia"]
 <li><strong>Funktionsweise:</strong> Entfernt das Element am angegebenen Index und schiebt alle nachfolgenden Elemente im Speicher nach links auf.</li>
 <li><strong>Kiosk-Fall:</strong> Der Kunde auf Position 1 (der Zweite) verlässt die Schlange.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut schlange = vec![String::from("Mia"), String::from("Leo"), String::from("Noah")];
 let entfernt = schlange.remove(1); // "Leo", schlange ist nun ["Mia", "Noah"]
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Stürzt ab (panic!), wenn der Index außerhalb der aktuellen Länge liegt.</li>
 </ul>
@@ -1787,11 +1768,11 @@ let entfernt = schlange.remove(1); // "Leo", schlange ist nun ["Mia", "Noah"]
 <li><strong>Funktionsweise:</strong> Schiebt ein Element an die angegebene Index-Position und verschiebt alle nachfolgenden Elemente nach rechts.</li>
 <li><strong>Kiosk-Fall:</strong> Jemand drängelt sich auf Position 0 (ganz vorne) vor.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut schlange = vec![String::from("Mia")];
 schlange.insert(0, String::from("Drängler")); // ["Drängler", "Mia"]
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Stürzt ebenfalls ab, wenn der Index größer als die Vektorlänge ist.</li>
 </ul>
@@ -1800,11 +1781,11 @@ schlange.insert(0, String::from("Drängler")); // ["Drängler", "Mia"]
 <li><strong>Funktionsweise:</strong> Gibt die aktuelle Anzahl der Elemente im Vektor als <code>usize</code> zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Der Kioskbesitzer zählt die wartenden Köpfe.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let kunden = vec![String::from("Mia"), String::from("Leo")];
 println!("Wartend: {}", kunden.len()); // 2
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> <code>len</code> gibt die tatsächliche Anzahl an Elementen zurück, nicht die Kapazität des reservierten Speichers.</li>
 </ul>
@@ -1813,24 +1794,24 @@ println!("Wartend: {}", kunden.len()); // 2
 <li><strong>Funktionsweise:</strong> Gibt <code>true</code> zurück, wenn der Vektor leer ist, sonst <code>false</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Prüfung, ob Herr Rustig Feierabend machen kann.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let schlange: Vec&lt;String&gt; = vec![];
 if schlange.is_empty() { println!("Feierabend!"); }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Verwende <code>.is_empty()</code> statt <code>len() == 0</code>, da es semantisch klarer und bei manchen Datenstrukturen schneller ist.</li>
 </ul>
 <h4 id="method-9-containselement"><a class="header" href="#method-9-containselement">Method 9: <code>contains(&amp;element)</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Prüft, ob ein Element im Vektor existiert. Benötigt das <code>PartialEq</code>-Trait.</li>
-<li><strong>Kiosk-Fall:</strong> Ist "Noah" in der Warteschlange?</li>
+<li><strong>Kiosk-Fall:</strong> Ist “Noah” in der Warteschlange?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let kunden = vec![String::from("Mia"), String::from("Noah")];
 let ist_da = kunden.contains(&amp;String::from("Noah")); // true
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Übergib das Element als Referenz (<code>&amp;</code>), da <code>.contains()</code> den Wert nicht besitzen möchte.</li>
 </ul>
@@ -1839,26 +1820,26 @@ let ist_da = kunden.contains(&amp;String::from("Noah")); // true
 <li><strong>Funktionsweise:</strong> Löscht alle Elemente aus dem Vektor. Der Vektor hat danach die Länge 0.</li>
 <li><strong>Kiosk-Fall:</strong> Der Kiosk schließt und Herr Rustig schickt alle verbliebenen Kunden nach Hause.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut kunden = vec![String::from("Mia")];
 kunden.clear(); // kunden ist nun leer []
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Der reservierte Speicherplatz auf dem Heap bleibt erhalten, sodass der Vektor danach ohne Reallokationen wieder befüllt werden kann.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="-2-das-hashmap-methoden-lexikon-hashmapk-v"><a class="header" href="#-2-das-hashmap-methoden-lexikon-hashmapk-v">🏷️ 2. Das HashMap-Methoden-Lexikon (<code>HashMap&lt;K, V&gt;</code>)</a></h3>
 <h4 id="method-11-hashmapnew"><a class="header" href="#method-11-hashmapnew">Method 11: <code>HashMap::new()</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Erstellt eine neue, leere HashMap.</li>
 <li><strong>Kiosk-Fall:</strong> Du stellst ein komplett neues Regal ohne Ware auf.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::collections::HashMap;
 let mut regal: HashMap&lt;String, u32&gt; = HashMap::new();
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die HashMap muss aus <code>std::collections</code> importiert werden, da sie nicht automatisch geladen wird.</li>
 </ul>
@@ -1867,11 +1848,11 @@ let mut regal: HashMap&lt;String, u32&gt; = HashMap::new();
 <li><strong>Funktionsweise:</strong> Fügt ein Schlüssel-Wert-Paar hinzu. Existiert der Schlüssel bereits, wird der alte Wert überschrieben.</li>
 <li><strong>Kiosk-Fall:</strong> Du stellst ein neues Bonbonglas mit 50 Lollis ins Regal.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Methode gibt <code>Some(alter_wert)</code> zurück, falls der Schlüssel bereits existierte und überschrieben wurde, ansonsten <code>None</code>.</li>
 </ul>
@@ -1880,26 +1861,26 @@ regal.insert(String::from("Lollis"), 50);
 <li><strong>Funktionsweise:</strong> Liefert eine Referenz auf den zum Schlüssel gehörenden Wert zurück, verpackt in eine <code>Option&lt;&amp;V&gt;</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du liest den Bestand vom Bonbonglas ab.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 let bestand_opt = regal.get("Lollis"); // Some(&amp;50)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Da <code>.get()</code> eine Referenz liefert, musst du den Wert oft mit <code>*</code> dereferenzieren.</li>
 </ul>
 <h4 id="method-14-contains_keykey"><a class="header" href="#method-14-contains_keykey">Method 14: <code>contains_key(&amp;key)</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Prüft, ob ein bestimmter Schlüssel in der HashMap existiert.</li>
-<li><strong>Kiosk-Fall:</strong> Führen wir überhaupt die Sorte "Gummibärchen"?</li>
+<li><strong>Kiosk-Fall:</strong> Führen wir überhaupt die Sorte “Gummibärchen”?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 let haben_lollis = regal.contains_key("Lollis"); // true
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Schneller als <code>.get().is_some()</code>, wenn dich der Wert selbst gar nicht interessiert.</li>
 </ul>
@@ -1908,12 +1889,12 @@ let haben_lollis = regal.contains_key("Lollis"); // true
 <li><strong>Funktionsweise:</strong> Entfernt das Schlüssel-Wert-Paar und gibt den Wert als <code>Option&lt;V&gt;</code> zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Du nimmst das Lolli-Glas komplett aus dem Sortiment.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 let entnommen = regal.remove("Lollis"); // Some(50)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Übergib den Schlüssel als Referenz (z. B. <code>&amp;str</code> oder <code>&amp;String</code>).</li>
 </ul>
@@ -1922,12 +1903,12 @@ let entnommen = regal.remove("Lollis"); // Some(50)
 <li><strong>Funktionsweise:</strong> Gibt die Anzahl der gespeicherten Schlüssel-Wert-Paare zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Wie viele verschiedene Süßigkeitensorten haben wir im Regal?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 println!("Sorten: {}", regal.len()); // 1
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Liefert die Anzahl der <em>Gläser</em>, nicht die Summe der darin enthaltenen Bonbons.</li>
 </ul>
@@ -1936,11 +1917,11 @@ println!("Sorten: {}", regal.len()); // 1
 <li><strong>Funktionsweise:</strong> Prüft, ob die HashMap leer ist.</li>
 <li><strong>Kiosk-Fall:</strong> Ist das Regal komplett leergeräumt?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let regal: HashMap&lt;String, u32&gt; = HashMap::new();
 assert!(regal.is_empty());
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Sollte immer verwendet werden, um auf Leere zu prüfen (anstatt <code>len() == 0</code>).</li>
 </ul>
@@ -1949,11 +1930,11 @@ assert!(regal.is_empty());
 <li><strong>Funktionsweise:</strong> Liefert einen Entry-Wächter zurück, mit dem man prüfen kann, ob ein Schlüssel existiert, und diesen direkt manipulieren kann.</li>
 <li><strong>Kiosk-Fall:</strong> Du gehst zum Lolli-Fach. Wenn Lollis da sind, erhöhst du die Menge. Wenn nicht, stellst du ein neues Glas hin.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.entry(String::from("Lollis")).or_insert(0);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Extrem mächtig in Kombination mit <code>.or_insert(default)</code>, da es eine veränderbare Referenz (<code>&amp;mut V</code>) zurückgibt.</li>
 </ul>
@@ -1962,12 +1943,12 @@ regal.entry(String::from("Lollis")).or_insert(0);
 <li><strong>Funktionsweise:</strong> Liefert einen Iterator über alle Schlüssel in der HashMap.</li>
 <li><strong>Kiosk-Fall:</strong> Du schreibst eine Liste aller Sortennamen auf.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 for sorte in regal.keys() { println!("{}", sorte); }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Reihenfolge der Schlüssel im Iterator ist absolut unvorhersehbar und ändert sich bei jedem Programmdurchlauf!</li>
 </ul>
@@ -1976,27 +1957,27 @@ for sorte in regal.keys() { println!("{}", sorte); }
 <li><strong>Funktionsweise:</strong> Liefert einen Iterator über alle Werte (Mengen/Preise) in der HashMap.</li>
 <li><strong>Kiosk-Fall:</strong> Du möchtest wissen, welche Bestandszahlen im Kiosk vorhanden sind.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = HashMap::new();
 regal.insert(String::from("Lollis"), 50);
 for anzahl in regal.values() { println!("{}", anzahl); }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Der Iterator gibt Referenzen auf die Werte (<code>&amp;V</code>) zurück.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="-3-das-option-methoden-lexikon-optiont"><a class="header" href="#-3-das-option-methoden-lexikon-optiont">🍯 3. Das Option-Methoden-Lexikon (<code>Option&lt;T&gt;</code>)</a></h3>
 <h4 id="method-21-is_some"><a class="header" href="#method-21-is_some">Method 21: <code>is_some()</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Gibt <code>true</code> zurück, wenn die Option <code>Some</code> enthält, andernfalls <code>false</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du schaust von außen ins Glas: Befindet sich ein Bonbon darin?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let glas = Some("Lolli");
 assert!(glas.is_some());
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Hilft bei schnellen Abfragen, ohne den Wert direkt auszupacken.</li>
 </ul>
@@ -2005,11 +1986,11 @@ assert!(glas.is_some());
 <li><strong>Funktionsweise:</strong> Gibt <code>true</code> zurück, wenn die Option <code>None</code> ist, andernfalls <code>false</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du schaust ins Glas: Ist es absolut leer?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let glas: Option&lt;&amp;str&gt; = None;
 assert!(glas.is_none());
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Das logische Gegenteil von <code>.is_some()</code>.</li>
 </ul>
@@ -2018,11 +1999,11 @@ assert!(glas.is_none());
 <li><strong>Funktionsweise:</strong> Entpackt den Wert. Wenn die Option <code>None</code> ist, stürzt das Programm ab (panic!).</li>
 <li><strong>Kiosk-Fall:</strong> Der blinde, unvorsichtige Griff ins Bonbonglas.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let glas = Some("Lolli");
 let bonbon = glas.unwrap(); // "Lolli"
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Vermeide <code>.unwrap()</code> im echten Code. Nutze es nur, wenn du den Absturz bewusst provozieren willst, falls der Wert fehlt, oder beim Schreiben von Unittests.</li>
 </ul>
@@ -2031,11 +2012,11 @@ let bonbon = glas.unwrap(); // "Lolli"
 <li><strong>Funktionsweise:</strong> Entpackt den Wert. Wenn die Option <code>None</code> ist, wird stattdessen der übergebene Standardwert (<code>default</code>) zurückgeliefert.</li>
 <li><strong>Kiosk-Fall:</strong> Du greifst ins Lolli-Glas. Wenn keins da ist, nimmst du den Notfall-Kaugummi vom Tresen.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let leeres_glas: Option&lt;&amp;str&gt; = None;
 let naschwerk = leeres_glas.unwrap_or("Kaugummi"); // "Kaugummi"
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Der Standardwert muss exakt denselben Typ wie der verpackte Wert haben.</li>
 </ul>
@@ -2044,11 +2025,11 @@ let naschwerk = leeres_glas.unwrap_or("Kaugummi"); // "Kaugummi"
 <li><strong>Funktionsweise:</strong> Entpackt den Wert. Wenn die Option <code>None</code> ist, wird die übergebene Closure <code>f</code> ausgeführt, um den Standardwert erst bei Bedarf zu erzeugen.</li>
 <li><strong>Kiosk-Fall:</strong> Wenn kein Lolli im Glas ist, rennst du mühsam in die Küche und machst einen frischen Lolli.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let leeres_glas: Option&lt;String&gt; = None;
 let lolli = leeres_glas.unwrap_or_else(|| String::from("Frischer Lolli"));
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Bietet bessere Performance als <code>unwrap_or</code>, wenn die Erstellung des Ersatzwertes rechenintensiv ist, da sie nur bei Bedarf ausgeführt wird.</li>
 </ul>
@@ -2057,11 +2038,11 @@ let lolli = leeres_glas.unwrap_or_else(|| String::from("Frischer Lolli"));
 <li><strong>Funktionsweise:</strong> Wendet die Funktion <code>f</code> auf den Wert an, falls <code>Some</code> vorliegt. Wenn <code>None</code> vorliegt, bleibt das Ergebnis <code>None</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du verpackst das gefundene Bonbon in Geschenkpapier. Wenn kein Bonbon da ist, verpackst du nichts.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let lolli = Some(String::from("Lolli"));
 let laenge = lolli.map(|s| s.len()); // Some(5)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Eine der elegantesten Methoden in Rust, um Match-Blöcke einzusparen.</li>
 </ul>
@@ -2070,11 +2051,11 @@ let laenge = lolli.map(|s| s.len()); // Some(5)
 <li><strong>Funktionsweise:</strong> Ähnlich wie <code>.map()</code>, aber die Funktion <code>f</code> muss selbst eine <code>Option</code> zurückgeben. Verhindert verschachtelte Options (<code>Option&lt;Option&lt;T&gt;&gt;</code>).</li>
 <li><strong>Kiosk-Fall:</strong> Du nimmst einen Lolli und prüfst in der Preistabelle, ob er einen Preis hat.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let lolli = Some("Lolli");
 let preis = lolli.and_then(|l| if l == "Lolli" { Some(50) } else { None }); // Some(50)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Wird oft für die Verkettung von Operationen genutzt, die fehlschlagen können.</li>
 </ul>
@@ -2083,11 +2064,11 @@ let preis = lolli.and_then(|l| if l == "Lolli" { Some(50) } else { None }); // S
 <li><strong>Funktionsweise:</strong> Gibt <code>Some</code> zurück, wenn ein Wert existiert UND dieser die Bedingung im <code>predicate</code> erfüllt. Andernfalls wird <code>None</code> geliefert.</li>
 <li><strong>Kiosk-Fall:</strong> Du greifst ins Glas, behältst das Bonbon aber nur, wenn es rot ist.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let lolli = Some(String::from("Roter Lolli"));
 let rot = lolli.filter(|s| s.contains("Rot")); // Some("Roter Lolli")
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Ermöglicht die Filterung von optionalen Werten direkt im Datenfluss.</li>
 </ul>
@@ -2096,11 +2077,11 @@ let rot = lolli.filter(|s| s.contains("Rot")); // Some("Roter Lolli")
 <li><strong>Funktionsweise:</strong> Entnimmt den Wert aus einer veränderbaren Option und lässt an deren Stelle <code>None</code> zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Du greifst ins Glas, nimmst das Bonbon heraus und das Glas bleibt danach leer zurück.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut glas = Some(String::from("Lolli"));
 let entnommen = glas.take(); // entnommen = Some("Lolli"), glas = None
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Perfekt, um das Ownership aus veränderbaren Variablen herauszuziehen, ohne den Compiler zu verärgern.</li>
 </ul>
@@ -2109,26 +2090,26 @@ let entnommen = glas.take(); // entnommen = Some("Lolli"), glas = None
 <li><strong>Funktionsweise:</strong> Ersetzt den Wert in einer veränderbaren Option und gibt den alten Wert als Option zurück.</li>
 <li><strong>Kiosk-Fall:</strong> Du tauschst den Lolli im Glas gegen ein Bonbon aus.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut glas = Some(String::from("Lolli"));
 let alter_lolli = glas.replace(String::from("Bonbon")); // glas = Some("Bonbon"), alter_lolli = Some("Lolli")
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Hilft, Werte atomar in einer einzigen Operation auszutauschen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="-4-das-result-methoden-lexikon-resultt-e"><a class="header" href="#-4-das-result-methoden-lexikon-resultt-e">🪙 4. Das Result-Methoden-Lexikon (<code>Result&lt;T, E&gt;</code>)</a></h3>
 <h4 id="method-31-is_ok"><a class="header" href="#method-31-is_ok">Method 31: <code>is_ok()</code></a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Gibt <code>true</code> zurück, wenn das Resultat ein Erfolg (<code>Ok</code>) ist.</li>
 <li><strong>Kiosk-Fall:</strong> Die Kasse rattert und der Bezahlvorgang war erfolgreich.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Ok(50);
 assert!(ergebnis.is_ok());
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Zeigt an, dass die Operation ohne Fehler durchgelaufen ist.</li>
 </ul>
@@ -2137,11 +2118,11 @@ assert!(ergebnis.is_ok());
 <li><strong>Funktionsweise:</strong> Gibt <code>true</code> zurück, wenn das Resultat ein Fehler (<code>Err</code>) ist.</li>
 <li><strong>Kiosk-Fall:</strong> Die Kasse piept rot – Bezahlung fehlgeschlagen.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Err("Zu wenig Geld!");
 assert!(ergebnis.is_err());
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Hilft, Fehler schnell abzufragen, ohne sie auszupacken.</li>
 </ul>
@@ -2150,11 +2131,11 @@ assert!(ergebnis.is_err());
 <li><strong>Funktionsweise:</strong> Gibt den Erfolgswert zurück. Falls ein Fehler (<code>Err</code>) vorliegt, stürzt das Programm mit einer Panic-Meldung ab.</li>
 <li><strong>Kiosk-Fall:</strong> Du nimmst das Wechselgeld an. Wenn es ein Fehler war, gerätst du in Panik.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Ok(10);
 let geld = ergebnis.unwrap(); // 10
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Genau wie bei <code>Option</code> gilt: Nur in Tests oder bei absoluter Sicherheit verwenden!</li>
 </ul>
@@ -2163,11 +2144,11 @@ let geld = ergebnis.unwrap(); // 10
 <li><strong>Funktionsweise:</strong> Das Gegenstück zu <code>unwrap()</code>. Gibt die Fehlermeldung zurück, falls ein Fehler (<code>Err</code>) vorliegt. Stürzt ab, falls das Resultat <code>Ok</code> war.</li>
 <li><strong>Kiosk-Fall:</strong> Du willst die Fehlermeldung der Kasse genau analysieren.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Err("Kasse klemmt");
 let fehler = ergebnis.unwrap_err(); // "Kasse klemmt"
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Sehr nützlich beim Testen von Fehlerpfaden in Unittests.</li>
 </ul>
@@ -2176,11 +2157,11 @@ let fehler = ergebnis.unwrap_err(); // "Kasse klemmt"
 <li><strong>Funktionsweise:</strong> Gibt den inneren Erfolgswert zurück. Liegt ein Fehler vor, wird das übergebene Argument als Standardwert zurückgegeben.</li>
 <li><strong>Kiosk-Fall:</strong> Wenn beim Abrechnen ein Kassenfehler auftritt, buchen wir einfach 0 Cent Wechselgeld.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Err("Fehler");
 let geld = ergebnis.unwrap_or(0); // 0
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Verwirft die Fehlermeldung komplett und ersetzt sie durch den Standardwert.</li>
 </ul>
@@ -2189,14 +2170,14 @@ let geld = ergebnis.unwrap_or(0); // 0
 <li><strong>Funktionsweise:</strong> Gibt den Erfolgswert zurück oder führt im Fehlerfall die Closure <code>op</code> aus, um einen Standardwert zu berechnen (Lazy Evaluation).</li>
 <li><strong>Kiosk-Fall:</strong> Tritt beim Bezahlen ein Fehler auf, rufen wir den Filialleiter und lassen ihn den Betrag manuell autorisieren.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, String&gt; = Err(String::from("Kartenfehler"));
 let geld = ergebnis.unwrap_or_else(|e| {
     println!("Achtung: {}", e);
     0
 });
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Closure erhält die Fehlermeldung als Parameter übergeben, so dass man den Fehler protokollieren kann.</li>
 </ul>
@@ -2205,11 +2186,11 @@ let geld = ergebnis.unwrap_or_else(|e| {
 <li><strong>Funktionsweise:</strong> Wendet die Operation <code>op</code> auf den Erfolgswert an, lässt einen Fehler jedoch unberührt passieren.</li>
 <li><strong>Kiosk-Fall:</strong> Du rechnest das Wechselgeld in Euro um, falls das Bezahlen erfolgreich war.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let cent: Result&lt;u32, &amp;str&gt; = Ok(150);
 let euro = cent.map(|c| c as f64 / 100.0); // Ok(1.5)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Nützlich, um Datenflüsse im Gut-Fall fortzusetzen, ohne sich um Fehler kümmern zu müssen.</li>
 </ul>
@@ -2218,11 +2199,11 @@ let euro = cent.map(|c| c as f64 / 100.0); // Ok(1.5)
 <li><strong>Funktionsweise:</strong> Wendet die Operation <code>op</code> auf den Fehlerwert an, lässt den Erfolgswert jedoch unberührt.</li>
 <li><strong>Kiosk-Fall:</strong> Du übersetzt die Fehlermeldung der Kasse ins Deutsche.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Err("Card declined");
 let uebersetzt = ergebnis.map_err(|e| format!("Fehler an Kasse: {}", e)); // Err("Fehler an Kasse: Card declined")
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Unverzichtbar, um Fehler aus fremden Bibliotheken in eigene Fehler-Enums umzuwandeln.</li>
 </ul>
@@ -2231,11 +2212,11 @@ let uebersetzt = ergebnis.map_err(|e| format!("Fehler an Kasse: {}", e)); // Err
 <li><strong>Funktionsweise:</strong> Wandelt das Resultat in eine Option um. Aus <code>Ok(wert)</code> wird <code>Some(wert)</code>, aus <code>Err(fehler)</code> wird <code>None</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Uns interessiert nur, ob Wechselgeld da ist – die Fehlermeldung werfen wir weg.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Ok(50);
 let opt_wechselgeld = ergebnis.ok(); // Some(50)
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Hilfreich, wenn man Fehlerinformationen nicht mehr benötigt und mit <code>Option</code>-Methoden weiterarbeiten möchte.</li>
 </ul>
@@ -2244,25 +2225,25 @@ let opt_wechselgeld = ergebnis.ok(); // Some(50)
 <li><strong>Funktionsweise:</strong> Das Gegenstück zu <code>.ok()</code>. Wandelt ein Resultat so um, dass aus <code>Err(fehler)</code> ein <code>Some(fehler)</code> wird und aus <code>Ok(wert)</code> ein <code>None</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du willst nur die Fehlermeldung sammeln und den Erfolgswert verwerfen.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let ergebnis: Result&lt;u32, &amp;str&gt; = Err("Kartenfehler");
 let opt_fehler = ergebnis.err(); // Some("Kartenfehler")
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Nimm den Fehler als Option entgegen, um ihn mit <code>if let Some(e)</code> zu prüfen.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="-5-das-tupel---ausgabe-lexikon-techniken"><a class="header" href="#-5-das-tupel---ausgabe-lexikon-techniken">🛍️ 5. Das Tupel- &amp; Ausgabe-Lexikon (Techniken)</a></h3>
 <h4 id="technique-41-tupel-initialisierung"><a class="header" href="#technique-41-tupel-initialisierung">Technique 41: Tupel-Initialisierung</a></h4>
 <ul>
 <li><strong>Funktionsweise:</strong> Erstellt eine unbenannte Sammlung von Werten unterschiedlicher Typen.</li>
 <li><strong>Kiosk-Fall:</strong> Du packst eine Bonbontüre mit einem Lolli (String) und dem Preis (u32).</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let tuete = (String::from("Lolli"), 50);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Anzahl und die Typen der Elemente sind nach der Definition festgeschrieben.</li>
 </ul>
@@ -2271,11 +2252,11 @@ let opt_fehler = ergebnis.err(); // Some("Kartenfehler")
 <li><strong>Funktionsweise:</strong> Zerlegt ein Tupel in einzelne Variablen.</li>
 <li><strong>Kiosk-Fall:</strong> Der Kunde nimmt den Lolli und das Geld aus der Papiertüte.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let tuete = (String::from("Lolli"), 50);
 let (name, preis) = tuete;
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Du musst auf der linken Seite genau so viele Variablen angeben, wie das Tupel Elemente hat.</li>
 </ul>
@@ -2284,11 +2265,11 @@ let (name, preis) = tuete;
 <li><strong>Funktionsweise:</strong> Greift direkt auf ein Element des Tupels über die Punkt-Schreibweise zu (startend bei 0).</li>
 <li><strong>Kiosk-Fall:</strong> Du holst nur das Geld aus der Tüte, der Lolli bleibt drin.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let tuete = (String::from("Lolli"), 50);
 let preis = tuete.1; // 50
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Der Index muss zur Compilezeit eine feste Zahl sein (<code>tuete.0</code> ist erlaubt, <code>tuete.i</code> mit einer Variablen <code>i</code> ist verboten!).</li>
 </ul>
@@ -2297,11 +2278,11 @@ let preis = tuete.1; // 50
 <li><strong>Funktionsweise:</strong> Ignoriert bestimmte Teile des Tupels beim Auspacken unter Verwendung des Unterstrichs <code>_</code>.</li>
 <li><strong>Kiosk-Fall:</strong> Du packst die Tüte aus, wirfst den Lolli aber sofort weg und behältst nur das Wechselgeld.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let tuete = (String::from("Lolli"), 50);
 let (_, preis) = tuete; // Ignoriert das erste Element
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Verhindert Compiler-Warnungen über ungenutzte Variablen.</li>
 </ul>
@@ -2310,12 +2291,12 @@ let (_, preis) = tuete; // Ignoriert das erste Element
 <li><strong>Funktionsweise:</strong> Ein leeres Tupel. Es hat genau einen Wert (ebenfalls <code>()</code>) und repräsentiert das Fehlen von Daten.</li>
 <li><strong>Kiosk-Fall:</strong> Eine Aktion (wie das Regal putzen) liefert keinen Ertrag, sondern war nur eine Tätigkeit.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn regal_putzen() -&gt; () {
     println!("Sauber!");
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Wenn eine Funktion keinen Rückgabetyp definiert, gibt sie insgeheim <code>()</code> zurück.</li>
 </ul>
@@ -2324,11 +2305,11 @@ let (_, preis) = tuete; // Ignoriert das erste Element
 <li><strong>Funktionsweise:</strong> Gibt den Wert unter Verwendung des <code>Debug</code>-Traits aus. Zeigt die Struktur des Objekts, wie sie im Code existiert.</li>
 <li><strong>Kiosk-Fall:</strong> Du druckst das komplette Lolli-Glas im Terminal aus, um zu sehen, was Rust intern speichert.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let glas = Some("Lolli");
 println!("{:?}", glas); // Some("Lolli")
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Jedes eigene Struct/Enum benötigt <code>#[derive(Debug)]</code> über dem Kopf, um so ausgegeben werden zu können.</li>
 </ul>
@@ -2337,12 +2318,12 @@ println!("{:?}", glas); // Some("Lolli")
 <li><strong>Funktionsweise:</strong> Wie <code>{:?}</code>, formatiert die Ausgabe aber mit Absätzen, Einrückungen und Zeilenumbrüchen.</li>
 <li><strong>Kiosk-Fall:</strong> Du druckst das gesamte Kioskregal übersichtlich aus.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut regal = std::collections::HashMap::new();
 regal.insert("Lolli", 10);
 println!("{:#?}", regal);
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Nutze <code>{:#?}</code> bei großen Datenstrukturen (wie verschachtelten HashMaps oder Structs), um den Überblick zu behalten.</li>
 </ul>
@@ -2351,12 +2332,12 @@ println!("{:#?}", regal);
 <li><strong>Funktionsweise:</strong> Vergleicht zwei Tupel Element für Element von links nach rechts.</li>
 <li><strong>Kiosk-Fall:</strong> Welcher Einkauf ist wertvoller?</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let einkauf_1 = (1, 50); // 1 Lolli, 50 Cent
 let einkauf_2 = (1, 60); // 1 Lolli, 60 Cent
 assert!(einkauf_2 &gt; einkauf_1); // true, da 60 &gt; 50
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Die Elemente an den entsprechenden Positionen müssen vergleichbar sein.</li>
 </ul>
@@ -2365,11 +2346,11 @@ assert!(einkauf_2 &gt; einkauf_1); // true, da 60 &gt; 50
 <li><strong>Funktionsweise:</strong> Greift auf Elemente in Tupeln zu, die selbst wieder in anderen Strukturen liegen.</li>
 <li><strong>Kiosk-Fall:</strong> Du hast eine Kundenliste aus Tupeln und willst den Preis des ersten Kunden wissen.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let kunden_liste = vec![(String::from("Mia"), 50)];
 let preis = kunden_liste[0].1; // 50
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Achte auf die korrekte Reihenfolge: erst der Index des Vektors in eckigen Klammern, dann der Punkt für das Tupel-Element.</li>
 </ul>
@@ -2378,27 +2359,33 @@ let preis = kunden_liste[0].1; // 50
 <li><strong>Funktionsweise:</strong> Ein Makro, das den übergebenen Ausdruck auswertet, die Datei, Zeile und das Ergebnis ausgibt und den Wert danach unverändert zurückliefert.</li>
 <li><strong>Kiosk-Fall:</strong> Du willst mitten in einer komplexen Rechnung sehen, wie viel Geld gerade berechnet wurde.</li>
 <li><strong>Beispiel:</strong>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let preis = 50;
 let geld = 100;
 let wechselgeld = dbg!(geld - preis); // Druckt: [src/main.rs:3] geld - preis = 50
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 </li>
 <li><strong>Tipp:</strong> Viel besser als <code>println!</code>, da <code>dbg!</code> den Wert nicht konsumiert (ownership-freundlich) und den exakten Code-Ausdruck mit ausgibt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="-merkzettel-für-den-kühlschrank-zusammenfassung"><a class="header" href="#-merkzettel-für-den-kühlschrank-zusammenfassung">📇 Merkzettel für den Kühlschrank (Zusammenfassung)</a></h2>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Werkzeug</th><th style="text-align: left">Wann benutzen?</th><th style="text-align: left">Analogie</th><th style="text-align: left">Wichtigste Methoden</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Werkzeug</th><th style="text-align: left">Wann benutzen?</th><th style="text-align: left">Analogie</th><th style="text-align: left">Wichtigste Methoden</th></tr>
+</thead>
+<tbody>
 <tr><td style="text-align: left"><strong><code>Vec&lt;T&gt;</code></strong></td><td style="text-align: left">Wenn die Reihenfolge zählt und die Liste wachsen soll.</td><td style="text-align: left">Warteschlange vor der Tür</td><td style="text-align: left"><code>.push()</code>, <code>.pop()</code>, <code>.remove()</code>, <code>.len()</code></td></tr>
 <tr><td style="text-align: left"><strong><code>HashMap&lt;K, V&gt;</code></strong></td><td style="text-align: left">Wenn du Dinge über ein Namensschild suchen willst.</td><td style="text-align: left">Beschriftete Gläser im Regal</td><td style="text-align: left"><code>.insert()</code>, <code>.get()</code>, <code>.contains_key()</code>, <code>.entry()</code></td></tr>
 <tr><td style="text-align: left"><strong><code>Option&lt;T&gt;</code></strong></td><td style="text-align: left">Wenn ein Wert da sein kann oder eben fehlen kann.</td><td style="text-align: left">Der blinde Griff ins Glas</td><td style="text-align: left"><code>Some(wert)</code>, <code>None</code>, <code>match</code>, <code>if let</code>, <code>.unwrap_or()</code></td></tr>
 <tr><td style="text-align: left"><strong><code>Result&lt;T, E&gt;</code></strong></td><td style="text-align: left">Wenn eine Aktion erfolgreich sein oder fehlschlagen kann.</td><td style="text-align: left">Der Bezahlvorgang an der Kasse</td><td style="text-align: left"><code>Ok(wert)</code>, <code>Err(fehler)</code>, <code>?</code>, <code>.unwrap_or()</code></td></tr>
 <tr><td style="text-align: left"><strong><code>Tupel (A, B)</code></strong></td><td style="text-align: left">Wenn du schnell mehrere Werte als Paket zurückgeben willst.</td><td style="text-align: left">Die vollgepackte Papiertüte</td><td style="text-align: left"><code>(wert1, wert2)</code>, Destrukturierung <code>let (x, y) = ...</code>, <code>.0</code>, <code>.1</code></td></tr>
 <tr><td style="text-align: left"><strong><code>{:?}</code> und <code>{:#?}</code></strong></td><td style="text-align: left">Zur Ausgabe komplexer Datentypen auf dem Bildschirm.</td><td style="text-align: left">Die Debug-Brille</td><td style="text-align: left"><code>println!("{:?}", variable);</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<hr />
+<hr>
 <h2 id="-mini-quiz-micro-learning"><a class="header" href="#-mini-quiz-micro-learning">🎓 Mini-Quiz (Micro-Learning)</a></h2>
 <p><em>Versuche, diese Fragen im Kopf zu beantworten:</em></p>
 <ol>
@@ -2415,11 +2402,11 @@ let wechselgeld = dbg!(geld - preis); // Druckt: [src/main.rs:3] geld - preis = 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="rust-testing-benchmarking.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="phase3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -2429,16 +2416,21 @@ let wechselgeld = dbg!(geld - preis); // Druckt: [src/main.rs:3] geld - preis = 
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="rust-testing-benchmarking.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="phase3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -2447,17 +2439,15 @@ let wechselgeld = dbg!(geld - preis); // Druckt: [src/main.rs:3] geld - preis = 
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,125 +69,94 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html" class="active"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="phase-6-box-fokus-projekte-1-20"><a class="header" href="#phase-6-box-fokus-projekte-1-20">Phase 6: Box-Fokus (Projekte 1-20)</a></h1>
 <p>Hier findest du didaktische Prompts für die ersten 20 Projekte aus Phase 6 (Box-Fokus). Diese Prompts führen dich Schritt für Schritt durch die Implementierung, ohne dir fertigen Code vorzugeben.</p>
-<hr />
+<hr>
 <h3 id="1-rekursive-liste-cons-list"><a class="header" href="#1-rekursive-liste-cons-list">1. Rekursive Liste (Cons List)</a></h3>
 <p><strong>Hintergrund:</strong>
 Eine einfach verkettete Liste ist das klassische Beispiel für eine rekursive Datenstruktur. Da Rust zur Compilezeit die exakte Größe jedes Typs wissen muss, können wir einen Knoten nicht direkt in sich selbst schachteln – hier kommt die Heap-Allokation mit einer Box ins Spiel, die uns eine feste Zeigergröße garantiert.</p>
@@ -212,7 +193,7 @@ Eine einfach verkettete Liste ist das klassische Beispiel für eine rekursive Da
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="2-generischer-binärbaum"><a class="header" href="#2-generischer-binärbaum">2. Generischer Binärbaum</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Binärbaum eignet sich hervorragend, um Daten hierarchisch zu organisieren. Da jeder Ast selbst wieder ein ganzer Baum sein kann, ist die Struktur inhärent rekursiv – Boxen auf dem Heap helfen uns, diese unendliche Verschachtelung speichertechnisch sauber aufzulösen.</p>
@@ -249,7 +230,7 @@ Ein Binärbaum eignet sich hervorragend, um Daten hierarchisch zu organisieren. 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="3-ast-für-mathematische-ausdrücke"><a class="header" href="#3-ast-für-mathematische-ausdrücke">3. AST für mathematische Ausdrücke</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein abstrakter Syntaxbaum repräsentiert die hierarchische Struktur von mathematischen Gleichungen. Durch die Nutzung von Heap-Zeigern können wir komplexe Verschachtelungen von Operatoren und Zahlen flexibel darstellen und zur Laufzeit auswerten.</p>
@@ -286,7 +267,7 @@ Ein abstrakter Syntaxbaum repräsentiert die hierarchische Struktur von mathemat
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="4-vektor-von-trait-objekten-dyn-typen"><a class="header" href="#4-vektor-von-trait-objekten-dyn-typen">4. Vektor von Trait-Objekten (dyn-Typen)</a></h3>
 <p><strong>Hintergrund:</strong>
 In Benutzeroberflächen müssen oft völlig unterschiedliche Elemente wie Buttons, Labels oder Eingabefelder in einer gemeinsamen Liste verwaltet werden. Boxen in Kombination mit Trait-Objekten erlauben uns genau dieses polymorphe Verhalten zur Laufzeit über Dynamic Dispatch.</p>
@@ -323,7 +304,7 @@ In Benutzeroberflächen müssen oft völlig unterschiedliche Elemente wie Button
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="5-polymorphes-plugin-system"><a class="header" href="#5-polymorphes-plugin-system">5. Polymorphes Plugin-System</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein erweiterbares System lebt davon, dass neue Funktionalitäten hinzugefügt werden können, ohne den bestehenden Kern zu verändern. Mit Heap-basierten Trait-Objekten lässt sich eine dynamische Plugin-Architektur aufbauen, bei der Plugins zur Laufzeit geladen und ausgeführt werden.</p>
@@ -360,7 +341,7 @@ Ein erweiterbares System lebt davon, dass neue Funktionalitäten hinzugefügt we
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="6-große-struktur-auslagern"><a class="header" href="#6-große-struktur-auslagern">6. Große Struktur auslagern</a></h3>
 <p><strong>Hintergrund:</strong>
 Der Stack-Speicher ist begrenzt und schnelles Kopieren großer Datenmengen kann die Performance beeinträchtigen. Indem wir eine sehr große Datenstruktur explizit per Box auf dem Heap allozieren, bleibt auf dem Stack nur ein kleiner Zeiger übrig, was die Speicherverwaltung hocheffizient macht.</p>
@@ -397,7 +378,7 @@ Der Stack-Speicher ist begrenzt und schnelles Kopieren großer Datenmengen kann 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="7-heap-basierter-zustandsautomat"><a class="header" href="#7-heap-basierter-zustandsautomat">7. Heap-basierter Zustandsautomat</a></h3>
 <p><strong>Hintergrund:</strong>
 Zustandsautomaten eignen sich hervorragend für komplexe Abläufe. Wenn wir die einzelnen Zustände als Heap-allozierte Trait-Objekte modellieren, können wir Zustandsübergänge flexibel zur Laufzeit durchführen, indem wir einfach den Zeiger auf das aktuelle Zustandsobjekt austauschen.</p>
@@ -434,7 +415,7 @@ Zustandsautomaten eignen sich hervorragend für komplexe Abläufe. Wenn wir die 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="8-json-ast-parser"><a class="header" href="#8-json-ast-parser">8. JSON-AST-Parser</a></h3>
 <p><strong>Hintergrund:</strong>
 JSON ist eine hierarchische Datenstruktur, bei der Objekte und Arrays beliebig tief verschachtelt sein können. Um diese variable und potenziell rekursive Baumstruktur im Speicher abzubilden, sind Heap-Allokationen mit Boxen unumgänglich.</p>
@@ -471,7 +452,7 @@ JSON ist eine hierarchische Datenstruktur, bei der Objekte und Arrays beliebig t
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="9-kommando-muster-command-pattern"><a class="header" href="#9-kommando-muster-command-pattern">9. Kommando-Muster (Command Pattern)</a></h3>
 <p><strong>Hintergrund:</strong>
 Das Command-Pattern kapselt Aktionen in Objekten. Indem wir diese Aktionen als Trait-Objekte auf dem Heap speichern, können wir eine dynamische Liste von ausgeführten Befehlen verwalten, um eine flexible Undo/Redo-Historie zur Laufzeit zu realisieren.</p>
@@ -508,7 +489,7 @@ Das Command-Pattern kapselt Aktionen in Objekten. Indem wir diese Aktionen als T
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="10-spiel-entitäten-auf-dem-heap"><a class="header" href="#10-spiel-entitäten-auf-dem-heap">10. Spiel-Entitäten auf dem Heap</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem Spiel interagieren viele verschiedene Objekte wie Spieler, Monster und Schatzkisten miteinander. Indem wir all diese unterschiedlichen Typen über ein gemeinsames Trait vereinheitlichen und in Boxen verpacken, können wir sie in einer einzigen Schleife verwalten und aktualisieren.</p>
@@ -545,7 +526,7 @@ In einem Spiel interagieren viele verschiedene Objekte wie Spieler, Monster und 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="11-benutzerdefinierter-fehler-wrapper"><a class="header" href="#11-benutzerdefinierter-fehler-wrapper">11. Benutzerdefinierter Fehler-Wrapper</a></h3>
 <p><strong>Hintergrund:</strong>
 In komplexen Anwendungen treten Fehler aus verschiedenen Quellen auf. Ein benutzerdefinierter Fehler-Wrapper, der die ursprüngliche Fehlerursache als dynamisches Fehler-Trait-Objekt auf dem Heap speichert, ermöglicht es, unterschiedliche Fehlerarten einheitlich zu behandeln und zu verketten.</p>
@@ -582,7 +563,7 @@ In komplexen Anwendungen treten Fehler aus verschiedenen Quellen auf. Ein benutz
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="12-dynamische-callback-liste"><a class="header" href="#12-dynamische-callback-liste">12. Dynamische Callback-Liste</a></h3>
 <p><strong>Hintergrund:</strong>
 Event-gesteuerte Programmierung erfordert die Registrierung von Funktionen, die bei bestimmten Ereignissen aufgerufen werden. Da Closures in Rust unterschliche Typen und Größen haben, nutzen wir Heap-allozierte Box-Trait-Objekte, um sie flexibel in einer Liste verwalten zu können.</p>
@@ -619,7 +600,7 @@ Event-gesteuerte Programmierung erfordert die Registrierung von Funktionen, die 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="13-dateisystem-baum"><a class="header" href="#13-dateisystem-baum">13. Dateisystem-Baum</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Dateisystem besteht aus Dateien und Ordnern, wobei Ordner wiederum Dateien und andere Ordner enthalten können. Um diese hierarchische, rekursive Baumstruktur speichersicher und flexibel abzubilden, verpacken wir die Ordnerinhalte in Heap-basierte Boxen.</p>
@@ -656,7 +637,7 @@ Ein Dateisystem besteht aus Dateien und Ordnern, wobei Ordner wiederum Dateien u
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="14-heap-alloziertes-array-box-slice"><a class="header" href="#14-heap-alloziertes-array-box-slice">14. Heap-alloziertes Array (Box-Slice)</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein normaler Vektor kann wachsen und schrumpfen, was zusätzlichen Speicher-Overhead verursacht. Ein Heap-alloziertes Box-Slice fixiert die Größe eines Arrays zur Laufzeit auf dem Heap und spart Speicherplatz, da keine Kapazitätsreserven vorgehalten werden müssen.</p>
@@ -693,7 +674,7 @@ Ein normaler Vektor kann wachsen und schrumpfen, was zusätzlichen Speicher-Over
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="15-strategie-entwurfsmuster-strategy-pattern"><a class="header" href="#15-strategie-entwurfsmuster-strategy-pattern">15. Strategie-Entwurfsmuster (Strategy Pattern)</a></h3>
 <p><strong>Hintergrund:</strong>
 Das Strategy-Pattern ermöglicht es, Algorithmen zur Laufzeit dynamisch auszutauschen. Durch die Kapselung der Algorithmen in Heap-allozierte Box-Trait-Objekte können wir die Verarbeitungsstrategie einer Anwendung flexibel wechseln, ohne den Client-Code anzupassen.</p>
@@ -730,7 +711,7 @@ Das Strategy-Pattern ermöglicht es, Algorithmen zur Laufzeit dynamisch auszutau
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="16-ausdrucks-parser-für-boolesche-logik"><a class="header" href="#16-ausdrucks-parser-für-boolesche-logik">16. Ausdrucks-Parser für Boolesche Logik</a></h3>
 <p><strong>Hintergrund:</strong>
 Logische Formeln wie UND- oder ODER-Verknüpfungen können beliebig tief ineinander geschachtelt sein. Boxen helfen uns, diese rekursiven Ausdrücke zur Laufzeit auf dem Heap zu speichern und auszuwerten.</p>
@@ -767,7 +748,7 @@ Logische Formeln wie UND- oder ODER-Verknüpfungen können beliebig tief ineinan
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="17-dynamischer-middleware-stack"><a class="header" href="#17-dynamischer-middleware-stack">17. Dynamischer Middleware-Stack</a></h3>
 <p><strong>Hintergrund:</strong>
 In Webservern werden HTTP-Anfragen oft durch eine Kette von Middleware-Komponenten (z. B. Logging, Authentifizierung) geschleust. Ein flexibler Middleware-Stack lässt sich zur Laufzeit aufbauen, indem die einzelnen Middleware-Schritte in einer Kette von Box-Trait-Objekten auf dem Heap verkettet werden.</p>
@@ -804,7 +785,7 @@ In Webservern werden HTTP-Anfragen oft durch eine Kette von Middleware-Komponent
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="18-unendlicher-stream-generator"><a class="header" href="#18-unendlicher-stream-generator">18. Unendlicher Stream-Generator</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Stream-Generator erzeugt kontinuierlich Werte (z. B. mathematische Sequenzen). Durch die Speicherung des Generatorzustands in einer Heap-basierten rekursiven Box-Struktur können wir unendliche Ströme mit komplexem internem Zustand sauber in Rusts Iteratoren-System integrieren.</p>
@@ -841,7 +822,7 @@ Ein Stream-Generator erzeugt kontinuierlich Werte (z. B. mathematische Sequenzen
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="19-suchbaum-mit-n-ären-knoten"><a class="header" href="#19-suchbaum-mit-n-ären-knoten">19. Suchbaum mit N-ären Knoten</a></h3>
 <p><strong>Hintergrund:</strong>
 Im Gegensatz zu Binärbäumen kann ein Knoten in einem N-ären Baum eine variable Anzahl von Kindknoten haben (z. B. für Dateisysteme oder XML-Strukturen). Wir verwalten diese dynamische Liste von Kindern speichereffizient als Vektor von Boxen auf dem Heap.</p>
@@ -878,7 +859,7 @@ Im Gegensatz zu Binärbäumen kann ein Knoten in einem N-ären Baum eine variabl
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="20-dependency-injection-container"><a class="header" href="#20-dependency-injection-container">20. Dependency Injection Container</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Dependency-Injection-Container verwaltet Services und stellt sie bei Bedarf zur Verfügung. Da Services unterschiedliche Typen haben, speichern wir sie als Heap-allozierte dynamische Any-Trait-Objekt-Boxen, um sie zur Laufzeit anhand ihres Typs registrieren und abfragen zu können.</p>
@@ -917,7 +898,7 @@ Ein Dependency-Injection-Container verwaltet Services und stellt sie bei Bedarf 
 </ul>
 <h1 id="phase-6-rc--arc-fokus-projekte-21-40"><a class="header" href="#phase-6-rc--arc-fokus-projekte-21-40">Phase 6: Rc &amp; Arc-Fokus (Projekte 21-40)</a></h1>
 <p>Hier findest du didaktische Prompts für die Projekte 21 bis 40 aus Phase 6 (Rc &amp; Arc-Fokus). Diese Prompts führen dich Schritt für Schritt durch die Implementierung, ohne dir fertigen Code vorzugeben.</p>
-<hr />
+<hr>
 <h3 id="21-geteilte-konfigurationsdaten-rc"><a class="header" href="#21-geteilte-konfigurationsdaten-rc">21. Geteilte Konfigurationsdaten (Rc)</a></h3>
 <p><strong>Hintergrund:</strong>
 Wenn verschiedene Teile einer Anwendung auf dieselbe schreibgeschützte Konfiguration zugreifen müssen, wollen wir unnötige Speicherduplikate vermeiden. Mit dem passenden Smart Pointer für geteiltes Eigentum im selben Thread können wir dieselben Daten effizient und sicher an mehrere Module verteilen.</p>
@@ -954,7 +935,7 @@ Wenn verschiedene Teile einer Anwendung auf dieselbe schreibgeschützte Konfigur
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="22-webserver-konfiguration-arc"><a class="header" href="#22-webserver-konfiguration-arc">22. Webserver-Konfiguration (Arc)</a></h3>
 <p><strong>Hintergrund:</strong>
 In modernen Webservern werden Anfragen parallel in mehreren Threads verarbeitet. Damit alle Worker-Threads auf die globalen Einstellungen zugreifen können, ohne dass die Daten kopiert werden müssen, benötigen wir eine threadsichere Variante des geteilten Eigentums.</p>
@@ -991,7 +972,7 @@ In modernen Webservern werden Anfragen parallel in mehreren Threads verarbeitet.
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="23-graph-knoten-mit-mehreren-eltern"><a class="header" href="#23-graph-knoten-mit-mehreren-eltern">23. Graph-Knoten mit mehreren Eltern</a></h3>
 <p><strong>Hintergrund:</strong>
 In vielen Netzwerk- und Graphstrukturen kann ein Knoten von mehreren anderen Knoten direkt referenziert werden. Um zu verhindern, dass ein Knoten vorzeitig aus dem Speicher gelöscht wird, während er noch von mindestens einem Elternknoten benötigt wird, nutzen wir geteilte Eigentumsrechte.</p>
@@ -1028,7 +1009,7 @@ In vielen Netzwerk- und Graphstrukturen kann ein Knoten von mehreren anderen Kno
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="24-weak-pointer-in-baumstrukturen"><a class="header" href="#24-weak-pointer-in-baumstrukturen">24. Weak-Pointer in Baumstrukturen</a></h3>
 <p><strong>Hintergrund:</strong>
 Wenn Knoten in einem Baum nicht nur auf ihre Kinder zeigen, sondern Kinder auch auf ihre Eltern verweisen sollen, entsteht eine zirkuläre Referenz. Ohne besondere Vorsicht führt dies dazu, dass der Speicher nie wieder freigegeben wird. Hier hilft eine abgeschwächte Form des Zeigers.</p>
@@ -1065,7 +1046,7 @@ Wenn Knoten in einem Baum nicht nur auf ihre Kinder zeigen, sondern Kinder auch 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="25-dateisystem-mit-verknüpfungen-hardlinks"><a class="header" href="#25-dateisystem-mit-verknüpfungen-hardlinks">25. Dateisystem mit Verknüpfungen (Hardlinks)</a></h3>
 <p><strong>Hintergrund:</strong>
 Im echten Dateisystem kann dieselbe Datei über Hardlinks in mehreren Verzeichnissen gleichzeitig eingetragen sein. Sie darf erst dann gelöscht werden, wenn auch der letzte Link darauf entfernt wurde. Das lässt sich hervorragend mit geteiltem Eigentum abbilden.</p>
@@ -1102,7 +1083,7 @@ Im echten Dateisystem kann dieselbe Datei über Hardlinks in mehreren Verzeichni
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="26-thread-pool-task-verteiler"><a class="header" href="#26-thread-pool-task-verteiler">26. Thread-Pool-Task-Verteiler</a></h3>
 <p><strong>Hintergrund:</strong>
 In parallelen Anwendungen müssen Aufgaben (Tasks) an verschiedene Threads verteilt werden. Damit die Aufgabenbeschreibung nicht für jeden Thread teuer kopiert werden muss, teilen wir uns die Daten über einen atomaren Smart Pointer.</p>
@@ -1139,7 +1120,7 @@ In parallelen Anwendungen müssen Aufgaben (Tasks) an verschiedene Threads verte
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="27-zirkulärer-cache-mit-weak"><a class="header" href="#27-zirkulärer-cache-mit-weak">27. Zirkulärer Cache mit Weak</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Cache soll den schnellen Zugriff auf häufig benötigte Daten ermöglichen. Allerdings wollen wir verhindern, dass der Cache Objekte dauerhaft im Speicher feshält, wenn sie an anderer Stelle im Programm längst nicht mehr verwendet werden. Schwache Referenzen sind hier die ideale Lösung.</p>
@@ -1176,10 +1157,10 @@ Ein Cache soll den schnellen Zugriff auf häufig benötigte Daten ermöglichen. 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="28-observer-muster-mit-weak"><a class="header" href="#28-observer-muster-mit-weak">28. Observer-Muster mit Weak</a></h3>
 <p><strong>Hintergrund:</strong>
-Beim Entwurfsmuster "Beobachter" registrieren sich Empfänger bei einer Quelle, um über Änderungen benachrichtigt zu werden. Halten wir in der Quelle starke Verweise auf die Beobachter, können diese niemals gelöscht werden. Schwache Referenzen lösen dieses Problem elegant.</p>
+Beim Entwurfsmuster “Beobachter” registrieren sich Empfänger bei einer Quelle, um über Änderungen benachrichtigt zu werden. Halten wir in der Quelle starke Verweise auf die Beobachter, können diese niemals gelöscht werden. Schwache Referenzen lösen dieses Problem elegant.</p>
 <h4 id="modul-1-basis-datenstrukturen-27"><a class="header" href="#modul-1-basis-datenstrukturen-27">Modul 1: Basis-Datenstrukturen</a></h4>
 <ul>
 <li><strong>Ziel:</strong> Definiere eine Quelle (Subjekt) und Beobachter (Observer). Die Quelle verwaltet eine Liste von Empfängern. Wähle für diese Liste schwache Referenzen, damit die Lebensdauer der Beobachter nicht künstlich durch die Registrierung verlängert wird.</li>
@@ -1213,7 +1194,7 @@ Beim Entwurfsmuster "Beobachter" registrieren sich Empfänger bei einer Quelle, 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="29-gemeinsamer-chat-verlauf"><a class="header" href="#29-gemeinsamer-chat-verlauf">29. Gemeinsamer Chat-Verlauf</a></h3>
 <p><strong>Hintergrund:</strong>
 In einer Chat-Anwendung möchten wir, dass mehrere Benutzer gleichzeitig auf denselben Chat-Verlauf zugreifen und neue Nachrichten lesen können, ohne dass der Verlauf für jeden Benutzer kopiert werden muss.</p>
@@ -1250,7 +1231,7 @@ In einer Chat-Anwendung möchten wir, dass mehrere Benutzer gleichzeitig auf den
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="30-spieler-inventar-mit-geteilten-items"><a class="header" href="#30-spieler-inventar-mit-geteilten-items">30. Spieler-Inventar mit geteilten Items</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem Rollenspiel (RPG) können mehrere Spielfiguren denselben unzerstörbaren Quest-Gegenstand besitzen oder auf dieselbe Item-Definition verweisen. Damit wir den Gegenstand nicht für jeden Spieler duplizieren müssen, teilen wir uns die Referenz darauf.</p>
@@ -1287,7 +1268,7 @@ In einem Rollenspiel (RPG) können mehrere Spielfiguren denselben unzerstörbare
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="31-multi-thread-log-writer"><a class="header" href="#31-multi-thread-log-writer">31. Multi-Thread-Log-Writer</a></h3>
 <p><strong>Hintergrund:</strong>
 In einer Multi-Threaded-Anwendung möchten wir oft, dass alle Threads in dieselbe Log-Datei oder denselben Log-Kanal schreiben. Um sicherzustellen, dass die Threads auf die Log-Ressource zugreifen können, verwenden wir eine threadsichere geteilte Ownership.</p>
@@ -1324,7 +1305,7 @@ In einer Multi-Threaded-Anwendung möchten wir oft, dass alle Threads in dieselb
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="32-dom-baum-modellierung"><a class="header" href="#32-dom-baum-modellierung">32. DOM-Baum-Modellierung</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein DOM-Baum (Document Object Model) repräsentiert HTML-Elemente hierarchisch. Ein Kindelement muss oft auf sein Elternelement verweisen können, während das Elternelement eine Liste seiner Kinder besitzt. Um Speicherlecks durch diese kreisförmige Struktur zu vermeiden, kombinieren wir starke und schwache Zeiger.</p>
@@ -1361,10 +1342,10 @@ Ein DOM-Baum (Document Object Model) repräsentiert HTML-Elemente hierarchisch. 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="33-musik-playliste-mit-geteilten-songs"><a class="header" href="#33-musik-playliste-mit-geteilten-songs">33. Musik-Playliste mit geteilten Songs</a></h3>
 <p><strong>Hintergrund:</strong>
-In einer Musikbibliothek kann derselbe Song in verschiedenen Playlisten vorkommen (z. B. "Favoriten" und "Rock"). Anstatt die Audio- und Metadaten des Songs für jede Playliste im Speicher zu duplizieren, teilen wir uns die Eigentümerschaft an den Songs.</p>
+In einer Musikbibliothek kann derselbe Song in verschiedenen Playlisten vorkommen (z. B. “Favoriten” und “Rock”). Anstatt die Audio- und Metadaten des Songs für jede Playliste im Speicher zu duplizieren, teilen wir uns die Eigentümerschaft an den Songs.</p>
 <h4 id="modul-1-basis-datenstrukturen-32"><a class="header" href="#modul-1-basis-datenstrukturen-32">Modul 1: Basis-Datenstrukturen</a></h4>
 <ul>
 <li><strong>Ziel:</strong> Erstelle Strukturen für einen Song (mit Titel und Künstler) und eine Playliste (mit Name und einer Liste von Songs). Nutze einen Smart Pointer, damit ein Song von mehreren Playlisten referenziert werden kann.</li>
@@ -1398,7 +1379,7 @@ In einer Musikbibliothek kann derselbe Song in verschiedenen Playlisten vorkomme
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="34-routing-tabelle-im-netzwerk"><a class="header" href="#34-routing-tabelle-im-netzwerk">34. Routing-Tabelle im Netzwerk</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Computernetzwerk besteht aus Routern, die miteinander verbunden sind. Jeder Router muss seine Nachbarn kennen, um Pakete weiterzuleiten. Da Nachbarschaften gegenseitig sind, entstehen zyklische Referenzen, die wir durch eine durchdachte Wahl von Smart Pointern handhaben müssen.</p>
@@ -1435,7 +1416,7 @@ Ein Computernetzwerk besteht aus Routern, die miteinander verbunden sind. Jeder 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="35-multi-thread-bildverarbeitung"><a class="header" href="#35-multi-thread-bildverarbeitung">35. Multi-Thread-Bildverarbeitung</a></h3>
 <p><strong>Hintergrund:</strong>
 Die Bildverarbeitung kann sehr rechenintensiv sein. Um die Leistung zu steigern, teilen wir das Bild in Segmente auf und verarbeiten diese parallel in separaten Threads. Damit das große Originalbild nicht für jeden Thread kopiert werden muss, geben wir allen Threads Lesezugriff auf dieselbe Speicheradresse.</p>
@@ -1472,7 +1453,7 @@ Die Bildverarbeitung kann sehr rechenintensiv sein. Um die Leistung zu steigern,
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="36-bibliotheks-system"><a class="header" href="#36-bibliotheks-system">36. Bibliotheks-System</a></h3>
 <p><strong>Hintergrund:</strong>
 In einer Bibliothek können Bücher von mehreren Benutzern gleichzeitig auf eine Vormerkliste gesetzt werden. Das Buch existiert physikalisch nur einmal im Speicher, wird aber von den Vormerklisten mehrerer Benutzer referenziert.</p>
@@ -1509,7 +1490,7 @@ In einer Bibliothek können Bücher von mehreren Benutzern gleichzeitig auf eine
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="37-zustands-sharing-im-ui-framework"><a class="header" href="#37-zustands-sharing-im-ui-framework">37. Zustands-Sharing im UI-Framework</a></h3>
 <p><strong>Hintergrund:</strong>
 In Benutzeroberflächen (UI) müssen oft mehrere visuelle Komponenten (z. B. eine Statusleiste und eine Detailansicht) auf denselben globalen Anwendungszustand zugreifen, um sich bei Änderungen zu aktualisieren.</p>
@@ -1546,7 +1527,7 @@ In Benutzeroberflächen (UI) müssen oft mehrere visuelle Komponenten (z. B. ein
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="38-pipeline-verarbeitung-producer-consumer"><a class="header" href="#38-pipeline-verarbeitung-producer-consumer">38. Pipeline-Verarbeitung (Producer-Consumer)</a></h3>
 <p><strong>Hintergrund:</strong>
 In einer Verarbeitungs-Pipeline wandern Datenpakete durch verschiedene Stufen. Jede Stufe muss auf gemeinsame Metadaten (wie Konfigurationsparameter oder Laufzeitstatistiken) zugreifen können, ohne dass diese kopiert werden.</p>
@@ -1583,7 +1564,7 @@ In einer Verarbeitungs-Pipeline wandern Datenpakete durch verschiedene Stufen. J
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="39-weak-referenzen-im-dateisystem-cache"><a class="header" href="#39-weak-referenzen-im-dateisystem-cache">39. Weak-Referenzen im Dateisystem-Cache</a></h3>
 <p><strong>Hintergrund:</strong>
 Um Festplattenzugriffe zu minimieren, werden geöffnete Dateien oft in einem Cache vorgehalten. Falls eine Datei aber im gesamten restlichen Programm geschlossen wurde, soll sie auch automatisch aus dem Cache verschwinden. Dies lässt sich perfekt über schwache Referenzen steuern.</p>
@@ -1620,7 +1601,7 @@ Um Festplattenzugriffe zu minimieren, werden geöffnete Dateien oft in einem Cac
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="40-flugverbindungs-netzwerk"><a class="header" href="#40-flugverbindungs-netzwerk">40. Flugverbindungs-Netzwerk</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Flugnetzwerk besteht aus Flughäfen, die über Direktflüge miteinander verbunden sind. Ein Flughafen hat Verbindungen zu anderen Flughäfen, welche wiederum zurückverweisen. Um dieses Beziehungsgeflecht speichersicher und ohne Endlosschleifen abzubilden, müssen wir starke und schwache Smart Pointer geschickt kombinieren.</p>
@@ -1659,7 +1640,7 @@ Ein Flugnetzwerk besteht aus Flughäfen, die über Direktflüge miteinander verb
 </ul>
 <h1 id="phase-6-refcell-fokus-projekte-41-60"><a class="header" href="#phase-6-refcell-fokus-projekte-41-60">Phase 6: RefCell-Fokus (Projekte 41-60)</a></h1>
 <p>Hier findest du didaktische Prompts für die Projekte 41 bis 60 aus Phase 6 (RefCell-Fokus). Diese Prompts führen dich Schritt für Schritt durch die Implementierung, ohne dir fertigen Code vorzugeben.</p>
-<hr />
+<hr>
 <h3 id="41-einfacher-konsolen-logger"><a class="header" href="#41-einfacher-konsolen-logger">41. Einfacher Konsolen-Logger</a></h3>
 <p><strong>Hintergrund:</strong>
 Manchmal verlangt ein Trait eine unveränderliche Referenz, aber du musst intern Buch führen. Hier lernst du, wie du mithilfe von <code>RefCell</code> Daten änderst, obwohl die Trait-Signatur es eigentlich verbietet.</p>
@@ -1696,10 +1677,10 @@ Manchmal verlangt ein Trait eine unveränderliche Referenz, aber du musst intern
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="42-mock-datenbank-für-tests"><a class="header" href="#42-mock-datenbank-für-tests">42. Mock-Datenbank für Tests</a></h3>
 <p><strong>Hintergrund:</strong>
-Beim Schreiben von Unit-Tests möchte man keine echte Datenbankverbindung aufbauen. Mit "Interior Mutability" kannst du eine Testdatenbank simulieren, die intern Aufrufe zählt und simulierte Ergebnisse zurückgibt, ohne ihre äußere Schnittstelle zu verändern.</p>
+Beim Schreiben von Unit-Tests möchte man keine echte Datenbankverbindung aufbauen. Mit “Interior Mutability” kannst du eine Testdatenbank simulieren, die intern Aufrufe zählt und simulierte Ergebnisse zurückgibt, ohne ihre äußere Schnittstelle zu verändern.</p>
 <h4 id="modul-1-basis-datenstrukturen-41"><a class="header" href="#modul-1-basis-datenstrukturen-41">Modul 1: Basis-Datenstrukturen</a></h4>
 <ul>
 <li><strong>Ziel:</strong> Definiere ein Trait für Datenbankabfragen (z.B. Abfragen von Datensätzen nach ID). Erstelle dann eine Mock-Datenbank-Struktur, die intern einen Zähler für die Abfragen und eine Liste simulierter Datensätze enthält. Um den Zähler in schreibgeschützten Methoden zu erhöhen, verwende die innere Veränderlichkeit.</li>
@@ -1733,7 +1714,7 @@ Beim Schreiben von Unit-Tests möchte man keine echte Datenbankverbindung aufbau
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="43-zähler-für-funktionsaufrufe"><a class="header" href="#43-zähler-für-funktionsaufrufe">43. Zähler für Funktionsaufrufe</a></h3>
 <p><strong>Hintergrund:</strong>
 Zur Optimierung und Analyse von Software ist es wichtig zu wissen, wie oft bestimmte Funktionen aufgerufen werden. Mit <code>RefCell</code> kannst du diese Statistiken unauffällig im Hintergrund mitschreiben, selbst innerhalb von Getter-Methoden.</p>
@@ -1770,7 +1751,7 @@ Zur Optimierung und Analyse von Software ist es wichtig zu wissen, wie oft besti
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="44-laufzeit-borrow-checker-experiment"><a class="header" href="#44-laufzeit-borrow-checker-experiment">44. Laufzeit-Borrow-Checker-Experiment</a></h3>
 <p><strong>Hintergrund:</strong>
 Während der Rust-Compiler deine Ausleih-Regeln meist zur Compilezeit prüft, verschiebt <code>RefCell</code> diese Prüfung auf die Laufzeit. In diesem Experiment lernst du die Grenzen kennen, indem du absichtlich einen Absturz provozierst.</p>
@@ -1807,7 +1788,7 @@ Während der Rust-Compiler deine Ausleih-Regeln meist zur Compilezeit prüft, ve
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="45-einfacher-cache-mit-interior-mutability"><a class="header" href="#45-einfacher-cache-mit-interior-mutability">45. Einfacher Cache mit Interior Mutability</a></h3>
 <p><strong>Hintergrund:</strong>
 Aufwendige Berechnungen sollten nur einmal durchgeführt werden. Ein Cache speichert Ergebnisse ab – doch das soll oft unbemerkt während eines schreibgeschützten Lesezugriffs geschehen. <code>RefCell</code> macht dies möglich.</p>
@@ -1844,7 +1825,7 @@ Aufwendige Berechnungen sollten nur einmal durchgeführt werden. Ein Cache speic
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="46-gui-button-mit-klick-zähler"><a class="header" href="#46-gui-button-mit-klick-zähler">46. GUI-Button mit Klick-Zähler</a></h3>
 <p><strong>Hintergrund:</strong>
 Benutzeroberflächen basieren oft auf unveränderlichen Strukturen, die auf Benutzerereignisse reagieren müssen. Mit <code>RefCell</code> kann ein Button seine eigenen Klicks zählen, ohne dass die gesamte Benutzeroberfläche veränderlich sein muss.</p>
@@ -1881,7 +1862,7 @@ Benutzeroberflächen basieren oft auf unveränderlichen Strukturen, die auf Benu
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="47-lazy-initialization-container"><a class="header" href="#47-lazy-initialization-container">47. Lazy-Initialization-Container</a></h3>
 <p><strong>Hintergrund:</strong>
 Manchmal ist die Erstellung eines Objekts sehr speicher- oder zeitintensiv. In solchen Fällen ist es klug, das Objekt erst dann zu erstellen, wenn es wirklich gebraucht wird. <code>RefCell</code> hilft uns, diese verzögerte Initialisierung sauber zu kapseln.</p>
@@ -1918,7 +1899,7 @@ Manchmal ist die Erstellung eines Objekts sehr speicher- oder zeitintensiv. In s
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="48-konfigurations-hot-reload"><a class="header" href="#48-konfigurations-hot-reload">48. Konfigurations-Hot-Reload</a></h3>
 <p><strong>Hintergrund:</strong>
 Bei lang laufenden Anwendungen (wie Servern) möchte man Konfigurationen im laufenden Betrieb ändern, ohne das System neu zu starten. Hier lernst du, wie du Konfigurationsdaten im Hintergrund sicher aktualisierst, während andere Systemteile lesend darauf zugreifen.</p>
@@ -1955,7 +1936,7 @@ Bei lang laufenden Anwendungen (wie Servern) möchte man Konfigurationen im lauf
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="49-spiel-statistiken-tracker"><a class="header" href="#49-spiel-statistiken-tracker">49. Spiel-Statistiken-Tracker</a></h3>
 <p><strong>Hintergrund:</strong>
 In Spielen werden Erfolge (Achievements) oft an unerwarteten Stellen freigeschaltet. Ein zentraler Tracker sammelt diese Ereignisse über eine einfache Schnittstelle und aktualisiert die Spieler-Statistiken mithilfe von <code>RefCell</code>.</p>
@@ -1992,7 +1973,7 @@ In Spielen werden Erfolge (Achievements) oft an unerwarteten Stellen freigeschal
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="50-virtueller-ram-speicher"><a class="header" href="#50-virtueller-ram-speicher">50. Virtueller RAM-Speicher</a></h3>
 <p><strong>Hintergrund:</strong>
 Die Simulation von Hardwarekomponenten ist ein klassischer Anwendungsfall für <code>RefCell</code>. Hier simulierst du einen RAM-Riegel, der bei jedem Lese- und Schreibzugriff im Hintergrund Metadaten (wie Zugriffsstatistiken) aktualisiert.</p>
@@ -2029,7 +2010,7 @@ Die Simulation von Hardwarekomponenten ist ein klassischer Anwendungsfall für <
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="51-trace-utility-für-funktionen"><a class="header" href="#51-trace-utility-für-funktionen">51. Trace-Utility für Funktionen</a></h3>
 <p><strong>Hintergrund:</strong>
 Um tiefe Funktionsaufrufe zu verstehen, ist ein Call-Stack-Trace hilfreich. Hier entwickelst du ein Utility, das mithilfe von <code>RefCell</code> die aktuelle Aufruftiefe und den Funktionsverlauf aufzeichnet.</p>
@@ -2066,7 +2047,7 @@ Um tiefe Funktionsaufrufe zu verstehen, ist ein Call-Stack-Trace hilfreich. Hier
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="52-dateisystem-node-mit-schreibschutz"><a class="header" href="#52-dateisystem-node-mit-schreibschutz">52. Dateisystem-Node mit Schreibschutz</a></h3>
 <p><strong>Hintergrund:</strong>
 Auch wenn eine Datei schreibgeschützt ist, ändert das Betriebssystem oft Metadaten wie das letzte Zugriffsdatum, sobald die Datei gelesen wird. Mit <code>RefCell</code> kannst du dieses Verhalten exakt nachbilden.</p>
@@ -2103,7 +2084,7 @@ Auch wenn eine Datei schreibgeschützt ist, ändert das Betriebssystem oft Metad
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="53-zustands-verbindung-für-netzwerk-sockets"><a class="header" href="#53-zustands-verbindung-für-netzwerk-sockets">53. Zustands-Verbindung für Netzwerk-Sockets</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Netzwerk-Socket ändert seinen Zustand (z. B. von Bereit auf Beschäftigt) während des Sendens von Daten. Damit die Sende-Methode einfach zu benutzen bleibt, verwalten wir diesen Zustand intern veränderbar.</p>
@@ -2120,7 +2101,7 @@ Ein Netzwerk-Socket ändert seinen Zustand (z. B. von Bereit auf Beschäftigt) w
 </ul>
 <h4 id="modul-2-implementierung--methoden-52"><a class="header" href="#modul-2-implementierung--methoden-52">Modul 2: Implementierung &amp; Methoden</a></h4>
 <ul>
-<li><strong>Ziel:</strong> Implementiere die Methode zum Senden einer Nachricht. Die Methode nimmt eine unveränderliche Referenz auf das Socket. Ändere den Zustand intern auf "Beschäftigt", füge die Nachricht dem Puffer hinzu und setze den Zustand wieder zurück.</li>
+<li><strong>Ziel:</strong> Implementiere die Methode zum Senden einer Nachricht. Die Methode nimmt eine unveränderliche Referenz auf das Socket. Ändere den Zustand intern auf “Beschäftigt”, füge die Nachricht dem Puffer hinzu und setze den Zustand wieder zurück.</li>
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Welche Methoden müssen implementiert werden?</li>
@@ -2140,7 +2121,7 @@ Ein Netzwerk-Socket ändert seinen Zustand (z. B. von Bereit auf Beschäftigt) w
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="54-einfacher-task-scheduler"><a class="header" href="#54-einfacher-task-scheduler">54. Einfacher Task-Scheduler</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Task-Scheduler verwaltet anstehende Aufgaben. Um neue Aufgaben hinzuzufügen oder abzuarbeiten, während der Scheduler selbst in verschiedenen Kontexten referenziert wird, nutzen wir die innere Veränderlichkeit.</p>
@@ -2177,7 +2158,7 @@ Ein Task-Scheduler verwaltet anstehende Aufgaben. Um neue Aufgaben hinzuzufügen
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="55-grafik-pipeline-konstruktor"><a class="header" href="#55-grafik-pipeline-konstruktor">55. Grafik-Pipeline-Konstruktor</a></h3>
 <p><strong>Hintergrund:</strong>
 Beim Zeichnen von Grafiken ändern sich Einstellungen wie die Stiftfarbe oder Pinseldicke häufig. Mit <code>RefCell</code> kannst du diese Zustandskonfigurationen flexibel anpassen, ohne die gesamte Zeichenfläche neu instanziieren zu müssen.</p>
@@ -2214,7 +2195,7 @@ Beim Zeichnen von Grafiken ändern sich Einstellungen wie die Stiftfarbe oder Pi
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="56-mock-e-mail-sender"><a class="header" href="#56-mock-e-mail-sender">56. Mock-E-Mail-Sender</a></h3>
 <p><strong>Hintergrund:</strong>
 Um in Tests sicherzustellen, dass E-Mails korrekt verschickt werden, verwendet man einen Mock-Sender. Dieser fängt die E-Mails ab und speichert sie intern ab, sodass der Test sie überprüfen kann.</p>
@@ -2251,7 +2232,7 @@ Um in Tests sicherzustellen, dass E-Mails korrekt verschickt werden, verwendet m
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="57-sensor-simulator"><a class="header" href="#57-sensor-simulator">57. Sensor-Simulator</a></h3>
 <p><strong>Hintergrund:</strong>
 Bei der Simulation von IoT-Sensoren müssen kontinuierlich Werte generiert und im Verlaufspuffer abgelegt werden. Die Abfrage erfolgt oft über eine schreibgeschützte Schnittstelle, die jedoch intern den Verlauf aktualisiert.</p>
@@ -2288,7 +2269,7 @@ Bei der Simulation von IoT-Sensoren müssen kontinuierlich Werte generiert und i
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="58-benutzer-session-manager"><a class="header" href="#58-benutzer-session-manager">58. Benutzer-Session-Manager</a></h3>
 <p><strong>Hintergrund:</strong>
 Um die Sicherheit einer Webanwendung zu gewährleisten, verfallen Sessions nach einer gewissen Inaktivität. Bei jedem Zugriff muss die Ablaufzeit aktualisiert werden – auch bei rein lesenden Abfragen.</p>
@@ -2325,7 +2306,7 @@ Um die Sicherheit einer Webanwendung zu gewährleisten, verfallen Sessions nach 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="59-undo-stack-für-texteditor"><a class="header" href="#59-undo-stack-für-texteditor">59. Undo-Stack für Texteditor</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem Texteditor möchte der Benutzer Aktionen rückgängig machen können. Die Editor-Komponente verwaltet diesen Undo-Verlauf im Hintergrund mithilfe von <code>RefCell</code>, um den Zustand des Dokuments sauber zu trennen.</p>
@@ -2362,7 +2343,7 @@ In einem Texteditor möchte der Benutzer Aktionen rückgängig machen können. D
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="60-cache-für-dns-anfragen"><a class="header" href="#60-cache-für-dns-anfragen">60. Cache für DNS-Anfragen</a></h3>
 <p><strong>Hintergrund:</strong>
 DNS-Abfragen über das Netzwerk sind langsam. Ein lokaler Cache speichert die IP-Adressen für bereits angefragte Domains. Mit <code>RefCell</code> können wir diesen Cache bei jeder Auflösung im Hintergrund aktualisieren.</p>
@@ -2401,7 +2382,7 @@ DNS-Abfragen über das Netzwerk sind langsam. Ein lokaler Cache speichert die IP
 </ul>
 <h1 id="phase-6-kombinations-projekte-projekte-61-80"><a class="header" href="#phase-6-kombinations-projekte-projekte-61-80">Phase 6: Kombinations-Projekte (Projekte 61-80)</a></h1>
 <p>Hier findest du didaktische Prompts für die Projekte 61 bis 80 aus Phase 6 (Kombinations-Projekte). Diese Prompts führen dich Schritt für Schritt durch die Implementierung, ohne dir fertigen Code vorzugeben.</p>
-<hr />
+<hr>
 <h3 id="61-verkettete-liste-mit-zwei-richtungen-doubly-linked-list"><a class="header" href="#61-verkettete-liste-mit-zwei-richtungen-doubly-linked-list">61. Verkettete Liste mit zwei Richtungen (Doubly Linked List)</a></h3>
 <p><strong>Hintergrund:</strong>
 Eine doppelt verkettete Liste erlaubt das Navigieren in beide Richtungen. In Rust ist das durch die Ownership-Regeln eine echte Herausforderung, da ein Knoten sowohl einen Nachfolger als auch einen Vorgänger referenziert, was ohne die richtigen Smart Pointer zu Zyklen und Speicherlecks führt.</p>
@@ -2411,7 +2392,7 @@ Eine doppelt verkettete Liste erlaubt das Navigieren in beide Richtungen. In Rus
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2438,8 +2419,8 @@ Eine doppelt verkettete Liste erlaubt das Navigieren in beide Richtungen. In Rus
 </ul>
 </li>
 </ul>
-<hr />
-<h3 id="62-shared-state-im-multi-threading-arc"><a class="header" href="#62-shared-state-im-multi-threading-arc">62. Shared State im Multi-Threading (Arc<Mutex>)</a></h3>
+<hr>
+<h3 id="62-shared-state-im-multi-threading-arcmutex"><a class="header" href="#62-shared-state-im-multi-threading-arcmutex">62. Shared State im Multi-Threading (<code>Arc&lt;Mutex&gt;</code>)</a></h3>
 <p><strong>Hintergrund:</strong>
 Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies aus Sicherheitsgründen standardmäßig. Mit atomaren Smart Pointern und Mutexen kannst du Daten sicher über Thread-Grenzen hinweg teilen und gegenseitigen Ausschluss garantieren.</p>
 <h4 id="modul-1-basis-datenstrukturen-61"><a class="header" href="#modul-1-basis-datenstrukturen-61">Modul 1: Basis-Datenstrukturen</a></h4>
@@ -2448,7 +2429,7 @@ Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies au
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2475,8 +2456,8 @@ Wenn mehrere Threads denselben Zustand verändern sollen, verbietet Rust dies au
 </ul>
 </li>
 </ul>
-<hr />
-<h3 id="63-multi-reader-single-writer-cache-arc"><a class="header" href="#63-multi-reader-single-writer-cache-arc">63. Multi-Reader, Single-Writer Cache (Arc<RwLock>)</a></h3>
+<hr>
+<h3 id="63-multi-reader-single-writer-cache-arcrwlock"><a class="header" href="#63-multi-reader-single-writer-cache-arcrwlock">63. Multi-Reader, Single-Writer Cache (<code>Arc&lt;RwLock&gt;</code>)</a></h3>
 <p><strong>Hintergrund:</strong>
 In leseintensiven Szenarien bremst ein einfacher Mutex die Performance aus, da immer nur ein Thread gleichzeitig zugreifen darf. Mit einem Lese-Schreib-Lock können beliebig viele Threads gleichzeitig lesen, während Schreibzugriffe exklusiv gesichert werden.</p>
 <h4 id="modul-1-basis-datenstrukturen-62"><a class="header" href="#modul-1-basis-datenstrukturen-62">Modul 1: Basis-Datenstrukturen</a></h4>
@@ -2485,7 +2466,7 @@ In leseintensiven Szenarien bremst ein einfacher Mutex die Performance aus, da i
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2512,7 +2493,7 @@ In leseintensiven Szenarien bremst ein einfacher Mutex die Performance aus, da i
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="64-zyklischer-graph-mit-veränderbaren-knoten"><a class="header" href="#64-zyklischer-graph-mit-veränderbaren-knoten">64. Zyklischer Graph mit veränderbaren Knoten</a></h3>
 <p><strong>Hintergrund:</strong>
 Soziale Netzwerke oder Web-Graphen bestehen aus Knoten, die sich gegenseitig referenzieren. In Rust erfordert das Teilen und Verändern von Knoten in einem zyklischen Beziehungsgeflecht eine Kombination aus geteilter Ownership und dynamischer Ausleihe zur Laufzeit.</p>
@@ -2522,7 +2503,7 @@ Soziale Netzwerke oder Web-Graphen bestehen aus Knoten, die sich gegenseitig ref
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2549,7 +2530,7 @@ Soziale Netzwerke oder Web-Graphen bestehen aus Knoten, die sich gegenseitig ref
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="65-thread-sichere-job-warteschlange"><a class="header" href="#65-thread-sichere-job-warteschlange">65. Thread-sichere Job-Warteschlange</a></h3>
 <p><strong>Hintergrund:</strong>
 In modernen Anwendungen ist es üblich, dass Hintergrundaufgaben von mehreren Erzeugern (Producern) generiert und von mehreren Arbeitern (Consumern) abgearbeitet werden. Um Datenkorruption zu vermeiden, muss der Zugriff auf die Warteschlange threadsicher koordiniert werden.</p>
@@ -2559,7 +2540,7 @@ In modernen Anwendungen ist es üblich, dass Hintergrundaufgaben von mehreren Er
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2586,7 +2567,7 @@ In modernen Anwendungen ist es üblich, dass Hintergrundaufgaben von mehreren Er
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="66-baumstruktur-mit-dynamischen-eltern-updates"><a class="header" href="#66-baumstruktur-mit-dynamischen-eltern-updates">66. Baumstruktur mit dynamischen Eltern-Updates</a></h3>
 <p><strong>Hintergrund:</strong>
 In Benutzeroberflächen oder Szenengraphen müssen Knoten oft flexibel im Baum verschoben werden (z. B. Umhängen eines Ordners). Um dabei sowohl Kinder als auch Eltern referenzieren zu können, ohne Speicherlecks zu verursachen, ist eine Kombination aus starken und schwachen Pointern nötig.</p>
@@ -2596,7 +2577,7 @@ In Benutzeroberflächen oder Szenengraphen müssen Knoten oft flexibel im Baum v
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2623,7 +2604,7 @@ In Benutzeroberflächen oder Szenengraphen müssen Knoten oft flexibel im Baum v
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="67-gemeinsamer-spielzustand-im-multiplayer"><a class="header" href="#67-gemeinsamer-spielzustand-im-multiplayer">67. Gemeinsamer Spielzustand im Multiplayer</a></h3>
 <p><strong>Hintergrund:</strong>
 Bei einem Multiplayer-Spiel greifen viele Clients gleichzeitig auf denselben Server-Spielzustand zu (z. B. Positionen von Spielern). Um Race Conditions zu verhindern und Konsistenz zu wahren, muss dieser globale Zustand threadübergreifend geschützt werden.</p>
@@ -2633,7 +2614,7 @@ Bei einem Multiplayer-Spiel greifen viele Clients gleichzeitig auf denselben Ser
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2660,7 +2641,7 @@ Bei einem Multiplayer-Spiel greifen viele Clients gleichzeitig auf denselben Ser
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="68-thread-sicherer-event-bus"><a class="header" href="#68-thread-sicherer-event-bus">68. Thread-sicherer Event-Bus</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Event-Bus verteilt Ereignisse (Events) an registrierte Abonnenten. Da diese Abonnenten in verschiedenen Threads laufen können, muss die Verwaltung der Abonnentenliste sowie das Senden von Events threadübergreifend synchronisiert werden.</p>
@@ -2670,7 +2651,7 @@ Ein Event-Bus verteilt Ereignisse (Events) an registrierte Abonnenten. Da diese 
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2697,24 +2678,24 @@ Ein Event-Bus verteilt Ereignisse (Events) an registrierte Abonnenten. Da diese 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="69-dynamisches-menü-system"><a class="header" href="#69-dynamisches-menü-system">69. Dynamisches Menü-System</a></h3>
 <p><strong>Hintergrund:</strong>
-In komplexen CLI-Anwendungen hängen Menüpunkte oft voneinander ab oder verweisen zurück auf ihr übergeordnetes Menü (z. B. "Zurück"-Button). Ohne die richtige Kombination aus veränderbaren, geteilten und schwachen Zeigern gerät Rusts Ownership-Modell hier an seine Grenzen.</p>
+In komplexen CLI-Anwendungen hängen Menüpunkte oft voneinander ab oder verweisen zurück auf ihr übergeordnetes Menü (z. B. “Zurück”-Button). Ohne die richtige Kombination aus veränderbaren, geteilten und schwachen Zeigern gerät Rusts Ownership-Modell hier an seine Grenzen.</p>
 <h4 id="modul-1-basis-datenstrukturen-68"><a class="header" href="#modul-1-basis-datenstrukturen-68">Modul 1: Basis-Datenstrukturen</a></h4>
 <ul>
 <li><strong>Ziel:</strong> Definiere die Strukturen für einen Menüpunkt und ein Untermenü. Untermenüs müssen eine Liste ihrer Kind-Einträge besitzen und einen Zeiger auf das übergeordnete Menü (Parent) halten. Die Speicherstruktur muss zirkelsicher und veränderbar sein.</li>
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
 </ul>
 <h4 id="modul-2-implementierung--methoden-68"><a class="header" href="#modul-2-implementierung--methoden-68">Modul 2: Implementierung &amp; Methoden</a></h4>
 <ul>
-<li><strong>Ziel:</strong> Implementiere Methoden zum Hinzufügen von Untermenüs, zum Löschen von Menüpunkten und zum Navigieren ("Gehe zu Untermenü", "Gehe zurück"). Nutze innere Veränderbarkeit, um den Zustand des aktuell ausgewählten Menüs zu aktualisieren.</li>
+<li><strong>Ziel:</strong> Implementiere Methoden zum Hinzufügen von Untermenüs, zum Löschen von Menüpunkten und zum Navigieren (“Gehe zu Untermenü”, “Gehe zurück”). Nutze innere Veränderbarkeit, um den Zustand des aktuell ausgewählten Menüs zu aktualisieren.</li>
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Welche Methoden müssen implementiert werden?</li>
@@ -2734,7 +2715,7 @@ In komplexen CLI-Anwendungen hängen Menüpunkte oft voneinander ab oder verweis
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="70-thread-sicheres-logging-system"><a class="header" href="#70-thread-sicheres-logging-system">70. Thread-sicheres Logging-System</a></h3>
 <p><strong>Hintergrund:</strong>
 Wenn viele Programmteile gleichzeitig Log-Einträge schreiben, müssen diese geordnet gesammelt und ohne Blockierung des Hauptprogramms in eine Datei oder die Konsole geschrieben werden. Ein geteilter, threadsicherer Puffer löst diese Anforderung.</p>
@@ -2744,7 +2725,7 @@ Wenn viele Programmteile gleichzeitig Log-Einträge schreiben, müssen diese geo
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2771,7 +2752,7 @@ Wenn viele Programmteile gleichzeitig Log-Einträge schreiben, müssen diese geo
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="71-teilnehmerliste-in-einer-chat-gruppe"><a class="header" href="#71-teilnehmerliste-in-einer-chat-gruppe">71. Teilnehmerliste in einer Chat-Gruppe</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Chat-Server muss die Verbindungen aller aktiven Benutzer verwalten. Da Benutzer jederzeit beitreten oder den Chat verlassen können, während andere Threads Nachrichten an alle senden wollen, muss die Teilnehmerliste hochgradig parallel lesbar und veränderbar sein.</p>
@@ -2781,7 +2762,7 @@ Ein Chat-Server muss die Verbindungen aller aktiven Benutzer verwalten. Da Benut
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2808,7 +2789,7 @@ Ein Chat-Server muss die Verbindungen aller aktiven Benutzer verwalten. Da Benut
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="72-web-scraper-mit-geteilten-ergebnissen"><a class="header" href="#72-web-scraper-mit-geteilten-ergebnissen">72. Web-Scraper mit geteilten Ergebnissen</a></h3>
 <p><strong>Hintergrund:</strong>
 Beim parallelen Herunterladen von Webseiten (Web Scraping) verarbeiten mehrere Threads unterschiedliche URLs. Die Ergebnisse müssen am Ende in einer zentralen Liste gesammelt werden. Dies erfordert eine threadsichere und geteilte Datenstruktur für die gesammelten Daten.</p>
@@ -2818,7 +2799,7 @@ Beim parallelen Herunterladen von Webseiten (Web Scraping) verarbeiten mehrere T
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2845,7 +2826,7 @@ Beim parallelen Herunterladen von Webseiten (Web Scraping) verarbeiten mehrere T
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="73-zustandssteuerung-für-roboter"><a class="header" href="#73-zustandssteuerung-für-roboter">73. Zustandssteuerung für Roboter</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein autonomer Roboter besitzt verschiedene Subsysteme (z. B. Abstandssensoren, Antriebsmotoren, Navigations-KIs), die alle in eigenen Threads laufen. Sie müssen alle auf einen gemeinsamen Roboterzustand zugreifen, um Entscheidungen zu treffen und Aktionen zu koordinieren.</p>
@@ -2855,7 +2836,7 @@ Ein autonomer Roboter besitzt verschiedene Subsysteme (z. B. Abstandssensoren, A
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2882,7 +2863,7 @@ Ein autonomer Roboter besitzt verschiedene Subsysteme (z. B. Abstandssensoren, A
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="74-dokumenten-editor-kooperatives-schreiben"><a class="header" href="#74-dokumenten-editor-kooperatives-schreiben">74. Dokumenten-Editor (Kooperatives Schreiben)</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem kooperativen Dokumenten-Editor arbeiten mehrere Bearbeiter gleichzeitig an verschiedenen Abschnitten desselben Dokuments. Um dies in einem Single-Threaded-Kontext (z. B. einer Event-Loop) abzubilden, müssen die Abschnitte des Dokuments flexibel geteilt und verändert werden können.</p>
@@ -2892,7 +2873,7 @@ In einem kooperativen Dokumenten-Editor arbeiten mehrere Bearbeiter gleichzeitig
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2919,7 +2900,7 @@ In einem kooperativen Dokumenten-Editor arbeiten mehrere Bearbeiter gleichzeitig
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="75-thread-sicherer-rate-limiter"><a class="header" href="#75-thread-sicherer-rate-limiter">75. Thread-sicherer Rate-Limiter</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Rate-Limiter schützt APIs vor Überlastung, indem er Anfragen zählt und abweist, wenn ein Benutzer sein Limit überschreitet. Da Anfragen auf verschiedenen Threads eingehen, muss die Zähler- und Zeitstempeldatenbank threadsicher geteilt und aktualisiert werden.</p>
@@ -2929,7 +2910,7 @@ Ein Rate-Limiter schützt APIs vor Überlastung, indem er Anfragen zählt und ab
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2956,7 +2937,7 @@ Ein Rate-Limiter schützt APIs vor Überlastung, indem er Anfragen zählt und ab
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="76-verzeichnissystem-mit-dateigrößen-berechnung"><a class="header" href="#76-verzeichnissystem-mit-dateigrößen-berechnung">76. Verzeichnissystem mit Dateigrößen-Berechnung</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem Dateisystem hat jede Datei eine Größe. Wenn sich die Größe einer Datei ändert, soll sich dies sofort auf die Gesamtgröße des übergeordneten Ordners auswirken. Dies erfordert eine dynamische Aktualisierung der Elternknoten über geteilte, veränderbare Referenzen.</p>
@@ -2966,7 +2947,7 @@ In einem Dateisystem hat jede Datei eine Größe. Wenn sich die Größe einer Da
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -2993,7 +2974,7 @@ In einem Dateisystem hat jede Datei eine Größe. Wenn sich die Größe einer Da
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="77-thread-sicherer-connection-pool"><a class="header" href="#77-thread-sicherer-connection-pool">77. Thread-sicherer Connection-Pool</a></h3>
 <p><strong>Hintergrund:</strong>
 Datenbankverbindungen sind teuer in der Erstellung. Ein Connection-Pool hält eine feste Anzahl geöffneter Verbindungen bereit. Mehrere Threads können sich Verbindungen ausleihen und wieder zurückgeben. Der Zugriff auf diesen Pool muss threadsicher koordiniert werden.</p>
@@ -3003,7 +2984,7 @@ Datenbankverbindungen sind teuer in der Erstellung. Ein Connection-Pool hält ei
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -3030,7 +3011,7 @@ Datenbankverbindungen sind teuer in der Erstellung. Ein Connection-Pool hält ei
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="78-echtzeit-aktien-ticker"><a class="header" href="#78-echtzeit-aktien-ticker">78. Echtzeit-Aktien-Ticker</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Ticker-System aktualisiert im Hintergrund Börsenkurse. Gleichzeitig wollen viele Anzeige-Threads diese Kurse in Echtzeit lesen. Da das Schreiben (Aktualisieren) seltener als das Lesen (Anzeigen) vorkommt, eignet sich hier ein Lese-Schreib-Sperrmechanismus.</p>
@@ -3040,7 +3021,7 @@ Ein Ticker-System aktualisiert im Hintergrund Börsenkurse. Gleichzeitig wollen 
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -3067,7 +3048,7 @@ Ein Ticker-System aktualisiert im Hintergrund Börsenkurse. Gleichzeitig wollen 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="79-spielkarten-deck-im-mehrspielerspiel"><a class="header" href="#79-spielkarten-deck-im-mehrspielerspiel">79. Spielkarten-Deck im Mehrspielerspiel</a></h3>
 <p><strong>Hintergrund:</strong>
 In einem Kartenspiel teilen sich alle Spieler dasselbe Deck und den Ablagestapel. Jeder Spieler zieht Karten vom Deck und legt Karten auf den Ablagestapel. Im Single-Threaded-Modus erfordert dieser gemeinsame, veränderbare Zustand ein intensives Ownership-Sharing.</p>
@@ -3077,7 +3058,7 @@ In einem Kartenspiel teilen sich alle Spieler dasselbe Deck und den Ablagestapel
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -3104,7 +3085,7 @@ In einem Kartenspiel teilen sich alle Spieler dasselbe Deck und den Ablagestapel
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="80-thread-sicherer-dateicache"><a class="header" href="#80-thread-sicherer-dateicache">80. Thread-sicherer Dateicache</a></h3>
 <p><strong>Hintergrund:</strong>
 Dateizugriffe sind langsam. Ein Dateicache liest Dateien beim ersten Zugriff von der Festplatte und hält sie im Speicher. Da mehrere Threads gleichzeitig Dateien aus dem Cache anfordern können, muss dieser Cache threadsicher geteilt und abgesichert werden.</p>
@@ -3114,7 +3095,7 @@ Dateizugriffe sind langsam. Ein Dateicache liest Dateien beim ersten Zugriff von
 <li><strong>Schlüsselfragen für dich:</strong>
 <ul>
 <li>Wie sieht das Speicherlayout aus?</li>
-<li>Welche Smart Pointer (z.B. Rc&lt;RefCell<T>&gt;, Arc&lt;Mutex<T>&gt;, Arc&lt;RwLock<T>&gt;) sind notwendig und warum?</li>
+<li>Welche Smart Pointer (z.B. <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, <code>Arc&lt;RwLock&lt;T&gt;&gt;</code>) sind notwendig und warum?</li>
 <li>Welche Felder müssen öffentlich (pub) sein?</li>
 </ul>
 </li>
@@ -3143,7 +3124,7 @@ Dateizugriffe sind langsam. Ein Dateicache liest Dateien beim ersten Zugriff von
 </ul>
 <h1 id="phase-6-fortgeschrittene-speicher-szenarien--datenstrukturen-projekte-81-100"><a class="header" href="#phase-6-fortgeschrittene-speicher-szenarien--datenstrukturen-projekte-81-100">Phase 6: Fortgeschrittene Speicher-Szenarien &amp; Datenstrukturen (Projekte 81-100)</a></h1>
 <p>Hier findest du didaktische Prompts für die Projekte 81 bis 100 aus Phase 6 (Fortgeschrittene Speicher-Szenarien &amp; Datenstrukturen). Diese Prompts führen dich Schritt für Schritt durch die Implementierung, ohne dir fertigen Code vorzugeben.</p>
-<hr />
+<hr>
 <h3 id="81-eigener-arena-allokator-arena-allocator"><a class="header" href="#81-eigener-arena-allokator-arena-allocator">81. Eigener Arena-Allokator (Arena Allocator)</a></h3>
 <p><strong>Hintergrund:</strong>
 Bei vielen kleinen Speicherallokationen auf dem Heap leidet die Performance deines Programms unter der Fragmentierung. Mit einem Arena-Allokator reservierst du einen großen zusammenhängenden Speicherblock auf einmal und verteilst daraus kleinere Stücke, was die Effizienz drastisch steigert und die Verwaltung vereinfacht.</p>
@@ -3180,7 +3161,7 @@ Bei vielen kleinen Speicherallokationen auf dem Heap leidet die Performance dein
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="82-speicherleck-detektor-memory-leak-detector"><a class="header" href="#82-speicherleck-detektor-memory-leak-detector">82. Speicherleck-Detektor (Memory Leak Detector)</a></h3>
 <p><strong>Hintergrund:</strong>
 Obwohl Rusts Ownership-Modell Speicherlecks weitgehend verhindert, können durch zyklische Referenzen mit Referenzzählern dennoch Lecks entstehen. Ein benutzerdefinierter Speicherleck-Detektor hilft dir dabei, vergessene oder zirkulär gehaltene Heap-Objekte beim Programmende aufzuspüren.</p>
@@ -3217,7 +3198,7 @@ Obwohl Rusts Ownership-Modell Speicherlecks weitgehend verhindert, können durch
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="83-eigener-smart-pointer-custom-box"><a class="header" href="#83-eigener-smart-pointer-custom-box">83. Eigener Smart-Pointer (Custom Box)</a></h3>
 <p><strong>Hintergrund:</strong>
 Die Standard-Box ist der einfachste Smart Pointer in Rust. Um zu verstehen, wie sie intern funktioniert, baust du deine eigene Version, die direkt mit rohen Zeigern und manuellem Speichermanagement auf dem Heap arbeitet.</p>
@@ -3254,7 +3235,7 @@ Die Standard-Box ist der einfachste Smart Pointer in Rust. Um zu verstehen, wie 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="84-referenz-zählungs-pointer-von-hand-gebaut"><a class="header" href="#84-referenz-zählungs-pointer-von-hand-gebaut">84. Referenz-Zählungs-Pointer von Hand gebaut</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Referenzzähler-Pointer ermöglicht es mehreren Besitzern, dieselben schreibgeschützten Daten auf dem Heap zu teilen. Indem du diese Struktur selbst implementierst, durchdringst du das Prinzip hinter dem automatischen Freigeben von geteiltem Speicher.</p>
@@ -3291,7 +3272,7 @@ Ein Referenzzähler-Pointer ermöglicht es mehreren Besitzern, dieselben schreib
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="85-copy-on-write-cow-nachbau"><a class="header" href="#85-copy-on-write-cow-nachbau">85. Copy-on-Write (Cow) Nachbau</a></h3>
 <p><strong>Hintergrund:</strong>
 Das Copy-on-Write-Muster spart Zeit und Speicher, indem es Daten so lange wie möglich als unveränderliche Referenz teilt und erst dann eine echte Kopie auf dem Heap anfertigt, wenn eine Modifikation erforderlich wird.</p>
@@ -3328,7 +3309,7 @@ Das Copy-on-Write-Muster spart Zeit und Speicher, indem es Daten so lange wie m�
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="86-self-referential-structs-selbstreferenzierende-strukturen"><a class="header" href="#86-self-referential-structs-selbstreferenzierende-strukturen">86. Self-Referential Structs (Selbstreferenzierende Strukturen)</a></h3>
 <p><strong>Hintergrund:</strong>
 Strukturen, die Zeiger auf ihre eigenen Felder enthalten, sind in Rust ein bekanntes Problem, da das Verschieben der Struktur im Speicher die internen Zeiger ungültig machen würde. Mit Pin lernst du das offizielle Werkzeug kennen, um solche Datenstrukturen an eine feste Speicheradresse zu binden.</p>
@@ -3365,7 +3346,7 @@ Strukturen, die Zeiger auf ihre eigenen Felder enthalten, sind in Rust ein bekan
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="87-sicherer-wrapper-um-unsafe-raw-pointer"><a class="header" href="#87-sicherer-wrapper-um-unsafe-raw-pointer">87. Sicherer Wrapper um Unsafe Raw Pointer</a></h3>
 <p><strong>Hintergrund:</strong>
 Bei der hardwarenahen Programmierung oder bei der Interaktion mit anderen Sprachen (FFI) kommt man an rohen Zeigern nicht vorbei. Damit dein restlicher Rust-Code fehlerfrei bleibt, kapselst du diese Zeiger in einer absolut sicheren und idiomatischen API-Schnittstelle.</p>
@@ -3402,7 +3383,7 @@ Bei der hardwarenahen Programmierung oder bei der Interaktion mit anderen Sprach
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="88-ringpuffer-mit-shared-memory"><a class="header" href="#88-ringpuffer-mit-shared-memory">88. Ringpuffer mit Shared Memory</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein Ringpuffer ist eine hocheffiziente Datenstruktur für Warteschlangen, da er Elemente in einem kreisförmigen Heap-Array verwaltet, ohne dass beim Einfügen oder Entfernen Daten im Speicher verschoben werden müssen.</p>
@@ -3439,7 +3420,7 @@ Ein Ringpuffer ist eine hocheffiziente Datenstruktur für Warteschlangen, da er 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="89-b-baum-knoten-speicherverwaltung"><a class="header" href="#89-b-baum-knoten-speicherverwaltung">89. B-Baum-Knoten-Speicherverwaltung</a></h3>
 <p><strong>Hintergrund:</strong>
 B-Bäume eignen sich hervorragend für Datenbanksysteme, da ihre Knoten mehrere Elemente speichern und so die Tiefe des Baumes minimieren. Die Speicherverwaltung muss hierbei das dynamische Aufteilen und Verschieben von Schlüsseln und Werten effizient lösen.</p>
@@ -3476,7 +3457,7 @@ B-Bäume eignen sich hervorragend für Datenbanksysteme, da ihre Knoten mehrere 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="90-garbage-collection-simulator"><a class="header" href="#90-garbage-collection-simulator">90. Garbage Collection Simulator</a></h3>
 <p><strong>Hintergrund:</strong>
 Rust nutzt standardmäßig RAII und Ownership zur Speicherverwaltung. Um zu verstehen, wie andere Sprachen (wie Java oder Go) arbeiten, baust du einen kleinen Simulator für einen Mark-and-Sweep Garbage Collector.</p>
@@ -3513,7 +3494,7 @@ Rust nutzt standardmäßig RAII und Ownership zur Speicherverwaltung. Um zu vers
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="91-flyweight-entwurfsmuster-flyweight-pattern"><a class="header" href="#91-flyweight-entwurfsmuster-flyweight-pattern">91. Flyweight-Entwurfsmuster (Flyweight Pattern)</a></h3>
 <p><strong>Hintergrund:</strong>
 Wenn du eine riesige Anzahl von Objekten im Speicher halten musst, kann der RAM-Bedarf explodieren. Mit dem Flyweight-Muster trennst du die intrinsischen, unveränderlichen Daten (z.B. Grafik-Bitmaps) von den extrinsischen Daten (z.B. Bildschirm-Koordinaten) und teilst erstere unter allen Instanzen auf.</p>
@@ -3550,7 +3531,7 @@ Wenn du eine riesige Anzahl von Objekten im Speicher halten musst, kann der RAM-
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="92-dynamische-speicher-defragmentierung"><a class="header" href="#92-dynamische-speicher-defragmentierung">92. Dynamische Speicher-Defragmentierung</a></h3>
 <p><strong>Hintergrund:</strong>
 In Umgebungen mit begrenztem Speicher führt ständiges Allozieren und Freigeben zu einer Fragmentierung des Heaps. Durch eine Defragmentierung verschiebst du belegte Blöcke so, dass wieder ein großer zusammenhängender freier Speicherbereich entsteht.</p>
@@ -3587,7 +3568,7 @@ In Umgebungen mit begrenztem Speicher führt ständiges Allozieren und Freigeben
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="93-speicher-profiler-für-allocations"><a class="header" href="#93-speicher-profiler-für-allocations">93. Speicher-Profiler für Allocations</a></h3>
 <p><strong>Hintergrund:</strong>
 Um Speicherengpässe oder versteckte Heap-Allokationen in zeitkritischen Anwendungen zu finden, ist ein eigener Speicher-Profiler Gold wert. In Rust kannst du den globalen Allokator abfangen (hooken), um jede Allokation und Deallokation in Echtzeit zu überwachen.</p>
@@ -3624,7 +3605,7 @@ Um Speicherengpässe oder versteckte Heap-Allokationen in zeitkritischen Anwendu
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="94-sparsely-populated-matrix-dünnbesetzte-matrix"><a class="header" href="#94-sparsely-populated-matrix-dünnbesetzte-matrix">94. Sparsely Populated Matrix (Dünnbesetzte Matrix)</a></h3>
 <p><strong>Hintergrund:</strong>
 Riesige Matrizen, bei denen die allermeisten Einträge Null sind, verschwenden bei herkömmlicher Speicherung enorm viel RAM. Eine dünnbesetzte Matrix alloziiert nur die Zellen auf dem Heap, die tatsächlich Werte ungleich Null enthalten.</p>
@@ -3661,7 +3642,7 @@ Riesige Matrizen, bei denen die allermeisten Einträge Null sind, verschwenden b
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="95-thread-lokaler-objektspeicher-thread-local-storage"><a class="header" href="#95-thread-lokaler-objektspeicher-thread-local-storage">95. Thread-lokaler Objektspeicher (Thread-local Storage)</a></h3>
 <p><strong>Hintergrund:</strong>
 Das Teilen von veränderlichen Daten über Threads hinweg erfordert meist langsame Synchronisationsmechanismen wie Mutexe. Mit Thread-lokalem Speicher gibst du jedem Thread eine eigene, unabhängige Kopie einer Variablen, wodurch Sperren komplett überflüssig werden.</p>
@@ -3698,7 +3679,7 @@ Das Teilen von veränderlichen Daten über Threads hinweg erfordert meist langsa
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="96-sichere-api-für-shared-memory-ipc"><a class="header" href="#96-sichere-api-für-shared-memory-ipc">96. Sichere API für Shared Memory (IPC)</a></h3>
 <p><strong>Hintergrund:</strong>
 Shared Memory ist der schnellste Weg für Interprozesskommunikation, birgt aber das Risiko von undefiniertem Verhalten und Speicherfehlern, wenn Prozesse gleichzeitig schreiben. Eine sichere Kapselung in Rust verhindert diese Gefahren zur Compilezeit.</p>
@@ -3735,7 +3716,7 @@ Shared Memory ist der schnellste Weg für Interprozesskommunikation, birgt aber 
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="97-slices-von-heap-strukturen"><a class="header" href="#97-slices-von-heap-strukturen">97. Slices von Heap-Strukturen</a></h3>
 <p><strong>Hintergrund:</strong>
 Beim Arbeiten mit großen Datenmengen, die in Smart Pointern (wie Boxen) auf dem Heap liegen, möchte man oft nur Teilbereiche an Funktionen übergeben. Hier lernst du, wie du performant und ohne Kopiervorgänge Slices von Heap-Referenzen erzeugst und verwaltest.</p>
@@ -3772,7 +3753,7 @@ Beim Arbeiten mit großen Datenmengen, die in Smart Pointern (wie Boxen) auf dem
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="98-manuelles-speicher-layouting-mit-layout"><a class="header" href="#98-manuelles-speicher-layouting-mit-layout">98. Manuelles Speicher-Layouting mit Layout</a></h3>
 <p><strong>Hintergrund:</strong>
 In manchen Low-Level-Szenarien oder beim Bau eigener komplexer Datenstrukturen reicht die automatische Speicherverwaltung nicht aus. Du forderst direkt rohen Speicher mit einer exakt definierten Ausrichtung (Alignment) an und verwaltest diesen manuell.</p>
@@ -3809,7 +3790,7 @@ In manchen Low-Level-Szenarien oder beim Bau eigener komplexer Datenstrukturen r
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="99-lru-cache-least-recently-used-auf-dem-heap"><a class="header" href="#99-lru-cache-least-recently-used-auf-dem-heap">99. LRU-Cache (Least Recently Used) auf dem Heap</a></h3>
 <p><strong>Hintergrund:</strong>
 Ein LRU-Cache speichert eine begrenzte Anzahl von Elementen und verwirft automatisch die am längsten nicht mehr verwendeten Einträge, wenn die Kapazität überschritten wird. Dies erfordert eine clevere Kombination von Heap-Strukturen für schnellen Zugriff und Reihenfolge-Tracking.</p>
@@ -3846,7 +3827,7 @@ Ein LRU-Cache speichert eine begrenzte Anzahl von Elementen und verwirft automat
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h3 id="100-graph-datenbank-im-speicher"><a class="header" href="#100-graph-datenbank-im-speicher">100. Graph-Datenbank im Speicher</a></h3>
 <p><strong>Hintergrund:</strong>
 Graphen sind hochgradig vernetzt und weisen oft zirkuläre Beziehungen auf. Um eine speichersichere und veränderbare Graph-Datenbank im RAM abzubilden, müssen verschiedene Smart Pointer präzise ineinandergreifen, um Speicherzyklen zu verhindern.</p>
@@ -3889,11 +3870,11 @@ Graphen sind hochgradig vernetzt und weisen oft zirkuläre Beziehungen auf. Um e
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="100-projekte-phase6.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="c-kapitel11.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -3903,16 +3884,21 @@ Graphen sind hochgradig vernetzt und weisen oft zirkuläre Beziehungen auf. Um e
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="100-projekte-phase6.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="c-kapitel11.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -3921,17 +3907,15 @@ Graphen sind hochgradig vernetzt und weisen oft zirkuläre Beziehungen auf. Um e
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

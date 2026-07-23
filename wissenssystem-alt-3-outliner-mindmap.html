@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🌲 Alternativ-System 3: Das Outliner / Mindmap Baum-Notizsystem - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-alternativ-system-3-das-outliner--mindmap-baum-notizsystem"><a class="header" href="#-alternativ-system-3-das-outliner--mindmap-baum-notizsystem">🌲 Alternativ-System 3: Das Outliner / Mindmap Baum-Notizsystem</a></h1>
+<p>Willkommen zu einer faszinierenden Reise in die Welt der hierarchischen Gedankenstrukturierung! Nach linearen Notizen und Verlinkungen widmen wir uns nun einem Werkzeug, das viele Denker, Programmierer und Autoren lieben: dem <strong>Outliner</strong> (bekannt aus Tools wie Workflowy, Dynalist oder Roam Research).</p>
+<p>In diesem Kapitel lernst du, wie du deine Notizen in einer flexiblen Baumstruktur organisierst und wie man komplexe, verästelte Datenstrukturen in Rust sauber und ohne Speicherlecks modelliert.</p>
+<hr>
+<h2 id="-einleitung--vision-hierarchische-gedankenstrukturierung"><a class="header" href="#-einleitung--vision-hierarchische-gedankenstrukturierung">🚀 Einleitung &amp; Vision: Hierarchische Gedankenstrukturierung</a></h2>
+<p>Ein <strong>Outliner</strong> ist mehr als ein einfacher Texteditor. Er erlaubt es dir, Gedanken beliebig tief zu verschachteln. Jedes Thema kann in Unterthemen, diese in Absätze und diese wiederum in konkrete Aufgaben oder Stichpunkte unterteilt werden.</p>
+<pre><code class="language-text">🌲 Mein Wissensbaum
+├── 🦀 Rust Lernen
+│   ├── 📦 Speicherverwaltung
+│   │   ├── Ownership
+│   │   └── Borrowing
+│   └── 🏗️ Datenstrukturen
+│       ├── Structs
+│       └── Enums
+└── 📝 Projektplanung
+    └── Outliner CLI bauen
+</code></pre>
+<h3 id="warum-ist-das-wichtig"><a class="header" href="#warum-ist-das-wichtig">Warum ist das wichtig?</a></h3>
+<ul>
+<li><strong>Top-Down-Denken:</strong> Du startest mit einer großen Idee und zerlegst sie Schritt für Schritt in handliche Teile.</li>
+<li><strong>Rust-Herausforderung:</strong> Bäume gehören in Rust zu den spannendsten Datenstrukturen überhaupt. Sie fordern unser Verständnis von Ownership, Borrowing und Speicher-Layouts heraus!</li>
+</ul>
+<hr>
+<h2 id="-die-bildmetapher-der-verästelte-wissensbaum"><a class="header" href="#-die-bildmetapher-der-verästelte-wissensbaum">🧠 Die Bildmetapher: Der verästelte Wissensbaum</a></h2>
+<p>Stell dir einen mächtigen Eichenbaum im Wald vor:</p>
+<ol>
+<li><strong>Der Stamm (<code>Root Node</code>)</strong>: Die Wurzel deines gesamten Notizbuchs. Er trägt die Hauptkategorien.</li>
+<li><strong>Die Äste (<code>Category Nodes</code>)</strong>: Große Themenbereiche wie <em>“Rust-Programmierung”</em> oder <em>“Projekte”</em>.</li>
+<li><strong>Die Zweige (<code>Sub-Nodes</code>)</strong>: Konkrete Kapitel oder Bausteine.</li>
+<li><strong>Die Blätter (<code>Leaf Nodes</code>)</strong>: Einzelne Notizen, Checklisten-Punkte oder Code-Schnipsel.</li>
+<li><strong>Einklappen / Ausklappen (<code>collapsed</code>)</strong>: Im Winter verliert ein Ast seine Blätter und ruht. Genauso kannst du in einem Outliner ganze Teilbäume einklappen, um dich auf das Wesentliche zu konzentrieren – und sie bei Bedarf wieder entfalten.</li>
+</ol>
+<p>Wenn du den Baum durchwanderst, gehst du vom Stamm entlang eines Astes bis zu den Zweigen und Blättern. Genau so funktioniert die Traversierung deines Wissensbaums im Code!</p>
+<hr>
+<h2 id="-architektur--baum-datenstrukturen-in-rust"><a class="header" href="#-architektur--baum-datenstrukturen-in-rust">🏗️ Architektur &amp; Baum-Datenstrukturen in Rust</a></h2>
+<h3 id="das-klassische-rust-baum-problem"><a class="header" href="#das-klassische-rust-baum-problem">Das klassische “Rust-Baum-Problem”</a></h3>
+<p>In objektorientierten Sprachen wie Java oder Python erstellt man Knoten oft mit direkten Zeigern:</p>
+<pre><code class="language-text">Node -&gt; Kind-Node -&gt; Mutter-Node (Zeiger zurück)
+</code></pre>
+<p>In Rust führt dieses doppelseitige Verweisen (<code>parent</code> zeigt auf Mutter, <code>children</code> zeigt auf Kinder) schnell zu <strong>Reference Cycles</strong> (Speicherlecks mit <code>Rc</code>/<code>Arc</code>) oder Ownership-Konflikten mit dem Borrow Checker.</p>
+<h3 id="die-elegante-rust-lösung-arena--index-basierter-baum"><a class="header" href="#die-elegante-rust-lösung-arena--index-basierter-baum">Die elegante Rust-Lösung: Arena / Index-basierter Baum</a></h3>
+<p>Statt Zeigern speichern wir alle Knoten flach in einem einzigen <code>Vec&lt;OutlineNode&gt;</code>! Die Verweise zwischen Eltern und Kindern sind schlicht <strong>Array-Indizes</strong> (<code>usize</code>).</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug, Clone)]
+pub struct OutlineNode {
+    pub id: usize,
+    pub text: String,
+    pub children: Vec&lt;usize&gt;,
+    pub parent: Option&lt;usize&gt;,
+    pub collapsed: bool,
+}
+
+#[derive(Debug, Default)]
+pub struct OutlineTree {
+    pub nodes: Vec&lt;OutlineNode&gt;,
+    pub root_id: Option&lt;usize&gt;,
+}
+<span class="boring">}</span></code></pre>
+<h4 id="vorteile-des-index-basierten-baums"><a class="header" href="#vorteile-des-index-basierten-baums">Vorteile des Index-basierten Baums:</a></h4>
+<ul>
+<li>⚡ <strong>Keine Speicherlecks:</strong> Keine komplexe Zyklerkennung erforderlich.</li>
+<li>🚀 <strong>Speicher-Effizienz:</strong> Alle Knoten liegen zusammenhängend im Speicher (<code>Vec</code>).</li>
+<li>💾 <strong>Einfache Serialisierung:</strong> Lässt sich problemlos als JSON oder OPML speichern und laden.</li>
+</ul>
+<hr>
+<h3 id="vergleich-rekursiver-box-baum-vs-index-baum-vec"><a class="header" href="#vergleich-rekursiver-box-baum-vs-index-baum-vec">Vergleich: Rekursiver <code>Box</code>-Baum vs. Index-Baum (<code>Vec</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Eigenschaft</th><th style="text-align: left">Rekursiv (<code>Box&lt;Node&gt;</code>)</th><th style="text-align: left">Index-basiert (<code>Vec&lt;OutlineNode&gt;</code>)</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Rückverweis zum Parent</strong></td><td style="text-align: left">Sehr schwer (<code>Weak</code> / Unsafe)</td><td style="text-align: left">Trivial (<code>Option&lt;usize&gt;</code>)</td></tr>
+<tr><td style="text-align: left"><strong>Borrow Checker</strong></td><td style="text-align: left">Komplexe Lifetimes / Borrowing</td><td style="text-align: left">Keine Lifetime-Probleme</td></tr>
+<tr><td style="text-align: left"><strong>Verschieben von Knoten</strong></td><td style="text-align: left">Aufwendige Umzeigerung</td><td style="text-align: left">Einfaches Anpassen von Indizes</td></tr>
+<tr><td style="text-align: left"><strong>Performance</strong></td><td style="text-align: left">Viele Heap-Allokationen</td><td style="text-align: left">Sehr schnell (Cache-freundlich)</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-traversierung--code-gerüst-zum-selberbauen"><a class="header" href="#-traversierung--code-gerüst-zum-selberbauen">⚙️ Traversierung &amp; Code-Gerüst zum Selberbauen</a></h2>
+<p>Um eine baumartige Textstruktur auf dem Bildschirm auszugeben, nutzen wir die <strong>Tiefensuche (Depth-First Search - DFS)</strong>. Wir beginnen bei der Wurzel, geben den Knoten aus, wandern tief in den ersten Unterknoten, und erst wenn dieser Ast abgearbeitet ist, gehen wir zum nächsten Ast über.</p>
+<p>Hier ist das didaktische Code-Gerüst für dein Outliner-System. Ergänze die Lücken überall dort, wo <code>todo!()</code> steht!</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug, Clone)]
+pub struct OutlineNode {
+    pub id: usize,
+    pub text: String,
+    pub children: Vec&lt;usize&gt;,
+    pub parent: Option&lt;usize&gt;,
+    pub collapsed: bool,
+}
+
+impl OutlineNode {
+    pub fn new(id: usize, text: impl Into&lt;String&gt;, parent: Option&lt;usize&gt;) -&gt; Self {
+        Self {
+            id,
+            text: text.into(),
+            children: Vec::new(),
+            parent,
+            collapsed: false,
+        }
+    }
+}
+
+pub struct OutlineTree {
+    pub nodes: Vec&lt;OutlineNode&gt;,
+}
+
+impl OutlineTree {
+    pub fn new() -&gt; Self {
+        Self { nodes: Vec::new() }
+    }
+
+    /// Fügt einen neuen Knoten hinzu und verknüpft ihn mit seinem Elternknoten
+    pub fn add_node(&amp;mut self, text: &amp;str, parent_id: Option&lt;usize&gt;) -&gt; usize {
+        let new_id = self.nodes.len();
+        let mut node = OutlineNode::new(new_id, text, parent_id);
+
+        // TODO: Wenn ein parent_id angegeben ist, füge `new_id` zur `children`-Liste
+        // des Elternknotens hinzu.
+        // HINWEIS: Achte darauf, dass der Elternknoten existieren muss!
+        todo!("Erstelle den Knoten und trage ihn in die Kinder-Liste des Elternknotens ein!");
+
+        self.nodes.push(node);
+        new_id
+    }
+}
+
+/// Rekursive Funktion zur Darstellung des Baums als formatierter String.
+/// `depth` bestimmt die Einrückungsebene für die Hierarchie.
+pub fn render_outline_tree(nodes: &amp;[OutlineNode], root_id: usize, depth: usize) -&gt; String {
+    // Leitfragen für deine Implementierung:
+    // 1. Wie holst du den Knoten mit `root_id` aus dem Slices `nodes`?
+    // 2. Wie erzeugst du Einrückungs-Leerzeichen basierend auf `depth`? (z.B. "  ".repeat(depth))
+    // 3. Was machst du, wenn `collapsed == true` ist? (Abbruch der Rekursion für die Kinder!)
+    // 4. Wie rufst du `render_outline_tree` rekursiv für alle Kinder in `children` auf?
+
+    todo!("Implementiere die Baumdarstellung mit passender Einrückung und Einklapp-Logik!");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_tree_rendering() {
+        let mut tree = OutlineTree::new();
+        let root = tree.add_node("Mein Wissensbaum", None);
+        let rust_node = tree.add_node("Rust Lernen", Some(root));
+        let ownership = tree.add_node("Ownership &amp; Borrowing", Some(rust_node));
+
+        let output = render_outline_tree(&amp;tree.nodes, root, 0);
+        assert!(output.contains("Mein Wissensbaum"));
+        assert!(output.contains("Rust Lernen"));
+        assert!(output.contains("Ownership &amp; Borrowing"));
+    }
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h2 id="-übungsaufgaben"><a class="header" href="#-übungsaufgaben">🧪 Übungsaufgaben</a></h2>
+<p>Stelle dein Können unter Beweis! Bearbeite die Aufgaben Schritt für Schritt.</p>
+<h3 id="-stufe-1-leicht-knoten-ein--und-ausklappen"><a class="header" href="#-stufe-1-leicht-knoten-ein--und-ausklappen">🟢 Stufe 1 (Leicht): Knoten ein- und ausklappen</a></h3>
+<p>Implementiere eine Methode <code>pub fn toggle_collapse(&amp;mut self, node_id: usize)</code> auf <code>OutlineTree</code>.</p>
+<ul>
+<li><strong>Anforderung:</strong> Wenn der Knoten ausgeklappt ist (<code>collapsed = false</code>), soll er eingeklappt werden und umgekehrt.</li>
+<li><strong>Erweiterung von <code>render_outline_tree</code>:</strong> Wenn ein Knoten eingeklappt ist und Kinder besitzt, gib hinter seinem Text ein kleines Präfix wie <code>[+]</code> aus und überspringe die Rekursion für seine Kinder. Wenn er ausgeklappt ist, zeige <code>[-]</code>.</li>
+</ul>
+<h3 id="-stufe-2-mittel-knoten-verschieben-re-parenting-logik"><a class="header" href="#-stufe-2-mittel-knoten-verschieben-re-parenting-logik">🟡 Stufe 2 (Mittel): Knoten verschieben (Re-Parenting Logik)</a></h3>
+<p>Schreibe eine Funktion <code>pub fn move_node(&amp;mut self, node_id: usize, new_parent_id: usize) -&gt; Result&lt;(), String&gt;</code>.</p>
+<ul>
+<li><strong>Anforderung:</strong> Entferne <code>node_id</code> aus der <code>children</code>-Liste seines alten Elternknotens und füge sie bei <code>new_parent_id</code> ein. Aktualisiere auch das <code>parent</code>-Feld von <code>node_id</code>.</li>
+<li><strong>Denkanstoß zur Zyklenerkennung:</strong> Was passiert, wenn du versuchst, einen Elternknoten in eines seiner eigenen Kinder zu verschieben? Wie kannst du prüfen, ob <code>new_parent_id</code> ein Nachfahre von <code>node_id</code> ist?</li>
+</ul>
+<h3 id="-stufe-3-schwer-export-nach-json-oder-opml"><a class="header" href="#-stufe-3-schwer-export-nach-json-oder-opml">🔴 Stufe 3 (Schwer): Export nach JSON oder OPML</a></h3>
+<p>Implementiere einen Export-Mechanismus für deinen Wissensbaum!</p>
+<ul>
+<li><strong>OPML Export:</strong> OPML (Outline Processor Markup Language) ist ein verbreitetes XML-Format für Outliner.</li>
+<li><strong>Aufgabe:</strong> Schreibe eine Funktion <code>pub fn export_to_opml(tree: &amp;OutlineTree) -&gt; String</code>, die den Baum rekursiv durchläuft und sauberes XML mit <code>&lt;outline text="..."&gt;</code> Tags erzeugt.</li>
+</ul>
+<hr>
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">🎯 Zusammenfassung</a></h2>
+<p>Mit dem <strong>Outliner-Baumsystem</strong> hast du eine der mächtigsten Datenstrukturen in Rust gemeistert:</p>
+<ul>
+<li><strong>Arena-Muster:</strong> Statt unübersichtlicher Zeiger-Zyklen nutzen wir flache Vektoren mit Indizes als Referenzen.</li>
+<li><strong>Hierarchische Struktur:</strong> Perfekt für die Zerlegung komplexer Ideen von der Wurzel bis zum einzelnen Blatt.</li>
+<li><strong>Tiefensuche:</strong> Durch rekursive Traversierung lässt sich der Baum elegant formatieren und darstellen.</li>
+</ul>
+<p>Du besitzt nun das Fundament, um deinen eigenen interaktiven Outliner für die Kommandozeile zu bauen! 🌲✨</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="wissenssystem-alt-2-cheatsheet-manager.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="wissenssystem-alt-4-knowledge-graph.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="wissenssystem-alt-2-cheatsheet-manager.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="wissenssystem-alt-4-knowledge-graph.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

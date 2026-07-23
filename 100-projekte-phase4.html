@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,126 +69,100 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html" class="active"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="100-projekte---module-pfade-packages--crates"><a class="header" href="#100-projekte---module-pfade-packages--crates">100 Projekte - Module, Pfade, Packages &amp; Crates</a></h1>
 <p>In dieser Phase 4 vertiefen wir die <strong>Code-Organisation</strong>, die <strong>Projektstrukturierung mit Packages</strong> und das <strong>Crates-Ökosystem</strong> in Rust.
 Jedes Projekt kombiniert das Gelernte aus den Phasen 1, 2 und 3 (wie Structs, Enums, Collections, Fehlerbehandlung, Pattern Matching) und erweitert dies um modulare Architektur, Import-Pfade und die Einbindung externer Crates.</p>
-<div class="table-wrapper"><table><thead><tr><th>Thema</th><th>Was du lernst</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
 <tr><td>🧱 Grundlagen</td><td>Variablen, Datentypen, Kontrollfluss, Benutzereingabe</td></tr>
 <tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt Daten? Referenzen (<code>&amp;</code> und <code>&amp;mut</code>)</td></tr>
 <tr><td>📦 Structs &amp; Enums</td><td>Eigene Datenstrukturen mit <code>struct</code>, <code>enum</code> und <code>impl</code></td></tr>
@@ -184,14 +170,20 @@ Jedes Projekt kombiniert das Gelernte aus den Phasen 1, 2 und 3 (wie Structs, En
 <tr><td>📂 Module &amp; Sichtbarkeit</td><td>Code aufteilen mit <code>mod</code>, Kapselung mit <code>pub</code> und <code>pub(crate)</code></td></tr>
 <tr><td>🔗 Pfade &amp; Importe</td><td>Navigieren mit <code>use</code>, <code>super</code>, <code>self</code> und <code>crate</code>, Re-Exporting</td></tr>
 <tr><td>📚 Packages, Cargo &amp; Crates</td><td>Strukturierung in Packages mit Cargo und Einbinden von externen Bibliotheken aus crates.io in der <code>Cargo.toml</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!</p>
-<hr />
+<hr>
 <h2 id="100-projekte---module--sichtbarkeit"><a class="header" href="#100-projekte---module--sichtbarkeit">100 Projekte - Module &amp; Sichtbarkeit</a></h2>
 <p>In dieser Phase 4 lernen wir das <strong>Modulsystem</strong> von Rust kennen. Wir lernen, wie wir Code in logische Einheiten unterteilen (<code>mod</code>), den Zugriff auf Daten und Funktionen steuern (<code>pub</code>, <code>pub(crate)</code> und standardmäßige Privatheit) und Pfade (<code>use</code>, <code>crate</code>, <code>super</code>) zur Navigation nutzen.
 Jedes Projekt kombiniert das Gelernte aus den vorherigen Phasen (Grundlagen, Structs, Enums, Collections, Fehlerbehandlung) und wendet die Kapselung konsequent an.</p>
-<div class="table-wrapper"><table><thead><tr><th>Thema</th><th>Was du lernst</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Thema</th><th>Was du lernst</th></tr>
+</thead>
+<tbody>
 <tr><td>🧱 Grundlagen</td><td>Variablen, Datentypen, Kontrollfluss, Benutzereingabe</td></tr>
 <tr><td>🧠 Ownership &amp; Borrowing</td><td>Wer besitzt Daten? Referenzen (<code>&amp;</code> und <code>&amp;mut</code>)</td></tr>
 <tr><td>📦 Structs &amp; Methoden</td><td>Eigene Datentypen mit <code>impl</code>-Blöcken strukturieren</td></tr>
@@ -199,15 +191,16 @@ Jedes Projekt kombiniert das Gelernte aus den vorherigen Phasen (Grundlagen, Str
 <tr><td>🗃️ Collections</td><td><code>Vec&lt;T&gt;</code> und <code>HashMap&lt;K, V&gt;</code> für dynamische Daten</td></tr>
 <tr><td>⚠️ Fehlerbehandlung</td><td><code>Result&lt;T, E&gt;</code> und <code>Option&lt;T&gt;</code> für sicheren Code</td></tr>
 <tr><td>📦 Module &amp; Sichtbarkeit</td><td>Code-Strukturierung, Kapselung, <code>pub</code>, <code>pub(crate)</code>, <code>use</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>Hinweis: Alle Projekte zeigen nur fertigen Code und Kommentare an. Nur lesen!</p>
-<hr />
+<hr>
 <h2 id="phase-4-module--sichtbarkeit-projekte-1-bis-25"><a class="header" href="#phase-4-module--sichtbarkeit-projekte-1-bis-25">Phase 4: Module &amp; Sichtbarkeit (Projekte 1 bis 25)</a></h2>
 <p>Die folgenden 25 Projekte konzentrieren sich primär auf die Aufteilung von Code in logische Module und das Prinzip der Kapselung. Wir simulieren diese Aufteilung über Inline-Module (<code>mod name</code>), was uns erlaubt, das Verhalten von <code>pub</code> und die standardmäßige Privatheit direkt in einer einzigen, compilierbaren Datei nachzuvollziehen.</p>
-<hr />
+<hr>
 <h2 id="projekt-1-sicheres-tresor-system"><a class="header" href="#projekt-1-sicheres-tresor-system">Projekt 1: Sicheres Tresor-System</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Tresor-Logik
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Tresor-Logik
 pub mod tresor {
     // 📦 Struct für den Tresor
     pub struct Safe {
@@ -263,10 +256,10 @@ fn main() {
     } else {
         println!("Falscher PIN! Zugriff verweigert.");
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-2-temperatur-konverter-mit-hilfsmodul"><a class="header" href="#projekt-2-temperatur-konverter-mit-hilfsmodul">Projekt 2: Temperatur-Konverter mit Hilfsmodul</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul für die Konvertierung
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul für die Konvertierung
 pub mod konverter {
     // 📦 Untermodul für Celsius-Berechnungen
     pub mod celsius {
@@ -302,10 +295,10 @@ fn main() {
 
     let fahrenheit_wert = 77.0;
     println!("{}°F sind {}°C", fahrenheit_wert, konverter::fahrenheit::zu_celsius(fahrenheit_wert));
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-3-mitarbeiterdatenbank-mit-getter"><a class="header" href="#projekt-3-mitarbeiterdatenbank-mit-getter">Projekt 3: Mitarbeiterdatenbank mit Getter</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul zur Mitarbeiterverwaltung
+<pre class="playground"><code class="language-rust">// 📦 Modul zur Mitarbeiterverwaltung
 pub mod personal {
     // 📦 Struct für einen Mitarbeiter
     pub struct Mitarbeiter {
@@ -343,10 +336,10 @@ fn main() {
     println!("Gehalt: {} EUR", mitarbeiter.gehalt_anzeigen());
     
     // mitarbeiter.gehalt = 5000; // ⚠️ Würde Compilerfehler erzeugen!
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-4-einfache-benutzerauthentifizierung"><a class="header" href="#projekt-4-einfache-benutzerauthentifizierung">Projekt 4: Einfache Benutzerauthentifizierung</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Sicherheits-Hilfsfunktionen
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Sicherheits-Hilfsfunktionen
 pub mod sicherheit {
     // 🛡️ Sichtbarkeit: pub(crate) macht die Funktion im gesamten Crate sichtbar,
     // aber verbirgt sie nach außen (falls dieses Projekt eine Bibliothek wäre)
@@ -400,10 +393,10 @@ fn main() {
     } else {
         println!("Login fehlgeschlagen.");
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-5-bibliothek-verwaltungssystem"><a class="header" href="#projekt-5-bibliothek-verwaltungssystem">Projekt 5: Bibliothek-Verwaltungssystem</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Bibliothek
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Bibliothek
 pub mod bibliothek {
     // 🏷️ Enum für den Buchstatus
     #[derive(Debug, Clone, Copy, PartialEq)]
@@ -464,10 +457,10 @@ fn main() {
     if let Err(e) = mein_buch.ausleihen() {
         println!("Kapselung funktioniert! Fehler: {}", e);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-6-online-shop-warenkorb"><a class="header" href="#projekt-6-online-shop-warenkorb">Projekt 6: Online-Shop Warenkorb</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul
 pub mod shop {
     // 📦 Untermodul für Artikel
     pub mod artikel {
@@ -537,10 +530,10 @@ fn main() {
     cart.hinzufuegen(p2);
 
     println!("Gesamtsumme im Warenkorb: {} EUR", cart.gesamtsumme());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-7-sensor-netzwerk-mit-fehlerbehandlung"><a class="header" href="#projekt-7-sensor-netzwerk-mit-fehlerbehandlung">Projekt 7: Sensor-Netzwerk mit Fehlerbehandlung</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Hardware-Simulation
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Hardware-Simulation
 pub mod hardware {
     pub struct Sensor {
         pub id: u32,
@@ -598,10 +591,10 @@ fn main() {
         Ok(avg) =&gt; println!("Durchschnittliche Temperatur: {:.2}°C", avg),
         Err(e) =&gt; println!("Kritischer Fehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-8-steuerrechner-für-produkte"><a class="header" href="#projekt-8-steuerrechner-für-produkte">Projekt 8: Steuerrechner für Produkte</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für Steuerberechnungen
+<pre class="playground"><code class="language-rust">// 📦 Modul für Steuerberechnungen
 pub mod finanzen {
     // 🛡️ Sichtbarkeit: Das Enum ist öffentlich zugänglich
     #[derive(Debug)]
@@ -638,10 +631,10 @@ fn main() {
     let nettopreis_tv = 499.00;
     let bruttopreis_tv = berechne_bruttopreis(nettopreis_tv, ProduktKategorie::Elektronik);
     println!("Bruttopreis des Fernsehers: {:.2} EUR", bruttopreis_tv);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-9-smart-home-lichtsteuerung"><a class="header" href="#projekt-9-smart-home-lichtsteuerung">Projekt 9: Smart-Home Lichtsteuerung</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die physischen Geräte
+<pre class="playground"><code class="language-rust">// 📦 Modul für die physischen Geräte
 pub mod geraete {
     #[derive(Debug, PartialEq, Clone)]
     pub enum LichtZustand {
@@ -726,10 +719,10 @@ fn main() {
     zentrale.alle_ausschalten();
 
     println!("Lampe 1 nach Zentralbefehl: {:?}", zentrale.lampen[0].zustand());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-10-log-system"><a class="header" href="#projekt-10-log-system">Projekt 10: Log-System</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für das Logging
+<pre class="playground"><code class="language-rust">// 📦 Modul für das Logging
 pub mod logger {
     // 🛡️ Sichtbarkeit: Das Enum ist crate-weit sichtbar.
     #[derive(Debug)]
@@ -777,10 +770,10 @@ fn main() {
     // Da wir uns im selben Crate befinden, können wir auch die pub(crate) Elemente nutzen:
     use logger::LogLevel;
     mein_logger.logge(LogLevel::Fehler, "Ein simulierter Fehler ist aufgetreten!");
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-11-bankkonto-mit-transaktionshistorie"><a class="header" href="#projekt-11-bankkonto-mit-transaktionshistorie">Projekt 11: Bankkonto mit Transaktionshistorie</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Bank
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Bank
 pub mod bank {
     pub struct Konto {
         inhaber: String,
@@ -851,10 +844,10 @@ fn main() {
     for t in mein_konto.zeige_historie() {
         println!(" - {}", t);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-12-geometrie-rechner"><a class="header" href="#projekt-12-geometrie-rechner">Projekt 12: Geometrie-Rechner</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul
 pub mod geometrie {
     // 📦 Untermodul für den Kreis
     pub mod kreis {
@@ -896,10 +889,10 @@ fn main() {
 
     let r = Rectangle { breite: 4.0, hoehe: 6.0 };
     println!("Fläche des Rechtecks: {:.2}", r.flaeche());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-13-task-manager"><a class="header" href="#projekt-13-task-manager">Projekt 13: Task-Manager</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Aufgabenverwaltung
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Aufgabenverwaltung
 pub mod tasks {
     pub struct Task {
         // 🛡️ Sichtbarkeit: ID ist öffentlich lesbar, aber kann nicht direkt geändert werden
@@ -954,10 +947,10 @@ fn main() {
     } else {
         println!("Task nicht gefunden.");
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-14-kaffeemaschinen-simulator"><a class="header" href="#projekt-14-kaffeemaschinen-simulator">Projekt 14: Kaffeemaschinen-Simulator</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Kaffeemaschine
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Kaffeemaschine
 pub mod maschine {
     #[derive(Debug)]
     pub enum KaffeeTyp {
@@ -1021,10 +1014,10 @@ fn main() {
     if let Err(e) = meine_maschine.bruehen(KaffeeTyp::Espresso) {
         println!("Kapselung meldet: {}", e);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-15-schulnoten-manager"><a class="header" href="#projekt-15-schulnoten-manager">Projekt 15: Schulnoten-Manager</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Schule
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Schule
 pub mod schule {
     pub struct Schueler {
         pub name: String,
@@ -1077,10 +1070,10 @@ fn main() {
     if let Some(schnitt) = s.durchschnitt() {
         println!("Durchschnitt von {}: {:.2}", s.name, schnitt);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-16-spiel-inventar"><a class="header" href="#projekt-16-spiel-inventar">Projekt 16: Spiel-Inventar</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul
 pub mod spiel {
     // 📦 Untermodul
     pub mod inventar {
@@ -1138,10 +1131,10 @@ fn main() {
     }
 
     println!("Inhalt: {:?}", rucksack.inhalt());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-17-wetterstation"><a class="header" href="#projekt-17-wetterstation">Projekt 17: Wetterstation</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul
 pub mod wetter {
     // 📦 Untermodul für die Messwerte
     pub mod messung {
@@ -1182,10 +1175,10 @@ fn main() {
     if let Some(max) = wetter::statistik::ermittle_maximum(&amp;daten) {
         println!("Maximale Temperatur: {}°C", max);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-18-passwort-generator-einfach"><a class="header" href="#projekt-18-passwort-generator-einfach">Projekt 18: Passwort-Generator (einfach)</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Passwort-Generierung
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Passwort-Generierung
 pub mod generator {
     // 🛡️ Sichtbarkeit: Dieser Zeichensatz ist privat.
     const ZEICHEN: &amp;[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&amp;*";
@@ -1225,10 +1218,10 @@ fn main() {
     // Generiert ein Passwort der Länge 12 mit einem Seed von 42
     let passwort = generator::generiere(12, 42);
     println!("Generiertes Passwort: {}", passwort);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-19-ticket-buchungssystem"><a class="header" href="#projekt-19-ticket-buchungssystem">Projekt 19: Ticket-Buchungssystem</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Buchungen
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Buchungen
 pub mod buchung {
     #[derive(Debug, PartialEq, Clone, Copy)]
     pub enum Kategorie {
@@ -1280,10 +1273,10 @@ fn main() {
         Ok(_) =&gt; println!("Erneut gebucht!"),
         Err(e) =&gt; println!("Fehler beim Buchen: {}", e), // Sollte fehlschlagen
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-20-auto-dashboard"><a class="header" href="#projekt-20-auto-dashboard">Projekt 20: Auto-Dashboard</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für das Auto
+<pre class="playground"><code class="language-rust">// 📦 Modul für das Auto
 pub mod auto {
     pub struct Dashboard {
         // 🛡️ Sichtbarkeit: Der Motorzustand und der Tankinhalt sind privat.
@@ -1334,10 +1327,10 @@ fn main() {
     mein_auto.motor_starten().unwrap();
     mein_auto.fahren(100); // Verbraucht 10L
     mein_auto.fahren(100); // Bleibt auf halber Strecke liegen
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-21-kontaktbuch"><a class="header" href="#projekt-21-kontaktbuch">Projekt 21: Kontaktbuch</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für Kontakte
+<pre class="playground"><code class="language-rust">// 📦 Modul für Kontakte
 pub mod kontakte {
     use std::collections::HashMap;
 
@@ -1389,10 +1382,10 @@ fn main() {
         Ok(_) =&gt; println!("Bob hinzugefügt."),
         Err(e) =&gt; println!("Fehler bei Bob: {}", e), // Sollte scheitern wegen 'a'
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-22-rabatt-system-für-kunden"><a class="header" href="#projekt-22-rabatt-system-für-kunden">Projekt 22: Rabatt-System für Kunden</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für Rabatte
+<pre class="playground"><code class="language-rust">// 📦 Modul für Rabatte
 pub mod rabatt_system {
     pub enum Status {
         Standard,
@@ -1425,10 +1418,10 @@ fn main() {
     let final_preis = preis_nach_rabatt(original_preis, Status::Gold);
 
     println!("Gold-Kunde zahlt: {} EUR (Original: {} EUR)", final_preis, original_preis);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-23-ampelsteuerung"><a class="header" href="#projekt-23-ampelsteuerung">Projekt 23: Ampelsteuerung</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Ampel
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Ampel
 pub mod ampel {
     #[derive(Debug, PartialEq, Clone)]
     pub enum AmpelPhase {
@@ -1479,10 +1472,10 @@ fn main() {
 
     ampel.schalten();
     println!("Nächste Phase: {:?}", ampel.phase()); // Gruen
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-24-musik-playlist"><a class="header" href="#projekt-24-musik-playlist">Projekt 24: Musik-Playlist</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Modul für die Musik-Wiedergabe
+<pre class="playground"><code class="language-rust">// 📦 Modul für die Musik-Wiedergabe
 pub mod playlist {
     #[derive(Debug, Clone)]
     pub struct Song {
@@ -1531,10 +1524,10 @@ fn main() {
     println!("Song 2: {:?}", player.naechster_song().unwrap());
     // Fängt wieder von vorne an
     println!("Song 3 (Wiederholung): {:?}", player.naechster_song().unwrap());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-25-einfacher-taschenrechner-mit-modul-struktur"><a class="header" href="#projekt-25-einfacher-taschenrechner-mit-modul-struktur">Projekt 25: Einfacher Taschenrechner mit Modul-Struktur</a></h2>
-<pre><pre class="playground"><code class="language-rust">// 📦 Hauptmodul für Berechnungen
+<pre class="playground"><code class="language-rust">// 📦 Hauptmodul für Berechnungen
 pub mod rechner {
     // 📦 Untermodul für Division
     pub mod division {
@@ -1569,15 +1562,15 @@ fn main() {
     }
 
     println!("{} * 5 = {}", a, multipliziere(a, 5.0));
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="100-projekte--pfade--importe-teil-2-projekte-26-bis-50"><a class="header" href="#100-projekte--pfade--importe-teil-2-projekte-26-bis-50">100 Projekte – Pfade &amp; Importe (Teil 2: Projekte 26 bis 50)</a></h2>
 <p>In diesem zweiten Teil der Phase 4 vertiefen wir die <strong>Modulnavigation und das Re-Exporting</strong>. Der Fokus liegt auf der Strukturierung von Code durch Module (<code>mod</code>), dem Navigieren in Hierarchien (<code>use</code>, <code>super</code>, <code>self</code>, <code>crate</code>) sowie dem Vereinfachen von Schnittstellen durch Re-Exports (<code>pub use</code>).</p>
 <p>Jedes Projekt baut auf den Grundlagen der vorherigen Phasen auf und integriert Collections (Vektoren, HashMaps), Fehlerbehandlung (Option, Result) und Objektmodellierung in eine saubere Modulstruktur.</p>
-<hr />
+<hr>
 <h2 id="phase-4-pfade--importe-projekte-26-bis-50"><a class="header" href="#phase-4-pfade--importe-projekte-26-bis-50">Phase 4: Pfade &amp; Importe (Projekte 26 bis 50)</a></h2>
 <p>Die folgenden 25 Projekte zeigen vollständige, compilierbare Rust-Programme, die direkt in einer Datei ausgeführt werden können. Dazu nutzen wir inline deklarierte Module (<code>mod name { ... }</code>), was die Modulnavigation direkt in einer Datei veranschaulicht.</p>
-<hr />
+<hr>
 <h2 id="projekt-26-hotel-reservierungssystem"><a class="header" href="#projekt-26-hotel-reservierungssystem">Projekt 26: Hotel-Reservierungssystem</a></h2>
 <h3 id="beschreibung"><a class="header" href="#beschreibung">Beschreibung</a></h3>
 <p>Ein System zur Verwaltung von Hotelzimmern. Es besteht aus dem Modul <code>hotel</code>, das intern die Submodule <code>zimmer</code> (für Datenstrukturen) und <code>reservierung</code> (für die Buchungslogik) besitzt.</p>
@@ -1588,7 +1581,7 @@ fn main() {
     └── reservierung (ReservierungsSystem)
 </code></pre>
 <h3 id="code"><a class="header" href="#code">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod hotel {
+<pre class="playground"><code class="language-rust">mod hotel {
     pub mod zimmer {
         #[derive(Debug, PartialEq, Clone, Copy)]
         pub enum Status {
@@ -1648,8 +1641,8 @@ fn main() {
         Ok(_) =&gt; println!("Erfolgreich gebucht!"),
         Err(e) =&gt; println!("Fehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-27-bibliotheks-verwaltung"><a class="header" href="#projekt-27-bibliotheks-verwaltung">Projekt 27: Bibliotheks-Verwaltung</a></h2>
 <h3 id="beschreibung-1"><a class="header" href="#beschreibung-1">Beschreibung</a></h3>
 <p>Verwaltung von Büchern in einer Bibliothek. Dieses Projekt zeigt die absolute Pfadnavigation mit <code>crate::</code> aus einem Submodul heraus auf eine Struktur im Elternmodul.</p>
@@ -1660,7 +1653,7 @@ fn main() {
     └── ausleihe (Ausleiher)
 </code></pre>
 <h3 id="code-1"><a class="header" href="#code-1">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod bibliothek {
+<pre class="playground"><code class="language-rust">mod bibliothek {
     pub mod medien {
         pub struct Buch {
             pub titel: String,
@@ -1708,8 +1701,8 @@ fn main() {
     if let Ok(_) = user.neue_ausleihe(buch) {
         println!("Buch erfolgreich für {} registriert.", user.name);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-28-e-commerce-warenkorb"><a class="header" href="#projekt-28-e-commerce-warenkorb">Projekt 28: E-Commerce Warenkorb</a></h2>
 <h3 id="beschreibung-2"><a class="header" href="#beschreibung-2">Beschreibung</a></h3>
 <p>Warenkorb-System mit Produkten. Es wird demonstriert, wie <code>pub use</code> verwendet wird, um ein komplexes Submodul-System hinter einer flachen API-Schnittstelle zu verbergen.</p>
@@ -1720,7 +1713,7 @@ fn main() {
     └── warenkorb (Warenkorb)
 </code></pre>
 <h3 id="code-2"><a class="header" href="#code-2">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod shop {
+<pre class="playground"><code class="language-rust">mod shop {
     pub mod produkte {
         #[derive(Clone)]
         pub struct Produkt {
@@ -1764,8 +1757,8 @@ fn main() {
     });
 
     println!("Gesamtsumme: {} EUR", cart.gesamtsumme());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-29-mitarbeiter-datenbank"><a class="header" href="#projekt-29-mitarbeiter-datenbank">Projekt 29: Mitarbeiter-Datenbank</a></h2>
 <h3 id="beschreibung-3"><a class="header" href="#beschreibung-3">Beschreibung</a></h3>
 <p>Eine Mitarbeiter-Datenbank, die eine <code>HashMap</code> zur Speicherung nutzt. Das Projekt kombiniert absolute Pfadnamen mit Modulstrukturen zur Verwaltung von Abteilungen.</p>
@@ -1776,7 +1769,7 @@ fn main() {
     └── abteilung (Abteilung)
 </code></pre>
 <h3 id="code-3"><a class="header" href="#code-3">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod firma {
+<pre class="playground"><code class="language-rust">mod firma {
     pub mod personal {
         pub struct Mitarbeiter {
             pub id: u32,
@@ -1822,8 +1815,8 @@ fn main() {
     if let Some(m) = abteilung.finde_mitarbeiter(1001) {
         println!("Mitarbeiter gefunden: {} (ID: {})", m.name, m.id);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-30-smart-home-steuerung"><a class="header" href="#projekt-30-smart-home-steuerung">Projekt 30: Smart Home Steuerung</a></h2>
 <h3 id="beschreibung-4"><a class="header" href="#beschreibung-4">Beschreibung</a></h3>
 <p>Eine Smart-Home-Zentrale, die Lampen und Thermostate verwaltet. Es demonstriert die Kapselung mithilfe von <code>pub(crate)</code> für interne Steuerbefehle.</p>
@@ -1834,7 +1827,7 @@ fn main() {
     └── zentrale (Steuerung)
 </code></pre>
 <h3 id="code-4"><a class="header" href="#code-4">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod smarthome {
+<pre class="playground"><code class="language-rust">mod smarthome {
     pub mod geraete {
         pub enum Typ {
             Licht,
@@ -1889,8 +1882,8 @@ fn main() {
     zentrale.toggle_geraet(1).unwrap();
     assert_eq!(zentrale.geraete[0].aktiv, true);
     println!("Gerätezustand erfolgreich umgeschaltet!");
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-31-bankkonto-manager"><a class="header" href="#projekt-31-bankkonto-manager">Projekt 31: Bankkonto-Manager</a></h2>
 <h3 id="beschreibung-5"><a class="header" href="#beschreibung-5">Beschreibung</a></h3>
 <p>Konto- und Transaktionsverwaltung einer Bank. Zeigt, wie man private Attribute über öffentliche Modulmethoden absichert und mit <code>super</code> navigiert.</p>
@@ -1901,7 +1894,7 @@ fn main() {
     └── transaktion (TransaktionsProtokoll)
 </code></pre>
 <h3 id="code-5"><a class="header" href="#code-5">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod bank {
+<pre class="playground"><code class="language-rust">mod bank {
     pub mod konto {
         pub struct Konto {
             inhaber: String,
@@ -1957,8 +1950,8 @@ fn main() {
 
     TransaktionsProtokoll::fuehre_einzahlung_aus(&amp;mut mein_konto, 50.0).unwrap();
     println!("Neues Guthaben: {} EUR", mein_konto.guthaben());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-32-musik-playlist-manager"><a class="header" href="#projekt-32-musik-playlist-manager">Projekt 32: Musik-Playlist-Manager</a></h2>
 <h3 id="beschreibung-6"><a class="header" href="#beschreibung-6">Beschreibung</a></h3>
 <p>Verwaltung einer Playlist. Veranschaulicht die explizite Pfadnavigation mit <code>self</code> zur Verdeutlichung lokaler Bezüge.</p>
@@ -1969,7 +1962,7 @@ fn main() {
     └── playlist (Playlist)
 </code></pre>
 <h3 id="code-6"><a class="header" href="#code-6">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod musik {
+<pre class="playground"><code class="language-rust">mod musik {
     pub mod titel {
         #[derive(Clone)]
         pub struct Song {
@@ -2013,8 +2006,8 @@ fn main() {
 
     playlist.song_hinzufuegen(song);
     println!("Song '{}' zur Playlist hinzugefügt.", playlist.songs[0].titel);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-33-fahrzeug-flottenverwaltung"><a class="header" href="#projekt-33-fahrzeug-flottenverwaltung">Projekt 33: Fahrzeug-Flottenverwaltung</a></h2>
 <h3 id="beschreibung-7"><a class="header" href="#beschreibung-7">Beschreibung</a></h3>
 <p>Verwaltung einer Fahrzeugflotte. Hier wird demonstriert, wie komplexe Enums und Hilfsstructs in einem Submodul definiert und per <code>pub use</code> dem Client zur Verfügung gestellt werden.</p>
@@ -2025,7 +2018,7 @@ fn main() {
     └── wartung (WartungsSystem)
 </code></pre>
 <h3 id="code-7"><a class="header" href="#code-7">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod flotte {
+<pre class="playground"><code class="language-rust">mod flotte {
     pub mod fahrzeug {
         #[derive(Debug, PartialEq, Clone)]
         pub enum Status {
@@ -2069,8 +2062,8 @@ fn main() {
     WartungsSystem::starte_wartung(&amp;mut auto);
     assert_eq!(auto.status, Status::InWartung);
     println!("Fahrzeug {} ist nun in der Wartung.", auto.kennzeichen);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-34-rezepte-datenbank"><a class="header" href="#projekt-34-rezepte-datenbank">Projekt 34: Rezepte-Datenbank</a></h2>
 <h3 id="beschreibung-8"><a class="header" href="#beschreibung-8">Beschreibung</a></h3>
 <p>Eine Rezepte-Datenbank, die <code>HashMap</code> für Zutaten verwendet. Zeigt den Einsatz von Import-Aliasing (<code>as</code>), um Namenskollisionen bei gleichem Struct-Namen in unterschiedlichen Modulen zu vermeiden.</p>
@@ -2081,7 +2074,7 @@ fn main() {
     └── datenbank (Rezept)
 </code></pre>
 <h3 id="code-8"><a class="header" href="#code-8">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod rezepte {
+<pre class="playground"><code class="language-rust">mod rezepte {
     pub mod zutaten {
         pub struct Zutat {
             pub name: String,
@@ -2125,8 +2118,8 @@ fn main() {
     for (name, menge) in &amp;pfannkuchen.zutaten_liste {
         println!("- {}: {}g", name, menge);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-35-schule-notensystem"><a class="header" href="#projekt-35-schule-notensystem">Projekt 35: Schule-Notensystem</a></h2>
 <h3 id="beschreibung-9"><a class="header" href="#beschreibung-9">Beschreibung</a></h3>
 <p>Fehlerfortpflanzung über Module hinweg. Schüler und Notenverwaltung werden getrennt deklariert. Ein Fehler im Notenmodul wird mit <code>Result</code> an den Client zurückgegeben.</p>
@@ -2137,7 +2130,7 @@ fn main() {
     └── noten (ZensurSystem)
 </code></pre>
 <h3 id="code-9"><a class="header" href="#code-9">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod schule {
+<pre class="playground"><code class="language-rust">mod schule {
     pub mod schueler {
         pub struct Schueler {
             pub name: String,
@@ -2173,8 +2166,8 @@ fn main() {
         Ok(msg) =&gt; println!("{}", msg),
         Err(err) =&gt; println!("Fehler abgefangen: {}", err),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-36-kino-sitzplatzreservierung"><a class="header" href="#projekt-36-kino-sitzplatzreservierung">Projekt 36: Kino-Sitzplatzreservierung</a></h2>
 <h3 id="beschreibung-10"><a class="header" href="#beschreibung-10">Beschreibung</a></h3>
 <p>Sitzplatzreservierung in einem 2D-Kino-Saal. Dieses Projekt veranschaulicht tiefer verschachtelte Module und wie relative Pfade über mehrere Ebenen navigieren.</p>
@@ -2186,7 +2179,7 @@ fn main() {
         └── buchung (Reservierung)
 </code></pre>
 <h3 id="code-10"><a class="header" href="#code-10">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod kino {
+<pre class="playground"><code class="language-rust">mod kino {
     pub mod saal {
         pub mod platz {
             pub struct Sitzplatz {
@@ -2236,8 +2229,8 @@ fn main() {
         Ok(_) =&gt; println!("Platz A5 erfolgreich reserviert."),
         Err(e) =&gt; println!("Fehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-37-lagerverwaltung-logistik"><a class="header" href="#projekt-37-lagerverwaltung-logistik">Projekt 37: Lagerverwaltung (Logistik)</a></h2>
 <h3 id="beschreibung-11"><a class="header" href="#beschreibung-11">Beschreibung</a></h3>
 <p>Lagerbestandsverwaltung mit modularer Kapselung. Es zeigt die Nutzung von <code>pub(crate)</code> und <code>pub(super)</code>, um Funktionen nur für das übergeordnete Modul oder das Crate freizugeben.</p>
@@ -2248,7 +2241,7 @@ fn main() {
     └── system (BestandsManager)
 </code></pre>
 <h3 id="code-11"><a class="header" href="#code-11">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod lager {
+<pre class="playground"><code class="language-rust">mod lager {
     pub mod details {
         pub struct ArtikelInfo {
             pub name: String,
@@ -2295,8 +2288,8 @@ fn main() {
     if let Ok(_) = manager.artikel_hinzufuegen(art) {
         println!("Artikel erfolgreich hinzugefügt!");
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-38-fitness-tracker"><a class="header" href="#projekt-38-fitness-tracker">Projekt 38: Fitness-Tracker</a></h2>
 <h3 id="beschreibung-12"><a class="header" href="#beschreibung-12">Beschreibung</a></h3>
 <p>Verfolgung von Trainingsaktivitäten. Veranschaulicht die Navigation mittels <code>super</code> aus einem verschachtellten Submodul, um auf eine Struktur im Elternmodul zuzugreifen.</p>
@@ -2307,7 +2300,7 @@ fn main() {
     └── aktivitaet (Aktivitaet)
 </code></pre>
 <h3 id="code-12"><a class="header" href="#code-12">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod fitness {
+<pre class="playground"><code class="language-rust">mod fitness {
     // Liegt im übergeordneten Modul
     pub struct Aktivitaet {
         pub typ: String,
@@ -2343,8 +2336,8 @@ fn main() {
 
     tracker.logge(lauf);
     println!("Aktivität erfasst: {} Minuten", tracker.eintraege[0].dauer);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-39-paket-zustelldienst"><a class="header" href="#projekt-39-paket-zustelldienst">Projekt 39: Paket-Zustelldienst</a></h2>
 <h3 id="beschreibung-13"><a class="header" href="#beschreibung-13">Beschreibung</a></h3>
 <p>Sendungsverfolgung für einen Paketdienst. Dieses Projekt verwendet <code>pub use</code>, um API-Änderungen im Inneren des Moduls vor dem Client zu verstecken.</p>
@@ -2355,7 +2348,7 @@ fn main() {
     └── versand (VersandModul)
 </code></pre>
 <h3 id="code-13"><a class="header" href="#code-13">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod logistik {
+<pre class="playground"><code class="language-rust">mod logistik {
     pub mod details {
         #[derive(Debug, PartialEq, Clone)]
         pub enum Status {
@@ -2398,8 +2391,8 @@ fn main() {
     VersandModul::versende(&amp;mut p);
     assert_eq!(p.status, Status::Unterwegs);
     println!("Paket {} befindet sich im Zustand: {:?}", p.tracking_id, p.status);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-40-flug-buchungssystem"><a class="header" href="#projekt-40-flug-buchungssystem">Projekt 40: Flug-Buchungssystem</a></h2>
 <h3 id="beschreibung-14"><a class="header" href="#beschreibung-14">Beschreibung</a></h3>
 <p>Ein Flugbuchungssystem. Kombiniert hierarchische Modulimporte, Vektoren und den Typ <code>Option</code> für freie Sitzplätze in einem Flugzeug.</p>
@@ -2410,7 +2403,7 @@ fn main() {
     └── flugbetrieb (Flug)
 </code></pre>
 <h3 id="code-14"><a class="header" href="#code-14">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod airline {
+<pre class="playground"><code class="language-rust">mod airline {
     pub mod passagiere {
         pub struct Kunde {
             pub name: String,
@@ -2449,8 +2442,8 @@ fn main() {
         Ok(_) =&gt; println!("Erfolgreich gebucht!"),
         Err(e) =&gt; println!("Fehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-41-game-inventar"><a class="header" href="#projekt-41-game-inventar">Projekt 41: Game-Inventar</a></h2>
 <h3 id="beschreibung-15"><a class="header" href="#beschreibung-15">Beschreibung</a></h3>
 <p>Ein RPG-Gegenstandsinventar. Zeigt, wie man Pattern Matching auf re-exportierten Enums aus Submodulen anwendet.</p>
@@ -2461,7 +2454,7 @@ fn main() {
     └── inventar (SpielerInventar)
 </code></pre>
 <h3 id="code-15"><a class="header" href="#code-15">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod spiel {
+<pre class="playground"><code class="language-rust">mod spiel {
     pub mod gegenstand {
         #[derive(Debug, PartialEq)]
         pub enum Seltenheit {
@@ -2508,8 +2501,8 @@ fn main() {
         Seltenheit::Legendaer =&gt; println!("Ein legendärer Gegenstand: {}", inv.items[0].name),
         Seltenheit::Gewoehnlich =&gt; println!("Ein gewöhnlicher Gegenstand: {}", inv.items[0].name),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-42-wetterstation"><a class="header" href="#projekt-42-wetterstation">Projekt 42: Wetterstation</a></h2>
 <h3 id="beschreibung-16"><a class="header" href="#beschreibung-16">Beschreibung</a></h3>
 <p>Eine Wetterstation zur Aggregation von Messwerten. Es demonstriert ein internes Hilfsmodul, auf das nur das übergeordnete Modul zugreift.</p>
@@ -2520,7 +2513,7 @@ fn main() {
     └── private_berechnung (Durchschnitt)
 </code></pre>
 <h3 id="code-16"><a class="header" href="#code-16">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod wetter {
+<pre class="playground"><code class="language-rust">mod wetter {
     pub mod messung {
         pub struct Messwert {
             pub temperatur: f64,
@@ -2560,8 +2553,8 @@ fn main() {
 
     let station = Station { werte: vec![w1, w2] };
     println!("Die Durchschnittstemperatur ist: {:.1}°C", station.durchschnitt_ermitteln());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-43-task-manager-kanban"><a class="header" href="#projekt-43-task-manager-kanban">Projekt 43: Task-Manager (Kanban)</a></h2>
 <h3 id="beschreibung-17"><a class="header" href="#beschreibung-17">Beschreibung</a></h3>
 <p>Verwaltung eines Kanban-Boards. Typen aus tiefen Submodulen werden bis zur Crate-Root-Ebene re-exportiert, um dem Nutzer maximalen Komfort zu bieten.</p>
@@ -2572,7 +2565,7 @@ fn main() {
     └── board (KanbanBoard)
 </code></pre>
 <h3 id="code-17"><a class="header" href="#code-17">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod kanban {
+<pre class="playground"><code class="language-rust">mod kanban {
     pub mod task {
         pub enum Status {
             Offen,
@@ -2619,8 +2612,8 @@ fn main() {
     let mut board = KanbanBoard { aufgaben: vec![a1] };
     board.erledige_aufgabe(0);
     println!("Aufgabe erfolgreich aktualisiert!");
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-44-café-bestellsystem"><a class="header" href="#projekt-44-café-bestellsystem">Projekt 44: Café-Bestellsystem</a></h2>
 <h3 id="beschreibung-18"><a class="header" href="#beschreibung-18">Beschreibung</a></h3>
 <p>Bestellannahme in einem Café. Dieses Projekt zeigt die Entkopplung von Datenstrukturen zur Vermeidung von zirkulären Modul-Abhängigkeiten.</p>
@@ -2631,7 +2624,7 @@ fn main() {
     └── bestellung (BestellListe)
 </code></pre>
 <h3 id="code-18"><a class="header" href="#code-18">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod cafe {
+<pre class="playground"><code class="language-rust">mod cafe {
     pub mod menue {
         #[derive(Clone)]
         pub struct Getraenk {
@@ -2670,8 +2663,8 @@ fn main() {
 
     order.add(kaffee);
     println!("Rechnungsbetrag: {:.2} EUR", order.abrechnen());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-45-fuhrpark-fahrtenbuch"><a class="header" href="#projekt-45-fuhrpark-fahrtenbuch">Projekt 45: Fuhrpark-Fahrtenbuch</a></h2>
 <h3 id="beschreibung-19"><a class="header" href="#beschreibung-19">Beschreibung</a></h3>
 <p>Erfassung von geschäftlichen Fahrten im Fuhrpark. Zeigt absolute Pfade mit <code>crate::</code> zur Navigation innerhalb eines komplexeren Systems.</p>
@@ -2682,7 +2675,7 @@ fn main() {
     └── auswertung (FahrtenRechner)
 </code></pre>
 <h3 id="code-19"><a class="header" href="#code-19">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod fahrtenbuch {
+<pre class="playground"><code class="language-rust">mod fahrtenbuch {
     pub mod fahrt {
         pub struct Eintrag {
             pub kilometer: u32,
@@ -2715,8 +2708,8 @@ fn main() {
     let summe = FahrtenRechner::summiere_kilometer(&amp;liste);
 
     println!("Gesamte Fahrtstrecke: {} km", summe);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-46-event-ticketing"><a class="header" href="#projekt-46-event-ticketing">Projekt 46: Event-Ticketing</a></h2>
 <h3 id="beschreibung-20"><a class="header" href="#beschreibung-20">Beschreibung</a></h3>
 <p>Verkauf von Eintrittskarten für Veranstaltungen. Es implementiert einen benutzerdefinierten Modulfehler und zeigt, wie man diesen über Modulgrenzen transportiert.</p>
@@ -2727,7 +2720,7 @@ fn main() {
     └── kasse (KartenVerkauf)
 </code></pre>
 <h3 id="code-20"><a class="header" href="#code-20">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod event {
+<pre class="playground"><code class="language-rust">mod event {
     pub mod show {
         pub struct Konzert {
             pub kuenstler: String,
@@ -2772,8 +2765,8 @@ fn main() {
         Ok(_) =&gt; println!("Ticket erfolgreich gebucht!"),
         Err(TicketError::Ausverkauft) =&gt; println!("Buchung fehlgeschlagen: Konzert ist ausverkauft!"),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-47-online-kurs-plattform"><a class="header" href="#projekt-47-online-kurs-plattform">Projekt 47: Online-Kurs-Plattform</a></h2>
 <h3 id="beschreibung-21"><a class="header" href="#beschreibung-21">Beschreibung</a></h3>
 <p>Eine Plattform zur Verwaltung von Online-Kursen und Lernfortschritten. Zeigt, wie Kapselung über gekoppelte Submodule und Sichtbarkeitsmodifizierer realisiert wird.</p>
@@ -2784,7 +2777,7 @@ fn main() {
     └── benutzer (Fortschritt)
 </code></pre>
 <h3 id="code-21"><a class="header" href="#code-21">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod kursportal {
+<pre class="playground"><code class="language-rust">mod kursportal {
     pub mod kurs {
         pub struct Lektion {
             pub titel: String,
@@ -2837,8 +2830,8 @@ fn main() {
 
     assert!(user.hat_kurs_bestanden("Rust 101"));
     println!("{} hat den Kurs erfolgreich absolviert!", user.username);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-48-tierarzt-praxis"><a class="header" href="#projekt-48-tierarzt-praxis">Projekt 48: Tierarzt-Praxis</a></h2>
 <h3 id="beschreibung-22"><a class="header" href="#beschreibung-22">Beschreibung</a></h3>
 <p>Karteiverwaltung einer Tierarztpraxis unter Verwendung einer <code>HashMap</code> und Kapselung. Das Hinzufügen von Behandlungen erfolgt über kontrollierte Modulschnittstellen.</p>
@@ -2849,7 +2842,7 @@ fn main() {
     └── karteikarte (Register)
 </code></pre>
 <h3 id="code-22"><a class="header" href="#code-22">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod praxis {
+<pre class="playground"><code class="language-rust">mod praxis {
     pub mod tier {
         pub struct Patient {
             pub name: String,
@@ -2907,8 +2900,8 @@ fn main() {
     reg.behandlung_hinzufuegen(1, String::from("Impfung")).unwrap();
 
     reg.zeige_verlauf(1);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-49-dokumenten-archiv"><a class="header" href="#projekt-49-dokumenten-archiv">Projekt 49: Dokumenten-Archiv</a></h2>
 <h3 id="beschreibung-23"><a class="header" href="#beschreibung-23">Beschreibung</a></h3>
 <p>Ein System zum Suchen und Filtern von Dokumenten. Es veranschaulicht den Export und die Verwendung von Submodul-Schnittstellen mit relativen Importpfaden.</p>
@@ -2919,7 +2912,7 @@ fn main() {
     └── suche (SuchEngine)
 </code></pre>
 <h3 id="code-23"><a class="header" href="#code-23">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod archiv {
+<pre class="playground"><code class="language-rust">mod archiv {
     pub mod datei {
         pub struct Dokument {
             pub name: String,
@@ -2958,8 +2951,8 @@ fn main() {
         Some(name) =&gt; println!("Begriff gefunden in Datei: {}", name),
         None =&gt; println!("Begriff nicht gefunden."),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-50-mietwagen-verleih"><a class="header" href="#projekt-50-mietwagen-verleih">Projekt 50: Mietwagen-Verleih</a></h2>
 <h3 id="beschreibung-24"><a class="header" href="#beschreibung-24">Beschreibung</a></h3>
 <p>Umfassendes Abschlussprojekt zu Pfaden &amp; Importen. Modellierung eines Verleihsystems für Mietfahrzeuge. Es demonstriert das Zusammenspiel von <code>super</code>, <code>self</code>, <code>crate</code>, <code>pub use</code>, <code>pub(crate)</code> sowie allen bisherigen Programmierkonzepten.</p>
@@ -2970,7 +2963,7 @@ fn main() {
     └── vertraege (Mietvertrag, Mietdauer)
 </code></pre>
 <h3 id="code-24"><a class="header" href="#code-24">Code</a></h3>
-<pre><pre class="playground"><code class="language-rust">mod verleih {
+<pre class="playground"><code class="language-rust">mod verleih {
     pub mod fahrzeuge {
         #[derive(Debug, PartialEq, Clone, Copy)]
         pub enum Fahrzeugklasse {
@@ -3061,14 +3054,14 @@ fn main() {
         }
         Err(e) =&gt; println!("Verleihfehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="phase-4-projekte-51-bis-75-packages-cargo--crates"><a class="header" href="#phase-4-projekte-51-bis-75-packages-cargo--crates">Phase 4: Projekte 51 bis 75 (Packages, Cargo &amp; Crates)</a></h2>
 <p>In dieser Phase 4 (Projekte 51 bis 75) liegt der Fokus auf der <strong>Strukturierung von Rust-Projekten in Packages und der Einbindung und praktischen Nutzung von externen Abhängigkeiten (Crates)</strong> über den Paketmanager Cargo.
 Jedes Projekt zeigt, wie du Bibliotheken aus dem Rust-Ökosystem (<code>crates.io</code>) einbindest und diese mit den Konzepten der vorherigen Phasen (Variablen, Enums, Structs, Fehlerbehandlung, Collections) kombinierst.</p>
-<hr />
+<hr>
 <h2 id="projekt-51-zufallsgenerator-spiel-mit-rand-und-farbigen-ausgaben-mit-colored"><a class="header" href="#projekt-51-zufallsgenerator-spiel-mit-rand-und-farbigen-ausgaben-mit-colored">Projekt 51: Zufallsgenerator-Spiel mit <code>rand</code> und farbigen Ausgaben mit <code>colored</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use rand::Rng;
+<pre class="playground"><code class="language-rust">use rand::Rng;
 use colored::Colorize;
 use std::io::{self, Write};
 
@@ -3145,10 +3138,10 @@ fn main() {
             }
         }
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-52-json-dateiverwaltung-von-kontakten-mit-serde-und-serde_json"><a class="header" href="#projekt-52-json-dateiverwaltung-von-kontakten-mit-serde-und-serde_json">Projekt 52: JSON-Dateiverwaltung von Kontakten mit <code>serde</code> und <code>serde_json</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
+<pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
 use std::fs::File;
 use std::io::{self, Read, Write};
 
@@ -3225,10 +3218,10 @@ fn main() {
 
     // Aufräumen: Datei nach Test wieder entfernen
     let _ = std::fs::remove_file(pfad);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-53-zeitstempel-logger-für-aufgaben-mit-chrono"><a class="header" href="#projekt-53-zeitstempel-logger-für-aufgaben-mit-chrono">Projekt 53: Zeitstempel-Logger für Aufgaben mit <code>chrono</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use chrono::{DateTime, Local};
+<pre class="playground"><code class="language-rust">use chrono::{DateTime, Local};
 
 // 📦 Struct für eine Aufgabe mit Zeiterfassung
 struct LogEintrag {
@@ -3272,10 +3265,10 @@ fn main() {
     
     logger.logge_aufgabe("Verbindung zur API herstellen");
     logger.zeige_log();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-54-regex-e-mail-validator-und--extraktor-mit-regex"><a class="header" href="#projekt-54-regex-e-mail-validator-und--extraktor-mit-regex">Projekt 54: Regex-E-Mail-Validator und -Extraktor mit <code>regex</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use regex::Regex;
+<pre class="playground"><code class="language-rust">use regex::Regex;
 
 struct EmailExtraktor {
     // 📦 Regex-Muster vorkompiliert speichern (verhindert ständiges Re-Parsing)
@@ -3312,10 +3305,10 @@ fn main() {
     for mail in e_mails {
         println!("- {}", mail);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-55-uuid-generator-für-datenbanksätze-mit-uuid"><a class="header" href="#projekt-55-uuid-generator-für-datenbanksätze-mit-uuid">Projekt 55: UUID-Generator für Datenbanksätze mit <code>uuid</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use uuid::Uuid;
+<pre class="playground"><code class="language-rust">use uuid::Uuid;
 use std::collections::HashMap;
 
 // 📦 Struct für ein Benutzerkonto
@@ -3361,10 +3354,10 @@ fn main() {
     if let Some(user) = db.finde_benutzer(&amp;id1) {
         println!("Benutzer mit ID {} heißt {}", user.id, user.benutzername);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-56-datei-integrations-prüfer-mit-sha2-und-hex"><a class="header" href="#projekt-56-datei-integrations-prüfer-mit-sha2-und-hex">Projekt 56: Datei-Integrations-Prüfer mit <code>sha2</code> und <code>hex</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use sha2::{Sha256, Digest};
+<pre class="playground"><code class="language-rust">use sha2::{Sha256, Digest};
 use hex;
 use std::fs::File;
 use std::io::{self, Read, Write};
@@ -3408,10 +3401,10 @@ fn main() {
 
     // Aufräumen
     let _ = std::fs::remove_file(test_pfad);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-57-url-parser-und-query-parameter-extraktor-mit-url"><a class="header" href="#projekt-57-url-parser-und-query-parameter-extraktor-mit-url">Projekt 57: URL-Parser und Query-Parameter-Extraktor mit <code>url</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use url::Url;
+<pre class="playground"><code class="language-rust">use url::Url;
 use std::collections::HashMap;
 
 struct UrlAnalysator;
@@ -3444,10 +3437,10 @@ fn main() {
         }
         Err(e) =&gt; eprintln!("Fehler beim Parsen der URL: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-58-csv-berichtsgenerator-mit-csv-und-serde"><a class="header" href="#projekt-58-csv-berichtsgenerator-mit-csv-und-serde">Projekt 58: CSV-Berichtsgenerator mit <code>csv</code> und <code>serde</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
+<pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
 use std::io;
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -3484,10 +3477,10 @@ fn main() {
     if let Err(e) = CSVVerwalter::erstelle_bericht(&amp;daten, stdout.lock()) {
         eprintln!("Fehler beim Erstellen des Berichts: {}", e);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-59-cli-argumenten-parser-für-system-informationen-mit-clap"><a class="header" href="#projekt-59-cli-argumenten-parser-für-system-informationen-mit-clap">Projekt 59: CLI-Argumenten-Parser für System-Informationen mit <code>clap</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use clap::Parser;
+<pre class="playground"><code class="language-rust">use clap::Parser;
 
 // 📦 Struct repräsentiert die Kommandozeilenargumente
 // 'Parser' wird von clap abgeleitet, um die CLI-Optionen zu definieren.
@@ -3512,10 +3505,10 @@ fn main() {
     if args.verbose {
         println!("Details: Verbose-Modus ist aktiv.");
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-60-lokale-zeitzonen-konvertierung-mit-chrono"><a class="header" href="#projekt-60-lokale-zeitzonen-konvertierung-mit-chrono">Projekt 60: Lokale Zeitzonen-Konvertierung mit <code>chrono</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use chrono::{DateTime, Utc, TimeZone, FixedOffset};
+<pre class="playground"><code class="language-rust">use chrono::{DateTime, Utc, TimeZone, FixedOffset};
 
 struct Termin {
     name: String,
@@ -3544,10 +3537,10 @@ fn main() {
     if let Some(lokal_zeit) = besprechung.neue_zeit_in_zeitzone(2) {
         println!("Deutsche Zeit:   {}", lokal_zeit.format("%H:%M:%S UTC+2"));
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-61-http-get-client-zur-ip-abfrage-mit-reqwest-und-tokio"><a class="header" href="#projekt-61-http-get-client-zur-ip-abfrage-mit-reqwest-und-tokio">Projekt 61: HTTP-GET-Client zur IP-Abfrage mit <code>reqwest</code> und <code>tokio</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::Deserialize;
+<pre class="playground"><code class="language-rust">use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 struct IpResponse {
@@ -3570,10 +3563,10 @@ async fn main() -&gt; Result&lt;(), reqwest::Error&gt; {
 
     println!("Deine öffentliche IP-Adresse lautet: {}", response.ip);
     Ok(())
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-62-passwort-generierung-mit-rand"><a class="header" href="#projekt-62-passwort-generierung-mit-rand">Projekt 62: Passwort-Generierung mit <code>rand</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use rand::seq::SliceRandom; // 🎲 Trait für das zufällige Auswählen aus Slices
+<pre class="playground"><code class="language-rust">use rand::seq::SliceRandom; // 🎲 Trait für das zufällige Auswählen aus Slices
 
 struct PasswortKonfigurator {
     laenge: usize,
@@ -3618,10 +3611,10 @@ fn main() {
 
     let pw = generator.generiere();
     println!("Generiertes sicheres Passwort: {}", pw);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-63-base64-codiererdecodierer-für-binärdaten-mit-base64"><a class="header" href="#projekt-63-base64-codiererdecodierer-für-binärdaten-mit-base64">Projekt 63: Base64-Codierer/Decodierer für Binärdaten mit <code>base64</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use base64::{Engine as _, engine::general_purpose::STANDARD};
+<pre class="playground"><code class="language-rust">use base64::{Engine as _, engine::general_purpose::STANDARD};
 
 struct Base64Konverter;
 
@@ -3653,10 +3646,10 @@ fn main() {
         }
         Err(e) =&gt; eprintln!("Fehler beim Decodieren: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-64-logging-system-für-anwendungs-events-mit-log-und-env_logger"><a class="header" href="#projekt-64-logging-system-für-anwendungs-events-mit-log-und-env_logger">Projekt 64: Logging-System für Anwendungs-Events mit <code>log</code> und <code>env_logger</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use log::{info, warn, error};
+<pre class="playground"><code class="language-rust">use log::{info, warn, error};
 
 fn initialisiere_logger() {
     // 📦 Initialisiert das Logging-System über env_logger
@@ -3683,10 +3676,10 @@ fn main() {
     pruefe_system(55.3);
     pruefe_system(78.5);
     pruefe_system(93.1);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-65-ip-netzwerk-rechner-mit-ipnetwork"><a class="header" href="#projekt-65-ip-netzwerk-rechner-mit-ipnetwork">Projekt 65: IP-Netzwerk-Rechner mit <code>ipnetwork</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use ipnetwork::Ipv4Network;
+<pre class="playground"><code class="language-rust">use ipnetwork::Ipv4Network;
 
 struct NetzwerkRechner;
 
@@ -3711,10 +3704,10 @@ fn main() {
     if let Err(e) = NetzwerkRechner::analysiere_netzwerk(netz) {
         eprintln!("Fehler beim Analysieren des Subnetzes: {}", e);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-66-konfigurationsdatei-parser-für-toml-mit-toml-und-serde"><a class="header" href="#projekt-66-konfigurationsdatei-parser-für-toml-mit-toml-und-serde">Projekt 66: Konfigurationsdatei-Parser für TOML mit <code>toml</code> und <code>serde</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::{Deserialize, Serialize};
+<pre class="playground"><code class="language-rust">use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug)]
 struct ServerConfig {
@@ -3754,10 +3747,10 @@ fn main() {
         }
         Err(e) =&gt; eprintln!("Fehler beim Parsen des TOML: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-67-semver-versionsvergleicher-mit-semver"><a class="header" href="#projekt-67-semver-versionsvergleicher-mit-semver">Projekt 67: SemVer-Versionsvergleicher mit <code>semver</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use semver::{Version, VersionReq};
+<pre class="playground"><code class="language-rust">use semver::{Version, VersionReq};
 
 struct PluginSchnittstelle;
 
@@ -3784,10 +3777,10 @@ fn main() {
     println!("App-Anforderung: '{}'", anforderung);
     println!("Plugin {} kompatibel? {}", plugin1, c1); // true
     println!("Plugin {} kompatibel? {}", plugin2, c2); // false
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-68-temporäre-dateien-und-verzeichnisse-für-tests-mit-tempfile"><a class="header" href="#projekt-68-temporäre-dateien-und-verzeichnisse-für-tests-mit-tempfile">Projekt 68: Temporäre Dateien und Verzeichnisse für Tests mit <code>tempfile</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use tempfile::NamedTempFile;
+<pre class="playground"><code class="language-rust">use tempfile::NamedTempFile;
 use std::fs::File;
 use std::io::{self, Write, Read};
 
@@ -3822,10 +3815,10 @@ fn main() {
         Err(e) =&gt; eprintln!("Fehler: {}", e),
     }
     // Nach dem Match-Scope ist die Datei automatisch gelöscht.
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-69-glob-pattern-dateisuche-mit-glob"><a class="header" href="#projekt-69-glob-pattern-dateisuche-mit-glob">Projekt 69: Glob-Pattern-Dateisuche mit <code>glob</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use glob::glob;
+<pre class="playground"><code class="language-rust">use glob::glob;
 use std::path::PathBuf;
 
 struct Dateisucher;
@@ -3858,10 +3851,10 @@ fn main() {
         }
         Err(e) =&gt; eprintln!("Musterfehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
-<h2 id="projekt-70-html-scraper-für-Überschriften-mit-scraper"><a class="header" href="#projekt-70-html-scraper-für-Überschriften-mit-scraper">Projekt 70: HTML-Scraper für Überschriften mit <code>scraper</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use scraper::{Html, Selector};
+}</code></pre>
+<hr>
+<h2 id="projekt-70-html-scraper-für-überschriften-mit-scraper"><a class="header" href="#projekt-70-html-scraper-für-überschriften-mit-scraper">Projekt 70: HTML-Scraper für Überschriften mit <code>scraper</code></a></h2>
+<pre class="playground"><code class="language-rust">use scraper::{Html, Selector};
 
 struct HtmlAnalysator;
 
@@ -3902,10 +3895,10 @@ fn main() {
     for t in h1_texte {
         println!("- {}", t);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-71-tar-archiv-ersteller-mit-tar-und-flate2"><a class="header" href="#projekt-71-tar-archiv-ersteller-mit-tar-und-flate2">Projekt 71: Tar-Archiv-Ersteller mit <code>tar</code> und <code>flate2</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+<pre class="playground"><code class="language-rust">use std::fs::File;
 use flate2::write::GzEncoder;
 use flate2::Compression;
 use std::io;
@@ -3942,10 +3935,10 @@ fn main() {
         println!("Archiv erfolgreich erstellt.");
         let _ = std::fs::remove_file(archiv); // Gleich wieder aufräumen
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-72-jwt-token-generator-und--prüfer-mit-jsonwebtoken-und-serde"><a class="header" href="#projekt-72-jwt-token-generator-und--prüfer-mit-jsonwebtoken-und-serde">Projekt 72: JWT-Token-Generator und -Prüfer mit <code>jsonwebtoken</code> und <code>serde</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
+<pre class="playground"><code class="language-rust">use serde::{Serialize, Deserialize};
 use jsonwebtoken::{encode, decode, Header, Algorithm, Validation, EncodingKey, DecodingKey};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -3998,10 +3991,10 @@ fn main() {
         }
         Err(e) =&gt; eprintln!("Token-Validierungsfehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-73-terminal-fortschrittsbalken-simulation-mit-indicatif"><a class="header" href="#projekt-73-terminal-fortschrittsbalken-simulation-mit-indicatif">Projekt 73: Terminal-Fortschrittsbalken-Simulation mit <code>indicatif</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use indicatif::{ProgressBar, ProgressStyle};
+<pre class="playground"><code class="language-rust">use indicatif::{ProgressBar, ProgressStyle};
 use std::thread;
 use std::time::Duration;
 
@@ -4029,10 +4022,10 @@ impl FortschrittsSimulant {
 fn main() {
     println!("Starte Download-Simulation...");
     FortschrittsSimulant::simuliere_laden(50);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-74-thread-sichere-globale-konfiguration-mit-once_cell"><a class="header" href="#projekt-74-thread-sichere-globale-konfiguration-mit-once_cell">Projekt 74: Thread-sichere globale Konfiguration mit <code>once_cell</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use once_cell::sync::Lazy; // 📦 Lazy sorgt für sichere, einmalige Initialisierung zur Laufzeit
+<pre class="playground"><code class="language-rust">use once_cell::sync::Lazy; // 📦 Lazy sorgt für sichere, einmalige Initialisierung zur Laufzeit
 use std::sync::Mutex;
 
 struct SystemStatus {
@@ -4056,10 +4049,10 @@ fn main() {
     // Rufe die Funktion auf verschiedenen Stufen auf
     logge_fehler();
     logge_fehler();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-75-yaml-datenkonverter-mit-serde_yaml-und-serde_json"><a class="header" href="#projekt-75-yaml-datenkonverter-mit-serde_yaml-und-serde_json">Projekt 75: YAML-Datenkonverter mit <code>serde_yaml</code> und <code>serde_json</code></a></h2>
-<pre><pre class="playground"><code class="language-rust">use serde::{Deserialize, Serialize};
+<pre class="playground"><code class="language-rust">use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct BenutzerProfil {
@@ -4098,14 +4091,14 @@ fn main() {
         Ok(json) =&gt; println!("Umgewandeltes JSON:\n{}", json),
         Err(e) =&gt; eprintln!("Fehler bei Konvertierung: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="phase-4-projekte-76-bis-100-kombination"><a class="header" href="#phase-4-projekte-76-bis-100-kombination">Phase 4: Projekte 76 bis 100 (Kombination)</a></h2>
 <p>In diesem vierten Teil der Phase 4 führen wir alle bisher gelernten Konzepte zusammen. Diese Projekte (76 bis 100) sind als komplexe, modulare Anwendungen aufgebaut, die externe Bibliotheken (Crates) einbinden und Cargo zur Abhängigkeitsverwaltung nutzen. Um die Programme in einem einzigen Dokument darzustellen und direkt compilierbar zu machen, werden Inline-Module (<code>mod name { ... }</code>) verwendet. Jedes Projekt enthält didaktische Kommentare, die den Einstieg erleichtern.</p>
-<hr />
+<hr>
 <h2 id="projekt-76-modulares-krypto-portfolio-verwaltungssystem"><a class="header" href="#projekt-76-modulares-krypto-portfolio-verwaltungssystem">Projekt 76: Modulares Krypto-Portfolio-Verwaltungssystem</a></h2>
 <p>Dieses Projekt kombiniert <code>HashMap</code>, structs, enums und modularer Programmierung, um Krypto-Bestände zu verwalten und deren Gesamtwert in JSON zu exportieren.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 // serde_json = "1.0"
@@ -4183,11 +4176,11 @@ fn main() {
         println!("Portfolio-Daten:\n{}", json);
     }
     println!("Aktueller Gesamtwert: {} EUR", wert);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-77-cli-log-analysator"><a class="header" href="#projekt-77-cli-log-analysator">Projekt 77: CLI-Log-Analysator</a></h2>
 <p>Dieses Projekt parst simulierte Logdaten im Terminal, validiert das Format und erstellt Statistiken über Fehlermeldungen und Warnungen.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // regex = "1.10"
 // chrono = "0.4"
@@ -4275,11 +4268,11 @@ fn main() {
     for (level, anzahl) in statistik {
         println!("{:?}: {} Mal", level, anzahl);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-78-modulare-filmdatenbank-mit-such--und-filterfunktionen"><a class="header" href="#projekt-78-modulare-filmdatenbank-mit-such--und-filterfunktionen">Projekt 78: Modulare Filmdatenbank mit Such- und Filterfunktionen</a></h2>
 <p>Verwaltung einer Filmdatenbank mit Modulen für Datenstrukturen, Genre-Filter und einer simulierten UI.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 // serde_json = "1.0"
@@ -4357,11 +4350,11 @@ fn main() {
     for film in scifi_filme {
         println!("- {} (Bewertung: {}/10)", film.titel, film.bewertung);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-79-konsolen-chatserver-simulation"><a class="header" href="#projekt-79-konsolen-chatserver-simulation">Projekt 79: Konsolen-Chatserver-Simulation</a></h2>
 <p>Ein Chat-Protokoll-Simulator mit Unique-User-IDs (<code>uuid</code>) und Fehlerüberprüfung für ungültige Verbindungen.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // uuid = { version = "1.6", features = ["v4"] }
 
@@ -4437,11 +4430,11 @@ fn main() {
     let _ = server.nachricht_senden(client2, "Hi Alice!");
 
     server.zeige_verlauf();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-80-modulare-lagerverwaltung-mit-barcode-simulator"><a class="header" href="#projekt-80-modulare-lagerverwaltung-mit-barcode-simulator">Projekt 80: Modulare Lagerverwaltung mit Barcode-Simulator</a></h2>
 <p>Das Projekt lagert Artikel ein und generiert mithilfe der <code>rand</code>-Bibliothek zufällige Barcodes zur späteren Identifikation.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 
@@ -4503,11 +4496,11 @@ fn main() {
     if let Some(artikel) = mein_lager.finde_artikel(&amp;code1) {
         println!("Gefunden: {} (Bestand: {} Stück)", artikel.name, artikel.menge);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-81-wetter-aggregator-mit-caching"><a class="header" href="#projekt-81-wetter-aggregator-mit-caching">Projekt 81: Wetter-Aggregator mit Caching</a></h2>
 <p>Dieses Projekt demonstriert Zeitberechnungen via <code>chrono</code>, um abgelaufene Wettermessungen aus dem Cache zu verwerfen.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 
@@ -4581,11 +4574,11 @@ fn main() {
     };
 
     println!("Temperatur in Berlin: {}°C", wetter.temperatur);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-82-modulare-aufgabenverwaltung-kanban-board-mit-json-storage"><a class="header" href="#projekt-82-modulare-aufgabenverwaltung-kanban-board-mit-json-storage">Projekt 82: Modulare Aufgabenverwaltung (Kanban-Board) mit JSON-Storage</a></h2>
 <p>Ein Kanban-Board, das seine Aufgabenstrukturen modular organisiert und in valides JSON exportiert.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 // serde_json = "1.0"
@@ -4653,11 +4646,11 @@ fn main() {
     if let Ok(json) = speicher::in_json_exportieren(&amp;board.tasks) {
         println!("Board JSON Export:\n{}", json);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-83-fitness-tracker-mit-kalorien--und-aktivitätsberechnung"><a class="header" href="#projekt-83-fitness-tracker-mit-kalorien--und-aktivitätsberechnung">Projekt 83: Fitness-Tracker mit Kalorien- und Aktivitätsberechnung</a></h2>
 <p>Kombiniert Enums mit Strukturparametern (Laufen, Krafttraining) und berechnet modular die Aktivitäts-Kalorien.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 
@@ -4723,11 +4716,11 @@ fn main() {
 
     println!("Tracker für: {}", tracker.name);
     println!("Kalorien verbrannt: {} kcal", tracker.gesamt_kalorien());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-84-modulares-bibliothekssystem-mit-verleihhistorie"><a class="header" href="#projekt-84-modulares-bibliothekssystem-mit-verleihhistorie">Projekt 84: Modulares Bibliothekssystem mit Verleihhistorie</a></h2>
 <p>Modulare Bibliotheksverwaltung mit UUID-Generierung und detaillierter Fehlerfortpflanzung im Fehlerfall.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 // uuid = { version = "1.6", features = ["v4"] }
@@ -4784,11 +4777,11 @@ fn main() {
         Ok(()) =&gt; println!("Erfolgreich ausgeliehen!"),
         Err(e) =&gt; println!("Fehler: {}", e),
     }
-}</code></pre></pre>
-<hr />
-<h2 id="projekt-85-markdown-parser-für-Überschriften-und-listen"><a class="header" href="#projekt-85-markdown-parser-für-Überschriften-und-listen">Projekt 85: Markdown-Parser für Überschriften und Listen</a></h2>
+}</code></pre>
+<hr>
+<h2 id="projekt-85-markdown-parser-für-überschriften-und-listen"><a class="header" href="#projekt-85-markdown-parser-für-überschriften-und-listen">Projekt 85: Markdown-Parser für Überschriften und Listen</a></h2>
 <p>Verwendung von regulären Ausdrücken via <code>regex</code>, um Markdown-Syntaxzeilen zu erkennen und in HTML zu übersetzen.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // regex = "1.10"
 
@@ -4843,11 +4836,11 @@ fn main() {
         let el = parser::parse_zeile(zeile);
         println!("{}", generator::zu_html(&amp;el));
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-86-cli-passwort-generator-und-stärkemesser"><a class="header" href="#projekt-86-cli-passwort-generator-und-stärkemesser">Projekt 86: CLI-Passwort-Generator und Stärkemesser</a></h2>
 <p>Ein sicherer Passwortgenerator, der Zeichen per <code>rand</code> auswählt und das Ergebnis auf Komplexität prüft.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 
@@ -4895,11 +4888,11 @@ fn main() {
     };
     println!("Generiertes Passwort: {}", pw);
     println!("Passwortstärke: {}", level);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-87-modulares-text-adventure-mit-zustandsspeicherung"><a class="header" href="#projekt-87-modulares-text-adventure-mit-zustandsspeicherung">Projekt 87: Modulares Text-Adventure mit Zustandsspeicherung</a></h2>
 <p>Zustandsspeicherung eines Spielers (Schlüsselbesitz, aktueller Raum) in einem Text-Adventure, serialisiert in JSON.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 // serde_json = "1.0"
@@ -4962,11 +4955,11 @@ fn main() {
     if let Ok(json) = serde_json::to_string(&amp;held) {
         println!("Speicherdaten: {}", json);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-88-ausgaben-tracker-mit-statistischer-auswertung"><a class="header" href="#projekt-88-ausgaben-tracker-mit-statistischer-auswertung">Projekt 88: Ausgaben-Tracker mit statistischer Auswertung</a></h2>
 <p>Verwalter Ausgaben mit Kategorien und summiert diese in einer HashMap für eine übersichtliche Finanzauswertung.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 
@@ -5020,11 +5013,11 @@ fn main() {
     for (kategorie, summe) in stats {
         println!("Kategorie {:?}: {} EUR", kategorie, summe);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-89-quiz-spiel-mit-kategorien-und-highscore-tabelle"><a class="header" href="#projekt-89-quiz-spiel-mit-kategorien-und-highscore-tabelle">Projekt 89: Quiz-Spiel mit Kategorien und Highscore-Tabelle</a></h2>
 <p>Das Projekt speichert Quizfragen und mischt deren Antwortoptionen mithilfe von <code>rand::seq::SliceRandom</code> vor der Anzeige.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 // serde = { version = "1.0", features = ["derive"] }
@@ -5071,11 +5064,11 @@ fn main() {
         println!("{}: {}", i, ant);
     }
     println!("Korrekte Antwort-Nummer: {}", korrekter);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-90-modulares-e-commerce-warenkorb-system"><a class="header" href="#projekt-90-modulares-e-commerce-warenkorb-system">Projekt 90: Modulares E-Commerce-Warenkorb-System</a></h2>
 <p>Fügt Produkte mit eindeutigen UUIDs zu einem Warenkorb hinzu und führt eine Validierung beim Checkout durch.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // uuid = { version = "1.6", features = ["v4"] }
 
@@ -5125,11 +5118,11 @@ fn main() {
         Ok(summe) =&gt; println!("Gesamtsumme: {} EUR", summe),
         Err(e) =&gt; println!("Checkout fehlgeschlagen: {}", e),
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-91-dns-eintrag-simulator-mit-cache-und-ttl"><a class="header" href="#projekt-91-dns-eintrag-simulator-mit-cache-und-ttl">Projekt 91: DNS-Eintrag-Simulator mit Cache und TTL</a></h2>
 <p>Ein DNS-Server-Simulator, der Time-to-Live (TTL) für DNS-Auflösungen über Chrono-Zeitstempel cached.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 
@@ -5194,11 +5187,11 @@ fn main() {
     if let Some(ip) = resolver.auflösen("rust-lang.org") {
         println!("IP aufgelöst: {}", ip);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-92-rezept-verwalter-mit-einkaufszettellisten-generator"><a class="header" href="#projekt-92-rezept-verwalter-mit-einkaufszettellisten-generator">Projekt 92: Rezept-Verwalter mit Einkaufszettellisten-Generator</a></h2>
 <p>Aggregiert ausgewählte Rezepte und summiert die nötigen Zutatenmengen in einer vereinten Einkaufsliste.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 
@@ -5240,11 +5233,11 @@ fn main() {
     for (zutat, menge) in einkaufsliste {
         println!("Zutat: {}, Menge: {}g", zutat, menge);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-93-cli-netzwerk-ping-simulator-mit-latenzanalyse"><a class="header" href="#projekt-93-cli-netzwerk-ping-simulator-mit-latenzanalyse">Projekt 93: CLI-Netzwerk-Ping-Simulator mit Latenzanalyse</a></h2>
 <p>Simuliert unzuverlässige Netzwerk-Pings via <code>rand</code> und wertet die Latenzen (Durchschnitt, Maximum) statistisch aus.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 
@@ -5283,11 +5276,11 @@ mod analyse {
 fn main() {
     let ergebnisse = vec![netzwerk::sende_ping(), netzwerk::sende_ping()];
     analyse::analysiere_pings(&amp;ergebnisse);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-94-modulare-zeiterfassung-für-freelancer"><a class="header" href="#projekt-94-modulare-zeiterfassung-für-freelancer">Projekt 94: Modulare Zeiterfassung für Freelancer</a></h2>
 <p>Ein modularer Zeittracker, der die Dauer gestarteter und gestoppter Tasks mithilfe von <code>chrono</code> misst.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 // serde = { version = "1.0", features = ["derive"] }
@@ -5337,11 +5330,11 @@ fn main() {
     tracker.start_task("Rust Programmieren");
     let _ = tracker.stop_task();
     println!("Tasks aufgezeichnet: {}", tracker.einträge.len());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-95-vokabeltrainer-mit-leitner-system"><a class="header" href="#projekt-95-vokabeltrainer-mit-leitner-system">Projekt 95: Vokabeltrainer mit Leitner-System</a></h2>
 <p>Simuliert ein Vokabel-Lernsystem mit drei Fächern. Falsche Antworten stufen die Karte zurück in Fach 1.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 
@@ -5387,11 +5380,11 @@ fn main() {
     box_system.karte_hinzufügen("Apfel", "apple");
     box_system.bewerten(0, true);
     println!("Fach für Apfel: {}", box_system.karten[0].fach);
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-96-modulares-smart-home-energiemonitoring"><a class="header" href="#projekt-96-modulares-smart-home-energiemonitoring">Projekt 96: Modulares Smart-Home-Energiemonitoring</a></h2>
 <p>Simulation von Stromverbrauchssensoren per <code>rand</code> und fortlaufende Aggregation im Zentralmonitor.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // rand = "0.8"
 
@@ -5438,11 +5431,11 @@ fn main() {
     let mut monitor = monitor::EnergyMonitor::neu();
     monitor.messung_hinzufügen(sensor::lese_verbrauch(1));
     println!("Gesamtverbrauch: {} Watt", monitor.gesamt_verbrauch());
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-97-simulierter-key-value-store-mit-commit-log"><a class="header" href="#projekt-97-simulierter-key-value-store-mit-commit-log">Projekt 97: Simulierter Key-Value-Store mit Commit-Log</a></h2>
 <p>Zustandsspeicherung eines Key-Value-Stores mit Transaktions-Commit-Log, serialisiert über <code>serde_json</code>.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // serde = { version = "1.0", features = ["derive"] }
 // serde_json = "1.0"
@@ -5491,11 +5484,11 @@ fn main() {
     if let Ok(json) = store.export_log() {
         println!("Log: {}", json);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-98-dateimanager-cli-tool-simuliert"><a class="header" href="#projekt-98-dateimanager-cli-tool-simuliert">Projekt 98: Dateimanager-CLI-Tool (Simuliert)</a></h2>
 <p>Simuliert Dateibaumoperationen mit Zeitstempeln via <code>chrono</code> und unterscheidet zwischen Dateien und Ordnern.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 
@@ -5550,11 +5543,11 @@ fn main() {
     let mut fm = manager::Dateimanager::neu();
     fm.datei_erstellen("skripte", dateisystem::DateiTyp::Ordner);
     fm.auflisten();
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-99-modulares-ticketsystem-für-support-anfragen"><a class="header" href="#projekt-99-modulares-ticketsystem-für-support-anfragen">Projekt 99: Modulares Ticketsystem für Support-Anfragen</a></h2>
 <p>Ticketsystem für Fehlerberichte mit UUIDs und Prioritäts-Enums, das per <code>find</code> nach Tickets sucht.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // uuid = { version = "1.6", features = ["v4"] }
 // chrono = "0.4"
@@ -5609,11 +5602,11 @@ fn main() {
     if let Some(ticket) = system.finde_ticket(id) {
         println!("Ticket '{}' mit Prio {:?} gefunden.", ticket.titel, ticket.prioritaet);
     }
-}</code></pre></pre>
-<hr />
+}</code></pre>
+<hr>
 <h2 id="projekt-100-modulares-projektmanagement-tool-mit-gantt-simulierung"><a class="header" href="#projekt-100-modulares-projektmanagement-tool-mit-gantt-simulierung">Projekt 100: Modulares Projektmanagement-Tool mit Gantt-Simulierung</a></h2>
 <p>Das finale Kombinationsprojekt der Phase 4 implementiert ein modulares Projektplanungs-Tool, das Meilensteine verwaltet und ein vereinfachtes Gantt-Diagramm im Terminal ausgibt.</p>
-<pre><pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
+<pre class="playground"><code class="language-rust">// 📦 Benötigte Abhängigkeiten in Cargo.toml:
 // [dependencies]
 // chrono = "0.4"
 // serde = { version = "1.0", features = ["derive"] }
@@ -5704,18 +5697,18 @@ fn main() {
     let _ = plan.status_aktualisieren(2, model::TaskStatus::InArbeit);
 
     visualisierung::zeichne_diagramm(&amp;plan);
-}</code></pre></pre>
+}</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="phase4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="100-projekte-prompts-phase4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -5725,16 +5718,21 @@ fn main() {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="phase4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="100-projekte-prompts-phase4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -5743,17 +5741,15 @@ fn main() {
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>

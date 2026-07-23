@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="de" class="navy" dir="ltr">
+<html lang="de" class="navy sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,43 +7,55 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-b9dca1d0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,128 +69,97 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('navy')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="einleitung.html">Einleitung</a></li><li class="chapter-item expanded "><a href="modernes-programmieren-ki.html"><strong aria-hidden="true">1.</strong> 🤖 Einführung: Modernes Programmieren mit KI</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> 🛠️ System-Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">🗺️ Projektplanung</li><li class="chapter-item expanded "><a href="planung.html"><strong aria-hidden="true">3.</strong> Planung mit Antigravity /planning</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 1: Grundlagen für Einsteiger</li><li class="chapter-item expanded "><a href="uebersetzung-vergleich.html"><strong aria-hidden="true">4.</strong> Die Übersetzungsphasen: C, C++ und Rust im Vergleich</a></li><li class="chapter-item expanded "><a href="compiler-strenge.html"><strong aria-hidden="true">5.</strong> 🛠️ Strenge Compiler: C/C++ wie Rust & OCaml einstellen</a></li><li class="chapter-item expanded "><a href="rust-compiler-pipeline.html"><strong aria-hidden="true">6.</strong> ⚙️ Die Rust-Compiler-Pipeline: Von Code zu LLVM</a></li><li class="chapter-item expanded "><a href="phase1-konzepte.html"><strong aria-hidden="true">7.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-variablen.html"><strong aria-hidden="true">7.1.</strong> Variablen & Datentypen</a></li><li class="chapter-item expanded "><a href="konzept-kontrollfluss.html"><strong aria-hidden="true">7.2.</strong> Kontrollfluss</a></li><li class="chapter-item expanded "><a href="konzept-eingabe.html"><strong aria-hidden="true">7.3.</strong> Benutzereingabe</a></li><li class="chapter-item expanded "><a href="konzept-ownership.html"><strong aria-hidden="true">7.4.</strong> Ownership & Borrowing</a></li><li class="chapter-item expanded "><a href="konzept-string.html"><strong aria-hidden="true">7.5.</strong> String vs &str</a></li></ol></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-konzepte.html"><strong aria-hidden="true">8.</strong> 🤖 Konzepte statt Syntax lernen (Coding mit KI - Phase 1)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1-workshop.html"><strong aria-hidden="true">8.1.</strong> 🛹 Mitmach-Workshop: Coding mit KI – Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">8.2.</strong> 💡 Projektvorschläge: Coding mit KI (Phase 1)</a></li></ol></li><li class="chapter-item expanded "><a href="phase1-workshop.html"><strong aria-hidden="true">9.</strong> 🛹 Mitmach-Workshop: Phase 1 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase1.html"><strong aria-hidden="true">10.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="100-projekte.html"><strong aria-hidden="true">11.</strong> 100 Projekte</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts.html"><strong aria-hidden="true">12.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="100-projekte-workflows.html"><strong aria-hidden="true">13.</strong> 100 Projekte – Modulare Workflows (Phase 1)</a></li><li class="chapter-item expanded "><a href="anki.html"><strong aria-hidden="true">14.</strong> 📇 Anki-Lernkarten</a></li><li class="chapter-item expanded "><a href="c-phase1-konzepte.html"><strong aria-hidden="true">15.</strong> 🇨 C-Programmierung (Grundkurs C) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-phase1-workshop.html"><strong aria-hidden="true">15.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="c-phase1.html"><strong aria-hidden="true">15.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="c-kapitel01.html"><strong aria-hidden="true">15.3.</strong> 1 Der Einstieg in die Welt von C</a></li><li class="chapter-item expanded "><a href="c-kapitel02.html"><strong aria-hidden="true">15.4.</strong> 2 Erste Schritte in C</a></li><li class="chapter-item expanded "><a href="c-kapitel03.html"><strong aria-hidden="true">15.5.</strong> 3 Basisdatentypen in C</a></li><li class="chapter-item expanded "><a href="c-kapitel04.html"><strong aria-hidden="true">15.6.</strong> 4 Rechnen mit C und Operatoren</a></li><li class="chapter-item expanded "><a href="c-kapitel05.html"><strong aria-hidden="true">15.7.</strong> 5 Bedingte Anweisungen und Verzweigungen</a></li><li class="chapter-item expanded "><a href="c-kapitel06.html"><strong aria-hidden="true">15.8.</strong> 6 Schleifen – Programmteile wiederholen</a></li><li class="chapter-item expanded "><a href="c-kapitel07.html"><strong aria-hidden="true">15.9.</strong> 7 Funktionen erstellen</a></li><li class="chapter-item expanded "><a href="c-kapitel08.html"><strong aria-hidden="true">15.10.</strong> 8 Präprozessor-Direktiven</a></li><li class="chapter-item expanded "><a href="c-kapitel09.html"><strong aria-hidden="true">15.11.</strong> 9 Arrays und Zeichenketten (Strings)</a></li><li class="chapter-item expanded "><a href="c-kapitel14.html"><strong aria-hidden="true">15.12.</strong> 14 Eingabe- und Ausgabefunktionen</a></li><li class="chapter-item expanded "><a href="c-kapitel15.html"><strong aria-hidden="true">15.13.</strong> 15 Zeitroutinen (time.h)</a></li></ol></li><li class="chapter-item expanded "><a href="cpp-phase1-konzepte.html"><strong aria-hidden="true">16.</strong> 🚀 C++-Programmierung (Grundkurs C++23) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-phase1-workshop.html"><strong aria-hidden="true">16.1.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="cpp-phase1.html"><strong aria-hidden="true">16.2.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="cpp-kapitel01.html"><strong aria-hidden="true">16.3.</strong> 1 Einstieg in die Welt von C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel02.html"><strong aria-hidden="true">16.4.</strong> 2 Erste Schritte in C++</a></li><li class="chapter-item expanded "><a href="cpp-kapitel03.html"><strong aria-hidden="true">16.5.</strong> 3 Die eingebauten C++-Basisdatentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel04.html"><strong aria-hidden="true">16.6.</strong> 4 Arbeiten mit den eingebauten Typen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel05.html"><strong aria-hidden="true">16.7.</strong> 5 Kontrollstrukturen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel06.html"><strong aria-hidden="true">16.8.</strong> 6 Arrays und Strings</a></li><li class="chapter-item expanded "><a href="cpp-kapitel08.html"><strong aria-hidden="true">16.9.</strong> 8 Funktionen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel09.html"><strong aria-hidden="true">16.10.</strong> 9 Modularisierung und Präprozessor</a></li><li class="chapter-item expanded "><a href="cpp-kapitel17.html"><strong aria-hidden="true">16.11.</strong> 17 Ein-/Ausgabestreams für Dateien</a></li></ol></li><li class="chapter-item expanded "><a href="kotlin-phase1-konzepte.html"><strong aria-hidden="true">17.</strong> 🅺 Kotlin-Programmierung (Grundkurs Kotlin) - Phase 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust-und-kotlin-gleichzeitig-lernen.html"><strong aria-hidden="true">17.1.</strong> 🦀⚡ Rust & Kotlin gleichzeitig lernen: Das Synergie-Handbuch</a></li><li class="chapter-item expanded "><a href="kotlin-phase1-workshop.html"><strong aria-hidden="true">17.2.</strong> 🛹 Mitmach-Workshop</a></li><li class="chapter-item expanded "><a href="kotlin-phase1.html"><strong aria-hidden="true">17.3.</strong> Projektvorschläge Phase 1</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel01.html"><strong aria-hidden="true">17.4.</strong> 1 Einstieg in die Welt von Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel02.html"><strong aria-hidden="true">17.5.</strong> 2 Variablen, Datentypen & Null-Safety in Kotlin</a></li><li class="chapter-item expanded "><a href="kotlin-kapitel03.html"><strong aria-hidden="true">17.6.</strong> 3 Kontrollstrukturen & Funktionen in Kotlin</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 2: Eigene Datentypen (Structs & Enums)</li><li class="chapter-item expanded "><a href="phase2-konzepte.html"><strong aria-hidden="true">18.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-structs.html"><strong aria-hidden="true">18.1.</strong> Structs & Methoden</a></li><li class="chapter-item expanded "><a href="konzept-enums.html"><strong aria-hidden="true">18.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="konzept-matching.html"><strong aria-hidden="true">18.3.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="phase2-workshop.html"><strong aria-hidden="true">19.</strong> 🧱 Mitmach-Workshop: Phase 2 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase2.html"><strong aria-hidden="true">20.</strong> Projektvorschläge Phase 2</a></li><li class="chapter-item expanded "><a href="100-projekte-phase2.html"><strong aria-hidden="true">21.</strong> 100 Projekte - Themen anzeigen</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase2.html"><strong aria-hidden="true">22.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="bash-grundlagen.html"><strong aria-hidden="true">23.</strong> 🐚 Bash-Skripte – Grundlagen</a></li><li class="chapter-item expanded "><a href="bash-theorie-komplett.html"><strong aria-hidden="true">24.</strong> 🐚 Bash-Theorie: Alle Themen</a></li><li class="chapter-item expanded "><a href="bash-projektvorschlaege.html"><strong aria-hidden="true">25.</strong> Bash-Projektvorschläge</a></li><li class="chapter-item expanded "><a href="c-kapitel12.html"><strong aria-hidden="true">26.</strong> 12 Komplexe Datentypen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel10.html"><strong aria-hidden="true">27.</strong> 10 Strukturen, Aufzählungen und dynamische Speicherobjekte</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel11.html"><strong aria-hidden="true">27.1.</strong> 11 Klassen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel12.html"><strong aria-hidden="true">27.2.</strong> 12 Objekte und Klassenelemente</a></li><li class="chapter-item expanded "><a href="cpp-kapitel13.html"><strong aria-hidden="true">27.3.</strong> 13 Operatoren überladen</a></li><li class="chapter-item expanded "><a href="cpp-kapitel14.html"><strong aria-hidden="true">27.4.</strong> 14 Vererbung (Abgeleitete Klassen)</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 3: Fehlerbehandlung & Collections</li><li class="chapter-item expanded "><a href="phase3-konzepte.html"><strong aria-hidden="true">28.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-vectors.html"><strong aria-hidden="true">28.1.</strong> Vektoren & Listen</a></li><li class="chapter-item expanded "><a href="konzept-hashmaps.html"><strong aria-hidden="true">28.2.</strong> HashMaps</a></li><li class="chapter-item expanded "><a href="konzept-option.html"><strong aria-hidden="true">28.3.</strong> Option</a></li><li class="chapter-item expanded "><a href="konzept-result.html"><strong aria-hidden="true">28.4.</strong> Result</a></li><li class="chapter-item expanded "><a href="konzept-panic.html"><strong aria-hidden="true">28.5.</strong> Unwiederherstellbare Fehler (panic!)</a></li><li class="chapter-item expanded "><a href="rust-testing-benchmarking.html"><strong aria-hidden="true">28.6.</strong> 🧪 Testen, Dokumentation & Benchmarking</a></li></ol></li><li class="chapter-item expanded "><a href="phase3-workshop.html"><strong aria-hidden="true">29.</strong> 🛒 Mitmach-Workshop: Phase 3 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase3.html"><strong aria-hidden="true">30.</strong> Projektvorschläge Phase 3</a></li><li class="chapter-item expanded "><a href="100-projekte-phase3.html"><strong aria-hidden="true">31.</strong> 100 Projekte - Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase3.html"><strong aria-hidden="true">32.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel16.html"><strong aria-hidden="true">33.</strong> 16 Ausnahmebehandlung (Fehlerbehandlung)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-kapitel18.html"><strong aria-hidden="true">33.1.</strong> 18 Die Standardbibliothek und weitere Sprachelemente</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 4: Module, Pfade, Packages & Crates</li><li class="chapter-item expanded "><a href="phase4-konzepte.html"><strong aria-hidden="true">34.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-crates.html"><strong aria-hidden="true">34.1.</strong> Packages, Crates & Cargo</a></li><li class="chapter-item expanded "><a href="konzept-module.html"><strong aria-hidden="true">34.2.</strong> Module & Sichtbarkeit</a></li><li class="chapter-item expanded "><a href="konzept-pfade.html"><strong aria-hidden="true">34.3.</strong> Pfade & Importe</a></li><li class="chapter-item expanded "><a href="cargo-workspaces-features.html"><strong aria-hidden="true">34.4.</strong> 📦 Cargo Workspaces, Features & Performance-Profile</a></li></ol></li><li class="chapter-item expanded "><a href="phase4-workshop.html"><strong aria-hidden="true">35.</strong> 📦 Mitmach-Workshop: Phase 4 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase4.html"><strong aria-hidden="true">36.</strong> Projektvorschläge Phase 4</a></li><li class="chapter-item expanded "><a href="100-projekte-phase4.html"><strong aria-hidden="true">37.</strong> 100 Projekte - Module, Pfade, Packages & Crates</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase4.html"><strong aria-hidden="true">38.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 5: Generics, Traits & Lifetimes</li><li class="chapter-item expanded "><a href="phase5-konzepte.html"><strong aria-hidden="true">39.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-generics.html"><strong aria-hidden="true">39.1.</strong> Generics & Generische Typen</a></li><li class="chapter-item expanded "><a href="konzept-traits.html"><strong aria-hidden="true">39.2.</strong> Traits & Schnittstellen</a></li><li class="chapter-item expanded "><a href="konzept-lifetimes.html"><strong aria-hidden="true">39.3.</strong> Lifetimes & Lebensdauern</a></li></ol></li><li class="chapter-item expanded "><a href="phase5-workshop.html"><strong aria-hidden="true">40.</strong> 📦 Mitmach-Workshop: Phase 5 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase5.html"><strong aria-hidden="true">41.</strong> Projektvorschläge Phase 5</a></li><li class="chapter-item expanded "><a href="100-projekte-phase5.html"><strong aria-hidden="true">42.</strong> 100 Projekte - Generics, Traits & Lifetimes</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase5.html"><strong aria-hidden="true">43.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel15.html"><strong aria-hidden="true">44.</strong> 15 Templates</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 6: Smart Pointer & Speicherverwaltung</li><li class="chapter-item expanded "><a href="phase6-konzepte.html"><strong aria-hidden="true">45.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-box.html"><strong aria-hidden="true">45.1.</strong> Box & Heap-Allokation</a></li><li class="chapter-item expanded "><a href="konzept-rc-arc.html"><strong aria-hidden="true">45.2.</strong> Rc & Arc (Geteilter Besitz)</a></li><li class="chapter-item expanded "><a href="konzept-refcell.html"><strong aria-hidden="true">45.3.</strong> RefCell (Interior Mutability)</a></li></ol></li><li class="chapter-item expanded "><a href="phase6-workshop.html"><strong aria-hidden="true">46.</strong> 📦 Mitmach-Workshop: Phase 6 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase6.html"><strong aria-hidden="true">47.</strong> Projektvorschläge Phase 6</a></li><li class="chapter-item expanded "><a href="100-projekte-phase6.html"><strong aria-hidden="true">48.</strong> 100 Projekte - Smart Pointer & Speicherverwaltung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase6.html"><strong aria-hidden="true">49.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel11.html"><strong aria-hidden="true">50.</strong> 11 Dynamische Speicherverwaltung</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c-kapitel13.html"><strong aria-hidden="true">50.1.</strong> 13 Dynamische Datenstrukturen</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Phase 7: Fearless Concurrency (Nebenläufigkeit)</li><li class="chapter-item expanded "><a href="phase7-konzepte.html"><strong aria-hidden="true">51.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-threads.html"><strong aria-hidden="true">51.1.</strong> Threads & Shared State</a></li><li class="chapter-item expanded "><a href="konzept-channels.html"><strong aria-hidden="true">51.2.</strong> Channels & Nachrichtenaustausch</a></li><li class="chapter-item expanded "><a href="konzept-async.html"><strong aria-hidden="true">51.3.</strong> Async/Await & Tokio-Grundlagen</a></li><li class="chapter-item expanded "><a href="rust-web-backend.html"><strong aria-hidden="true">51.4.</strong> 🌐 Web-Backend & REST APIs (Axum & SQLx)</a></li><li class="chapter-item expanded "><a href="rust-static-site-generator.html"><strong aria-hidden="true">51.5.</strong> ⚡ Static Site Generator: Eigene Website mit Rust bauen</a></li></ol></li><li class="chapter-item expanded "><a href="phase7-workshop.html"><strong aria-hidden="true">52.</strong> 📦 Mitmach-Workshop: Phase 7 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase7.html"><strong aria-hidden="true">53.</strong> Projektvorschläge Phase 7</a></li><li class="chapter-item expanded "><a href="100-projekte-phase7.html"><strong aria-hidden="true">54.</strong> 100 Projekte - Fearless Concurrency</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase7.html"><strong aria-hidden="true">55.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 8: Idiomatisches Rust (Iteratoren & Closures)</li><li class="chapter-item expanded "><a href="phase8-konzepte.html"><strong aria-hidden="true">56.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-closures.html"><strong aria-hidden="true">56.1.</strong> Closures & Variablen-Einfangung</a></li><li class="chapter-item expanded "><a href="konzept-iteratoren.html"><strong aria-hidden="true">56.2.</strong> Iteratoren & Das Iterator-Trait</a></li><li class="chapter-item expanded "><a href="konzept-ketten.html"><strong aria-hidden="true">56.3.</strong> Iterator-Ketten & Adapter</a></li></ol></li><li class="chapter-item expanded "><a href="phase8-workshop.html"><strong aria-hidden="true">57.</strong> 📦 Mitmach-Workshop: Phase 8 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase8.html"><strong aria-hidden="true">58.</strong> Projektvorschläge Phase 8</a></li><li class="chapter-item expanded "><a href="100-projekte-phase8.html"><strong aria-hidden="true">59.</strong> 100 Projekte - Iteratoren & Closures</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase8.html"><strong aria-hidden="true">60.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 9: Systemprogrammierung (Unsafe Rust & FFI)</li><li class="chapter-item expanded "><a href="phase9-konzepte.html"><strong aria-hidden="true">61.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-unsafe.html"><strong aria-hidden="true">61.1.</strong> Unsafe Rust & Rohe Zeiger</a></li><li class="chapter-item expanded "><a href="konzept-ffi.html"><strong aria-hidden="true">61.2.</strong> FFI (Anbindung an C-Bibliotheken)</a></li><li class="chapter-item expanded "><a href="c-abi-erklaerung.html"><strong aria-hidden="true">61.3.</strong> 🔌 Das C-ABI: Die universelle Brücke zwischen Sprachen</a></li><li class="chapter-item expanded "><a href="rust-build-skripte-ffi.html"><strong aria-hidden="true">61.4.</strong> ⚙️ Build-Skripte (build.rs) & C/C++-Integration</a></li><li class="chapter-item expanded "><a href="rust-wasm.html"><strong aria-hidden="true">61.5.</strong> 🌐 WebAssembly (WASM) & Rust im Browser</a></li><li class="chapter-item expanded "><a href="rust-embedded-nostd.html"><strong aria-hidden="true">61.6.</strong> 📟 Bare-Metal & Embedded Rust (no_std)</a></li><li class="chapter-item expanded "><a href="rust-kryptographie.html"><strong aria-hidden="true">61.7.</strong> 🔒 Kryptographie & Sicherheit in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="phase9-workshop.html"><strong aria-hidden="true">62.</strong> 📦 Mitmach-Workshop: Phase 9 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase9.html"><strong aria-hidden="true">63.</strong> Projektvorschläge Phase 9</a></li><li class="chapter-item expanded "><a href="100-projekte-phase9.html"><strong aria-hidden="true">64.</strong> 100 Projekte - Unsafe & FFI</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase9.html" class="active"><strong aria-hidden="true">65.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded "><a href="c-kapitel10.html"><strong aria-hidden="true">66.</strong> 10 Zeiger (Pointer)</a></li><li class="chapter-item expanded "><a href="cpp-kapitel07.html"><strong aria-hidden="true">67.</strong> 7 Referenzen und Zeiger</a></li><li class="chapter-item expanded affix "><li class="part-title">Phase 10: Metaprogrammierung (Makros)</li><li class="chapter-item expanded "><a href="phase10-konzepte.html"><strong aria-hidden="true">68.</strong> Konzepte statt Syntax lernen</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="konzept-makros-deklarativ.html"><strong aria-hidden="true">68.1.</strong> Deklarative Makros (macro_rules!)</a></li><li class="chapter-item expanded "><a href="konzept-makros-prozedural.html"><strong aria-hidden="true">68.2.</strong> Prozedurale Makros (Derive & Attribute)</a></li></ol></li><li class="chapter-item expanded "><a href="phase10-workshop.html"><strong aria-hidden="true">69.</strong> 📦 Mitmach-Workshop: Phase 10 bildhaft verstehen</a></li><li class="chapter-item expanded "><a href="phase10.html"><strong aria-hidden="true">70.</strong> Projektvorschläge Phase 10</a></li><li class="chapter-item expanded "><a href="100-projekte-phase10.html"><strong aria-hidden="true">71.</strong> 100 Projekte - Makros & Metaprogrammierung</a></li><li class="chapter-item expanded "><a href="100-projekte-prompts-phase10.html"><strong aria-hidden="true">72.</strong> 100 Projekte – Nur Prompts (Modulares Prinzip)</a></li><li class="chapter-item expanded affix "><li class="part-title">🤖 Bonus: KI als Lernpartner</li><li class="chapter-item expanded "><a href="antigravity.html"><strong aria-hidden="true">73.</strong> Antigravity – CLI, 2.0 & IDE</a></li><li class="chapter-item expanded "><a href="agy-cli-workflows.html"><strong aria-hidden="true">74.</strong> Antigravity CLI – Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="agy-cli-automatisieren.html"><strong aria-hidden="true">75.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="agy-cli-wissendatenbank.html"><strong aria-hidden="true">76.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="agy-cli-bessere-loesungen.html"><strong aria-hidden="true">77.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="agy-cli-mcp.html"><strong aria-hidden="true">78.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-dokumentation.html"><strong aria-hidden="true">79.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="agy-cli-skripte.html"><strong aria-hidden="true">80.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="agy-sdk.html"><strong aria-hidden="true">81.</strong> Das AGY SDK nutzen</a></li><li class="chapter-item expanded "><a href="agy-cli-mega-praxis.html"><strong aria-hidden="true">82.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="antigravity-praxis.html"><strong aria-hidden="true">83.</strong> Antigravity Praxis-Projekte</a></li><li class="chapter-item expanded "><a href="gemini.html"><strong aria-hidden="true">84.</strong> 💎 Google Gemini als Lernpartner</a></li><li class="chapter-item expanded "><a href="copilot.html"><strong aria-hidden="true">85.</strong> 🐙 GitHub Copilot – Der klassische Assistent</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="copilot-workflows.html"><strong aria-hidden="true">85.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="copilot-automatisieren.html"><strong aria-hidden="true">85.2.</strong> Automatisieren</a></li></ol></li><li class="chapter-item expanded "><a href="ide-agent.html"><strong aria-hidden="true">86.</strong> 🤖 IDE KI-Agenten – Die nächste Generation</a></li><li class="chapter-item expanded "><a href="claude-code.html"><strong aria-hidden="true">87.</strong> 🐚 Claude Code – Der KI-Agent im Terminal</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="claude-code-workflows.html"><strong aria-hidden="true">87.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="claude-code-automatisieren.html"><strong aria-hidden="true">87.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="claude-code-wissendatenbank.html"><strong aria-hidden="true">87.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="claude-code-bessere-loesungen.html"><strong aria-hidden="true">87.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="claude-code-mcp.html"><strong aria-hidden="true">87.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-dokumentation.html"><strong aria-hidden="true">87.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="claude-code-skripte.html"><strong aria-hidden="true">87.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="claude-sdk.html"><strong aria-hidden="true">87.8.</strong> Das Claude SDK nutzen</a></li><li class="chapter-item expanded "><a href="claude-code-mega-praxis.html"><strong aria-hidden="true">87.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-1.html"><strong aria-hidden="true">87.10.</strong> Praxis 1: Grundlagen</a></li><li class="chapter-item expanded "><a href="claude-code-praxis-2.html"><strong aria-hidden="true">87.11.</strong> Praxis 2: Profi-Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="codex-cli.html"><strong aria-hidden="true">88.</strong> 💻 Codex CLI – Der Terminal-Assistent von OpenAI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="codex-cli-workflows.html"><strong aria-hidden="true">88.1.</strong> Workflows & Steuerung</a></li><li class="chapter-item expanded "><a href="codex-cli-automatisieren.html"><strong aria-hidden="true">88.2.</strong> Automatisieren</a></li><li class="chapter-item expanded "><a href="codex-cli-wissendatenbank.html"><strong aria-hidden="true">88.3.</strong> Projekt Wissendatenbank</a></li><li class="chapter-item expanded "><a href="codex-cli-bessere-loesungen.html"><strong aria-hidden="true">88.4.</strong> Auf bessere Lösungen kommen</a></li><li class="chapter-item expanded "><a href="codex-cli-mcp.html"><strong aria-hidden="true">88.5.</strong> MCP Server nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-dokumentation.html"><strong aria-hidden="true">88.6.</strong> Dokumentation & Handbücher</a></li><li class="chapter-item expanded "><a href="codex-cli-skripte.html"><strong aria-hidden="true">88.7.</strong> Skripte & App-Steuerung</a></li><li class="chapter-item expanded "><a href="codex-sdk.html"><strong aria-hidden="true">88.8.</strong> Das OpenAI/Codex SDK nutzen</a></li><li class="chapter-item expanded "><a href="codex-cli-mega-praxis.html"><strong aria-hidden="true">88.9.</strong> 100+ Praxis-Übungen (Katalog)</a></li></ol></li><li class="chapter-item expanded "><a href="zed-ide.html"><strong aria-hidden="true">89.</strong> ⚡ Zed IDE – Der performante Editor mit KI</a></li><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">90.</strong> 📝 Vim – Der tastaturgesteuerte Editor</a></li><li class="chapter-item expanded "><a href="vibe-coding.html"><strong aria-hidden="true">91.</strong> 🎵 Vibe Coding – Programmieren im Flow</a></li><li class="chapter-item expanded "><a href="eigener-agent.html"><strong aria-hidden="true">92.</strong> 🧠 Eigene KI-Agenten programmieren</a></li><li class="chapter-item expanded "><a href="eigenen-compiler-bauen.html"><strong aria-hidden="true">93.</strong> 🛠️ Eigener Compiler: Schritt für Schritt mit Rust & LLVM</a></li><li class="chapter-item expanded "><a href="eigenen-transpiler-c-bauen.html"><strong aria-hidden="true">94.</strong> 📝 Eigenen Transpiler bauen: C-Code-Generierung mit Rust</a></li><li class="chapter-item expanded "><a href="rust-gui-tauri-egui.html"><strong aria-hidden="true">95.</strong> 🖥️ GUI-Entwicklung: Benutzeroberflächen mit Tauri & egui</a></li><li class="chapter-item expanded "><a href="rust-bevy-wgpu.html"><strong aria-hidden="true">96.</strong> 🎮 Spieleentwicklung & Grafik (Bevy & WGPU)</a></li><li class="chapter-item expanded "><a href="llm-anbieter-vergleich.html"><strong aria-hidden="true">97.</strong> 🌐 Multi-LLM- & Sprachmodell-Anbieter im Vergleich</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-praxisbuch.html"><strong aria-hidden="true">98.</strong> 📖 Coding mit KI – Das Praxisbuch (Inhaltsverzeichnis)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="coding-mit-ki-phase1.html"><strong aria-hidden="true">98.1.</strong> 💡 Phase 1: Grundlagen für Einsteiger</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase2.html"><strong aria-hidden="true">98.2.</strong> 💡 Phase 2: Eigene Datentypen</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase3.html"><strong aria-hidden="true">98.3.</strong> 💡 Phase 3: Fehlerbehandlung & Collections</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase4.html"><strong aria-hidden="true">98.4.</strong> 💡 Phase 4: Module, Pfade, Packages & Multi-File</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase5.html"><strong aria-hidden="true">98.5.</strong> 💡 Phase 5: Generics & Interfaces</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase6.html"><strong aria-hidden="true">98.6.</strong> 💡 Phase 6: Speicherverwaltung & Sicherheit</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase7.html"><strong aria-hidden="true">98.7.</strong> 💡 Phase 7: Nebenläufigkeit & Asynchronität</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase8.html"><strong aria-hidden="true">98.8.</strong> 💡 Phase 8: Idiomatisches Programmieren</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase9.html"><strong aria-hidden="true">98.9.</strong> 💡 Phase 9: Fortgeschrittene Integration & APIs</a></li><li class="chapter-item expanded "><a href="coding-mit-ki-phase10.html"><strong aria-hidden="true">98.10.</strong> 💡 Phase 10: Metaprogrammierung & Agentic Coding</a></li></ol></li><li class="chapter-item expanded "><a href="Impressum.html"><strong aria-hidden="true">99.</strong> Impressum</a></li><li class="chapter-item expanded "><a href="Datenschschutz.html"><strong aria-hidden="true">100.</strong> Datenschutz</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="100-projekte---unsafe--ffi-prompts"><a class="header" href="#100-projekte---unsafe--ffi-prompts">100 Projekte - Unsafe &amp; FFI Prompts</a></h1>
 <p>Hier findest du für jedes der 100 Projekte aus Phase 9 jeweils genau drei modulare Präzisions-Prompts zur didaktischen Begleitung.</p>
-<hr />
+<hr>
 <h1 id="phase-9-rohe-zeiger--speicher-tricks-teil-1---projekte-1-bis-20"><a class="header" href="#phase-9-rohe-zeiger--speicher-tricks-teil-1---projekte-1-bis-20">Phase 9: Rohe Zeiger &amp; Speicher-Tricks (Teil 1) - Projekte 1 bis 20</a></h1>
 <p>Dieses Dokument enthält jeweils genau drei modulare Präzisions-Prompts für die ersten 20 Projekte der Phase 9. Die Prompts sind didaktisch aufgebaut, verzichten auf fertige Codelösungen und leiten dich Schritt für Schritt an.</p>
-<hr />
+<hr>
 <h2 id="projekt-1-speicheradresse-anzeigen"><a class="header" href="#projekt-1-speicheradresse-anzeigen">Projekt 1: Speicheradresse anzeigen</a></h2>
 <p><em>Ziel: Nimm eine normale Ganzzahl-Variable und gib ihre Adresse über einen unveränderlichen rohen Zeiger (<code>*const T</code>) aus.</em></p>
 <ul>
@@ -189,7 +170,7 @@ Finde heraus, wie du die Adresse des Zeigers ausgeben kannst. Benötigt das blo�
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Integriere die Datenstruktur und die Ausgabe in deine <code>main.rs</code>. Verifiziere das Ergebnis, indem du die Adresse ausgibst und erklärst, warum der Compiler für das reine Ausgeben des Zeigers (ohne Dereferenzierung) keine <code>unsafe</code>-Garantien verlangt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-2-wert-über-zeiger-verändern"><a class="header" href="#projekt-2-wert-über-zeiger-verändern">Projekt 2: Wert über Zeiger verändern</a></h2>
 <p><em>Ziel: Erstelle einen veränderlichen rohen Zeiger (<code>*mut T</code>) auf eine Variable und überschreibe deren Wert in einem unsafe-Block.</em></p>
 <ul>
@@ -200,7 +181,7 @@ Implementiere den Schreibzugriff über den rohen Zeiger. Nutze dafür einen <cod
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe das Hauptprogramm in <code>main.rs</code>, das den Wert vor und nach der Änderung ausgibt. Teste, ob der ursprüngliche Variablenwert tatsächlich überschrieben wurde, und stelle sicher, dass keine Aliasing-Regeln von Rust während des sicheren Lesezugriffs verletzt werden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-3-zeiger-arithmetik-mit-arrays"><a class="header" href="#projekt-3-zeiger-arithmetik-mit-arrays">Projekt 3: Zeiger-Arithmetik mit Arrays</a></h2>
 <p><em>Ziel: Navigiere durch ein Array von Ganzzahlen, indem du den Startzeiger nimmst und mit den Methoden offset oder add weiterrechnest.</em></p>
 <ul>
@@ -211,7 +192,7 @@ Nutze Zeiger-Arithmetik, um auf das zweite und dritte Element zuzugreifen. Verwe
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Bilde das Hauptprogramm ab, das das Array und den Startzeiger anlegt, per Zeiger-Arithmetik durch das Array wandert, die Werte ausliest und ausgibt. Stelle sicher, dass du nicht über die Grenzen des Arrays hinausliest (Out-of-Bounds), da dies undefiniertes Verhalten (Undefined Behavior) hervorrufen würde.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-4-nullzeiger-prüfung"><a class="header" href="#projekt-4-nullzeiger-prüfung">Projekt 4: Nullzeiger-Prüfung</a></h2>
 <p><em>Ziel: Initialisiere einen rohen Zeiger mit std::ptr::null() und schreibe eine Prüfung, ob dieser sicher dereferenziert werden kann.</em></p>
 <ul>
@@ -222,7 +203,7 @@ Implementiere eine Sicherheitsprüfung. Verwende die Methode <code>is_null()</co
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe deine <code>main</code>-Funktion, die sowohl einen Nullzeiger als auch einen gültigen Zeiger auf eine Variable anlegt. Führe für beide die Prüfung durch und gib entsprechende Meldungen aus. Teste das Verhalten und stelle sicher, dass niemals ein Nullzeiger dereferenziert wird.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-5-transmutieren-von-primitiven-typen"><a class="header" href="#projekt-5-transmutieren-von-primitiven-typen">Projekt 5: Transmutieren von primitiven Typen</a></h2>
 <p><em>Ziel: Nutze std::mem::transmute, um ein Array von vier u8-Werten direkt in eine einzelne u32-Zahl umzuinterpretieren.</em></p>
 <ul>
@@ -233,7 +214,7 @@ Verwende <code>std::mem::transmute</code> in einem <code>unsafe</code>-Block, um
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle das Hauptprogramm in <code>main.rs</code>, führe die Transmutation durch und gib das Ergebnis sowohl als <code>u32</code> als auch hexadezimal aus. Schreibe einen Test, der das Ergebnis unter Berücksichtigung der System-Endianness (<code>u32::from_ne_bytes</code> oder <code>to_ne_bytes</code>) validiert.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-6-manuelle-speicherallokation"><a class="header" href="#projekt-6-manuelle-speicherallokation">Projekt 6: Manuelle Speicherallokation</a></h2>
 <p><em>Ziel: Verwende std::alloc::alloc und std::alloc::Layout, um Speicher für eine Ganzzahl auf dem Heap manuell anzufordern und wieder freizugeben.</em></p>
 <ul>
@@ -244,7 +225,7 @@ Allokiere den Speicher mithilfe von <code>std::alloc::alloc</code> und dem erste
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Baue das vollständige Programm in <code>main.rs</code>. Implementiere ein sauberes Exception- bzw. Fehlerhandling für den Fall, dass die Allokation fehlschlägt. Stelle sicher, dass der Speicher in jedem Ausführungspfad wieder freigegeben wird, um Memory Leaks zu vermeiden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-7-auslesen-nicht-ausgerichteter-daten"><a class="header" href="#projekt-7-auslesen-nicht-ausgerichteter-daten">Projekt 7: Auslesen nicht ausgerichteter Daten</a></h2>
 <p><em>Ziel: Lies mit std::ptr::read_unaligned einen Wert aus einem Bytestrom, der nicht an den natürlichen Speichergrenzen ausgerichtet ist.</em></p>
 <ul>
@@ -255,7 +236,7 @@ Erstelle einen rohen Zeiger auf die nicht ausgerichtete Startadresse im Byte-Arr
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe die <code>main.rs</code>, befülle das Byte-Array mit Testwerten, lies die unaligned Daten aus und gib sie aus. Teste das Programm und stelle sicher, dass du keine Out-of-Bounds-Zugriffe auf das Array machst.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-8-schreiben-nicht-ausgerichteter-daten"><a class="header" href="#projekt-8-schreiben-nicht-ausgerichteter-daten">Projekt 8: Schreiben nicht ausgerichteter Daten</a></h2>
 <p><em>Ziel: Verwende std::ptr::write_unaligned, um Werte in ein Byte-Array an beliebigen Positionen zu schreiben, ohne Ausrichtungsfehler (Alignment-Fehler) zu riskieren.</em></p>
 <ul>
@@ -266,7 +247,7 @@ Berechne den Ziel-Zeiger für den Schreibvorgang. Verwende <code>std::ptr::write
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle das Hauptprogramm, führe den Schreibvorgang durch und gib das resultierende Byte-Array aus, um zu überprüfen, ob die Bytes an den richtigen Positionen gelandet sind. Stelle sicher, dass das Array groß genug ist, um den geschriebenen Typ komplett aufzunehmen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-9-zeiger-vergleiche"><a class="header" href="#projekt-9-zeiger-vergleiche">Projekt 9: Zeiger-Vergleiche</a></h2>
 <p><em>Ziel: Erstelle zwei unterschiedliche Zeiger auf dasselbe Objekt und vergleiche ihre Adressen direkt miteinander.</em></p>
 <ul>
@@ -277,7 +258,7 @@ Finde heraus, wie man zwei rohe Zeiger vergleicht. Kannst du die Operatoren <cod
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe ein Programm in <code>main.rs</code>, das die Adressen vergleicht und das Ergebnis ausgibt. Erstelle zusätzlich ein zweites Objekt und zeige, dass der Vergleich der Zeiger auf unterschiedliche Objekte wie erwartet <code>false</code> ergibt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-10-größe-und-ausrichtung-ermitteln"><a class="header" href="#projekt-10-größe-und-ausrichtung-ermitteln">Projekt 10: Größe und Ausrichtung ermitteln</a></h2>
 <p><em>Ziel: Nutze std::mem::size_of und std::mem::align_of für verschiedene selbstdefinierte Strukturen.</em></p>
 <ul>
@@ -288,18 +269,18 @@ Verwende <code>std::mem::size_of::&lt;T&gt;()</code> und <code>std::mem::align_o
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe die <code>main.rs</code>, welche die ermittelten Werte für alle Strukturen tabellarisch ausgibt. Analysiere das Ergebnis und erkläre, wie der Compiler durch Padding die Ausrichtungsregeln der CPU einhält.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-11-dangling-zeiger-szenario"><a class="header" href="#projekt-11-dangling-zeiger-szenario">Projekt 11: Dangling-Zeiger-Szenario</a></h2>
 <p><em>Ziel: Erstelle einen Zeiger auf eine lokale Variable, die am Ende eines inneren Scopes zerstört wird, und gib danach seine Adresse aus.</em></p>
 <ul>
 <li><strong>Modul 1: Basis-Datenstrukturen</strong>
 Erstelle einen äußeren Scope und eine Zeiger-Variable (z. B. vom Typ <code>*const i32</code>), die anfänglich auf einen Dummy-Wert oder Null zeigt. Erstelle einen inneren Scope, in dem du eine lokale Variable deklarierst. Wie verhält sich die Lebensdauer (Lifetime) dieser lokalen Variable?</li>
 <li><strong>Modul 2: Implementierung &amp; Methoden</strong>
-Weise dem äußeren Zeiger im inneren Scope die Adresse der lokalen Variable zu. Nach dem Ende des inneren Scopes ist der Zeiger "dangling" (er zeigt auf freigegebenen Stack-Speicher). Gib die Adresse des Zeigers aus. Warum darfst du diesen Zeiger nun unter keinen Umständen dereferenzieren?</li>
+Weise dem äußeren Zeiger im inneren Scope die Adresse der lokalen Variable zu. Nach dem Ende des inneren Scopes ist der Zeiger “dangling” (er zeigt auf freigegebenen Stack-Speicher). Gib die Adresse des Zeigers aus. Warum darfst du diesen Zeiger nun unter keinen Umständen dereferenzieren?</li>
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Implementiere dieses Szenario in <code>main.rs</code>. Zeige auf, wie der Compiler dich davor schützt, solche Dangling-Zeiger in sicherem Rust zu verwenden, und warum das bloße Ausgeben der Adresse (ohne Dereferenzierung) dennoch kompiliert.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-12-speicher-kopieren-mit-copy_nonoverlapping"><a class="header" href="#projekt-12-speicher-kopieren-mit-copy_nonoverlapping">Projekt 12: Speicher kopieren mit copy_nonoverlapping</a></h2>
 <p><em>Ziel: Kopiere den Inhalt eines Speicherbereichs direkt in einen anderen mit std::ptr::copy_nonoverlapping.</em></p>
 <ul>
@@ -310,8 +291,8 @@ Erstelle Quell- und Zielzeiger. Nutze <code>std::ptr::copy_nonoverlapping</code>
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe das Hauptprogramm, führe den Kopiervorgang aus und gib das Ziel-Array aus. Stelle sicher, dass die Quell- und Zielbereiche sich wirklich nicht überlappen, um undefiniertes Verhalten zu vermeiden.</li>
 </ul>
-<hr />
-<h2 id="projekt-13-speicher-kopieren-mit-Überlappung"><a class="header" href="#projekt-13-speicher-kopieren-mit-Überlappung">Projekt 13: Speicher kopieren mit Überlappung</a></h2>
+<hr>
+<h2 id="projekt-13-speicher-kopieren-mit-überlappung"><a class="header" href="#projekt-13-speicher-kopieren-mit-überlappung">Projekt 13: Speicher kopieren mit Überlappung</a></h2>
 <p><em>Ziel: Verwende std::ptr::copy für zwei sich überschneidende Bereiche eines Arrays.</em></p>
 <ul>
 <li><strong>Modul 1: Basis-Datenstrukturen</strong>
@@ -321,7 +302,7 @@ Berechne die Quell- und Zielzeiger auf dieselbe Array-Struktur. Verwende <code>s
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle die <code>main.rs</code>, führe den überlappenden Kopiervorgang aus und gib das Array vor und nach der Operation aus. Überprüfe die Korrektheit der kopierten Werte.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-14-zeiger-aus-einer-referenz-casten"><a class="header" href="#projekt-14-zeiger-aus-einer-referenz-casten">Projekt 14: Zeiger aus einer Referenz casten</a></h2>
 <p>*Ziel: Nutze as *const _ und as <em>mut _, um sicher zwischen unveränderlichen und veränderlichen Zeigern zu casten.</em></p>
 <ul>
@@ -332,7 +313,7 @@ Führe Casts zwischen den Zeigertypen durch: Caste einen <code>*const T</code> z
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe das Hauptprogramm in <code>main.rs</code>, das diese Casts demonstriert. Verändere den Wert der Variablen über den gecasteten <code>*mut</code>-Zeiger und gib den Wert aus. Erkläre in Kommentaren, warum dieser Cast zwar sicher deklariert werden kann, die Dereferenzierung aber <code>unsafe</code> bleibt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-15-initialisierung-mit-maybeuninit"><a class="header" href="#projekt-15-initialisierung-mit-maybeuninit">Projekt 15: Initialisierung mit MaybeUninit</a></h2>
 <p><em>Ziel: Lege ein Array mithilfe von std::mem::MaybeUninit an und initialisiere es Stück für Stück, bevor du es als initialisiert markierst.</em></p>
 <ul>
@@ -343,7 +324,7 @@ Initialisiere jedes Element des Arrays in einer Schleife. Nutze dafür die rohen
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Implementiere die Logik in <code>main.rs</code> und gib das initialisierte Array aus. Stelle sicher, dass du <code>assume_init</code> erst aufrufst, wenn absolut jedes Element des Speichers garantiert initialisiert ist.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-16-speicherbereich-mit-nullen-füllen"><a class="header" href="#projekt-16-speicherbereich-mit-nullen-füllen">Projekt 16: Speicherbereich mit Nullen füllen</a></h2>
 <p><em>Ziel: Verwende std::ptr::write_bytes, um ein Struct oder Array komplett mit Nullen oder einem anderen Byte-Wert zu überschreiben.</em></p>
 <ul>
@@ -354,7 +335,7 @@ Verwende <code>std::ptr::write_bytes</code> (entspricht <code>memset</code> in C
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle das Hauptprogramm in <code>main.rs</code>, initialisiere die Daten, führe <code>write_bytes</code> aus und gib die Daten danach aus. Achte darauf, dass du keine Speicherbereiche außerhalb der Struktur überschreibst (Buffer Overflow).</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-17-zeiger-in-integer-umwandeln"><a class="header" href="#projekt-17-zeiger-in-integer-umwandeln">Projekt 17: Zeiger in Integer umwandeln</a></h2>
 <p><em>Ziel: Caste einen rohen Zeiger in einen usize-Wert und gib diesen als Hexadezimalzahl aus.</em></p>
 <ul>
@@ -365,7 +346,7 @@ Caste den rohen Zeiger mit <code>as usize</code> in eine Ganzzahl. Ist dieser Ca
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe das Hauptprogramm, führe den Cast durch und gib das Ergebnis aus. Vergleiche die Ausgabe mit der Ausgabe des Zeigers über das <code>{:p}</code>-Format.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-18-integer-in-zeiger-umwandeln"><a class="header" href="#projekt-18-integer-in-zeiger-umwandeln">Projekt 18: Integer in Zeiger umwandeln</a></h2>
 <p><em>Ziel: Wandle eine konkrete Speicheradresse (als usize) zurück in einen rohen Zeiger um.</em></p>
 <ul>
@@ -376,7 +357,7 @@ Caste den <code>usize</code>-Wert mit <code>as *const i32</code> (oder <code>as 
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle ein kurzes, kontrolliertes Szenario in <code>main.rs</code>, in dem du die adresse einer gültigen lokalen Variablen nimmst, sie in <code>usize</code> und wieder zurück in einen Zeiger castest, diesen dereferenzierst und den Wert verifizierst. Warum ist die Erstellung beliebiger Zeiger aus zufälligen Zahlen gefährlich?</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-19-zeiger-auf-funktionen"><a class="header" href="#projekt-19-zeiger-auf-funktionen">Projekt 19: Zeiger auf Funktionen</a></h2>
 <p><em>Ziel: Deklariere einen Funktionszeiger auf eine einfache mathematische Funktion und rufe sie über diesen Zeiger auf.</em></p>
 <ul>
@@ -387,7 +368,7 @@ Weise dem Funktionszeiger die Funktion zu. Rufe die Funktion über den Zeiger au
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Implementiere die <code>main</code>-Funktion, weise verschiedene mathematische Funktionen demselben Funktionszeiger-Typ zu und rufe sie dynamisch auf. Gib die Ergebnisse aus.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-20-manuelles-drop-mit-stdptrdrop_in_place"><a class="header" href="#projekt-20-manuelles-drop-mit-stdptrdrop_in_place">Projekt 20: Manuelles Drop mit std::ptr::drop_in_place</a></h2>
 <p><em>Ziel: Zerstöre den Wert an einer Speicheradresse manuell mit drop_in_place, ohne den Speicher selbst freizugeben.</em></p>
 <ul>
@@ -399,8 +380,8 @@ Erstelle einen rohen veränderlichen Zeiger (<code>*mut T</code>) auf dieses Str
 Schreibe die <code>main.rs</code>, um das Verhalten zu testen. Zeige, dass der Destruktor (<code>drop</code>) genau einmal manuell ausgeführt wird. Stelle sicher, dass das Objekt danach nicht ein zweites Mal automatisch gedroppt wird (Double Free), was zu undefiniertem Verhalten führen würde.</li>
 </ul>
 <h1 id="phase-9-unsafe-datenstrukturen-teil-2---projekte-21-bis-40"><a class="header" href="#phase-9-unsafe-datenstrukturen-teil-2---projekte-21-bis-40">Phase 9: Unsafe Datenstrukturen (Teil 2) - Projekte 21 bis 40</a></h1>
-<p>Dieses Dokument enthält jeweils genau drei modulare Präzisions-Prompts für die Projekte 21 bis 40. Die Prompts richten sich an Anfänger (in der freundlichen "Du"-Form) und verzichten bewusst auf fertige Codelösungen, um das eigenständige Denken und Lernen zu fördern.</p>
-<hr />
+<p>Dieses Dokument enthält jeweils genau drei modulare Präzisions-Prompts für die Projekte 21 bis 40. Die Prompts richten sich an Anfänger (in der freundlichen “Du”-Form) und verzichten bewusst auf fertige Codelösungen, um das eigenständige Denken und Lernen zu fördern.</p>
+<hr>
 <h2 id="projekt-21-einfache-verkettete-liste-singly-linked-list"><a class="header" href="#projekt-21-einfache-verkettete-liste-singly-linked-list">Projekt 21: Einfache verkettete Liste (Singly Linked List)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen"><a class="header" href="#modul-1-basis-datenstrukturen">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -428,7 +409,7 @@ Vervollständige die Implementierung und stelle sicher, dass kein Speicher gelea
 <li>Erstelle eine <code>main.rs</code>, in der du die Liste mit verschiedenen Elementen befüllst und wieder leerst.</li>
 <li>Schreibe Tests, die das Verhalten bei mehreren Einfüge- und Löschoperationen überprüfen, und nutze (falls installiert) <code>cargo valgrind</code> oder Miri, um deine Implementierung auf Speicherlecks und undefiniertes Verhalten zu prüfen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-22-doppelt-verkettete-liste-doubly-linked-list"><a class="header" href="#projekt-22-doppelt-verkettete-liste-doubly-linked-list">Projekt 22: Doppelt verkettete Liste (Doubly Linked List)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-1"><a class="header" href="#modul-1-basis-datenstrukturen-1">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -456,7 +437,7 @@ Schließe das Projekt ab und teste die Speicherbereinigung.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das Elemente von beiden Seiten einfügt, Traversierungen vor- und rückwärts durchführt und Elemente wieder entfernt.</li>
 <li>Schreibe automatisierte Tests, um das Zusammenspiel von <code>push_front</code>, <code>push_back</code>, <code>pop_front</code> und <code>pop_back</code> abzusichern.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-23-eigener-box-klon"><a class="header" href="#projekt-23-eigener-box-klon">Projekt 23: Eigener Box-Klon</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-2"><a class="header" href="#modul-1-basis-datenstrukturen-2">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -482,7 +463,7 @@ Sorge für die automatische Speicherbereinigung und integriere deinen Smart Poin
 <li>Schreibe ein Testprogramm in <code>main.rs</code>, das <code>MyBox</code> mit komplexen Typen (z. B. einem <code>String</code> oder einem Struct, das selbst <code>Drop</code> implementiert) verwendet.</li>
 <li>Verifiziere durch Ausgaben in einer Test-Drop-Implementierung, dass sowohl der Inhalt der Box als auch der Heap-Speicher der Box selbst beim Verlassen des Scopes korrekt freigegeben werden.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-24-eigener-vec-klon-minimal"><a class="header" href="#projekt-24-eigener-vec-klon-minimal">Projekt 24: Eigener Vec-Klon (Minimal)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-3"><a class="header" href="#modul-1-basis-datenstrukturen-3">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -508,7 +489,7 @@ Vervollständige den Vektor durch Speicherfreigabe und Tests.</p>
 <li>Biete sicheren Lese- und Schreibzugriff an, indem du das <code>Deref</code>- und <code>DerefMut</code>-Trait implementierst, die auf ein Slice <code>&amp;[T]</code> bzw. <code>&amp;mut [T]</code> verweisen (nutze <code>std::slice::from_raw_parts</code>).</li>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das Elemente pusht, poppt und per Index anspricht. Überprüfe die Abwesenheit von Memory Leaks.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-25-unsafe-ringpuffer"><a class="header" href="#projekt-25-unsafe-ringpuffer">Projekt 25: Unsafe Ringpuffer</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-4"><a class="header" href="#modul-1-basis-datenstrukturen-4">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -534,7 +515,7 @@ Schreibe die Speicherbereinigung und den Integrationstest für den Ringpuffer.</
 <li>Baue ein Demonstrationsprogramm in <code>main.rs</code>, das Elemente in den Puffer schreibt, ihn gezielt überlaufen lässt (Fehlerbehandlung testen), Elemente ausliest und die korrekte FIFO-Reihenfolge verifiziert.</li>
 <li>Teste das Freigabeverhalten mit komplexen Typen wie <code>String</code>.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-26-lock-freie-queue-einfach"><a class="header" href="#projekt-26-lock-freie-queue-einfach">Projekt 26: Lock-freie Queue (Einfach)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-5"><a class="header" href="#modul-1-basis-datenstrukturen-5">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -561,7 +542,7 @@ Stelle die korrekte Freigabe und Multi-Threading-Fähigkeit sicher.</p>
 <li>Implementiere <code>Send</code> und <code>Sync</code> für deine Queue, sofern die Typparameter dies erlauben (nutze <code>unsafe impl</code>).</li>
 <li>Schreibe in <code>main.rs</code> einen Test, der einen Producer-Thread und einen Consumer-Thread startet, Daten über die Queue austauscht und sicherstellt, dass alle gesendeten Daten korrekt und in der richtigen Reihenfolge ankommen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-27-eigene-cell-implementierung"><a class="header" href="#projekt-27-eigene-cell-implementierung">Projekt 27: Eigene Cell-Implementierung</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-6"><a class="header" href="#modul-1-basis-datenstrukturen-6">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -588,7 +569,7 @@ Erweitere und teste deine Cell-Implementierung.</p>
 <li>Erstelle ein Hauptprogramm in <code>main.rs</code>, das zeigt, wie man mit einer unveränderlichen Referenz auf ein Struct, welches ein <code>MyCell</code> enthält, dessen Zustand verändern kann.</li>
 <li>Schreibe Tests, die verifizieren, dass die Datenintegrität gewahrt bleibt und keine Aliasing-Regeln verletzt werden.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-28-eigener-rc-klon-reference-counting"><a class="header" href="#projekt-28-eigener-rc-klon-reference-counting">Projekt 28: Eigener Rc-Klon (Reference Counting)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-7"><a class="header" href="#modul-1-basis-datenstrukturen-7">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -615,7 +596,7 @@ Implementiere die Speicherfreigabe und teste die Rc-Implementierung.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das zeigt, wie sich der Referenzzähler beim Klonen und Verlassen von Scopes verändert.</li>
 <li>Teste, ob der Speicher eines Test-Structs mit einer benutzerdefinierten <code>Drop</code>-Meldung erst dann freigegeben wird, wenn die letzte Referenz von <code>MyRc</code> erlischt.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-29-trie-datenstruktur-mit-rohzeigern"><a class="header" href="#projekt-29-trie-datenstruktur-mit-rohzeigern">Projekt 29: Trie-Datenstruktur mit Rohzeigern</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-8"><a class="header" href="#modul-1-basis-datenstrukturen-8">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -632,7 +613,7 @@ Implementiere die Einfüge- und Suchfunktionen im Trie.</p>
 <ol>
 <li>Schreibe eine Methode <code>insert(&amp;mut self, word: &amp;str)</code>. Traversiere den Baum Zeichen für Zeichen. Wenn ein Kindzeiger <code>null_mut()</code> ist, erstelle einen neuen <code>TrieNode</code> auf dem Heap (über <code>Box::into_raw</code>) und trage ihn ein. Nutze <code>unsafe</code>, um den Zeiger zu dereferenzieren.</li>
 <li>Implementiere <code>contains(&amp;self, word: &amp;str) -&gt; bool</code>. Navigiere entlang der Kindzeiger. Falls du auf einen <code>null_mut()</code>-Zeiger stößt, gib <code>false</code> zurück. Wenn der Pfad existiert, gib den Wert von <code>is_end_of_word</code> des Zielknotens zurück.</li>
-<li>Achte auf korrekte Validierung der Zeichen (nur 'a' bis 'z').</li>
+<li>Achte auf korrekte Validierung der Zeichen (nur ‘a’ bis ‘z’).</li>
 </ol>
 <h3 id="modul-3-vollendung--hauptprogramm-8"><a class="header" href="#modul-3-vollendung--hauptprogramm-8">Modul 3: Vollendung &amp; Hauptprogramm</a></h3>
 <p><strong>Prompt:</strong>
@@ -642,7 +623,7 @@ Implementiere den rekursiven Abbau des Baums und die Tests.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das mehrere Wörter in den Trie einfügt, nach ihnen sucht und auch nach nicht vorhandenen Wörtern oder Präfixen sucht.</li>
 <li>Stelle mittels Miri sicher, dass die rekursive Freigabe keinen Stack-Overflow erzeugt und alle Knoten sauber gelöscht werden.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-30-binary-heap-ohne-sichere-indizes"><a class="header" href="#projekt-30-binary-heap-ohne-sichere-indizes">Projekt 30: Binary Heap ohne sichere Indizes</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-9"><a class="header" href="#modul-1-basis-datenstrukturen-9">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -668,7 +649,7 @@ Sorge für Speicherfreigabe und führe Funktionstests durch.</p>
 <li>Schreibe ein Testprogramm in <code>main.rs</code>, das ungeordnete Zahlen in den Heap einfügt und diese in sortierter Reihenfolge wieder herausholt (Heap-Sort).</li>
 <li>Teste den Heap mit komplexen Datentypen und überprüfe die korrekte Freigabe bei vorzeitigem Abbruch.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-31-eigener-arena-allokator"><a class="header" href="#projekt-31-eigener-arena-allokator">Projekt 31: Eigener Arena-Allokator</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-10"><a class="header" href="#modul-1-basis-datenstrukturen-10">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -694,7 +675,7 @@ Stelle die Zerstörung der Arena sicher und schreibe das Testprogramm.</p>
 <li>Erstelle ein Hauptprogramm in <code>main.rs</code>, das in einer Schleife viele kleine Objekte in der Arena alloziert.</li>
 <li>Überprüfe die Performance-Vorteile im Vergleich zu Standard-Heap-Allokationen und verifiziere das korrekte Alignment der alloziierten Daten.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-32-unsafe-stack-stapel"><a class="header" href="#projekt-32-unsafe-stack-stapel">Projekt 32: Unsafe Stack (Stapel)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-11"><a class="header" href="#modul-1-basis-datenstrukturen-11">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -720,7 +701,7 @@ Implementiere die Speicherfreigabe und teste den Stack.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das den Stack bis zur maximalen Kapazität füllt, Elemente herunterholt und die korrekte LIFO-Funktionsweise überprüft.</li>
 <li>Teste mit <code>cargo test</code> unter Miri, um sicherzustellen, dass keine Out-of-bounds-Zugriffe oder doppelte Freigaben (Double Drops) stattfinden.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-33-selbst-referenzierendes-struct"><a class="header" href="#projekt-33-selbst-referenzierendes-struct">Projekt 33: Selbst-referenzierendes Struct</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-12"><a class="header" href="#modul-1-basis-datenstrukturen-12">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -746,7 +727,7 @@ Schreibe ein Testprogramm, das die Gefahren von Moves aufzeigt und wie man sie v
 <li>Demonstriere (durch eine Verschiebung, z. B. durch Übergabe an eine Funktion oder Speichern in einem Vektor), dass der Zeiger nach dem Verschieben auf eine ungültige Speicheradresse zeigt.</li>
 <li>Zeige, wie man das Struct mithilfe von <code>Pin</code> (z. B. <code>Pin&lt;Box&lt;SelfReferential&gt;&gt;</code>) absichern kann, sodass es nicht mehr verschoben werden kann.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-34-eigener-arc-klon-atomarer-rc"><a class="header" href="#projekt-34-eigener-arc-klon-atomarer-rc">Projekt 34: Eigener Arc-Klon (Atomarer Rc)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-13"><a class="header" href="#modul-1-basis-datenstrukturen-13">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -774,7 +755,7 @@ Vervollständige die atomare Speicherbereinigung und teste unter echten Threads.
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das ein <code>MyArc</code> erstellt und an mehrere parallel laufende Threads übergibt (<code>std::thread::spawn</code>).</li>
 <li>Verifiziere, dass die Daten von allen Threads gelesen werden können und dass das Objekt nach dem Beenden aller Threads genau einmal zerstört wird.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-35-graph-mit-adjazenzliste-über-zeiger"><a class="header" href="#projekt-35-graph-mit-adjazenzliste-über-zeiger">Projekt 35: Graph mit Adjazenzliste über Zeiger</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-14"><a class="header" href="#modul-1-basis-datenstrukturen-14">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -791,7 +772,7 @@ Implementiere die Erstellung von Knoten und Kanten im Graphen.</p>
 <ol>
 <li>Schreibe eine Methode <code>add_node(&amp;mut self, id: usize, val: &amp;str) -&gt; *mut Node</code> im <code>Graph</code>. Alloziere den Knoten auf dem Heap (<code>Box::into_raw</code>) und füge den Zeiger zu <code>self.nodes</code> hinzu.</li>
 <li>Implementiere <code>add_edge(&amp;self, from: *mut Node, to: *mut Node)</code>. Füge den <code>to</code>-Zeiger direkt in die <code>neighbors</code>-Liste des <code>from</code>-Knotens ein (nutze <code>unsafe</code>, um <code>from</code> zu dereferenzieren).</li>
-<li>Implementiere eine Traversierungsmethode (z. B. Tiefensuche oder Breitensuche), die die Nachbarzeiger dereferenziert und zyklische Pfade mittels eines "Visited"-Sets aus IDs vermeidet.</li>
+<li>Implementiere eine Traversierungsmethode (z. B. Tiefensuche oder Breitensuche), die die Nachbarzeiger dereferenziert und zyklische Pfade mittels eines “Visited”-Sets aus IDs vermeidet.</li>
 </ol>
 <h3 id="modul-3-vollendung--hauptprogramm-14"><a class="header" href="#modul-3-vollendung--hauptprogramm-14">Modul 3: Vollendung &amp; Hauptprogramm</a></h3>
 <p><strong>Prompt:</strong>
@@ -801,7 +782,7 @@ Implementiere die sichere Deallokation des Graphen und erstelle Tests.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das einen Graphen mit Zyklen (z. B. A -&gt; B -&gt; C -&gt; A) aufbaut und traversiert.</li>
 <li>Teste das Programm intensiv mit Miri, um sicherzustellen, dass keine ungültigen Zeigerzugriffe während der Traversierung oder Zerstörung des Graphen stattfinden.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-36-dynamisches-array-mit-variabler-elementgröße"><a class="header" href="#projekt-36-dynamisches-array-mit-variabler-elementgröße">Projekt 36: Dynamisches Array mit variabler Elementgröße</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-15"><a class="header" href="#modul-1-basis-datenstrukturen-15">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -827,7 +808,7 @@ Schreibe die Speicherbereinigung und ein Integrationsbeispiel.</p>
 <li>Schreibe in <code>main.rs</code> ein Szenario, in dem du nacheinander ein <code>u32</code>, ein <code>u8</code> und ein <code>f64</code> in den Vektor schreibst und diese wieder korrekt ausliest.</li>
 <li>Überprüfe die Ausrichtung (Alignment) der zurückgegebenen Referenzen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-37-lifo-queue-mit-atomarem-austausch"><a class="header" href="#projekt-37-lifo-queue-mit-atomarem-austausch">Projekt 37: LIFO-Queue mit atomarem Austausch</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-16"><a class="header" href="#modul-1-basis-datenstrukturen-16">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -853,7 +834,7 @@ Vervollständige die Implementierung und teste die Thread-Sicherheit.</p>
 <li>Schreibe ein Testprogramm in <code>main.rs</code>, bei dem mehrere Threads gleichzeitig Daten in den Stack pushen und andere Threads Daten herausziehen.</li>
 <li>Stelle sicher, dass keine Daten verloren gehen (zähle die Anzahl der gesendeten und empfangenen Elemente) und überprüfe das Programm unter Miri auf Race Conditions.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-38-speichereffizientes-bit-set"><a class="header" href="#projekt-38-speichereffizientes-bit-set">Projekt 38: Speichereffizientes Bit-Set</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-17"><a class="header" href="#modul-1-basis-datenstrukturen-17">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -880,7 +861,7 @@ Schreibe die Speicherbereinigung und führe Funktionstests durch.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das Primzahlen mittels des Siebs des Eratosthenes im <code>BitSet</code> berechnet.</li>
 <li>Schreibe Tests, die große Bit-Indizes setzen, um das dynamische Vergrößern des Puffers abzusichern, und überprüfe die Speicherintegrität.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-39-eigener-string-typ"><a class="header" href="#projekt-39-eigener-string-typ">Projekt 39: Eigener String-Typ</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-18"><a class="header" href="#modul-1-basis-datenstrukturen-18">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -906,7 +887,7 @@ Implementiere die Speicherfreigabe und teste die String-Funktionalität.</p>
 <li>Schreibe ein Hauptprogramm in <code>main.rs</code>, das Strings konkateniert, ausgibt und in Slices schneidet.</li>
 <li>Führe Tests durch, um sicherzustellen, dass keine Speicherlecks beim Manipulieren und Zuweisen von Strings entstehen.</li>
 </ol>
-<hr />
+<hr>
 <h2 id="projekt-40-b-baum-knoten-mit-unsafe-links"><a class="header" href="#projekt-40-b-baum-knoten-mit-unsafe-links">Projekt 40: B-Baum-Knoten mit Unsafe-Links</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-19"><a class="header" href="#modul-1-basis-datenstrukturen-19">Modul 1: Basis-Datenstrukturen</a></h3>
 <p><strong>Prompt:</strong>
@@ -942,9 +923,9 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ol>
 <h1 id="phase-9-c-bibliotheken-anbinden-ffi--projekte-41-bis-60"><a class="header" href="#phase-9-c-bibliotheken-anbinden-ffi--projekte-41-bis-60">Phase 9: C-Bibliotheken anbinden (FFI) – Projekte 41 bis 60</a></h1>
 <p>Willkommen in Phase 9! Hier lernst Du, wie Rust mit der Programmiersprache C kommuniziert. Jedes Projekt ist in drei aufeinander aufbauende Module unterteilt, um Dir einen strukturierten und sicheren Weg durch die Welt der Foreign Function Interface (FFI) und <code>unsafe</code>-Programmierung zu weisen.</p>
-<hr />
+<hr>
 <h2 id="projekt-41-mathematische-c-funktionen"><a class="header" href="#projekt-41-mathematische-c-funktionen">Projekt 41: Mathematische C-Funktionen</a></h2>
-<p>Binde Standard-C-Funktionen wie sin oder cos direkt über eine extern "C"-Deklaration ein.</p>
+<p>Binde Standard-C-Funktionen wie sin oder cos direkt über eine extern “C”-Deklaration ein.</p>
 <h3 id="modul-1-basis-datenstrukturen-20"><a class="header" href="#modul-1-basis-datenstrukturen-20">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
 <li><strong>Ziel</strong>: Verstehe, wie Rust-Datentypen auf C-Datentypen abgebildet werden, und bereite die Signatur-Deklaration vor.</li>
@@ -960,7 +941,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Integration in die <code>main.rs</code>, Verifikation und Testen.</li>
 <li><strong>Deine Aufgabe</strong>: Schreibe ein Hauptprogramm, das Deine sicheren Wrapper-Funktionen aufruft und die Ergebnisse für verschiedene Testwerte (z.B. $0.0$, $\pi/2$) berechnet. Vergleiche die Ausgaben mit den in Rust eingebauten Funktionen <code>f64::sin</code> und <code>f64::cos</code>, um die Korrektheit zu verifizieren. Schreibe automatisierte Unittests, die diese Vergleiche überprüfen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-42-string-länge-mit-strlen"><a class="header" href="#projekt-42-string-länge-mit-strlen">Projekt 42: String-Länge mit strlen</a></h2>
 <p>Konvertiere einen Rust-String in ein C-kompatibles Format und bestimme die Länge mit der C-Funktion strlen.</p>
 <h3 id="modul-1-basis-datenstrukturen-21"><a class="header" href="#modul-1-basis-datenstrukturen-21">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -978,7 +959,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Ausgabe, Integration und Ressourcenfreigabe.</li>
 <li><strong>Deine Aufgabe</strong>: Rufe Deine Funktion in <code>main.rs</code> mit verschiedenen Test-Strings auf (z.B. einfachem ASCII-Text, Umlauten und Strings mit internen Null-Bytes). Gib die zurückgegebene Länge auf der Konsole aus und stelle sicher, dass der Speicher des temporären <code>CString</code> korrekt durch Rusts Drop-Semantik freigegeben wird. Schreibe Tests, die das Verhalten bei leeren Zeichenketten absichern.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-43-c-datenstruktur-spiegeln"><a class="header" href="#projekt-43-c-datenstruktur-spiegeln">Projekt 43: C-Datenstruktur spiegeln</a></h2>
 <p>Definiere in Rust ein Struct mit #[repr(C)], das exakt dem Layout einer C-Struktur entspricht, und übergebe es an eine C-Funktion.</p>
 <h3 id="modul-1-basis-datenstrukturen-22"><a class="header" href="#modul-1-basis-datenstrukturen-22">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -996,7 +977,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Ausführen der Integration und Validierung der Felddaten.</li>
 <li><strong>Deine Aufgabe</strong>: Initialisiere Deine Struktur in <code>main.rs</code> mit Testwerten. Übergib sie an die FFI-Funktion und überprüfe anschließend, ob die Funktion die Werte wie erwartet gelesen oder manipuliert hat. Schreibe Unittests, die sicherstellen, dass das Speicherlayout und die Datenübergabe fehlerfrei funktionieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-44-c-speicherallokation-mit-malloc"><a class="header" href="#projekt-44-c-speicherallokation-mit-malloc">Projekt 44: C-Speicherallokation mit malloc</a></h2>
 <p>Reserviere Speicher mithilfe der C-Funktion malloc und gib ihn mit free wieder frei.</p>
 <h3 id="modul-1-basis-datenstrukturen-23"><a class="header" href="#modul-1-basis-datenstrukturen-23">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1014,7 +995,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: RAII-Muster implementieren und Speicherlecks verhindern.</li>
 <li><strong>Deine Aufgabe</strong>: Kapsle den alloziierten C-Speicher in einer benutzerdefinierten Rust-Struktur, die das <code>Drop</code>-Trait implementiert. Im <code>drop</code>-Aufruf muss die FFI-Funktion <code>free</code> aufgerufen werden. Demonstriere in <code>main.rs</code>, dass der Speicher automatisch freigegeben wird, wenn die Struktur den Scope verlässt. Schreibe Tests, die diese Speicherbereinigung und den korrekten Datenzugriff verifizieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-45-umgebungsvariablen-über-getenv"><a class="header" href="#projekt-45-umgebungsvariablen-über-getenv">Projekt 45: Umgebungsvariablen über getenv</a></h2>
 <p>Rufe die C-Funktion getenv auf, um den Wert einer Umgebungsvariable direkt abzufragen.</p>
 <h3 id="modul-1-basis-datenstrukturen-24"><a class="header" href="#modul-1-basis-datenstrukturen-24">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1032,7 +1013,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Integration, Testen und Vergleich mit die Standardbibliothek.</li>
 <li><strong>Deine Aufgabe</strong>: Frage in <code>main.rs</code> bekannte Variablen wie <code>PATH</code>, <code>USER</code> oder eine selbst definierte Variable ab. Gib das Ergebnis aus. Vergleiche die Funktionalität mit Rusts sicherer Implementierung <code>std::env::var</code>. Schreibe Tests für den Fall, dass eine nicht existierende Variable abgefragt wird, und stelle sicher, dass Dein Programm dabei nicht abstürzt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-46-zeitmessung-mit-clock"><a class="header" href="#projekt-46-zeitmessung-mit-clock">Projekt 46: Zeitmessung mit clock</a></h2>
 <p>Verwende den C-Systemaufruf clock, um einfache CPU-Zeitmessungen durchzuführen.</p>
 <h3 id="modul-1-basis-datenstrukturen-25"><a class="header" href="#modul-1-basis-datenstrukturen-25">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1050,7 +1031,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Benchmark-Vergleich und Hauptprogramm.</li>
 <li><strong>Deine Aufgabe</strong>: Nutze Dein Zeitmessungs-Modul in <code>main.rs</code>, um eine rechenintensive Schleife zu bewerten. Vergleiche die gemessene CPU-Zeit mit den Werten von Rusts nativem <code>std::time::Instant</code> (das die reale Wandzeit misst). Diskutiere im Code-Kommentar den Unterschied zwischen CPU-Zeit und Wandzeit. Schreibe Tests, die sicherstellen, dass die Zeitdifferenz bei ruhendem Thread (z.B. durch <code>std::thread::sleep</code>) nicht oder kaum ansteigt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-47-dynamisches-laden-von-bibliotheken"><a class="header" href="#projekt-47-dynamisches-laden-von-bibliotheken">Projekt 47: Dynamisches Laden von Bibliotheken</a></h2>
 <p>Lade eine .so- oder .dll-Datei zur Laufzeit und rufe eine Funktion daraus auf, ohne sie fest einzulinken.</p>
 <h3 id="modul-1-basis-datenstrukturen-26"><a class="header" href="#modul-1-basis-datenstrukturen-26">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1068,7 +1049,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Lebenszyklus-Management der Bibliothek und Tests.</li>
 <li><strong>Deine Aufgabe</strong>: Implementiere <code>Drop</code> für <code>DynamicLibrary</code>, sodass <code>dlclose</code> aufgerufen wird, um Ressourcenlecks zu vermeiden. Erstelle eine einfache Shared Library (z.B. eine kleine C-Datei oder ein Rust-Projekt mit <code>crate-type = ["cdylib"]</code>), lade sie in <code>main.rs</code>, rufe die exportierte Funktion auf und verifiziere das Ergebnis.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-48-dateizugriff-mit-fopen-und-fread"><a class="header" href="#projekt-48-dateizugriff-mit-fopen-und-fread">Projekt 48: Dateizugriff mit fopen und fread</a></h2>
 <p>Öffne und lies eine Datei unter direkter Verwendung der C-Standard-I/O-Bibliothek.</p>
 <h3 id="modul-1-basis-datenstrukturen-27"><a class="header" href="#modul-1-basis-datenstrukturen-27">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1086,7 +1067,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Datei-Reader-Integration und automatische Freigabe.</li>
 <li><strong>Deine Aufgabe</strong>: Implementiere ein Hauptprogramm, das eine Testdatei öffnet, ihren Inhalt stückweise einliest und auf der Konsole ausgibt. Implementiere das <code>Drop</code>-Trait für Deinen Datei-Wrapper, um sicherzustellen, dass die Datei über <code>fclose</code> geschlossen wird, sobald das Objekct ungültig wird. Schreibe Tests, die das Verhalten bei nicht existierenden Dateien prüfen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-49-c-callbacks-registrieren"><a class="header" href="#projekt-49-c-callbacks-registrieren">Projekt 49: C-Callbacks registrieren</a></h2>
 <p>Übergib eine Rust-Funktion als Callback-Zeiger an eine C-Bibliothek, die diese Funktion später aufruft.</p>
 <h3 id="modul-1-basis-datenstrukturen-28"><a class="header" href="#modul-1-basis-datenstrukturen-28">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1104,7 +1085,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Integration im Hauptprogramm und Ereignis-Simulation.</li>
 <li><strong>Deine Aufgabe</strong>: Simuliere in <code>main.rs</code> den Callback-Mechanismus (oder nutze eine FFI-Bibliothek, die Ereignisse feuert). Registriere einen Callback, der den Zustand einer Rust-Variable im Hauptprogramm verändert. Gib das modifizierte Ergebnis aus. Schreibe Tests, die sicherstellen, dass der Zustandsübergang und das Casting fehlerfrei und ohne Speicherlecks funktionieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-50-fehlerbehandlung-mit-errno"><a class="header" href="#projekt-50-fehlerbehandlung-mit-errno">Projekt 50: Fehlerbehandlung mit errno</a></h2>
 <p>Lies nach dem Fehlschlagen einer C-Funktion die globale C-Variable errno aus, um den genauen Fehlergrund zu ermitteln.</p>
 <h3 id="modul-1-basis-datenstrukturen-29"><a class="header" href="#modul-1-basis-datenstrukturen-29">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1122,7 +1103,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Fehlererzeugung, Fehlerdiagnose und Tests.</li>
 <li><strong>Deine Aufgabe</strong>: Schreibe ein Programm in <code>main.rs</code>, das absichtlich einen Fehler provoziert (z.B. das Öffnen einer nicht existierenden Datei über <code>fopen</code> oder das Senden an einen ungültigen Socket). Lies sofort nach dem Fehlschlag <code>errno</code> aus, übersetze den Fehler und gib ihn strukturiert aus. Erstelle Unittests, die das Verhalten bei erfolgreichen vs. fehlerhaften FFI-Aufrufen verifizieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-51-sortieren-mit-qsort"><a class="header" href="#projekt-51-sortieren-mit-qsort">Projekt 51: Sortieren mit qsort</a></h2>
 <p>Nutze die C-Standardfunktion qsort und übergib ihr ein Rust-Array sowie eine Vergleichsfunktion.</p>
 <h3 id="modul-1-basis-datenstrukturen-30"><a class="header" href="#modul-1-basis-datenstrukturen-30">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1140,7 +1121,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Sortier-Benchmark und Integration.</li>
 <li><strong>Deine Aufgabe</strong>: Erstelle in <code>main.rs</code> ein unsortiertes Array mit Zahlen. Sortiere dieses mithilfe Deiner <code>qsort</code>-Kapselung. Gib das sortierte Array aus und vergleiche das Ergebnis mit der nativen Rust-Methode <code>.sort()</code>. Schreibe Unittests, um die Stabilität bei leeren Arrays oder Arrays mit gleichen Elementen zu prüfen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-52-c-union-in-rust-abbilden"><a class="header" href="#projekt-52-c-union-in-rust-abbilden">Projekt 52: C-Union in Rust abbilden</a></h2>
 <p>Erstelle eine Rust-Struktur unter Verwendung des Schlüsselworts union und greife auf deren Felder zu.</p>
 <h3 id="modul-1-basis-datenstrukturen-31"><a class="header" href="#modul-1-basis-datenstrukturen-31">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1158,7 +1139,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Datentyp-Konvertierung und Testen im Hauptprogramm.</li>
 <li><strong>Deine Aufgabe</strong>: Initialisiere Deine Union in <code>main.rs</code>. Schreibe Werte in ein Feld (z.B. den <code>u32</code>-Wert) und lies die Bytes über das <code>u8</code>-Array-Feld aus, um die Byte-Reihenfolge (Endianness) Deines Systems zu demonstrieren. Schreibe Tests, die die korrekte Adressierung und das Speicherlayout der Union validieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-53-zufallszahlen-mit-rand"><a class="header" href="#projekt-53-zufallszahlen-mit-rand">Projekt 53: Zufallszahlen mit rand</a></h2>
 <p>Rufe die C-Funktionen srand und rand auf, um Pseudozufallszahlen zu generieren.</p>
 <h3 id="modul-1-basis-datenstrukturen-32"><a class="header" href="#modul-1-basis-datenstrukturen-32">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1176,7 +1157,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Simulation, Ausgabe und Testen der Zufälligkeit.</li>
 <li><strong>Deine Aufgabe</strong>: Initialisiere Deinen Generator in <code>main.rs</code> unter Verwendung der aktuellen Systemzeit (z.B. über <code>std::time::SystemTime</code>) als Seed. Erzeuge eine Sequenz von Zufallszahlen und gib sie aus. Schreibe Tests, die sicherstellen, dass bei gleichem Seed auch exakt die gleiche Zahlenfolge generiert wird.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-54-speicherbereiche-vergleichen-mit-memcmp"><a class="header" href="#projekt-54-speicherbereiche-vergleichen-mit-memcmp">Projekt 54: Speicherbereiche vergleichen mit memcmp</a></h2>
 <p>Vergleiche zwei Speicherbereiche direkt auf Byte-Ebene mithilfe der C-Funktion memcmp.</p>
 <h3 id="modul-1-basis-datenstrukturen-33"><a class="header" href="#modul-1-basis-datenstrukturen-33">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1194,7 +1175,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Vergleichs-Benchmark, Integration und Validierung.</li>
 <li><strong>Deine Aufgabe</strong>: Vergleiche in <code>main.rs</code> verschiedene Datenstrukturen (z.B. Byte-Arrays, Integer-Arrays und Strings) auf Byte-Ebene. Gib aus, ob sie identisch, kleiner oder größer sind. Schreibe automatisierte Unittests, die Grenzfälle wie leere Slices und ungleiche Pufferlängen abdecken.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-55-system-hostname-ermitteln"><a class="header" href="#projekt-55-system-hostname-ermitteln">Projekt 55: System-Hostname ermitteln</a></h2>
 <p>Rufe die POSIX-Funktion gethostname auf und konvertiere den erhaltenen Puffer in einen Rust-String.</p>
 <h3 id="modul-1-basis-datenstrukturen-34"><a class="header" href="#modul-1-basis-datenstrukturen-34">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1212,7 +1193,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Integration und Fehlerbehandlung bei Pufferüberlauf.</li>
 <li><strong>Deine Aufgabe</strong>: Rufe die Hostnamen-Funktion in <code>main.rs</code> auf und präsentiere das Ergebnis. Wie reagiert Dein Code, wenn der Puffer zu klein gewählt wurde? Baue eine entsprechende Fehlerbehandlung ein. Verifiziere das Ergebnis, indem Du es mit der Standardbibliothek (falls vorhanden) oder Umgebungsvariablen abgleichst.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-56-formatierte-ausgabe-mit-printf"><a class="header" href="#projekt-56-formatierte-ausgabe-mit-printf">Projekt 56: Formatierte Ausgabe mit printf</a></h2>
 <p>Deklariere und nutze die variadische C-Funktion printf (Funktionen mit variabler Argumentanzahl).</p>
 <h3 id="modul-1-basis-datenstrukturen-35"><a class="header" href="#modul-1-basis-datenstrukturen-35">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1230,7 +1211,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Integration, Testen verschiedener Format-Typen und Ausgabe.</li>
 <li><strong>Deine Aufgabe</strong>: Gib in <code>main.rs</code> verschiedene formatierte Zeilen aus (z.B. Zahlenwerte, Gleitkommazahlen und Text). Vergleiche das Verhalten mit Rusts nativem <code>println!</code>. Schreibe Tests, die sicherstellen, dass Sonderzeichen und Formatierungsanweisungen korrekt interpretiert werden.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-57-komprimierung-mit-zlib"><a class="header" href="#projekt-57-komprimierung-mit-zlib">Projekt 57: Komprimierung mit zlib</a></h2>
 <p>Binde die populäre zlib-Bibliothek ein, um Daten direkt im Speicher zu komprimieren.</p>
 <h3 id="modul-1-basis-datenstrukturen-36"><a class="header" href="#modul-1-basis-datenstrukturen-36">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1248,7 +1229,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: RAII-Bereinigung, Kompressions-Benchmark und Tests.</li>
 <li><strong>Deine Aufgabe</strong>: Implementiere <code>Drop</code> für Dein Kompressions-Struct, um sicherzustellen, dass <code>deflateEnd</code> aufgerufen und zlib-interner Speicher freigegeben wird. Schreibe ein Hauptprogramm in <code>main.rs</code>, das einen längeren Text komprimiert, die Kompressionsrate berechnet und ausgibt. Teste die Funktionalität mit leeren Datenströmen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-58-sqlite-datenbank-abfragen"><a class="header" href="#projekt-58-sqlite-datenbank-abfragen">Projekt 58: SQLite-Datenbank abfragen</a></h2>
 <p>Binde die C-API von SQLite ein, öffne eine Datenbank im Speicher und führe eine Abfrage aus.</p>
 <h3 id="modul-1-basis-datenstrukturen-37"><a class="header" href="#modul-1-basis-datenstrukturen-37">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1266,7 +1247,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: Ressourcenfreigabe bei Fehlern und Datenbank-Integration.</li>
 <li><strong>Deine Aufgabe</strong>: Implementiere die automatische Ressourcenfreigabe über <code>Drop</code> (Aufruf von <code>sqlite3_finalize</code> auf Statements und <code>sqlite3_close</code> auf der Verbindung). Erstelle in <code>main.rs</code> eine Tabelle, füge Testdatensätze ein und frage diese ab. Behandle potenzielle SQL-Syntaxfehler oder Verbindungsausfälle robust.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-59-netzwerk-sockets-auf-systemebene"><a class="header" href="#projekt-59-netzwerk-sockets-auf-systemebene">Projekt 59: Netzwerk-Sockets auf Systemebene</a></h2>
 <p>Erstelle einen Socket über die C-Funktion socket und verbinde dich mit einem Server.</p>
 <h3 id="modul-1-basis-datenstrukturen-38"><a class="header" href="#modul-1-basis-datenstrukturen-38">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1284,7 +1265,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Ziel</strong>: HTTP-Client-Verbindung und Socket-Schließung.</li>
 <li><strong>Deine Aufgabe</strong>: Implementiere <code>Drop</code> für <code>TcpSocket</code>, um den Socket sauber zu schließen. Schreibe ein Hauptprogramm in <code>main.rs</code>, das eine TCP-Verbindung zu einem Webserver aufbaut, eine einfache HTTP-Anfrage (z.B. <code>"GET / HTTP/1.0\r\n\r\n"</code>) sendet, die Antwort liest, auf der Konsole ausgibt und den Socket schließt. Teste das Verhalten bei nicht erreichbaren Servern.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-60-c-makros-emulieren"><a class="header" href="#projekt-60-c-makros-emulieren">Projekt 60: C-Makros emulieren</a></h2>
 <p>Viele C-Header nutzen komplexe Makros. Implementiere ein solches Makro als Rust-Funktion oder -Konstante nach, um die Funktionalität für Rust-Nutzer verfügbar zu machen.</p>
 <h3 id="modul-1-basis-datenstrukturen-39"><a class="header" href="#modul-1-basis-datenstrukturen-39">Modul 1: Basis-Datenstrukturen</a></h3>
@@ -1303,8 +1284,8 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Deine Aufgabe</strong>: Binde Deine emulierten Makros/Funktionen in <code>main.rs</code> ein. Schreibe ausführliche Unittests, die die Ausgaben Deiner Rust-Nachbildung mit den Ausgaben des echten C-Makros (z.B. über ein kleines FFI-Testprogramm, das das Original-Makro aufruft) vergleichen. Teste insbesondere Grenzfälle wie Integer-Überläufe oder ungültige Bitmasken.</li>
 </ul>
 <h1 id="phase-9-rust-bibliotheken-für-c-exportieren-teil-4---projekte-61-bis-80"><a class="header" href="#phase-9-rust-bibliotheken-für-c-exportieren-teil-4---projekte-61-bis-80">Phase 9: Rust-Bibliotheken für C exportieren (Teil 4) - Projekte 61 bis 80</a></h1>
-<p>Dieses Dokument enthält für jedes der 20 Projekte aus Phase 9 genau drei modulare Präzisions-Prompts auf Deutsch in der anfängerfreundlichen "Du"-Form. Die Prompts sind didaktisch aufgebaut und nehmen keine fertigen Codelösungen vorweg, sondern leiten dich konzeptionell an.</p>
-<hr />
+<p>Dieses Dokument enthält für jedes der 20 Projekte aus Phase 9 genau drei modulare Präzisions-Prompts auf Deutsch in der anfängerfreundlichen “Du”-Form. Die Prompts sind didaktisch aufgebaut und nehmen keine fertigen Codelösungen vorweg, sondern leiten dich konzeptionell an.</p>
+<hr>
 <h2 id="61-einfache-additionsfunktion-exportieren"><a class="header" href="#61-einfache-additionsfunktion-exportieren">61. Einfache Additionsfunktion exportieren</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-40"><a class="header" href="#modul-1-basis-datenstrukturen-40">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1339,7 +1320,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="62-rust-string-an-c-übergeben"><a class="header" href="#62-rust-string-an-c-übergeben">62. Rust-String an C übergeben</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-41"><a class="header" href="#modul-1-basis-datenstrukturen-41">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1374,7 +1355,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="63-c-string-in-rust-freigeben"><a class="header" href="#63-c-string-in-rust-freigeben">63. C-String in Rust freigeben</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-42"><a class="header" href="#modul-1-basis-datenstrukturen-42">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1408,11 +1389,11 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="64-rust-struct-für-c-bereitstellen-opaque-pointer"><a class="header" href="#64-rust-struct-für-c-bereitstellen-opaque-pointer">64. Rust-Struct für C bereitstellen (Opaque Pointer)</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-43"><a class="header" href="#modul-1-basis-datenstrukturen-43">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
-<li><strong>Ziel</strong>: Verstehe das Konzept des "Opaque Pointers" zur Kapselung von Rust-Datenstrukturen vor C.</li>
+<li><strong>Ziel</strong>: Verstehe das Konzept des “Opaque Pointers” zur Kapselung von Rust-Datenstrukturen vor C.</li>
 <li><strong>Konzeptuelle Hinweise</strong>:
 <ul>
 <li>Definiere eine Rust-Struktur <code>struct CustomObject</code> mit einigen internen Feldern. Warum muss dieses Struct für C nicht zwingend <code>#[repr(C)]</code> sein, wenn wir nur Zeiger darauf übergeben?</li>
@@ -1442,7 +1423,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="65-fehlercodes-an-c-zurückgeben"><a class="header" href="#65-fehlercodes-an-c-zurückgeben">65. Fehlercodes an C zurückgeben</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-44"><a class="header" href="#modul-1-basis-datenstrukturen-44">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1476,7 +1457,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="66-rust-logger-für-c"><a class="header" href="#66-rust-logger-für-c">66. Rust-Logger für C</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-45"><a class="header" href="#modul-1-basis-datenstrukturen-45">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1511,7 +1492,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="67-callback-aus-c-empfangen-und-ausführen"><a class="header" href="#67-callback-aus-c-empfangen-und-ausführen">67. Callback aus C empfangen und ausführen</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-46"><a class="header" href="#modul-1-basis-datenstrukturen-46">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1519,7 +1500,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <li><strong>Konzeptuelle Hinweise</strong>:
 <ul>
 <li>Lerne, wie Funktionszeiger in Rust-FFI deklariert werden. Verwende die C-kompatible Signatur <code>extern "C" fn(i32)</code>.</li>
-<li>Warum verpackt man FFI-Funktionszeiger in Rust in ein <code>Option&lt;...&gt;</code> (z. B. <code>Option&lt;extern "C" fn(i32)&gt;</code>)? Welche Rolle spielt die "Nullable Pointer Optimization" des Rust-Compilers hierbei?</li>
+<li>Warum verpackt man FFI-Funktionszeiger in Rust in ein <code>Option&lt;...&gt;</code> (z. B. <code>Option&lt;extern "C" fn(i32)&gt;</code>)? Welche Rolle spielt die “Nullable Pointer Optimization” des Rust-Compilers hierbei?</li>
 </ul>
 </li>
 </ul>
@@ -1545,7 +1526,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="68-rust-array-an-c-übergeben"><a class="header" href="#68-rust-array-an-c-übergeben">68. Rust-Array an C übergeben</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-47"><a class="header" href="#modul-1-basis-datenstrukturen-47">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1580,7 +1561,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="69-c-array-in-rust-verarbeiten"><a class="header" href="#69-c-array-in-rust-verarbeiten">69. C-Array in Rust verarbeiten</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-48"><a class="header" href="#modul-1-basis-datenstrukturen-48">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1612,7 +1593,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="70-panic-sicherheit-an-ffi-grenzen"><a class="header" href="#70-panic-sicherheit-an-ffi-grenzen">70. Panic-Sicherheit an FFI-Grenzen</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-49"><a class="header" href="#modul-1-basis-datenstrukturen-49">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1645,7 +1626,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="71-rust-iterator-für-c"><a class="header" href="#71-rust-iterator-für-c">71. Rust-Iterator für C</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-50"><a class="header" href="#modul-1-basis-datenstrukturen-50">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1681,7 +1662,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="72-konfigurationen-als-struct"><a class="header" href="#72-konfigurationen-als-struct">72. Konfigurationen als Struct</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-51"><a class="header" href="#modul-1-basis-datenstrukturen-51">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1715,7 +1696,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="73-asynchrone-tasks-triggern"><a class="header" href="#73-asynchrone-tasks-triggern">73. Asynchrone Tasks triggern</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-52"><a class="header" href="#modul-1-basis-datenstrukturen-52">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1750,7 +1731,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="74-speicherstatistik-exportieren"><a class="header" href="#74-speicherstatistik-exportieren">74. Speicherstatistik exportieren</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-53"><a class="header" href="#modul-1-basis-datenstrukturen-53">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1783,7 +1764,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="75-globale-zustände-verwalten"><a class="header" href="#75-globale-zustände-verwalten">75. Globale Zustände verwalten</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-54"><a class="header" href="#modul-1-basis-datenstrukturen-54">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1803,7 +1784,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <ul>
 <li>Exportiere Funktionen wie <code>pub extern "C" fn set_global_value(val: i32)</code> und <code>pub extern "C" fn get_global_value() -&gt; i32</code>.</li>
 <li>Greife in den Funktionen auf das globale Element zu, sperre den Mutex und führe die Modifikationen oder Abfragen durch.</li>
-<li>Denke an die Fehlerbehandlung, falls ein Mutex "poisoned" ist (wenn ein Thread mit gesperrtem Mutex eine Panic hatte). Wie gehst du damit um?</li>
+<li>Denke an die Fehlerbehandlung, falls ein Mutex “poisoned” ist (wenn ein Thread mit gesperrtem Mutex eine Panic hatte). Wie gehst du damit um?</li>
 </ul>
 </li>
 </ul>
@@ -1817,7 +1798,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="76-generieren-von-c-headern"><a class="header" href="#76-generieren-von-c-headern">76. Generieren von C-Headern</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-55"><a class="header" href="#modul-1-basis-datenstrukturen-55">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1850,7 +1831,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="77-rust-vektor-an-c-übertragen"><a class="header" href="#77-rust-vektor-an-c-übertragen">77. Rust-Vektor an C übertragen</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-56"><a class="header" href="#modul-1-basis-datenstrukturen-56">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1883,7 +1864,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="78-rust-vektor-aus-c-wiederherstellen"><a class="header" href="#78-rust-vektor-aus-c-wiederherstellen">78. Rust-Vektor aus C wiederherstellen</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-57"><a class="header" href="#modul-1-basis-datenstrukturen-57">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1916,7 +1897,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="79-thread-erzeugung-in-rust-für-c"><a class="header" href="#79-thread-erzeugung-in-rust-für-c">79. Thread-Erzeugung in Rust für C</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-58"><a class="header" href="#modul-1-basis-datenstrukturen-58">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1950,7 +1931,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </ul>
 </li>
 </ul>
-<hr />
+<hr>
 <h2 id="80-benutzerdefinierte-allocatoren"><a class="header" href="#80-benutzerdefinierte-allocatoren">80. Benutzerdefinierte Allocatoren</a></h2>
 <h3 id="modul-1-basis-datenstrukturen-59"><a class="header" href="#modul-1-basis-datenstrukturen-59">Modul 1: Basis-Datenstrukturen</a></h3>
 <ul>
@@ -1970,7 +1951,7 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 <ul>
 <li>Schreibe ein Struct, das <code>GlobalAlloc</code> implementiert. Dieses Struct leitet Speicheranforderungen an globale Funktionszeiger weiter.</li>
 <li>Registriere diesen Allocator über das Attribut <code>#[global_allocator]</code>.</li>
-<li>Exportiere FFI-Funktionen, mit denen der aufrufende C-Code die Zuweisungs-Callbacks (z. B. auf C's <code>malloc</code> und <code>free</code> oder einen Custom Allocator) zur Laufzeit setzen kann.</li>
+<li>Exportiere FFI-Funktionen, mit denen der aufrufende C-Code die Zuweisungs-Callbacks (z. B. auf C’s <code>malloc</code> und <code>free</code> oder einen Custom Allocator) zur Laufzeit setzen kann.</li>
 <li>Beachte die Gefahren von Rekursionen im Allocator (z. B. Logging während der Allokation).</li>
 </ul>
 </li>
@@ -1987,8 +1968,8 @@ Implementiere die rekursive Speicherbereinigung und teste den B-Baum-Knoten.</p>
 </li>
 </ul>
 <h1 id="phase-9-betriebssystem---hardware-zugriffe-teil-5---projekte-81-bis-100"><a class="header" href="#phase-9-betriebssystem---hardware-zugriffe-teil-5---projekte-81-bis-100">Phase 9: Betriebssystem- &amp; Hardware-Zugriffe (Teil 5) - Projekte 81 bis 100</a></h1>
-<p>Dieses Dokument enthält jeweils genau drei modulare Präzisions-Prompts für die Projekte 81 bis 100 aus Phase 9. Die Prompts sind didaktisch aufbereitet, richten sich an Einsteiger (freundliche "Du"-Form) und verzichten komplett auf fertige Codelösungen, um die eigene Problemlösungskompetenz zu stärken.</p>
-<hr />
+<p>Dieses Dokument enthält jeweils genau drei modulare Präzisions-Prompts für die Projekte 81 bis 100 aus Phase 9. Die Prompts sind didaktisch aufbereitet, richten sich an Einsteiger (freundliche “Du”-Form) und verzichten komplett auf fertige Codelösungen, um die eigene Problemlösungskompetenz zu stärken.</p>
+<hr>
 <h2 id="projekt-81-direkter-syscall-unter-linux"><a class="header" href="#projekt-81-direkter-syscall-unter-linux">Projekt 81: Direkter syscall unter Linux</a></h2>
 <p><em>Ziel: Nutze die Funktion syscall aus der libc, um einen Systemaufruf (z. B. gettid für die Thread-ID) direkt ohne Wrapper auszuführen.</em></p>
 <ul>
@@ -1999,7 +1980,7 @@ Finde die konkrete Systemaufrufnummer für <code>gettid</code> auf deiner Zielar
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Integriere den Aufruf in <code>main.rs</code> und gib die erhaltene Thread-ID aus. Vergleiche das Ergebnis mit der Thread-ID, die Rusts Standardbibliothek liefert. Schreibe Tests, die sicherstellen, dass der Systemaufruf in einem Multi-Threading-Szenario für jeden Thread eine eindeutige ID zurückgibt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-82-windows-messagebox"><a class="header" href="#projekt-82-windows-messagebox">Projekt 82: Windows-MessageBox</a></h2>
 <p><em>Ziel: Rufe die Win32-API-Funktion MessageBoxW auf, um ein natives Windows-Dialogfenster anzuzeigen. (UTF-16-Strings)</em></p>
 <ul>
@@ -2010,7 +1991,7 @@ Deklariere die FFI-Signatur für <code>MessageBoxW</code> unter Verwendung des C
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle das Hauptprogramm in <code>main.rs</code> (dieses Projekt läuft nativ nur unter Windows, nutze bedingte Kompilierung <code>#[cfg(target_os = "windows")]</code>). Zeige ein Dialogfeld an und werte den Rückgabewert (z. B. welche Schaltfläche gedrückt wurde) im Hauptprogramm aus.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-83-memory-mapped-files-mmap"><a class="header" href="#projekt-83-memory-mapped-files-mmap">Projekt 83: Memory-Mapped Files (mmap)</a></h2>
 <p><em>Ziel: Verwende den mmap-Systemaufruf, um eine Datei direkt in den virtuellen Adressraum deines Prozesses zu laden und als Byte-Slice zu lesen.</em></p>
 <ul>
@@ -2021,7 +2002,7 @@ Beschäftige dich mit dem POSIX-Systemaufruf <code>mmap</code> und den zugehöri
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe eine sichere Kapselung, die im <code>Drop</code>-Trait das Unmapping mittels <code>libc::munmap</code> durchführt. Lies den Dateiinhalt über den Slice aus und gib ihn aus. Teste das Verhalten mit verschiedenen Dateigrößen und stelle sicher, dass bei leeren Dateien kein ungültiger Adresszugriff erfolgt.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-84-prozess-id-pid-ermitteln"><a class="header" href="#projekt-84-prozess-id-pid-ermitteln">Projekt 84: Prozess-ID (PID) ermitteln</a></h2>
 <p><em>Ziel: Rufe das POSIX getpid oder die entsprechende Windows-API auf, um die eigene Prozess-ID direkt vom Betriebssystem abzufragen.</em></p>
 <ul>
@@ -2032,7 +2013,7 @@ Implementiere eine plattformübergreifende Abfrage mit bedingter Kompilierung (<
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe das Hauptprogramm in <code>main.rs</code>, gib deine eigene PID aus und vergleiche sie mit dem Ergebnis von <code>std::process::id()</code>. Schreibe einen Test, um zu prüfen, ob die ID plausibel (größer als 0) ist.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-85-terminal-größe-abfragen"><a class="header" href="#projekt-85-terminal-größe-abfragen">Projekt 85: Terminal-Größe abfragen</a></h2>
 <p><em>Ziel: Nutze den Systemaufruf ioctl mit der Konstante TIOCGWINSZ, um die aktuelle Breite und Höhe deines Terminalfensters in Byte-Strukturen auszulesen.</em></p>
 <ul>
@@ -2043,7 +2024,7 @@ Rufe <code>libc::ioctl</code> in einem <code>unsafe</code>-Block auf und übergi
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Präsentiere die ermittelten Zeilen und Spalten in <code>main.rs</code>. Teste das Programm, indem du die Terminalgröße im Terminal manuell veränderst und das Programm erneut ausführst.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-86-cpu-features-abfragen"><a class="header" href="#projekt-86-cpu-features-abfragen">Projekt 86: CPU-Features abfragen</a></h2>
 <p><em>Ziel: Verwende Inline-Assembly (asm!) oder CPUID-Befehle über Unsafe, um spezifische Prozessor-Features (wie AVX oder SSE) direkt abzufragen.</em></p>
 <ul>
@@ -2054,7 +2035,7 @@ Schreibe eine Funktion, die das Makro <code>core::arch::asm!</code> in einem <co
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erzeuge eine strukturierte Ausgabe aller abgefragten CPU-Features in <code>main.rs</code>. Ergänze Unittests, die verifizieren, dass die Abfrage auf modernen x86-Systemen ohne Absturz durchläuft.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-87-virtuellen-speicher-schützen"><a class="header" href="#projekt-87-virtuellen-speicher-schützen">Projekt 87: Virtuellen Speicher schützen</a></h2>
 <p><em>Ziel: Nutze die Systemfunktion mprotect (POSIX) oder VirtualProtect (Windows), um einen Speicherbereich zur Laufzeit als schreibgeschützt zu markieren.</em></p>
 <ul>
@@ -2065,7 +2046,7 @@ Schreibe Werte in den Speicherbereich. Nutze danach <code>libc::mprotect</code> 
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Demonstriere in <code>main.rs</code> den Übergang der Zugriffsrechte. Zeige auf, wie man den Speicherbereich nach der Nutzung wieder freigibt und wie man Schutzverletzungen diagnostiziert.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-88-direktes-auslesen-von-hardware-registern"><a class="header" href="#projekt-88-direktes-auslesen-von-hardware-registern">Projekt 88: Direktes Auslesen von Hardware-Registern</a></h2>
 <p><em>Ziel: Simuliere den Zugriff auf ein Memory-Mapped I/O (MMIO) Register, indem du einen Zeiger auf eine feste Speicheradresse castest und mit volatile liest.</em></p>
 <ul>
@@ -2076,7 +2057,7 @@ Definiere eine simulierte Register-Adresse (z. B. ein statisches Byte-Array als 
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe ein Testprogramm, das den Wert der simulierten Hardware-Adresse im Hintergrund verändert und über deine volatile Lese-Schnittstelle zyklisch abfragt. Verifiziere, dass jeder Zugriff physisch stattfindet.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-89-volatile-schreibzugriffe"><a class="header" href="#projekt-89-volatile-schreibzugriffe">Projekt 89: Volatile-Schreibzugriffe</a></h2>
 <p><em>Ziel: Verwende std::ptr::write_volatile, um Werte an eine Adresse zu schreiben, bei denen der Compiler die Schreiboperation nicht wegoptimieren darf.</em></p>
 <ul>
@@ -2087,7 +2068,7 @@ Caste eine Zieladresse in einen veränderlichen Zeiger <code>*mut u8</code>. Nut
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Implementiere die Logik in <code>main.rs</code> mit einer Test-Speicheradresse. Inspiziere (konzeptionell), wie der generierte Maschinencode die Schreibbefehle exakt beibehält, und verifiziere die Funktionsweise.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-90-signale-abfangen-signal-handler"><a class="header" href="#projekt-90-signale-abfangen-signal-handler">Projekt 90: Signale abfangen (Signal-Handler)</a></h2>
 <p><em>Ziel: Registriere über die libc einen Signal-Handler für SIGINT (Strg+C) und reagiere im unsafe Kontext darauf.</em></p>
 <ul>
@@ -2098,7 +2079,7 @@ Definiere eine <code>extern "C" fn(c_int)</code> als Signal-Handler. Registriere
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe eine Endlosschleife in <code>main.rs</code>, die darauf wartet, dass das atomare Flag durch das Signal (z. B. Strg+C im Terminal) gesetzt wird, und beende das Programm dann kontrolliert mit einer Abschiedsmeldung.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-91-hardware-timer-nutzen"><a class="header" href="#projekt-91-hardware-timer-nutzen">Projekt 91: Hardware-Timer nutzen</a></h2>
 <p><em>Ziel: Greife auf hochauflösende Hardware-Timer des Prozessors zu, um präzise Taktzyklen zu zählen (z. B. über den Assemblerbefehl RDTSC).</em></p>
 <ul>
@@ -2109,7 +2090,7 @@ Nutze <code>core::arch::x86_64::_rdtsc</code> oder Inline-Assembly im <code>unsa
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Miss die Laufzeit verschiedener Operationen (z. B. eine mathematische Berechnung vs. eine Speicherallokation) in <code>main.rs</code> und gib die Ergebnisse in Taktzyklen aus. Schreibe Tests, um die Konsistenz der Messungen zu validieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-92-roh-zugriff-auf-die-serielle-schnittstelle"><a class="header" href="#projekt-92-roh-zugriff-auf-die-serielle-schnittstelle">Projekt 92: Roh-Zugriff auf die serielle Schnittstelle</a></h2>
 <p><em>Ziel: Öffne und konfiguriere eine serielle Schnittstelle (COM-Port oder /dev/tty) über direkte Systemaufrufe und ioctl.</em></p>
 <ul>
@@ -2120,7 +2101,7 @@ Informiere dich über die POSIX-Struktur <code>termios</code> zur Konfiguration 
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Implementiere das Senden und Empfangen einfacher Test-Bytes über die Dateideskriptoren. Stelle sicher, dass die geöffnete Schnittstelle beim Beenden des Programms im <code>Drop</code>-Trait über <code>libc::close</code> wieder freigegeben wird.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-93-shared-memory-zwischen-prozessen"><a class="header" href="#projekt-93-shared-memory-zwischen-prozessen">Projekt 93: Shared Memory zwischen Prozessen</a></h2>
 <p><em>Ziel: Erstelle einen gemeinsamen Speicherbereich über shm_open und mmap, um Daten ohne Sockets oder Pipes direkt mit einem anderen Prozess zu teilen.</em></p>
 <ul>
@@ -2131,7 +2112,7 @@ Rufe <code>libc::shm_open</code> auf, um ein Shared-Memory-Objekt zu erzeugen. K
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Schreibe ein Programm, das in den Shared Memory schreibt, und ein zweites, das zeitgleich die Daten ausliest. Stelle die Bereinigung des Shared Memory im <code>Drop</code>-Trait mittels <code>shm_unlink</code> sicher.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-94-dateirechte-auf-systemebene-ändern"><a class="header" href="#projekt-94-dateirechte-auf-systemebene-ändern">Projekt 94: Dateirechte auf Systemebene ändern</a></h2>
 <p><em>Ziel: Rufe die POSIX-Funktion chmod direkt auf, um die Berechtigungen einer Datei über Oktalmasken manuell zu manipulieren.</em></p>
 <ul>
@@ -2142,7 +2123,7 @@ Deklariere <code>libc::chmod</code> und konvertiere den Dateipfad in einen nullt
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Erstelle eine Testdatei in <code>main.rs</code>, ändere die Dateirechte auf schreibgeschützt, versuche in sie zu schreiben (was fehlschlagen sollte) und stelle die ursprünglichen Rechte wieder her. Validiere die Änderungen.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-95-systemzeit-direkt-auslesen"><a class="header" href="#projekt-95-systemzeit-direkt-auslesen">Projekt 95: Systemzeit direkt auslesen</a></h2>
 <p><em>Ziel: Nutze clock_gettime aus der POSIX-Bibliothek, um die aktuelle Systemzeit mit Nanosekunden-Präzision abzufragen.</em></p>
 <ul>
@@ -2153,7 +2134,7 @@ Rufe <code>libc::clock_gettime</code> im <code>unsafe</code>-Block auf und über
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Rechne die Sekunden und Nanosekunden in <code>main.rs</code> in ein lesbares Format um und gib die Zeit aus. Vergleiche die Genauigkeit deiner Zeitmessung mit Rusts <code>std::time::SystemTime</code>.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-96-daemon-prozess-erstellen"><a class="header" href="#projekt-96-daemon-prozess-erstellen">Projekt 96: Daemon-Prozess erstellen</a></h2>
 <p><em>Ziel: Nutze den Systemaufruf fork, um den aktuellen Prozess zu duplizieren und im Hintergrund als Daemon weiterlaufen zu lassen.</em></p>
 <ul>
@@ -2164,7 +2145,7 @@ Rufe <code>libc::fork</code> in einem <code>unsafe</code>-Block auf. Beende den 
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Lass den Daemon im Hintergrund eine periodische Aufgabe ausführen (z. B. jede Sekunde einen Log-Eintrag schreiben). Teste das Verhalten, indem du das Terminal schließt und überprüfst, ob der Prozess im Hintergrund weiterläuft.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-97-windows-registry-manipulieren"><a class="header" href="#projekt-97-windows-registry-manipulieren">Projekt 97: Windows-Registry manipulieren</a></h2>
 <p><em>Ziel: Greife über Win32-APIs wie RegOpenKeyExW auf die Windows-Registrierungsdatenbank zu, um Werte auszulesen oder zu schreiben.</em></p>
 <ul>
@@ -2175,7 +2156,7 @@ Deklariere die APIs <code>RegOpenKeyExW</code>, <code>RegQueryValueExW</code> un
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Lies in <code>main.rs</code> einen bekannten Systemwert aus der Registry aus (z. B. Windows-Versionsinformationen) und gib ihn aus. Implementiere eine saubere Fehlerbehandlung für den Fall, dass der Schlüssel nicht existiert oder die Rechte unzureichend sind.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-98-page-size-des-betriebssystems-ermitteln"><a class="header" href="#projekt-98-page-size-des-betriebssystems-ermitteln">Projekt 98: Page-Size des Betriebssystems ermitteln</a></h2>
 <p><em>Ziel: Rufe die Systemkonfiguration sysconf mit _SC_PAGESIZE auf, um die native Seitengröße des virtuellen Speichers abzufragen.</em></p>
 <ul>
@@ -2186,7 +2167,7 @@ Rufe <code>libc::sysconf</code> in einem <code>unsafe</code>-Block mit dem entsp
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Gib die ermittelte Seitengröße (typischerweise 4096 Bytes) in <code>main.rs</code> aus. Nutze diesen Wert, um Berechnungen für Page-Alignment-Szenarien durchzuführen und verifiziere das Ergebnis.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-99-prozess-priorität-ändern"><a class="header" href="#projekt-99-prozess-priorität-ändern">Projekt 99: Prozess-Priorität ändern</a></h2>
 <p><em>Ziel: Verwende die Funktion setpriority, um die Scheduling-Priorität (Nice-Wert) deines aktuellen Prozesses direkt zu manuell manipulieren.</em></p>
 <ul>
@@ -2197,7 +2178,7 @@ Rufe <code>libc::setpriority</code> im <code>unsafe</code>-Block auf, um die Pri
 <li><strong>Modul 3: Vollendung &amp; Hauptprogramm</strong>
 Lies die aktuelle Priorität vor und nach der Änderung mit <code>libc::getpriority</code> aus und präsentiere den Nice-Wert. Schreibe Tests, die die Prioritätsänderungen validieren.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="projekt-100-inline-assembler-für-mathematische-tricks"><a class="header" href="#projekt-100-inline-assembler-für-mathematische-tricks">Projekt 100: Inline-Assembler für mathematische Tricks</a></h2>
 <p><em>Ziel: Schreibe eine Funktion, die mithilfe des asm!-Makros direkt Assembler-Befehle ausführt, um eine Berechnung extrem zu beschleunigen.</em></p>
 <ul>
@@ -2214,11 +2195,11 @@ Erstelle das Hauptprogramm in <code>main.rs</code>, führe die Assembler-optimie
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="100-projekte-phase9.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
                             <a rel="next prefetch" href="c-kapitel10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -2228,16 +2209,21 @@ Erstelle das Hauptprogramm in <code>main.rs</code>, führe die Assembler-optimie
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="100-projekte-phase9.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
                     <a rel="next prefetch" href="c-kapitel10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -2246,17 +2232,15 @@ Erstelle das Hauptprogramm in <code>main.rs</code>, führe die Assembler-optimie
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid.min.js"></script>
-        <script src="mermaid-init.js"></script>
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
 
 
     </div>
