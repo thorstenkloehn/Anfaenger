@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>📓 Alternativer Ansatz: Eine Obsidian-Engine in Rust nachbauen - Rust Projektvorschläge für Einsteiger</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-7b2d9c90.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">Rust Projektvorschläge für Einsteiger</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="-alternativer-ansatz-eine-obsidian-engine-in-rust-nachbauen"><a class="header" href="#-alternativer-ansatz-eine-obsidian-engine-in-rust-nachbauen">📓 Alternativer Ansatz: Eine Obsidian-Engine in Rust nachbauen</a></h1>
+<p>In vorherigen Kapiteln haben wir klassische CMS-Engines wie MediaWiki, XWiki, Drupal und TYPO3 untersucht. Doch für das persönliche Wissensmanagement (<strong>Personal Knowledge Management / PKM</strong>) hat sich ein ganz anderes Paradigma durchgesetzt: <strong>Local-First Markdown-Vaults</strong>, wie sie durch die App <strong>Obsidian</strong> populär wurden.</p>
+<p>In diesem Kapitel lernst du, wie du eine <strong>Obsidian-Engine in Rust</strong> entwirfst. Wir bauen das Herzstück einer solchen App: Eine datenbanklose Vault-Indexierung mit WikiLinks (<code>[[Link]]</code>), YAML-Frontmatter-Parsing, Backlink-Graph und Unresolved-Link-Erkennung.</p>
+<hr>
+<h2 id="-theorie--architektur-das-local-first-vault-modell"><a class="header" href="#-theorie--architektur-das-local-first-vault-modell">🧠 Theorie &amp; Architektur: Das Local-First Vault Modell</a></h2>
+<p>Im Gegensatz zu klassischen CMS-Systemen gibt es bei Obsidian keine zentrale SQL-Datenbank. Alle Daten liegen als einfache <code>.md</code>-Dateien in einem Ordner auf der Festplatte (dem <strong>Vault</strong>).</p>
+<h3 id="die-4-säulen-einer-obsidian-engine-in-rust"><a class="header" href="#die-4-säulen-einer-obsidian-engine-in-rust">Die 4 Säulen einer Obsidian-Engine in Rust</a></h3>
+<ol>
+<li><strong>Local-First Vault Indexer:</strong> Die Engine überwacht einen Ordner auf der Festplatte, liest Dateien ein und hält einen sauberen In-Memory-Index aller Notizen.</li>
+<li><strong>WikiLinks &amp; Unresolved Links:</strong> <code>[[Notiz Name]]</code> verknüpft Seiten bidirektional. Verweist ein Link auf eine noch nicht existierende Datei, wird ein <em>Unresolved Link</em> im Graph markiert.</li>
+<li><strong>YAML Frontmatter (Properties):</strong> Metadaten am Anfang einer Notiz (<code>--- tags: [rust, pkm] ---</code>) werden isoliert und als strukturierte Key-Value-Paare geparst.</li>
+<li><strong>Graph-Netzwerk (Nodes &amp; Edges):</strong> Das System berechnet aus allen Links einen mathematischen Graphen mit Knoten (Notizen) und Kanten (Referenzen).</li>
+</ol>
+<hr>
+<h3 id="die-bildmetapher-die-wissens-kartei-mit-fadennetz"><a class="header" href="#die-bildmetapher-die-wissens-kartei-mit-fadennetz">Die Bildmetapher: Die Wissens-Kartei mit Fadennetz</a></h3>
+<p>Stell dir eine Obsidian-Engine wie eine <strong>historische Zettelkartei an einer Korkwand</strong> vor:</p>
+<pre><code class="language-text">┌───────────────────────────────────────────────────────────────────────────────┐
+│                      DIE OBSIDIAN KORKWAND (VAULT)                            │
+│                                                                               │
+│  [ Karteikarte: Rust.md ]                                                     │
+│  ├── 📌 Kopfzeile (YAML Frontmatter): { tags: ["dev", "systems"] }            │
+│  ├── 📄 Text: "Rust garantiert Speicher-Sicherheit durch [[Ownership]]."       │
+│  └── 🧵 Wollfäden (WikiLinks):                                                │
+│       ├── Faden zu [ Ownership.md ] (Ausgehende Referenz)                     │
+│       └── Faden zu [ MemorySafety.md ] (Noch nicht als Datei existent!)        │
+│                                                                               │
+│  🧠 [ In-Memory Index ] ──&gt; Berechnet Backlinks &amp; Graph in Echtzeit           │
+└───────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Die Karteikarte (Markdown-Datei):</strong> Jede Datei existiert unabhängig auf dem Dateisystem.</li>
+<li><strong>Der Kopfzettel (Frontmatter):</strong> Enthält strukturierte Tags, Erstellungsdatum und Eigenschaften.</li>
+<li><strong>Die Wollfäden (WikiLinks):</strong> Verbinden Gedanken flexibel. Existiert eine Karte noch nicht, bleibt der Faden frei hängen (Unresolved Link).</li>
+</ul>
+<hr>
+<h3 id="architektur-übersicht-in-mermaid"><a class="header" href="#architektur-übersicht-in-mermaid">Architektur-Übersicht in Mermaid</a></h3>
+<pre><code class="language-mermaid">graph TD
+    A[Dateisystem Vault Ordner] --&gt; B[Vault Scanner &amp; Watcher]
+    B --&gt; C[Markdown &amp; Frontmatter Parser]
+    C --&gt; D[WikiLink Extractor]
+    D --&gt; E[In-Memory Vault Index]
+    
+    subgraph Vault Indexing System
+        E --&gt; F[Backlink Graph Engine]
+        E --&gt; G[Unresolved Link Finder]
+        E --&gt; H[Tag &amp; Property Registry]
+    end
+    
+    F --&gt; I[Interactive Graph View]
+    G --&gt; J[Create Missing Note Action]
+</code></pre>
+<hr>
+<h2 id="-datenstruktur-entwurf-in-rust"><a class="header" href="#-datenstruktur-entwurf-in-rust">🏗️ Datenstruktur-Entwurf in Rust</a></h2>
+<p>Um einen Obsidian Vault in Rust abzubilden, definieren wir typsichere Strukturen für Metadaten, Links und den Vault-Index:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::{HashMap, HashSet};
+use std::path::PathBuf;
+
+/// Metadaten aus dem YAML-Frontmatter einer Notiz
+#[derive(Debug, Clone, Default)]
+pub struct NoteProperties {
+    pub tags: Vec&lt;String&gt;,
+    pub custom_fields: HashMap&lt;String, String&gt;,
+}
+
+/// Ein extrahierter WikiLink: [[Ziel-Notiz|Alias]]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct WikiLink {
+    pub target_title: String,
+    pub alias: Option&lt;String&gt;,
+}
+
+/// Eine einzelne Notiz im Obsidian Vault
+#[derive(Debug, Clone)]
+pub struct ObsidianNote {
+    pub file_path: PathBuf,
+    pub title: String,
+    pub properties: NoteProperties,
+    pub raw_content: String,
+    pub outgoing_links: Vec&lt;WikiLink&gt;,
+}
+
+/// Der komplette Vault-Index im Arbeitsspeicher
+#[derive(Debug, Default)]
+pub struct ObsidianVault {
+    /// Titel -&gt; Notiz
+    pub notes: HashMap&lt;String, ObsidianNote&gt;,
+    /// Titel -&gt; Liste von Titeln, die auf diese Notiz verweisen (Backlinks)
+    pub backlinks: HashMap&lt;String, HashSet&lt;String&gt;&gt;,
+    /// Verweise auf Notizen, die im Vault noch als Datei fehlen
+    pub unresolved_links: HashSet&lt;String&gt;,
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h2 id="-praxis-aufgaben"><a class="header" href="#-praxis-aufgaben">🛠️ Praxis-Aufgaben</a></h2>
+<p>Verwende das obige Vault-Modell, um die Kernfunktionen einer Obsidian-Engine in Rust Schritt für Schritt zu bauen.</p>
+<h3 id="aufgabe-1-leicht-wikilink-parser-link"><a class="header" href="#aufgabe-1-leicht-wikilink-parser-link">Aufgabe 1 (Leicht): WikiLink-Parser (<code>[[Link]]</code>)</a></h3>
+<p>Schreibe eine Funktion, die aus einem Fliesstext alle WikiLinks in der Form <code>[[Ziel]]</code> oder <code>[[Ziel|Alias]]</code> extrahiert.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Extrahierte WikiLinks aus einem Markdown-Text.
+pub fn extract_wikilinks(content: &amp;str) -&gt; Vec&lt;WikiLink&gt; {
+    // TODO: Suche nach Mustern der Form [[ ... ]]
+    // TODO: Spalte den Inhalt am Trennzeichen '|', falls ein Alias existiert
+    // TODO: Gib einen Vektor von `WikiLink` zurück
+    todo!("Implementiere das Extrahieren von WikiLinks")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_extract_wikilinks() {
+        let text = "Rust nutzt [[Ownership]] und [[Borrowing|Leihen]] für Sicherheit.";
+        let links = extract_wikilinks(text);
+        
+        assert_eq!(links.len(), 2);
+        assert_eq!(links[0].target_title, "Ownership");
+        assert_eq!(links[0].alias, None);
+        assert_eq!(links[1].target_title, "Borrowing");
+        assert_eq!(links[1].alias, Some("Leihen".to_string()));
+    }
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h3 id="aufgabe-2-mittel-vault-index-rebuilder--backlink-calculator"><a class="header" href="#aufgabe-2-mittel-vault-index-rebuilder--backlink-calculator">Aufgabe 2 (Mittel): Vault-Index-Rebuilder &amp; Backlink-Calculator</a></h3>
+<p>Wenn Notizen eingelesen werden, muss der <code>ObsidianVault</code> aktualisiert werden. Schreibe eine Methode <code>reindex_vault</code>, die alle ausgehenden Links durchgeht, die <code>backlinks</code>-Map füllt und nicht existierende Ziele in <code>unresolved_links</code> einträgt.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl ObsidianVault {
+    /// Berechnet die Backlinks und ungelösten Links für den gesamten Vault neu.
+    pub fn reindex_links(&amp;mut self) {
+        // TODO: Leere `self.backlinks` und `self.unresolved_links`
+        // TODO: Iteriere über alle Notizen in `self.notes`
+        // TODO: Prüfe für jeden `outgoing_link`, ob das Ziel in `self.notes` existiert
+        // TODO: Wenn ja -&gt; trage den Quellnotiz-Titel in `self.backlinks[target]` ein
+        // TODO: Wenn nein -&gt; trage das Ziel in `self.unresolved_links` ein
+        todo!("Implementiere die Backlink- und Unresolved-Link-Berechnung")
+    }
+}
+<span class="boring">}</span></code></pre>
+<p><em>Leitfragen zur Lösung:</em></p>
+<ul>
+<li>Wie hilft dir <code>HashSet::insert</code>, um doppelte Backlinks von derselben Seite zu verhindern?</li>
+<li>Warum ist die Unterscheidung zwischen existierenden Notizen und <code>unresolved_links</code> für die Graphansicht so wichtig?</li>
+</ul>
+<hr>
+<h3 id="aufgabe-3-schwer-yaml-frontmatter-parser"><a class="header" href="#aufgabe-3-schwer-yaml-frontmatter-parser">Aufgabe 3 (Schwer): YAML-Frontmatter-Parser</a></h3>
+<p>Notizen beginnen oft mit einem YAML-Frontmatter-Block, der zwischen zwei <code>---</code>-Zeilen eingeschlossen ist. Schreibe einen einfachen Parser, der diesen Block vom restlichen Markdown-Inhalt trennt und Tags extrahiert.</p>
+<pre><code class="language-example">---
+tags: [rust, programming]
+date: 2026-07-23
+---
+# Meine Notiz
+...
+</code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct ParsedNote {
+    pub properties: NoteProperties,
+    pub body_content: String,
+}
+
+/// Spaltet den Frontmatter-Block vom Markdown-Body ab.
+pub fn parse_frontmatter(raw_file_content: &amp;str) -&gt; ParsedNote {
+    // TODO: Prüfe, ob der Text mit "---" beginnt
+    // TODO: Suche nach dem schließenden "---"
+    // TODO: Extrahiere Zeilen wie "tags: [a, b]" aus dem Frontmatter-Teil
+    // TODO: Gib die geparsten Properties und den verbleibenden Body-Text zurück
+    todo!("Implementiere den Frontmatter-Parser")
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h2 id="-compiler---praxis-experimente"><a class="header" href="#-compiler---praxis-experimente">🚀 Compiler- / Praxis-Experimente</a></h2>
+<ol>
+<li>
+<p><strong>Echtzeit-File-Watcher (<code>notify</code> Crate):</strong>
+Binde die popular Rust Crate <code>notify</code> ein, um den Vault-Ordner im Hintergrund zu überwachen. Wenn der Benutzer eine <code>.md</code>-Datei extern im Editor speichert, soll dein <code>ObsidianVault</code> automatisch die geänderte Notiz neu indexieren.</p>
+</li>
+<li>
+<p><strong>Graph-Export im DOT / JSON-Format:</strong>
+Schreibe eine Funktion <code>export_graph_json(&amp;self) -&gt; String</code>, die alle Notizen und Links in ein Format konvertiert, das von Frontend-Bibliotheken (wie D3.js oder Cytoscape) als interaktiver Wissensgraph gerendert werden kann.</p>
+</li>
+</ol>
+<hr>
+<h2 id="-zusammenfassung-obsidian-vs-klassische-wikis"><a class="header" href="#-zusammenfassung-obsidian-vs-klassische-wikis">💡 Zusammenfassung: Obsidian vs. Klassische Wikis</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Feature</th><th style="text-align: left">Obsidian Local Vault</th><th style="text-align: left">MediaWiki Engine</th><th style="text-align: left">Drupal / TYPO3 CMS</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Speicherort</strong></td><td style="text-align: left">Lokale <code>.md</code>-Dateien</td><td style="text-align: left">Datenbank (MySQL/Postgres)</td><td style="text-align: left">Datenbank &amp; DB-Entities</td></tr>
+<tr><td style="text-align: left"><strong>Verlinkung</strong></td><td style="text-align: left"><code>[[WikiLinks]]</code> + Backlinks</td><td style="text-align: left"><code>[[Wikitext]]</code> Links</td><td style="text-align: left">Entity References</td></tr>
+<tr><td style="text-align: left"><strong>Fehlende Seiten</strong></td><td style="text-align: left">Ungelöste Links (Graph Node)</td><td style="text-align: left">Roter Link (Erstellen)</td><td style="text-align: left">404 Nicht Gefunden</td></tr>
+<tr><td style="text-align: left"><strong>Metadaten</strong></td><td style="text-align: left">YAML Frontmatter</td><td style="text-align: left">Infobox Vorlagen</td><td style="text-align: left">Field API / Content Elements</td></tr>
+<tr><td style="text-align: left"><strong>Einsatzbereich</strong></td><td style="text-align: left">Personal Second Brain</td><td style="text-align: left">Enzyklopädie &amp; Knowledge Base</td><td style="text-align: left">Enterprise Web-Auftritte</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="-links"><a class="header" href="#-links">📚 Links</a></h2>
+<ul>
+<li><a href="https://help.obsidian.md/Editing+and+formatting/Basic+formatting_syntax">Offizielle Obsidian Format-Spezifikation</a></li>
+<li><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/konzept-hashmaps.md">Konzept: HashMaps &amp; HashSets in Rust</a></li>
+<li><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/wissenssystem-4-zettelkasten.md">Wissenssystem Stufe 4: Das Zettelkasten-System mit Backlinks &amp; Graph</a></li>
+<li><a href="file:///home/thorsten/Anfaenger/rust-projekte/src/wissenssystem-pkm-second-brain-app.md">Wissenssystem: Personal Knowledge Management App</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="wissenssystem-typo3-rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="wissenssystem-openwiki-rust.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="wissenssystem-typo3-rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="wissenssystem-openwiki-rust.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
