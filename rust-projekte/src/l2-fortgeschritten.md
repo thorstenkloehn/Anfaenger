@@ -18,137 +18,137 @@ Du kennst die Grundlagen — jetzt geht es um idiomatisches, testbares und wiede
 ## 📜 100+ Projektvorschläge
 
 ### 🔗 Iteratoren & Closures
-1. 📊 **Verkaufsdaten-Analyzer** (10-15 Lektionen) Miniprojekt
-2. 🎓 **Notenauswertung** (10-15 Lektionen) Miniprojekt
-3. 🧹 **Text-Bereiniger-Pipeline** (10-15 Lektionen) Miniprojekt
-4. 🛒 **Warenkorb-Filter** (10-15 Lektionen) Miniprojekt
-5. 🎯 **Highscore-Top-N** (10-15 Lektionen) Miniprojekt
-6. 📬 **E-Mail-Validator-Batch** (10-15 Lektionen) Miniprojekt
-7. 🧮 **Statistik-Toolkit** (10-15 Lektionen) Miniprojekt
-8. 🔁 **Duplikat-Entferner** (10-15 Lektionen) Miniprojekt
-9. 🧾 **Rechnungsposten-Gruppierer** (10-15 Lektionen) Miniprojekt
-10. 🎵 **Playlist-Shuffler mit Filter** (10-15 Lektionen) Miniprojekt
-11. 🏭 **Sensor-Ausreißer-Filter** (10-15 Lektionen) Miniprojekt
-12. 🧑‍🤝‍🧑 **Team-Einteiler (Closure als Kriterium)** (10-15 Lektionen) Miniprojekt
-13. 📚 **Bücher-nach-Autor-Gruppierung** (10-15 Lektionen) Miniprojekt
-14. 🌡️ **Temperaturreihen-Glätter** (10-15 Lektionen) Miniprojekt
-15. 🎮 **Highscore-Rang-Ermittler** (10-15 Lektionen) Miniprojekt
-16. 🧵 **Lazy-Pipeline-Demonstrator** (10-15 Lektionen) Miniprojekt
+1. 📊 **Verkaufsdaten-Analyzer** (nur die wichtigsten 10 Themen)
+2. 🎓 **Notenauswertung** (nur die wichtigsten 10 Themen)
+3. 🧹 **Text-Bereiniger-Pipeline** (nur die wichtigsten 10 Themen)
+4. 🛒 **Warenkorb-Filter** (nur die wichtigsten 10 Themen)
+5. 🎯 **Highscore-Top-N** (nur die wichtigsten 10 Themen)
+6. 📬 **E-Mail-Validator-Batch** (nur die wichtigsten 10 Themen)
+7. 🧮 **Statistik-Toolkit** (nur die wichtigsten 10 Themen)
+8. 🔁 **Duplikat-Entferner** (nur die wichtigsten 10 Themen)
+9. 🧾 **Rechnungsposten-Gruppierer** (nur die wichtigsten 10 Themen)
+10. 🎵 **Playlist-Shuffler mit Filter** (nur die wichtigsten 10 Themen)
+11. 🏭 **Sensor-Ausreißer-Filter** (nur die wichtigsten 10 Themen)
+12. 🧑‍🤝‍🧑 **Team-Einteiler (Closure als Kriterium)** (nur die wichtigsten 10 Themen)
+13. 📚 **Bücher-nach-Autor-Gruppierung** (nur die wichtigsten 10 Themen)
+14. 🌡️ **Temperaturreihen-Glätter** (nur die wichtigsten 10 Themen)
+15. 🎮 **Highscore-Rang-Ermittler** (nur die wichtigsten 10 Themen)
+16. 🧵 **Lazy-Pipeline-Demonstrator** (nur die wichtigsten 10 Themen)
 
 ### 🧪 Testing & Tooling
-17. 🧪 **Testgetriebene String-Utils** (10-15 Lektionen) Miniprojekt
-18. 📐 **Geometrie-Bibliothek mit Doctests** (10-15 Lektionen) Miniprojekt
-19. 🧮 **Getestete Mathe-Bibliothek** (10-15 Lektionen) Miniprojekt
-20. 🔤 **Parser mit Regressionstests** (10-15 Lektionen) Miniprojekt
-21. 🧹 **Clippy-Sauberes CLI-Tool** (10-15 Lektionen) Miniprojekt
-22. 🎨 **Rustfmt-Konventions-Check** (10-15 Lektionen) Miniprojekt
-23. 📖 **Dokumentierte Utility-Crate** (10-15 Lektionen) Miniprojekt
-24. 🧪 **Property-nahe Beispieltests** (10-15 Lektionen) Miniprojekt
-25. 🧯 **Panic-Verhalten testen** (10-15 Lektionen) Miniprojekt
-26. 🧮 **Testabdeckung erhöhen** (10-15 Lektionen) Miniprojekt
-27. 🗃️ **Test-Fixtures-Bibliothek** (10-15 Lektionen) Miniprojekt
-28. 🔍 **Integrationstests-Verzeichnis** (10-15 Lektionen) Miniprojekt
-29. 🧪 **Benchmark-Vorstufe mit `#[test]`** (10-15 Lektionen) Miniprojekt
-30. 🧾 **CI-Checkliste-Projekt** (10-15 Lektionen) Miniprojekt
+17. 🧪 **Testgetriebene String-Utils** (nur die wichtigsten 10 Themen)
+18. 📐 **Geometrie-Bibliothek mit Doctests** (nur die wichtigsten 10 Themen)
+19. 🧮 **Getestete Mathe-Bibliothek** (nur die wichtigsten 10 Themen)
+20. 🔤 **Parser mit Regressionstests** (nur die wichtigsten 10 Themen)
+21. 🧹 **Clippy-Sauberes CLI-Tool** (nur die wichtigsten 10 Themen)
+22. 🎨 **Rustfmt-Konventions-Check** (nur die wichtigsten 10 Themen)
+23. 📖 **Dokumentierte Utility-Crate** (nur die wichtigsten 10 Themen)
+24. 🧪 **Property-nahe Beispieltests** (nur die wichtigsten 10 Themen)
+25. 🧯 **Panic-Verhalten testen** (nur die wichtigsten 10 Themen)
+26. 🧮 **Testabdeckung erhöhen** (nur die wichtigsten 10 Themen)
+27. 🗃️ **Test-Fixtures-Bibliothek** (nur die wichtigsten 10 Themen)
+28. 🔍 **Integrationstests-Verzeichnis** (nur die wichtigsten 10 Themen)
+29. 🧪 **Benchmark-Vorstufe mit `#[test]`** (nur die wichtigsten 10 Themen)
+30. 🧾 **CI-Checkliste-Projekt** (nur die wichtigsten 10 Themen)
 
 ### 🧬 Generics, Traits & Typestate
-31. 🚪 **Typestate-Tür** (10-15 Lektionen) Miniprojekt
-32. 🌐 **Typestate-Netzwerkverbindung** (10-15 Lektionen) Miniprojekt
-33. 📦 **Generischer Stapel (Stack\<T\>)** (10-15 Lektionen) Miniprojekt
-34. 🔁 **Generische Warteschlange (Queue\<T\>)** (10-15 Lektionen) Miniprojekt
-35. 🧮 **Generischer Statistik-Container** (10-15 Lektionen) Miniprojekt
-36. 🧾 **Trait `Rechnung`** (10-15 Lektionen) Miniprojekt
-37. 🍔 **Typestate-Bestellung** (10-15 Lektionen) Miniprojekt
-38. 🔐 **Typestate-Login-Fluss** (10-15 Lektionen) Miniprojekt
-39. 📐 **Generisches Vergleichs-Utility** (10-15 Lektionen) Miniprojekt
-40. 🧵 **Trait `Formatierbar`** (10-15 Lektionen) Miniprojekt
-41. 🚦 **Typestate-Ampel** (10-15 Lektionen) Miniprojekt
-42. 🧮 **Generischer Cache\<K, V\>** (10-15 Lektionen) Miniprojekt
-43. 🏗️ **Builder mit Typestate** (10-15 Lektionen) Miniprojekt
-44. 🎒 **Generisches Inventar\<Item\>** (10-15 Lektionen) Miniprojekt
-45. 🔄 **Trait `Konvertierbar`** (10-15 Lektionen) Miniprojekt
-46. 📊 **Generische Aggregations-Funktion** (10-15 Lektionen) Miniprojekt
+31. 🚪 **Typestate-Tür** (nur die wichtigsten 10 Themen)
+32. 🌐 **Typestate-Netzwerkverbindung** (nur die wichtigsten 10 Themen)
+33. 📦 **Generischer Stapel (Stack\<T\>)** (nur die wichtigsten 10 Themen)
+34. 🔁 **Generische Warteschlange (Queue\<T\>)** (nur die wichtigsten 10 Themen)
+35. 🧮 **Generischer Statistik-Container** (nur die wichtigsten 10 Themen)
+36. 🧾 **Trait `Rechnung`** (nur die wichtigsten 10 Themen)
+37. 🍔 **Typestate-Bestellung** (nur die wichtigsten 10 Themen)
+38. 🔐 **Typestate-Login-Fluss** (nur die wichtigsten 10 Themen)
+39. 📐 **Generisches Vergleichs-Utility** (nur die wichtigsten 10 Themen)
+40. 🧵 **Trait `Formatierbar`** (nur die wichtigsten 10 Themen)
+41. 🚦 **Typestate-Ampel** (nur die wichtigsten 10 Themen)
+42. 🧮 **Generischer Cache\<K, V\>** (nur die wichtigsten 10 Themen)
+43. 🏗️ **Builder mit Typestate** (nur die wichtigsten 10 Themen)
+44. 🎒 **Generisches Inventar\<Item\>** (nur die wichtigsten 10 Themen)
+45. 🔄 **Trait `Konvertierbar`** (nur die wichtigsten 10 Themen)
+46. 📊 **Generische Aggregations-Funktion** (nur die wichtigsten 10 Themen)
 
 ### 🎭 Trait Objects vs. statische Generics
-47. 🎨 **Plugin-System für Textfilter** (10-15 Lektionen) Miniprojekt
-48. 🔊 **Audio-Effekt-Kette** (10-15 Lektionen) Miniprojekt
-49. 🖼️ **Formen-Renderer** (10-15 Lektionen) Miniprojekt
-50. 🧮 **Strategie-Muster: Sortieralgorithmen** (10-15 Lektionen) Miniprojekt
-51. 🔔 **Benachrichtigungs-Kanäle** (10-15 Lektionen) Miniprojekt
-52. 🧾 **Rabatt-Strategien** (10-15 Lektionen) Miniprojekt
-53. 🎮 **Gegner-KI-Verhalten** (10-15 Lektionen) Miniprojekt
-54. ⚙️ **Statisch vs. dynamisch: Performance-Vergleich** (10-15 Lektionen) Miniprojekt
-55. 🧩 **Middleware-Kette** (10-15 Lektionen) Miniprojekt
-56. 🎭 **Command-Pattern mit Trait Objects** (10-15 Lektionen) Miniprojekt
-57. 🧪 **Validierungs-Regelketten** (10-15 Lektionen) Miniprojekt
-58. 🖨️ **Export-Formate (Trait Object)** (10-15 Lektionen) Miniprojekt
-59. 🧮 **Generischer vs. dynamischer Taschenrechner** (10-15 Lektionen) Miniprojekt
-60. 🎨 **Theme-System** (10-15 Lektionen) Miniprojekt
+47. 🎨 **Plugin-System für Textfilter** (nur die wichtigsten 10 Themen)
+48. 🔊 **Audio-Effekt-Kette** (nur die wichtigsten 10 Themen)
+49. 🖼️ **Formen-Renderer** (nur die wichtigsten 10 Themen)
+50. 🧮 **Strategie-Muster: Sortieralgorithmen** (nur die wichtigsten 10 Themen)
+51. 🔔 **Benachrichtigungs-Kanäle** (nur die wichtigsten 10 Themen)
+52. 🧾 **Rabatt-Strategien** (nur die wichtigsten 10 Themen)
+53. 🎮 **Gegner-KI-Verhalten** (nur die wichtigsten 10 Themen)
+54. ⚙️ **Statisch vs. dynamisch: Performance-Vergleich** (nur die wichtigsten 10 Themen)
+55. 🧩 **Middleware-Kette** (nur die wichtigsten 10 Themen)
+56. 🎭 **Command-Pattern mit Trait Objects** (nur die wichtigsten 10 Themen)
+57. 🧪 **Validierungs-Regelketten** (nur die wichtigsten 10 Themen)
+58. 🖨️ **Export-Formate (Trait Object)** (nur die wichtigsten 10 Themen)
+59. 🧮 **Generischer vs. dynamischer Taschenrechner** (nur die wichtigsten 10 Themen)
+60. 🎨 **Theme-System** (nur die wichtigsten 10 Themen)
 
 ### 📦 Cargo Workspaces & Modularisierung
-61. 📦 **Multi-Crate CLI-Tool** (10-15 Lektionen) Miniprojekt
-62. 🧮 **Mathe-Bibliothek + Test-Crate** (10-15 Lektionen) Miniprojekt
-63. 🌐 **Geteilte Datentypen-Crate** (10-15 Lektionen) Miniprojekt
-64. 🏗️ **Plugin-Workspace** (10-15 Lektionen) Miniprojekt
-65. 🧾 **Rechnungssystem als Workspace** (10-15 Lektionen) Miniprojekt
-66. 📚 **Bibliotheksverwaltung als Workspace** (10-15 Lektionen) Miniprojekt
-67. 🔧 **Gemeinsame Utility-Crate** (10-15 Lektionen) Miniprojekt
-68. 🎮 **Spiel-Engine-Workspace** (10-15 Lektionen) Miniprojekt
-69. 🧪 **Workspace mit gemeinsamer Test-Utility-Crate** (10-15 Lektionen) Miniprojekt
-70. 📦 **Feature-Flag-Experiment im Workspace** (10-15 Lektionen) Miniprojekt
+61. 📦 **Multi-Crate CLI-Tool** (nur die wichtigsten 10 Themen)
+62. 🧮 **Mathe-Bibliothek + Test-Crate** (nur die wichtigsten 10 Themen)
+63. 🌐 **Geteilte Datentypen-Crate** (nur die wichtigsten 10 Themen)
+64. 🏗️ **Plugin-Workspace** (nur die wichtigsten 10 Themen)
+65. 🧾 **Rechnungssystem als Workspace** (nur die wichtigsten 10 Themen)
+66. 📚 **Bibliotheksverwaltung als Workspace** (nur die wichtigsten 10 Themen)
+67. 🔧 **Gemeinsame Utility-Crate** (nur die wichtigsten 10 Themen)
+68. 🎮 **Spiel-Engine-Workspace** (nur die wichtigsten 10 Themen)
+69. 🧪 **Workspace mit gemeinsamer Test-Utility-Crate** (nur die wichtigsten 10 Themen)
+70. 📦 **Feature-Flag-Experiment im Workspace** (nur die wichtigsten 10 Themen)
 
 ### 🧠 Smart Pointers (Box, Rc, Arc, RefCell)
-71. 🌳 **Interaktiver Ordnerbaum** (10-15 Lektionen) Miniprojekt
-72. 🔗 **Verkettete Liste (Box\<T\>)** (10-15 Lektionen) Miniprojekt
-73. 🕸️ **Beobachter-Muster mit `Rc`** (10-15 Lektionen) Miniprojekt
-74. 🧮 **Geteilter Zähler** (10-15 Lektionen) Miniprojekt
-75. 🌲 **Binärbaum mit `Box`** (10-15 Lektionen) Miniprojekt
-76. 🧾 **Geteilte Konfiguration** (10-15 Lektionen) Miniprojekt
-77. 🔄 **Zyklen-Falle demonstrieren** (10-15 Lektionen) Miniprojekt
-78. 🧵 **Vorbereitung auf Concurrency: `Arc\<Mutex\<T\>\>`** (10-15 Lektionen) Miniprojekt
-79. 🗂️ **Geteilter Cache zwischen Komponenten** (10-15 Lektionen) Miniprojekt
-80. 🧩 **Graph mit `Rc`-Kanten** (10-15 Lektionen) Miniprojekt
-81. 📋 **Undo-Historie mit `Box`** (10-15 Lektionen) Miniprojekt
-82. 🌐 **Geteilter Zustand in einem Text-Adventure** (10-15 Lektionen) Miniprojekt
+71. 🌳 **Interaktiver Ordnerbaum** (nur die wichtigsten 10 Themen)
+72. 🔗 **Verkettete Liste (Box\<T\>)** (nur die wichtigsten 10 Themen)
+73. 🕸️ **Beobachter-Muster mit `Rc`** (nur die wichtigsten 10 Themen)
+74. 🧮 **Geteilter Zähler** (nur die wichtigsten 10 Themen)
+75. 🌲 **Binärbaum mit `Box`** (nur die wichtigsten 10 Themen)
+76. 🧾 **Geteilte Konfiguration** (nur die wichtigsten 10 Themen)
+77. 🔄 **Zyklen-Falle demonstrieren** (nur die wichtigsten 10 Themen)
+78. 🧵 **Vorbereitung auf Concurrency: `Arc\<Mutex\<T\>\>`** (nur die wichtigsten 10 Themen)
+79. 🗂️ **Geteilter Cache zwischen Komponenten** (nur die wichtigsten 10 Themen)
+80. 🧩 **Graph mit `Rc`-Kanten** (nur die wichtigsten 10 Themen)
+81. 📋 **Undo-Historie mit `Box`** (nur die wichtigsten 10 Themen)
+82. 🌐 **Geteilter Zustand in einem Text-Adventure** (nur die wichtigsten 10 Themen)
 
 ### 🧩 Kombinierte Profi-Projekte
-83. 📚 **Bibliotheks-Engine** (10-15 Lektionen) Miniprojekt
-84. 🎮 **Modulares Spiele-Framework** (10-15 Lektionen) Miniprojekt
-85. 🧾 **Buchhaltungs-Bibliothek** (10-15 Lektionen) Miniprojekt
-86. 🔌 **Erweiterbares Export-System** (10-15 Lektionen) Miniprojekt
-87. 🧠 **Zustandsmaschine mit Typestate + Smart Pointers** (10-15 Lektionen) Miniprojekt
-88. 🧪 **TDD-Iterator-Bibliothek** (10-15 Lektionen) Miniprojekt
-89. 🎭 **Simulierte Event-Bus-Architektur** (10-15 Lektionen) Miniprojekt
-90. 📦 **Konfigurierbare Pipeline-Bibliothek** (10-15 Lektionen) Miniprojekt
-91. 🌳 **Dateisystem-Simulator** (10-15 Lektionen) Miniprojekt
-92. 🧮 **Generischer Event-Aggregator** (10-15 Lektionen) Miniprojekt
-93. 🎨 **Plugin-fähiger Text-Editor (Kern)** (10-15 Lektionen) Miniprojekt
-94. 🔐 **Typestate-Auth-Bibliothek** (10-15 Lektionen) Miniprojekt
-95. 🧵 **Geteilter Konfigurationsspeicher** (10-15 Lektionen) Miniprojekt
-96. 🏗️ **Builder-Bibliothek mit Trait-Bounds** (10-15 Lektionen) Miniprojekt
-97. 🧾 **Rechnungs-Pipeline** (10-15 Lektionen) Miniprojekt
-98. 🎮 **Highscore-Service als Mini-Crate** (10-15 Lektionen) Miniprojekt
-99. 🧩 **Middleware-Framework (Mini)** (10-15 Lektionen) Miniprojekt
-100. 🌲 **Verzeichnisbaum-Exporter** (10-15 Lektionen) Miniprojekt
-101. 🧠 **Geteilte Statistik-Engine** (10-15 Lektionen) Miniprojekt
-102. 📦 **Mini-Paketverwaltung (Lernprojekt)** (10-15 Lektionen) Miniprojekt
+83. 📚 **Bibliotheks-Engine** (nur die wichtigsten 10 Themen)
+84. 🎮 **Modulares Spiele-Framework** (nur die wichtigsten 10 Themen)
+85. 🧾 **Buchhaltungs-Bibliothek** (nur die wichtigsten 10 Themen)
+86. 🔌 **Erweiterbares Export-System** (nur die wichtigsten 10 Themen)
+87. 🧠 **Zustandsmaschine mit Typestate + Smart Pointers** (nur die wichtigsten 10 Themen)
+88. 🧪 **TDD-Iterator-Bibliothek** (nur die wichtigsten 10 Themen)
+89. 🎭 **Simulierte Event-Bus-Architektur** (nur die wichtigsten 10 Themen)
+90. 📦 **Konfigurierbare Pipeline-Bibliothek** (nur die wichtigsten 10 Themen)
+91. 🌳 **Dateisystem-Simulator** (nur die wichtigsten 10 Themen)
+92. 🧮 **Generischer Event-Aggregator** (nur die wichtigsten 10 Themen)
+93. 🎨 **Plugin-fähiger Text-Editor (Kern)** (nur die wichtigsten 10 Themen)
+94. 🔐 **Typestate-Auth-Bibliothek** (nur die wichtigsten 10 Themen)
+95. 🧵 **Geteilter Konfigurationsspeicher** (nur die wichtigsten 10 Themen)
+96. 🏗️ **Builder-Bibliothek mit Trait-Bounds** (nur die wichtigsten 10 Themen)
+97. 🧾 **Rechnungs-Pipeline** (nur die wichtigsten 10 Themen)
+98. 🎮 **Highscore-Service als Mini-Crate** (nur die wichtigsten 10 Themen)
+99. 🧩 **Middleware-Framework (Mini)** (nur die wichtigsten 10 Themen)
+100. 🌲 **Verzeichnisbaum-Exporter** (nur die wichtigsten 10 Themen)
+101. 🧠 **Geteilte Statistik-Engine** (nur die wichtigsten 10 Themen)
+102. 📦 **Mini-Paketverwaltung (Lernprojekt)** (nur die wichtigsten 10 Themen)
 
 ### 💼 Praxisnahe Business- & Firmenprojekte
-103. 🧰 **Interne CLI für Deployment-Skripte** (10-15 Lektionen) Miniprojekt
-104. 📜 **Git-Commit-Linter (Conventional Commits)** (10-15 Lektionen) Miniprojekt
-105. 📝 **Changelog-Generator** (10-15 Lektionen) Miniprojekt
-106. 🔍 **Lizenz-Compliance-Checker für Dependencies** (10-15 Lektionen) Miniprojekt
-107. 📦 **Generische Retry/Backoff-Bibliothek** (10-15 Lektionen) Miniprojekt
-108. 🚦 **Generische Rate-Limiter-Bibliothek** (10-15 Lektionen) Miniprojekt
-109. 🧪 **Testdaten-Generator-Bibliothek** (10-15 Lektionen) Miniprojekt
-110. 🔌 **Generisches API-Client-SDK** (10-15 Lektionen) Miniprojekt
-111. 🗃️ **Interne Caching-Schicht (generisch)** (10-15 Lektionen) Miniprojekt
-112. 🧩 **Plugin-System für ein Build-Tool** (10-15 Lektionen) Miniprojekt
-113. 📊 **Log-Parser-Bibliothek (intern)** (10-15 Lektionen) Miniprojekt
-114. 🧮 **Feature-Flag-SDK (Client-Bibliothek)** (10-15 Lektionen) Miniprojekt
-115. 🧾 **Config-Validierungs-Tool** (10-15 Lektionen) Miniprojekt
-116. 🏗️ **Interner Code-Qualitäts-Checker** (10-15 Lektionen) Miniprojekt
-117. 📦 **Monorepo-Build-Orchestrator (Workspace)** (10-15 Lektionen) Miniprojekt
-118. 🔐 **Interne Secrets-Zugriffsschicht (Typestate)** (10-15 Lektionen) Miniprojekt
-119. 🧵 **Generischer Event-Dispatcher** (10-15 Lektionen) Miniprojekt
-120. 📚 **Interne Dokumentations-Linter-Bibliothek** (10-15 Lektionen) Miniprojekt
+103. 🧰 **Interne CLI für Deployment-Skripte** (nur die wichtigsten 10 Themen)
+104. 📜 **Git-Commit-Linter (Conventional Commits)** (nur die wichtigsten 10 Themen)
+105. 📝 **Changelog-Generator** (nur die wichtigsten 10 Themen)
+106. 🔍 **Lizenz-Compliance-Checker für Dependencies** (nur die wichtigsten 10 Themen)
+107. 📦 **Generische Retry/Backoff-Bibliothek** (nur die wichtigsten 10 Themen)
+108. 🚦 **Generische Rate-Limiter-Bibliothek** (nur die wichtigsten 10 Themen)
+109. 🧪 **Testdaten-Generator-Bibliothek** (nur die wichtigsten 10 Themen)
+110. 🔌 **Generisches API-Client-SDK** (nur die wichtigsten 10 Themen)
+111. 🗃️ **Interne Caching-Schicht (generisch)** (nur die wichtigsten 10 Themen)
+112. 🧩 **Plugin-System für ein Build-Tool** (nur die wichtigsten 10 Themen)
+113. 📊 **Log-Parser-Bibliothek (intern)** (nur die wichtigsten 10 Themen)
+114. 🧮 **Feature-Flag-SDK (Client-Bibliothek)** (nur die wichtigsten 10 Themen)
+115. 🧾 **Config-Validierungs-Tool** (nur die wichtigsten 10 Themen)
+116. 🏗️ **Interner Code-Qualitäts-Checker** (nur die wichtigsten 10 Themen)
+117. 📦 **Monorepo-Build-Orchestrator (Workspace)** (nur die wichtigsten 10 Themen)
+118. 🔐 **Interne Secrets-Zugriffsschicht (Typestate)** (nur die wichtigsten 10 Themen)
+119. 🧵 **Generischer Event-Dispatcher** (nur die wichtigsten 10 Themen)
+120. 📚 **Interne Dokumentations-Linter-Bibliothek** (nur die wichtigsten 10 Themen)

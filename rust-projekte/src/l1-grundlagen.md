@@ -20,143 +20,143 @@ In diesem Level lernst du die Bausteine, ohne die kein Rust-Programm auskommt. J
 ## 📜 100+ Projektvorschläge
 
 ### 🎮 Spiele & Simulationen
-1. 🎲 **Zahlenraten mit Statistik** (5-10 Lektionen) Miniprojekt
-2. ✊ **Schere-Stein-Papier** (5-10 Lektionen) Miniprojekt
-3. 🎯 **Würfelduell** (5-10 Lektionen) Miniprojekt
-4. 🕹️ **Tic-Tac-Toe (Konsole)** (5-10 Lektionen) Miniprojekt
-5. ❌⭕ **Vier-Gewinnt (Konsole)** (5-10 Lektionen) Miniprojekt
-6. 🃏 **Kartenwert-Rechner (Black Jack)** (5-10 Lektionen) Miniprojekt
-7. 🐍 **Text-Schlange (Positions-Tracker)** (5-10 Lektionen) Miniprojekt
-8. 🏹 **Bogenschießen-Simulator** (5-10 Lektionen) Miniprojekt
-9. 🐉 **Text-RPG-Kampf** (5-10 Lektionen) Miniprojekt
-10. 🎰 **Einarmiger Bandit** (5-10 Lektionen) Miniprojekt
-11. 🧩 **Zahlen-Sudoku-Prüfer (Zeile)** (5-10 Lektionen) Miniprojekt
-12. 🏁 **Rennspiel-Simulator (Text)** (5-10 Lektionen) Miniprojekt
-13. 🎳 **Bowling-Punkte-Rechner** (5-10 Lektionen) Miniprojekt
+1. 🎲 **Zahlenraten mit Statistik** (nur die wichtigsten 10 Themen)
+2. ✊ **Schere-Stein-Papier** (nur die wichtigsten 10 Themen)
+3. 🎯 **Würfelduell** (nur die wichtigsten 10 Themen)
+4. 🕹️ **Tic-Tac-Toe (Konsole)** (nur die wichtigsten 10 Themen)
+5. ❌⭕ **Vier-Gewinnt (Konsole)** (nur die wichtigsten 10 Themen)
+6. 🃏 **Kartenwert-Rechner (Black Jack)** (nur die wichtigsten 10 Themen)
+7. 🐍 **Text-Schlange (Positions-Tracker)** (nur die wichtigsten 10 Themen)
+8. 🏹 **Bogenschießen-Simulator** (nur die wichtigsten 10 Themen)
+9. 🐉 **Text-RPG-Kampf** (nur die wichtigsten 10 Themen)
+10. 🎰 **Einarmiger Bandit** (nur die wichtigsten 10 Themen)
+11. 🧩 **Zahlen-Sudoku-Prüfer (Zeile)** (nur die wichtigsten 10 Themen)
+12. 🏁 **Rennspiel-Simulator (Text)** (nur die wichtigsten 10 Themen)
+13. 🎳 **Bowling-Punkte-Rechner** (nur die wichtigsten 10 Themen)
 
 ### 📋 Verwaltungstools
-14. 📇 **Kontaktverwaltung** (5-10 Lektionen) Miniprojekt
-15. 📝 **To-Do-Liste** (5-10 Lektionen) Miniprojekt
-16. 🍕 **Pizza-Bestellsystem** (5-10 Lektionen) Miniprojekt
-17. 🚗 **Fahrzeug-Inventar** (5-10 Lektionen) Miniprojekt
-18. 🐶 **Haustier-Simulator** (5-10 Lektionen) Miniprojekt
-19. 📚 **Mini-Bibliothek** (5-10 Lektionen) Miniprojekt
-20. ⚔️ **Rollenspiel-Charakter** (5-10 Lektionen) Miniprojekt
-21. 🏦 **Erweitertes Bankkonto** (5-10 Lektionen) Miniprojekt
-22. 🎓 **Notenverwaltung** (5-10 Lektionen) Miniprojekt
-23. 🧾 **Rechnungsgenerator** (5-10 Lektionen) Miniprojekt
-24. 🏠 **Immobilienverwaltung** (5-10 Lektionen) Miniprojekt
-25. 🧑‍🍳 **Rezeptverwaltung** (5-10 Lektionen) Miniprojekt
-26. 🚲 **Fuhrpark-Verwaltung** (5-10 Lektionen) Miniprojekt
-27. 🎫 **Kino-Reservierung** (5-10 Lektionen) Miniprojekt
-28. 🐾 **Tierheim-Verwaltung** (5-10 Lektionen) Miniprojekt
-29. 👔 **Mitarbeiterverwaltung** (5-10 Lektionen) Miniprojekt
-30. 🌱 **Pflanzenpflege-Tracker** (5-10 Lektionen) Miniprojekt
+14. 📇 **Kontaktverwaltung** (nur die wichtigsten 10 Themen)
+15. 📝 **To-Do-Liste** (nur die wichtigsten 10 Themen)
+16. 🍕 **Pizza-Bestellsystem** (nur die wichtigsten 10 Themen)
+17. 🚗 **Fahrzeug-Inventar** (nur die wichtigsten 10 Themen)
+18. 🐶 **Haustier-Simulator** (nur die wichtigsten 10 Themen)
+19. 📚 **Mini-Bibliothek** (nur die wichtigsten 10 Themen)
+20. ⚔️ **Rollenspiel-Charakter** (nur die wichtigsten 10 Themen)
+21. 🏦 **Erweitertes Bankkonto** (nur die wichtigsten 10 Themen)
+22. 🎓 **Notenverwaltung** (nur die wichtigsten 10 Themen)
+23. 🧾 **Rechnungsgenerator** (nur die wichtigsten 10 Themen)
+24. 🏠 **Immobilienverwaltung** (nur die wichtigsten 10 Themen)
+25. 🧑‍🍳 **Rezeptverwaltung** (nur die wichtigsten 10 Themen)
+26. 🚲 **Fuhrpark-Verwaltung** (nur die wichtigsten 10 Themen)
+27. 🎫 **Kino-Reservierung** (nur die wichtigsten 10 Themen)
+28. 🐾 **Tierheim-Verwaltung** (nur die wichtigsten 10 Themen)
+29. 👔 **Mitarbeiterverwaltung** (nur die wichtigsten 10 Themen)
+30. 🌱 **Pflanzenpflege-Tracker** (nur die wichtigsten 10 Themen)
 
 ### 🔢 Rechner & Konverter
-31. 🧮 **Taschenrechner (Grundrechenarten)** (5-10 Lektionen) Miniprojekt
-32. 🌡️ **Temperatur-Umrechner** (5-10 Lektionen) Miniprojekt
-33. 💱 **Währungsumrechner (feste Kurse)** (5-10 Lektionen) Miniprojekt
-34. 📏 **Einheiten-Umrechner (Länge)** (5-10 Lektionen) Miniprojekt
-35. 💰 **Zinsrechner (Zinseszins)** (5-10 Lektionen) Miniprojekt
-36. 🏠 **Kredit-Tilgungsplan** (5-10 Lektionen) Miniprojekt
-37. 🧾 **Trinkgeld-Rechner** (5-10 Lektionen) Miniprojekt
-38. ⚖️ **BMI-Rechner** (5-10 Lektionen) Miniprojekt
-39. 🔋 **Stromverbrauchsrechner** (5-10 Lektionen) Miniprojekt
-40. 🌍 **CO2-Rechner (Reisen)** (5-10 Lektionen) Miniprojekt
-41. 📐 **Geometrie-Rechner** (5-10 Lektionen) Miniprojekt
-42. 🎂 **Alter-in-Tagen-Rechner** (5-10 Lektionen) Miniprojekt
-43. 🛒 **Rabatt-Rechner** (5-10 Lektionen) Miniprojekt
-44. ⏱️ **Pace-Rechner (Laufsport)** (5-10 Lektionen) Miniprojekt
-45. 🧮 **Fakultät & Fibonacci** (5-10 Lektionen) Miniprojekt
+31. 🧮 **Taschenrechner (Grundrechenarten)** (nur die wichtigsten 10 Themen)
+32. 🌡️ **Temperatur-Umrechner** (nur die wichtigsten 10 Themen)
+33. 💱 **Währungsumrechner (feste Kurse)** (nur die wichtigsten 10 Themen)
+34. 📏 **Einheiten-Umrechner (Länge)** (nur die wichtigsten 10 Themen)
+35. 💰 **Zinsrechner (Zinseszins)** (nur die wichtigsten 10 Themen)
+36. 🏠 **Kredit-Tilgungsplan** (nur die wichtigsten 10 Themen)
+37. 🧾 **Trinkgeld-Rechner** (nur die wichtigsten 10 Themen)
+38. ⚖️ **BMI-Rechner** (nur die wichtigsten 10 Themen)
+39. 🔋 **Stromverbrauchsrechner** (nur die wichtigsten 10 Themen)
+40. 🌍 **CO2-Rechner (Reisen)** (nur die wichtigsten 10 Themen)
+41. 📐 **Geometrie-Rechner** (nur die wichtigsten 10 Themen)
+42. 🎂 **Alter-in-Tagen-Rechner** (nur die wichtigsten 10 Themen)
+43. 🛒 **Rabatt-Rechner** (nur die wichtigsten 10 Themen)
+44. ⏱️ **Pace-Rechner (Laufsport)** (nur die wichtigsten 10 Themen)
+45. 🧮 **Fakultät & Fibonacci** (nur die wichtigsten 10 Themen)
 
 ### 📚 Text- & Wortspiele
-46. 🔤 **Palindrom-Checker** (5-10 Lektionen) Miniprojekt
-47. 🔀 **Anagramm-Finder** (5-10 Lektionen) Miniprojekt
-48. 🔒 **Cäsar-Verschlüsselung** (5-10 Lektionen) Miniprojekt
-49. 📡 **Morsecode-Übersetzer** (5-10 Lektionen) Miniprojekt
-50. 🔁 **ROT13-Encoder** (5-10 Lektionen) Miniprojekt
-51. 🪢 **Wort-Umkehrer** (5-10 Lektionen) Miniprojekt
-52. 🎯 **Galgenmännchen (Konsole)** (5-10 Lektionen) Miniprojekt
-53. 📊 **Textstatistik-Tool** (5-10 Lektionen) Miniprojekt
-54. 🧵 **Zeilen-Umbrecher** (5-10 Lektionen) Miniprojekt
-55. 🔍 **Wort-Häufigkeits-Zähler** (5-10 Lektionen) Miniprojekt
-56. ✂️ **Text-Zensor** (5-10 Lektionen) Miniprojekt
-57. 🧾 **Quittungs-Formatter** (5-10 Lektionen) Miniprojekt
-58. 🗣️ **Silben-Zähler (einfach)** (5-10 Lektionen) Miniprojekt
+46. 🔤 **Palindrom-Checker** (nur die wichtigsten 10 Themen)
+47. 🔀 **Anagramm-Finder** (nur die wichtigsten 10 Themen)
+48. 🔒 **Cäsar-Verschlüsselung** (nur die wichtigsten 10 Themen)
+49. 📡 **Morsecode-Übersetzer** (nur die wichtigsten 10 Themen)
+50. 🔁 **ROT13-Encoder** (nur die wichtigsten 10 Themen)
+51. 🪢 **Wort-Umkehrer** (nur die wichtigsten 10 Themen)
+52. 🎯 **Galgenmännchen (Konsole)** (nur die wichtigsten 10 Themen)
+53. 📊 **Textstatistik-Tool** (nur die wichtigsten 10 Themen)
+54. 🧵 **Zeilen-Umbrecher** (nur die wichtigsten 10 Themen)
+55. 🔍 **Wort-Häufigkeits-Zähler** (nur die wichtigsten 10 Themen)
+56. ✂️ **Text-Zensor** (nur die wichtigsten 10 Themen)
+57. 🧾 **Quittungs-Formatter** (nur die wichtigsten 10 Themen)
+58. 🗣️ **Silben-Zähler (einfach)** (nur die wichtigsten 10 Themen)
 
 ### 🗂️ Datenspeicher mit HashMap & Vec
-59. 📖 **Wörterbuch-Tool** (5-10 Lektionen) Miniprojekt
-60. 🗳️ **Umfrage-Auswertung** (5-10 Lektionen) Miniprojekt
-61. 🛍️ **Einkaufsliste mit Mengen** (5-10 Lektionen) Miniprojekt
-62. 📦 **Lagerbestand-Tracker** (5-10 Lektionen) Miniprojekt
-63. 🎵 **Playlist-Verwaltung** (5-10 Lektionen) Miniprojekt
-64. 🧳 **Reise-Packliste** (5-10 Lektionen) Miniprojekt
-65. 🏆 **Highscore-Liste** (5-10 Lektionen) Miniprojekt
-66. 📅 **Terminplaner (Tagesliste)** (5-10 Lektionen) Miniprojekt
-67. 🧑‍🤝‍🧑 **Namens-Zufallsgenerator** (5-10 Lektionen) Miniprojekt
-68. 🗳️ **Wahlrechner (Sitzverteilung, vereinfacht)** (5-10 Lektionen) Miniprojekt
-69. 📮 **Postleitzahlen-Lookup** (5-10 Lektionen) Miniprojekt
-70. 🔑 **Passwort-Tresor (Klartext-Demo)** (5-10 Lektionen) Miniprojekt
+59. 📖 **Wörterbuch-Tool** (nur die wichtigsten 10 Themen)
+60. 🗳️ **Umfrage-Auswertung** (nur die wichtigsten 10 Themen)
+61. 🛍️ **Einkaufsliste mit Mengen** (nur die wichtigsten 10 Themen)
+62. 📦 **Lagerbestand-Tracker** (nur die wichtigsten 10 Themen)
+63. 🎵 **Playlist-Verwaltung** (nur die wichtigsten 10 Themen)
+64. 🧳 **Reise-Packliste** (nur die wichtigsten 10 Themen)
+65. 🏆 **Highscore-Liste** (nur die wichtigsten 10 Themen)
+66. 📅 **Terminplaner (Tagesliste)** (nur die wichtigsten 10 Themen)
+67. 🧑‍🤝‍🧑 **Namens-Zufallsgenerator** (nur die wichtigsten 10 Themen)
+68. 🗳️ **Wahlrechner (Sitzverteilung, vereinfacht)** (nur die wichtigsten 10 Themen)
+69. 📮 **Postleitzahlen-Lookup** (nur die wichtigsten 10 Themen)
+70. 🔑 **Passwort-Tresor (Klartext-Demo)** (nur die wichtigsten 10 Themen)
 
 ### ❓ Fehlerbehandlung im Fokus (Option/Result)
-71. 🧮 **Sicherer Taschenrechner** (5-10 Lektionen) Miniprojekt
-72. 📥 **Robuster Zahlen-Parser** (5-10 Lektionen) Miniprojekt
-73. 🔍 **Sichere Array-Suche** (5-10 Lektionen) Miniprojekt
-74. 🧾 **Config-Werte-Lookup** (5-10 Lektionen) Miniprojekt
-75. 🎟️ **Ticket-Validierung** (5-10 Lektionen) Miniprojekt
-76. 🧯 **Sicherer Datei-Zeilen-Zähler (simuliert)** (5-10 Lektionen) Miniprojekt
-77. 🧮 **Verschachtelte Berechnung mit `?`** (5-10 Lektionen) Miniprojekt
-78. 🔢 **Bereichsprüfung mit `Result`** (5-10 Lektionen) Miniprojekt
+71. 🧮 **Sicherer Taschenrechner** (nur die wichtigsten 10 Themen)
+72. 📥 **Robuster Zahlen-Parser** (nur die wichtigsten 10 Themen)
+73. 🔍 **Sichere Array-Suche** (nur die wichtigsten 10 Themen)
+74. 🧾 **Config-Werte-Lookup** (nur die wichtigsten 10 Themen)
+75. 🎟️ **Ticket-Validierung** (nur die wichtigsten 10 Themen)
+76. 🧯 **Sicherer Datei-Zeilen-Zähler (simuliert)** (nur die wichtigsten 10 Themen)
+77. 🧮 **Verschachtelte Berechnung mit `?`** (nur die wichtigsten 10 Themen)
+78. 🔢 **Bereichsprüfung mit `Result`** (nur die wichtigsten 10 Themen)
 
 ### 🧠 Ownership & Borrowing im Fokus
-79. 🎒 **Inventarsystem** (5-10 Lektionen) Miniprojekt
-80. 📋 **Aufgaben-Kopierer vs. Verschieber** (5-10 Lektionen) Miniprojekt
-81. 🧺 **Wäschekorb-Sortierer** (5-10 Lektionen) Miniprojekt
-82. 🧠 **Größter-Wert-Finder (per Referenz)** (5-10 Lektionen) Miniprojekt
-83. 🔗 **Verkettete Namensliste** (5-10 Lektionen) Miniprojekt
-84. 🧮 **Statistik ohne Kopie** (5-10 Lektionen) Miniprojekt
+79. 🎒 **Inventarsystem** (nur die wichtigsten 10 Themen)
+80. 📋 **Aufgaben-Kopierer vs. Verschieber** (nur die wichtigsten 10 Themen)
+81. 🧺 **Wäschekorb-Sortierer** (nur die wichtigsten 10 Themen)
+82. 🧠 **Größter-Wert-Finder (per Referenz)** (nur die wichtigsten 10 Themen)
+83. 🔗 **Verkettete Namensliste** (nur die wichtigsten 10 Themen)
+84. 🧮 **Statistik ohne Kopie** (nur die wichtigsten 10 Themen)
 
 ### 📁 Modulsystem im Fokus
-85. 📁 **Modulares Adressbuch** (5-10 Lektionen) Miniprojekt
-86. 🧮 **Rechenmodul-Bibliothek** (5-10 Lektionen) Miniprojekt
-87. 🏪 **Modularer Kassenautomat** (5-10 Lektionen) Miniprojekt
-88. 🗂️ **Mehrdatei-Bibliotheksverwaltung** (5-10 Lektionen) Miniprojekt
-89. 🎮 **Modulares Text-Adventure** (5-10 Lektionen) Miniprojekt
-90. 🧾 **Rechnungssystem mit Modulen** (5-10 Lektionen) Miniprojekt
+85. 📁 **Modulares Adressbuch** (nur die wichtigsten 10 Themen)
+86. 🧮 **Rechenmodul-Bibliothek** (nur die wichtigsten 10 Themen)
+87. 🏪 **Modularer Kassenautomat** (nur die wichtigsten 10 Themen)
+88. 🗂️ **Mehrdatei-Bibliotheksverwaltung** (nur die wichtigsten 10 Themen)
+89. 🎮 **Modulares Text-Adventure** (nur die wichtigsten 10 Themen)
+90. 🧾 **Rechnungssystem mit Modulen** (nur die wichtigsten 10 Themen)
 
 ### 🔀 Pattern Matching im Fokus
-91. 🌦️ **Wetterstation** (5-10 Lektionen) Miniprojekt
-92. 🚦 **Ampelsteuerung (Simulation)** (5-10 Lektionen) Miniprojekt
-93. 🎭 **Stimmungs-Simulator** (5-10 Lektionen) Miniprojekt
-94. 🃏 **Kartenfarbe-Auswerter** (5-10 Lektionen) Miniprojekt
-95. 🧭 **Richtungs-Navigator** (5-10 Lektionen) Miniprojekt
-96. 🏅 **Medaillen-Vergabe** (5-10 Lektionen) Miniprojekt
+91. 🌦️ **Wetterstation** (nur die wichtigsten 10 Themen)
+92. 🚦 **Ampelsteuerung (Simulation)** (nur die wichtigsten 10 Themen)
+93. 🎭 **Stimmungs-Simulator** (nur die wichtigsten 10 Themen)
+94. 🃏 **Kartenfarbe-Auswerter** (nur die wichtigsten 10 Themen)
+95. 🧭 **Richtungs-Navigator** (nur die wichtigsten 10 Themen)
+96. 🏅 **Medaillen-Vergabe** (nur die wichtigsten 10 Themen)
 
 ### 🎲 Variablen & Kontrollfluss im Fokus
-97. 🔢 **Primzahlen-Sieb (einfach)** (5-10 Lektionen) Miniprojekt
-98. 🎯 **FizzBuzz Deluxe** (5-10 Lektionen) Miniprojekt
-99. 🌡️ **Temperatur-Logger (Tagesverlauf)** (5-10 Lektionen) Miniprojekt
-100. 🧱 **Pyramiden-Zeichner (ASCII)** (5-10 Lektionen) Miniprojekt
-101. 🔁 **Collatz-Folge-Rechner** (5-10 Lektionen) Miniprojekt
-102. 🧊 **Eiswürfel-Schmelz-Simulator** (5-10 Lektionen) Miniprojekt
+97. 🔢 **Primzahlen-Sieb (einfach)** (nur die wichtigsten 10 Themen)
+98. 🎯 **FizzBuzz Deluxe** (nur die wichtigsten 10 Themen)
+99. 🌡️ **Temperatur-Logger (Tagesverlauf)** (nur die wichtigsten 10 Themen)
+100. 🧱 **Pyramiden-Zeichner (ASCII)** (nur die wichtigsten 10 Themen)
+101. 🔁 **Collatz-Folge-Rechner** (nur die wichtigsten 10 Themen)
+102. 🧊 **Eiswürfel-Schmelz-Simulator** (nur die wichtigsten 10 Themen)
 
 ### 💼 Praxisnahe Business- & Firmenprojekte
-103. 🧾 **Spesenabrechnung-Tool** (5-10 Lektionen) Miniprojekt
-104. 📋 **Onboarding-Checkliste** (5-10 Lektionen) Miniprojekt
-105. 🕒 **Zeiterfassungs-Tool** (5-10 Lektionen) Miniprojekt
-106. 📞 **Support-Ticket-Logger** (5-10 Lektionen) Miniprojekt
-107. 📅 **Meetingraum-Buchungssystem** (5-10 Lektionen) Miniprojekt
-108. 📦 **Lagerbestands-Zähler (Wareneingang)** (5-10 Lektionen) Miniprojekt
-109. 🧑‍💼 **Personalakte-Verwaltung** (5-10 Lektionen) Miniprojekt
-110. 🚚 **Lieferschein-Verwaltung** (5-10 Lektionen) Miniprojekt
-111. 🏢 **Büromaterial-Bestellliste** (5-10 Lektionen) Miniprojekt
-112. 🚗 **Firmenwagen-Buchungssystem** (5-10 Lektionen) Miniprojekt
-113. 📊 **Urlaubsantrag-Tracker** (5-10 Lektionen) Miniprojekt
-114. 🎫 **Helpdesk-Prioritäten-Queue** (5-10 Lektionen) Miniprojekt
-115. 🧑‍🤝‍🧑 **Kundenanfragen-Verwaltung** (5-10 Lektionen) Miniprojekt
-116. 📬 **Interne Ankündigungs-Verteilerliste** (5-10 Lektionen) Miniprojekt
-117. 🅿️ **Parkplatz-Vergabesystem** (5-10 Lektionen) Miniprojekt
-118. 🧑‍🍳 **Kantinen-Bestellsystem** (5-10 Lektionen) Miniprojekt
-119. 🧾 **Reisekostenabrechnung** (5-10 Lektionen) Miniprojekt
-120. 📋 **Schichtplan-Verwaltung** (5-10 Lektionen) Miniprojekt
+103. 🧾 **Spesenabrechnung-Tool** (nur die wichtigsten 10 Themen)
+104. 📋 **Onboarding-Checkliste** (nur die wichtigsten 10 Themen)
+105. 🕒 **Zeiterfassungs-Tool** (nur die wichtigsten 10 Themen)
+106. 📞 **Support-Ticket-Logger** (nur die wichtigsten 10 Themen)
+107. 📅 **Meetingraum-Buchungssystem** (nur die wichtigsten 10 Themen)
+108. 📦 **Lagerbestands-Zähler (Wareneingang)** (nur die wichtigsten 10 Themen)
+109. 🧑‍💼 **Personalakte-Verwaltung** (nur die wichtigsten 10 Themen)
+110. 🚚 **Lieferschein-Verwaltung** (nur die wichtigsten 10 Themen)
+111. 🏢 **Büromaterial-Bestellliste** (nur die wichtigsten 10 Themen)
+112. 🚗 **Firmenwagen-Buchungssystem** (nur die wichtigsten 10 Themen)
+113. 📊 **Urlaubsantrag-Tracker** (nur die wichtigsten 10 Themen)
+114. 🎫 **Helpdesk-Prioritäten-Queue** (nur die wichtigsten 10 Themen)
+115. 🧑‍🤝‍🧑 **Kundenanfragen-Verwaltung** (nur die wichtigsten 10 Themen)
+116. 📬 **Interne Ankündigungs-Verteilerliste** (nur die wichtigsten 10 Themen)
+117. 🅿️ **Parkplatz-Vergabesystem** (nur die wichtigsten 10 Themen)
+118. 🧑‍🍳 **Kantinen-Bestellsystem** (nur die wichtigsten 10 Themen)
+119. 🧾 **Reisekostenabrechnung** (nur die wichtigsten 10 Themen)
+120. 📋 **Schichtplan-Verwaltung** (nur die wichtigsten 10 Themen)
