@@ -2,7 +2,7 @@
 
 Diese Roadmap ersetzt die alte Phasen-Einteilung. Sie ist in vier Level sortiert, vom Einstieg bis zum produktionsreifen Rust. Jedes Level hat eine eigene Seite mit Projektvorschlägen, die die jeweiligen Themen **kombiniert in echten Projekten** anwenden.
 
-## 🟢 L1 Grundlagen
+## 🟢 L1 Grundlagen (5 bis 10 Lektionen / 1 kleines CLI-Tool)
 - Variablen, Datentypen, Kontrollfluss
 - Benutzereingabe & String-Parsing
 - Ownership, Borrowing & Lifetimes-Basics
@@ -14,7 +14,7 @@ Diese Roadmap ersetzt die alte Phasen-Einteilung. Sie ist in vier Level sortiert
 
 → [Zu den L1-Projektvorschlägen](./l1-grundlagen.md)
 
-## 🟡 L2 Fortgeschritten
+## 🟡 L2 Fortgeschritten (10 bis 15 Lektionen / 1 modularer Crate)
 - Iteratoren & Closures (Filterung, Aggregationen)
 - Testing (`#[test]`), `clippy`, `rustfmt`, `rustdoc`
 - Generics, Traits & Typestate Pattern
@@ -24,7 +24,7 @@ Diese Roadmap ersetzt die alte Phasen-Einteilung. Sie ist in vier Level sortiert
 
 → [Zu den L2-Projektvorschlägen](./l2-fortgeschritten.md)
 
-## 🟠 L3 Profi
+## 🟠 L3 Profi (15 bis 20 Lektionen / 1 vollständiges System)
 - Error Handling (`thiserror`, `anyhow`)
 - Config & Serialisierung (`serde`)
 - CLI (`clap`)
