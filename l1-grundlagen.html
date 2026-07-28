@@ -35,6 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-84417cd8.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-dc28dba1.js"></script>
@@ -45,6 +46,7 @@
             <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
             <div>
                 <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
                 <p>Press <kbd>?</kbd> to show this help</p>
                 <p>Press <kbd>Esc</kbd> to hide this help</p>
             </div>
@@ -130,6 +132,9 @@
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust-Lernpfad Roadmap — Moderne Technik von 2026</h1>
@@ -142,6 +147,21 @@
                     </div>
                 </div>
 
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
@@ -180,156 +200,156 @@
 <h2 id="-100-projektvorschläge"><a class="header" href="#-100-projektvorschläge">📜 100+ Projektvorschläge</a></h2>
 <h3 id="-spiele--simulationen"><a class="header" href="#-spiele--simulationen">🎮 Spiele &amp; Simulationen</a></h3>
 <ol>
-<li>🎲 <strong>Zahlenraten mit Statistik</strong></li>
-<li>✊ <strong>Schere-Stein-Papier</strong></li>
-<li>🎯 <strong>Würfelduell</strong></li>
-<li>🕹️ <strong>Tic-Tac-Toe (Konsole)</strong></li>
-<li>❌⭕ <strong>Vier-Gewinnt (Konsole)</strong></li>
-<li>🃏 <strong>Kartenwert-Rechner (Black Jack)</strong></li>
-<li>🐍 <strong>Text-Schlange (Positions-Tracker)</strong></li>
-<li>🏹 <strong>Bogenschießen-Simulator</strong></li>
-<li>🐉 <strong>Text-RPG-Kampf</strong></li>
-<li>🎰 <strong>Einarmiger Bandit</strong></li>
-<li>🧩 <strong>Zahlen-Sudoku-Prüfer (Zeile)</strong></li>
-<li>🏁 <strong>Rennspiel-Simulator (Text)</strong></li>
-<li>🎳 <strong>Bowling-Punkte-Rechner</strong></li>
+<li>🎲 <strong>Zahlenraten mit Statistik</strong> (5-10 Lektionen)</li>
+<li>✊ <strong>Schere-Stein-Papier</strong> (5-10 Lektionen)</li>
+<li>🎯 <strong>Würfelduell</strong> (5-10 Lektionen)</li>
+<li>🕹️ <strong>Tic-Tac-Toe (Konsole)</strong> (5-10 Lektionen)</li>
+<li>❌⭕ <strong>Vier-Gewinnt (Konsole)</strong> (5-10 Lektionen)</li>
+<li>🃏 <strong>Kartenwert-Rechner (Black Jack)</strong> (5-10 Lektionen)</li>
+<li>🐍 <strong>Text-Schlange (Positions-Tracker)</strong> (5-10 Lektionen)</li>
+<li>🏹 <strong>Bogenschießen-Simulator</strong> (5-10 Lektionen)</li>
+<li>🐉 <strong>Text-RPG-Kampf</strong> (5-10 Lektionen)</li>
+<li>🎰 <strong>Einarmiger Bandit</strong> (5-10 Lektionen)</li>
+<li>🧩 <strong>Zahlen-Sudoku-Prüfer (Zeile)</strong> (5-10 Lektionen)</li>
+<li>🏁 <strong>Rennspiel-Simulator (Text)</strong> (5-10 Lektionen)</li>
+<li>🎳 <strong>Bowling-Punkte-Rechner</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-verwaltungstools"><a class="header" href="#-verwaltungstools">📋 Verwaltungstools</a></h3>
 <ol start="14">
-<li>📇 <strong>Kontaktverwaltung</strong></li>
-<li>📝 <strong>To-Do-Liste</strong></li>
-<li>🍕 <strong>Pizza-Bestellsystem</strong></li>
-<li>🚗 <strong>Fahrzeug-Inventar</strong></li>
-<li>🐶 <strong>Haustier-Simulator</strong></li>
-<li>📚 <strong>Mini-Bibliothek</strong></li>
-<li>⚔️ <strong>Rollenspiel-Charakter</strong></li>
-<li>🏦 <strong>Erweitertes Bankkonto</strong></li>
-<li>🎓 <strong>Notenverwaltung</strong></li>
-<li>🧾 <strong>Rechnungsgenerator</strong></li>
-<li>🏠 <strong>Immobilienverwaltung</strong></li>
-<li>🧑‍🍳 <strong>Rezeptverwaltung</strong></li>
-<li>🚲 <strong>Fuhrpark-Verwaltung</strong></li>
-<li>🎫 <strong>Kino-Reservierung</strong></li>
-<li>🐾 <strong>Tierheim-Verwaltung</strong></li>
-<li>👔 <strong>Mitarbeiterverwaltung</strong></li>
-<li>🌱 <strong>Pflanzenpflege-Tracker</strong></li>
+<li>📇 <strong>Kontaktverwaltung</strong> (5-10 Lektionen)</li>
+<li>📝 <strong>To-Do-Liste</strong> (5-10 Lektionen)</li>
+<li>🍕 <strong>Pizza-Bestellsystem</strong> (5-10 Lektionen)</li>
+<li>🚗 <strong>Fahrzeug-Inventar</strong> (5-10 Lektionen)</li>
+<li>🐶 <strong>Haustier-Simulator</strong> (5-10 Lektionen)</li>
+<li>📚 <strong>Mini-Bibliothek</strong> (5-10 Lektionen)</li>
+<li>⚔️ <strong>Rollenspiel-Charakter</strong> (5-10 Lektionen)</li>
+<li>🏦 <strong>Erweitertes Bankkonto</strong> (5-10 Lektionen)</li>
+<li>🎓 <strong>Notenverwaltung</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Rechnungsgenerator</strong> (5-10 Lektionen)</li>
+<li>🏠 <strong>Immobilienverwaltung</strong> (5-10 Lektionen)</li>
+<li>🧑‍🍳 <strong>Rezeptverwaltung</strong> (5-10 Lektionen)</li>
+<li>🚲 <strong>Fuhrpark-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>🎫 <strong>Kino-Reservierung</strong> (5-10 Lektionen)</li>
+<li>🐾 <strong>Tierheim-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>👔 <strong>Mitarbeiterverwaltung</strong> (5-10 Lektionen)</li>
+<li>🌱 <strong>Pflanzenpflege-Tracker</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-rechner--konverter"><a class="header" href="#-rechner--konverter">🔢 Rechner &amp; Konverter</a></h3>
 <ol start="31">
-<li>🧮 <strong>Taschenrechner (Grundrechenarten)</strong></li>
-<li>🌡️ <strong>Temperatur-Umrechner</strong></li>
-<li>💱 <strong>Währungsumrechner (feste Kurse)</strong></li>
-<li>📏 <strong>Einheiten-Umrechner (Länge)</strong></li>
-<li>💰 <strong>Zinsrechner (Zinseszins)</strong></li>
-<li>🏠 <strong>Kredit-Tilgungsplan</strong></li>
-<li>🧾 <strong>Trinkgeld-Rechner</strong></li>
-<li>⚖️ <strong>BMI-Rechner</strong></li>
-<li>🔋 <strong>Stromverbrauchsrechner</strong></li>
-<li>🌍 <strong>CO2-Rechner (Reisen)</strong></li>
-<li>📐 <strong>Geometrie-Rechner</strong></li>
-<li>🎂 <strong>Alter-in-Tagen-Rechner</strong></li>
-<li>🛒 <strong>Rabatt-Rechner</strong></li>
-<li>⏱️ <strong>Pace-Rechner (Laufsport)</strong></li>
-<li>🧮 <strong>Fakultät &amp; Fibonacci</strong></li>
+<li>🧮 <strong>Taschenrechner (Grundrechenarten)</strong> (5-10 Lektionen)</li>
+<li>🌡️ <strong>Temperatur-Umrechner</strong> (5-10 Lektionen)</li>
+<li>💱 <strong>Währungsumrechner (feste Kurse)</strong> (5-10 Lektionen)</li>
+<li>📏 <strong>Einheiten-Umrechner (Länge)</strong> (5-10 Lektionen)</li>
+<li>💰 <strong>Zinsrechner (Zinseszins)</strong> (5-10 Lektionen)</li>
+<li>🏠 <strong>Kredit-Tilgungsplan</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Trinkgeld-Rechner</strong> (5-10 Lektionen)</li>
+<li>⚖️ <strong>BMI-Rechner</strong> (5-10 Lektionen)</li>
+<li>🔋 <strong>Stromverbrauchsrechner</strong> (5-10 Lektionen)</li>
+<li>🌍 <strong>CO2-Rechner (Reisen)</strong> (5-10 Lektionen)</li>
+<li>📐 <strong>Geometrie-Rechner</strong> (5-10 Lektionen)</li>
+<li>🎂 <strong>Alter-in-Tagen-Rechner</strong> (5-10 Lektionen)</li>
+<li>🛒 <strong>Rabatt-Rechner</strong> (5-10 Lektionen)</li>
+<li>⏱️ <strong>Pace-Rechner (Laufsport)</strong> (5-10 Lektionen)</li>
+<li>🧮 <strong>Fakultät &amp; Fibonacci</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-text---wortspiele"><a class="header" href="#-text---wortspiele">📚 Text- &amp; Wortspiele</a></h3>
 <ol start="46">
-<li>🔤 <strong>Palindrom-Checker</strong></li>
-<li>🔀 <strong>Anagramm-Finder</strong></li>
-<li>🔒 <strong>Cäsar-Verschlüsselung</strong></li>
-<li>📡 <strong>Morsecode-Übersetzer</strong></li>
-<li>🔁 <strong>ROT13-Encoder</strong></li>
-<li>🪢 <strong>Wort-Umkehrer</strong></li>
-<li>🎯 <strong>Galgenmännchen (Konsole)</strong></li>
-<li>📊 <strong>Textstatistik-Tool</strong></li>
-<li>🧵 <strong>Zeilen-Umbrecher</strong></li>
-<li>🔍 <strong>Wort-Häufigkeits-Zähler</strong></li>
-<li>✂️ <strong>Text-Zensor</strong></li>
-<li>🧾 <strong>Quittungs-Formatter</strong></li>
-<li>🗣️ <strong>Silben-Zähler (einfach)</strong></li>
+<li>🔤 <strong>Palindrom-Checker</strong> (5-10 Lektionen)</li>
+<li>🔀 <strong>Anagramm-Finder</strong> (5-10 Lektionen)</li>
+<li>🔒 <strong>Cäsar-Verschlüsselung</strong> (5-10 Lektionen)</li>
+<li>📡 <strong>Morsecode-Übersetzer</strong> (5-10 Lektionen)</li>
+<li>🔁 <strong>ROT13-Encoder</strong> (5-10 Lektionen)</li>
+<li>🪢 <strong>Wort-Umkehrer</strong> (5-10 Lektionen)</li>
+<li>🎯 <strong>Galgenmännchen (Konsole)</strong> (5-10 Lektionen)</li>
+<li>📊 <strong>Textstatistik-Tool</strong> (5-10 Lektionen)</li>
+<li>🧵 <strong>Zeilen-Umbrecher</strong> (5-10 Lektionen)</li>
+<li>🔍 <strong>Wort-Häufigkeits-Zähler</strong> (5-10 Lektionen)</li>
+<li>✂️ <strong>Text-Zensor</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Quittungs-Formatter</strong> (5-10 Lektionen)</li>
+<li>🗣️ <strong>Silben-Zähler (einfach)</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-datenspeicher-mit-hashmap--vec"><a class="header" href="#-datenspeicher-mit-hashmap--vec">🗂️ Datenspeicher mit HashMap &amp; Vec</a></h3>
 <ol start="59">
-<li>📖 <strong>Wörterbuch-Tool</strong></li>
-<li>🗳️ <strong>Umfrage-Auswertung</strong></li>
-<li>🛍️ <strong>Einkaufsliste mit Mengen</strong></li>
-<li>📦 <strong>Lagerbestand-Tracker</strong></li>
-<li>🎵 <strong>Playlist-Verwaltung</strong></li>
-<li>🧳 <strong>Reise-Packliste</strong></li>
-<li>🏆 <strong>Highscore-Liste</strong></li>
-<li>📅 <strong>Terminplaner (Tagesliste)</strong></li>
-<li>🧑‍🤝‍🧑 <strong>Namens-Zufallsgenerator</strong></li>
-<li>🗳️ <strong>Wahlrechner (Sitzverteilung, vereinfacht)</strong></li>
-<li>📮 <strong>Postleitzahlen-Lookup</strong></li>
-<li>🔑 <strong>Passwort-Tresor (Klartext-Demo)</strong></li>
+<li>📖 <strong>Wörterbuch-Tool</strong> (5-10 Lektionen)</li>
+<li>🗳️ <strong>Umfrage-Auswertung</strong> (5-10 Lektionen)</li>
+<li>🛍️ <strong>Einkaufsliste mit Mengen</strong> (5-10 Lektionen)</li>
+<li>📦 <strong>Lagerbestand-Tracker</strong> (5-10 Lektionen)</li>
+<li>🎵 <strong>Playlist-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>🧳 <strong>Reise-Packliste</strong> (5-10 Lektionen)</li>
+<li>🏆 <strong>Highscore-Liste</strong> (5-10 Lektionen)</li>
+<li>📅 <strong>Terminplaner (Tagesliste)</strong> (5-10 Lektionen)</li>
+<li>🧑‍🤝‍🧑 <strong>Namens-Zufallsgenerator</strong> (5-10 Lektionen)</li>
+<li>🗳️ <strong>Wahlrechner (Sitzverteilung, vereinfacht)</strong> (5-10 Lektionen)</li>
+<li>📮 <strong>Postleitzahlen-Lookup</strong> (5-10 Lektionen)</li>
+<li>🔑 <strong>Passwort-Tresor (Klartext-Demo)</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-fehlerbehandlung-im-fokus-optionresult"><a class="header" href="#-fehlerbehandlung-im-fokus-optionresult">❓ Fehlerbehandlung im Fokus (Option/Result)</a></h3>
 <ol start="71">
-<li>🧮 <strong>Sicherer Taschenrechner</strong></li>
-<li>📥 <strong>Robuster Zahlen-Parser</strong></li>
-<li>🔍 <strong>Sichere Array-Suche</strong></li>
-<li>🧾 <strong>Config-Werte-Lookup</strong></li>
-<li>🎟️ <strong>Ticket-Validierung</strong></li>
-<li>🧯 <strong>Sicherer Datei-Zeilen-Zähler (simuliert)</strong></li>
-<li>🧮 <strong>Verschachtelte Berechnung mit <code>?</code></strong></li>
-<li>🔢 <strong>Bereichsprüfung mit <code>Result</code></strong></li>
+<li>🧮 <strong>Sicherer Taschenrechner</strong> (5-10 Lektionen)</li>
+<li>📥 <strong>Robuster Zahlen-Parser</strong> (5-10 Lektionen)</li>
+<li>🔍 <strong>Sichere Array-Suche</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Config-Werte-Lookup</strong> (5-10 Lektionen)</li>
+<li>🎟️ <strong>Ticket-Validierung</strong> (5-10 Lektionen)</li>
+<li>🧯 <strong>Sicherer Datei-Zeilen-Zähler (simuliert)</strong> (5-10 Lektionen)</li>
+<li>🧮 <strong>Verschachtelte Berechnung mit <code>?</code></strong> (5-10 Lektionen)</li>
+<li>🔢 <strong>Bereichsprüfung mit <code>Result</code></strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-ownership--borrowing-im-fokus"><a class="header" href="#-ownership--borrowing-im-fokus">🧠 Ownership &amp; Borrowing im Fokus</a></h3>
 <ol start="79">
-<li>🎒 <strong>Inventarsystem</strong></li>
-<li>📋 <strong>Aufgaben-Kopierer vs. Verschieber</strong></li>
-<li>🧺 <strong>Wäschekorb-Sortierer</strong></li>
-<li>🧠 <strong>Größter-Wert-Finder (per Referenz)</strong></li>
-<li>🔗 <strong>Verkettete Namensliste</strong></li>
-<li>🧮 <strong>Statistik ohne Kopie</strong></li>
+<li>🎒 <strong>Inventarsystem</strong> (5-10 Lektionen)</li>
+<li>📋 <strong>Aufgaben-Kopierer vs. Verschieber</strong> (5-10 Lektionen)</li>
+<li>🧺 <strong>Wäschekorb-Sortierer</strong> (5-10 Lektionen)</li>
+<li>🧠 <strong>Größter-Wert-Finder (per Referenz)</strong> (5-10 Lektionen)</li>
+<li>🔗 <strong>Verkettete Namensliste</strong> (5-10 Lektionen)</li>
+<li>🧮 <strong>Statistik ohne Kopie</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-modulsystem-im-fokus"><a class="header" href="#-modulsystem-im-fokus">📁 Modulsystem im Fokus</a></h3>
 <ol start="85">
-<li>📁 <strong>Modulares Adressbuch</strong></li>
-<li>🧮 <strong>Rechenmodul-Bibliothek</strong></li>
-<li>🏪 <strong>Modularer Kassenautomat</strong></li>
-<li>🗂️ <strong>Mehrdatei-Bibliotheksverwaltung</strong></li>
-<li>🎮 <strong>Modulares Text-Adventure</strong></li>
-<li>🧾 <strong>Rechnungssystem mit Modulen</strong></li>
+<li>📁 <strong>Modulares Adressbuch</strong> (5-10 Lektionen)</li>
+<li>🧮 <strong>Rechenmodul-Bibliothek</strong> (5-10 Lektionen)</li>
+<li>🏪 <strong>Modularer Kassenautomat</strong> (5-10 Lektionen)</li>
+<li>🗂️ <strong>Mehrdatei-Bibliotheksverwaltung</strong> (5-10 Lektionen)</li>
+<li>🎮 <strong>Modulares Text-Adventure</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Rechnungssystem mit Modulen</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-pattern-matching-im-fokus"><a class="header" href="#-pattern-matching-im-fokus">🔀 Pattern Matching im Fokus</a></h3>
 <ol start="91">
-<li>🌦️ <strong>Wetterstation</strong></li>
-<li>🚦 <strong>Ampelsteuerung (Simulation)</strong></li>
-<li>🎭 <strong>Stimmungs-Simulator</strong></li>
-<li>🃏 <strong>Kartenfarbe-Auswerter</strong></li>
-<li>🧭 <strong>Richtungs-Navigator</strong></li>
-<li>🏅 <strong>Medaillen-Vergabe</strong></li>
+<li>🌦️ <strong>Wetterstation</strong> (5-10 Lektionen)</li>
+<li>🚦 <strong>Ampelsteuerung (Simulation)</strong> (5-10 Lektionen)</li>
+<li>🎭 <strong>Stimmungs-Simulator</strong> (5-10 Lektionen)</li>
+<li>🃏 <strong>Kartenfarbe-Auswerter</strong> (5-10 Lektionen)</li>
+<li>🧭 <strong>Richtungs-Navigator</strong> (5-10 Lektionen)</li>
+<li>🏅 <strong>Medaillen-Vergabe</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-variablen--kontrollfluss-im-fokus"><a class="header" href="#-variablen--kontrollfluss-im-fokus">🎲 Variablen &amp; Kontrollfluss im Fokus</a></h3>
 <ol start="97">
-<li>🔢 <strong>Primzahlen-Sieb (einfach)</strong></li>
-<li>🎯 <strong>FizzBuzz Deluxe</strong></li>
-<li>🌡️ <strong>Temperatur-Logger (Tagesverlauf)</strong></li>
-<li>🧱 <strong>Pyramiden-Zeichner (ASCII)</strong></li>
-<li>🔁 <strong>Collatz-Folge-Rechner</strong></li>
-<li>🧊 <strong>Eiswürfel-Schmelz-Simulator</strong></li>
+<li>🔢 <strong>Primzahlen-Sieb (einfach)</strong> (5-10 Lektionen)</li>
+<li>🎯 <strong>FizzBuzz Deluxe</strong> (5-10 Lektionen)</li>
+<li>🌡️ <strong>Temperatur-Logger (Tagesverlauf)</strong> (5-10 Lektionen)</li>
+<li>🧱 <strong>Pyramiden-Zeichner (ASCII)</strong> (5-10 Lektionen)</li>
+<li>🔁 <strong>Collatz-Folge-Rechner</strong> (5-10 Lektionen)</li>
+<li>🧊 <strong>Eiswürfel-Schmelz-Simulator</strong> (5-10 Lektionen)</li>
 </ol>
 <h3 id="-praxisnahe-business---firmenprojekte"><a class="header" href="#-praxisnahe-business---firmenprojekte">💼 Praxisnahe Business- &amp; Firmenprojekte</a></h3>
 <ol start="103">
-<li>🧾 <strong>Spesenabrechnung-Tool</strong></li>
-<li>📋 <strong>Onboarding-Checkliste</strong></li>
-<li>🕒 <strong>Zeiterfassungs-Tool</strong></li>
-<li>📞 <strong>Support-Ticket-Logger</strong></li>
-<li>📅 <strong>Meetingraum-Buchungssystem</strong></li>
-<li>📦 <strong>Lagerbestands-Zähler (Wareneingang)</strong></li>
-<li>🧑‍💼 <strong>Personalakte-Verwaltung</strong></li>
-<li>🚚 <strong>Lieferschein-Verwaltung</strong></li>
-<li>🏢 <strong>Büromaterial-Bestellliste</strong></li>
-<li>🚗 <strong>Firmenwagen-Buchungssystem</strong></li>
-<li>📊 <strong>Urlaubsantrag-Tracker</strong></li>
-<li>🎫 <strong>Helpdesk-Prioritäten-Queue</strong></li>
-<li>🧑‍🤝‍🧑 <strong>Kundenanfragen-Verwaltung</strong></li>
-<li>📬 <strong>Interne Ankündigungs-Verteilerliste</strong></li>
-<li>🅿️ <strong>Parkplatz-Vergabesystem</strong></li>
-<li>🧑‍🍳 <strong>Kantinen-Bestellsystem</strong></li>
-<li>🧾 <strong>Reisekostenabrechnung</strong></li>
-<li>📋 <strong>Schichtplan-Verwaltung</strong></li>
+<li>🧾 <strong>Spesenabrechnung-Tool</strong> (5-10 Lektionen)</li>
+<li>📋 <strong>Onboarding-Checkliste</strong> (5-10 Lektionen)</li>
+<li>🕒 <strong>Zeiterfassungs-Tool</strong> (5-10 Lektionen)</li>
+<li>📞 <strong>Support-Ticket-Logger</strong> (5-10 Lektionen)</li>
+<li>📅 <strong>Meetingraum-Buchungssystem</strong> (5-10 Lektionen)</li>
+<li>📦 <strong>Lagerbestands-Zähler (Wareneingang)</strong> (5-10 Lektionen)</li>
+<li>🧑‍💼 <strong>Personalakte-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>🚚 <strong>Lieferschein-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>🏢 <strong>Büromaterial-Bestellliste</strong> (5-10 Lektionen)</li>
+<li>🚗 <strong>Firmenwagen-Buchungssystem</strong> (5-10 Lektionen)</li>
+<li>📊 <strong>Urlaubsantrag-Tracker</strong> (5-10 Lektionen)</li>
+<li>🎫 <strong>Helpdesk-Prioritäten-Queue</strong> (5-10 Lektionen)</li>
+<li>🧑‍🤝‍🧑 <strong>Kundenanfragen-Verwaltung</strong> (5-10 Lektionen)</li>
+<li>📬 <strong>Interne Ankündigungs-Verteilerliste</strong> (5-10 Lektionen)</li>
+<li>🅿️ <strong>Parkplatz-Vergabesystem</strong> (5-10 Lektionen)</li>
+<li>🧑‍🍳 <strong>Kantinen-Bestellsystem</strong> (5-10 Lektionen)</li>
+<li>🧾 <strong>Reisekostenabrechnung</strong> (5-10 Lektionen)</li>
+<li>📋 <strong>Schichtplan-Verwaltung</strong> (5-10 Lektionen)</li>
 </ol>
 
                     </main>
@@ -374,6 +394,9 @@
         </script>
 
 
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-abc7f01d.js"></script>

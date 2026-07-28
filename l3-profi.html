@@ -35,6 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-84417cd8.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-dc28dba1.js"></script>
@@ -45,6 +46,7 @@
             <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
             <div>
                 <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
                 <p>Press <kbd>?</kbd> to show this help</p>
                 <p>Press <kbd>Esc</kbd> to hide this help</p>
             </div>
@@ -130,6 +132,9 @@
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Rust-Lernpfad Roadmap — Moderne Technik von 2026</h1>
@@ -142,6 +147,21 @@
                     </div>
                 </div>
 
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
@@ -180,156 +200,156 @@
 <h2 id="-100-projektvorschläge"><a class="header" href="#-100-projektvorschläge">📜 100+ Projektvorschläge</a></h2>
 <h3 id="-error-handling-thiserror--anyhow"><a class="header" href="#-error-handling-thiserror--anyhow">❌ Error Handling (thiserror &amp; anyhow)</a></h3>
 <ol>
-<li>🌦️ <strong>CLI-Wetter-Tool</strong></li>
-<li>🧾 <strong>Rechnungs-Validator</strong></li>
-<li>📦 <strong>Bestellsystem-Fehlerkette</strong></li>
-<li>🧮 <strong>Config-Parser mit Fehlerkontext</strong></li>
-<li>🔌 <strong>Plugin-Loader mit Fehlerbehandlung</strong></li>
-<li>🗄️ <strong>Datei-Import-Pipeline</strong></li>
-<li>🌐 <strong>HTTP-Client-Wrapper</strong></li>
-<li>🧪 <strong>Fehler-Testsuite</strong></li>
+<li>🌦️ <strong>CLI-Wetter-Tool</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Rechnungs-Validator</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Bestellsystem-Fehlerkette</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Config-Parser mit Fehlerkontext</strong> (15-20 Lektionen)</li>
+<li>🔌 <strong>Plugin-Loader mit Fehlerbehandlung</strong> (15-20 Lektionen)</li>
+<li>🗄️ <strong>Datei-Import-Pipeline</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>HTTP-Client-Wrapper</strong> (15-20 Lektionen)</li>
+<li>🧪 <strong>Fehler-Testsuite</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-config--serialisierung-serde"><a class="header" href="#-config--serialisierung-serde">⚙️ Config &amp; Serialisierung (serde)</a></h3>
 <ol start="9">
-<li>📋 <strong>Multi-Format-Config-Loader</strong></li>
-<li>🗃️ <strong>Kontakt-Export/Import</strong></li>
-<li>🎮 <strong>Spielstand-Speicherung</strong></li>
-<li>🌐 <strong>API-Response-Mapper</strong></li>
-<li>🧾 <strong>Rechnungsvorlagen als YAML</strong></li>
-<li>🔄 <strong>Schema-Migrations-Tool</strong></li>
-<li>📊 <strong>CSV-zu-JSON-Konverter</strong></li>
-<li>🧩 <strong>Custom-Serialize-Implementierung</strong></li>
+<li>📋 <strong>Multi-Format-Config-Loader</strong> (15-20 Lektionen)</li>
+<li>🗃️ <strong>Kontakt-Export/Import</strong> (15-20 Lektionen)</li>
+<li>🎮 <strong>Spielstand-Speicherung</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>API-Response-Mapper</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Rechnungsvorlagen als YAML</strong> (15-20 Lektionen)</li>
+<li>🔄 <strong>Schema-Migrations-Tool</strong> (15-20 Lektionen)</li>
+<li>📊 <strong>CSV-zu-JSON-Konverter</strong> (15-20 Lektionen)</li>
+<li>🧩 <strong>Custom-Serialize-Implementierung</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-cli-clap"><a class="header" href="#-cli-clap">🖥️ CLI (clap)</a></h3>
 <ol start="17">
-<li>🌦️ <strong>Wetter-CLI mit Subcommands</strong></li>
-<li>🗂️ <strong>Datei-Organizer-CLI</strong></li>
-<li>🧮 <strong>Rechner-CLI mit Flags</strong></li>
-<li>📋 <strong>To-Do-CLI</strong></li>
-<li>🔍 <strong>Grep-Klon (einfach)</strong></li>
-<li>📦 <strong>Backup-CLI</strong></li>
-<li>🌐 <strong>API-Client-CLI</strong></li>
-<li>🧾 <strong>Rechnungs-Generator-CLI</strong></li>
+<li>🌦️ <strong>Wetter-CLI mit Subcommands</strong> (15-20 Lektionen)</li>
+<li>🗂️ <strong>Datei-Organizer-CLI</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Rechner-CLI mit Flags</strong> (15-20 Lektionen)</li>
+<li>📋 <strong>To-Do-CLI</strong> (15-20 Lektionen)</li>
+<li>🔍 <strong>Grep-Klon (einfach)</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Backup-CLI</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>API-Client-CLI</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Rechnungs-Generator-CLI</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-tracing"><a class="header" href="#-tracing">📝 Tracing</a></h3>
 <ol start="25">
-<li>🌦️ <strong>Instrumentiertes Wetter-Tool</strong></li>
-<li>🔍 <strong>Request-Verfolgung (simuliert)</strong></li>
-<li>🧵 <strong>Nebenläufige Aufgaben mit Tracing</strong></li>
-<li>📊 <strong>Strukturierte Log-Pipeline</strong></li>
-<li>🧯 <strong>Fehler-Tracing</strong></li>
-<li>🌐 <strong>Instrumentierter HTTP-Client</strong></li>
+<li>🌦️ <strong>Instrumentiertes Wetter-Tool</strong> (15-20 Lektionen)</li>
+<li>🔍 <strong>Request-Verfolgung (simuliert)</strong> (15-20 Lektionen)</li>
+<li>🧵 <strong>Nebenläufige Aufgaben mit Tracing</strong> (15-20 Lektionen)</li>
+<li>📊 <strong>Strukturierte Log-Pipeline</strong> (15-20 Lektionen)</li>
+<li>🧯 <strong>Fehler-Tracing</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Instrumentierter HTTP-Client</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-asyncawait--tokio"><a class="header" href="#-asyncawait--tokio">⏳ Async/Await &amp; Tokio</a></h3>
 <ol start="31">
-<li>⬇️ <strong>Paralleler Datei-Downloader</strong></li>
-<li>⏱️ <strong>Async-Timer-Kaskade</strong></li>
-<li>🌐 <strong>Async-HTTP-Client-Batch</strong></li>
-<li>📬 <strong>Async-Task-Queue</strong></li>
-<li>🧮 <strong>Async-Berechnungspipeline</strong></li>
-<li>🗃️ <strong>Async-Datei-Batch-Verarbeitung</strong></li>
-<li>⏳ <strong>Timeout-Handling mit Tokio</strong></li>
-<li>🌦️ <strong>Async-Wetter-Aggregator</strong></li>
+<li>⬇️ <strong>Paralleler Datei-Downloader</strong> (15-20 Lektionen)</li>
+<li>⏱️ <strong>Async-Timer-Kaskade</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Async-HTTP-Client-Batch</strong> (15-20 Lektionen)</li>
+<li>📬 <strong>Async-Task-Queue</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Async-Berechnungspipeline</strong> (15-20 Lektionen)</li>
+<li>🗃️ <strong>Async-Datei-Batch-Verarbeitung</strong> (15-20 Lektionen)</li>
+<li>⏳ <strong>Timeout-Handling mit Tokio</strong> (15-20 Lektionen)</li>
+<li>🌦️ <strong>Async-Wetter-Aggregator</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-concurrency-arcmutext-channels"><a class="header" href="#-concurrency-arcmutext-channels">🔀 Concurrency (<code>Arc&lt;Mutex&lt;T&gt;&gt;</code>, Channels)</a></h3>
 <ol start="39">
-<li>💬 <strong>Chat-Server (TCP)</strong></li>
-<li>📈 <strong>Metrics-Aggregator-Service</strong></li>
-<li>🧵 <strong>Geteilter Zähler (threadsicher)</strong></li>
-<li>🏭 <strong>Producer-Consumer-Pipeline</strong></li>
-<li>🗳️ <strong>Paralleler Abstimmungs-Zähler</strong></li>
-<li>🌐 <strong>Verteilter Cache (simuliert)</strong></li>
-<li>🧮 <strong>Paralleler Datenaggregator</strong></li>
-<li>🚦 <strong>Worker-Pool mit Channels</strong></li>
+<li>💬 <strong>Chat-Server (TCP)</strong> (15-20 Lektionen)</li>
+<li>📈 <strong>Metrics-Aggregator-Service</strong> (15-20 Lektionen)</li>
+<li>🧵 <strong>Geteilter Zähler (threadsicher)</strong> (15-20 Lektionen)</li>
+<li>🏭 <strong>Producer-Consumer-Pipeline</strong> (15-20 Lektionen)</li>
+<li>🗳️ <strong>Paralleler Abstimmungs-Zähler</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Verteilter Cache (simuliert)</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Paralleler Datenaggregator</strong> (15-20 Lektionen)</li>
+<li>🚦 <strong>Worker-Pool mit Channels</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-rest-api-db--docker"><a class="header" href="#-rest-api-db--docker">🌐 REST API, DB &amp; Docker</a></h3>
 <ol start="47">
-<li>🌐 <strong>REST-API Todo-Service</strong></li>
-<li>📚 <strong>Bibliotheks-API</strong></li>
-<li>🧾 <strong>Rechnungs-API</strong></li>
-<li>🎮 <strong>Highscore-API</strong></li>
-<li>🗳️ <strong>Umfrage-API</strong></li>
-<li>🧑‍🤝‍🧑 <strong>Nutzerverwaltungs-API</strong></li>
-<li>📦 <strong>Lagerbestand-API</strong></li>
-<li>🌦️ <strong>Wetter-Cache-API</strong></li>
+<li>🌐 <strong>REST-API Todo-Service</strong> (15-20 Lektionen)</li>
+<li>📚 <strong>Bibliotheks-API</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Rechnungs-API</strong> (15-20 Lektionen)</li>
+<li>🎮 <strong>Highscore-API</strong> (15-20 Lektionen)</li>
+<li>🗳️ <strong>Umfrage-API</strong> (15-20 Lektionen)</li>
+<li>🧑‍🤝‍🧑 <strong>Nutzerverwaltungs-API</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Lagerbestand-API</strong> (15-20 Lektionen)</li>
+<li>🌦️ <strong>Wetter-Cache-API</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-security-grundlagen"><a class="header" href="#-security-grundlagen">🔒 Security-Grundlagen</a></h3>
 <ol start="55">
-<li>🔐 <strong>Sicherer Passwort-Manager (CLI)</strong></li>
-<li>🧼 <strong>Eingabe-Validierungs-Bibliothek</strong></li>
-<li>🗝️ <strong>Secrets-Loader</strong></li>
-<li>🧯 <strong>Sensible-Daten-Logger-Filter</strong></li>
-<li>🔒 <strong>Verschlüsselter Notiz-Tresor</strong></li>
-<li>🧾 <strong>API-Key-Verwaltung</strong></li>
-<li>🧪 <strong>Fuzz-artige Eingabe-Härtungstests</strong></li>
+<li>🔐 <strong>Sicherer Passwort-Manager (CLI)</strong> (15-20 Lektionen)</li>
+<li>🧼 <strong>Eingabe-Validierungs-Bibliothek</strong> (15-20 Lektionen)</li>
+<li>🗝️ <strong>Secrets-Loader</strong> (15-20 Lektionen)</li>
+<li>🧯 <strong>Sensible-Daten-Logger-Filter</strong> (15-20 Lektionen)</li>
+<li>🔒 <strong>Verschlüsselter Notiz-Tresor</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>API-Key-Verwaltung</strong> (15-20 Lektionen)</li>
+<li>🧪 <strong>Fuzz-artige Eingabe-Härtungstests</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-kombinierte-profi-projekte"><a class="header" href="#-kombinierte-profi-projekte">🧩 Kombinierte Profi-Projekte</a></h3>
 <ol start="62">
-<li>🌦️ <strong>Produktionsreifes Wetter-CLI</strong></li>
-<li>🌐 <strong>Containerisierter Todo-Service</strong></li>
-<li>🔐 <strong>Sicherer Multi-User-Passwort-Tresor-Server</strong></li>
-<li>💬 <strong>Instrumentierter Chat-Server</strong></li>
-<li>📈 <strong>Metrics-Service mit DB-Persistenz</strong></li>
-<li>⬇️ <strong>Download-Manager mit CLI &amp; Tracing</strong></li>
-<li>🧾 <strong>Rechnungs-Microservice</strong></li>
-<li>🌐 <strong>API-Gateway (vereinfacht)</strong></li>
-<li>🔒 <strong>Security-gehärtete Config-API</strong></li>
-<li>📊 <strong>Verteiltes Aggregations-System</strong></li>
-<li>🧮 <strong>Batch-Import-Service</strong></li>
-<li>🎮 <strong>Highscore-Plattform komplett</strong></li>
-<li>🗳️ <strong>Abstimmungs-Plattform</strong></li>
-<li>🌦️ <strong>Multi-Quellen-Wetteraggregator-Service</strong></li>
-<li>📦 <strong>Bestellsystem-Backend</strong></li>
-<li>🔐 <strong>Auth-Service (Lernprojekt)</strong></li>
-<li>🧾 <strong>Abo-Verwaltungs-API</strong></li>
-<li>🌐 <strong>Health-Check-Aggregator</strong></li>
-<li>🧑‍🤝‍🧑 <strong>Team-Kollaborationstool (Backend)</strong></li>
+<li>🌦️ <strong>Produktionsreifes Wetter-CLI</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Containerisierter Todo-Service</strong> (15-20 Lektionen)</li>
+<li>🔐 <strong>Sicherer Multi-User-Passwort-Tresor-Server</strong> (15-20 Lektionen)</li>
+<li>💬 <strong>Instrumentierter Chat-Server</strong> (15-20 Lektionen)</li>
+<li>📈 <strong>Metrics-Service mit DB-Persistenz</strong> (15-20 Lektionen)</li>
+<li>⬇️ <strong>Download-Manager mit CLI &amp; Tracing</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Rechnungs-Microservice</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>API-Gateway (vereinfacht)</strong> (15-20 Lektionen)</li>
+<li>🔒 <strong>Security-gehärtete Config-API</strong> (15-20 Lektionen)</li>
+<li>📊 <strong>Verteiltes Aggregations-System</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Batch-Import-Service</strong> (15-20 Lektionen)</li>
+<li>🎮 <strong>Highscore-Plattform komplett</strong> (15-20 Lektionen)</li>
+<li>🗳️ <strong>Abstimmungs-Plattform</strong> (15-20 Lektionen)</li>
+<li>🌦️ <strong>Multi-Quellen-Wetteraggregator-Service</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Bestellsystem-Backend</strong> (15-20 Lektionen)</li>
+<li>🔐 <strong>Auth-Service (Lernprojekt)</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Abo-Verwaltungs-API</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Health-Check-Aggregator</strong> (15-20 Lektionen)</li>
+<li>🧑‍🤝‍🧑 <strong>Team-Kollaborationstool (Backend)</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-erweiterte-praxisprojekte"><a class="header" href="#-erweiterte-praxisprojekte">🔁 Erweiterte Praxisprojekte</a></h3>
 <ol start="81">
-<li>🌦️ <strong>Wetter-Alarm-Dienst</strong></li>
-<li>📬 <strong>E-Mail-Warteschlangen-Simulator</strong></li>
-<li>🧮 <strong>Verteilter Taschenrechner-Service</strong></li>
-<li>🗃️ <strong>Datei-Sync-Tool (CLI)</strong></li>
-<li>🎫 <strong>Ticket-System-Backend</strong></li>
-<li>🧾 <strong>Abrechnungs-Batch-Job</strong></li>
-<li>🔒 <strong>Rate-Limiter-Middleware</strong></li>
-<li>🌐 <strong>Reverse-Proxy (vereinfacht)</strong></li>
-<li>📊 <strong>Dashboard-Backend</strong></li>
-<li>🧩 <strong>Feature-Flag-Service</strong></li>
-<li>🔐 <strong>Passwort-Rotation-Reminder</strong></li>
-<li>🧵 <strong>Paralleler Datei-Hasher</strong></li>
-<li>🌦️ <strong>Wetterstation-Datensammler</strong></li>
-<li>📦 <strong>Inventar-Sync-Service</strong></li>
-<li>🧾 <strong>Mahnwesen-Automatisierung</strong></li>
-<li>🔒 <strong>Geheimnis-Rotations-CLI</strong></li>
-<li>🌐 <strong>Webhook-Empfänger</strong></li>
-<li>🧮 <strong>Batch-Preisrechner-Service</strong></li>
-<li>📈 <strong>SLA-Monitoring-Tool</strong></li>
-<li>🔐 <strong>Zero-Trust-Config-Validator</strong></li>
-<li>🧾 <strong>Multi-Mandanten-Rechnungs-API</strong></li>
-<li>🌦️ <strong>Resilientes Wetter-Gateway</strong></li>
+<li>🌦️ <strong>Wetter-Alarm-Dienst</strong> (15-20 Lektionen)</li>
+<li>📬 <strong>E-Mail-Warteschlangen-Simulator</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Verteilter Taschenrechner-Service</strong> (15-20 Lektionen)</li>
+<li>🗃️ <strong>Datei-Sync-Tool (CLI)</strong> (15-20 Lektionen)</li>
+<li>🎫 <strong>Ticket-System-Backend</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Abrechnungs-Batch-Job</strong> (15-20 Lektionen)</li>
+<li>🔒 <strong>Rate-Limiter-Middleware</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Reverse-Proxy (vereinfacht)</strong> (15-20 Lektionen)</li>
+<li>📊 <strong>Dashboard-Backend</strong> (15-20 Lektionen)</li>
+<li>🧩 <strong>Feature-Flag-Service</strong> (15-20 Lektionen)</li>
+<li>🔐 <strong>Passwort-Rotation-Reminder</strong> (15-20 Lektionen)</li>
+<li>🧵 <strong>Paralleler Datei-Hasher</strong> (15-20 Lektionen)</li>
+<li>🌦️ <strong>Wetterstation-Datensammler</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Inventar-Sync-Service</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Mahnwesen-Automatisierung</strong> (15-20 Lektionen)</li>
+<li>🔒 <strong>Geheimnis-Rotations-CLI</strong> (15-20 Lektionen)</li>
+<li>🌐 <strong>Webhook-Empfänger</strong> (15-20 Lektionen)</li>
+<li>🧮 <strong>Batch-Preisrechner-Service</strong> (15-20 Lektionen)</li>
+<li>📈 <strong>SLA-Monitoring-Tool</strong> (15-20 Lektionen)</li>
+<li>🔐 <strong>Zero-Trust-Config-Validator</strong> (15-20 Lektionen)</li>
+<li>🧾 <strong>Multi-Mandanten-Rechnungs-API</strong> (15-20 Lektionen)</li>
+<li>🌦️ <strong>Resilientes Wetter-Gateway</strong> (15-20 Lektionen)</li>
 </ol>
 <h3 id="-praxisnahe-business---firmenprojekte"><a class="header" href="#-praxisnahe-business---firmenprojekte">💼 Praxisnahe Business- &amp; Firmenprojekte</a></h3>
 <ol start="103">
-<li>👥 <strong>HR-Datenservice (Backend)</strong></li>
-<li>📦 <strong>Bestandsverwaltungs-Backend</strong></li>
-<li>🛒 <strong>Bestellabwicklungs-Service</strong></li>
-<li>📧 <strong>Benachrichtigungs-Gateway (E-Mail/SMS abstrahiert)</strong></li>
-<li>📜 <strong>Audit-Log-Service</strong></li>
-<li>🔐 <strong>Auth- &amp; Session-Service</strong></li>
-<li>🚪 <strong>API-Gateway mit Rate-Limiting</strong></li>
-<li>🗂️ <strong>Hintergrund-Job-Queue-Prozessor</strong></li>
-<li>🔄 <strong>ETL-Pipeline für Geschäftsdaten</strong></li>
-<li>📈 <strong>Monitoring- &amp; Alerting-Service</strong></li>
-<li>🚩 <strong>Feature-Flag-Service (Backend)</strong></li>
-<li>🔗 <strong>Webhook-Zustell-Service</strong></li>
-<li>💳 <strong>Zahlungs-Webhook-Handler (simuliert)</strong></li>
-<li>🧑‍💼 <strong>CRM-Backend</strong></li>
-<li>🎫 <strong>Ticketing-System-Backend</strong></li>
-<li>⚙️ <strong>Config-Management-Service</strong></li>
-<li>🔑 <strong>Secrets-Rotations-Service</strong></li>
-<li>🛡️ <strong>Compliance-Scan-Service</strong></li>
+<li>👥 <strong>HR-Datenservice (Backend)</strong> (15-20 Lektionen)</li>
+<li>📦 <strong>Bestandsverwaltungs-Backend</strong> (15-20 Lektionen)</li>
+<li>🛒 <strong>Bestellabwicklungs-Service</strong> (15-20 Lektionen)</li>
+<li>📧 <strong>Benachrichtigungs-Gateway (E-Mail/SMS abstrahiert)</strong> (15-20 Lektionen)</li>
+<li>📜 <strong>Audit-Log-Service</strong> (15-20 Lektionen)</li>
+<li>🔐 <strong>Auth- &amp; Session-Service</strong> (15-20 Lektionen)</li>
+<li>🚪 <strong>API-Gateway mit Rate-Limiting</strong> (15-20 Lektionen)</li>
+<li>🗂️ <strong>Hintergrund-Job-Queue-Prozessor</strong> (15-20 Lektionen)</li>
+<li>🔄 <strong>ETL-Pipeline für Geschäftsdaten</strong> (15-20 Lektionen)</li>
+<li>📈 <strong>Monitoring- &amp; Alerting-Service</strong> (15-20 Lektionen)</li>
+<li>🚩 <strong>Feature-Flag-Service (Backend)</strong> (15-20 Lektionen)</li>
+<li>🔗 <strong>Webhook-Zustell-Service</strong> (15-20 Lektionen)</li>
+<li>💳 <strong>Zahlungs-Webhook-Handler (simuliert)</strong> (15-20 Lektionen)</li>
+<li>🧑‍💼 <strong>CRM-Backend</strong> (15-20 Lektionen)</li>
+<li>🎫 <strong>Ticketing-System-Backend</strong> (15-20 Lektionen)</li>
+<li>⚙️ <strong>Config-Management-Service</strong> (15-20 Lektionen)</li>
+<li>🔑 <strong>Secrets-Rotations-Service</strong> (15-20 Lektionen)</li>
+<li>🛡️ <strong>Compliance-Scan-Service</strong> (15-20 Lektionen)</li>
 </ol>
 
                     </main>
@@ -374,6 +394,9 @@
         </script>
 
 
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-abc7f01d.js"></script>
