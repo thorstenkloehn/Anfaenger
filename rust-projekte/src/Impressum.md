@@ -1,4 +1,4 @@
-Angaben gemäß § 5 TMG
+Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)
 
 * Thorsten Klöhn
 * Gerhardstraße 2
@@ -10,7 +10,7 @@ Thorsten Klöhn
 
 
 ## Kontakt:
-* Telefon: 04102-2 17 40 07\
+* Telefon: 04102-2 17 40 07
 * E-Mail: thorstenkloehn@gmail.com
 
 
@@ -21,8 +21,8 @@ Thorsten Klöhn
 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die
 Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir
 jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7
-Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen
-Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen
+Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als
 Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
 gespeicherte fremde Informationen zu überwachen oder nach Umständen zu
 forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
@@ -42,7 +42,8 @@ Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte
 waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
 inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
 Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden
-von Rechtsverletzungen werden wir derartige Links umgehend entfernen.\
+von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+
 ### Urheberrecht
 Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung
 4.0 International
@@ -59,7 +60,8 @@ personenbezogener Daten möglich. Soweit auf unseren Seiten
 personenbezogene Daten (beispielsweise Name, Anschrift oder
 eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf
 freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche
-Zustimmung nicht an Dritte weitergegeben. \
+Zustimmung nicht an Dritte weitergegeben.
+
 Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei
 der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein
 lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht
@@ -69,9 +71,8 @@ Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich
 angeforderter Werbung und Informationsmaterialien wird hiermit
 ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich
 ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von
-Werbeinformationen, etwa durch Spam-Mails, vor.\
+Werbeinformationen, etwa durch Spam-Mails, vor.
 
+---
 
-Impressum vom [Impressum Generator](https://www.impressum-generator.de)
-der [Kanzlei Hasselbach, Rechtsanwälte für Arbeitsrecht und
-Familienrecht](https://www.kanzlei-hasselbach
+*Stand: August 2026*

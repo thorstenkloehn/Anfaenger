@@ -6,4 +6,4 @@
   - [🟠 L3 Profi](./l3-profi.md)
   - [🔴 L4 Experte](./l4-experte.md)
 - [Impressum](./Impressum.md)
-- [Datenschutz](./Datenschschutz.md)
+- [Datenschutz](./Datenschutz.md)
