@@ -320,3 +320,17 @@ Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt
 262. 🎲 **Property-getestete TLS-Handshake-Logik (vereinfachtes Lernprojekt)**
 263. 🌐 **WASM-Netzwerk-Traffic-Visualisierer**
 264. 📦 **Produktionsreifer Netzwerk-Dienst (Ende-zu-Ende)**
+
+### 🖥️ Betriebssystem-Grundlagen
+265. ⚡ **Benchmark: Datei-I/O-Strategien (gepuffert vs. direkt)**
+266. 🎲 **Property-Tests für Datei-Synchronisations-Konsistenz**
+267. ⚙️ **Zero-Copy-Datei-Lesen (mmap-ähnlich, Lernprojekt)**
+268. 🪄 **Custom-Makro für CLI-Tool-Generierung (`#[derive(SysTool)]`)**
+269. 🌐 **WASM-Datei-Explorer im Browser (virtuelles FS)**
+270. 📦 **Veröffentlichte Crate: generische Datei-Watcher-Bibliothek**
+271. 🎯 **Fuzzing für Shell-Kommando-Parser**
+272. 🌲 **Graph-Benchmark für Verzeichnisbaum-Traversierung**
+273. ⚙️ **Unsafe-optimierter Puffer für große Datei-Scans**
+274. 🎲 **Property-getestete Prozess-Lifecycle-Zustände**
+275. 🌐 **WASM-Ressourcen-Auslastungs-Visualisierer**
+276. 📦 **Produktionsreifes System-Monitoring-Tool (Ende-zu-Ende)**

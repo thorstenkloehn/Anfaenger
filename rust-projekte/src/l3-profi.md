@@ -326,3 +326,17 @@ Jetzt geht es um Rust im echten Betrieb: robuste Fehlerbehandlung, Konfiguration
 262. 💓 **Verbindungs-Pool-Service mit Health-Checks** (nur die wichtigsten 10 Themen)
 263. 🚦 **Rate-Limiting-Proxy** (nur die wichtigsten 10 Themen)
 264. 🌐 **Multi-Protokoll-Gateway (TCP + HTTP kombiniert)** (nur die wichtigsten 10 Themen)
+
+### 🖥️ Betriebssystem-Grundlagen
+265. ⚙️ **Async-Datei-Watcher-Service (Tokio, notify-artig)** (nur die wichtigsten 10 Themen)
+266. 🖥️ **CLI für System-Diagnose-Tool (CPU/Speicher/Disk)** (nur die wichtigsten 10 Themen)
+267. 📝 **Tracing-instrumentierter Hintergrund-Dienst** (nur die wichtigsten 10 Themen)
+268. 🔐 **Sicherer Datei-Zugriff mit Rechteprüfung** (nur die wichtigsten 10 Themen)
+269. 🔀 **Concurrency-fähiger Backup-Dienst** (nur die wichtigsten 10 Themen)
+270. ⚙️ **Config-gesteuerter Cron-artiger Scheduler (serde)** (nur die wichtigsten 10 Themen)
+271. 🐳 **Docker-containerisierter System-Monitor** (nur die wichtigsten 10 Themen)
+272. 💓 **Prozess-Überwachungs-Service (Health-Checks für Kindprozesse)** (nur die wichtigsten 10 Themen)
+273. 🔄 **Log-Rotation-Daemon** (nur die wichtigsten 10 Themen)
+274. 📈 **Ressourcen-Limit-Überwacher (Speicher/CPU-Schwellenwerte)** (nur die wichtigsten 10 Themen)
+275. 🔃 **Datei-Synchronisations-Dienst (zwei Verzeichnisse abgleichen)** (nur die wichtigsten 10 Themen)
+276. 🔁 **Systemdienst-Simulator (Start/Stop/Restart-Lifecycle)** (nur die wichtigsten 10 Themen)

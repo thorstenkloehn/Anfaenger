@@ -318,3 +318,17 @@ Du kennst die Grundlagen — jetzt geht es um idiomatisches, testbares und wiede
 262. 🔁 **Generische Retry-Logik für Verbindungsaufbau** (nur die wichtigsten 10 Themen)
 263. 📦 **Protokoll-Workspace (Codec-, Server-, Client-Crate)** (nur die wichtigsten 10 Themen)
 264. 🏗️ **Builder für Verbindungs-Konfiguration (Timeout, Retries)** (nur die wichtigsten 10 Themen)
+
+### 🖥️ Betriebssystem-Grundlagen
+265. 👀 **Generischer Datei-Watcher (Polling-basiert, Trait `Beobachter`)** (nur die wichtigsten 10 Themen)
+266. 🔁 **Rekursiver Verzeichnis-Traverser (mit Iterator-Adaptern)** (nur die wichtigsten 10 Themen)
+267. 🧵 **Thread-basierter paralleler Datei-Scanner** (nur die wichtigsten 10 Themen)
+268. 🔌 **Trait-basierte Dateisystem-Abstraktion (Mock vs. echtes FS)** (nur die wichtigsten 10 Themen)
+269. 🧪 **Getestete Datei-Utility-Bibliothek** (nur die wichtigsten 10 Themen)
+270. 🧑‍🤝‍🧑 **Prozess-Pool-Manager (mehrere Kommandos parallel starten)** (nur die wichtigsten 10 Themen)
+271. 📡 **Named-Pipe-/FIFO-Kommunikation (einfach, simuliert)** (nur die wichtigsten 10 Themen)
+272. 🧵 **Geteilter Datei-Cache (`Arc<Mutex<_>>`)** (nur die wichtigsten 10 Themen)
+273. 🐚 **Eigener kleiner Shell-Interpreter (Kommandos parsen & ausführen)** (nur die wichtigsten 10 Themen)
+274. 🚦 **Signal-Handler-Demonstrator (Ctrl+C abfangen)** (nur die wichtigsten 10 Themen)
+275. 📦 **Dateisystem-Workspace (Core, Watcher, CLI)** (nur die wichtigsten 10 Themen)
+276. 🏗️ **Builder für Datei-Scan-Konfiguration (Filter, Rekursionstiefe)** (nur die wichtigsten 10 Themen)

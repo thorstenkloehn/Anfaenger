@@ -326,3 +326,17 @@ In diesem Level lernst du die Bausteine, ohne die kein Rust-Programm auskommt. J
 262. ✅ **MAC-Adressen-Validator (Format prüfen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 263. 💬 **Einfacher Chat-Client (Konsole, TCP, Text senden)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 264. 🔗 **URL-Baukasten (Bestandteile zu URL zusammensetzen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+
+### 🖥️ Betriebssystem-Grundlagen
+265. 📁 **Datei-Explorer (Konsole, Verzeichnisinhalt auflisten)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+266. 📋 **Datei-Kopierer (einfach, `std::fs`)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+267. 🔧 **Umgebungsvariablen-Anzeiger** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+268. ▶️ **Prozess-Starter (Kommando ausführen, `std::process`)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+269. 📏 **Datei-Größen-Analyzer (Verzeichnis durchsuchen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+270. ✏️ **Einfacher Datei-Umbenenner (Batch)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+271. 🌲 **Verzeichnisbaum-Zeichner (ASCII)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+272. 🧹 **Datei-Aufräum-Tool (alte Dateien finden, simuliert)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+273. 🔍 **Text-Datei-Suchtool (Grep-artig, einfach)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+274. 🕰️ **Zeitstempel-Anzeiger für Dateien** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+275. 🗑️ **Papierkorb-Simulator (Löschen mit Wiederherstellung)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+276. 💽 **Festplatten-Speicher-Anzeiger (verfügbarer Platz)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
