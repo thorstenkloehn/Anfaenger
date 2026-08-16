@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-58b4f1fd.js";
+            window.path_to_searchindex_js = "searchindex-99b8ab81.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-82ee1c81.js"></script>
@@ -429,6 +429,81 @@
 <li>🎲 <strong>Property-getestete Zitat-Validierung</strong></li>
 <li>🌐 <strong>WASM-Revisions-Historie-Visualisierer</strong></li>
 <li>📦 <strong>Produktionsreife Wiki-Engine-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-rag--vektorsuche"><a class="header" href="#-rag--vektorsuche">🔍 RAG &amp; Vektorsuche</a></h3>
+<ol start="193">
+<li>⚡ <strong>Benchmark: lineare vs. angenäherte Vektorsuche (HNSW-artig)</strong></li>
+<li>🎲 <strong>Property-Tests für Ähnlichkeits-Invarianten (Symmetrie, Normierung)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Embedding-Dateien (Binärformat)</strong></li>
+<li>🪄 <strong>Custom-Makro für Embedding-Structs (<code>#[derive(Embeddable)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Vektorsuche im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Vektor-Index-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für Embedding-Datei-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Cluster-Traversierung (Nächste-Nachbarn-Graph)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierte SIMD-Kosinus-Ähnlichkeit</strong></li>
+<li>🎲 <strong>Property-getestete Chunking-Konsistenz (keine Datenverluste)</strong></li>
+<li>🌐 <strong>WASM-Embedding-Visualisierer (2D-Projektion)</strong></li>
+<li>📦 <strong>Produktionsreife RAG-Engine-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-mcp-model-context-protocol--tool-technik"><a class="header" href="#-mcp-model-context-protocol--tool-technik">🔌 MCP (Model Context Protocol) &amp; Tool-Technik</a></h3>
+<ol start="205">
+<li>⚡ <strong>Benchmark: Transport-Strategien (stdio vs. HTTP)</strong></li>
+<li>🎲 <strong>Property-Tests für Protokoll-Konformität (Schema-Konsistenz)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für JSON-RPC-Nachrichten</strong></li>
+<li>🪄 <strong>Custom-Makro für Tool-Definitionen (<code>#[mcp_tool]</code>)</strong></li>
+<li>🌐 <strong>WASM-MCP-Client im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generisches MCP-Server-Framework</strong></li>
+<li>🎯 <strong>Fuzzing für MCP-Nachrichten-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Multi-Server-Orchestrierung</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Nachrichten-Puffer für hohen Durchsatz</strong></li>
+<li>🎲 <strong>Property-getestete Capability-Verhandlung</strong></li>
+<li>🌐 <strong>WASM-MCP-Debugger/Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifes MCP-Server-Framework (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-observability--monitoring"><a class="header" href="#-observability--monitoring">📊 Observability &amp; Monitoring</a></h3>
+<ol start="217">
+<li>⚡ <strong>Benchmark: verschiedene Metrik-Speicherformate</strong></li>
+<li>🎲 <strong>Property-Tests für Aggregations-Korrektheit</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Log-Formate</strong></li>
+<li>🪄 <strong>Custom-Makro für Metrik-Definitionen (<code>#[derive(Metric)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Dashboard im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Metrik-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für Log-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Trace-Abhängigkeiten (Span-Bäume)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Ring-Buffer für hochfrequente Metriken</strong></li>
+<li>🎲 <strong>Property-getestete Alerting-Regeln (keine falschen Positiven)</strong></li>
+<li>🌐 <strong>WASM-Trace-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifes Observability-Framework (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-datenbank-technik"><a class="header" href="#-datenbank-technik">🗄️ Datenbank-Technik</a></h3>
+<ol start="229">
+<li>⚡ <strong>Benchmark: B-Baum vs. Hash-Index</strong></li>
+<li>🎲 <strong>Property-Tests für Transaktions-Isolation</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für ein eigenes Datenbankformat</strong></li>
+<li>🪄 <strong>Custom-Makro für ORM-artiges Mapping (<code>#[derive(Table)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Mini-Datenbank im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: eigene Embedded-Key-Value-Engine</strong></li>
+<li>🎯 <strong>Fuzzing für Query-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Join-Strategien</strong></li>
+<li>⚙️ <strong>Unsafe-optimiertes Speicher-Layout für Zeilen (Column-Store-Experiment)</strong></li>
+<li>🎲 <strong>Property-getestete WAL-Konsistenz (Write-Ahead-Log, Lernprojekt)</strong></li>
+<li>🌐 <strong>WASM-Query-Plan-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreife Embedded-Datenbank-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-eigene-parser--compiler-bauen"><a class="header" href="#-eigene-parser--compiler-bauen">🧮 Eigene Parser &amp; Compiler bauen</a></h3>
+<ol start="241">
+<li>⚡ <strong>Benchmark: rekursiver Abstieg vs. Parser-Kombinatoren</strong></li>
+<li>🎲 <strong>Property-Tests für Parser-Roundtrip (Parse → Pretty-Print → Parse)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Lexer (ohne String-Allokationen)</strong></li>
+<li>🪄 <strong>Custom-Makro für Grammatik-Regeln (DSL für Parser-Definition)</strong></li>
+<li>🌐 <strong>WASM-Compiler-Playground im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Parser-Kombinator-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für den eigenen Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für AST-Traversierung (Optimierungspässe)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierte Bytecode-VM (Performance)</strong></li>
+<li>🎲 <strong>Property-getestete Typprüfung (Soundness einfacher Regeln)</strong></li>
+<li>🌐 <strong>WASM-AST-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifer eigener Compiler/Interpreter (Ende-zu-Ende)</strong></li>
 </ol>
 
                     </main>

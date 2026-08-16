@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "navy";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-58b4f1fd.js";
+            window.path_to_searchindex_js = "searchindex-99b8ab81.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-82ee1c81.js"></script>
@@ -426,6 +426,81 @@
 <li>📦 <strong>Wiki-Workspace (Multi-Crate: Core, Diff, CLI)</strong> (nur die wichtigsten 10 Themen)</li>
 <li>🧮 <strong>Generischer Änderungs-Aggregator (Statistik über Edits)</strong> (nur die wichtigsten 10 Themen)</li>
 <li>🏗️ <strong>Builder für Artikel-Metadaten (Autor, Datum, Quellen)</strong> (nur die wichtigsten 10 Themen)</li>
+</ol>
+<h3 id="-rag--vektorsuche"><a class="header" href="#-rag--vektorsuche">🔍 RAG &amp; Vektorsuche</a></h3>
+<ol start="193">
+<li>🧮 <strong>Generischer Vektor-Typ mit Ähnlichkeitsberechnung</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📐 <strong>Kosinus-Ähnlichkeits-Bibliothek (Trait <code>Vergleichbar</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📇 <strong>Einfacher Vektor-Index (<code>Vec&lt;(ID, Vektor)&gt;</code>, lineare Suche)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>✂️ <strong>Chunking-Pipeline mit Iteratoren (Overlap-Splitting)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Trait-basierter Embedding-Provider (austauschbar, simuliert)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🏆 <strong>Top-K-Suche mit Prioritäts-Warteschlange (<code>BinaryHeap</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧪 <strong>Getestete Ähnlichkeits-Bibliothek (Unit-Tests)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔀 <strong>Plugin-fähiges Retrieval-System (Keyword vs. Vektor)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🗃️ <strong>Generischer Dokumenten-Store (<code>HashMap&lt;ID, Dokument&gt;</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔁 <strong>RAG-Pipeline-Prototyp (Retrieve → Kontext → simulierte Antwort)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧵 <strong>Geteilter Vektor-Index (<code>Arc&lt;RwLock&lt;_&gt;&gt;</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🏗️ <strong>Builder für RAG-Konfiguration (Chunk-Größe, Top-K, Overlap)</strong> (nur die wichtigsten 10 Themen)</li>
+</ol>
+<h3 id="-mcp-model-context-protocol--tool-technik"><a class="header" href="#-mcp-model-context-protocol--tool-technik">🔌 MCP (Model Context Protocol) &amp; Tool-Technik</a></h3>
+<ol start="205">
+<li>🧰 <strong>Generisches Tool-Schema (Trait <code>McpTool</code>: Name/Parameter/Ausführung)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📨 <strong>JSON-RPC-ähnlicher Nachrichtentyp (serde: Request/Response/Notification)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔀 <strong>Trait-basierter Transport (stdio vs. simuliertes HTTP)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📇 <strong>Werkzeug-Registry mit dynamischer Registrierung (Trait Objects)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🤝 <strong>Capability-Verhandlung (Client/Server einigen sich auf Features)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🗂️ <strong>Ressourcen-Provider-Trait (austauschbare Datenquellen)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧪 <strong>Getestete Schema-Validierungs-Bibliothek</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🚦 <strong>Session-Zustandsmaschine (Typestate: Verbunden/Initialisiert/Aktiv)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Plugin-fähiger MCP-Server-Kern (Trait Objects für Tools)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📚 <strong>Multi-Server-Client (mehrere Server gleichzeitig verwalten)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧵 <strong>Geteilter Werkzeug-Kontext (<code>Rc&lt;RefCell&lt;_&gt;&gt;</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🏗️ <strong>Builder für MCP-Server-Konfiguration</strong> (nur die wichtigsten 10 Themen)</li>
+</ol>
+<h3 id="-observability--monitoring"><a class="header" href="#-observability--monitoring">📊 Observability &amp; Monitoring</a></h3>
+<ol start="217">
+<li>📏 <strong>Generischer Metrik-Sammler (Trait <code>Metrik</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📊 <strong>Zähler/Gauge/Histogramm-Typen (eigene Structs)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Trait-basierter Log-Sink (Konsole vs. Datei austauschbar)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔗 <strong>Aggregations-Pipeline mit Iteratoren (Min/Max/Avg)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🚨 <strong>Alerting-Regel-Engine (Trait-basiert, Schwellenwerte)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧪 <strong>Getestete Metrik-Bibliothek (Unit-Tests)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Plugin-fähiges Exporter-System (Trait Objects: JSON/Text)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧵 <strong>Geteilter Metrik-Speicher (<code>Arc&lt;Mutex&lt;_&gt;&gt;</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔁 <strong>Zeitreihen-Puffer (Ring-Buffer für Messwerte)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔍 <strong>Log-Parser-Bibliothek (strukturierte Felder extrahieren)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🏗️ <strong>Builder für Dashboard-Konfiguration</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📦 <strong>Monitoring-Workspace (Core, Exporter, CLI)</strong> (nur die wichtigsten 10 Themen)</li>
+</ol>
+<h3 id="-datenbank-technik"><a class="header" href="#-datenbank-technik">🗄️ Datenbank-Technik</a></h3>
+<ol start="229">
+<li>🗃️ <strong>Generischer In-Memory-Store&lt;K, V&gt; (Trait <code>Repository</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🌲 <strong>Einfacher B-Baum (Lernprojekt, Einfügen/Suchen)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📇 <strong>Index-Struktur mit HashMap (Sekundärindex)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔄 <strong>Transaktions-Simulator (Commit/Rollback, einfach)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔍 <strong>Query-Builder (Fluent API für Filter-Ketten)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧪 <strong>Getestete Persistenz-Bibliothek (Serialisierung mit serde)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Plugin-fähiges Storage-Backend (Trait Objects: Memory/Datei)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔧 <strong>Migrations-Tool (Schema-Versionen verwalten)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧵 <strong>Geteilter Datenbank-Zustand (<code>Arc&lt;RwLock&lt;_&gt;&gt;</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📖 <strong>Generischer Paginierungs-Iterator</strong> (nur die wichtigsten 10 Themen)</li>
+<li>⚖️ <strong>Constraint-Prüfung mit Trait-Bounds (Unique, NotNull)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📦 <strong>Datenbank-Workspace (Core, Query, CLI)</strong> (nur die wichtigsten 10 Themen)</li>
+</ol>
+<h3 id="-eigene-parser--compiler-bauen"><a class="header" href="#-eigene-parser--compiler-bauen">🧮 Eigene Parser &amp; Compiler bauen</a></h3>
+<ol start="241">
+<li>🔤 <strong>Generischer Tokenizer (Trait <code>Lexer</code>)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🌳 <strong>Rekursiver-Abstieg-Parser für Arithmetik (Klammern &amp; Rangfolge)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧩 <strong>AST-Datenstruktur (enum-basiert, per Pattern Matching ausgewertet)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧪 <strong>Getesteter Lexer (Unit-Tests für Token-Erkennung)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>⚠️ <strong>Fehlerbehandlung im Parser (Meldungen mit Position)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🔌 <strong>Plugin-fähiges Grammatik-System (Trait Objects für Regeln)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📦 <strong>Rekursiver JSON-Mini-Parser (eigene Implementierung)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🚦 <strong>Zustandsbasierter Lexer (Typestate für Lexer-Modi)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🧱 <strong>Parser-Kombinatoren (eigene, einfache Bausteine)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>🖨️ <strong>AST-Pretty-Printer (Baum zurück in Text)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>📦 <strong>Parser-Workspace (Lexer-Crate, Parser-Crate, CLI)</strong> (nur die wichtigsten 10 Themen)</li>
+<li>❌ <strong>Generischer Fehler-Typ (thiserror-ähnlicher Aufbau)</strong> (nur die wichtigsten 10 Themen)</li>
 </ol>
 
                     </main>
