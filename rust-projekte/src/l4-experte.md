@@ -306,3 +306,17 @@ Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt
 250. 🎲 **Property-getestete Typprüfung (Soundness einfacher Regeln)**
 251. 🌐 **WASM-AST-Visualisierer**
 252. 📦 **Produktionsreifer eigener Compiler/Interpreter (Ende-zu-Ende)**
+
+### 🌐 Netzwerk & Protokolle
+253. ⚡ **Benchmark: verschiedene Framing-Strategien**
+254. 🎲 **Property-Tests für Protokoll-Roundtrip (Encode → Decode → Encode)**
+255. ⚙️ **Zero-Copy-Parser für Binärprotokolle**
+256. 🪄 **Custom-Makro für Protokoll-Nachrichten (`#[derive(Protocol)]`)**
+257. 🌐 **WASM-Netzwerk-Client im Browser (WebSocket)**
+258. 📦 **Veröffentlichte Crate: generische Protokoll-Codec-Bibliothek**
+259. 🎯 **Fuzzing für den eigenen Protokoll-Parser**
+260. 🌲 **Graph-Benchmark für Verbindungs-Topologien**
+261. ⚙️ **Unsafe-optimierter Netzwerk-Puffer (Zero-Allocation)**
+262. 🎲 **Property-getestete TLS-Handshake-Logik (vereinfachtes Lernprojekt)**
+263. 🌐 **WASM-Netzwerk-Traffic-Visualisierer**
+264. 📦 **Produktionsreifer Netzwerk-Dienst (Ende-zu-Ende)**

@@ -304,3 +304,17 @@ Du kennst die Grundlagen — jetzt geht es um idiomatisches, testbares und wiede
 250. 🖨️ **AST-Pretty-Printer (Baum zurück in Text)** (nur die wichtigsten 10 Themen)
 251. 📦 **Parser-Workspace (Lexer-Crate, Parser-Crate, CLI)** (nur die wichtigsten 10 Themen)
 252. ❌ **Generischer Fehler-Typ (thiserror-ähnlicher Aufbau)** (nur die wichtigsten 10 Themen)
+
+### 🌐 Netzwerk & Protokolle
+253. 🔤 **Generischer Protokoll-Codec (Trait `Encode`/`Decode`)** (nur die wichtigsten 10 Themen)
+254. 📦 **Eigener Binärprotokoll-Parser (Header + Payload)** (nur die wichtigsten 10 Themen)
+255. 🧵 **TCP-Server mit mehreren Clients (Threads, einfach)** (nur die wichtigsten 10 Themen)
+256. 🔀 **Trait-basierter Nachrichten-Router (verschiedene Nachrichtentypen)** (nur die wichtigsten 10 Themen)
+257. 🧪 **Getestete Protokoll-Bibliothek (Unit-Tests für Encode/Decode)** (nur die wichtigsten 10 Themen)
+258. 🔌 **Plugin-fähiges Protokoll-System (Trait Objects für Handler)** (nur die wichtigsten 10 Themen)
+259. 🌐 **Einfacher HTTP-Client (`std::net`, Request von Hand bauen)** (nur die wichtigsten 10 Themen)
+260. 📏 **Framing-Parser (Längenpräfix-basiertes Nachrichtenformat)** (nur die wichtigsten 10 Themen)
+261. 🧵 **Geteilter Verbindungs-Pool (`Arc<Mutex<_>>`)** (nur die wichtigsten 10 Themen)
+262. 🔁 **Generische Retry-Logik für Verbindungsaufbau** (nur die wichtigsten 10 Themen)
+263. 📦 **Protokoll-Workspace (Codec-, Server-, Client-Crate)** (nur die wichtigsten 10 Themen)
+264. 🏗️ **Builder für Verbindungs-Konfiguration (Timeout, Retries)** (nur die wichtigsten 10 Themen)

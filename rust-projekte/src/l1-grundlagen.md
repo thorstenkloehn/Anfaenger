@@ -312,3 +312,17 @@ In diesem Level lernst du die Bausteine, ohne die kein Rust-Programm auskommt. J
 250. 🖍️ **Einfacher Markup-Parser (Bold/Italic-Tags erkennen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 251. 🔗 **URL-Parser (Schema, Host, Pfad zerlegen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 252. 🔢 **Zahlen-Format-Erkenner (Int/Float/Hex unterscheiden)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+
+### 🌐 Netzwerk & Protokolle
+253. ✅ **IP-Adressen-Validator (Format prüfen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+254. 🔢 **Port-Bereich-Prüfer (gültige Portnummern)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+255. 📡 **Einfacher TCP-Echo-Client (`std::net`, lokal)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+256. 📡 **Einfacher TCP-Echo-Server (`std::net`, lokal)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+257. 📖 **HTTP-Statuscode-Nachschlagewerk (Code → Bedeutung)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+258. 🧮 **Subnetz-Rechner (einfache Bitmasken-Berechnung)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+259. 📦 **Paket-Simulator (Struct mit Header-Feldern)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+260. 📝 **Protokoll-Nachrichten-Formatter (Text-basiertes Format)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+261. 📶 **Ping-Simulator (Zeitmessung, ohne echtes ICMP)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+262. ✅ **MAC-Adressen-Validator (Format prüfen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+263. 💬 **Einfacher Chat-Client (Konsole, TCP, Text senden)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+264. 🔗 **URL-Baukasten (Bestandteile zu URL zusammensetzen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)

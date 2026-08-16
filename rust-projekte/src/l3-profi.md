@@ -312,3 +312,17 @@ Jetzt geht es um Rust im echten Betrieb: robuste Fehlerbehandlung, Konfiguration
 250. 🔍 **Semantische Analyse-Phase (einfache Typprüfung)** (nur die wichtigsten 10 Themen)
 251. 🩺 **Fehlerdiagnose-Service mit Quellcode-Kontext** (nur die wichtigsten 10 Themen)
 252. ⚙️ **Bytecode-Generator (einfache VM-Instruktionen)** (nur die wichtigsten 10 Themen)
+
+### 🌐 Netzwerk & Protokolle
+253. ⚙️ **Async-TCP-Server mit Tokio (mehrere Clients)** (nur die wichtigsten 10 Themen)
+254. 💬 **Async-Chat-Server mit Broadcast-Channels** (nur die wichtigsten 10 Themen)
+255. 🖥️ **CLI für Netzwerk-Diagnose-Tool (clap)** (nur die wichtigsten 10 Themen)
+256. 📝 **Tracing-instrumentierter Netzwerk-Dienst** (nur die wichtigsten 10 Themen)
+257. 🔐 **Sicherer TLS-Client/Server (rustls)** (nur die wichtigsten 10 Themen)
+258. 🔀 **Concurrency-fähiger Load-Balancer (einfach)** (nur die wichtigsten 10 Themen)
+259. ⚙️ **Config-gesteuerter Proxy-Server (serde)** (nur die wichtigsten 10 Themen)
+260. 🐳 **Docker-containerisierter Netzwerk-Dienst** (nur die wichtigsten 10 Themen)
+261. 🔌 **WebSocket-Server (axum/tokio-tungstenite)** (nur die wichtigsten 10 Themen)
+262. 💓 **Verbindungs-Pool-Service mit Health-Checks** (nur die wichtigsten 10 Themen)
+263. 🚦 **Rate-Limiting-Proxy** (nur die wichtigsten 10 Themen)
+264. 🌐 **Multi-Protokoll-Gateway (TCP + HTTP kombiniert)** (nur die wichtigsten 10 Themen)
