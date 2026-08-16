@@ -236,3 +236,73 @@ Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt
 190. 🎲 **Property-getestete Zitat-Validierung**
 191. 🌐 **WASM-Revisions-Historie-Visualisierer**
 192. 📦 **Produktionsreife Wiki-Engine-Crate (Ende-zu-Ende)**
+
+### 🔍 RAG & Vektorsuche
+193. ⚡ **Benchmark: lineare vs. angenäherte Vektorsuche (HNSW-artig)**
+194. 🎲 **Property-Tests für Ähnlichkeits-Invarianten (Symmetrie, Normierung)**
+195. ⚙️ **Zero-Copy-Parser für Embedding-Dateien (Binärformat)**
+196. 🪄 **Custom-Makro für Embedding-Structs (`#[derive(Embeddable)]`)**
+197. 🌐 **WASM-Vektorsuche im Browser**
+198. 📦 **Veröffentlichte Crate: generische Vektor-Index-Bibliothek**
+199. 🎯 **Fuzzing für Embedding-Datei-Parser**
+200. 🌲 **Graph-Benchmark für Cluster-Traversierung (Nächste-Nachbarn-Graph)**
+201. ⚙️ **Unsafe-optimierte SIMD-Kosinus-Ähnlichkeit**
+202. 🎲 **Property-getestete Chunking-Konsistenz (keine Datenverluste)**
+203. 🌐 **WASM-Embedding-Visualisierer (2D-Projektion)**
+204. 📦 **Produktionsreife RAG-Engine-Crate (Ende-zu-Ende)**
+
+### 🔌 MCP (Model Context Protocol) & Tool-Technik
+205. ⚡ **Benchmark: Transport-Strategien (stdio vs. HTTP)**
+206. 🎲 **Property-Tests für Protokoll-Konformität (Schema-Konsistenz)**
+207. ⚙️ **Zero-Copy-Parser für JSON-RPC-Nachrichten**
+208. 🪄 **Custom-Makro für Tool-Definitionen (`#[mcp_tool]`)**
+209. 🌐 **WASM-MCP-Client im Browser**
+210. 📦 **Veröffentlichte Crate: generisches MCP-Server-Framework**
+211. 🎯 **Fuzzing für MCP-Nachrichten-Parser**
+212. 🌲 **Graph-Benchmark für Multi-Server-Orchestrierung**
+213. ⚙️ **Unsafe-optimierter Nachrichten-Puffer für hohen Durchsatz**
+214. 🎲 **Property-getestete Capability-Verhandlung**
+215. 🌐 **WASM-MCP-Debugger/Visualisierer**
+216. 📦 **Produktionsreifes MCP-Server-Framework (Ende-zu-Ende)**
+
+### 📊 Observability & Monitoring
+217. ⚡ **Benchmark: verschiedene Metrik-Speicherformate**
+218. 🎲 **Property-Tests für Aggregations-Korrektheit**
+219. ⚙️ **Zero-Copy-Parser für Log-Formate**
+220. 🪄 **Custom-Makro für Metrik-Definitionen (`#[derive(Metric)]`)**
+221. 🌐 **WASM-Dashboard im Browser**
+222. 📦 **Veröffentlichte Crate: generische Metrik-Bibliothek**
+223. 🎯 **Fuzzing für Log-Parser**
+224. 🌲 **Graph-Benchmark für Trace-Abhängigkeiten (Span-Bäume)**
+225. ⚙️ **Unsafe-optimierter Ring-Buffer für hochfrequente Metriken**
+226. 🎲 **Property-getestete Alerting-Regeln (keine falschen Positiven)**
+227. 🌐 **WASM-Trace-Visualisierer**
+228. 📦 **Produktionsreifes Observability-Framework (Ende-zu-Ende)**
+
+### 🗄️ Datenbank-Technik
+229. ⚡ **Benchmark: B-Baum vs. Hash-Index**
+230. 🎲 **Property-Tests für Transaktions-Isolation**
+231. ⚙️ **Zero-Copy-Parser für ein eigenes Datenbankformat**
+232. 🪄 **Custom-Makro für ORM-artiges Mapping (`#[derive(Table)]`)**
+233. 🌐 **WASM-Mini-Datenbank im Browser**
+234. 📦 **Veröffentlichte Crate: eigene Embedded-Key-Value-Engine**
+235. 🎯 **Fuzzing für Query-Parser**
+236. 🌲 **Graph-Benchmark für Join-Strategien**
+237. ⚙️ **Unsafe-optimiertes Speicher-Layout für Zeilen (Column-Store-Experiment)**
+238. 🎲 **Property-getestete WAL-Konsistenz (Write-Ahead-Log, Lernprojekt)**
+239. 🌐 **WASM-Query-Plan-Visualisierer**
+240. 📦 **Produktionsreife Embedded-Datenbank-Crate (Ende-zu-Ende)**
+
+### 🧮 Eigene Parser & Compiler bauen
+241. ⚡ **Benchmark: rekursiver Abstieg vs. Parser-Kombinatoren**
+242. 🎲 **Property-Tests für Parser-Roundtrip (Parse → Pretty-Print → Parse)**
+243. ⚙️ **Zero-Copy-Lexer (ohne String-Allokationen)**
+244. 🪄 **Custom-Makro für Grammatik-Regeln (DSL für Parser-Definition)**
+245. 🌐 **WASM-Compiler-Playground im Browser**
+246. 📦 **Veröffentlichte Crate: generische Parser-Kombinator-Bibliothek**
+247. 🎯 **Fuzzing für den eigenen Parser**
+248. 🌲 **Graph-Benchmark für AST-Traversierung (Optimierungspässe)**
+249. ⚙️ **Unsafe-optimierte Bytecode-VM (Performance)**
+250. 🎲 **Property-getestete Typprüfung (Soundness einfacher Regeln)**
+251. 🌐 **WASM-AST-Visualisierer**
+252. 📦 **Produktionsreifer eigener Compiler/Interpreter (Ende-zu-Ende)**
