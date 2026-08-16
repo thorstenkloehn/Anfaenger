@@ -154,3 +154,85 @@ Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt
 118. 🔧 **Interne Build-Zeit-Optimierung (Profiling)**
 119. 📊 **Produktions-Metriken-Bibliothek mit Benchmarks**
 120. 🛡️ **Supply-Chain-Sicherheits-Check (cargo-audit-artig)**
+
+### 🧠 Wissenssysteme & Wissenstechnik
+121. ⚡ **Volltextsuche-Algorithmen-Benchmark**
+122. 🎲 **Property-Tests für Wissensgraph-Konsistenz**
+123. ⚙️ **Zero-Copy-Parser für Wissens-Datenformate (z. B. Turtle/RDF)**
+124. 🪄 **Derive-Makro für Wissens-Entity-Modelle**
+125. 🌐 **WASM-Wissens-Viewer im Browser**
+126. 📦 **Veröffentlichte Crate: Wissensgraph-Datenstruktur**
+127. 🔍 **Invertierter Suchindex from scratch**
+128. 🎯 **Fuzzing für Wissens-Import-Parser**
+129. 🌲 **Graph-Traversierungs-Benchmark für Wissensgraphen**
+130. 🧮 **Eigene Vektor-Ähnlichkeitssuche (Embeddings-Grundlagen)**
+131. 🔬 **Semantic-Search-Prototyp (Unsafe-optimierte Distanzberechnung)**
+132. 📦 **Produktionsreife Wissensgraph-Crate (Ende-zu-Ende)**
+
+### 🧭 Expertensysteme & Expertensystem-Technik
+133. ⚡ **Benchmark: Forward- vs. Backward-Chaining**
+134. 🎲 **Property-Tests für Regel-Konsistenz (Widerspruchsfreiheit)**
+135. ⚙️ **Zero-Copy-Parser für Regel-Dateien (eigene DSL)**
+136. 🪄 **Custom-Makro für Regel-Definitionen (`rule! {}`)**
+137. 🌐 **WASM-Expertensystem im Browser**
+138. 📦 **Veröffentlichte Crate: generische Inferenz-Engine**
+139. 🧮 **Eigener Constraint-Solver (einfach, from scratch)**
+140. 🎯 **Fuzzing für Regel-Parser**
+141. 🌲 **Graph-basierte Abhängigkeitsanalyse von Regeln (Benchmark)**
+142. ⚙️ **Unsafe-optimierter Fakten-Speicher (Performance)**
+143. 🌫️ **Property-getestetes Fuzzy-Logic-System**
+144. 📦 **Produktionsreife Expertensystem-Crate (Ende-zu-Ende)**
+
+### 🎓 LMS & Lernplattform-Technik
+145. ⚡ **Benchmark: Quiz-Auswertungs-Algorithmen**
+146. 🎲 **Property-Tests für Notenberechnung**
+147. ⚙️ **Zero-Copy-Parser für Kursinhalte (SCORM-ähnliches Format)**
+148. 🪄 **Custom-Makro für Kurs-Definitionen**
+149. 🌐 **WASM-Quiz-Player im Browser**
+150. 📦 **Veröffentlichte Crate: generische LMS-Kernbibliothek**
+151. 🎯 **Fuzzing für Kurs-Import-Parser**
+152. 🌲 **Graph-Benchmark für Lernpfad-Abhängigkeiten**
+153. ⚙️ **Unsafe-optimierter Fortschritts-Speicher**
+154. 🎲 **Property-getestetes Zertifikats-Validierungssystem**
+155. 🌐 **WASM-Lernpfad-Visualisierer**
+156. 📦 **Produktionsreife LMS-Crate (Ende-zu-Ende)**
+
+### 🤖 Eigener KI-Agent & Agenten-Technik
+157. ⚡ **Benchmark: Tool-Dispatch-Strategien**
+158. 🎲 **Property-Tests für Agenten-Zustandsübergänge**
+159. ⚙️ **Zero-Copy-Parser für Agenten-Protokoll (JSON-RPC-artig)**
+160. 🪄 **Custom-Makro für Tool-Definitionen (`#[tool]`)**
+161. 🌐 **WASM-Agent im Browser**
+162. 📦 **Veröffentlichte Crate: generisches Agenten-Framework**
+163. 🎯 **Fuzzing für Agenten-Kommando-Parser**
+164. 🌲 **Graph-Benchmark für Multi-Agenten-Kommunikation**
+165. ⚙️ **Unsafe-optimierter Nachrichten-Puffer**
+166. 🎲 **Property-getestete Tool-Aufruf-Validierung**
+167. 🌐 **WASM-Agenten-Debugger/Visualisierer**
+168. 📦 **Produktionsreifes Agenten-Framework (Ende-zu-Ende)**
+169. ⚡ **Benchmark: Speicher-Strategien für Agenten-Gedächtnis (Vec vs. HashMap vs. Ring-Buffer)**
+170. 🎲 **Property-Tests für Tool-Retry-Logik (Idempotenz)**
+171. ⚙️ **Zero-Copy-Parser für Streaming-Antworten (Chunked-Format)**
+172. 🪄 **Derive-Makro für Agenten-Konfiguration (`#[derive(AgentConfig)]`)**
+173. 🌐 **WASM-Sandbox für Tool-Ausführung im Browser**
+174. 📦 **Veröffentlichte Crate: Tokenizer-Bibliothek für Agenten**
+175. 🎯 **Fuzzing für Streaming-Antwort-Parser**
+176. 🌲 **Graph-Benchmark für Agenten-Abhängigkeitsketten (Tool-Chains)**
+177. ⚙️ **Unsafe-optimierter Ring-Buffer für Agenten-Ereignisse**
+178. 🎲 **Property-getestete Kosten-Kalkulation (Token-Zähler)**
+179. 🌐 **WASM-Multi-Agenten-Simulator im Browser**
+180. 📦 **Produktionsreifes verteiltes Agenten-System (Ende-zu-Ende)**
+
+### 📖 LLM-Wiki-Pattern (Karpathy-Muster) & Wiki-Technik
+181. ⚡ **Benchmark: Diff-Algorithmen (Myers vs. naiv)**
+182. 🎲 **Property-Tests für Merge-Konsistenz**
+183. ⚙️ **Zero-Copy-Parser für Wiki-Markup**
+184. 🪄 **Custom-Makro für Artikel-Metadaten (`#[derive(WikiPage)]`)**
+185. 🌐 **WASM-Diff-Viewer im Browser**
+186. 📦 **Veröffentlichte Crate: generische Diff/Merge-Bibliothek**
+187. 🎯 **Fuzzing für Wiki-Markup-Parser**
+188. 🌲 **Graph-Benchmark für Revisions-Historie (Traversierung)**
+189. ⚙️ **Unsafe-optimierter Text-Puffer für große Artikel**
+190. 🎲 **Property-getestete Zitat-Validierung**
+191. 🌐 **WASM-Revisions-Historie-Visualisierer**
+192. 📦 **Produktionsreife Wiki-Engine-Crate (Ende-zu-Ende)**
