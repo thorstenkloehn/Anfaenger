@@ -334,3 +334,17 @@ Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt
 274. 🎲 **Property-getestete Prozess-Lifecycle-Zustände**
 275. 🌐 **WASM-Ressourcen-Auslastungs-Visualisierer**
 276. 📦 **Produktionsreifes System-Monitoring-Tool (Ende-zu-Ende)**
+
+### 📰 CMS-Technik
+277. ⚡ **Benchmark: Template-Rendering-Strategien (String-Concat vs. Writer)**
+278. 🎲 **Property-Tests für Markdown-Parser-Konsistenz**
+279. ⚙️ **Zero-Copy-Content-Parser (Lernprojekt, `&str`-Slices statt Allokation)**
+280. 🪄 **Custom-Makro für Content-Modell-Generierung (`#[derive(ContentType)]`)**
+281. 🌐 **WASM-Live-Vorschau-Editor im Browser**
+282. 📦 **Veröffentlichte Crate: generische Template-Engine-Bibliothek**
+283. 🎯 **Fuzzing für den eigenen Markdown-/Content-Parser**
+284. 🌲 **Graph-Benchmark für Content-Verlinkungs-Struktur (Backlinks)**
+285. ⚙️ **Unsafe-optimierter Puffer für große Content-Exporte**
+286. 🎲 **Property-getestete Versionierungs-/Diff-Logik**
+287. 🌐 **WASM-Rendering-Vergleich (Server-Side vs. Client-Side)**
+288. 📦 **Produktionsreifes Mini-CMS (Ende-zu-Ende)**

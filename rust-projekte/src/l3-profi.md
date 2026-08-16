@@ -340,3 +340,17 @@ Jetzt geht es um Rust im echten Betrieb: robuste Fehlerbehandlung, Konfiguration
 274. 📈 **Ressourcen-Limit-Überwacher (Speicher/CPU-Schwellenwerte)** (nur die wichtigsten 10 Themen)
 275. 🔃 **Datei-Synchronisations-Dienst (zwei Verzeichnisse abgleichen)** (nur die wichtigsten 10 Themen)
 276. 🔁 **Systemdienst-Simulator (Start/Stop/Restart-Lifecycle)** (nur die wichtigsten 10 Themen)
+
+### 📰 CMS-Technik
+277. ⚙️ **Async-Content-API (axum, CRUD für Artikel)** (nur die wichtigsten 10 Themen)
+278. 🐳 **Docker-containerisiertes Mini-CMS** (nur die wichtigsten 10 Themen)
+279. 🔐 **Rollen-basierte Zugriffskontrolle (Autor/Redakteur/Admin)** (nur die wichtigsten 10 Themen)
+280. 📝 **Tracing-instrumentierter Publishing-Workflow** (nur die wichtigsten 10 Themen)
+281. ⚙️ **Config-gesteuertes CMS (serde, verschiedene Backends)** (nur die wichtigsten 10 Themen)
+282. 💓 **Health-Check-Endpoint für CMS-Service** (nur die wichtigsten 10 Themen)
+283. 🔄 **Asynchroner Medien-Upload-Dienst (Bilder, Dateien)** (nur die wichtigsten 10 Themen)
+284. 🚦 **Rate-Limiting für Kommentar-API** (nur die wichtigsten 10 Themen)
+285. 📈 **Cache-Invalidierungs-Dienst (Redis-artig, simuliert)** (nur die wichtigsten 10 Themen)
+286. 🔃 **Content-Synchronisation zwischen Staging/Produktion** (nur die wichtigsten 10 Themen)
+287. 🔎 **Async-Volltextsuche-Service (Index im Hintergrund aktualisieren)** (nur die wichtigsten 10 Themen)
+288. 🌐 **Webhook-System (Event bei Veröffentlichung auslösen)** (nur die wichtigsten 10 Themen)

@@ -340,3 +340,17 @@ In diesem Level lernst du die Bausteine, ohne die kein Rust-Programm auskommt. J
 274. 🕰️ **Zeitstempel-Anzeiger für Dateien** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 275. 🗑️ **Papierkorb-Simulator (Löschen mit Wiederherstellung)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
 276. 💽 **Festplatten-Speicher-Anzeiger (verfügbarer Platz)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+
+### 📰 CMS-Technik
+277. 📄 **Artikel-Struct (Titel, Inhalt, Autor, Datum)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+278. 🗂️ **Artikel-Verwaltung (Vec, hinzufügen/löschen/auflisten)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+279. 🔍 **Artikel-Suche (Titel/Inhalt nach Stichwort durchsuchen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+280. 🏷️ **Tag-System (Artikel mit Schlagwörtern versehen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+281. 📅 **Artikel nach Datum sortieren** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+282. ✂️ **Textauszug-Generator (Vorschau-Text aus Artikelinhalt)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+283. 🔢 **Wortzähler & Lesezeit-Schätzer für Artikel** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+284. 📁 **Artikel in Datei speichern & laden (`std::fs`, einfaches Textformat)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+285. 🌐 **Slug-Generator (Titel → URL-freundlicher String)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+286. 👤 **Autoren-Verwalter (Struct mit Name, zugeordneten Artikeln)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+287. 📝 **Einfacher Markdown-Formatierer (`**fett**`, `*kursiv*` erkennen)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)
+288. 🗓️ **Veröffentlichungs-Planer (Artikel-Status: Entwurf/Veröffentlicht)** (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)

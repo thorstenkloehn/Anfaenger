@@ -332,3 +332,17 @@ Du kennst die Grundlagen — jetzt geht es um idiomatisches, testbares und wiede
 274. 🚦 **Signal-Handler-Demonstrator (Ctrl+C abfangen)** (nur die wichtigsten 10 Themen)
 275. 📦 **Dateisystem-Workspace (Core, Watcher, CLI)** (nur die wichtigsten 10 Themen)
 276. 🏗️ **Builder für Datei-Scan-Konfiguration (Filter, Rekursionstiefe)** (nur die wichtigsten 10 Themen)
+
+### 📰 CMS-Technik
+277. 🔌 **Trait-basiertes Content-Repository (Mock- vs. Datei-Backend)** (nur die wichtigsten 10 Themen)
+278. 📦 **CMS-Workspace (Core-, Storage-, CLI-Crate)** (nur die wichtigsten 10 Themen)
+279. 🏗️ **Builder für Artikel-Erstellung (Titel, Tags, Status)** (nur die wichtigsten 10 Themen)
+280. 🔁 **Generischer Renderer-Trait (Markdown, HTML, Plaintext)** (nur die wichtigsten 10 Themen)
+281. 🧵 **Geteilter Artikel-Cache (`Arc<Mutex<_>>`)** (nur die wichtigsten 10 Themen)
+282. 🧪 **Getestete Slug-Bibliothek (Unicode, Sonderzeichen)** (nur die wichtigsten 10 Themen)
+283. 🔗 **Iterator-Kette für Artikel-Filterung (Tags, Datum, Status)** (nur die wichtigsten 10 Themen)
+284. 📐 **Trait-Objekt-basiertes Plugin-System (Content-Transformer)** (nur die wichtigsten 10 Themen)
+285. 🗃️ **Versionierungs-System für Artikel (Diff zwischen Revisionen)** (nur die wichtigsten 10 Themen)
+286. 🔍 **Volltextsuche mit Index (`HashMap<Wort, Vec<ArtikelId>>`)** (nur die wichtigsten 10 Themen)
+287. 🧩 **Template-Engine (einfache Platzhalter-Ersetzung, `{{titel}}`)** (nur die wichtigsten 10 Themen)
+288. 📊 **Statistik-Modul (Artikel pro Autor/Tag, generisch aggregiert)** (nur die wichtigsten 10 Themen)
