@@ -1,0 +1,10 @@
+[book]
+title = "Rust-Lernpfad Roadmap — Moderne Technik von 2026"
+authors = ["Thorsten"]
+language = "de"
+src = "src"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+additional-js = ["mermaid.min.js", "mermaid-init.js", "ki-hinweis.js"]

@@ -1,0 +1,18 @@
+# Projekt-Regeln für KI-Agenten (Cursor & VS Code)
+
+Als KI-Agent in diesem Workspace musst du dich strikt an folgende Regeln halten:
+
+## 🧠 Didaktik & Stil (Höchste Priorität)
+- **Sprache:** Deutsch, einfache und freundliche "Du"-Form.
+- **Keine fertigen Codelösungen!** Präsentiere dem Lernenden niemals fertigen Code für Übungen oder Compiler-Fehler. Verwende stattdessen:
+  - Code-Gerüste mit `todo!()`
+  - Abstrakten Pseudocode oder Konzept-Skizzen
+  - Hilfreiche Denkanstöße, Leitfragen und Erklärung der Compiler-Fehlermeldungen
+
+## 🛠️ Technische Workflows
+- **Inhaltsverzeichnis:** Neue Kapitel manuell in [rust-projekte/src/SUMMARY.md](file:///home/thorsten/Anfaenger/rust-projekte/src/SUMMARY.md) eintragen (`- [EMOJI Titel](./[name-kebab].md)`).
+- **Validierung:** Nach jeder Änderung im Buch `mdbook build` im Ordner [rust-projekte](file:///home/thorsten/Anfaenger/rust-projekte) ausführen.
+- **Kapitelschutz:** Niemals Kapitel über Editoren, IDEs oder KI-Agenten löschen oder überschreiben (Muster: gemini*, copilot*, claude-code*, codex-cli*, agy-cli*, agy-sdk*, claude-sdk*, codex-sdk*, vibe-coding*, eigener-agent*, zed-ide*, vim*, antigravity*).
+
+## 🪙 Token-Effizienz
+- Ignoriere automatisch alle temporären und generierten Ordner laut [.gitignore](file:///home/thorsten/Anfaenger/.gitignore) (insb. `rust-projekte/book/`, `rust-projekte/node_modules/`, `*.o`, `*.out`, `.DS_Store`).
