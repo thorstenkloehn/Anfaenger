@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🟢 L1 Grundlagen - Rust-Lernpfad Roadmap — Moderne Technik von 2026</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust-Lernpfad Roadmap — Moderne Technik von 2026</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-l1-grundlagen"><a class="header" href="#-l1-grundlagen">🟢 L1 Grundlagen</a></h1>
+<p>In diesem Level lernst du die Bausteine, ohne die kein Rust-Programm auskommt. Jedes Projekt kombiniert mehrere Themen gleichzeitig, wie in einem echten Programm.</p>
+<div class="table-wrapper"><table><thead><tr><th>Thema</th><th>Was du lernst</th></tr></thead><tbody>
+<tr><td>🧱 Variablen, Datentypen, Kontrollfluss</td><td>Zahlen, Texte, Mutabilität, <code>if/else</code>, <code>loop</code>, <code>while</code>, <code>for</code></td></tr>
+<tr><td>⌨️ Benutzereingabe &amp; String-Parsing</td><td>Konsoleneingabe lesen, <code>parse()</code>, Fehler beim Parsen behandeln</td></tr>
+<tr><td>🧠 Ownership, Borrowing &amp; Lifetimes-Basics</td><td>Wer besitzt was? Referenzen (<code>&amp;</code>, <code>&amp;mut</code>), einfache Lifetime-Annotationen</td></tr>
+<tr><td>🏗️ Structs, Enums, Methoden</td><td>Eigene Datentypen, <code>impl</code>-Blöcke, z. B. Events mit Severity Level</td></tr>
+<tr><td>🔀 Pattern Matching</td><td><code>match</code> mit Exhaustiveness Checking, kompaktes <code>if let</code></td></tr>
+<tr><td>❓ Error Handling</td><td><code>Option&lt;T&gt;</code>, <code>Result&lt;T, E&gt;</code>, <code>?</code>-Operator</td></tr>
+<tr><td>📦 <code>Vec</code>, <code>HashMap</code>, <code>String</code></td><td>Collections befüllen, durchsuchen, verändern</td></tr>
+<tr><td>📁 Modulsystem</td><td><code>mod</code>, <code>pub</code>, <code>use</code>, Sichtbarkeit über Dateigrenzen hinweg</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p><strong>Hinweis:</strong> Alle Projekte werden ohne fertige Code-Vorschläge begleitet. Erarbeite die Lösung eigenständig!</p>
+</blockquote>
+<hr />
+<h2 id="-132-projektvorschläge"><a class="header" href="#-132-projektvorschläge">📜 132 Projektvorschläge</a></h2>
+<h3 id="-wissenssysteme--wissenstechnik"><a class="header" href="#-wissenssysteme--wissenstechnik">🧠 Wissenssysteme &amp; Wissenstechnik</a></h3>
+<ol>
+<li>📖 <strong>Glossar-Tool (Fachbegriffe nachschlagen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>❓ <strong>FAQ-Verwaltung (Frage-Antwort-Katalog)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎴 <strong>Karteikarten-Trainer (Konsole, Frage/Antwort)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧠 <strong>Wissens-Quiz mit Punktestand</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📚 <strong>Fakten-Datenbank (Kategorien &amp; Suche)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏷️ <strong>Tag-basierte Notizverwaltung</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📓 <strong>Mini-Wiki (Konsole, verlinkte Einträge)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>💬 <strong>Zitate-Sammlung mit Autor-Suche</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔤 <strong>Begriffs-Lexikon (alphabetisch sortiert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗂️ <strong>Lernkarten-Stapel-Verwalter (mehrere Stapel)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>❔ <strong>Frage-Antwort-Datenbank mit Bewertung</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧩 <strong>Themen-Verknüpfungs-Tool (verwandte Begriffe)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-expertensysteme--expertensystem-technik"><a class="header" href="#-expertensysteme--expertensystem-technik">🧭 Expertensysteme &amp; Expertensystem-Technik</a></h3>
+<ol start="13">
+<li>🌳 <strong>Entscheidungsbaum-Berater (Ja/Nein-Fragen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🩺 <strong>Diagnose-Quiz (Symptom → Ergebnis)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📏 <strong>Regelbasierter Ratgeber (Wenn-Dann-Regeln)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🌱 <strong>Pflanzenpflege-Berater (Regelbasiert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🚗 <strong>Kfz-Fehlerdiagnose-Tool (einfach)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🥗 <strong>Ernährungsberater (Regelbasiert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧥 <strong>Wetter-Kleidungsberater</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>💳 <strong>Kredit-Ampel-Berater (Regeln)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🐾 <strong>Tier-Bestimmungs-Tool (Ja/Nein-Fragen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🍲 <strong>Rezept-Empfehlungs-Tool (Zutaten → Vorschlag)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧯 <strong>Fehlerbaum-Navigator (Konsole)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎯 <strong>Ziel-Empfehlungs-Berater (Regelpriorität)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-lms--lernplattform-technik"><a class="header" href="#-lms--lernplattform-technik">🎓 LMS &amp; Lernplattform-Technik</a></h3>
+<ol start="25">
+<li>📚 <strong>Kursverwaltung (Konsole)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📝 <strong>Teilnehmer-Anmeldesystem</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>❓ <strong>Quiz-Tool mit Auswertung</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✅ <strong>Fortschritts-Tracker (Lektionen abhaken)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎓 <strong>Notenbuch für Kurse</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗺️ <strong>Lernpfad-Planer (Reihenfolge von Lektionen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🙋 <strong>Anwesenheits-Tracker</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏅 <strong>Zertifikat-Generator (Text)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📤 <strong>Hausaufgaben-Abgabe-Tracker</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⭐ <strong>Kursbewertungs-Tool (Sterne &amp; Feedback)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎯 <strong>Lernziel-Checkliste</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗓️ <strong>Stundenplan-Verwaltung</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-eigener-ki-agent--agenten-technik"><a class="header" href="#-eigener-ki-agent--agenten-technik">🤖 Eigener KI-Agent &amp; Agenten-Technik</a></h3>
+<ol start="37">
+<li>💬 <strong>Einfacher Regel-Chatbot (Konsole)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⌨️ <strong>Kommando-Interpreter (Text-Befehle parsen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔀 <strong>Zustands-basierter Dialog-Agent (einfache Zustandsmaschine)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧰 <strong>Simple Tool-Auswahl (Menü-basiert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎮 <strong>Text-Adventure-Agent (NPC-Antworten)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📝 <strong>Erinnerungs-Notiz-Agent (einfacher Speicher)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📋 <strong>Aufgaben-Planer-Agent (To-Do aus Eingabe ableiten)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔍 <strong>Stichwort-Erkennungs-Bot (Keyword-Matching)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📜 <strong>Konsolen-Assistent mit Befehlshistorie</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧭 <strong>Einfacher Frage-Router (Themen zuordnen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⚡ <strong>Reaktions-Agent (Wenn-Dann auf Eingabe)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧩 <strong>Mini-Interpreter für Agenten-Kommandos</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎭 <strong>Persönlichkeits-Profil-Agent (Antworten je nach Charakter)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🌍 <strong>Einfacher Übersetzungs-Router (Wörterbuch-Lookup)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🌦️ <strong>Wetter-Berater-Agent (Regeln + Empfehlung)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏠 <strong>Haushalts-Erinnerungs-Agent (simuliert zeitbasiert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🛒 <strong>Einkaufslisten-Agent (Text-Eingabe parsen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🪙 <strong>Entscheidungs-Agent mit Begründungstext</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📥 <strong>Feedback-Sammler-Agent (Antworten kategorisieren)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧠 <strong>Simple Skill-Auswahl (Fähigkeiten als Funktionen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>👋 <strong>Namens-Begrüßungs-Agent (personalisierte Antworten)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🎬 <strong>Zufalls-Empfehlungs-Agent (Filme/Bücher aus Liste)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📔 <strong>Journal-Agent (Tageseinträge sammeln &amp; zusammenfassen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔢 <strong>Zähl-Agent (Kommandos zählen &amp; Statistik ausgeben)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-llm-wiki-pattern-karpathy-muster--wiki-technik"><a class="header" href="#-llm-wiki-pattern-karpathy-muster--wiki-technik">📖 LLM-Wiki-Pattern (Karpathy-Muster) &amp; Wiki-Technik</a></h3>
+<ol start="61">
+<li>📝 <strong>Wiki-Seiten-Editor (Konsole, Text speichern/laden)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🕰️ <strong>Versions-Verlauf für Notizen (einfache History)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔍 <strong>Diff-Anzeiger für zwei Textversionen</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📋 <strong>Änderungs-Protokoll-Tool (Changelog aus Eingaben)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📚 <strong>Quellen-Sammlung (Zitate mit Herkunftsangabe)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📄 <strong>Artikel-Entwurf-Verwaltung (Draft/Veröffentlicht-Status)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔗 <strong>Wiki-Seiten-Verlinkung (Begriffe verweisen aufeinander)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>↩️ <strong>Rückgängig-Tool für Textänderungen (Undo-Stack)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧑‍🤝‍🧑 <strong>Autoren-Beitrags-Zähler (wer hat was geändert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✅ <strong>Artikel-Review-Checkliste (Status-Tracker)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🕵️ <strong>Fakten-Prüf-Checkliste (Quellenangabe-Pflicht)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔎 <strong>Wiki-Seiten-Suche (Volltext, einfach)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-rag--vektorsuche"><a class="header" href="#-rag--vektorsuche">🔍 RAG &amp; Vektorsuche</a></h3>
+<ol start="73">
+<li>📏 <strong>Text-Ähnlichkeits-Checker (Wortüberschneidung, einfach)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏷️ <strong>Dokumenten-Stichwort-Extraktor</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📊 <strong>Einfacher Ähnlichkeits-Rang (Jaccard-Koeffizient)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✂️ <strong>Textabschnitt-Splitter (Chunking für lange Texte)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔎 <strong>Schlagwort-basierte Dokumenten-Suche</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏆 <strong>Relevanz-Ranking-Tool (einfache Zählung)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🧭 <strong>Frage-zu-Absatz-Zuordner (Keyword-Matching)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📌 <strong>Zitat-Fundstellen-Finder (Textsuche mit Kontext)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🪞 <strong>Duplikat-Dokument-Erkenner (Textvergleich)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗂️ <strong>Themen-Cluster-Tool (Gruppierung nach Keywords)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✂️ <strong>Kontext-Ausschnitt-Extraktor (Snippet um Treffer)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📇 <strong>Dokumenten-Metadaten-Katalog (Titel, Tags, Quelle)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-mcp-model-context-protocol--tool-technik"><a class="header" href="#-mcp-model-context-protocol--tool-technik">🔌 MCP (Model Context Protocol) &amp; Tool-Technik</a></h3>
+<ol start="85">
+<li>🧰 <strong>Werkzeug-Katalog (Konsole, Liste verfügbarer Tools)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔀 <strong>Kommando-zu-Funktion-Zuordner (einfacher Dispatcher)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📨 <strong>Anfrage-Antwort-Simulator (Client ruft „Server“-Funktion auf)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📝 <strong>Werkzeug-Beschreibungs-Generator (Name + Parameter als Text)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>💬 <strong>Einfacher Nachrichtenaustausch (Request/Response als Structs)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🟢 <strong>Verfügbarkeits-Prüfer (welche Werkzeuge sind „online“?)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✅ <strong>Parameter-Validierungs-Tool (Pflichtfelder prüfen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📜 <strong>Werkzeug-Aufruf-Protokoll (Log aller Aufrufe)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗂️ <strong>Ressourcen-Katalog (Dateien/Daten eines „Servers“)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏷️ <strong>Fähigkeiten-Anzeige (Capabilities eines simulierten Servers)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📡 <strong>Einfacher Server-Discovery (Liste bekannter Server)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⚠️ <strong>Fehler-Antwort-Formatter (einheitliches Fehlerformat)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-datenbank-technik"><a class="header" href="#-datenbank-technik">🗄️ Datenbank-Technik</a></h3>
+<ol start="97">
+<li>🗃️ <strong>Datensatz-Speicher (<code>Vec&lt;Struct&gt;</code>, CRUD in Konsole)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔑 <strong>Primärschlüssel-Generator (fortlaufende ID)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📋 <strong>Einfache Tabellen-Simulation (<code>Vec&lt;HashMap&gt;</code>)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📄 <strong>CSV-Datenbank-Reader (Zeilen als Datensätze)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>💾 <strong>Einfacher Datei-basierter Speicher (Speichern/Laden)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🪞 <strong>Duplikat-Prüfer (Eindeutigkeit von Schlüsseln)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔀 <strong>Sortier-Tool für Datensätze (nach Feld)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔎 <strong>Filter-Abfrage-Tool (WHERE-ähnlich, einfach)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>💽 <strong>Backup-Tool (Datei kopieren, simuliert)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✅ <strong>Datensatz-Validierungs-Tool (Pflichtfelder)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔗 <strong>Einfache Beziehungs-Simulation (Fremdschlüssel als ID-Referenz)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📜 <strong>Änderungs-Historie für Datensätze (einfaches Log)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-eigene-parser--compiler-bauen"><a class="header" href="#-eigene-parser--compiler-bauen">🧮 Eigene Parser &amp; Compiler bauen</a></h3>
+<ol start="109">
+<li>🧮 <strong>Einfacher Taschenrechner-Parser (nur + und -)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔗 <strong>Klammer-Prüfer (Balanced Parentheses)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📄 <strong>CSV-Zeilen-Parser (eigene Implementierung ohne Crate)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✂️ <strong>Einfacher Tokenizer (Text in Wörter/Zahlen zerlegen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⌨️ <strong>Kommandozeilen-Argument-Parser (einfach, ohne clap)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>⚙️ <strong>Konfigurationsdatei-Parser (Key=Value-Format)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>➗ <strong>Mathematischer Ausdrucks-Auswerter (Punkt-vor-Strich)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📡 <strong>Morsecode-Parser (Text ↔ Morse)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📅 <strong>Datum-Format-Parser (String → Struct)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🖍️ <strong>Einfacher Markup-Parser (Bold/Italic-Tags erkennen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔗 <strong>URL-Parser (Schema, Host, Pfad zerlegen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔢 <strong>Zahlen-Format-Erkenner (Int/Float/Hex unterscheiden)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+<h3 id="-cms-technik"><a class="header" href="#-cms-technik">📰 CMS-Technik</a></h3>
+<ol start="121">
+<li>📄 <strong>Artikel-Struct (Titel, Inhalt, Autor, Datum)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗂️ <strong>Artikel-Verwaltung (Vec, hinzufügen/löschen/auflisten)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔍 <strong>Artikel-Suche (Titel/Inhalt nach Stichwort durchsuchen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🏷️ <strong>Tag-System (Artikel mit Schlagwörtern versehen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📅 <strong>Artikel nach Datum sortieren</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>✂️ <strong>Textauszug-Generator (Vorschau-Text aus Artikelinhalt)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🔢 <strong>Wortzähler &amp; Lesezeit-Schätzer für Artikel</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📁 <strong>Artikel in Datei speichern &amp; laden (<code>std::fs</code>, einfaches Textformat)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🌐 <strong>Slug-Generator (Titel → URL-freundlicher String)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>👤 <strong>Autoren-Verwalter (Struct mit Name, zugeordneten Artikeln)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>📝 <strong>Einfacher Markdown-Formatierer (<code>**fett**</code>, <code>*kursiv*</code> erkennen)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+<li>🗓️ <strong>Veröffentlichungs-Planer (Artikel-Status: Entwurf/Veröffentlicht)</strong> (Kapitel 1: alle Themen von L1 zusammenführen; weitere Kapitel: L2, sortiert)</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="roadmap.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="l2-fortgeschritten.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="roadmap.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="l2-fortgeschritten.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="ki-hinweis.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

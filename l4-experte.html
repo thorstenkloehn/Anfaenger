@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="de" class="navy sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🔴 L4 Experte - Rust-Lernpfad Roadmap — Moderne Technik von 2026</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "navy";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust-Lernpfad Roadmap — Moderne Technik von 2026</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-l4-experte"><a class="header" href="#-l4-experte">🔴 L4 Experte</a></h1>
+<p>Das letzte Level: Performance messen statt raten, Korrektheit durch Zufall statt nur per Beispiel prüfen, an die Grenzen der Sprache gehen — und das Ergebnis produktionsreif veröffentlichen.</p>
+<div class="table-wrapper"><table><thead><tr><th>Thema</th><th>Was du lernst</th></tr></thead><tbody>
+<tr><td>⚡ Benchmarking &amp; Memory Profiling</td><td><code>criterion</code>, Heap-/Allokations-Profiling</td></tr>
+<tr><td>🎲 Property-based Testing &amp; Fuzzing</td><td><code>proptest</code>, <code>cargo-fuzz</code></td></tr>
+<tr><td>⚙️ Zero-Copy, Unsafe Rust, FFI</td><td><code>unsafe</code>, rohe Zeiger, C-Interop</td></tr>
+<tr><td>🪄 Custom Makros</td><td><code>macro_rules!</code>, Derive-/Attribute-Makros</td></tr>
+<tr><td>🌐 WebAssembly</td><td><code>wasm-bindgen</code>, Rust im Browser</td></tr>
+<tr><td>📦 Crates.io Release &amp; Production</td><td>Semver, Doku, CI, Veröffentlichung</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p><strong>Hinweis:</strong> Alle Projekte werden ohne fertige Code-Vorschläge begleitet. Erarbeite die Lösung eigenständig!</p>
+</blockquote>
+<hr />
+<h2 id="-132-projektvorschläge"><a class="header" href="#-132-projektvorschläge">📜 132 Projektvorschläge</a></h2>
+<h3 id="-wissenssysteme--wissenstechnik"><a class="header" href="#-wissenssysteme--wissenstechnik">🧠 Wissenssysteme &amp; Wissenstechnik</a></h3>
+<ol>
+<li>⚡ <strong>Volltextsuche-Algorithmen-Benchmark</strong></li>
+<li>🎲 <strong>Property-Tests für Wissensgraph-Konsistenz</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Wissens-Datenformate (z. B. Turtle/RDF)</strong></li>
+<li>🪄 <strong>Derive-Makro für Wissens-Entity-Modelle</strong></li>
+<li>🌐 <strong>WASM-Wissens-Viewer im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: Wissensgraph-Datenstruktur</strong></li>
+<li>🔍 <strong>Invertierter Suchindex from scratch</strong></li>
+<li>🎯 <strong>Fuzzing für Wissens-Import-Parser</strong></li>
+<li>🌲 <strong>Graph-Traversierungs-Benchmark für Wissensgraphen</strong></li>
+<li>🧮 <strong>Eigene Vektor-Ähnlichkeitssuche (Embeddings-Grundlagen)</strong></li>
+<li>🔬 <strong>Semantic-Search-Prototyp (Unsafe-optimierte Distanzberechnung)</strong></li>
+<li>📦 <strong>Produktionsreife Wissensgraph-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-expertensysteme--expertensystem-technik"><a class="header" href="#-expertensysteme--expertensystem-technik">🧭 Expertensysteme &amp; Expertensystem-Technik</a></h3>
+<ol start="13">
+<li>⚡ <strong>Benchmark: Forward- vs. Backward-Chaining</strong></li>
+<li>🎲 <strong>Property-Tests für Regel-Konsistenz (Widerspruchsfreiheit)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Regel-Dateien (eigene DSL)</strong></li>
+<li>🪄 <strong>Custom-Makro für Regel-Definitionen (<code>rule! {}</code>)</strong></li>
+<li>🌐 <strong>WASM-Expertensystem im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Inferenz-Engine</strong></li>
+<li>🧮 <strong>Eigener Constraint-Solver (einfach, from scratch)</strong></li>
+<li>🎯 <strong>Fuzzing für Regel-Parser</strong></li>
+<li>🌲 <strong>Graph-basierte Abhängigkeitsanalyse von Regeln (Benchmark)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Fakten-Speicher (Performance)</strong></li>
+<li>🌫️ <strong>Property-getestetes Fuzzy-Logic-System</strong></li>
+<li>📦 <strong>Produktionsreife Expertensystem-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-lms--lernplattform-technik"><a class="header" href="#-lms--lernplattform-technik">🎓 LMS &amp; Lernplattform-Technik</a></h3>
+<ol start="25">
+<li>⚡ <strong>Benchmark: Quiz-Auswertungs-Algorithmen</strong></li>
+<li>🎲 <strong>Property-Tests für Notenberechnung</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Kursinhalte (SCORM-ähnliches Format)</strong></li>
+<li>🪄 <strong>Custom-Makro für Kurs-Definitionen</strong></li>
+<li>🌐 <strong>WASM-Quiz-Player im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische LMS-Kernbibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für Kurs-Import-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Lernpfad-Abhängigkeiten</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Fortschritts-Speicher</strong></li>
+<li>🎲 <strong>Property-getestetes Zertifikats-Validierungssystem</strong></li>
+<li>🌐 <strong>WASM-Lernpfad-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreife LMS-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-eigener-ki-agent--agenten-technik"><a class="header" href="#-eigener-ki-agent--agenten-technik">🤖 Eigener KI-Agent &amp; Agenten-Technik</a></h3>
+<ol start="37">
+<li>⚡ <strong>Benchmark: Tool-Dispatch-Strategien</strong></li>
+<li>🎲 <strong>Property-Tests für Agenten-Zustandsübergänge</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Agenten-Protokoll (JSON-RPC-artig)</strong></li>
+<li>🪄 <strong>Custom-Makro für Tool-Definitionen (<code>#[tool]</code>)</strong></li>
+<li>🌐 <strong>WASM-Agent im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generisches Agenten-Framework</strong></li>
+<li>🎯 <strong>Fuzzing für Agenten-Kommando-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Multi-Agenten-Kommunikation</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Nachrichten-Puffer</strong></li>
+<li>🎲 <strong>Property-getestete Tool-Aufruf-Validierung</strong></li>
+<li>🌐 <strong>WASM-Agenten-Debugger/Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifes Agenten-Framework (Ende-zu-Ende)</strong></li>
+<li>⚡ <strong>Benchmark: Speicher-Strategien für Agenten-Gedächtnis (Vec vs. HashMap vs. Ring-Buffer)</strong></li>
+<li>🎲 <strong>Property-Tests für Tool-Retry-Logik (Idempotenz)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Streaming-Antworten (Chunked-Format)</strong></li>
+<li>🪄 <strong>Derive-Makro für Agenten-Konfiguration (<code>#[derive(AgentConfig)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Sandbox für Tool-Ausführung im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: Tokenizer-Bibliothek für Agenten</strong></li>
+<li>🎯 <strong>Fuzzing für Streaming-Antwort-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Agenten-Abhängigkeitsketten (Tool-Chains)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Ring-Buffer für Agenten-Ereignisse</strong></li>
+<li>🎲 <strong>Property-getestete Kosten-Kalkulation (Token-Zähler)</strong></li>
+<li>🌐 <strong>WASM-Multi-Agenten-Simulator im Browser</strong></li>
+<li>📦 <strong>Produktionsreifes verteiltes Agenten-System (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-llm-wiki-pattern-karpathy-muster--wiki-technik"><a class="header" href="#-llm-wiki-pattern-karpathy-muster--wiki-technik">📖 LLM-Wiki-Pattern (Karpathy-Muster) &amp; Wiki-Technik</a></h3>
+<ol start="61">
+<li>⚡ <strong>Benchmark: Diff-Algorithmen (Myers vs. naiv)</strong></li>
+<li>🎲 <strong>Property-Tests für Merge-Konsistenz</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Wiki-Markup</strong></li>
+<li>🪄 <strong>Custom-Makro für Artikel-Metadaten (<code>#[derive(WikiPage)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Diff-Viewer im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Diff/Merge-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für Wiki-Markup-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Revisions-Historie (Traversierung)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Text-Puffer für große Artikel</strong></li>
+<li>🎲 <strong>Property-getestete Zitat-Validierung</strong></li>
+<li>🌐 <strong>WASM-Revisions-Historie-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreife Wiki-Engine-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-rag--vektorsuche"><a class="header" href="#-rag--vektorsuche">🔍 RAG &amp; Vektorsuche</a></h3>
+<ol start="73">
+<li>⚡ <strong>Benchmark: lineare vs. angenäherte Vektorsuche (HNSW-artig)</strong></li>
+<li>🎲 <strong>Property-Tests für Ähnlichkeits-Invarianten (Symmetrie, Normierung)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für Embedding-Dateien (Binärformat)</strong></li>
+<li>🪄 <strong>Custom-Makro für Embedding-Structs (<code>#[derive(Embeddable)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Vektorsuche im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Vektor-Index-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für Embedding-Datei-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Cluster-Traversierung (Nächste-Nachbarn-Graph)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierte SIMD-Kosinus-Ähnlichkeit</strong></li>
+<li>🎲 <strong>Property-getestete Chunking-Konsistenz (keine Datenverluste)</strong></li>
+<li>🌐 <strong>WASM-Embedding-Visualisierer (2D-Projektion)</strong></li>
+<li>📦 <strong>Produktionsreife RAG-Engine-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-mcp-model-context-protocol--tool-technik"><a class="header" href="#-mcp-model-context-protocol--tool-technik">🔌 MCP (Model Context Protocol) &amp; Tool-Technik</a></h3>
+<ol start="85">
+<li>⚡ <strong>Benchmark: Transport-Strategien (stdio vs. HTTP)</strong></li>
+<li>🎲 <strong>Property-Tests für Protokoll-Konformität (Schema-Konsistenz)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für JSON-RPC-Nachrichten</strong></li>
+<li>🪄 <strong>Custom-Makro für Tool-Definitionen (<code>#[mcp_tool]</code>)</strong></li>
+<li>🌐 <strong>WASM-MCP-Client im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generisches MCP-Server-Framework</strong></li>
+<li>🎯 <strong>Fuzzing für MCP-Nachrichten-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Multi-Server-Orchestrierung</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Nachrichten-Puffer für hohen Durchsatz</strong></li>
+<li>🎲 <strong>Property-getestete Capability-Verhandlung</strong></li>
+<li>🌐 <strong>WASM-MCP-Debugger/Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifes MCP-Server-Framework (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-datenbank-technik"><a class="header" href="#-datenbank-technik">🗄️ Datenbank-Technik</a></h3>
+<ol start="97">
+<li>⚡ <strong>Benchmark: B-Baum vs. Hash-Index</strong></li>
+<li>🎲 <strong>Property-Tests für Transaktions-Isolation</strong></li>
+<li>⚙️ <strong>Zero-Copy-Parser für ein eigenes Datenbankformat</strong></li>
+<li>🪄 <strong>Custom-Makro für ORM-artiges Mapping (<code>#[derive(Table)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Mini-Datenbank im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: eigene Embedded-Key-Value-Engine</strong></li>
+<li>🎯 <strong>Fuzzing für Query-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Join-Strategien</strong></li>
+<li>⚙️ <strong>Unsafe-optimiertes Speicher-Layout für Zeilen (Column-Store-Experiment)</strong></li>
+<li>🎲 <strong>Property-getestete WAL-Konsistenz (Write-Ahead-Log, Lernprojekt)</strong></li>
+<li>🌐 <strong>WASM-Query-Plan-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreife Embedded-Datenbank-Crate (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-eigene-parser--compiler-bauen"><a class="header" href="#-eigene-parser--compiler-bauen">🧮 Eigene Parser &amp; Compiler bauen</a></h3>
+<ol start="109">
+<li>⚡ <strong>Benchmark: rekursiver Abstieg vs. Parser-Kombinatoren</strong></li>
+<li>🎲 <strong>Property-Tests für Parser-Roundtrip (Parse → Pretty-Print → Parse)</strong></li>
+<li>⚙️ <strong>Zero-Copy-Lexer (ohne String-Allokationen)</strong></li>
+<li>🪄 <strong>Custom-Makro für Grammatik-Regeln (DSL für Parser-Definition)</strong></li>
+<li>🌐 <strong>WASM-Compiler-Playground im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Parser-Kombinator-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für den eigenen Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für AST-Traversierung (Optimierungspässe)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierte Bytecode-VM (Performance)</strong></li>
+<li>🎲 <strong>Property-getestete Typprüfung (Soundness einfacher Regeln)</strong></li>
+<li>🌐 <strong>WASM-AST-Visualisierer</strong></li>
+<li>📦 <strong>Produktionsreifer eigener Compiler/Interpreter (Ende-zu-Ende)</strong></li>
+</ol>
+<h3 id="-cms-technik"><a class="header" href="#-cms-technik">📰 CMS-Technik</a></h3>
+<ol start="121">
+<li>⚡ <strong>Benchmark: Template-Rendering-Strategien (String-Concat vs. Writer)</strong></li>
+<li>🎲 <strong>Property-Tests für Markdown-Parser-Konsistenz</strong></li>
+<li>⚙️ <strong>Zero-Copy-Content-Parser (Lernprojekt, <code>&amp;str</code>-Slices statt Allokation)</strong></li>
+<li>🪄 <strong>Custom-Makro für Content-Modell-Generierung (<code>#[derive(ContentType)]</code>)</strong></li>
+<li>🌐 <strong>WASM-Live-Vorschau-Editor im Browser</strong></li>
+<li>📦 <strong>Veröffentlichte Crate: generische Template-Engine-Bibliothek</strong></li>
+<li>🎯 <strong>Fuzzing für den eigenen Markdown-/Content-Parser</strong></li>
+<li>🌲 <strong>Graph-Benchmark für Content-Verlinkungs-Struktur (Backlinks)</strong></li>
+<li>⚙️ <strong>Unsafe-optimierter Puffer für große Content-Exporte</strong></li>
+<li>🎲 <strong>Property-getestete Versionierungs-/Diff-Logik</strong></li>
+<li>🌐 <strong>WASM-Rendering-Vergleich (Server-Side vs. Client-Side)</strong></li>
+<li>📦 <strong>Produktionsreifes Mini-CMS (Ende-zu-Ende)</strong></li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="l3-profi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Impressum.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="l3-profi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Impressum.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="ki-hinweis.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
